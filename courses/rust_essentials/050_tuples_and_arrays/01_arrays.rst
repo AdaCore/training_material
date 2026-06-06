@@ -14,9 +14,9 @@ What Is an Array?
 
 .. image:: array_diagram.svg
 
---------------------
+--------
 Basics
---------------------
+--------
 
 - Allocated on the stack - they're fast!
 - *Length* is **fixed** and defined at **compile-time**
@@ -27,17 +27,17 @@ Basics
 
 .. code:: rust
 
-      // Array of 3 items of type 'i8'
+      // Array of 3 elements of type 'i8'
       let mut values: [i8; 3] = [2, 3, 4];        
-      values[2] = 5; // Accessing and modifying an item
+      values[2] = 5; // Accessing and modifying an element
 
 .. note::
 
    Remember, :rust:`mut` is required for modification
 
------------------------------------
+---------------------------
 Safety and Initialization
------------------------------------
+---------------------------
 
 **Safety**
 
@@ -66,9 +66,9 @@ Safety and Initialization
 * Assignment is **not** limited to literals
   * Can use variables, function calls, or expressions
 
--------------------
+-----------
 Iteration
--------------------
+-----------
 
 * :rust:`for` statement natively supports iterating over arrays
 

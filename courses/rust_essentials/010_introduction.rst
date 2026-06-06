@@ -1,6 +1,6 @@
-************
+**************
 Introduction
-************
+**************
 
 .. container:: PRELUDE BEGIN
 

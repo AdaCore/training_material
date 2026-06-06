@@ -181,9 +181,9 @@ Difficulties with Loops Over Formal Containers
     + Relative to current cursor: e.g. previous/next cursor
     + Otherwise difficult with hashed sets/maps
 
-----------------------
+-----------------------
 Functional Containers
-----------------------
+-----------------------
 
 * Available from SPARK Library
 

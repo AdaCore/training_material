@@ -59,9 +59,9 @@ Signed Integer Bounds
 
       :error:`main.adb:3:26: error: integer type definition bounds out of range`
 
--------------------------------
+---------------------------------
 Predefined Signed Integer Types
--------------------------------
+---------------------------------
 
 * :ada:`Integer` **>= 16 bits** wide
 * Other **probably** available
@@ -76,9 +76,9 @@ Predefined Signed Integer Types
         
         * But usage may be difficult to avoid
 
----------------------------------
+-----------------------------------
 Operators for Signed Integer Type
----------------------------------
+-----------------------------------
 
 * By increasing precedence
 
@@ -95,9 +95,9 @@ Operators for Signed Integer Type
        - Power **must** be :ada:`Integer` ``>= 0``
 
 
-------------------------
+--------------------------
 Signed Integer Overflows
-------------------------
+--------------------------
 
 * Finite binary representation
 * Common source of bugs
@@ -113,9 +113,9 @@ Signed Integer Overflows
    =======================
     2#1000_0000_0000_0000#  = -32,768
 
---------------------------------------
+----------------------------------------
 Signed Integer Overflow: Ada Vs Others
---------------------------------------
+----------------------------------------
 
 * Ada
 

@@ -1,6 +1,6 @@
-===================================
+==================================
 Preconditions and Postconditions
-===================================
+==================================
 
 -----------------------------
 Subprogram-based Assertions
@@ -118,9 +118,9 @@ Postconditions
    function Top (This : Stack) return Content
      with Pre => not Empty (This);
 
---------------------------------
-Postcondition "'Old" Attribute
---------------------------------
+------------------------------
+Postcondition 'Old Attribute
+------------------------------
 
 * Values as they were just before the call
 * Uses language-defined attribute :ada:`'Old`
@@ -139,9 +139,9 @@ Postcondition "'Old" Attribute
                  Pre  => This < Integer'Last,
                  Post => This = This'Old + 1;
 
---------------------------------------------
-Function Postcondition "'Result" Attribute
---------------------------------------------
+------------------------------------------
+Function Postcondition 'Result Attribute
+------------------------------------------
 
 Function result can be referenced by :ada:`'Result` on the function name
 
@@ -176,7 +176,7 @@ Quiz
       (Length * Height)
    with Pre => ?
 
-Which pre-condition is necessary for :ada:`Area` to calculate the correct result for
+Which precondition is necessary for :ada:`Area` to calculate the correct result for
 all values :ada:`Length` and :ada:`Height`?
 
    A. ``Length > 0 and Height > 0``
@@ -234,9 +234,9 @@ of the call :ada:`Set_And_Move (-1, 10)`
      - :animate:`10`
      - :animate:`Evaluation of Database (Index) before call`
 
-------------------------
+-------------------------
 Separations of Concerns
-------------------------
+-------------------------
 
 * :ada:`Pre` and :ada:`Post` fit together
 

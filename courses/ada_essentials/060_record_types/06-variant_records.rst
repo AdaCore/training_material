@@ -231,4 +231,3 @@ D. None: Run-time error
 .. container:: animate
 
     The variant part cannot be followed by a component declaration (:ada:`Flag : Character` here)
-

@@ -155,4 +155,3 @@ Which of the following are legal instantiations? (Select all that apply)
 .. container:: animate
 
    :ada:`T1` must be discrete - so an integer or an enumeration. :ada:`T2` can be any type
-

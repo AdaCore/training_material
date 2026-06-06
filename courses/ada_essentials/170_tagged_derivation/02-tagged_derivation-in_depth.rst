@@ -200,4 +200,3 @@ Which of the following code blocks are legal? (Select all that apply)
    B. :ada:`B1` is a tagged type, and :ada:`B2` extends :ada:`B1`
    C. Components must have distinct names
    D. Types derived from a tagged type must have an extension
-

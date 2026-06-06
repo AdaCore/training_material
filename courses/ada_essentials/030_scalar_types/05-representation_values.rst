@@ -89,4 +89,3 @@ D. ``Direction_T'Val (Direction_T'Pos (Dir) - 1) = Bottom``
    B. :ada:`'Pos` returns position in enumeration starting at 0
    C. :ada:`'Image` returns a string
    D. Argument of :ada:`'Val` must be in range - here it's -1
-

@@ -198,7 +198,7 @@ Which of the following completions of :ada:`Create` are legal? (Select all that 
    Explanations
 
    A. Correct - :ada:`Parents.Create` returns :ada:`Parent_T`
-   B. Cannot use :ada:`others` to complete private part of an aggregate
+   B. Cannot use :ada:`others` to complete private section of an aggregate
    C. Aggregate has no visibility to :ada:`Id` component, so cannot assign
    D. Correct - :ada:`P` is a :ada:`Parent_T`
 

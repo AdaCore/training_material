@@ -195,4 +195,3 @@ Quiz
       B. :ada:`Object_B` is in the private section of :ada:`P` - visible in the private section or body of any descendant of :ada:`P`
       C. :ada:`Object_C` is in the body of :ada:`P`, so it is only visible in the body of :ada:`P`
       D. A and B are both valid completions
-

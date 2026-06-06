@@ -170,4 +170,3 @@ D. ``return Zero;``
 
    :ada:`A` contains an "in-place" return. The rest all rely on
    other objects, which would require an (illegal) copy.
-

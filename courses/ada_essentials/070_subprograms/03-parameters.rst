@@ -266,4 +266,3 @@ Which of the following calls are legal? (Select all that apply)
    C. :ada:`P1` can be a literal, :ada:`P2` must be an object,
       :ada:`P3` can be a literal, :ada:`P4` must be an object
    D. :ada:`F` is a function, its :ada:`return` **must** be handled
-

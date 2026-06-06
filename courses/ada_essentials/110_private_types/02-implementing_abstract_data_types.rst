@@ -192,4 +192,3 @@ Which of the following components are legal? (Select all that apply)
    B. Visible part does not know possible values for :ada:`Private_T`
    C. Visible part does not know possible values for :ada:`Private_T`
    D. Correct - type will have a known size at run-time
-

@@ -165,4 +165,3 @@ Which of the following statements is (are) correct?
     B. See previous slide example
     C. e.g. generic contracts are resolved at compile-time
     D. A failing contract **will cause** a runtime error, only extensive (dynamic / static) analysis of contracted code may provide confidence in the absence of runtime errors (AoRTE)
-    

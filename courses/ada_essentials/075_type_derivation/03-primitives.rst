@@ -2,9 +2,9 @@
 Primitives
 ============
 
---------------------
+----------------------
 Primitive Operations
---------------------
+----------------------
 
 * Primitive Operations are those subprograms associated with a type
 
@@ -57,9 +57,9 @@ General Rule for Defining a Primitive
             function F return T;
          end P;
 
-------------------------------
+-----------------------------
 Primitive of Multiple Types
-------------------------------
+-----------------------------
 
 A subprogram can be a primitive of several types
 

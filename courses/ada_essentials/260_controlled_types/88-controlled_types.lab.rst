@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 ----------------------
 Controlled Types Lab
@@ -28,20 +28,20 @@ Controlled Types Lab
    - Need to return a key when out-of-scope OR on user request
    - Global data to track used keys
  
-----------------------------------------------
+---------------------------------------------
 Controlled Types Lab Solution - Keys (Spec)
-----------------------------------------------
+---------------------------------------------
 
 .. container:: source_include 260_controlled_types/lab/controlled_types/answer/keys_pkg.ads :code:Ada :number-lines:1
 
-------------------------------------------------
+---------------------------------------------
 Controlled Types Lab Solution - Keys (Body)
-------------------------------------------------
+---------------------------------------------
 
 .. container:: source_include 260_controlled_types/lab/controlled_types/answer/keys_pkg.adb :code:Ada :number-lines:1
 
-----------------------------------------------
+--------------------------------------
 Controlled Types Lab Solution - Main
-----------------------------------------------
+--------------------------------------
 
 .. container:: source_include 260_controlled_types/lab/controlled_types/answer/main.adb :code:Ada :number-lines:1

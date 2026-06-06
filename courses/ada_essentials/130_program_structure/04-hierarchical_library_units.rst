@@ -332,4 +332,3 @@ Which of the following are legal initializations :ada:`Child_Object`? (Select al
    hierarchy). If :ada:`Parent.Child` had ":ada:`with Parent.Sibling;`", then
    A and B would be legal, but C would still be incorrect because there is
    no implied reference to a sibling.
-

@@ -237,4 +237,3 @@ Which of the following code blocks are legal? (Select all that apply)
    B. Correct
    C. Components must have distinct names
    D. Types derived from a tagged type must have an extension
-

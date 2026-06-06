@@ -131,4 +131,3 @@ Which of the following statements are legal? (Select all that apply)
    B. No overloaded names
    C. Use of :ada:`Top` resolves ambiguity
    D. When overloading subprogram names, best to not just switch the order of parameters
-

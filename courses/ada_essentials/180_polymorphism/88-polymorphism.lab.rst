@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 

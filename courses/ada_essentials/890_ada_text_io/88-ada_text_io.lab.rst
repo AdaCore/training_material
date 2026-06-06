@@ -1,10 +1,10 @@
-=======
+=====
 Lab
-=======
+=====
 
-----------------------
+-----------------
 Ada.Text_IO Lab
-----------------------
+-----------------
    
 * Requirements
    
@@ -25,9 +25,9 @@ Ada.Text_IO Lab
 
    - Use Text_IO to echo the file to the console
  
-----------------------------------------------
+--------------------------
 Ada.Text_IO Lab Solution
-----------------------------------------------
+--------------------------
 
 .. container:: source_include 890_ada_text_io/lab/ada_text_io/answer/main.adb :code:Ada :number-lines:1
 

@@ -251,4 +251,3 @@ Quiz
       * If you then ran the executable, you would get an exception 
 
          ``CONSTRAINT_ERROR : test.adb:20 discriminant check failed``
-   
