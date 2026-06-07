@@ -77,7 +77,13 @@ Block Labels
 
 .. code:: rust
 
+      println!("Before");
       'label: {
           break 'label;
           println!("This line gets skipped");
       }
+      println!("After");
+
+:command:`Before`
+
+:command:`After`
