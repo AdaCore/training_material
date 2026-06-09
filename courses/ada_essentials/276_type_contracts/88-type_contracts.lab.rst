@@ -20,15 +20,25 @@ Type Contracts Lab
    - Tuesday and/or Thursday classes can only be 1.5 hours long
    - Classes without a set day meet for any non-negative length of time
 
-* Hints
+---------------
+Helpful Hints
+---------------
 
-   - *Subtype Predicate* to create subtypes of day of week
-   - *Type Invariant* to ensure that every class meets for correct length of time
-   - To enable assertions in the runtime from :toolname:`GNAT Studio`
+- Use *subtype predicate* to create subtypes of day of week
+- Use *type invariant* to ensure that every class meets for correct length of time
+- The compiler needs the :command:`-gnata` switch to enable runtime assertions
 
-      * :menu:`Edit` :math:`\rightarrow` :menu:`Project Properties`
-      * **Build** :math:`\rightarrow` **Switches** :math:`\rightarrow` **Ada**
-      * Click on *Enable assertions*
+  - This is added to the :ada:`Compiler` package in the GPR file
+
+    .. code:: Ada
+
+      package Compiler is
+        for Switches ("ada") use ("-gnata");
+      end Compiler;
+
+.. note::
+
+  The compiler switch is already set in the prompt's :filename:`default.gpr` file
 
 -----------------------------------------------
 Type Contracts Lab Solution - Schedule (Spec)
