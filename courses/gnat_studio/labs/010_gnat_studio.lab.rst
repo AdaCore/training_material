@@ -29,24 +29,31 @@ Create Project - New Project
 Create Project - Project Settings
 -----------------------------------
 
-* Select :menu:`Edit` :math:`\rightarrow` :menu:`Project Properties...`
+* Right-click on the GPR filename in the :menu:`Project` view
 
-   * Navigate to the **Sources** :math:`\rightarrow` **Directories** tab
+  * Select :menu:`Project` :math:`\rightarrow` :menu:`Edit source file` to update the file
 
-      * Remove the pre-populated directory
-      * Add the :filename:`common` and :filename:`struct` directories 
+* Modify the **Source_Dirs** directive to
 
-   * Navigate to the **Sources** :math:`\rightarrow` **Main** tab
+  * Remove the pre-populated directory
+  * Add the :filename:`common` and :filename:`struct` directories 
 
-      * Replace the :filename:`main.adb` file with :filename:`sdc.adb`
-      * (Clicking the **+** icon brings up a list of all possible files)
+* Modify the **Main** directive
 
-   * Navigate to the **Build** :math:`\rightarrow` **Switches** :math:`\rightarrow` **Ada** tab
+   * Replace the :filename:`main.adb` file with :filename:`sdc.adb`
 
-      * Select *Debug information* (so we can debug later)
-      * Under *Warnings*, enable most warnings
+* Add compiler switches via the **Compiler** package
 
-   * Click :menu:`Save` to save settings
+  * Debug information :math:`\rightarrow` :command:`-g`
+  * Enable most warnings :math:`\rightarrow` :command:`-gnatw`
+
+  .. code:: Ada
+
+    package Compiler is
+      for Switches ("ada") use ("-g", "-gnatw");
+    end Compiler;
+
+* Click :menu:`Save` to save the project file
 
 --------------------------------
 Create Project - Build Project
