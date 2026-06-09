@@ -138,7 +138,13 @@ Call Chains on Exception Occurrences
 
 + Will be printed on an unhandled exception
 
-.. image:: advanced_exception_analysis/properties_dialog.jpg
++ Added to project file in the **Binder** package
+
+  .. code:: Ada
+
+    package Binder is
+        for Switches ("Ada") use ("-E"); -- or "-Es"
+    end Binder;
 
 --------------------------------------
 Exception Occurrence with Call Chain

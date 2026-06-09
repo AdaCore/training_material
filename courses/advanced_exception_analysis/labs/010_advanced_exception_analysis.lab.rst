@@ -76,20 +76,14 @@ Get Better Exception Information - Solution
 
   .. column::
 
-    * From the GUI
+    * Add to the GPR file:
 
-      .. image:: advanced_exception_analysis/properties_dialog.jpg
-        :width: 50%
+    .. code:: Ada
+      :font-size: scriptsize
 
-    * In the GPR file:
-
-      .. container:: latex_environment tiny
-
-        ::
-
-          package Binder is
-            for Switches("Ada") use ("-Es");
-         end Binder;
+      package Binder is
+         for Switches("Ada") use ("-Es");
+      end Binder;
 
   .. column::
 
