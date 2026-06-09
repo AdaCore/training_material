@@ -149,39 +149,34 @@ Default Review Statuses
 Custom Review Statuses
 ------------------------
 
-It is possible to create your own statuses for the **Manual review** dialog
-
 .. container:: columns
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    It is possible to create your own statuses for the **Manual review** dialog
 
-      :menu:`Edit` |rightarrow| :menu:`Edit Project Properties` |rightarrow| :menu:`GNATSAS`
+    .. code:: Ada
+      :font-size: scriptsize
 
-    .. image:: gnatsas/sas_custom_statuses.png
-      :width: 80%
+      project Sdc is
+        package Analyzer is
+          for Pending_Status use (
+              "Don't Know",
+              "To do");
+          for Not_A_Bug_Status use (
+              "Don't care",
+              "To be dealt with later");
+          for Bug_Status use (
+              "Problem",
+              "To be fixed ASAP");
+        end Analyzer;
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    Resulting in an updated **Manual review** dialog
 
-      .. code:: Ada
-
-        project Sdc is
-          package Analyzer is
-            for Pending_Status use ("Don't Know",
-                                    "To do");
-            for Not_A_Bug_Status use ("Don't care",
-                                      "To be dealt with later");
-            for Bug_Status use ("Problem",
-                                "To be fixed ASAP");
-          end Analyzer;
-
-Resulting in an updated **Manual review** dialog
-
-  .. image:: gnatsas/sas_manual_review_custom.png
-    :width: 20%
+    .. image:: gnatsas/sas_manual_review_custom.png
+      :width: 50%
 
 ==================
 Code Annotations

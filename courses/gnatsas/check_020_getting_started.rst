@@ -174,29 +174,17 @@ Specifying Rules File
     * :command:`gnatcheck -rules -from=coding_standard.rules ...`
     * But more commonly defined in project file
 
-.. container:: latex_environment tiny
+.. code:: GPRbuild
 
-  .. container:: columns
-
-    .. container:: column
-
-      .. code:: GPRbuild
-
-        project Simple is
-           for Source_Dirs use ("./include", "./src");
-           for Main use ("diners");
-           for Object_Dir use "./obj";
-           package Check is
-              for Default_Switches ("ada") use
-                 ("-rules", "-from=coding_standard.rules");
-           end Check;
-        end Simple;
-
-    .. container:: column
-
-      :menu:`Edit` |rightarrow| :menu:`Project Properties` |rightarrow| :menu:`Switches` |rightarrow| :menu:`GNATcheck`
-
-      .. image:: gnatcheck/properties_dialog.png
+  project Simple is
+     for Source_Dirs use ("./include", "./src");
+     for Main use ("diners");
+     for Object_Dir use "./obj";
+     package Check is
+        for Default_Switches ("ada") use
+           ("-rules", "-from=coding_standard.rules");
+     end Check;
+  end Simple;
 
 =====
 Lab
