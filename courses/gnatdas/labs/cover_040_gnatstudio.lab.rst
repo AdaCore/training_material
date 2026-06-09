@@ -43,7 +43,14 @@ Instrument Your Project
 
 .. container:: animate 2-
 
-   :menu:`Edit` |rightarrow| :menu:`Project Properties` |rightarrow| :menu:`Coverage`
+   * Click on the GPR filename in the :menu:`Project` view
+   * Add the following package to the project source file
+
+     .. code:: Ada
+
+       package Coverage is
+          for Switches ("*") use ("--level=stmt");
+       end Coverage;
 
    * Instrument the project
 
