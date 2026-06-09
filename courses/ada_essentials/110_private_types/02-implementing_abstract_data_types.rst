@@ -10,20 +10,21 @@ Implementing Abstract Data Types
 * Not based on single "class" construct, for example
 * Constituent parts
 
-   - Packages, with "private part" of package spec
+   - Packages, with "private section" of package spec
    - "Private types" declared in packages
    - Subprograms declared within those packages
 
----------------------------------------------
-Package Visible and Private Parts for Views
----------------------------------------------
+------------------------------------------------
+Package Visible and Private Sections for Views
+------------------------------------------------
 
-* Declarations in visible part are exported to **clients**
-* Declarations in private part are hidden from **clients**
+* Declarations in visible section are exported to **clients**
+* Declarations in private section are hidden from **clients**
 
    - No compilable references to type's actual representation
 
 .. code:: Ada
+  :font-size: small
 
    package name is
    ... exported declarations of types, variables, subprograms ...
@@ -39,7 +40,7 @@ Declaring Private Types for Views
 
 .. container:: source_include 110_private_types/syntax.bnf :start-after:declaring_private_types_for_views_begin :end-before:declaring_private_types_for_views_end :code:bnf
 
-* Private type declaration must occur in visible part
+* Private type declaration must occur in visible section
 
    - :dfn:`Partial view`
    - Only partial information on the type
@@ -47,7 +48,7 @@ Declaring Private Types for Views
 
       - But cannot create an object of that type until after the full type declaration
 
-* Full type declaration must appear in private part
+* Full type declaration must appear in private section
 
    - Completion is the :dfn:`Full view`
    - **Never** visible to **clients**
@@ -147,10 +148,10 @@ Compile-Time Visibility Protection
 Benefits of Views
 -------------------
 
-* **Clients** depend only on visible part of specification
+* **Clients** depend only on visible section of specification
 
-   - Impossible for **clients** to compile references to private part
-   - Physically seeing private part in source code is irrelevant
+   - Impossible for **clients** to compile references to private section
+   - Physically seeing private section in source code is irrelevant
 
 * Changes to implementation don't affect **clients**
 
@@ -188,8 +189,8 @@ Which component(s) is (are) legal?
 
    Explanations
 
-   A. Visible part does not know :ada:`Private_T` is discrete
-   B. Visible part does not know possible values for :ada:`Private_T`
-   C. Visible part does not know possible values for :ada:`Private_T`
+   A. Visible section does not know :ada:`Private_T` is discrete
+   B. Visible section does not know possible values for :ada:`Private_T`
+   C. Visible section does not know possible values for :ada:`Private_T`
    D. Correct - type will have a known size at run-time
 

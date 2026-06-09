@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 ------------------
 Access Types Lab
@@ -43,9 +43,9 @@ Lab Solution - Database_List (Helper Objects)
 
 .. container:: source_include 140_access_types/lab/access_types/answer/database_list.adb :start-after:helpers_begin :end-before:helpers_end :code:Ada :number-lines:1
 
------------------------------------------------
+----------------------------------------------
 Lab Solution - Database_List (Insert/Delete)
------------------------------------------------
+----------------------------------------------
 
 .. container:: source_include 140_access_types/lab/access_types/answer/database_list.adb :start-after:insert_and_delete_begin :end-before:insert_and_delete_begin :code:Ada :number-lines:35
 

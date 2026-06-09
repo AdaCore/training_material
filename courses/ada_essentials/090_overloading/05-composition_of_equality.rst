@@ -2,9 +2,9 @@
 Composition of Equality
 =========================
 
-----------------------------
- "Composition of Equality"
-----------------------------
+---------------------------
+"Composition of Equality"
+---------------------------
 
 * Whether user-defined equality functions are called automatically as part of equality for composite types containing types having such functions
 * Only composes when user-defined equality is defined

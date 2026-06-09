@@ -2,9 +2,9 @@
 Introduction
 ==============
 
-----------------------
+---------------------
 Modeling the System
-----------------------
+---------------------
 
 * Special variables used to interact with the system
 

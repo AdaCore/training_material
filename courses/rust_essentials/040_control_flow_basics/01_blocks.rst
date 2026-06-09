@@ -1,10 +1,10 @@
-===================
+========
 Blocks
-===================
+========
 
---------
+-------
 Block
---------
+-------
 
 - Encloses a sequence of expressions and statements within :rust:`{}`
 - Each block has a **value** and a **type**

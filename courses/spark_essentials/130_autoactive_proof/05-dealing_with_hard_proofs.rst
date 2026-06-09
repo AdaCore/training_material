@@ -35,7 +35,7 @@ Reducing the Proof Context
   - Note: :ada:`A and then B` requires proving separately ``A`` and ``B``
 
 * Annotation :ada:`Hide_Info` and :ada:`Unhide_Info` used to hide/expose
-  expression function or private part of package
+  expression function or private section of package
 
 --------------------
 Triggering Provers

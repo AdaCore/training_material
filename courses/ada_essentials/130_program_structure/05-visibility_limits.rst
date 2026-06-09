@@ -49,7 +49,7 @@ Correlation to C++ Class Visibility Controls
 
  .. container:: column
 
-   * Thus private section is like the protected part in C++
+   * Thus private section is like the protected section in C++
 
      .. code:: C++
 
@@ -191,7 +191,7 @@ Quiz
 
       Explanations
 
-      A. :ada:`Object_A` is in the public part of :ada:`P` - visible to any unit that :ada:`with`'s :ada:`P`
+      A. :ada:`Object_A` is in the public section of :ada:`P` - visible to any unit that :ada:`with`'s :ada:`P`
       B. :ada:`Object_B` is in the private section of :ada:`P` - visible in the private section or body of any descendant of :ada:`P`
       C. :ada:`Object_C` is in the body of :ada:`P`, so it is only visible in the body of :ada:`P`
       D. A and B are both valid completions

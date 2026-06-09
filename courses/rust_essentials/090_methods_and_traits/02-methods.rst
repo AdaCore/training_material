@@ -88,9 +88,9 @@ Method Receiver - Shared Borrow
   * Read-only access
   * Value remains usable after calls
 
----------------------------------
+----------------------------------
 Method Receiver - Mutable Borrow
----------------------------------
+----------------------------------
 
 **Definition**
 
@@ -226,7 +226,9 @@ Method Receiver - No Receiver
     let count = Counter::new();
 
     // OK: 'count' is now a normal value
-    println!("{}", count.value);
+    println!("Value: {}", count.value);
+
+  :command:`Value: 0`
 
 **Behavior**
 

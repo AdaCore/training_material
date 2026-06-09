@@ -76,7 +76,8 @@ Complete Picture
       cleaner::perform_cleanup();
   }
 
+:command:`Cleaning up...`
+
 .. note::
 
   Written as :rust:`module_name::function_name`
-

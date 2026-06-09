@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 ----------------
 Genericity Lab
@@ -40,8 +40,8 @@ Genericity Lab Solution - Generic (Body)
 
 .. container:: source_include 160_genericity/lab/genericity/answer/generic_list.adb :code:Ada :number-lines:1
 
------------------------------------
+--------------------------------
 Genericity Lab Solution - Main
------------------------------------
+--------------------------------
 
 .. container:: source_include 160_genericity/lab/genericity/answer/main.adb :code:Ada :number-lines:1
