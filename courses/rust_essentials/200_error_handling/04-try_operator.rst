@@ -64,7 +64,7 @@ Try Operator With "Option"
 
 .. warning::
 
-  **You cannot mix and match**
+  **Cannot mix and match**
 
   Cannot use :rust:`?` on :rust:`Result` in function returning :rust:`Option`
 

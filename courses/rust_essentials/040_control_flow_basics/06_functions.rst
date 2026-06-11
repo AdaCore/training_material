@@ -94,10 +94,10 @@ Design Philosophy: Clarity and Precision
 
 - Overloading is not supported
   - No multiple same-name functions with different arguments
-  - You always know exactly which function is called
+  - Programmer always knows exactly which function is called
 - No default arguments
   - Callers must provide a value for every parameter
-  - You see all the data entering the function
+  - Data entering the function is always specified
 - Fixed number of arguments
   - Take a strict number of inputs
   - *Macros* (like :rust:`println!`) can take variable arguments

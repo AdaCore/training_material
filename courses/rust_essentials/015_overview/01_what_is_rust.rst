@@ -54,6 +54,6 @@ Things to Consider About Rust
 
 - Multi-paradigm
 
-   - Imperative - you tell the compiler *how* to perform a task
-   - Functional - you tell the compiler *what* you want the result to be
+   - Imperative - instruct compiler *how* to perform task
+   - Functional - describe *what* result should be
    - Powerful OOP features 

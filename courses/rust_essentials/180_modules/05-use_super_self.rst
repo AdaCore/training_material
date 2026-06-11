@@ -115,7 +115,7 @@ Name Collisions
   use three_dee_graphics::render;
 
   fn main() {
-      render(); // Error - which one did you mean?
+      render(); // Error - which one should be called?
   }
 
 :error:`error[E0252]: the name 'render' is defined multiple times`
@@ -174,7 +174,7 @@ Absolute Paths
 * Use :rust:`crate` to refer to something from base directory of filesystem
 
   * Always starts from the root of the current crate
-  * Path stays valid even if you move the code to a different module
+  * Path stays valid even if code is moved to a different module
 
 * Example
 

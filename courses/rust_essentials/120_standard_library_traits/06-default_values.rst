@@ -125,5 +125,5 @@ Default Values in "enum"
 
 .. tip::
 
-  If you want :rust:`Active` to be default, manually
+  If :rust:`Active` should be default, manually
   implement :rust:`Default` trait

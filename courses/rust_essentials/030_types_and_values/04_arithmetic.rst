@@ -43,7 +43,7 @@ The Exponent Trap
 - **Common Mistake:** using :rust:`^`
 
   - In Rust, :rust:`^` is the **Bitwise XOR operator**
-  - Code will compile, but your math will be wrong!
+  - Code will compile, but math will be wrong!
 
 .. code:: rust
 
@@ -51,7 +51,7 @@ The Exponent Trap
 
 - **Correct Way:** use methods
 
-  - Must use a method specific to your data type
+  - Must use a method specific to data type
   - :rust:`.pow(u32) ` - integers
   - :rust:`.powf(f64)` - floats
 
@@ -134,7 +134,7 @@ Arithmetic Nuance: Division
 
   - **Floating Point Division**
 
-    - To get a **decimal** result, you *must* use **floating point** numbers
+    - To get a **decimal** result, *must* use **floating point** numbers
     - :rust:`f64`, :rust:`f32`
 
 .. code:: rust
@@ -158,8 +158,8 @@ Integer Overflow
   - **Debug Builds**
 
     - Rust *checks* for overflow
-    - Your program will :rust:`panic!` (crash)
-    - An error will tell you exactly what happened
+    - Program will :rust:`panic!` (crash)
+    - An error will describe exactly what happened
 
   - **Release Builds**
 
@@ -171,7 +171,7 @@ Integer Overflow
 Handling Overflow Explicitly
 ------------------------------
 
-- What if *you* want to control overflow behavior?
+- What if *programmer* wants to control overflow behavior?
 
 - :rust:`wrapping_add()` 
 
@@ -195,4 +195,4 @@ Handling Overflow Explicitly
 
 .. warning::
 
-  You should **not** rely on wrapping if you expect a calculation overflow
+  Should **not** rely on wrapping if calculation overflow is expected

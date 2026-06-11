@@ -63,7 +63,7 @@ Methods to Add Detail
 * :rust:`.context()`
 
   * Attaches message to error
-  * On failure, user sees *your* message *plus* original error
+  * On failure, user sees *specified* message *plus* original error
 
 * :rust:`.with_context()`
 

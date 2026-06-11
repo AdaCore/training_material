@@ -10,7 +10,7 @@ What We Covered
   - Guarantee safety by enforcing strict access
   
 - **Local, Function, and Method Borrows**
-  - Exact same borrowing rules apply whether you are
+  - Exact same borrowing rules apply whether
     - Assigning local variables
     - Passing arguments to functions
     - Calling methods via :rust:`&self` or :rust:`&mut self`

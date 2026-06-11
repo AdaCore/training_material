@@ -11,7 +11,7 @@ What Is a Macro?
 - Is **not** a function
 - Macro calls are required to end with :rust:`!`
   - E.g., :rust:`println!`, :rust:`dbg!`
-- You can write your own!
+- Programmers can write their own!
 
 .. note::
 

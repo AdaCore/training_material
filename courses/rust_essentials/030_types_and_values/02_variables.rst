@@ -6,7 +6,7 @@ Variables
 What Is a Variable?
 ---------------------
 
-- Think of a variable as a **labeled box** where you can store a single piece of info (a "value")
+- Think of a variable as a **labeled box** where single piece of info ("value") is stored
 
   - **Label** - variable's name (e.g., :rust:`score`)
   - **Contents** - value (e.g., :rust:`100`)
@@ -55,7 +55,7 @@ By Default, Variables Are Immutable
 Making Variables Mutable
 --------------------------
 
-- Sometimes, you *need* to change a value
+- Sometimes, value *needs* to change
 
 - Rust requires **explicit** permission to do this
 

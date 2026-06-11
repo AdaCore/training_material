@@ -13,7 +13,7 @@ What We Covered
 
 * **Performing Mathematical Operations**
 
-  * Overloading operators to provide your own capabilities
+  * Overloading operators to provide specific capabilities
 
 * **Converting Between Types and Values**
 
@@ -22,7 +22,7 @@ What We Covered
 
 * **Input/Output on Types**
 
-  * Implement :rust:`Read` and :rust:`Write` for your types
+  * Implement :rust:`Read` and :rust:`Write` for types
 
 * **Default Values for Types**
 

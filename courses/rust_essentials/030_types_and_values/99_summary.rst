@@ -15,7 +15,7 @@ What We Covered
 - **Static Typing and Inference** 
 
     - Compiler must know every type
-    - **Inference** can do the work for you
+    - **Inference** can do the work
 
 - **Numeric Conversions** 
 
@@ -25,5 +25,5 @@ What We Covered
 
 - **Arithmetic Safety** 
 
-    - Rust protects you from undefined behavior
+    - Rust protects application from undefined behavior
     - **Overflow** is detected (panic) or defined (wrap)

@@ -98,10 +98,10 @@ Deriving in Complex Structures
 Limitations on Deriving
 -------------------------
 
-**You cannot derive when**
+**Cannot derive when**
 
   * Behavior depends on logic, not structure
-  * You need validation or side effects
+  * Need validation or side effects
   * Only part of the data should participate
 
 .. note::
@@ -152,7 +152,7 @@ Limitations on Deriving
 
     * -
       - It's "all-or-nothing" for every field in the struct
-      - You can hide fields, transform data, skip logic
+      - Can hide fields, transform data, skip logic
 
     * -
       -
@@ -170,8 +170,8 @@ Limitations on Deriving
 
   **Derive** is for **Computers**
 
-    If you just need the compiler to know how to clone your data or print it for a log, let it do the work
+    If compiler needs to know how to clone data or print it for a log, let it do the work
 
   **Manual** is for **Humans**
 
-    If you are formatting a string that a programmer will read (like :rust:`Display`), you usually need a manual implementation to make it look "pretty"
+    When formatting a string that a programmer will read (like :rust:`Display`), usually need a manual implementation to make it look "pretty"

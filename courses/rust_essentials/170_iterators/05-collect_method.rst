@@ -16,7 +16,7 @@ The Ultimate Consumer
   * Runs entire pipeline
   * Stores results in a collection (:rust:`Vec` or :rust:`HashMap`, etc.)
 
-* Typically use *turbofish* syntax to tell compiler what you want
+* Typically use *turbofish* syntax to tell compiler what to create
 
   .. code:: rust
 

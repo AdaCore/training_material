@@ -15,7 +15,7 @@ Traits - Rust's Interfaces
     * Traits are *separate* from types
     * Traits can define associated types and constants
 
-* Traits let you abstract over types that share behavior
+* Traits allows abstraction over types that share behavior
 
 ----------------------
 Simple Trait Example
