@@ -27,7 +27,7 @@ Storage Pools in Ada
 
 :ada:`System.Storage_Pools`
 
-* Allows specification of your own block of memory to maintain
+* Allows specification of specific blocks of memory to maintain
 * :ada:`new` uses this block for allocations
 * Mechanisms to allocate, deallocate, and query
 * Each access type can have its own storage pool

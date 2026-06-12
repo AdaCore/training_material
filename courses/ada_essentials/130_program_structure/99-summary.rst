@@ -21,4 +21,4 @@ Summary
 * Not uncommon for two package specs to be interdependent
 
   * :ada:`limited with` can resolve circularity
-  * May involve rethinking your type definitions
+  * May involve rethinking type definitions

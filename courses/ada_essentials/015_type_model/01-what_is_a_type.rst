@@ -24,7 +24,7 @@ Definiton of a Type
    
 .. note::
 
-   A **type** is a blueprint for data; you can't mistake the blueprint for a bicycle with the blueprint for a car
+   A **type** is a blueprint for data; cannot mistake blueprint for a bicycle with blueprint for a car
 
 ---------------------------
 Real Job of a Type System

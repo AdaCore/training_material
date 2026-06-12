@@ -45,8 +45,8 @@ Deallocations
    - Memory corruptions
    - Access to deallocated objects
 
-* As soon as you use them, you lose the safety of your access
-* But sometimes, you have to do what you have to do ...
+* As soon as they are used, the safety of the access is lost
+* But it may need to be done if memory is limited
 
    - There's no simple way of doing it
    - Ada provides `Ada.Unchecked_Deallocation`

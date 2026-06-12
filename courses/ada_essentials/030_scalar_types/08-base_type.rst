@@ -123,7 +123,7 @@ Using Equality for Floating Point Types
    - Approximations |rightarrow| hard to **analyze**, and **not portable**
    - Related to floating-point, not Ada
 
-* Perhaps define your own function
+* Perhaps define a new function
 
    - Comparison within tolerance (:math:`+\varepsilon` / :math:`-\varepsilon`)
 

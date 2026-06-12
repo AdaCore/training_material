@@ -7,7 +7,7 @@ Note on Default Initialization for Array Types
 ------------------------------------------------
 
 * In Ada, objects are not initialized by default
-* To initialize an array, you can initialize each component
+* To initialize an array, could initialize each component
 
    * But if the array type is used in multiple places, it would be better to initialize at the type level
    * No matter how many dimensions, there is only one component type
@@ -60,7 +60,7 @@ Array For-Loops
      ...
      end loop;
 
-* Starts with "first" component unless you reverse it
+* Starts with "first" component unless *reversed*
 * Loop parameter name is a constant if iterating over a constant, a variable otherwise
 
 ..

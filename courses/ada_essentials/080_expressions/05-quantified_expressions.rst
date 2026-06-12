@@ -29,9 +29,9 @@ Quantified Expressions
 ..
   language_version 2012
 
------------------------------------------
-Semantics Are As If You Wrote This Code
------------------------------------------
+-----------------------------------
+Same Behavior without Quantifiers
+-----------------------------------
 
 .. code:: Ada
 

@@ -21,8 +21,8 @@ Ada "Named Typing"
 
 .. note::
 
-   In Ada, types are like airport security: if your bag doesn't match
-   the rules, you're not getting through
+   In Ada, types are like airport security: if luggage doesn't match
+   the rules, it's not getting through
 
 ---------------------
 Categories of Types

@@ -37,7 +37,7 @@ Recognizing Procedures and Functions
    - And cannot be ignored
 
 * Procedures cannot be treated as values
-* You can always distinguish them via the call context
+* Can always distinguish them via the call context
 
   .. code:: Ada
      :number-lines: 10

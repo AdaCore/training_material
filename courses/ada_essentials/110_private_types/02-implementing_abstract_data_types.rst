@@ -159,7 +159,7 @@ Benefits of Views
 
 * Implementers can create bullet-proof abstractions
 
-   - If a facility isn't working, you know where to look
+   - If a facility isn't working, error is in the implementation
 
 * Fixing bugs is less likely to introduce new ones
 

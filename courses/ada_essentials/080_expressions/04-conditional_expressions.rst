@@ -136,7 +136,7 @@ The "else" Part When Result Is Boolean
     Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
     Acceptable : Boolean := (if P1 > 0 then P2 > 0);
 
-* Use :ada:`else` if you need to return False at the end
+* Use :ada:`else` if value must otherwise be set to :ada:`False`
 
 ---------------------------------------
 Rationale for Parentheses Requirement
@@ -187,7 +187,7 @@ Rationale for Parentheses Requirement
 When to Use If Expressions
 ----------------------------
 
-* When you need computation to be done prior to sequence of statements
+* When computation should be done prior to sequence of statements
 
   .. code:: Ada
 

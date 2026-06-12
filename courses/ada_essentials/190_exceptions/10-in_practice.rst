@@ -55,9 +55,9 @@ Allow Clients to Avoid Exceptions
      if not Stack.Empty then
        Stack.Pop (...);  -- will not raise Underflow
 
-----------------------------------
-You Can Suppress Run-Time Checks
-----------------------------------
+-----------------------------------
+Run-Time Checks Can Be Suppressed
+-----------------------------------
 
 **Syntax** (could use a compiler switch instead)
 

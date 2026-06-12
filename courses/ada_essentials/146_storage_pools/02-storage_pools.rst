@@ -19,9 +19,9 @@ Storage Pool Type
   * :ada:`Finalization` objects call primitives on construction, destruction, and modification
   * :ada:`Limited_Controlled` makes the type :ada:`limited`
 
-* Is an :ada:`abstract` type so **you** must create
+* Is an :ada:`abstract` type so **programmer** must create
 
-  * Your own type derived from :ada:`Root_Storage_Pool`
+  * Type derived from :ada:`Root_Storage_Pool`
   * Versions of each of the primitive subprograms
 
 -------------------------------------
@@ -90,9 +90,9 @@ Limitations/Benefits
 
 * No automatic collection
 
-  * Freeing is still manual (unless you design otherwise)
+  * Freeing is still manual (unless designed otherwise)
 
-* :ada:`Storage_Size` can limit how many objects you can allocate
+* :ada:`Storage_Size` can limit how many objects can be allocated
 
 * Safety
 

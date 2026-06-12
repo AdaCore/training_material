@@ -323,7 +323,7 @@ More Information on Iterators
 
    Ada 2022
 
-* You can nest iterators for arrays of arrays
+* Can nest iterators for arrays of arrays
 
   .. code:: Ada
 
@@ -333,7 +333,7 @@ More Information on Iterators
         [for J in 1 .. 3 =>
            [for K in 1 .. 3 => J * 10 + K]];
 
-* You can even use multiple iterators for a single dimension array
+* Can even use multiple iterators for a single dimension array
 
   .. code:: Ada
 
@@ -344,9 +344,9 @@ More Information on Iterators
 
 * Restrictions
 
-   * You cannot mix index-based iterators and component-based iterators in the same aggregate
+   * Cannot mix index-based iterators and component-based iterators in the same aggregate
 
-   * You still cannot have overlaps or missing values
+   * Still cannot have overlaps or missing values
 
 ------------------
 Delta Aggregates
@@ -361,7 +361,7 @@ Delta Aggregates
    type Coordinate_T is array (1 .. 3) of Float;
    Location : constant Coordinate_T := (1.0, 2.0, 3.0);
 
-* Sometimes you want to copy an array with minor modifications
+* Sometimes code needs to copy an array with minor modifications
 
    * Prior to Ada 2022, it would require two steps
 
@@ -385,7 +385,7 @@ Delta Aggregates
 
 * Notes
 
-   * You can use square brackets or parentheses
+   * Can use square brackets or parentheses
    * Only allowed for single dimension arrays
 
 *This works for records as well (see that chapter)*

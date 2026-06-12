@@ -16,6 +16,6 @@ Summary
    - Language has its own ways of dealing with large objects passed as parameters
    - Language has libraries dedicated to memory allocation / deallocation
 
-* At a minimum, create your own generics to do allocation / deallocation
+* At a minimum, create generics to do allocation / deallocation
 
    - Minimize memory leakage and corruption

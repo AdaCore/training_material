@@ -17,7 +17,7 @@ Setting up VS Code
 
    https://marketplace.visualstudio.com/items?itemName=AdaCore.ada
 
-* Make sure GNAT is installed and on your path
+* Make sure GNAT is installed and on path
 
    * If not already downloaded, look on GitHub
 
@@ -55,7 +55,7 @@ Building the Lab
 * Use VS Code predefined task :command:`ada: Build current project`
 
    * Go to the **Command Palette** (:menu:`Ctrl+Shift+B`)
-   * Search for :menu:`ada` commands - you're looking for
+   * Search for :menu:`ada` commands - looking for
      :menu:`ada: Build current project`
    * Press :menu:`Enter` to run the task
 

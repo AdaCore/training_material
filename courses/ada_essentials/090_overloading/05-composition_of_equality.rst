@@ -9,11 +9,11 @@ Composition of Equality
 * Whether user-defined equality functions are called automatically as part of equality for composite types containing types having such functions
 * Only composes when user-defined equality is defined
 
-   * Assume you defined "=" for a scalar type
-   * If you define "=" for a composite containing the scalar type, your scalar "=" will be used
-   * If you rely on the implicit "=" for the composite, then the scalar's implicit "=" will also be used
+   * Assume :ada:`=` is defined for a scalar type
+   * When :ada:`=` is defined for a composite containing the scalar type, defined scalar :ada:`=` will be used
+   * When *implicit* :ada:`=` is used for a composite containing the scalar type, implicit scalar :ada:`=` will be used
 
-      * **Not** the one you just defined
+      * **Not** the defined version
 
 --------------------------------
 Composition Vs Non-Composition
@@ -83,7 +83,7 @@ Enclosing Equality Function Example
 
 * Per RM 4.5.2(32/1)
 * For all non-limited types declared in language-defined packages
-* Thus you can safely ignore the issue for composite types defined by the language
+* Programmer can safely ignore the issue for composite types defined by the language
 
 -----------------------------------
 User-Defined Equality Composition

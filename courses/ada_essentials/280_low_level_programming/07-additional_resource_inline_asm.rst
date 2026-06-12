@@ -27,10 +27,10 @@ Simple Statement
 
      Asm ("halt", Volatile => True);
 
-  - You may specify :ada:`Volatile` to avoid compiler optimizations
+  - May specify :ada:`Volatile` to avoid compiler optimizations
    - In general, keep it False unless it created issues
 
-* You can group several instructions
+* Can group several instructions
 
   .. code:: Ada
 
@@ -113,13 +113,13 @@ Main Rules
 
    - Makes compiler's life more difficult
    - Let the compiler choose registers
-   - You should correctly describe register constraints
+   - Should correctly describe register constraints
 
 * On x86, the assembler uses ``AT&T`` convention
 
    - First operand is source, second is destination
 
-* See your toolchain's ``as`` assembler manual for syntax
+* See toolchain's ``as`` assembler manual for syntax
 
 -------------------------------------
 Volatile and Clobber ASM Parameters

@@ -32,7 +32,7 @@ Limited Type Views' Semantics
 * Prevents copying via predefined assignment
 
    - Disallows assignment between objects
-   - Must make your own `copy` procedure if needed
+   - Must implement a `copy` procedure if needed
 
    .. code:: Ada
 
@@ -45,7 +45,7 @@ Limited Type Views' Semantics
 * Prevents incorrect comparison semantics
 
    - Disallows predefined equality operator
-   - Make your own equality function `=` if needed
+   - Create an equality function `=` if needed
 
 -------------------------------
 Inappropriate Copying Example

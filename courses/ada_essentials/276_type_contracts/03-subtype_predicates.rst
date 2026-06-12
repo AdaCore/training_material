@@ -487,10 +487,10 @@ GNAT-Specific Aspect Name "Predicate"
 
    - But not inverse
 
-* Slight disadvantage: you don't find out if your predicate is not actually static
+* Slight disadvantage: don't find out if predicate is not actually static
 
-   - Until you use it where only static predicates are allowed
-   - Then you get a compile error
+   - Until used where only static predicates are allowed
+   - Then compile error occurs
 
 ------------------------------------------
 Enabling/Disabling Contract Verification

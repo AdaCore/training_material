@@ -6,7 +6,7 @@ Interfacing with C
 Passing Records Between Ada and C
 -----------------------------------
 
-* Your Ada code needs to call C that looks like this:
+* Ada code might need to call C that looks like this:
 
   .. code:: C
 
@@ -18,10 +18,10 @@ Passing Records Between Ada and C
 
      int DoSomething (struct Struct_T);
 
-* Ada has mechanisms that will allow you to 
+* Ada has mechanisms that will allow 
 
-   * Call :C:`DoSomething`
-   * Build a record that is binary-compatible to :C:`Struct_T`
+   * Calling :C:`DoSomething`
+   * Building a record that is binary-compatible to :C:`Struct_T`
 
 --------------------------------
 Building a C-Compatible Record
@@ -59,7 +59,7 @@ Mapping Ada to C Unions
 
    * Only one part of the record is available at any time
 
-* So, you create the equivalent of this C :c:`union`
+* So, to create the equivalent of this C :c:`union`
 
   .. code:: C
 
@@ -69,7 +69,7 @@ Mapping Ada to C Unions
         float Component3;
      };
 
-* By using a discriminant record and adding aspect :ada:`Unchecked_Union`
+* Use a discriminant record and add aspect :ada:`Unchecked_Union`
 
   .. code:: Ada
 

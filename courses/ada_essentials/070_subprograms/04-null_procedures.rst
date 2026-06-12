@@ -80,7 +80,7 @@ Typical Use for Null Procedures
   * :ada:`Two.Print` basically does nothing (because of line 7)
   * If line 7 is commented out, :ada:`Two.Print` would go to line 4
 
-* Used as a placeholder to get your code to build
+* Used as a placeholder to get code to build
 
   .. code:: Ada
     :font-size: footnotesize
@@ -105,11 +105,11 @@ Typical Use for Null Procedures
 Null Procedure Summary
 ------------------------
 
-* Allowed where you can have a full body
+* Allowed wherever a full body can exist
 
    - Syntax is then for shorthand for a full null-bodied procedure
 
-* Allowed where you can have a declaration!
+* Allowed wherever a declaration can exist!
 
    - Example: package declarations
    - Syntax is shorthand for both declaration and completion
