@@ -158,12 +158,12 @@ Integer Overflow
   - **Debug Builds**
 
     - Rust *checks* for overflow
-    - Program will :rust:`panic!` (crash)
+    - Program will :dfn:`panic` (crash)
     - An error will describe exactly what happened
 
   - **Release Builds**
 
-    - Rust *does not* :rust:`panic!`
+    - Rust *does not* panic
     - It performs **two's complement wrapping**
     - **Example:** For :rust:`u8`, :rust:`255 + 1` "wraps around" to :rust:`0`
 

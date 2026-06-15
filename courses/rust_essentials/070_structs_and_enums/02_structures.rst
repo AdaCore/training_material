@@ -207,7 +207,6 @@ Tuple Structs
         i64,   // Money
         bool,  // Is good?
     );
-    // How to use it:
     let hero = Character(10000, -500, true);
     println!("Power level is : {}", hero.0);
     println!("Money is : {}", hero.1);
