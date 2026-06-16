@@ -87,6 +87,8 @@ SUPPORTED_CLASSES = [
     "latex_environment",
 ]
 
+COLORBOX = "tcolorbox"
+
 
 ##
 ## END CONFIGURATION INFORMATION
@@ -947,8 +949,13 @@ def wrap_block(keys, block):
     begins = []
     ends = []
     for environment in keys.keys():
+        msf("environment:" + environment + ":")
         if environment == "font-size":
             begin, end = environment_wrapper(keys[environment])
+            begins.append(begin)
+            ends.insert(0, end)
+        elif environment == COLORBOX:
+            begin, end = environment_wrapper(COLORBOX, keys[environment])
             begins.append(begin)
             ends.insert(0, end)
 
@@ -959,6 +966,57 @@ def wrap_block(keys, block):
     for one in ends:
         new_value.append(one)
     return new_value
+
+MSF = False
+
+def msf(s):
+
+    global MSF
+
+    fp = None
+    if not MSF:
+        fp = open ("\\temp\\msf.txt", "w")
+    else:
+        fp = open ("\\temp\\msf.txt", "a")
+    MSF = True
+    fp.write (s + "\n\n")
+    fp.close()
+
+def build_colorbox (values):
+
+    fg = None
+    bg = None
+
+    colors = values.split(' ')
+    for color in colors:
+        if color.startswith('fg='):
+            fg = color[3:]
+        elif color.startswith('bg='):
+            bg = color[3:]
+
+    retval = "["
+    if fg != None:
+        retval = retval + "coltext=" + fg + ","
+    if bg != None:
+        retval = retval + "colback=" + bg + ","
+        retval = retval + "colframe=" + bg + ","
+    if retval[-1] == ',':
+        retval = retval[:-1]
+    retval = retval + ']'
+
+    return retval
+ 
+
+def expand_keys (pair):
+
+    key = pair[0].lower()
+    val = pair[1].lower()
+
+    if key == "colors":
+        key = COLORBOX
+        val = build_colorbox (val)
+
+    return key, val
 
 
 def process_codeblock(key, value):
@@ -979,7 +1037,10 @@ def process_codeblock(key, value):
         keys["language"] = classes[0]
         for pair in kvs:
             if len(pair) > 0:
-                keys[pair[0].lower()] = pair[1].lower()
+                key, val = expand_keys (pair)
+                keys[key] = val
+                msf("key = " + key)
+                msf("val = " + val)
     except:
         pass
 
