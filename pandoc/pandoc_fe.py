@@ -461,7 +461,9 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
 
     syntax = "--syntax-definition=" + os.path.join(os.path.dirname(__file__), "bnf.xml")
 
-    preamble = "--include-in-header=" + os.path.join(os.path.dirname(__file__), "preamble.tex")
+    preamble = "--include-in-header=" + os.path.join(
+        os.path.dirname(__file__), "preamble.tex"
+    )
 
     # build list of search directories
     texinputs = set_texinputs(args.directories)

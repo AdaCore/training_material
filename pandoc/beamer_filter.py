@@ -949,12 +949,13 @@ def wrap_block(keys, block):
     begins = []
     ends = []
     for environment in keys.keys():
-        msf("environment:" + environment + ":")
         if environment == "font-size":
+            # For 'font-size', the key is the environment name
             begin, end = environment_wrapper(keys[environment])
             begins.append(begin)
             ends.insert(0, end)
         elif environment == COLORBOX:
+            # For a colorbox, the key are the options to the color environment
             begin, end = environment_wrapper(COLORBOX, keys[environment])
             begins.append(begin)
             ends.insert(0, end)
@@ -967,31 +968,23 @@ def wrap_block(keys, block):
         new_value.append(one)
     return new_value
 
-MSF = False
 
-def msf(s):
-
-    global MSF
-
-    fp = None
-    if not MSF:
-        fp = open ("\\temp\\msf.txt", "w")
-    else:
-        fp = open ("\\temp\\msf.txt", "a")
-    MSF = True
-    fp.write (s + "\n\n")
-    fp.close()
-
-def build_colorbox (values):
+def build_colorbox(values):
+    """
+    Allow setting of foreground and/or background colors
+    for a code block.
+    For now, rather than specifying no border, we will set
+    the border color to the background color (if one is set)
+    """
 
     fg = None
     bg = None
 
-    colors = values.split(' ')
+    colors = values.split(" ")
     for color in colors:
-        if color.startswith('fg='):
+        if color.startswith("fg="):
             fg = color[3:]
-        elif color.startswith('bg='):
+        elif color.startswith("bg="):
             bg = color[3:]
 
     retval = "["
@@ -1000,21 +993,25 @@ def build_colorbox (values):
     if bg != None:
         retval = retval + "colback=" + bg + ","
         retval = retval + "colframe=" + bg + ","
-    if retval[-1] == ',':
+    if retval[-1] == ",":
         retval = retval[:-1]
-    retval = retval + ']'
+    retval = retval + "]"
 
     return retval
- 
 
-def expand_keys (pair):
+
+def expand_keys(pair):
+    """
+    When processing keys for a code block, handle colors
+    in a special manner
+    """
 
     key = pair[0].lower()
     val = pair[1].lower()
 
     if key == "colors":
         key = COLORBOX
-        val = build_colorbox (val)
+        val = build_colorbox(val)
 
     return key, val
 
@@ -1037,10 +1034,8 @@ def process_codeblock(key, value):
         keys["language"] = classes[0]
         for pair in kvs:
             if len(pair) > 0:
-                key, val = expand_keys (pair)
+                key, val = expand_keys(pair)
                 keys[key] = val
-                msf("key = " + key)
-                msf("val = " + val)
     except:
         pass
 
