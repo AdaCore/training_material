@@ -88,7 +88,8 @@ SUPPORTED_CLASSES = [
 ]
 
 COLORBOX = "tcolorbox"
-
+ERROR_COLORS = "fg=error_fg bg=error_bg"
+OUTPUT_COLORS = "fg=output_fg bg=output_bg"
 
 ##
 ## END CONFIGURATION INFORMATION
@@ -1032,6 +1033,11 @@ def process_codeblock(key, value):
     try:
         keys = {}
         keys["language"] = classes[0]
+
+        if "error" in classes:
+            keys[COLORBOX] = build_colorbox(ERROR_COLORS)
+        elif "output" in classes:
+            keys[COLORBOX] = build_colorbox(OUTPUT_COLORS)
         for pair in kvs:
             if len(pair) > 0:
                 key, val = expand_keys(pair)
