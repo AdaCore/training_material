@@ -94,16 +94,12 @@ Working With "Vec"
   println!("one: {one:?}");
   println!("five: {five:?}");
 
-:command:`All colors`
+.. code:: output
 
-:command:`  Red`
-
-:command:`  Green`
-
-:command:`  Blue`
-
-:command:`last: Some("Blue")`
-
-:command:`one: Some("Green")`
-
-:command:`five: None`
+  All colors
+    Red
+    Green
+    Blue
+  last: Some("Blue")
+  one: Some("Green")
+  five: None

@@ -24,7 +24,9 @@ What Is "Box<T>"
   // Implicit dereference
   println!("Box value is {}", my_box);
   
-:command:`Box value is 5`
+.. code:: output
+
+  Box value is 5
  
 ------------------------------------
 Using "Box<T>" for Recursive Types

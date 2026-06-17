@@ -21,9 +21,10 @@ Block
     };
     println!("cash: {cash}");
 
-:command:`withdraw: 10`
+.. code:: output
 
-:command:`cash: 3`
+  withdraw: 10
+  cash: 3
 
 .. container:: speakernote
 

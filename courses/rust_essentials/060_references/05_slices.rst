@@ -20,9 +20,10 @@ What Are Slices?
     let primes: [i32; 6] = [2, 3, 5, 7, 11, 13];
     let slice: &[i32] = &primes[2..4];
 
-:command:`primes: [2, 3, 5, 7, 11, 13]`
+.. code:: output
 
-:command:`slice: [5, 7]`
+  primes: [2, 3, 5, 7, 11, 13]
+  slice: [5, 7]
 
 ----------------
 Slice Creation
@@ -58,7 +59,9 @@ Slice Examples
 
   let terminator: [char; 4] = ['T', '8', '0', '0'];
 
-:command:`terminator:      ['T', '8', '0', '0']`
+.. code:: output
+
+  terminator:      ['T', '8', '0', '0']
 
 .. code:: rust
 
@@ -69,15 +72,13 @@ Slice Examples
   let james: &[char] = &arnold[2..4];
   let terminated = &terminator[0..0];
 
-:command:`version:         ['8', '0', '0']`
+.. code:: output
 
-:command:`generation:      ['8']`
-
-:command:`arnold:          ['T', '8', '0', '0']`
-
-:command:`james:           ['0', '0']`
-
-:command:`terminated:      []`
+  version:         ['8', '0', '0']
+  generation:      ['8']`
+  arnold:          ['T', '8', '0', '0']
+  james:           ['0', '0']
+  terminated:      []
 
 .. note::
 
@@ -122,4 +123,6 @@ Fat Pointer
    let preview: &str = &message[..5];
    println!("preview: {preview}");
 
-:command:`preview: Hello`
+.. code:: output
+
+  preview: Hello

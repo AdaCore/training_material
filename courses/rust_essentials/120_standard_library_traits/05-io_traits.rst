@@ -76,4 +76,6 @@ Practical Patterns
       Ok(())
   }
 
-:command:`Data is physically committed to disk.`
+.. code:: output
+
+  Data is physically committed to disk.

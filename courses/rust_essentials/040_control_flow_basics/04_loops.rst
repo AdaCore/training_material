@@ -20,11 +20,11 @@ Loops
     }
     println!("LIFTOFF!");
 
-:command:`T-minus 2...`
+.. code:: output
 
-:command:`T-minus 1...`
-
-:command:`LIFTOFF!`
+  T-minus 2...
+  T-minus 1...
+  LIFTOFF!
 
 -----------------
 "for" Statement
@@ -63,8 +63,8 @@ Loops
         }
     }
 
-:command:`Count: 1`
+.. code:: output
 
-:command:`Count: 2`
-
-:command:`Count: 3`
+  Count: 1
+  Count: 2
+  Count: 3

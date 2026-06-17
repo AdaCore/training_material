@@ -94,8 +94,9 @@ Programmer-Defined Traits as Constraints
   let pet = Dog;
   make_it_speak(pet);
     
-  
-:command:`Woof!`  
+.. code:: output
+
+  Woof!
 
 ------------------
 Turbofish "::<>"

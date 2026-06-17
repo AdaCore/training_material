@@ -73,9 +73,10 @@ Making Variables Mutable
   change_me = 6;
   println!("change_me is now: {change_me}");
 
-:command:`change_me is: 5`
+.. code:: output
 
-:command:`change_me is now: 6`
+  change_me is: 5
+  change_me is now: 6
 
 .. note::
 

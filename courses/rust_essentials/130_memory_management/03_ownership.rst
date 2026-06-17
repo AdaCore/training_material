@@ -43,4 +43,6 @@ Ownership Principles
   } // 'yorkie' drops the ball, and leaves
     // 'poodle' leaves quietly
 
-:command:`ball`
+.. code:: output
+
+  ball

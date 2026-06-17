@@ -24,9 +24,10 @@
    println!("gizmo: {gizmo}"); // Valid: 'gizmo' was not moved
    println!("gremlin: {gremlin}");
 
-:command:`gizmo: 1984`
+.. code:: output
 
-:command:`gremlin: 1984`
+  gizmo: 1984
+  gremlin: 1984
 
 ---------------------
 Custom "Copy" Types

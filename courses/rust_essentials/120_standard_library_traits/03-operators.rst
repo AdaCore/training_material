@@ -69,6 +69,7 @@ Overload "Add" Example
   let feet = measure1 + measure2;
   println!("= {} feet", feet.0);
 
-:command:`10 inches + 32 inches`
+.. code:: output
 
-:command:`= 3.5 feet`
+  10 inches + 32 inches
+  = 3.5 feet

@@ -65,9 +65,10 @@ Example of Deriving
       // Debug trait adds support for printing with '{:?}'
   }
 
-.. container:: latex_environment scriptsize
+.. code:: output
+  :font-size: scriptsize
 
-  :command:`Employee \{ name: "", age: 0 \} vs. Employee \{ name: "Agent Smith", age: 0 \}`
+  Employee { name: "", age: 0 } vs. Employee { name: "Agent Smith", age: 0 }
 
 * Compiler generates implementations
 * Works if all fields also implement the trait

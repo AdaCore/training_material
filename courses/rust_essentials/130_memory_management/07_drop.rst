@@ -66,11 +66,11 @@ Variable Drop Order Example
               let _toe = Potato { id: s3 };
             }
 
-:command:`Dropping tac`
+.. code:: output
 
-:command:`Dropping toe`
-
-:command:`Dropping tic`
+  Dropping tac
+  Dropping toe
+  Dropping tic
 
 .. note::
 
@@ -121,9 +121,10 @@ Internal Field Drop Order Example
                 };
             } 
 
-:command:`Dropping eggs!`
+.. code:: output
 
-:command:`Dropping bacon!`
+  Dropping eggs!
+  Dropping bacon!
 
 .. note::
 

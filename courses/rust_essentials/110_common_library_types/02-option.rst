@@ -52,7 +52,9 @@ What Is "Option<T>"?
         }
     }
 
-:command:`Found user: Waldo`
+.. code:: output
+
+  Found user: Waldo
 
 .. note::
 

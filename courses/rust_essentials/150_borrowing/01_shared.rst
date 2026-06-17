@@ -40,10 +40,10 @@ Local Borrows
     w1.0 += 10; 
     println!("Calibrated to: {}", w1.0);
 
+.. code:: output
 
-:command:`Reads: 42 and 42`
-
-:command:`Calibrated to: 52`
+  Reads: 42 and 42
+  Calibrated to: 52
 
 --------------------------------------
 Mixing Mutable and Immutable Borrows
@@ -95,9 +95,10 @@ Function Borrows
     calibrate(&mut scanner);   // Mutable borrow starts and ends
     read(&scanner);            // Read-only borrow starts and ends
 
-:command:`Read: 42`
+.. code:: output
 
-:command:`Read: 52`
+  Read: 42
+  Read: 52
 
 .. note::
 

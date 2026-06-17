@@ -86,7 +86,10 @@ Default Values in a "struct"
 
   * :rust:`std::default::Default` uses sensible default values for each field
 
-    :command:`Defaults: Config \{ port: 0, host: "", debug: false \}`
+    .. code:: output
+      :font-size: small
+
+      Defaults: Config \{ port: 0, host: "", debug: false \}
 
 * Using struct update operator
 

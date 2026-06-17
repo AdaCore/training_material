@@ -70,7 +70,7 @@ Working With Custom Smart Pointers
     println!("Hello, 00{}!", *name );
   } // 'name' is dropped here
 
-:command:`Hello, 007!`
+.. code:: output
 
-:command:`You have a mission!`
-  
+  Hello, 007!
+  You have a mission!

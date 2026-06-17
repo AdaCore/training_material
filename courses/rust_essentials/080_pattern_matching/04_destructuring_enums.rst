@@ -50,7 +50,9 @@ Matching Enum Variants
     Message::Write(text) => println!("write: {}", text),
   }
 
-:command:`quit`
+.. code:: output
+
+  quit
 
 ----------------------------
 Destructuring Variant Data
@@ -82,7 +84,9 @@ Destructuring Variant Data
     Message::Quit => println!("quit"),
   }
 
-:command:`text: hello`
+.. code:: output
+
+  text: hello
 
 ----------------
 Tuple Variants
@@ -110,7 +114,9 @@ Tuple Variants
       Event::MouseClick(x, y) => println!("click at {}, {}", x, y),
     }
   
-:command:`click at 10, 20`
+.. code:: output
+
+  click at 10, 20
 
 -----------------
 Struct Variants
@@ -145,7 +151,9 @@ Struct Variants
         }
     }
 
-:command:`rect 3 x 4`
+.. code:: output
+
+  rect 3 x 4
 
 -----------------------------
 Enums as Robust Data Models

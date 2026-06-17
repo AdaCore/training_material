@@ -26,7 +26,9 @@ Dereferencing
     
   say_hello(*agent); 
   
-:command:`Hello, 007!`
+.. code:: output
+
+  Hello, 007!
   
 -----------------------------
 Coercing Types With "Deref"
@@ -52,7 +54,9 @@ Coercing Types With "Deref"
 
   hello(&my_box); 
   
-:command:`Hello, Rust`
+.. code:: output
+
+  Hello, Rust
   
 .. note::
   

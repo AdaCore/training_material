@@ -49,11 +49,11 @@ Getting an Iterator - ".iter()"
         println!("{n}");
     }
 
-  :command:`10`
+  .. code:: output
 
-  :command:`20`
-
-  :command:`30`
+    10
+    20
+    30
 
 .. note::
 
@@ -72,11 +72,11 @@ Common Iterator Adapters
         println!("{elem}");
     }
 
-  :command:`20`
+  .. code:: output
 
-  :command:`40`
-
-  :command:`60`
+    20
+    40
+    60
 
 * :rust:`filter` **- select values matching condition**
 
@@ -87,9 +87,10 @@ Common Iterator Adapters
         println!("{elem}");
     }
 
-  :command:`12`
+  .. code:: output
 
-  :command:`14`
+    12
+    14
 
 .. note::
 
@@ -109,7 +110,9 @@ Common Consumers
       let total: i32 = numbers.iter().sum();
       println!("The total is: {total}");
 
-    :command:`15`
+    .. code:: output
+
+      15
 
 * :rust:`any` **- return True if any value matches condition**
 
@@ -126,7 +129,9 @@ Common Consumers
           println!("All temperatures are above freezing.");
       }
 
-    :command:`Warning: Freezing temperatures detected!`
+    .. code:: output
+
+      Warning: Freezing temperatures detected!
 
 .. note::
 
@@ -152,7 +157,9 @@ Declarative Data Processing
 
   println!("Sum of even squares: {}", result);
 
-:command:`Sum of even squares: 220`
+.. code:: output
+
+  Sum of even squares: 220
 
 * Chaining allows you to create a new set of data before consuming
 

@@ -76,7 +76,9 @@ Complete Picture
       cleaner::perform_cleanup();
   }
 
-:command:`Cleaning up...`
+.. code:: output
+
+  Cleaning up...
 
 .. note::
 
