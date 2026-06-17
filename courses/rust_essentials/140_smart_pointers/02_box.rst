@@ -44,7 +44,10 @@ Using "Box<T>" for Recursive Types
         Empty,
       }
   
-    :error:`error[E0072]: recursive type 'Doll' has infinite size`
+    .. code:: error
+      :font-size: small
+
+      error[E0072]: recursive type 'Doll' has infinite size
 
 - :rust:`Box<T>` provides a pointer with known size
 

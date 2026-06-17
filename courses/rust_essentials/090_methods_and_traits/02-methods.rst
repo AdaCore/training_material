@@ -119,7 +119,10 @@ Method Receiver - Mutable Borrow
     let bad = Counter { value: 0 };
     bad.increment();
 
-:error:`error[E0596]: cannot borrow "bad" as mutable, as it is not declared as mutable`
+.. code:: error
+  :font-size: scriptsize
+
+  error[E0596]: cannot borrow "bad" as mutable, as it is not declared as mutable
 
 **Behavior**
 
@@ -152,7 +155,9 @@ Method Receiver - Take Ownership
 
     count.get();
 
-  :error:`error[E0382]: borrow of moved value: "count"`
+.. code:: error
+
+  error[E0382]: borrow of moved value: "count"
 
 **Behavior**
 

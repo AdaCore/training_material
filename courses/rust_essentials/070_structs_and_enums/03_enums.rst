@@ -66,7 +66,10 @@ Enum Initialization
 
 .. container:: latex_environment footnotesize
 
-    :error:`error[E0533]: expected value, found struct variant 'Message::Move'`
+.. code:: error
+  :font-size: footnotesize
+
+  error[E0533]: expected value, found struct variant 'Message::Move'
 
 ----------------------
 Idiom: State Machine

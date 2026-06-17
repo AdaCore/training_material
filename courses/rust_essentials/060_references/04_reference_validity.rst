@@ -42,4 +42,6 @@ References Are Always Safe to Use
    };
    println!("Jack screams: {rose}");
 
-:error:`error[E0597]: 'jack' does not live long enough`
+.. code:: error
+
+  error[E0597]: 'jack' does not live long enough

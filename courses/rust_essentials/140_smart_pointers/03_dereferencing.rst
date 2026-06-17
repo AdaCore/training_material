@@ -103,7 +103,9 @@ Mutability and Coercion
 
   edit(&my_box); // Error
   
-:error:`error[E0308]: mismatched types`
+.. code:: error
+
+  error[E0308]: mismatched types
 
 .. code:: rust  
   

@@ -20,7 +20,9 @@
   // ERROR. This "refutable"
   let 7 = x;
 
-:error:`error[E0005]: refutable pattern in local binding`
+.. code:: error
+
+  error[E0005]: refutable pattern in local binding
 
 ----------------------
 Conditional Matching

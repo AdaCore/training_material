@@ -126,4 +126,7 @@ Example: Security Module
       my_card.key = my_card.key * 10;      // Error - field not visible
   }
 
-:error:`error[E0616]: field 'key' of struct 'KeyCard' is private`
+.. code:: error
+  :font-size: small
+
+  error[E0616]: field 'key' of struct 'KeyCard' is private

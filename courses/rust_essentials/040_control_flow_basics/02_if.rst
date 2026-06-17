@@ -64,7 +64,9 @@ Return Type Consistency
         "large"  // Note the absence of ; 
     };
 
-:error:`error[E0308]: 'if' and 'else' have incompatible types`
+.. code:: error
+
+  error[E0308]: 'if' and 'else' have incompatible types
 
 - :rust:`"small"` and :rust:`"large"` are both strings
   - Adding a :rust:`;` after a value makes the types different

@@ -59,4 +59,6 @@ Immutable Access
 
   *tic += 10; // Error: no mutable access
   
-:error:`error[E0594]: cannot assign to data in an 'Rc'`
+.. code:: error
+
+  error[E0594]: cannot assign to data in an 'Rc'

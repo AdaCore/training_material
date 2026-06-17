@@ -88,6 +88,7 @@ Returning "Result" From "main"
       Ok(())
   }
 
-.. container:: latex_environment scriptsize
+.. code:: error
+  :font-size: scriptsize
 
-  :error:`Error: Os { code: 2, kind: NotFound, message: "No such file or directory" }`
+  Error: Os { code: 2, kind: NotFound, message: "No such file or directory" }

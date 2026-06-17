@@ -988,7 +988,7 @@ def build_colorbox(values):
         elif color.startswith("bg="):
             bg = color[3:]
 
-    retval = "["
+    retval = "[left=0mm,right=0mm,top=1mm,bottom=1mm,boxsep=0mm,"
     if fg != None:
         retval = retval + "coltext=" + fg + ","
     if bg != None:

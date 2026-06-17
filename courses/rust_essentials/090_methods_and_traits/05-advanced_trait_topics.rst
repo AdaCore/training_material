@@ -50,9 +50,10 @@ Orphan Rule Examples
 
     impl Debug for Vec<i32> {}
 
-.. container:: latex_environment tiny
+.. code:: error
+  :font-size: tiny
 
-  :error:`error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate`
+  error[E0117]: only traits defined in current crate can be implemented for types defined outside crate
 
 -------------
 Supertraits

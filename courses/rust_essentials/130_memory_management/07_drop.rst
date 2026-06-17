@@ -146,7 +146,9 @@ Explicit Drop
 
   println!("{}", my_precious); // Error
 
-:error:`error[E0382]: borrow of moved value: 'my_precious'`
+.. code:: error
+
+  error[E0382]: borrow of moved value: 'my_precious'
 
 .. note::
 
@@ -171,6 +173,7 @@ Exclusivity of "Copy" and "Drop"
     }
   }
 
-.. container:: latex_environment tiny
+.. code:: error
+  :font-size: tiny
 
-  :error:`error[E0184]: the trait 'Copy' cannot be implemented for this type; the type has a destructor`
+  error[E0184]: the trait 'Copy' cannot be implemented for this type; the type has a destructor

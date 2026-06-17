@@ -36,7 +36,10 @@ Adding Constraints
 
 .. container:: latex_environment scriptsize
 
-  :error:`error[E0369]: binary operation '<' cannot be applied to type 'T'`  
+.. code:: error
+  :font-size: scriptsize
+
+  error[E0369]: binary operation '<' cannot be applied to type 'T'
 
 .. code:: rust
 
@@ -63,8 +66,10 @@ Meeting Constraints
   println!("{}", smaller(5, 10));      
   println!("{}", smaller(potato , sweet_potato));   
   
+.. code:: error
+  :font-size: small
 
-:error:`error[E0277]: can't compare 'Vegetable' with 'Vegetable'`
+  error[E0277]: can't compare 'Vegetable' with 'Vegetable'
 
 ------------------------------------------
 Programmer-Defined Traits as Constraints
@@ -113,7 +118,9 @@ Turbofish "::<>"
   // Compiler knows it's a 'Vec', but a 'Vec' of what?
   let x = Vec::new();
   
-:error:`error[E0282]: type annotations needed for 'Vec<_>'`
+.. code:: error
+
+  error[E0282]: type annotations needed for 'Vec<_>'
   
 - Turbofish :rust:`::<>` syntax is used to remove ambiguity
 
@@ -170,5 +177,7 @@ Multiple Traits
   println!("{:?}", bad_box);
   // 'Secret' doesn't implement 'Debug', 'derive' macro fails
   
-:error:`error[E0277]: 'Secret' doesn't implement 'Debug'`  
+.. code:: error
+
+  error[E0277]: 'Secret' doesn't implement 'Debug'
   

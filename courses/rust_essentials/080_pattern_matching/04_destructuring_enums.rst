@@ -193,4 +193,7 @@ Enums as Robust Data Models
       Status::Success(data) => println!("Got: {data}"),
   }
 
-:error:`error[E0004]: non-exhaustive patterns: 'Status::Failure(_)' not covered`
+.. code:: error
+  :font-size: scriptsize
+
+  error[E0004]: non-exhaustive patterns: 'Status::Failure(_)' not covered

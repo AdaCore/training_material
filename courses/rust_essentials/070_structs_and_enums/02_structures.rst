@@ -69,9 +69,10 @@ Beware of Recursion!
         inner_doll: RussianDoll, 
     }
     
-.. container:: latex_environment footnotesize
+.. code:: error
+  :font-size: footnotesize
 
-   :error:`error[E0072]: recursive type 'RussianDoll' has infinite size` 
+  error[E0072]: recursive type 'RussianDoll' has infinite size
   
 -----------------------
 Struct Initialization
@@ -99,9 +100,10 @@ Struct Initialization
         sign_in_count: 1
     };
 
-.. container:: latex_environment footnotesize
-	
-  :error:`error[E0063]: missing field 'logged_in' in initializer of 'User'`
+.. code:: error
+  :font-size: footnotesize
+
+  error[E0063]: missing field 'logged_in' in initializer of 'User'
     
 ------------------------------------
 Shorthand for Field Initialization
@@ -190,7 +192,9 @@ Mutable
         is_napping: false,
     };
     
-:error:`error: expected identifier, found keyword 'mut'`
+.. code:: error
+
+  error: expected identifier, found keyword 'mut'
 
 ---------------
 Tuple Structs
@@ -214,7 +218,9 @@ Tuple Structs
     
     println!("out of bound is : {}", hero.3);
     
-:error:`error[E0609]: no field '3' on type 'Character'`
+.. code:: error
+
+  error[E0609]: no field '3' on type 'Character'
 
 -----------------------
 Constructor Ambiguity
@@ -240,9 +246,10 @@ Constructor Ambiguity
     // No initialization because of missing fields
     let coord2 = Point();
 
-.. container:: latex_environment footnotesize
-    
-   :error:`error[E0061]: this struct takes 2 arguments but 0 arguments were supplied`
+.. code:: error
+  :font-size: scriptsize
+
+  error[E0061]: this struct takes 2 arguments but 0 arguments were supplied
    
 -------------------------
 Type Safety With Tuples
@@ -263,7 +270,9 @@ Type Safety With Tuples
     
     dimension = coordinates; // ERROR
     
-:error:`error[E0308]: mismatched types`
+.. code:: error
+
+  error[E0308]: mismatched types
      
 ----------------
 Idiom: Newtype
@@ -280,4 +289,6 @@ Idiom: Newtype
 
     let mut distance = Feet(12) + Inches(3);
 	
-:error:`error[E0369]: cannot add 'Inches' to 'Feet'`
+.. code:: error
+
+  error[E0369]: cannot add 'Inches' to 'Feet'

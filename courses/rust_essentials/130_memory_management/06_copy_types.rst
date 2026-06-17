@@ -64,9 +64,10 @@ No "Copy" Without "Clone"
    let p1 = Point(3, 4);
    let p2 = p1;
 
-.. container:: latex_environment footnotesize
+.. code:: error
+  :font-size: footnotesize
 
-   :error:`error[E0277]: the trait bound 'Point: Clone' is not satisfied`
+   error[E0277]: the trait bound 'Point: Clone' is not satisfied
 
 ------------------------------------
 "Copy" Types and Field Constraints
@@ -86,7 +87,10 @@ No "Copy" Without "Clone"
 
 .. container:: latex_environment footnotesize
 
-   :error:`error[E0204]: the trait 'Copy' cannot be implemented for this type`
+.. code:: error
+  :font-size: footnotesize
+
+   error[E0204]: the trait 'Copy' cannot be implemented for this type
 
 -----------------------
 "Copy" vs. Non-"Copy"

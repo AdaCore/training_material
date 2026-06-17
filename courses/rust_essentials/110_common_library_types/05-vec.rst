@@ -69,7 +69,9 @@ Basic Operations
   let v = vec![1, 2, 3];
   println!("The sixth element is: {}", v[5]);
 
-:error:`index out of bounds: the len is 3 but the index is 5`
+.. code:: error
+
+  index out of bounds: the len is 3 but the index is 5
 
 --------------------
 Working With "Vec"

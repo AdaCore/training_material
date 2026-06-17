@@ -93,7 +93,10 @@ Deriving in Complex Structures
 
 .. container:: latex_environment scriptsize
 
-  :error:`error[E0277]: the trait bound "main::Child: Clone" is not satisfied`
+.. code:: error
+  :font-size: scriptsize
+
+  error[E0277]: the trait bound "main::Child: Clone" is not satisfied
 
 -------------------------
 Limitations on Deriving
