@@ -147,9 +147,11 @@ Default Values and Option Types
      Safe : Toggle_Switch := Off;
      Implicit : Toggle_Switch;
 
-:error:`default.adb:7:04: warning: value not in range of type "Toggle_Switch" defined at line 4`
+.. code:: error
+  :font-size: tiny
 
-:error:`default.adb:7:04: warning: Constraint_Error will be raised at run time`
+  default.adb:7:04: warning: value not in range of type "Toggle_Switch" defined at line 4
+  default.adb:7:04: warning: Constraint_Error will be raised at run time
 
 .. tip::
 

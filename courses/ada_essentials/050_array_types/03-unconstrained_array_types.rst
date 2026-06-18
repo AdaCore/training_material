@@ -70,9 +70,10 @@ Bounds Must Satisfy Type Constraints
    Good : Char_Arr (50 .. 75);
    Bad  : Char_Arr (0 .. 10); -- run-time error
 
-.. container:: latex_environment tiny
+.. code:: error
+  :font-size: tiny
 
-  :error:`example.adb:5:21: warning: static value out of range of type "Index" defined at line 2`
+  example.adb:5:21: warning: static value out of range of type "Index" defined at line 2
 
 ------------------
 Null Index Range
@@ -97,9 +98,10 @@ Null Index Range
     Weird_Empty_Array   : Array_T (123 .. -5);
     Bad_Empty_Array     : Array_T (999 .. 0);
 
-  .. container:: latex_environment scriptsize
+  .. code:: error
+    :font-size: tiny
 
-    :error:`example.adb:8:35: error: value not in range of type "Index_T" defined at line 2`
+    example.adb:8:35: error: value not in range of type "Index_T" defined at line 2
 
 * When the index type is a single-valued enumerated type, no empty array is possible
 
@@ -142,9 +144,10 @@ No Indefinite Component Types
      type Good is array (1 .. 10) of Component_T (1 .. 20); -- OK
      type Bad is array (1 .. 10) of Component_T; -- compile error
 
-.. container:: latex_environment scriptsize
+.. code:: error
+  :font-size: scriptsize
 
-  :error:`example.adb:4:35: error: unconstrained element type in array declaration`
+  example.adb:4:35: error: unconstrained element type in array declaration
 
 .. container:: speakernote
 

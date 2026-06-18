@@ -32,7 +32,9 @@ Detour: 'Image for Complex Types
 
   Yields an output of 
 
-  :command:`[TRUE, TRUE, FALSE]`
+.. code:: output
+
+  [TRUE, TRUE, FALSE]
 
 ---------------------------------
 Overriding the 'Image Attribute
@@ -108,8 +110,8 @@ Using the 'Image Attribute
 
   * Generating the following output
 
-    :command:`RED=>TRUE`
+    .. code:: output
 
-    :command:`YELLOW=>TRUE`
-
-    :command:`GREEN=>FALSE`
+      RED=>TRUE
+      YELLOW=>TRUE
+      GREEN=>FALSE

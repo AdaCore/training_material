@@ -83,9 +83,10 @@ Referencing the Stack
      Put_Line ("After:" & Object'Image);
   end Example;
 
-:command:`Before: 100`
+.. code:: output
 
-:command:`After: 123`
+  Before: 100
+  After: 123
 
 ----------------------
 "Aliased" Parameters

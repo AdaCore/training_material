@@ -139,7 +139,9 @@ Mutable Variant Record Example
 
     Pat.Kind := Contractor;
 
-  :error:`error: assignment to discriminant not allowed`
+  .. code:: error
+
+    error: assignment to discriminant not allowed
     
 * And you cannot change the discriminant of :ada:`Sam`
 

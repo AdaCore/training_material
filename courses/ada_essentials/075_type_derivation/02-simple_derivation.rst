@@ -31,7 +31,9 @@ Simple Type Derivation
 
   * :ada:`I_Obj := N_Obj;` |rightarrow| generates a compile error
 
-    :error:`expected type "Integer_T" defined at line 2`
+    .. code:: error
+    
+      expected type "Integer_T" defined at line 2
 
   * But a child can be converted to the parent
 
