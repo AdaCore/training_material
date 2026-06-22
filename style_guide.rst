@@ -121,6 +121,31 @@ the lab will always be **88-<module_name>[-version].lab.rst**. Examples:
   * 99-summary-with_quantified.rst
   * 99-summary.rst
 
+-------------------------
+File Naming Conventions
+-------------------------
+
+* Folder/file names should match their content with the following rules
+
+  * Alpha-numeric characters only (no punctuation, dashes, etc.)
+  * All spaces should be replaced with underscore ("_")
+  * No leading, trailing, or consecutive underscores
+  * Characters should all be lowercase
+
+* Rules for course folder names
+
+  * Folder name for a course should always match the name of the course
+  * Tooling will convert first character in each "word" to upper case
+
+    * In case a course name requires specific upper-case formatting (e.g.
+      "gnatdas" should translate to "GNAT DAS"), you will need to update
+      the "default_title" function in file "pandoc/pandoc_fe.py"
+
+* Rules for module/chapter file names
+
+  Module and chapter file names should match the module/chapter title.
+  *(Module/chapter versions are **not** part of the title, only the file name)*
+
 =============
 Style Rules
 =============
