@@ -47,7 +47,7 @@ Handling Results
 
 .. note::
 
-  :rust:`eprintln!` outputs directly to :cpp:`stderr` rather than :cpp:`stdout`
+  :rust:`eprintln!` outputs directly to :rust:`stderr` rather than :rust:`stdout`
        
 ------------------------
 Results vs. Exceptions
