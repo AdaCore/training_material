@@ -136,7 +136,7 @@ The "else" Part When Result Is Boolean
     Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
     Acceptable : Boolean := (if P1 > 0 then P2 > 0);
 
-* Use :ada:`else` if value must otherwise be set to :ada:`False`
+* Use :ada:`else` if :ada:`False` needs to be returned
 
 ---------------------------------------
 Rationale for Parentheses Requirement

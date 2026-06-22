@@ -487,7 +487,7 @@ GNAT-Specific Aspect Name "Predicate"
 
    - But not inverse
 
-* Slight disadvantage: don't find out if predicate is not actually static
+* Slight disadvantage: predicate could not actually be static
 
    - Until used where only static predicates are allowed
    - Then compile error occurs
