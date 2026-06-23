@@ -143,8 +143,8 @@ File Naming Conventions
 
 * Rules for module/chapter file names
 
-  Module and chapter file names should match the module/chapter title.
-  *(Module/chapter versions are* **not** *part of the title)*
+  * Module and chapter file names should match the module/chapter title.
+  * *(Module/chapter versions are* **not** *part of the title)*
 
 =============
 Style Rules
