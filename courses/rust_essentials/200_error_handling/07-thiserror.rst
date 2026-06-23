@@ -121,7 +121,7 @@ Why Use "thiserror"?
       #[error("Environment variable {0} not set")]
       ConfigError(String),
 
-      #[error("File system error")] // Automatically wraps io::Error
+      #[error("File system error")] // Automatically wraps 'io::Error'
       IoError(#[from] std::io::Error),
   }
 
@@ -129,7 +129,7 @@ Why Use "thiserror"?
       // 1. Manual error creation
       let _ = Err(MyError::ConfigError("PORT".into()))?;
 
-      // 2. Automatic conversion using ? (this returns IoError)
+      // 2. Automatic conversion using '?' (this returns 'IoError')
       let _f = File::open("missing.txt")?;
 
       Ok(())
