@@ -1,5 +1,5 @@
 ==========
-"Result" 
+"Result"
 ==========
 
 -------------------
@@ -44,6 +44,10 @@ Handling Results
   * :rust:`.expect("Msg")` - like :rust:`unwrap`, with custom panic message
   * :rust:`.unwrap_or(default)` - fallback value on error
 
+.. note::
+
+  :rust:`eprintln!` outputs directly to :rust:`stderr` rather than :rust:`stdout`
+       
 ------------------------
 Results vs. Exceptions
 ------------------------

@@ -59,23 +59,23 @@ You will convert between all these types:
 The :url:`Nomicon <https://doc.rust-lang.org/nomicon/ffi.html>` also has a
 very useful chapter about FFI.
 
------------------------------
+------------------------
 Safe FFI Wrapper Setup
------------------------------
+------------------------
 
 Copy the code on the next two pages to https://play.rust-lang.org/.
 
 .. container:: source_include 210_unsafe_rust/src/210_unsafe_rust.rs :start-after://ANCHOR-ffi :end-before://ANCHOR-solution :code:rust
 
------------------------------
+-----------------------
 Safe FFI Wrapper Main
------------------------------
+-----------------------
 
 .. container:: source_include 210_unsafe_rust/src/210_unsafe_rust.rs :start-after://ANCHOR-main :code:rust
 
------------------------------
+--------------------------
 Safe FFI Wrapper Problem
------------------------------
+--------------------------
 
 Fill in the missing functions and methods in place of **TBD** in the code
 
@@ -104,8 +104,8 @@ Fill in the missing functions and methods in place of **TBD** in the code
        }
    }
 
------------------------------
+---------------------------
 Safe FFI Wrapper Solution
------------------------------
+---------------------------
 
 .. container:: source_include 210_unsafe_rust/src/210_unsafe_rust.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust

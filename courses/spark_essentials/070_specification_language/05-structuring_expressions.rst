@@ -87,8 +87,8 @@ Use of Expression Functions
 
 * For queries over objects of a :ada:`private` type
 
-  - Function **spec** is declared in the **public** part
-  - **Expression function** is declared in the **private** part
+  - Function **spec** is declared in the **public** section
+  - **Expression function** is declared in the **private** section
 
   .. code:: Ada
 

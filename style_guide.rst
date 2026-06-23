@@ -151,9 +151,15 @@ Example:
 
     ``-----------------``
 
-Do not use roles or emphasis in slide titles. It can change the color of
-the text, and makes extracting titles from slides more difficult. Current
-behavior is to surround the text you want highlighted with double quotes. 
+Do not use roles (e.g. ":ada:`loop`) in a title - it does not translate
+well for easy RST viewing (like in Git) or in extracting information.
+
+Use the following rules when roles/emphasis seems like a good idea in a title
+
+  * Filenames and toolnames should use bold emphasis in titles
+  * All other roles (such as language tokens, commands, etc) should
+    put the text in quotes (")
+
 
 ---------------
 Code Examples

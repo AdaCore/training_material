@@ -24,9 +24,9 @@ Null Values
       V := new Integer'(0);
       V := null; -- semantically correct, but memory leak
 
----------------------------
+-----------------------------
 Access Types and Primitives
----------------------------
+-----------------------------
 
 * Subprograms using an access type are **primitives of the access type**
 
@@ -41,9 +41,9 @@ Access Types and Primitives
     procedure Proc1 (Param : Rec_T);         -- primitive of Rec_T
     procedure Proc2 (Param : Rec_Access_T);  -- primitive of Rec_Access_T
 
---------------------------
+----------------------------
 Dereferencing Access Types
---------------------------
+----------------------------
 
 * :ada:`.all` does the access dereference
 

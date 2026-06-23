@@ -16,9 +16,9 @@ Advanced Flow Analysis Lab
 
 - Unfold the source code directory (.) in the project pane
 
-------------------------
+-------------------------
 Flow Dependencies (1/2)
-------------------------
+-------------------------
 
 .. container:: animate 1-
 
@@ -41,9 +41,9 @@ Flow Dependencies (1/2)
         with Global => null,
              Depends => (X => Y, Y => X);
 
-------------------------
+-------------------------
 Flow Dependencies (2/2)
-------------------------
+-------------------------
 
 .. container:: animate 1-
 

@@ -2,9 +2,9 @@
 Tuples
 ========
 
---------------------
+--------
 Basics
---------------------
+--------
 
   - Group together values of **different types**
   - Like arrays, have a **fixed length**

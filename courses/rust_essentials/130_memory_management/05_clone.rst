@@ -18,6 +18,10 @@ Explicit Duplication
   println!("{}", poodle); // 'poodle' still has its ball
   println!("{}", yorkie); // 'yorkie' has its own copy
 
+:command:`ball`
+
+:command:`ball`
+
 ---------------------
 Cost of Duplication
 ---------------------

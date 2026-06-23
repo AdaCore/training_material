@@ -55,9 +55,9 @@ Files
       Put_Line (Get_Line (File));
    end;
 
--------------------
+---------------------
 File Status Queries
--------------------
+---------------------
 
 .. list-table::
 

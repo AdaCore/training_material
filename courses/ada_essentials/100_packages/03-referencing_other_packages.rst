@@ -2,9 +2,9 @@
 Referencing Other Packages
 ============================
 
-----------------
- "with" Clause
-----------------
+---------------
+"with" Clause
+---------------
 
 * When package :ada:`User` needs access to package :ada:`Designer`, it uses a :ada:`with` clause
 

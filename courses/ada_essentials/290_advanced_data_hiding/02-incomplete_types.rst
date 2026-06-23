@@ -48,7 +48,7 @@ How to Get an Incomplete Type View?
 Type Completion Deferred to the Body
 --------------------------------------
 
-* In the private part of a package, it is possible to defer the completion of an incomplete type to the body
+* In the private section of a package, it is possible to defer the completion of an incomplete type to the body
 * This allows to completely hide the implementation of a type
 
 .. code:: Ada
