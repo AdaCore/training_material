@@ -19,7 +19,6 @@ Automatic Error Type Conversion
       :font-size: tiny
 
       enum Reason { TooYoung, TooOld, }
-
       impl From<Reason> for String {
           fn from(reason: Reason) -> Self {
               match reason {
@@ -30,7 +29,6 @@ Automatic Error Type Conversion
               }
           }
       }
-
       // Error type is 'Reason'
       fn check_age(age: i32) -> Result<i32, Reason> {
           if age < 18 {
@@ -40,7 +38,6 @@ Automatic Error Type Conversion
           } else {
               Ok(age)
           }
-
       }
 
   .. container:: column
@@ -55,7 +52,6 @@ Automatic Error Type Conversion
           check_age(age)?;
           Ok(age)
       }
-
       match register(10) {
           Ok(age) => println!("Good enough {age}"),
           Err(e) => eprintln!("Problem: {e}"),
@@ -65,11 +61,10 @@ Automatic Error Type Conversion
           Err(e) => eprintln!("Problem: {e}"),
       }
 
-.. container:: latex_environment scriptsize
+.. code:: error
 
-  :error:`Problem: The user is too young.`
-
-  :error:`Problem: The user is too old.`
+  Problem: The user is too young.
+  Problem: The user is too old.
 
 .. note::
 
