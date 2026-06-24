@@ -110,31 +110,30 @@ Why Use "thiserror"?
 "thiserror" in Practice
 -------------------------
 
-.. container:: latex_environment scriptsize
+.. code:: rust
+  :font-size: scriptsize
 
-  .. code:: rust
+  use thiserror::Error;
+  use std::fs::File;
 
-    use thiserror::Error;
-    use std::fs::File;
+  #[derive(Error, Debug)]
+  pub enum MyError {
+      #[error("Environment variable {0} not set")]
+      ConfigError(String),
 
-    #[derive(Error, Debug)]
-    pub enum MyError {
-        #[error("Environment variable {0} not set")]
-        ConfigError(String),
+      #[error("File system error")] // Automatically wraps 'io::Error'
+      IoError(#[from] std::io::Error),
+  }
 
-        #[error("File system error")] // Automatically wraps io::Error
-        IoError(#[from] std::io::Error),
-    }
+  fn main() -> Result<(), MyError> {
+      // 1. Manual error creation
+      let _ = Err(MyError::ConfigError("PORT".into()))?;
 
-    fn main() -> Result<(), MyError> {
-        // 1. Manual error creation
-        let _ = Err(MyError::ConfigError("PORT".into()))?;
+      // 2. Automatic conversion using '?' (this returns 'IoError')
+      let _f = File::open("missing.txt")?;
 
-        // 2. Automatic conversion using ? (this returns IoError)
-        let _f = File::open("missing.txt")?;
-
-        Ok(())
-    }
+      Ok(())
+  }
 
 .. note::
 
