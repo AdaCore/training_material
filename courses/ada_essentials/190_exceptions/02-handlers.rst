@@ -197,53 +197,45 @@ Exception Handler Content
 Quiz
 ------
 
-.. container:: latex_environment scriptsize
+.. code:: Ada
+  :number-lines: 1
+  :font-size: footnotesize
 
- .. container:: columns
+    procedure Main is
+      A, B, C, D : Integer range 0 .. 100;
+    begin
+      A := 1; B := 2; C := 3; D := 4;
+      begin
+        D := A - C + B;
+      exception
+        when others => Put_Line ("One");
+                       D := 1;
+      end;
+      D := D + 1;
+      begin
+        D := D / (A - C + B);
+      exception
+        when others => Put_Line ("Two");
+                       D := -1;
+      end;
+    exception
+      when others =>
+        Put_Line ("Three");
+      end Main;
 
-  .. container:: column
+What will get printed?
 
-    .. code:: Ada
-     :number-lines: 1
+  A. One, Two, Three
+  B. :answer:`Two, Three`
+  C. Two
+  D. Three
 
-       procedure Main is
-          A, B, C, D : Integer range 0 .. 100;
-       begin
-          A := 1; B := 2; C := 3; D := 4;
-          begin
-             D := A - C + B;
-          exception
-             when others => Put_Line ("One");
-                            D := 1;
-          end;
-          D := D + 1;
-          begin
-             D := D / (A - C + B);
-          exception
-             when others => Put_Line ("Two");
-                            D := -1;
-          end;
-       exception
-          when others =>
-             Put_Line ("Three");
-       end Main;
+.. container:: animate
 
-  .. container:: column
+  Explanations
 
-   What will get printed?
-
-      A. One, Two, Three
-      B. :answer:`Two, Three`
-      C. Two
-      D. Three
-
-   .. container:: animate
-
-      Explanations
-
-      A. :ada:`One` is never printed, as although :ada:`(A - C)` is not in the range of :ada:`0 .. 100`, this is only checked on assignment (so after the addition of :ada:`B`).
-      B. Line 6 does not raise an exception, (so ``One`` is not printed), but Line 2 does - causing ``Two`` to be printed.
-         But Line 16 also raises an exception, causing ``Three`` to be printed
-      C. If we reach :ada:`Two`, the assignment on line 16 will cause :ada:`Three` to be reached
-      D. Divide by 0 on line 13 causes an exception, so :ada:`Two` must be called
-
+  A. :ada:`One` is never printed. Although :ada:`(A - C)` is not in range, this is only checked on assignment (after addition of :ada:`B`).
+  B. No exception on Line 6 (``One`` is not printed), but Line 2 does - so ``Two`` to be printed.
+     Line 16 also raises an exception, so ``Three`` to be printed.
+  C. If we reach :ada:`Two`, line 16 will cause :ada:`Three` to be reached
+  D. Divide by 0 on line 13 causes an exception, so :ada:`Two` must be called
