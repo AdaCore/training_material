@@ -49,3 +49,16 @@ Hello World
 .. container:: animate 6-
 
   * :rust:`println!` - macro for printing a string followed by newline
+
+-------------------------
+File Naming Conventions
+-------------------------
+
+* File extension is :filename:`.rs`
+* File name is the module name in :dfn:`snake case`
+
+    * All lower case, spaces replaced with underscore
+
+.. note::
+
+  :rust:`fn main()` will be in file :filename:`main.rs`
