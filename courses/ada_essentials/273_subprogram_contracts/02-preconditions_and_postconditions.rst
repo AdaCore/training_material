@@ -201,8 +201,7 @@ Preventing Exceptions with ... Exceptions?
 
        function Area (Length : Positive;
                       Height : Positive)
-                      return Positive is
-          (Length * Height)
+                      return Positive
        with Pre => Length * Height <= Positive'Last;
 
 * But what happens when we verify the precondition?
@@ -215,8 +214,8 @@ Preventing Exceptions with ... Exceptions?
 
       function Area (Length : Positive;
                      Height : Positive)
-                     return Positive is
-      with Pre => Positive'Last / Height <= Length;
+                     return Positive
+      with Pre => Length <= Positive'Last / Height;
 
 ------
 Quiz
