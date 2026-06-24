@@ -98,21 +98,20 @@ Tuple Variants
 
 - Patterns mirror the variant structure
 
-.. container:: latex_environment scriptsize
+.. code:: rust
+  :font-size: scriptsize
 
-  .. code:: rust
+  enum Event {
+    KeyPress(char),
+    MouseClick(i32, i32),
+  }
 
-    enum Event {
-      KeyPress(char),
-      MouseClick(i32, i32),
-    }
+  let touch = Event::MouseClick(10, 20);
 
-    let touch = Event::MouseClick(10, 20);
-
-    match touch {
-      Event::KeyPress(tap) => println!("key: {}", tap),
-      Event::MouseClick(x, y) => println!("click at {}, {}", x, y),
-    }
+  match touch {
+    Event::KeyPress(tap) => println!("key: {}", tap),
+    Event::MouseClick(x, y) => println!("click at {}, {}", x, y),
+  }
   
 .. code:: output
 
@@ -128,28 +127,27 @@ Struct Variants
 
 - Partial matching is supported
 
-.. container:: latex_environment tiny
+.. code:: rust
+  :font-size: tiny
 
-  .. code:: rust
+  enum Shape {
+      Circle { radius: f64 },
+      Rectangle { width: f64, height: f64 },
+  }
 
-    enum Shape {
-        Circle { radius: f64 },
-        Rectangle { width: f64, height: f64 },
-    }
+  let profile = Shape::Rectangle { width: 3.0, height: 4.0 };
 
-    let profile = Shape::Rectangle { width: 3.0, height: 4.0 };
-
-    match profile {
-        Shape::Circle { radius } => {
-            println!("circle r={}", radius)
-        }
-        Shape::Rectangle {
-            width,
-            height,
-        } => {
-            println!("rect {} x {}", width, height);
-        }
-    }
+  match profile {
+      Shape::Circle { radius } => {
+          println!("circle r={}", radius)
+      }
+      Shape::Rectangle {
+          width,
+          height,
+      } => {
+          println!("rect {} x {}", width, height);
+      }
+  }
 
 .. code:: output
 

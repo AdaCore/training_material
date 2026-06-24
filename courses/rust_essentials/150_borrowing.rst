@@ -33,7 +33,7 @@ Borrowing
 .. container:: PRELUDE END
 
 .. include:: 150_borrowing/00_introduction.rst
-.. include:: 150_borrowing/01_shared.rst
+.. include:: 150_borrowing/01_borrowing_a_value.rst
 .. include:: 150_borrowing/04_interior_mutability.rst
 .. include:: 150_borrowing/88-borrowing.lab.rst
 .. include:: 150_borrowing/99_summary.rst
