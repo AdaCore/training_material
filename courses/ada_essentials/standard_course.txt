@@ -1,32 +1,41 @@
 -- Day 1
 005_introduction.rst
 010_overview.rst
-013_hello_world.rst
 015_type_model.rst
 020_declarations.rst
-030_scalar_types.rst
+030_scalar_types-in_depth.rst
 040_statements.rst
 050_array_types.rst
 -- Day 2
 060_record_types.rst
 070_subprograms.rst
-075_type_derivation.rst
 080_expressions.rst
-090_overloading.rst
--- Day 3
 100_packages.rst
 110_private_types.rst
+120_limited_types.rst --nolab
+-- Day 3
 130_program_structure.rst
 135_visibility.rst
--- Day 4
+090_overloading.rst
 140_access_types.rst
-160_genericity.rst
-170_tagged_derivation.rst
+143_general_access_types.rst
+146_storage_pools.rst --nolab
+-- Day 4
+065_discriminated_records.rst
+075_type_derivation.rst
+170_tagged_derivation-in_depth.rst
+175_multiple_inheritance.rst
+180_polymorphism.rst
 190_exceptions.rst
 -- Day 5
-230_interfacing_with_c.rst
 240_tasking.rst
+160_genericity.rst
 273_subprogram_contracts.rst
 276_type_contracts.rst
 920_reference_material.rst
 900_gnat_in_practice.rst
+
+
+
+
+
