@@ -22,7 +22,7 @@ Auto-active Proof Lab
    For Linux users, the install location for SPARK varies greatly, so instead there is
    a shell script :filename:`gpr_project_path.sh` which gives you directions
 
-- From the command-line, run :command:`gnatstudio -P lab.gpr`
+- From the command-line, run :command:`gnatstudio -P default.gpr`
 
 - Unfold the source code directory (.) in the project pane
 
