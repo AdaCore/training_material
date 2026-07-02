@@ -138,3 +138,22 @@ Subprogram Variants
    Subprogram_Variant => (Decreases => Integer'Max(Value, 0),
                           Increases => Integer'Min(Value, 0)),
 
+------
+Quiz
+------
+
+Which statement is correct?
+
+   A. All functions terminate by definition in SPARK.
+   B. An inconsistent axiom may be caused only by a non-terminating function.
+   C. The only protection against unsoundness is reviews.
+   D. :answer:`A proved terminating subprogram cannot lead to unsoundness.`
+
+.. container:: animate
+
+   Explanations
+
+   A. No, recursion and infinite loops may cause non-termination.
+   B. The contract may be unfeasible if the function is not proved.
+   C. :toolname:`GNATprove` has multiple defenses against inconsistent axioms.
+   D. Correct
