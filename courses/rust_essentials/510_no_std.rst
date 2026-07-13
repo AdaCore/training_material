@@ -1,7 +1,6 @@
-*************
-Unsafe Rust
-*************
-
+********
+no_std
+********
 .. container:: PRELUDE BEGIN
 
 .. container:: PRELUDE ROLES
@@ -32,10 +31,5 @@ Unsafe Rust
 
 .. container:: PRELUDE END
 
-.. include:: 210_unsafe_rust/01_unsafe.rst
-.. include:: 210_unsafe_rust/02_dereferencing.rst
-.. include:: 210_unsafe_rust/03_mutable_static.rst
-.. include:: 210_unsafe_rust/04_unions.rst
-.. include:: 210_unsafe_rust/05_unsafe_functions.rst
-.. include:: 210_unsafe_rust/06_unsafe_traits.rst
-.. include:: 210_unsafe_rust/88-unsafe_rust.lab.rst
+.. include:: 510_no_std/01_introduction.rst
+.. include:: 510_no_std/99_summary.rst
