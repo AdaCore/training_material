@@ -57,7 +57,7 @@ procedure Main is
       (Year => 2_024, Month => 2, Day => 28),
       (Year => 2_000, Month => 2, Day => 29));
 
-   Mixed_Dates : constant Dates_T :=
+   Good_And_Bad_Dates : constant Dates_T :=
      ((Year => 2_025, Month => 4, Day => 30),
       (Year => 2_024, Month => 2, Day => 28),
       (Year => 1_900, Month => 2, Day => 29));
@@ -74,8 +74,8 @@ begin
    Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Good_Dates)));
 
    Put_Line ("Mixed_Dates");
-   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Mixed_Dates)));
-   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Mixed_Dates)));
+   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Good_And_Bad_Dates)));
+   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Good_And_Bad_Dates)));
 
    Put_Line ("Same_Year_Dates");
    Put_Line
