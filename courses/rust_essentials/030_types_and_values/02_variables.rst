@@ -57,7 +57,7 @@ Making Variables Mutable
 
 - Sometimes, you *need* to change a value
 
-- Compiler requires mutablitity to be declared **explicitly**
+- Variables are immutable unless mutability is declared **explicitly**
 
 - :rust:`mut` - specifies the variable is **mutable**
 

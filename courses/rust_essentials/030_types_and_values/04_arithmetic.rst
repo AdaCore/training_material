@@ -153,17 +153,17 @@ Integer Overflow
   let my_byte: u8 = 250;
   let new_byte = my_byte + 10; // 260? This won't fit!
 
-- Safe, defined behavior is to
+- Integer overflow has defined behavior
 
   - **Debug Builds**
 
-    - *Check* for overflow
+    - Overflow is checked
     - Your program will :rust:`panic!` (crash)
     - An error will tell you exactly what happened
 
   - **Release Builds**
 
-    - *Do not* :rust:`panic!`
+    - Overflow checks are disabled by default
     - It performs **two's complement wrapping**
     - **Example:** For :rust:`u8`, :rust:`255 + 1` "wraps around" to :rust:`0`
 

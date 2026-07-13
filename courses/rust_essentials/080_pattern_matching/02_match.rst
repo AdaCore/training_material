@@ -117,7 +117,8 @@ Nested Patterns in "match"
 
 - Nested patterns are checked within the selected arm
 
-- Runtime does not choose the "most specific" pattern
+- Patterns are not ranked by specificity
+- First matching arm is selected
 
 .. code:: rust
 

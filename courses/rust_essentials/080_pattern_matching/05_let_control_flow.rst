@@ -30,7 +30,7 @@ Conditional Matching
 
 - :rust:`match` can always be used to handle this
 
-- Shorthand forms provided for common cases
+- Shorthand forms available for common cases
 
 --------------
 Match Guards

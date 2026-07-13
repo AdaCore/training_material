@@ -44,7 +44,7 @@ Basic Destructuring
 - The pattern mirrors the struct's shape to extract values
 
 - **Order Independence** 
-  - Matches by field name, not position
+  - Struct fields are matched by name, not position
 
 - **Implicit Matching** 
   - Patterns work anywhere a variable is introduced
