@@ -189,7 +189,7 @@ Handling Overflow Explicitly
   
   127_i8.wrapping_add(1)     // Results in -128
 
-  120_i8.saturating_add(20)  // Results in 127 (max i8 value)
+  120_i8.saturating_add(20)  // Results in 127 (max 'i8' value)
 
   100_i8.overflowing_add(50) // Results in (-106, true)
 

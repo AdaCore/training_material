@@ -14,24 +14,22 @@ Methods in Rust
 
   * Organize behavior with the data it operates on
 
+.. code:: rust
+  :font-size: tiny
 
-.. container:: latex_environment tiny
+  struct CarRace {
+      laps: Vec<i32>,
+  }
 
-  .. code:: rust
+  impl CarRace {
+      // Method: Modify data
+      fn record_lap(&mut self, time: i32) {
+          self.laps.push(time);
+      }
+  }
 
-    struct CarRace {
-        laps: Vec<i32>,
-    }
-
-    impl CarRace {
-        // Method: Modify data
-        fn record_lap(&mut self, time: i32) {
-            self.laps.push(time);
-        }
-    }
-
-    let mut race = CarRace::new();
-    race.record_lap(114); // Data and logic live together
+  let mut race = CarRace::new();
+  race.record_lap(114); // Data and logic live together
 
 ----------------------------
 What Is a Method Receiver?
@@ -226,7 +224,9 @@ Method Receiver - No Receiver
     let count = Counter::new();
 
     // OK: 'count' is now a normal value
-    println!("{}", count.value);
+    println!("Value: {}", count.value);
+
+  :command:`Value: 0`
 
 **Behavior**
 

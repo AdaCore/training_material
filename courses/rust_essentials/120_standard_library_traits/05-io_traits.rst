@@ -75,3 +75,5 @@ Practical Patterns
       println!("Data is physically committed to disk.");
       Ok(())
   }
+
+:command:`Data is physically committed to disk.`

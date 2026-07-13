@@ -33,7 +33,7 @@ Structs and Enums
 .. container:: PRELUDE END
 
 .. include:: 070_structs_and_enums/01_introduction.rst
-.. include:: 070_structs_and_enums/02_structures.rst
+.. include:: 070_structs_and_enums/02_structs.rst
 .. include:: 070_structs_and_enums/03_enums.rst
 .. include:: 070_structs_and_enums/88-structs_and_enums.lab.rst
 .. include:: 070_structs_and_enums/99_summary.rst

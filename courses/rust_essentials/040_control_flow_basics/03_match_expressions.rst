@@ -40,21 +40,27 @@ The "match" Must Be Exhaustive
 
 .. code:: rust
 
+  let count = 3;
   match count {
       1 => println!("One"),
       2 => println!("Two"),     
       _ => println!("Other!"), // Catches all other possibilities
   }
 
+:command:`Other!`
+
 - Use :rust:`|` to match several values to one arm
 
 .. code:: rust
 
+  let belly_rubs = 4;
   match belly_rubs {
       1 | 2 => println!("Not enough."),  // Matches 1 or 2
       3 | 4 | 5 => println!("Perfect!"), // Matches 3 or 4 or 5
       _ => println!("Suspicion."),
   }
+
+:command:`Perfect!`
 
 --------------------------------
 Using "match" as an Expression

@@ -74,7 +74,7 @@ Variable Drop Order Example
 
 .. note::
 
-  Variables are dropped in *reverse order* of their creation
+  Variables are dropped in the *reverse order* of their declarations
 
 -----------------------------------
 Internal Field Drop Order Example
@@ -127,7 +127,7 @@ Internal Field Drop Order Example
 
 .. note::
 
-  Internal fields are dropped in the *order* they are declared
+  Fields of a struct are dropped in *declaration order*
 
 ---------------
 Explicit Drop

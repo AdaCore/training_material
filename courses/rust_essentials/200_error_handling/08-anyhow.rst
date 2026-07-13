@@ -44,17 +44,16 @@ One Type to Rule Them All
 
 * Type is compatible with any function that uses :rust:`?` operator
 
-.. container:: latex_environment small
+.. code:: rust
+  :font-size: small
 
-  .. code:: rust
+  use anyhow::Result;
 
-    use anyhow::Result;
-
-    fn run_app() -> Result<()> {
-        let config = read_config()?;    // Could be 'io::Error'
-        let data = parse_data(config)?; // Could be 'ParseError'
-        Ok(())
-    }
+  fn run_app() -> Result<()> {
+      let config = read_config()?;    // Could be 'io::Error'
+      let data = parse_data(config)?; // Could be 'ParseError'
+      Ok(())
+  }
 
 -----------------------
 Methods to Add Detail
