@@ -110,9 +110,9 @@ the following rubric:
 
     * Background information about the general module purpose
 
-* Chapter 2 through N
+* Chapters 2 through N
 
-  * Various sub-topics within the module purpose
+  * Various sub-topics within the scope of the module
 
 * Lab (optional)
 
@@ -121,7 +121,7 @@ the following rubric:
 
     * Can be multiple slides
     * Entire code if small
-    * Appropriate pieces if large
+    * Selected portions if large
 
 * Last chapter: **Summary**
 
@@ -132,7 +132,7 @@ the following rubric:
 
   * Remaining slides (optional)
 
-    * Only if really needed (exception not the rule)
+    * Only if necessary (exception not the rule)
     * More specific review of a particular sub-topic
   
 ----------
