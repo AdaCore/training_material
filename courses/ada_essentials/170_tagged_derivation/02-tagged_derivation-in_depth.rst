@@ -1,10 +1,10 @@
-=================
+===================
 Tagged Derivation
-=================
+===================
 
----------------------------------
+-----------------------------------
 Difference with Simple Derivation
----------------------------------
+-----------------------------------
 
 * Tagged derivation **can** change the structure of a type
 
@@ -90,9 +90,9 @@ Freeze Point for Tagged Types
 
   :error:`example.ads:12:14: error: this primitive operation is declared too late`
 
----------------------
+-----------------------
 Overriding Indicators
----------------------
+-----------------------
 
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 

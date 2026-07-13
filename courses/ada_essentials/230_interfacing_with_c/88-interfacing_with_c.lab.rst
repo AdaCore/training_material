@@ -1,10 +1,10 @@
-========
+=====
 Lab
-========
+=====
 
---------------------------
+------------------------
 Interfacing with C Lab
---------------------------
+------------------------
 
 * Requirements
 
@@ -23,9 +23,9 @@ Interfacing with C Lab
       + Distance Type (enumeral)
       + Seconds (floating point)
    
--------------------------------------------------
+--------------------------------------
 Interfacing with C Lab - GNAT Studio
--------------------------------------------------
+--------------------------------------
 
 To compile/link the C file into the Ada executable:
 
@@ -34,14 +34,14 @@ To compile/link the C file into the Ada executable:
    3. :menu:`Sources` :math:`\rightarrow` :menu:`Languages` :math:`\rightarrow` Check the "C" box
    4. Build and execute as normal
    
------------------------------------------
+---------------------------------------
 Interfacing with C Lab Solution - Ada
------------------------------------------
+---------------------------------------
 
 .. container:: source_include 230_interfacing_with_c/lab/interfacing_with_c/answer/main.adb :code:Ada :number-lines:1
 
----------------------------------------
+-------------------------------------
 Interfacing with C Lab Solution - C
----------------------------------------
+-------------------------------------
 
 .. container:: source_include 230_interfacing_with_c/lab/interfacing_with_c/answer/c_file.c :code:C

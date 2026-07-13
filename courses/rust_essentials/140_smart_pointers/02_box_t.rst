@@ -58,9 +58,9 @@ Using "Box<T>" for Recursive Types
       let a_doll = Doll::Inside(Box::new(Doll::Empty));
       let last_doll = Doll::Empty;
 
-----------------------
+---------------------
 Handling Large Data
-----------------------
+---------------------
 
 - :rust:`Box<T>` allows transferring ownership of data
 

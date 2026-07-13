@@ -24,9 +24,9 @@ Basic Loops and Syntax
        Rinse (Hair);
      end loop Wash_Hair;
 
---------------------
+----------------------
 Loop Exit Statements
---------------------
+----------------------
 
 **Syntax**
 
@@ -114,9 +114,9 @@ For-loop Statements
    - Focused on objects
    - Seen later with Arrays
 
------------------
+-------------------
 For in Statements
------------------
+-------------------
 
 **Syntax**
 
@@ -139,9 +139,9 @@ For in Statements
    Name - loop parameter object
    Discrete subtype definition - loop parameter type and range of values
 
------------------------------------
+---------------------------------
 Variable and Sequence of Values
------------------------------------
+---------------------------------
 
 * Variable declared implicitly by loop statement
 
@@ -171,30 +171,30 @@ Low-Level For-loop Parameter Type
    - As long as it is clear for the compiler
    - Warning: same name can belong to several enums
 
-.. code:: Ada
-  :number-lines: 1
-  :font-size: scriptsize
+  .. code:: Ada
+    :number-lines: 1
+    :font-size: scriptsize
 
-  procedure Main is
-     type Color_T is (Red, White, Blue);
-     type Rgb_T is (Red, Green, Blue);
-  begin
-     for Color in Red .. Blue loop  -- which Red and Blue?
-        null;
-     end loop;
-     for Color in Rgb_T'(Red) .. Blue loop -- OK
-        null;
-     end loop;
+    procedure Main is
+       type Color_T is (Red, White, Blue);
+       type Rgb_T is (Red, Green, Blue);
+    begin
+       for Color in Red .. Blue loop  -- which Red and Blue?
+          null;
+       end loop;
+       for Color in Rgb_T'(Red) .. Blue loop -- OK
+          null;
+       end loop;
 
-:error:`main.adb:5:21: error: ambiguous bounds in range of iteration`
+  :error:`main.adb:5:21: error: ambiguous bounds in range of iteration`
 
-:error:`main.adb:5:21: error: possible interpretations:`
+  :error:`main.adb:5:21: error: possible interpretations:`
 
-:error:`main.adb:5:21: error: type "Rgb_T" defined at line 3`
+  :error:`main.adb:5:21: error: type "Rgb_T" defined at line 3`
 
-:error:`main.adb:5:21: error: type "Color_T" defined at line 2`
+  :error:`main.adb:5:21: error: type "Color_T" defined at line 2`
 
-:error:`main.adb:5:21: error: ambiguous bounds in discrete range`
+  :error:`main.adb:5:21: error: ambiguous bounds in discrete range`
 
 * Type is :ada:`Integer` unless otherwise specified
 
@@ -234,9 +234,9 @@ Reversing Low-Level Iteration Direction
 
          for This_Day in reverse Mon .. Fri loop
 
----------------------------------------
+-------------------------------
 For-Loop Parameter Visibility
----------------------------------------
+-------------------------------
 
 * Scope rules don't change
 * Inner objects can hide outer objects
@@ -274,9 +274,9 @@ Referencing Hidden Names
       ...
    end Foo;
 
---------------------------
+----------------------------
 Iterations Exit Statements
---------------------------
+----------------------------
 
 **Syntax**
 
@@ -361,4 +361,3 @@ Which loop block(s) is (are) legal?
    D. Legal - 0 iterations
 
 .
-

@@ -1,6 +1,6 @@
----------------------------
-:toolname:`GNATstack` Lab
----------------------------
+-------------------
+**GNATstack** Lab
+-------------------
 
 * We are going to perform stack analysis on some source code examples
 
@@ -15,9 +15,9 @@
 
 .. note:: We use animation - if you don't know the answer, Page Down should give it to you
 
----------------------------------------------
-Getting Familiar with :toolname:`GNATstack`
----------------------------------------------
+-------------------------------------
+Getting Familiar With **GNATstack**
+-------------------------------------
 
 1. Open a command prompt window and navigate into the folder :filename:`simple`
 
@@ -70,7 +70,7 @@ Verbose mode also shows full path to the source
       +-> main_unit.inverse at Inverse:L:\\main_unit.adb:4:4 : 64 bytes
 
 -----------------------------
-Working with Multiple Mains
+Working With Multiple Mains
 -----------------------------
 
 1. Open a command prompt window and navigate into the folder :filename:`complicated`

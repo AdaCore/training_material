@@ -54,16 +54,20 @@ Example of Deriving
   }
 
   fn main() {
-      let emp1 = Employee::default();
+      let human = Employee::default();
       // Default trait adds 'default' constructor
 
-      let mut emp2 = emp1.clone();
+      let mut smith = human.clone();
       // Clone trait adds 'clone' method
 
-      emp2.name = String::from("EldurScrollz");
-      println!("{emp1:?} vs. {emp2:?}");
+      smith.name = String::from("Agent Smith");
+      println!("{human:?} vs. {smith:?}");
       // Debug trait adds support for printing with '{:?}'
   }
+
+.. container:: latex_environment scriptsize
+
+  :command:`Employee \{ name: "", age: 0 \} vs. Employee \{ name: "Agent Smith", age: 0 \}`
 
 * Compiler generates implementations
 * Works if all fields also implement the trait
@@ -73,7 +77,7 @@ Example of Deriving
 Deriving in Complex Structures
 --------------------------------
 
-**When a type derives a trait, included items must also derive the trait**
+**Deriving a trait generally requires its inner types to implement the trait**
 
 .. code:: rust
 
@@ -89,64 +93,6 @@ Deriving in Complex Structures
 .. container:: latex_environment scriptsize
 
   :error:`error[E0277]: the trait bound "main::Child: Clone" is not satisfied`
-
-.. note::
-
-  Not always!
-
-  If a trait does not reference items, items do not need to derive trait
-
--------------
-Orphan Rule
--------------
-
-* Implement a trait for a type only if you own the trait or the type
-
-  * "Own" means: defined in your crate
-
-* Why do we need this?
-
-  * Prevents two libraries from defining conflicting behavior
-  * Ensures trait implementations are globally unambiguous
-
-* To implement trait :rust:`SomeTrait` for :rust:`SomeType`
-
-  * You must own :rust:`SomeTrait` or :rust:`SomeType`
-  * If you own neither |rightarrow| compile error
-
-----------------------
-Orphan Rule Examples
-----------------------
-
-**Own the type not the trait**
-
-  .. code:: rust
-
-    struct MyType(i32);      // Owned type
-    impl Debug for MyType {} // External trait
-
-**Own the trait not the type**
-
-  .. code:: rust
-
-    trait Hello { // Owned trait
-        fn hello(&self) -> &'static str;
-    }
-    impl Hello for String { // External type
-        fn hello(&self) -> &'static str {
-            "Hello!"
-        }
-    }
-
-**Don't own either**
-
-  .. code:: rust
-
-    impl Debug for Vec<i32> {}
-
-.. container:: latex_environment tiny
-
-  :error:`error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate`
 
 -------------------------
 Limitations on Deriving
@@ -191,7 +137,7 @@ Limitations on Deriving
     * - *Effort*
       - **Minimal**
       - **High**
- 
+
     * -
       - Single line above struct or enum
       - Reauires writing boilerplate and handling every field

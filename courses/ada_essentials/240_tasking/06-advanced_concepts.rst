@@ -2,9 +2,9 @@
 Some Advanced Concepts
 ========================
 
----------------
+-----------------
 Task Activation
----------------
+-----------------
 
 * Instantiated tasks start running when **activated**
 * On the **stack**
@@ -29,9 +29,9 @@ Task Activation
       Access_To_Task := new Some_Task_T;
       -- Task pointed to by Access_To_Task starts
 
------------
+------------
 Task Scope
------------
+------------
 
 * Nesting is possible in **any** declarative block
 * Scope has to **wait** for tasks to finish before ending

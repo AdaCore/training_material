@@ -1,10 +1,10 @@
-===============
-:rust:`const`
-===============
+=========
+"const"
+=========
 
----------------
-:rust:`const`
----------------
+---------
+"const"
+---------
 
 Constants are evaluated at compile time and their values are inlined
 wherever they are used

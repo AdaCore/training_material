@@ -181,11 +181,11 @@ Subprogram Contracts on Private Types
 Preconditions or Explicit Checks?
 -----------------------------------
 
-* Any requirement from the spec should be a pre-condition
+* Any requirement from the spec should be a precondition
 
    - If clients need to know the body, abstraction is **broken**
 
-* With pre-conditions
+* With preconditions
 
   .. code:: Ada
 

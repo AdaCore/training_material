@@ -52,9 +52,9 @@ Test Generation Methods
 
    * Used to generate a driver to call individual test executables
 
-=========================
+========================
 Simple Test Generation
-=========================
+========================
 
 -------------------------
 Building a Test Harness

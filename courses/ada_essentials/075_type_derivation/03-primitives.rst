@@ -2,9 +2,9 @@
 Primitives
 ============
 
---------------------
+----------------------
 Primitive Operations
---------------------
+----------------------
 
 * Primitive Operations are those subprograms associated with a type
 
@@ -57,9 +57,9 @@ General Rule for Defining a Primitive
             function F return T;
          end P;
 
-------------------------------
+-----------------------------
 Primitive of Multiple Types
-------------------------------
+-----------------------------
 
 A subprogram can be a primitive of several types
 
@@ -114,38 +114,38 @@ Overriding Indications
 * **Optional** indications
 * Checked by compiler
 
-  .. code:: Ada
-    :font-size: footnotesize
-   
-    type Child_T is new Integer_T range -1000 .. 1000;
-    procedure Increment_With_Truncation
-       (Val : in out Child_T);
-    procedure Just_For_Child
-       (Val : in out Child_T);
+     .. code:: Ada
+       :font-size: footnotesize
+
+        type Child_T is new Integer_T range -1000 .. 1000;
+        procedure Increment_With_Truncation
+           (Val : in out Child_T);
+        procedure Just_For_Child
+           (Val : in out Child_T);
 
 * **Replacing** a primitive: :ada:`overriding` indication
 
-  .. code:: Ada
-    :font-size: footnotesize
+     .. code:: Ada
+       :font-size: footnotesize
 
-    overriding procedure Increment_With_Truncation
-       (Val : in out Child_T);
+        overriding procedure Increment_With_Truncation
+           (Val : in out Child_T);
 
 * **Adding** a primitive: :ada:`not overriding` indication
 
-  .. code:: Ada
-    :font-size: footnotesize
+     .. code:: Ada
+       :font-size: footnotesize
 
-    not overriding procedure Just_For_Child
-       (Val : in out Child_T);
+        not overriding procedure Just_For_Child
+           (Val : in out Child_T);
 
 * **Removing** a primitive: :ada:`overriding` as :ada:`abstract`
 
-  .. code:: Ada
-    :font-size: footnotesize
+     .. code:: Ada
+       :font-size: footnotesize
 
-    overriding procedure Just_For_Child
-       (Val : in out Grandchild_T) is abstract;
+        overriding procedure Just_For_Child
+           (Val : in out Grandchild_T) is abstract;
 
 * Using :ada:`overriding` or :ada:`not overriding` incorrectly will generate a compile error
 

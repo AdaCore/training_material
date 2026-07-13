@@ -1,6 +1,6 @@
-===================
+==================
 Private Children
-===================
+==================
 
 ------------------
 Private Children
@@ -13,7 +13,7 @@ Private Children
    - Thus cannot export anything outside subsystem
    - Thus have no parent visibility restrictions
 
-      + Public part of child also has visibility to ancestors' private sections
+      + Public section of child also has visibility to ancestors' private sections
 
 .. code:: Ada
 

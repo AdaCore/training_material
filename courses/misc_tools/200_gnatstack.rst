@@ -1,6 +1,6 @@
-***********************
-:toolname:`GNATstack`
-***********************
+***************
+**GNATstack**
+***************
 
 .. container:: PRELUDE BEGIN
 
@@ -87,13 +87,13 @@ Optional Analysis Outputs
    * Detect call cycles in the call graph
    * Represent potential recursion for possibly unbounded stack consumption
 
-===============================
-Running :toolname:`GNATstack`
-===============================
+=======================
+Running **GNATstack**
+=======================
 
-----------------------
+--------------------
 Example Subprogram
-----------------------
+--------------------
 
 .. code:: Ada
    :number-lines: 1
@@ -118,9 +118,9 @@ Example Subprogram
       Result := Inverse (Data);
    end Main_Unit;
 
---------------------------------------------
-Getting Started with :toolname:`GNATstack`
---------------------------------------------
+------------------------------------
+Getting Started With **GNATstack**
+------------------------------------
 
 Two parts of performing stack analysis
 
@@ -151,9 +151,9 @@ Which generates the following report:
 
 *Note that the actual stack usage can depend on things like runtime, operating system, and compiler version.*
 
-================================
-:toolname:`GNATstack` Switches
-================================
+========================
+**GNATstack** Switches
+========================
 
 ----------------------------
 Execution-Related Switches
@@ -198,9 +198,9 @@ Lab
 Summary
 =========
 
-------------------------------------
-Improving on :toolname:`GNATstack`
-------------------------------------
+----------------------------
+Improving on **GNATstack**
+----------------------------
 
 * When static analysis doesn't have enough information, user can provide via switches
 
@@ -214,9 +214,9 @@ Improving on :toolname:`GNATstack`
    * Indirect calls - subprogram pointers
    * Dispatching calls - subprogram dispatching
 
-------------------------------
-Beyond :toolname:`GNATstack`
-------------------------------
+----------------------
+Beyond **GNATstack**
+----------------------
 
 :toolname:`GNAT Static Analysis Suite` (SAS)
 

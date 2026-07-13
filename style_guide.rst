@@ -121,6 +121,31 @@ the lab will always be **88-<module_name>[-version].lab.rst**. Examples:
   * 99-summary-with_quantified.rst
   * 99-summary.rst
 
+-------------------------
+File Naming Conventions
+-------------------------
+
+* Folder/file names should match their content with the following rules
+
+  * Alpha-numeric characters only (no punctuation, dashes, etc.)
+  * All spaces should be replaced with underscore ("_")
+  * No leading, trailing, or consecutive underscores
+  * Characters should all be lowercase
+
+* Rules for course folder names
+
+  * Folder name for a course should always match the name of the course
+  * Tooling will convert first character in each "word" to upper case
+
+    * In case a course name requires specific upper-case formatting (e.g.
+      "gnatdas" should translate to "GNAT DAS"), you will need to update
+      the "default_title" function in file "pandoc/pandoc_fe.py"
+
+* Rules for module/chapter file names
+
+  * Module and chapter file names should match the module/chapter title.
+  * *(Module/chapter versions are* **not** *part of the title)*
+
 =============
 Style Rules
 =============
@@ -151,9 +176,15 @@ Example:
 
     ``-----------------``
 
-Do not use roles or emphasis in slide titles. It can change the color of
-the text, and makes extracting titles from slides more difficult. Current
-behavior is to surround the text you want highlighted with double quotes. 
+Do not use roles (e.g. ":ada:`loop`) in a title - it does not translate
+well for easy RST viewing (like in Git) or in extracting information.
+
+Use the following rules when roles/emphasis seems like a good idea in a title
+
+  * Filenames and toolnames should use bold emphasis in titles
+  * All other roles (such as language tokens, commands, etc) should
+    put the text in quotes (")
+
 
 ---------------
 Code Examples

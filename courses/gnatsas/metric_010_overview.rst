@@ -36,9 +36,9 @@ GNAT Metrics Tool
 Introduction
 ==============
 
-------------------------------------------------------
-Overview of GNAT Metrics Tool :toolname:`gnatmetric`
-------------------------------------------------------
+----------------------------------------------
+Overview of GNAT Metrics Tool **gnatmetric**
+----------------------------------------------
 
 + Utility for computing various program metrics
 + Select desired metrics from:
@@ -61,9 +61,9 @@ Overview of GNAT Metrics Tool :toolname:`gnatmetric`
   + Selecting the scope of analysis
   + Displaying the results
 
----------------------------------------
-Invoking From :toolname:`GNAT Studio`
----------------------------------------
+-------------------------------
+Invoking From **GNAT Studio**
+-------------------------------
 
 * Start analysis
 
@@ -73,9 +73,9 @@ Invoking From :toolname:`GNAT Studio`
 
    .. image:: ../../images/gnatmetric/execute_dialog.jpg
 
----------------------------------------
+--------------------------------
 Invoking From the Command Line
----------------------------------------
+--------------------------------
 
 * Command line help (partial output)
 
@@ -195,9 +195,9 @@ Controlling Output Generation
      * *Command results* generated and stored in object file folder
      * *Complete results* only generated if switches :command:`--generate-xml-output` or :command:`--generate-xml-schema` specified
 
-----------------
+---------------
 Execution Log
-----------------
+---------------
 
 :command:`gnatmetric -P default.gpr -U --lines-all`
 
@@ -816,9 +816,9 @@ Complexity Metrics Output
           essential_complexity     :  1.00
           max_loop_nesting         :  1.00
 
------------------------------
+----------------------------
 Coupling Metrics Explained
------------------------------
+----------------------------
 
 + Measures dependencies between given entity and other entities in the program
 

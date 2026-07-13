@@ -2,9 +2,9 @@
 Ada.Finalization
 ==================
 
----------------
+--------------
 Package Spec
----------------
+--------------
 
 .. code:: Ada
 
@@ -28,9 +28,9 @@ Package Spec
       -- implementation defined
    end Ada.Finalization;
 
--------
+------
 Uses
--------
+------
 
 * Prevent "resource leak"
 
@@ -54,9 +54,9 @@ Initialization
 
 * Similar to C++ constructor
 
-----------------
+--------------
 Finalization
-----------------
+--------------
 
 * Subprogram `Finalize` invoked just before object is destroyed
 

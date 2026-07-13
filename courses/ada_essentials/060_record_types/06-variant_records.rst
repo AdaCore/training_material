@@ -164,21 +164,21 @@ Quiz
 
   .. container:: column
 
-    .. code:: Ada
-      :font-size: tiny
-      :number-lines: 2
+      .. code:: Ada
+        :font-size: tiny
+        :number-lines: 2
 
-      type Variant_T (Valid : Integer) is record
-          case Valid is
-          when Integer'First .. -1 =>
-              Value : Integer;
-              State : Boolean;
-          when others =>
-              Number : Natural;
-          end case;
-      end record;
+        type Variant_T (Valid : Integer) is record
+            case Valid is
+            when Integer'First .. -1 =>
+                Value : Integer;
+                State : Boolean;
+            when others =>
+                Number : Natural;
+            end case;
+        end record;
 
-      Variant_Object : Variant_T (1);
+        Variant_Object : Variant_T (1);
 
   .. container:: column
 
@@ -230,4 +230,3 @@ D. None: Run-time error
 .. container:: animate
 
     The variant part cannot be followed by a component declaration (:ada:`Flag : Character` here)
-

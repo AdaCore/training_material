@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 -----------------
 Overloading Lab
@@ -36,8 +36,8 @@ Overloading Lab Solution - Operators
 
 .. container:: source_include 090_overloading/lab/overloading/answer/main.adb :start-after:operators_begin :end-before:operators_end :code:Ada :number-lines:32
 
--------------------------------------------------
+---------------------------------
 Overloading Lab Solution - Main
--------------------------------------------------
+---------------------------------
 
 .. container:: source_include 090_overloading/lab/overloading/answer/main.adb :start-after:main_begin :end-before:main_end :code:Ada :number-lines:79

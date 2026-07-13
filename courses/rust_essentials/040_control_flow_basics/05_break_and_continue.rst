@@ -1,10 +1,10 @@
-====================================
+========================
 "break" and "continue"
-====================================
+========================
 
-------------------------------------
+------------------------
 "break" and "continue"
-------------------------------------
+------------------------
 
     - Start immediately the next iteration with :rust:`continue`
     - Exit any kind of loop early with :rust:`break`
@@ -26,9 +26,9 @@
 
 :command:`Count: 5`
   
--------------------------------------------------------
+-------------------------------------------
 Returning a Value With "loop" and "break"
--------------------------------------------------------
+-------------------------------------------
 
     - :rust:`loop` is also an expression
     - Can return a non-trivial value
@@ -77,7 +77,13 @@ Block Labels
 
 .. code:: rust
 
+      println!("Before");
       'label: {
           break 'label;
           println!("This line gets skipped");
       }
+      println!("After");
+
+:command:`Before`
+
+:command:`After`

@@ -37,7 +37,7 @@ State Refinement
 * :dfn:`State refinement` maps each abstract to variables
 
   - All hidden variables must be constituents of an abstract state
-  - This includes variables in the private part and in the body
+  - This includes variables in the private section and in the body
 
 * Refined state declared with aspect :ada:`Refined_State`
 
@@ -58,21 +58,21 @@ State Refinement
                          Content_State => Content)
      is ...
 
----------------------------
-State in the Private Part
----------------------------
+------------------------------
+State in the Private Section
+------------------------------
 
-* Private part of package is visible when body is not
+* Private section of package is visible when body is not
 
   - From client code that only sees the package spec
   - State refinement is not visible in that case
-  - What is the abstract state for variables in the private part?
+  - What is the abstract state for variables in the private section?
 
     + This is a problem for flow analysis
 
 * Partial refinement declared with aspect :ada:`Part_Of`
 
-  - On variables in the private part
+  - On variables in the private section
   - Even when only one abstract state declared
 
   .. code:: ada

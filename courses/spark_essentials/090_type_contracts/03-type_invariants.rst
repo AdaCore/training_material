@@ -100,7 +100,7 @@ Beware Recursion in Type Invariants
 
      high: cannot call boundary subprogram for type in its own invariant
 
-* Fix by declaring the function in the **private** part of the spec
+* Fix by declaring the function in the **private** section of the spec
 
   .. code:: Ada
 

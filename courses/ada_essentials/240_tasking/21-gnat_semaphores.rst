@@ -1,10 +1,10 @@
-===============
+=================
 GNAT Semaphores
-===============
+=================
 
-----------
+------------
 Semaphores
-----------
+------------
 
 * Shared counters
 * Multitask-safe
@@ -23,9 +23,9 @@ Semaphores
     - Protects against priority inversions
 
 
----------
+-----------
 Interface
----------
+-----------
 
 .. code:: Ada
 
@@ -52,9 +52,9 @@ Interface
      (Initially_Available => True,
       Ceiling             => Default_Ceiling);
 
-------------------
+--------------------
 Idiom: Scope Locks
-------------------
+--------------------
 
 * Automatic release
 

@@ -8,9 +8,9 @@ Nested Packages
 
 * State of package :ada:`P` includes state of nested packages :ada:`N`
 
-  - :ada:`N` may have visible state (variables in the public part, abstract states)
+  - :ada:`N` may have visible state (variables in the public section, abstract states)
 
-  - :ada:`N` may have hidden state (variables in the private part of body)
+  - :ada:`N` may have hidden state (variables in the private section of body)
 
   - If :ada:`N` is visible
 

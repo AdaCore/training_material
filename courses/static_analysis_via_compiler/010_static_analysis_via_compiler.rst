@@ -1,6 +1,6 @@
-*****************************
+******************************
 Static Analysis Via Compiler
-*****************************
+******************************
 
 .. container:: PRELUDE BEGIN
 
@@ -821,9 +821,9 @@ Warnings Versus Errors
   + Style violations become errors too
   + Warning messages still appear but no code generation
 
-----------------------------------------------
+---------------------------------------------
 IDE Integration (Project Properties Editor)
-----------------------------------------------
+---------------------------------------------
 
 .. image:: gnat_studio/menu-edit/project_properties/build-switches-ada.jpg
 
@@ -1458,9 +1458,9 @@ Value Tracing
     example.adb:5:09: warning: condition is always True 
     example.adb:8:9: medium warning: test always true because A = 5
 
-------------------------------------------------
+--------------------------------------------------
 "Intra"procedural vs. "Inter"procedural Analysis
-------------------------------------------------
+--------------------------------------------------
 
 .. code:: Ada
    :number-lines: 1

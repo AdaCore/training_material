@@ -138,27 +138,27 @@ Quiz
 
   .. container:: column
 
-   Which block(s) is (are) legal?
+    Which block(s) is (are) legal?
 
-   A. | :answermono:`X := A;`
-      | :answermono:`Y := A;`
-   B. | :answermono:`X := B;`
-      | :answermono:`Y := C;`
-   C. | ``X := One_T(X + C);``
-   D. | :answermono:`X := One_T(Y);`
-      | :answermono:`Y := Two_T(X);`
-   E. | ``B := One_T(Y) + X;``
+    A. | :answermono:`X := A;`
+       | :answermono:`Y := A;`
+    B. | :answermono:`X := B;`
+       | :answermono:`Y := C;`
+    C. | ``X := One_T(X + C);``
+    D. | :answermono:`X := One_T(Y);`
+       | :answermono:`Y := Two_T(X);`
+    E. | ``B := One_T(Y) + X;``
 
-   .. container:: animate
+.. container:: animate
 
-     Explanations
+  .. container:: latex_environment scriptsize
 
-     A. Legal - :ada:`A` is an untyped constant so it can be used
-        for any integer-based object
-     B. Legal - :ada:`B, C` are correctly typed
-     C. Illegal - No such "+" operator: must convert operand individually
-     D. Legal - Correct conversion and types
-     E. Illegal - Even though the right-hand side matches the type,
-        :ada:`B` is a constant and cannot be modified
-        
+    Explanations
 
+    A. Legal - :ada:`A` is an untyped constant so it can be used
+       for any integer-based object
+    B. Legal - :ada:`B, C` are correctly typed
+    C. Illegal - No such "+" operator: must convert operand individually
+    D. Legal - Correct conversion and types
+    E. Illegal - Even though the right-hand side matches the type,
+       :ada:`B` is a constant and cannot be modified

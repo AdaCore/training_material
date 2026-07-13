@@ -18,7 +18,7 @@ Package Bodies
 
    - Subprogram bodies
    - Task bodies
-   - Incomplete types in :ada:`private` part
+   - Incomplete types in :ada:`private` section
    - Others...
 
 ---------------------------

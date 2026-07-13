@@ -1,6 +1,6 @@
---------------
+----------------
 Start GPRbuild
---------------
+----------------
 
 * Open a command shell
 * Go to :filename:`020_building_with_gprbuild` directory (under :filename:`source`)

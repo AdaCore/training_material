@@ -2,9 +2,9 @@
 Subtypes - Full Picture
 =========================
 
-----------------
+------------------
 Implicit Subtype
-----------------
+------------------
 
 * The declaration
 
@@ -23,9 +23,9 @@ Implicit Subtype
 
     - Accessed with :ada:`My_Type'Base`
 
-----------------------------
+------------------------------
 Implicit Subtype Explanation
-----------------------------
+------------------------------
 
 .. code:: Ada
 
@@ -111,9 +111,9 @@ Subtypes May Enhance Performance
    K := Some_Value;   -- range checked here
    Values (K) := 0.0; -- so no range check needed here
 
----------------------------------
+----------------------------------
 Subtypes Don't Cause Overloading
----------------------------------
+----------------------------------
 
 - Illegal code: re-declaration of `F`
 
@@ -124,9 +124,9 @@ Subtypes Don't Cause Overloading
      function F return A is (0);
      function F return B is (1);
 
--------------------------------
+---------------------------------
 Default Values and Option Types
--------------------------------
+---------------------------------
 
 * Not allowed: Defaults on new :ada:`type` only
 
@@ -188,9 +188,9 @@ Attributes Reflect the Underlying Type
       Shade : Color range Red .. Blue := Brown; -- run-time error
       Hue : Rainbow := Rainbow'Succ (Blue);     -- run-time error
 
----------------
+-----------------
 Valid attribute
----------------
+-----------------
 
 * :ada:`An_Object'Valid` is a :ada:`Boolean`
 * :ada:`True` |rightarrow| the current representation for the given scalar is valid

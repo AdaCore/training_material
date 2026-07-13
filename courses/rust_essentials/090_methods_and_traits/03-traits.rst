@@ -1,6 +1,6 @@
-=========
+========
 Traits
-=========
+========
 
 ----------------------------
 Traits - Rust's Interfaces
@@ -101,12 +101,13 @@ Traits vs. Methods
 Real World Comparison
 -----------------------
 
-* Methods are *private skills*
+* Methods are *unique capabilities*
 
   * A dog knows how to wag its tail (but a cat doesn't)
   * Put :rust:`wag_tail` in :rust:`impl Dog`
 
-* Traits are *common ground*
+* Traits are *shared behaviors*
 
-  * Both dog and cat have a friendly response (but they're different)
-  * Put the response in a trait which doesn't care *what* is responding
+  * Both dog and cat have a friendly response (but they do it differently)
+  * Put the response in a trait, which focuses on *what an object can do*
+    * Not what the object is

@@ -1,10 +1,10 @@
-======
+========
 Delays
-======
+========
 
--------------
+---------------
 Delay Keyword
--------------
+---------------
 
 - :ada:`delay` keyword part of tasking
 - Blocks for a time

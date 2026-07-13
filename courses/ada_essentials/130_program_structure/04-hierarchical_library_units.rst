@@ -180,43 +180,43 @@ Hierarchical Visibility
     + All child units come after the root parent's specification
     + Grandchildren within children, great-grandchildren within ...
 
-.. code:: Ada
-  :font-size: tiny
+  .. code:: Ada
+    :font-size: tiny
 
-  package OS is
-    -- Some code
-  private
-    type OS_Private_T is null record;
-  end OS;
+     package OS is
+       -- Some code
+     private
+       type OS_Private_T is null record;
+     end OS;
 
 .. container:: columns
 
   .. container:: column
 
-    .. code:: Ada
-      :font-size: tiny
+      .. code:: Ada
+        :font-size: tiny
 
-      package OS.Child is
-        type Child_T is private;
-      private 
-        type Child_T is record
-          Field : OS_Private_T;
-        end record;
-      end OS.Child;
+        package OS.Child is
+          type Child_T is private;
+        private 
+          type Child_T is record
+            Field : OS_Private_T;
+          end record;
+        end OS.Child;
       
   .. container:: column
 
-    .. code:: Ada
-      :font-size: tiny
+      .. code:: Ada
+        :font-size: tiny
 
-      package OS.Sibling is
-        type Sibling_T is private;
-      private 
-        type Sibling_T is record
-          Field1 : OS_Private_T; -- OK
-          Field2 : Child_T;      -- Error
-        end record;
-      end OS.Sibling;
+        package OS.Sibling is
+          type Sibling_T is private;
+        private 
+          type Sibling_T is record
+            Field1 : OS_Private_T; -- OK
+            Field2 : Child_T;      -- Error
+          end record;
+        end OS.Sibling;
 
 .. raw:: latex
 
@@ -252,7 +252,7 @@ Example of Visibility As If Nested
 
 .. container:: columns
 
-  .. container:: column
+ .. container:: column
 
     * Because children can reference ancestors' private sections
 
@@ -260,10 +260,10 @@ Example of Visibility As If Nested
 
     * Explicit clauses for ancestors are redundant but OK
 
-  .. container:: column
+ .. container:: column
 
-    .. code:: Ada
-      :font-size: small
+     .. code:: Ada
+       :font-size: small
 
       package Parent is
         ...
@@ -280,9 +280,9 @@ Example of Visibility As If Nested
         C : Integer := A;
       end Parent.Child;
 
--------------------------------------------
- "with" Clauses for Siblings Are Required
--------------------------------------------
+------------------------------------------
+"with" Clauses for Siblings Are Required
+------------------------------------------
 
 * If references are intended
 
@@ -328,4 +328,3 @@ Which is (are) legal initialization(s) of ``Child_Object``?
    hierarchy). If :ada:`Parent.Child` had ":ada:`with Parent.Sibling;`", then
    A and B would be legal, but C would still be incorrect because there is
    no implied reference to a sibling.
-

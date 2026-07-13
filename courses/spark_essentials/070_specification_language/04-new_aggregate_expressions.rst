@@ -32,9 +32,9 @@ Delta Aggregates
   - Avoids the introduction of **explicit** quantifiers
   - Can have **overlapping** and **dynamic** choices (values or ranges)
 
------------------------------
+-------------------------------
 Extension of Delta Aggregates
------------------------------
+-------------------------------
 
 .. admonition:: Language Variant
 

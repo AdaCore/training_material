@@ -3,6 +3,58 @@ Advanced Trait Topics
 =======================
 
 -------------
+Orphan Rule
+-------------
+
+* Implement a trait for a type only if you own the trait or the type
+
+  * "Own" means: defined in your crate
+
+* Why do we need this?
+
+  * Prevents two libraries from defining conflicting behavior
+  * Ensures trait implementations are globally unambiguous
+
+* To implement trait :rust:`SomeTrait` for :rust:`SomeType`
+
+  * You must own :rust:`SomeTrait` or :rust:`SomeType`
+  * If you own neither |rightarrow| compile error
+
+----------------------
+Orphan Rule Examples
+----------------------
+
+**Own the type not the trait**
+
+  .. code:: rust
+
+    struct MyType(i32);      // Owned type
+    impl Debug for MyType {} // External trait
+
+**Own the trait not the type**
+
+  .. code:: rust
+
+    trait Hello { // Owned trait
+        fn hello(&self) -> &'static str;
+    }
+    impl Hello for String { // External type
+        fn hello(&self) -> &'static str {
+            "Hello!"
+        }
+    }
+
+**Don't own either**
+
+  .. code:: rust
+
+    impl Debug for Vec<i32> {}
+
+.. container:: latex_environment tiny
+
+  :error:`error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate`
+
+-------------
 Supertraits
 -------------
 
@@ -80,7 +132,7 @@ Associated Types
 
   impl Animal for Cat {
       // We associate 'Catnip' with 'Cat'
-      type Food = Catnip; 
+      type Food = Catnip;
       fn consume(&self, food: Catnip) {
           println!("The cat purrs intensely over the catnip.");
       }

@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 -------------
 Tasking Lab
@@ -36,8 +36,8 @@ Tasking Lab Solution - Task Type
 
 .. container:: source_include 240_tasking/lab/tasking/answer/task_type.adb :code:Ada :number-lines:1
 
-----------------------------
+-----------------------------
 Tasking Lab Solution - Main
-----------------------------
+-----------------------------
 
 .. container:: source_include 240_tasking/lab/tasking/answer/main.adb :code:Ada :number-lines:1

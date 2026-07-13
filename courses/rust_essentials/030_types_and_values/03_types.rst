@@ -38,7 +38,7 @@ Assigning Types
       let infer_me = 10;
 
 --------------------------
-Type Inference Explained 
+Type Inference Explained
 --------------------------
 
 - In most cases, you don't need to write the type
@@ -54,12 +54,12 @@ Type Inference Explained
 
 .. code:: rust
 
-  // Rust sees a whole number and infers i32
+  // Rust sees a whole number and infers 'i32'
   let inferred_int = 10;
   // This is the same as writing:
   // let explicit_int: i32 = 10;
 
-  // Rust sees a decimal and infers f64
+  // Rust sees a decimal and infers 'f64'
   let inferred_float = 2.5;
   // This is the same as writing:
   // let explicit_float: f64 = 2.5;
@@ -128,7 +128,7 @@ The types have widths as follows
 -  :rust:`bool` is 8 bits wide
 
 -------------------------
-Numeric Literal Formats 
+Numeric Literal Formats
 -------------------------
 
 - **Numeric Readability**
@@ -151,7 +151,7 @@ Numeric Literal Formats
       let suffix = 10.0f64;       // Suffix (no underscore)
 
 ---------------------------
-Utilizing Different Bases 
+Utilizing Different Bases
 ---------------------------
 
 - Integers can be expressed in different bases

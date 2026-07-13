@@ -18,9 +18,9 @@ Function Extended Return Statements
 ..
   language_version 2005
 
-----------------------------------
+------------------------------------
 Extended Return Statements Example
-----------------------------------
+------------------------------------
 
 .. code:: Ada
 
@@ -37,9 +37,9 @@ Extended Return Statements Example
 ..
   language_version 2005
 
-------------------------------------
+--------------------------------------
 Expression / Statements Are Optional
-------------------------------------
+--------------------------------------
 
 * Without sequence (returns default if any)
 
@@ -64,9 +64,9 @@ Expression / Statements Are Optional
 ..
   language_version 2005
 
------------------------
+-------------------------
 Statements Restrictions
------------------------
+-------------------------
 
 * **No** nested extended return
 * **Simple** return statement **allowed**

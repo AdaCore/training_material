@@ -1,6 +1,6 @@
-----------------------
+------------------------
 Project Properties Lab
-----------------------
+------------------------
 
 * Create new project file in an empty directory
 * Specify source and output directories
@@ -41,9 +41,9 @@ Directories Solution
 
       raised CONSTRAINT_ERROR : fibonacci.adb:16 overflow check failed
 
----------------------------------------
+-----------------------------------------
 Project Properties Lab (1/3) - Switches
----------------------------------------
+-----------------------------------------
 
 * Modify project file to disable overflow checking
 

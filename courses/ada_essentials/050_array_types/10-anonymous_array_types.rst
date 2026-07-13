@@ -1,6 +1,6 @@
-======================
+=======================
 Anonymous Array Types
-======================
+=======================
 
 -----------------------
 Anonymous Array Types
@@ -23,15 +23,15 @@ Anonymous Array Types
 
  .. container:: column
 
-  .. code:: Ada
-    :font-size: small
+   .. code:: Ada
+     :font-size: small
 
-    declare
+      declare
       -- These are not same type!
-      A, B : array (Foo) of Bar;
-    begin
-      A := B;  -- illegal
-      B := A;  -- illegal
-      -- legal assignment of values
-      A(J) := B(K);
-    end;
+        A, B : array (Foo) of Bar;
+      begin
+        A := B;  -- illegal
+        B := A;  -- illegal
+        -- legal assignment of values
+        A(J) := B(K);
+      end;

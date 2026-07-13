@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 -------------------
 Limited Types Lab
@@ -25,9 +25,9 @@ Limited Types Lab Solution - Employee Data (Spec)
 
 .. container:: source_include 120_limited_types/lab/limited_types/answer/employee_data.ads :code:Ada :number-lines:1
 
--------------------------------------------------
+-----------------------------------------------
 Limited Types Lab Solution - Timecards (Spec)
--------------------------------------------------
+-----------------------------------------------
 
 .. container:: source_include 120_limited_types/lab/limited_types/answer/timecards.ads :code:Ada :number-lines:1
 
@@ -37,14 +37,14 @@ Limited Types Lab Solution - Employee Data (Body)
 
 .. container:: source_include 120_limited_types/lab/limited_types/answer/employee_data.adb :code:Ada :number-lines:1
 
--------------------------------------------------
+-----------------------------------------------
 Limited Types Lab Solution - Timecards (Body)
--------------------------------------------------
+-----------------------------------------------
 
 .. container:: source_include 120_limited_types/lab/limited_types/answer/timecards.adb :code:Ada :number-lines:1
 
--------------------------------------------------
+-----------------------------------
 Limited Types Lab Solution - Main
--------------------------------------------------
+-----------------------------------
 
 .. container:: source_include 120_limited_types/lab/limited_types/answer/main.adb :code:Ada :number-lines:1

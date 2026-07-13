@@ -1,6 +1,6 @@
-========================
+==================
 "if" Expressions
-========================
+==================
 
 ---------------------------
 Using "if" as a Statement
@@ -28,9 +28,9 @@ Using "if" as a Statement
 
 :command:`New graphics card acquired.`
 
----------------------------------
+-----------------------------
 Using "if" as an Expression
----------------------------------
+-----------------------------
 
 **Every block is an expression that returns a value**
 
@@ -46,9 +46,9 @@ Using "if" as an Expression
 
 :command:`Pet Status: Starving. Call the vet and the police.`
 
----------------------------------------------------
+-------------------------
 Return Type Consistency
----------------------------------------------------
+-------------------------
 
 * Returned values, from all branches, must have the same type
 

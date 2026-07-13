@@ -145,7 +145,7 @@ Proving the Code Works (Continued)
       with Post => X = Y'Old and then Y = X'Old;
 
 ---------------------------
-Functional Specifications 
+Functional Specifications
 ---------------------------
 
 - In the time left, add postconditions to the remaining subprograms

@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 -----------------------
 Program Structure Lab
@@ -24,9 +24,9 @@ Program Structure Lab
 
 * **Note: There is no prompt for this lab - you need to learn how to build the program structure**
 
-----------------------------------------------
+-------------------------------------------
 Program Structure Lab Solution - Messages
-----------------------------------------------
+-------------------------------------------
 
 .. container:: source_include 130_program_structure/lab/program_structure/answer/messages.ads :code:Ada :number-lines:1
 

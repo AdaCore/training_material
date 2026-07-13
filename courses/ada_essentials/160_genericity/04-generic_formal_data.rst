@@ -8,7 +8,7 @@ Generic Constants and Variables Parameters
 
 .. container:: columns
 
-  .. container:: column
+ .. container:: column
 
     * Variables can be specified on the generic contract
     * The mode specifies the way the variable can be used:
@@ -18,10 +18,10 @@ Generic Constants and Variables Parameters
 
     * Generic variables can be defined after generic types
 
-  .. container:: column
+ .. container:: column
 
-    .. code:: Ada
-      :font-size: small
+   .. code:: Ada
+     :font-size: small
 
       generic
          type Type_T is private;
@@ -66,4 +66,3 @@ Quiz
 ------
 
 .. include:: ../quiz/genericity_limited_type/quiz.rst
-

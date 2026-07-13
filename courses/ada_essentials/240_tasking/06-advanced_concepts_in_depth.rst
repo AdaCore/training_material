@@ -82,9 +82,9 @@ The Delay Is Not a Timeout
           delay 10.0;
        end select;
 
-----------------------------
+------------------------------
 Non-blocking Accept or Entry
-----------------------------
+------------------------------
 
 * Using :ada:`else`
 
@@ -171,9 +171,9 @@ Select on Protected Objects Entries
           Put_Line ("Overflow");
        end select;
 
-------
+-------
 Queue
-------
+-------
 
 * Protected :ada:`entry`, :ada:`procedure`, and tasks :ada:`entry` are activated by **one** task at a time
 * **Mutual exclusion** section
@@ -183,9 +183,9 @@ Queue
 
 * When the **server** task **terminates**, tasks still queued receive :ada:`Tasking_Error`
 
------------------
+----------------
 Queuing Policy
------------------
+----------------
 
 * Queuing policy can be set using
 
@@ -232,9 +232,9 @@ Setting Task Priority
       Ada.Dynamic_Priorities.Set_Priority (10);
    end Prioritized_Task_T;
 
----------------------
+-----------------------
 "requeue" Instruction
----------------------
+-----------------------
 
 * :ada:`requeue` can be called in any :ada:`entry` (task or protected)
 * Puts the requesting task back into the queue
@@ -298,9 +298,9 @@ Abort Statements
             abort Task_Instance;
          end;
 
--------------------------
+---------------------------
 "select" ... "then abort"
--------------------------
+---------------------------
 
 * :ada:`select` can call :ada:`abort`
 * Can abort anywhere in the processing
@@ -313,9 +313,9 @@ Multiple Select Example
 .. include:: ../examples/task_select_multiple_or/extracts/task_select.select_or.adb
     :code: Ada
 
-------------------
+---------------
 Example: Main
-------------------
+---------------
 
 .. include:: ../examples/task_select_multiple_or/src/main.adb
     :code: Ada

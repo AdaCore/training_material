@@ -34,9 +34,9 @@ Base Ranges
     - 8 bits |rightarrow| :ada:`-128 .. 127`
     - 16 bits |rightarrow| :ada:`-32_768 .. 32767`
 
----------------------------------
+-----------------------------------
 Compile-Time Constraint Violation
----------------------------------
+-----------------------------------
 
 * *May* produce **warnings**
 
@@ -61,9 +61,9 @@ Compile-Time Constraint Violation
       Object := 50_000; -- probable error
    end;
 
--------------------
+---------------------
 Range Check Failure
--------------------
+---------------------
 
 * Compile-time rejection
 
@@ -108,9 +108,9 @@ Floating Point Division by Zero
 
   .. code:: Ada
     :font-size: small
-    
-    type My_Float is new Float range Float'First .. Float'Last;
-    subtype Sub_Float is Float range Float'First .. Float'Last;
+
+      type My_Float is new Float range Float'First .. Float'Last;
+      subtype Sub_Float is Float range Float'First .. Float'Last;
 
 -----------------------------------------
 Using Equality for Floating Point Types
@@ -125,4 +125,3 @@ Using Equality for Floating Point Types
 * Perhaps define your own function
 
    - Comparison within tolerance (:math:`+\varepsilon` / :math:`-\varepsilon`)
-

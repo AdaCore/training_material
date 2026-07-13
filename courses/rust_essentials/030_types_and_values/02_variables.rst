@@ -73,6 +73,10 @@ Making Variables Mutable
   change_me = 6;
   println!("change_me is now: {change_me}");
 
+:command:`change_me is: 5`
+
+:command:`change_me is now: 6`
+
 .. note::
 
   In Rust, mutability is an **opt-in** choice

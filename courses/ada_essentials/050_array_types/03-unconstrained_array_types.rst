@@ -55,9 +55,9 @@ Supplying Index Constraints for Objects
       Weekdays(Sat) := 0.0; -- Constraint error
       Weekend(Mon)  := 0.0; -- Constraint error
 
----------------------------------------
+--------------------------------------
 Bounds Must Satisfy Type Constraints
----------------------------------------
+--------------------------------------
 
 * Must be somewhere in the range of possible values specified by the type declaration
 * :ada:`Constraint_Error` otherwise
@@ -103,9 +103,9 @@ Null Index Range
 
 * When the index type is a single-valued enumerated type, no empty array is possible
 
-----------------
+------------------
 Indefinite Types
-----------------
+------------------
 
 * An :dfn:`indefinite type` does not provide enough information to be instantiated
 
@@ -133,13 +133,14 @@ No Indefinite Component Types
     - No unconstrained types
     - Constrained subtypes allowed
 
-.. code:: Ada
-  :font-size: small
-  :number-lines: 2
 
-    type Component_T is array (Integer range <>) of Boolean;
-    type Good is array (1 .. 10) of Component_T (1 .. 20); -- OK
-    type Bad is array (1 .. 10) of Component_T; -- compile error
+  .. code:: Ada
+     :font-size: small
+     :number-lines: 2
+
+     type Component_T is array (Integer range <>) of Boolean;
+     type Good is array (1 .. 10) of Component_T (1 .. 20); -- OK
+     type Bad is array (1 .. 10) of Component_T; -- compile error
 
 .. container:: latex_environment scriptsize
 

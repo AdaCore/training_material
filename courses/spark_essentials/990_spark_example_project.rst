@@ -50,9 +50,9 @@ Background
    - Used to manipulate / query character strings
    - Description of each subprogram is supplied in the comments.
 
----------------------
+-----------
 Lab Setup
----------------------
+-----------
 
 - Find the :filename:`990_spark_example_project` sub-directory in :filename:`source`
 

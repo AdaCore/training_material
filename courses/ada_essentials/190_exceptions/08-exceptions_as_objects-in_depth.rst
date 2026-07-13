@@ -82,9 +82,9 @@ Mechanism to Treat Exceptions As Objects
      ...
    end Ada.Exceptions;
 
----------------------
+----------------------
 Exception Occurrence
----------------------
+----------------------
 
 * Syntax associates an object with active exception
 

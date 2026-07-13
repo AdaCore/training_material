@@ -1,6 +1,6 @@
-===================================
+==================================
 Preconditions and Postconditions
-===================================
+==================================
 
 -----------------------------
 Subprogram-based Assertions
@@ -104,7 +104,7 @@ Pre/Postcondition Semantics
 Contract with Quantified Expression
 -------------------------------------
 
-* Pre- and post-conditions can be **arbitrary** :ada:`Boolean` expressions 
+* Pre- and postconditions can be **arbitrary** :ada:`Boolean` expressions 
 
 .. code:: Ada
 
@@ -160,7 +160,7 @@ Preconditions and Postconditions Example
 (Sub)Types Allow Simpler Contracts
 ------------------------------------
 
-* Pre-condition
+* Precondition
 
   .. code:: Ada
 
@@ -201,8 +201,7 @@ Preventing Exceptions with ... Exceptions?
 
        function Area (Length : Positive;
                       Height : Positive)
-                      return Positive is
-          (Length * Height)
+                      return Positive
        with Pre => Length * Height <= Positive'Last;
 
 * But what happens when we verify the precondition?
@@ -215,8 +214,8 @@ Preventing Exceptions with ... Exceptions?
 
       function Area (Length : Positive;
                      Height : Positive)
-                     return Positive is
-      with Pre => Positive'Last / Height <= Length;
+                     return Positive
+      with Pre => Length <= Positive'Last / Height;
 
 ------
 Quiz

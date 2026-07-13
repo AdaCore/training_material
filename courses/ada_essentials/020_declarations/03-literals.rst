@@ -39,9 +39,9 @@ Based Numeric Literals
      16#F.FF#E+2       => 4095.0
      8#10#E+3          => 4096 (8 * 8**3)
 
---------------------------------------------
+----------------------------------
 Comparison to C's Based Literals
---------------------------------------------
+----------------------------------
 
 * Design in reaction to C issues
 * C has **limited** bases support

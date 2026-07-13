@@ -66,29 +66,29 @@ Private Tagged Types
 
 * So we can define our base type as private
 
-  .. code:: Ada
-    :font-size: tiny
+    .. code:: Ada
+      :font-size: tiny
 
-    package Animals is
-      type Animal_T is tagged private;
-      function Get_Age (P : Animal_T) return Natural;
-      procedure Set_Age (P : in out Animal_T; A : Natural);
-    private
-      type Animal_T is tagged record
-         Age : Natural;
-      end record;
-    end Animals;
+      package Animals is
+        type Animal_T is tagged private;
+        function Get_Age (P : Animal_T) return Natural;
+        procedure Set_Age (P : in out Animal_T; A : Natural);
+      private
+        type Animal_T is tagged record
+           Age : Natural;
+        end record;
+      end Animals;
 
 * And still allow derivation
 
-  .. code:: Ada
-    :font-size: tiny
+    .. code:: Ada
+      :font-size: tiny
 
-    with Animals;
-    package Mammals is
-      type Mammal_T is new Animals.Animal_T with record
-        Number_Of_Legs : Natural;
-      end record;
+      with Animals;
+      package Mammals is
+        type Mammal_T is new Animals.Animal_T with record
+          Number_Of_Legs : Natural;
+        end record;
 
 * But now the only way to get access to :ada:`Age` is with accessor subprograms
 
@@ -196,7 +196,6 @@ Which completion(s) of Create is (are) valid?
    Explanations
 
    A. Correct - :ada:`Parents.Create` returns :ada:`Parent_T`
-   B. Cannot use :ada:`others` to complete private part of an aggregate
+   B. Cannot use :ada:`others` to complete private section of an aggregate
    C. Aggregate has no visibility to :ada:`Id` component, so cannot assign
    D. Correct - :ada:`P` is a :ada:`Parent_T`
-

@@ -65,9 +65,9 @@ Case Statements
 
 .. container:: source_include 040_statements/syntax.bnf :start-after:case_statements_begin :end-before:case_statements_end :code:bnf
 
-------------------------
+--------------------------
 Simple "case" Statements
-------------------------
+--------------------------
 
 .. code:: Ada
 
@@ -119,9 +119,9 @@ Case Statement Rules
 
    * Block is entered when :ada:`case` value is between :ada:`Tuesday` and :ada:`Thursday` inclusive
 
-------------------
+-----------------
 "Others" Choice
-------------------
+-----------------
 
 * Choice by default
 
@@ -142,9 +142,9 @@ Case Statement Rules
        Go_To (Home, Arrive=>Day_Before, Leave=>Day_After);
    end case;
 
-------------------------------------
+--------------------------------------
 Dangers of "Others" Case Alternative
-------------------------------------
+--------------------------------------
 
 * Maintenance issue: new value requiring a new alternative?
 

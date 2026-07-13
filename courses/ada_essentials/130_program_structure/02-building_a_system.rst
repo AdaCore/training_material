@@ -12,7 +12,7 @@ What Is a System?
    - Which are a collection of packages or subprograms
 
 ---------------
-Library Units 
+Library Units
 ---------------
 
 * Those units not nested within another program unit
