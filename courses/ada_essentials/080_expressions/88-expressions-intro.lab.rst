@@ -12,8 +12,7 @@ Expressions Lab
 
 * Requirements
 
-  - Prompt has three arrays of dates
-  - For each set of dates, create functions to print True/False ...
+  - For each of three arrays of dates, create functions to print True/False
 
     * If any date is not legal (taking into account leap years!)
     * If all dates are in the same calendar year
