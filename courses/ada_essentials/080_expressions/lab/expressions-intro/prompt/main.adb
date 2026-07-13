@@ -29,11 +29,17 @@ procedure Main is
 
    function Any_Invalid
      (List : Dates_T)
-      return Boolean is (False);
+      return Boolean is
+   begin
+      return False;
+   end Any_Invalid;
 
    function Same_Year
      (List : Dates_T)
-      return Boolean is (False);
+      return Boolean is
+   begin
+      return False;
+   end Same_Year;
 
    Good_Dates : constant Dates_T :=
      ((Year => 2_025, Month => 1, Day => 2),
