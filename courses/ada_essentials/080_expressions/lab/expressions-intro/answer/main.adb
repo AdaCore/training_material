@@ -32,7 +32,7 @@ procedure Main is
    function Any_Invalid (List : Dates_T) return Boolean is
    begin
       for Index in List'Range loop
-         if not Is_Valid (List(Index)) then
+         if not Is_Valid (List (Index)) then
             return True;
          end if;
       end loop;
