@@ -8,7 +8,7 @@ Background
 
 * In converting Ada code to SPARK, we typically start with lower-level/utility packages
 
-   - Tend to be more straight-forward
+   - Tend to be more straightforward
    - Each subprogram tends to have few requirements/interactions
 
 * As a full-scale example, you will take the given Ada package and convert it to SPARK
@@ -18,7 +18,7 @@ Background
 * The source example is a simplified version of :ada:`Ada.Strings.Fixed`
 
    - Used to manipulate/query character strings
-   - Description of each subprogram is supplied in the comments.
+   - Description of each subprogram is supplied in the comments
 
 -----------
 Lab Setup
@@ -47,7 +47,7 @@ Demonstrating What You Have Learned
 
 * Add postconditions as complete as possible and prove them
 
-   -  You can reformulate the code to make it easier to prove
+   - You can reformulate the code to make it easier to prove
 
 * To prove :ada:`Insert`, :ada:`Overwrite`, and :ada:`Head`:
 
