@@ -17,9 +17,9 @@ Object Declarations
      * **<identifier>** is the defining name for the object
      * **<typemark>** is the name describing the type of the object
 
-* Constant should have a value
+* Constants must be initialized
 
-   - Except for privacy (seen later)
+   - Deferred constants are completed in the package private section (seen later)
 
 * Examples
 
@@ -40,8 +40,8 @@ Elaboration
 
   * **Initial value** calculation
 
-    - Evaluation of the expression
-    - Done at **run-time** (unless static)
+    - Evaluated during elaboration
+    - Static expressions are known at compile time
 
   * Object creation
 

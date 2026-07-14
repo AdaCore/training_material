@@ -86,7 +86,7 @@ Operators for Signed Integer Type
    :binary adding operator: **+** :nbsp:` `   **-**
    :unary adding operator: **+** :nbsp:` `   **-**
    :multiplying operator: **\*** :nbsp:` `   **/** :nbsp:` `   **mod** :nbsp:` `   **rem**
-   :highest precedence operator: **\*\*** :nbsp:` `   **abs** 
+   :highest precedence operator: **\*\*** :nbsp:` `   **abs**
 
 .. note::
 
