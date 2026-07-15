@@ -6,11 +6,30 @@ Introduction
 Topics Covered
 ----------------
 
-* Topic 1
+* **The Safe / Unsafe Split**
 
-  - Subtopic 1a
+  - What :rust:`unsafe` permits and what it does not
 
-* Topic 2
+* **The Five Unsafe Superpowers**
 
-  - Subtopic 2a
+  - Operations that require an explicit safety contract
 
+* **Raw Pointers**
+
+  - Creating and dereferencing raw pointers
+
+* **Unsafe Functions and Foreign Function Interface (FFI)**
+
+  - Calling code whose preconditions Rust cannot verify
+
+* **Global Mutable State**
+
+  - Accessing and modifying mutable statics
+
+* **Unsafe Traits**
+
+  - Implementing traits with unverifiable invariants
+
+* **Safe Abstractions**
+
+  - Encapsulating unsafe operations behind a safe interface
