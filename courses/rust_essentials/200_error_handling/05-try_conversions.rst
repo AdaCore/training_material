@@ -61,10 +61,9 @@ Automatic Error Type Conversion
           Err(e) => eprintln!("Problem: {e}"),
       }
 
-.. code:: error
+:error:`Problem: The user is too young.`
 
-  Problem: The user is too young.
-  Problem: The user is too old.
+:error:`Problem: The user is too old.`
 
 .. note::
 
