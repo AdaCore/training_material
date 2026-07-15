@@ -39,7 +39,9 @@ Handling Results
         Err(e)   => eprintln!("Failed to open: {e}"),
     }
 
-:error:`Failed to open: No such file or directory (os error 2)`
+.. code:: output
+
+  Failed to open: No such file or directory (os error 2)
 
 ----------------
 Helper Methods
@@ -50,40 +52,60 @@ Helper Methods
   let good: Result<i32, &str> = Ok(42);
   let bad: Result<i32, &str> = Err("Problem");
 
-* :rust:`.unwrap()` - returns the value or panics
+.. container:: latex_environment large
 
-  .. code:: rust
+  :rust:`.unwrap()` **returns the value or panics**
+
+.. code:: rust
+  :font-size: scriptsize
 
     println!("Good: {}", good.unwrap());
     println!("Bad: {}", bad.unwrap());
 
-  .. code:: output
+.. code:: output
+  :font-size: scriptsize
 
     Good: 42
+
+.. code:: error
+  :font-size: scriptsize
+
     thread 'main' panicked at src\main.rs:5:27:
     called `Result::unwrap()` on an `Err` value: "Problem"
 
-* :rust:`.expect("Msg")` - like :rust:`unwrap`, with custom panic message
+.. container:: latex_environment large
 
-  .. code:: rust
+  :rust:`.expect("Msg")` **like** :rust:`unwrap`**, with custom panic message**
+
+.. code:: rust
+  :font-size: scriptsize
 
     println!("Good: {}", good.expect("Expected"));
     println!("Bad: {}", bad.expect("Expected"));
 
-  .. code:: output
+.. code:: output
+  :font-size: scriptsize
 
     Good: 42
+
+.. code:: error
+  :font-size: scriptsize
+
     thread 'main' panicked at src\main.rs:5:27:
     Expected: "Problem"
 
-* :rust:`.unwrap_or(default)` - fallback value on error
+.. container:: latex_environment large
 
-  .. code:: rust
+  :rust:`.unwrap_or(default)` **fallback value on error**
+
+.. code:: rust
+  :font-size: scriptsize
 
     println!("Good: {}", good.unwrap_or(-1));
     println!("Bad: {}", bad.unwrap_or(-1));
 
-  .. code:: output
+.. code:: output
+  :font-size: scriptsize
 
     Good: 42
     Bad: -1
