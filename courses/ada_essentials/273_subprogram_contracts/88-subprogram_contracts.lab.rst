@@ -79,9 +79,9 @@ Lab Solution - Queue (Body)
 
 .. container:: source_include 273_subprogram_contracts/lab/subprogram_contracts/answer/priority_queue.adb :code:Ada :number-lines:1
 
-----------------------------
+-----------------------------
 Lab Solution - Main (Tests)
-----------------------------
+-----------------------------
 
 .. container:: source_include 273_subprogram_contracts/lab/subprogram_contracts/answer/main.adb :code:Ada :start-after:main_part_1_start :end-before:main_part_1_end
 

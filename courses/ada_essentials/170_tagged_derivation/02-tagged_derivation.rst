@@ -1,10 +1,10 @@
-=================
+===================
 Tagged Derivation
-=================
+===================
 
----------------------------------
+-----------------------------------
 Difference with Simple Derivation
----------------------------------
+-----------------------------------
 
 * Tagged derivation **can** change the structure of a type
 
@@ -23,9 +23,9 @@ Difference with Simple Derivation
          Root_Object  : Root_T := (F1 => 101);
          Child_Object : Child_T := (F1 => 201, F2 => 202);
 
---------------
+----------------
 Type Extension
---------------
+----------------
 
 * A tagged derivation **has** to be a type extension
 

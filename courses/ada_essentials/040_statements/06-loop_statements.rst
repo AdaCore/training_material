@@ -24,9 +24,9 @@ Basic Loops and Syntax
        Rinse (Hair);
      end loop Wash_Hair;
 
---------------------
+----------------------
 Loop Exit Statements
---------------------
+----------------------
 
 **Syntax**
 
@@ -114,9 +114,9 @@ For-loop Statements
    - Focused on objects
    - Seen later with Arrays
 
------------------
+-------------------
 For in Statements
------------------
+-------------------
 
 **Syntax**
 
@@ -139,9 +139,9 @@ For in Statements
    Name - loop parameter object
    Discrete subtype definition - loop parameter type and range of values
 
------------------------------------
+---------------------------------
 Variable and Sequence of Values
------------------------------------
+---------------------------------
 
 * Variable declared implicitly by loop statement
 
@@ -235,9 +235,9 @@ Reversing Low-Level Iteration Direction
 
          for This_Day in reverse Mon .. Fri loop
 
----------------------------------------
+-------------------------------
 For-Loop Parameter Visibility
----------------------------------------
+-------------------------------
 
 * Scope rules don't change
 * Inner objects can hide outer objects
@@ -275,9 +275,9 @@ Referencing Hidden Names
       ...
    end Foo;
 
---------------------------
+----------------------------
 Iterations Exit Statements
---------------------------
+----------------------------
 
 **Syntax**
 
