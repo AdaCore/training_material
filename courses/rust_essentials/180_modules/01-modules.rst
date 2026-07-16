@@ -8,7 +8,7 @@ Big Picture
 
 * Most applications reside in more than one file
 
-  * *Modules* are how to organize code
+  * Rust uses *modules* to organize code
 
 * Encapsulation
 
