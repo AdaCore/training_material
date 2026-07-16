@@ -95,8 +95,6 @@ Freeze Point for Tagged Types
 
    procedure Prim3 (Child : Child_T); -- compile error
 
-.. container:: latex_environment scriptsize
-
 .. code:: error
   :font-size: scriptsize
 
