@@ -117,9 +117,9 @@ Bit-Oriented Operations Example
           (Shift_Right (X,8) and 16#00FF#);
    end Swap;
 
----------------------------------
+-----------------------------------
 Why No Implicit Shift and Rotate?
----------------------------------
+-----------------------------------
 
 * Arithmetic, logical operators available **implicitly**
 * **Why not** :ada:`Shift`, :ada:`Rotate`, etc. ?

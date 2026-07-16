@@ -1,17 +1,17 @@
-===========================
-Private Part Construction
-===========================
+==============================
+Private Section Construction
+==============================
 
---------------------------------
-Private Part and Recompilation
---------------------------------
+-----------------------------------
+Private Section and Recompilation
+-----------------------------------
 
 * **Clients** can compile their code before the package body is compiled or even written
-* Private part is part of the specification
+* Private section is part of the specification
 
-   - Compiler needs info from private part for **clients'** code, e.g., storage layouts for private-typed objects
+   - Compiler needs info from private section for **clients'** code, e.g., storage layouts for private-typed objects
 
-* Thus changes to private part require **client** recompilation
+* Thus changes to private section require **client** recompilation
 
 ---------------------
 Declarative Regions
@@ -54,7 +54,7 @@ Full Type Declaration
        - Predefined or user-defined
        - Including references to imported types
 
-    * Contents of private part are unrestricted
+    * Contents of private section are unrestricted
 
        - Anything a package specification may contain
        - Types, subprograms, variables, etc.
@@ -88,8 +88,8 @@ Deferred Constants
 
 * Visible constants of a hidden representation
 
-   - Value is "deferred" to private part
-   - Value must be provided in private part
+   - Value is "deferred" to private section
+   - Value must be provided in private section
 
 * Not just for private types, but usually so
 

@@ -87,7 +87,7 @@ Quiz
        Object : Integer := 0;
     end Counter;
 
-Which of the following completions of :ada:`Counter` are legal? (Select all that apply)
+Which completions of :ada:`Counter` are not legal? (Select all that apply)
 
  .. container:: latex_environment footnotesize
 
