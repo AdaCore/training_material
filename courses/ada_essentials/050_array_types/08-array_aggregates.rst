@@ -361,7 +361,7 @@ Delta Aggregates
    type Coordinate_T is array (1 .. 3) of Float;
    Location : constant Coordinate_T := (1.0, 2.0, 3.0);
 
-* Sometimes code needs to copy an array with minor modifications
+* Sometimes an array needs to be copied with only minor modifications
 
    * Prior to Ada 2022, it would require two steps
 

@@ -32,7 +32,7 @@ Limited Type Views' Semantics
 * Prevents copying via predefined assignment
 
    - Disallows assignment between objects
-   - Must implement a `copy` procedure if needed
+   - Must implement a "copy" procedure if needed
 
    .. code:: Ada
 

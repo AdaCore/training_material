@@ -18,10 +18,10 @@ Passing Records Between Ada and C
 
      int DoSomething (struct Struct_T);
 
-* Ada has mechanisms that will allow 
+* Ada provides mechanisms to
 
-   * Calling :C:`DoSomething`
-   * Building a record that is binary-compatible to :C:`Struct_T`
+   * Call :C:`DoSomething`
+   * Build a record that is binary-compatible to :C:`Struct_T`
 
 --------------------------------
 Building a C-Compatible Record
