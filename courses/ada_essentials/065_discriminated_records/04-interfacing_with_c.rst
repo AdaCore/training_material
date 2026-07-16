@@ -59,7 +59,7 @@ Mapping Ada to C Unions
 
    * Only one part of the record is available at any time
 
-* So, to create the equivalent of this C :c:`union`
+* To create the equivalent of this C :c:`union`
 
   .. code:: C
 

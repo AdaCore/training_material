@@ -7,7 +7,7 @@ Note on Default Initialization for Array Types
 ------------------------------------------------
 
 * In Ada, objects are not initialized by default
-* To initialize an array, could initialize each component
+* An array can be initialized by initializing each component
 
    * But if the array type is used in multiple places, it would be better to initialize at the type level
    * No matter how many dimensions, there is only one component type

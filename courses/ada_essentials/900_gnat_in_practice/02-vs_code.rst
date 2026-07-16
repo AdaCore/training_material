@@ -55,7 +55,7 @@ Building the Lab
 * Use VS Code predefined task :command:`ada: Build current project`
 
    * Go to the **Command Palette** (:menu:`Ctrl+Shift+B`)
-   * Search for :menu:`ada` commands - looking for
+   * Search for :menu:`ada` commands - look for
      :menu:`ada: Build current project`
    * Press :menu:`Enter` to run the task
 

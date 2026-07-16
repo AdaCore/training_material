@@ -47,7 +47,7 @@ Dereferencing Access Types
 
 * :ada:`.all` does the access dereference
 
-   - Access the object pointed to by the pointer
+   - Accesses the object pointed to by the pointer
 
 * :ada:`.all` is **optional** for
 

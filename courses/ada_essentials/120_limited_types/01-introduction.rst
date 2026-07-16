@@ -45,7 +45,7 @@ Limited Type Views' Semantics
 * Prevents incorrect comparison semantics
 
    - Disallows predefined equality operator
-   - Create an equality function `=` if needed
+   - Create an equality function :ada:`=` if needed
 
 -------------------------------
 Inappropriate Copying Example

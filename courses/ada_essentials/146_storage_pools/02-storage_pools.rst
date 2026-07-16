@@ -92,7 +92,7 @@ Limitations/Benefits
 
   * Freeing is still manual (unless designed otherwise)
 
-* :ada:`Storage_Size` can limit how many objects can be allocated
+* :ada:`Storage_Size` can limit how many objects may be allocated
 
 * Safety
 

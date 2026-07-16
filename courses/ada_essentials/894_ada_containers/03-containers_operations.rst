@@ -172,4 +172,4 @@ Aggregates
                                    Width => 2.5,
                                    Depth => 5.51];
 
-*Note that if when creating container types, to use the aspect* :ada:`Aggregate` *to enable this functionality.*
+*When creating custom container types, use the aspect* :ada:`Aggregate` *to enable this functionality*
