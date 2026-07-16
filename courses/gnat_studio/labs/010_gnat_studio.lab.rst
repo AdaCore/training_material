@@ -45,7 +45,7 @@ Create Project - Project Settings
 * Add compiler switches via the **Compiler** package
 
   * Debug information :math:`\rightarrow` :command:`-g`
-  * Enable most warnings :math:`\rightarrow` :command:`-gnatw`
+  * Enable most warnings :math:`\rightarrow` :command:`-gnatwa`
 
   .. code:: Ada
 

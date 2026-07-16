@@ -60,7 +60,10 @@ Setting Coverage Type
 
 * For :toolname:`GNAT Studio`, we simplify by using the same coverage type for all steps
 
-  * Click on the GPR filename in the :menu:`Project` view
+  * In the **Project** pane, right-click on the project name (GPR filename)
+
+    * Click :menu:`Project` |rightarrow| :menu:`Edit source file`
+
   * Add the following package to the project source file
 
     .. code:: Ada

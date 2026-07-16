@@ -171,6 +171,8 @@ Custom Review Statuses
               "To be fixed ASAP");
         end Analyzer;
 
+        ...
+
   .. container:: column
 
     Resulting in an updated **Manual review** dialog

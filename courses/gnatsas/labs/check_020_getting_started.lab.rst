@@ -62,7 +62,10 @@ Preparing the GUI
 
 2. Set the coding standards for the project to :filename:`coding_standard.rules`
 
-   * Click on the GPR filename in the :menu:`Project` view
+   * In the **Project** pane, right-click on the project name (GPR filename)
+
+     * Click :menu:`Project` |rightarrow| :menu:`Edit source file`
+
    * Add the following package to the project source file
 
    .. code:: Ada
