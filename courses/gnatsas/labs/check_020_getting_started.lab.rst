@@ -64,7 +64,7 @@ Preparing the GUI
 
    * In the **Project** pane, right-click on the project name (GPR filename)
 
-     * Click :menu:`Project` |rightarrow| :menu:`Edit source file`
+     * Click :menu:`Project` :math:`\rightarrow` :menu:`Edit source file`
 
    * Add the following package to the project source file
 
