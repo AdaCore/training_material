@@ -72,7 +72,7 @@ The "IntoIterator" Trait
 Making a Type Iterable
 ------------------------
 
-**Implement** :rust:`IntoIterator` **for a collection**
+**Implement** :rust:`IntoIterator` **for a custom collection type**
 
 .. code:: rust
 

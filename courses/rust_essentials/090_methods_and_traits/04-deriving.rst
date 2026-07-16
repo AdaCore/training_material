@@ -174,4 +174,4 @@ Limitations on Deriving
 
   **Manual** is for **Humans**
 
-    When formatting a string that a programmer will read (like :rust:`Display`), usually need a manual implementation to make it look "pretty"
+    When formatting a string that a programmer will read, such as with :rust:`Display`, a manual implementation is usually needed to make it look polished
