@@ -89,7 +89,7 @@ Default Values in a "struct"
     .. code:: output
       :font-size: small
 
-      Defaults: Config \{ port: 0, host: "", debug: false \}
+      Defaults: Config { port: 0, host: "", debug: false }
 
 * Using struct update operator
 
