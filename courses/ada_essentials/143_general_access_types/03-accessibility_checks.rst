@@ -37,7 +37,7 @@ Access Type Scoping Example
 
 * Issues with nesting
 
-.. container:: source_include 143_general_access_types/examples/accessibility_checks/nesting_example.adb :code:Ada :number-lines:1
+.. container:: source_include 143_general_access_types/examples/accessibility_checks/example.adb :code:Ada :number-lines:1
 
 .. code:: error
   :font-size: scriptsize
