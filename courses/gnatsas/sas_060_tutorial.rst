@@ -165,8 +165,6 @@ Finding a Check Message
 Understanding a Check Message
 -------------------------------
 
-.. container:: latex_environment small
-
 .. code:: Ada
   :number-lines: 17
   :font-size: small

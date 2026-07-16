@@ -98,8 +98,6 @@ Command Line Example Run
 
 :command:`gnatcheck -P simple.gpr -rules -from=coding_standard.rules`
 
-.. container:: latex_environment scriptsize
-
 .. code:: output
   :font-size: scriptsize
 

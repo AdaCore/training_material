@@ -191,8 +191,6 @@ Ada.Exceptions
   * :ada:`Exception_Information` provides whatever runtime has available
   * What is available depends on binder switches
 
-.. container:: latex_environment footnotesize
-
 .. code:: Ada
   :number-lines: 1
   :font-size: footnotesize

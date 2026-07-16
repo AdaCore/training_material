@@ -35,8 +35,6 @@ Prevent Application Crash - Solution
 
 * Code modifications
 
-  .. container:: latex_environment footnotesize
-  
   .. code:: Ada
     :number-lines: 9
     :font-size: footnotesize
