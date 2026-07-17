@@ -10,7 +10,7 @@
 
 fn main() {
     // TASK 1 - Error Result
-    // Hint: You can return an error using a 'Result' enum variant 'Err' 
+    // Hint: You can return an error using a 'Result' enum variant 'Err'
     enum Reason { TooYoung, TooOld, }
     fn check_age(age: i32) -> Result<i32, Reason> {
         todo!("Replace me with a proper error result");
@@ -20,7 +20,7 @@ fn main() {
     // TASK 2 - Handling Results
     // Hint: Replace the 'unwrap()' function by a pattern matching to 'handle check_age' return
     check_age(my_age).unwrap();
-    
+
     // TASK 3 - the Try Operator
     // Hint: Use the try operator to return an error automatically to the caller of 'register'
     // if check_age returns an error
@@ -44,17 +44,17 @@ fn main() {
     // Use pattern matching to handle return from 'register' instead of 'unwrap()'
     // Print a message for each possible result
     register().unwrap();
-    
+
     // TASK 5 - thiserror
     // Hint: Convert the comments over the two variants into error text using 'thiserror'
-    // Then make sure withdraw returns an 'AccountError' of 'InsufficientFunds' 
+    // Then make sure withdraw returns an 'AccountError' of 'InsufficientFunds'
     // Display the 'balance' and the 'amount'
     use thiserror::Error;
     #[derive(Error, Debug)]
     pub enum AccountError {
-        // Insufficient funds: available {available}, requested {requested} 
+        // Insufficient funds: available {available}, requested {requested}
         InsufficientFunds { available: u64, requested: u64 },
-        // Account is inactive 
+        // Account is inactive
         InactiveAccount,
     }
     fn withdraw(balance: u64, amount: u64) -> Result<u64, AccountError> {
@@ -63,7 +63,7 @@ fn main() {
         }
         Ok(balance - amount)
     }
-    
+
     // Task 6 - Anyhow
     // Hint: Turn the 'println' in 'process_transaction' into an additional context of information
     // Attached to the 'withdraw' function
@@ -76,11 +76,11 @@ fn main() {
     let result = process_transaction(50, 100);
     if let Err(e) = result {
         // This will print a message that looks like an actual run-time error
-        println!("Error: {}", e); 
+        println!("Error: {}", e);
         // This next line will print the following :
         // Debug Trace: Failed to process withdrawal of $100
         // Caused by:
         // insufficient funds: available 50, requested 100
         println!("\nDebug Trace: {:?}", e);
-    } 
+    }
 }

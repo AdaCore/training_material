@@ -6,12 +6,12 @@
 
 fn main() {
     // TASK 1 - Looping via Array Indices
-    // Hint: Print ALL values. Check the output to verify you printed all elements  
+    // Hint: Print ALL values. Check the output to verify you printed all elements
     let array = [2, 4, 6, 8];
     for idx in 1..4 {
         println!("{}", X);
     }
-    
+
     // TASK 2 - Using Our Iterator
     // Hint: The 'for' loop calls .next() under the hood
     struct SliceIter<'s> {
@@ -45,8 +45,8 @@ fn main() {
     for n in numbers_2 {
         println!("{n}");
     }
-    println!("Done printing {} items.", numbers_2.len());      
-    
+    println!("Done printing {} items.", numbers_2.len());
+
     // TASK 4 - Common Iterator Adapters
     // Hint: 'map' transforms values during iteration, 'filter' selects values matching condition
     fn double(x: &i32) -> i32 {
@@ -64,7 +64,7 @@ fn main() {
     for elem in flush.iter {
         println!("this value is divisible by 2: {elem}");
     }
-    
+
     // TASK 5 - Common consumers
     // Hint: 'sum' adds all values and return a single value, 'any' returns True if any value matches condition
     fn is_freezing(temp: &i32) -> bool {
@@ -81,7 +81,7 @@ fn main() {
     } else {
         println!("All temperatures are above freezing.");
     }
-    
+
     // TASK 6 - Chaining
     // Hint: Chaining allows you to create a new set of data before consuming
     fn is_even_owned(x: &i32) -> bool {
@@ -105,5 +105,5 @@ fn main() {
     let good_numbers: Result<Vec<i32>, _> = good_strings
         .into_iter()
         .map(parse_i32)
-    println!("good_numbers: {:?}", good_numbers);    
+    println!("good_numbers: {:?}", good_numbers);
 }

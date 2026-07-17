@@ -1,12 +1,12 @@
 //! Lab (prompt)
 //! Standard Library Traits
 //!
-//! Fix all the compile errors below by following the hints provided 
-//! 
+//! Fix all the compile errors below by following the hints provided
+//!
 #[allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
-    
+
     // TASK 1 - Trait Dependencies for Ordering
     // Hint: 'PartialOrd' requires 'PartialEq' to be defined
     #[derive(PartialOrd)]
@@ -23,21 +23,21 @@ fn main() {
     // Hint: Casting won't work here, so access the inner field directly
     struct Wrapper(i32);
     let my_wrap = Wrapper(5);
-    
+
     let raw_int = my_wrap as i32;
 
 
     // TASK 3 - The 'Into' Trait Inference Mystery
     // Hint: Compiler cannot infer the target type so explicit type hints must be provided
     let source: i32 = 42;
-    
+
     let target = source.into();
 
 
     // TASK 4 - Operator Overloading Output
     // Hint: When overloading operators the 'Self::Output' return type must be explicitly declared
     struct Point { x: i32 }
-    
+
     impl std::ops::Add for Point {
         // Missing the associated type 'Output'
         fn add(self, rhs: Self) -> Self::Output {
@@ -73,7 +73,7 @@ fn main() {
     // TASK 7 - Trait Scope for I/O
     // Hint: Using methods like 'write_all' requires bringing the 'std::io::Write' trait into scope
     let mut buffer = Vec::new();
-    
+
     buffer.write_all(b"Hello, Rust!");
 
 
@@ -91,7 +91,7 @@ fn main() {
 
     let sensor_1 = SensorData { valid: true };
     let sensor_2 = SensorData { valid: true };
-    
+
     let is_same = sensor_1 == sensor_2;
 
     println!("Congratulations! All tasks compiled successfully!");

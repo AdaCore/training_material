@@ -4,14 +4,14 @@
 #[allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
-    
+
     // TASK 1 - Method Receiver: Mutable Borrow
     // Hint: The caller must declare the variable mut
     struct Counter { value: i32 }
     impl Counter {
         fn increment(&mut self) { self.value += 1; }
     }
-    
+
     // Fix: Declared `bad` (now `good`) as mutable
     let mut good = Counter { value: 0 };
     good.increment();
@@ -23,7 +23,7 @@ fn main() {
         fn finalize(self) -> i32 { self.value }
         fn get(&self) -> i32 { self.value }
     }
-    
+
     let count = Counter { value: 10 };
     // Fix: Move the borrow (`get`) before the ownership is consumed (`finalize`), or avoid calling it entirely
     let current = count.get();
@@ -35,7 +35,7 @@ fn main() {
     impl Counter {
         fn new() -> Self { Counter { value: 0 } }
     }
-    
+
     // Fix: Used the path separator `::` to call the associated function on the type
     let new_count = Counter::new();
 
@@ -44,7 +44,7 @@ fn main() {
     // Hint: The syntax requires implementing the trait for the type, not the type for the trait
     trait Friend { fn greet(&self); }
     struct Dog { name: String }
-    
+
     // Fix: Swapped the trait and type names.
     impl Friend for Dog {
         fn greet(&self) { println!("Woof!"); }
@@ -59,7 +59,7 @@ fn main() {
         fn speak(&self) { println!("{}", self.message()); }
     }
     struct Cat;
-    
+
     // Fix: Provided the required implementation for the `message` method.
     impl Speaker for Cat {
         fn message(&self) -> String {
@@ -70,11 +70,11 @@ fn main() {
 
     // TASK 6 - Deriving in Complex Structures
     // Hint: When a type derives a trait, its included items must also derive the trait
-    
+
     // Fix: Added the `#[derive(Clone)]` attribute to the inner struct
     #[derive(Clone)]
     struct Engine { horsepower: i32 }
-    
+
     #[derive(Clone)]
     struct Car { engine: Engine }
 
@@ -84,12 +84,12 @@ fn main() {
     trait Dance { fn dance(&self); }
     trait PartyAnimal: Dance { fn party(&self); }
     struct Bear;
-    
+
     // Fix: Added the implementation for the base trait `Dance`
     impl Dance for Bear {
         fn dance(&self) { println!("Bear shuffle"); }
     }
-    
+
     impl PartyAnimal for Bear {
         fn party(&self) { println!("Bear party!"); }
     }
@@ -98,16 +98,16 @@ fn main() {
     // TASK 8 - Associated Types
     // Hint: The implementer must explicitly decide the type of an associated type
     trait Animal {
-        type Food; 
+        type Food;
         fn consume(&self, food: Self::Food);
     }
     struct Bird;
     struct Seed;
-    
+
     // Fix: Assigned the associated type so the compiler knows what `Self::Food` represents
     impl Animal for Bird {
         type Food = Seed;
-        
+
         fn consume(&self, food: Seed) { println!("Peck peck"); }
     }
 
