@@ -36,7 +36,7 @@ Tasking
 .. include:: 240_tasking/02-tasks.rst
 .. include:: 240_tasking/03-protected_objects.rst
 .. include:: 240_tasking/04-delays.rst
-.. include:: 240_tasking/05-task_types.rst
+.. include:: 240_tasking/05-task_and_protected_types.rst
 .. include:: 240_tasking/06-advanced_concepts.rst
 .. include:: 240_tasking/88-tasking.lab.rst
 .. include:: 240_tasking/99-summary.rst

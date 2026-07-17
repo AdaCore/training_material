@@ -37,7 +37,7 @@ Storage Pools
 .. container:: PRELUDE END
 
 .. include:: 146_storage_pools/01-introduction.rst
-.. include:: 146_storage_pools/02-storage_pools.rst
+.. include:: 146_storage_pools/02-system_storage_pools.rst
 .. include:: 146_storage_pools/03-storage_pool_example.rst
 .. include:: 146_storage_pools/04-debug_pools.rst
 .. include:: 146_storage_pools/88-storage_pools.lab.rst
