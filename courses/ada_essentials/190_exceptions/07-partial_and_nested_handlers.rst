@@ -113,6 +113,7 @@ Quiz
 
   .. code:: Ada
     :font-size: footnotesize
+    :number-lines: 1
 
      with Ada.Text_IO; use Ada.Text_IO;
      procedure Exception_Test (Input_Value : Integer) is
@@ -142,37 +143,43 @@ Quiz
 
 What will get printed for these values of Input_Value?
 
-.. list-table::
+.. container:: animate 1-
 
-   * - **A.**
+  * **Integer'Last**
 
-     - Integer'Last
-     - :animate:`Known Problem`
+.. container:: animate 2-
 
-   * - **B.**
+  *Known Problem*
 
-     - Integer'First
-     - :animate:`Unknown Problem`
+  :ada:`F` raises :ada:`Constraint_Error` at line 7, caught by handler at line 10, which raises :ada:`Known_Problem` (handled at line 23)
 
-   * - **C.**
+.. container:: animate 3-
 
-     - 10000
-     - :animate:`Unknown Problem`
+  * **Integer'First**
 
-   * - **D.**
+.. container:: animate 4-
 
-     - 100
-     - :animate:`Success`
+  *Unknown Problem*
 
-.. container:: animate
+  :ada:`F` finishes with no :ada:`return`, raising :ada:`Program_Error` which will be handled at line 24
 
-   Explanations
+.. container:: animate 5-
 
-   .. container:: latex_environment tiny
+  * **10000**
 
-      A |rightarrow| When :ada:`F` is called with a large :ada:`P`, its own exception handler captures the exception and raises :ada:`Constraint_Error` (which the main exception handler processes)
+.. container:: animate 6-
 
-      B/C |rightarrow| When the creation of :ada:`A` fails (due to :ada:`Program_Error` from passing :ada:`F` a negative number or :ada:`Storage_Error` from passing :ada:`F` a large number), then :ada:`P` raises an exception during elaboration, which is propagated to :ada:`Main`
+  *Unknown Problem*
+
+  :ada:`P` raises :ada:`Storage_Error` at line 13 (before :ada:`begin`) which is propagated to the handler at line 24
+
+.. container:: animate 7-
+
+  * **100**
+
+.. container:: animate 8-
+
+   *Success*
 
 -----------------------------------------
 Exceptions Raised in Exception Handlers
