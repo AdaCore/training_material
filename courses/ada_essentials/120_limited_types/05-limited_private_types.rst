@@ -62,12 +62,12 @@ Limited Private Type Completions
 
 .. code:: Ada
 
-   package P is
+   package Example is
      type Unique_ID_T is limited private;
      ...
    private
      type Unique_ID_T is range 1 .. 10;
-   end P;
+   end Example;
 
 -----------------------------
 Write-Only Register Example
@@ -140,7 +140,7 @@ Automatically Limited Full View
 
 .. code:: Ada
 
-   package Foo is
+   package Example is
       type Legal is limited private;
       type Also_Legal is limited private;
       type Not_Legal is private;
@@ -158,7 +158,7 @@ Automatically Limited Full View
       type Also_Not_Legal is record
          S : A_Limited_Type;
       end record;
-   end Foo;
+   end Example;
 
 .. container:: speakernote
 
@@ -184,25 +184,25 @@ Quiz
       .. code:: Ada
         :font-size: tiny
 
-       package P is
-         type L1_T is limited private;
-         type L2_T is limited private;
-         type P1_T is private;
-         type P2_T is private;
+       package Example is
+         type Lim1_T is limited private;
+         type Lim2_T is limited private;
+         type Priv1_T is private;
+         type Priv2_T is private;
        private
-         type L1_T is limited record
+         type Lim1_T is limited record
             Component : Integer;
          end record;
-         type L2_T is record
+         type Lim2_T is record
             Component : Integer;
          end record;
-         type P1_T is limited record
-            Component : L1_T;
+         type Priv1_T is limited record
+            Component : Lim1_T;
          end record;
-         type P2_T is record
-            Component : L2_T;
+         type Priv2_T is record
+            Component : Lim2_T;
          end record;
-       end P;
+       end Example;
 
   .. container:: column
 
@@ -210,15 +210,15 @@ Quiz
 
      What happens when the code is compiled?
 
-     A. :answer:`Type P1_T generates compile error`
-     B. Type P2_T generates compile error
-     C. Both P1_T and P2_T generate compile errors
+     A. :answer:`Type Priv1_T generates compile error`
+     B. Type Priv2_T generates compile error
+     C. Both Priv1_T and Priv2_T generate compile errors
      D. Code compiles successfully
 
    .. container:: animate
 
-      Full definition of :ada:`P1_T` adds 
-      restrictions, which is not allowed. :ada:`P2_T`
+      Full definition of :ada:`Priv1_T` adds 
+      restrictions, which is not allowed. :ada:`Priv2_T`
       contains a component whose visible view is :ada:`limited`,
-      the internal view is not :ada:`limited` so :ada:`P2_T` is
+      the internal view is not :ada:`limited` so :ada:`Priv2_T` is
       not :ada:`limited`.

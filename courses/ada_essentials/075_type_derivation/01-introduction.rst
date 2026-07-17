@@ -23,7 +23,7 @@ Reminder: What is a Type?
 * The operations are called **primitive operations** in Ada
 
   .. code:: Ada
-    :font-size: small
+    :font-size: footnotesize
 
      package Types is
         type Integer_T is range -(2**63) .. 2**63-1 with Size => 64; 

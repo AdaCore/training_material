@@ -180,14 +180,14 @@ Hierarchical Visibility
     + All child units come after the root parent's specification
     + Grandchildren within children, great-grandchildren within ...
 
-  .. code:: Ada
-    :font-size: tiny
+.. code:: Ada
+  :font-size: tiny
 
-     package OS is
-       -- Some code
-     private
-       type OS_Private_T is null record;
-     end OS;
+   package OS is
+     -- Some code
+   private
+     type OS_Private_T is null record;
+   end OS;
 
 .. container:: columns
 
