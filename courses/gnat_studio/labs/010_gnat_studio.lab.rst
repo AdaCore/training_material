@@ -50,7 +50,7 @@ Create Project - Project Settings
   .. code:: Ada
 
     package Compiler is
-      for Switches ("ada") use ("-g", "-gnatw");
+      for Switches ("ada") use ("-g", "-gnatwa");
     end Compiler;
 
 * Click :menu:`Save` to save the project file
