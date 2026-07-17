@@ -117,7 +117,8 @@ Nested Patterns in "match"
 
 - Nested patterns are checked within the selected arm
 
-- Rust does not choose the "most specific" pattern
+- Patterns are not ranked by specificity
+- First matching arm is selected
 
 .. code:: rust
 
@@ -149,4 +150,4 @@ Why "match" Matters
 
 .. note::
 
-  :rust:`match` is central to how Rust models branching logic
+  :rust:`match` is a powerful core construct to handle branching
