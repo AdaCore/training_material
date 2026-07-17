@@ -61,13 +61,13 @@ Automatic Error Type Conversion
           Err(e) => eprintln!("Problem: {e}"),
       }
 
-:error:`Problem: The user is too young.`
+:error:`Problem: Too Young`
 
-:error:`Problem: The user is too old.`
+:error:`Problem: Too Old`
 
 .. note::
 
-  :rust:`Reason` must implement :rust:`From` trait to string
+  Return error type (:rust:`String`) must implement :rust:`From<Reason>`
 
   * Compiler verifies a valid path exists to convert the error
   * If not, it throws a *trait bound not satisfied* error
