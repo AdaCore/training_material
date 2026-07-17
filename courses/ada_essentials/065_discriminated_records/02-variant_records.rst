@@ -197,55 +197,47 @@ Quiz
 Quiz
 ------
 
-.. container:: columns
+.. code:: Ada
+  :font-size: footnotesize
+  :number-lines: 2
 
-  .. container:: column
+  type Coord_T is record
+     X, Y : Float;
+  end record;
 
-      .. code:: Ada
-         :font-size: tiny
-         :number-lines: 2
+  type Kind_T is (Circle, Line);
+  type Shape_T (Kind : Kind_T := Line) is record
+     Origin : Coord_T;
+     case Kind is
+        when Line =>
+           End_Point : Coord_T;
+        when Circle =>
+           End_Point : Coord_T;
+     end case;
+  end record;
 
-         type Coord_T is record
-            X, Y : Float;
-         end record;
+  A_Circle : Shape_T        := (Circle, (1.0, 2.0), (3.0, 4.0));
+  A_Line   : Shape_T (Line) := (Circle, (1.0, 2.0), (3.0, 4.0));
 
-         type Kind_T is (Circle, Line);
-         type Shape_T (Kind : Kind_T := Line) is record
-            Origin : Coord_T;
-            case Kind is
-               when Line =>
-                  End_Point : Coord_T;
-               when Circle =>
-                  End_Point : Coord_T;
-            end case;
-         end record;
+.. container:: latex_environment small
 
-         A_Circle : Shape_T       :=
-           (Circle, (1.0, 2.0), (3.0, 4.0));
-         A_Line   : Shape_T (Line) :=
-           (Circle, (1.0, 2.0), (3.0, 4.0));
+  What happens when you try to build and run this code?
 
-  .. container:: column
-
-    .. container:: latex_environment small
-
-      What happens when you try to build and run this code?
-
-      A. Run-time error
-      B. Compilation error on an object
-      C. :answer:`Compilation error on a type`
-      D. No problems
+  A. Run-time error
+  B. Compilation error on an object
+  C. :answer:`Compilation error on a type`
+  D. No problems
 
 .. container:: animate
 
   .. container:: latex_environment footnotesize
 
-   * If you fix the compilation error (by changing the name of one of the :ada:`End_Point` components), then
+    * Fixing compilation error (rename an :ada:`End_Point` component), then
 
-      * You would get a warning on line 20 (because :ada:`A_Line` is constrained to be a :ada:`Line`
+      * Get a warning on line 20 (because :ada:`A_Line` is constrained to be a :ada:`Line`)
 
          ``incorrect value for discriminant "Kind"``
 
-      * If you then ran the executable, you would get an exception 
+      * When running the executable, exception is raised
 
          ``CONSTRAINT_ERROR : test.adb:20 discriminant check failed``
