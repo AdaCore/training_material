@@ -13,7 +13,7 @@ Advanced Proof Lab
 
 - Windows: From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path
 
-   + The file resides in the  the delivered :filename:`labs` folder folder you installed
+   + The file resides in the  the delivered :filename:`labs` folder you installed
    + Pass in the version of SPARK you have installed (e.g. :command:`gpr_project_path 25.1`)
    + This only needs to be done once per command prompt window
 
