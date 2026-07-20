@@ -2,46 +2,48 @@
 Unsafe Traits
 ===============
 
----------------
-Unsafe Traits
----------------
+--------------------------
+When a Trait Is Unsafe
+--------------------------
 
-A trait is declared unsafe when an incorrect implementation could allow
-Safe Rust to cause undefined behavior
+Declare a trait unsafe when Safe Rust may rely on invariants that the compiler
+cannot verify
 
-* Declared using :rust:`unsafe trait`
-* Implemented using :rust:`unsafe impl`
-* The implementation is a promise that all required invariants are upheld
+* Declared with :rust:`unsafe trait`
+* Defines a safety contract for every implementation
+* An incorrect implementation can make Safe Rust unsound
 
 .. code:: rust
 
   /// # Safety
   ///
-  /// Implementors must uphold the invariants documented by this trait.
+  /// Implementors must uphold this trait's invariants.
   unsafe trait Foo {
       // Trait items go here
   }
 
+.. note::
+
+  An unsafe trait defines an implementation contract; its methods need not be unsafe.
+
+------------------------------
+Implementing an Unsafe Trait
+------------------------------
+
+Implementing an unsafe trait requires an explicit promise
+
+* Use :rust:`unsafe impl`
+* Verify every required invariant
+* Document why the implementation satisfies the contract
+* Normal type and syntax checks still apply
+
+.. code:: rust
+
   struct Bar;
 
-  // SAFETY: `Bar` upholds every invariant required by `Foo`.
+  // SAFETY: 'Bar' upholds every invariant required by 'Foo'.
   unsafe impl Foo for Bar {}
-
------------------
-Send and Sync
------------------
-
-Common unsafe traits in the standard library include
-
-* :rust:`Send`
-
-  * The type can be transferred safely to another thread
-
-* :rust:`Sync`
-
-  * Shared references to the type can be used safely from multiple threads
 
 .. warning::
 
-  An incorrect manual implementation of :rust:`Send` or :rust:`Sync` can make
-  otherwise Safe Rust unsound.
+  :rust:`unsafe impl` records responsibility for safety requirements; it does not prove correctness.

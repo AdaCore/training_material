@@ -1,17 +1,17 @@
-========================================
-What We Didn't Cover (Advanced Topics)
-========================================
+=========================
+What We Didn't Cover
+=========================
 
 --------------------------------------
 Advanced Tools and Low-Level Features
 --------------------------------------
 
-To explore Unsafe Rust more deeply, investigate
+Topics for deeper study include
 
 * **Miri**
 
-  * Interpreter for Rust's Mid-level Intermediate Representation (MIR)
-  * Helps detect many forms of undefined behavior in unsafe code
+  * Interprets Rust's Mid-level Intermediate Representation (MIR)
+  * Detects many forms of undefined behavior in unsafe code
 
 * **Inline Assembly**
 
@@ -23,6 +23,22 @@ To explore Unsafe Rust more deeply, investigate
   * Uninitialized memory with :rust:`MaybeUninit<T>`
   * Layout guarantees such as :rust:`#[repr(C)]` and :rust:`#[repr(packed)]`
 
+-------------------------------
+Concurrency and Unsafe Rust
+-------------------------------
+
+This module does not cover concurrency or thread-safety proofs
+
+* Data races and cross-thread aliasing
+* The unsafe auto traits :rust:`Send` and :rust:`Sync`
+* Manual :rust:`unsafe impl` of thread-safety guarantees
+* Atomics, locks, and critical sections
+* Safe access to shared mutable global state
+
+.. warning::
+
+  Incorrect concurrency invariants can make otherwise Safe Rust unsound.
+
 ------------------------------------------
 Manual Memory and Pointer Operations
 ------------------------------------------
@@ -30,10 +46,10 @@ Manual Memory and Pointer Operations
 * **Custom Allocators**
 
   * :rust:`std::alloc`
-  * The :rust:`GlobalAlloc` trait
+  * :rust:`GlobalAlloc`
   * Manual heap allocation and deallocation
 
-* **Advanced Pointer Arithmetic**
+* **Advanced Pointer Operations**
 
   * :rust:`ptr::read`
   * :rust:`ptr::write`
@@ -41,6 +57,4 @@ Manual Memory and Pointer Operations
 
 .. warning::
 
-  Mastering unsafe code requires deep knowledge of memory layout, compiler
-  optimizations, and architecture constraints. Prefer Safe Rust abstractions
-  whenever possible.
+  Unsafe code requires precise knowledge of memory layout, optimization, and the target architecture.
