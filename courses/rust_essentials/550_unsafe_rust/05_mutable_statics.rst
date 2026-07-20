@@ -1,18 +1,17 @@
-========================================
-Global Mutable State (Mutable Statics)
-========================================
+=================
+Mutable Statics
+=================
 
 ---------------------------------
 Immutable and Mutable Statics
 ---------------------------------
 
-Rust supports global variables called static variables
+Static variables store data for the lifetime of the program
 
 * Reading an immutable static is safe
-* Reading or writing a :rust:`static mut` is an unsafe operation
-
-  * Global mutable state can be accessed from multiple threads
-  * Rust cannot automatically guarantee the required synchronization
+* :rust:`static mut` permits mutation through a global name
+* Rust cannot track every access to that global state
+* Each read or write requires an unsafe context
 
 .. code:: rust
 
@@ -21,8 +20,7 @@ Rust supports global variables called static variables
 
 .. warning::
 
-  Mutable statics are highly prone to data races and are generally best
-  replaced with atomics, locks, or another safe synchronization primitive.
+  Global mutable state weakens local reasoning; prefer ownership or a small access-control abstraction.
 
 -----------------------------
 Accessing a Mutable Static
@@ -32,35 +30,22 @@ Accessing a Mutable Static
 
   static mut COUNTER: u32 = 0;
 
-  /// Adds to the global counter.
-  ///
   /// # Safety
   ///
-  /// The caller must prevent concurrent and reentrant access to `COUNTER`.
+  /// Access to `COUNTER` must not overlap or be reentrant.
   unsafe fn add_to_count(inc: u32) {
-      unsafe {
-          COUNTER += inc;
-      }
-  }
-
-  /// Reads the global counter.
-  ///
-  /// # Safety
-  ///
-  /// The caller must prevent concurrent mutation of `COUNTER`.
-  unsafe fn read_count() -> u32 {
-      unsafe { COUNTER }
+      // SAFETY: Required by this function's contract.
+      unsafe { COUNTER += inc; }
   }
 
   fn main() {
-      // SAFETY: `main` performs all accesses sequentially on one thread.
+      // SAFETY: Access is exclusive and non-reentrant.
       unsafe {
           add_to_count(3);
-          println!("COUNTER: {}", read_count());
+          println!("COUNTER: {}", COUNTER);
       }
   }
 
 .. note::
 
-  Rust 2024 rejects creating references to a mutable static by default.
-  Direct reads and writes still require an unsafe block.
+  Rust 2024 rejects mutable-static references by default.
