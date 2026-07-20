@@ -2,35 +2,33 @@
 Safe Abstractions
 ==================
 
---------------------------------
+---------------------------------
 Encapsulating Unsafe Operations
---------------------------------
+---------------------------------
 
-The core philosophy of Unsafe Rust is **encapsulation**
+Unsafe Rust relies on **encapsulation**
 
-* Keep unsafe operations small and auditable
-* Enforce every required check and invariant at the boundary
-* Expose a safe API when the abstraction can guarantee safe use
+* Keep unsafe operations small and easy to audit
+* Enforce checks and invariants at the boundary
+* Expose a safe API when safe use is guaranteed
 
-  * Callers do not need their own unsafe blocks
+  * Callers need no unsafe block
 
-* When a safe wrapper cannot enforce the contract, expose an unsafe API and
-  document its :rust:`# Safety` requirements
+* Otherwise, expose an unsafe API and document its :rust:`# Safety` contract
 
-The standard library uses this pattern throughout types such as
-:rust:`Vec<T>` and :rust:`String`.
+The standard library applies this pattern throughout :rust:`Vec<T>`,
+:rust:`String`, and many other types.
 
--------------------------------------
-Why split_at_mut Needs Unsafe Rust
--------------------------------------
+--------------------------------------
+Why "split_at_mut" Needs Unsafe Rust
+--------------------------------------
 
-:rust:`split_at_mut` divides one mutable slice into two disjoint mutable slices
+:rust:`split_at_mut` creates two disjoint mutable slices from one slice
 
-* The caller supplies a split index
-* A bounds check guarantees :rust:`mid <= len`
-* The two returned ranges do not overlap
-* The implementation uses raw pointers because the borrow checker cannot prove
-  that disjointness from indexing alone
+* Caller supplies the split index
+* Bounds check guarantees :rust:`mid <= len`
+* Returned ranges do not overlap
+* Raw pointers express a split indexing cannot prove
 
 .. code:: rust
 
@@ -42,9 +40,9 @@ Why split_at_mut Needs Unsafe Rust
       todo!()
   }
 
------------------------------
-A Safe split_at_mut Wrapper
------------------------------
+-------------------------------
+A Safe "split_at_mut" Wrapper
+-------------------------------
 
 .. code:: rust
 
@@ -56,11 +54,9 @@ A Safe split_at_mut Wrapper
   ) -> (&mut [i32], &mut [i32]) {
       let len = values.len();
       let ptr = values.as_mut_ptr();
-
       assert!(mid <= len);
 
-      // SAFETY: `ptr` comes from `values`, `mid <= len`, and the two
-      // constructed ranges are within one allocation and do not overlap.
+      // SAFETY: Both ranges are in-bounds and disjoint.
       unsafe {
           (
               slice::from_raw_parts_mut(ptr, mid),
@@ -71,5 +67,4 @@ A Safe split_at_mut Wrapper
 
 .. note::
 
-  The function is safe to call because its implementation checks the bound
-  and preserves the exclusive-borrow invariant.
+  The wrapper is safe because it returns two in-bounds, disjoint slices.

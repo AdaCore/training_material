@@ -6,12 +6,12 @@ Summary
 What We Covered
 -----------------
 
-* **The Safe / Unsafe Split**
+* **Safe / Unsafe Split**
 
-  - Unsafe Rust adds a small, explicit set of operations
-  - The programmer must uphold the corresponding safety contracts
+  - Unsafe Rust adds five explicit operations
+  - Unchecked safety requirements must be upheld
 
-* **The Five Unsafe Superpowers**
+* **Five Superpowers**
 
   - Dereference raw pointers
   - Call unsafe functions or methods
@@ -21,16 +21,16 @@ What We Covered
 
 * **Raw Pointers**
 
-  - Raw pointers may be null, dangling, or incorrectly aligned
-  - Creating them is safe; dereferencing them requires an unsafe block
+  - May be null, dangling, misaligned, or invalid
+  - Creation is safe; dereferencing is unsafe
 
 * **Unsafe Functions and Traits**
 
-  - Callers of an unsafe function must satisfy its documented preconditions
-  - An :rust:`unsafe impl` promises that required invariants are upheld
+  - Callers uphold documented safety contracts
+  - An :rust:`unsafe impl` promises required invariants
 
 * **Safe Abstractions**
 
   - Keep unsafe operations small and auditable
-  - Validate all required invariants before exposing a safe interface
-  - Prefer Safe Rust whenever it can express the required behavior
+  - Check invariants before exposing a safe API
+  - Prefer Safe Rust when it can express the behavior
