@@ -1,12 +1,12 @@
-=========================
-The Safe / Unsafe Split
-=========================
+===================
+Safe / Unsafe Split
+===================
 
 ---------------------------
 Safe Rust and Unsafe Rust
 ---------------------------
 
-Rust contains a safe subset and an unsafe subset
+Rust has a safe subset and an unsafe subset
 
 .. list-table::
   :header-rows: 1
@@ -17,71 +17,70 @@ Rust contains a safe subset and an unsafe subset
     - **Unsafe Rust**
 
   * - **Memory Safety**
-    - Enforced by the language's static checks
-    - Additional safety obligations are shifted to the programmer
+    - Enforced by compiler
+    - Safety invariant required
 
   * - **Usage**
-    - Default mode for all code
-    - Explicitly isolated using the :rust:`unsafe` keyword
+    - Default
+    - Entered with :rust:`unsafe`
 
   * - **Capabilities**
     - Standard operations
-    - Grants five specific "superpowers"
+    - Five extra operations
 
--------------------------------
-The Five Unsafe Superpowers
--------------------------------
+------------------
+Five Superpowers
+------------------
 
-The :rust:`unsafe` keyword permits exactly five additional abilities
+The :rust:`unsafe` keyword permits five additional operations
 
 #. Dereference a raw pointer
 #. Call an unsafe function or method
 #. Access or modify a mutable static variable
 #. Implement an unsafe trait
-#. Access fields of a union
+#. Access a field of a union
 
 .. note::
 
-  These operations are not automatically incorrect. The programmer must
-  uphold the safety requirements that the compiler cannot verify.
+  These operations require safety guarantees that Rust cannot verify.
 
---------------------------
-What unsafe Does Not Do
---------------------------
+---------------------------
+What "unsafe" Does Not Do
+---------------------------
 
-* It does **not** turn off type checking
-* It does **not** disable the borrow checker for references
+* Does **not** disable type checking
+* Does **not** turn off the borrow checker for references
 
-  * References are still checked for valid lifetimes
+  * Reference lifetimes are still checked
 
-* It does **not** disable safety checks in surrounding Safe Rust code
-* It does **not** mean the code is necessarily dangerous or buggy
+* Does **not** disable checks in surrounding Safe Rust
+* Does **not** mean the code is necessarily incorrect
 
-  * It means the compiler cannot mechanically verify every safety obligation
+  * Some safety requirements cannot be verified mechanically
 
 .. note::
 
-  You are still writing Rust, not C. Normal language checks remain active
-  outside of the five specific unsafe operations.
+  Unsafe Rust remains subject to normal language checks outside these five operations.
 
-------------------
-The unsafe Block
-------------------
+--------------------
+The "unsafe" Block
+--------------------
 
-To perform an unsafe operation, isolate it inside an unsafe block
+Place unsafe operations inside an unsafe block
 
 .. code:: rust
 
   fn main() {
-      let num = 5;
-      let r1 = &num as *const i32;
+      let target_year = 1985;
+      let flux_capacitor = &target_year as *const i32;
 
-      // SAFETY: `r1` was created from a live, properly aligned reference.
+      // SAFETY: 'flux_capacitor' points to the live,
+      // aligned local 'target_year'.
       unsafe {
-          println!("r1 is: {}", *r1);
+          println!("Target year is: {}", *flux_capacitor);
       }
   }
 
 .. note::
 
-  Creating a raw pointer is safe. Dereferencing it is an unsafe operation.
+  Raw-pointer creation is safe, but dereferencing requires an unsafe block.
