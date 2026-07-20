@@ -134,7 +134,7 @@ Arithmetic Nuance: Division
 
   - **Floating Point Division**
 
-    - A **decimal** result requires **floating-point** literals
+    - **Decimal** result requires **floating point** literals
     - :rust:`f64`, :rust:`f32`
 
 .. code:: rust

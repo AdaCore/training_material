@@ -206,7 +206,7 @@ Numeric Conversions
 
   - Rust forces conversion to be **intentional**
   
-  - Using :rust:`as` makes the conversion explicit and requires an intentional choice
+  - Using :rust:`as` makes conversion explicit and requires intent
 
 ----------------------------
 The "char" Type Is Special

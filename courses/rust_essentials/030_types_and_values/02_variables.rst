@@ -6,7 +6,7 @@ Variables
 What Is a Variable?
 ---------------------
 
-- Think of a variable as a **labeled box** that stores a single piece of information ("value")
+- Like a **labeled box** that stores a single piece of information ("value")
 
   - **Label** - variable's name (e.g., :rust:`score`)
   - **Contents** - value (e.g., :rust:`100`)
