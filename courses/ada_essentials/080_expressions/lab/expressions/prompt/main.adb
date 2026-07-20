@@ -13,40 +13,24 @@ procedure Main is
    end record;
 
    type Dates_T is array (1 .. 3) of Date_T;
+   
+   -- implement correctly as an expression function
+   function Is_Leap_Year (Year : Positive) return Boolean is (False);
 
-   function Is_Leap_Year
-     (Year : Positive)
-      return Boolean is (False);
+   function Days_In_Month (Month : Positive; Year  : Positive) return Day_T is (1);
 
-   function Days_In_Month
-     (Month : Positive;
-      Year  : Positive)
-      return Day_T is (1);
+   function Is_Valid (Date : Date_T) return Boolean is (False);
 
-   function Is_Valid
-     (Date : Date_T)
-      return Boolean is (False);
+   function Any_Invalid (List : Dates_T) return Boolean is (False);
 
-   function Any_Invalid
-     (List : Dates_T)
-      return Boolean is
-   begin
-      return False;
-   end Any_Invalid;
+   function Same_Year (List : Dates_T) return Boolean is (False);
 
-   function Same_Year
-     (List : Dates_T)
-      return Boolean is
-   begin
-      return False;
-   end Same_Year;
-
-   Good_Dates : constant Dates_T :=
+   Valid_Dates : constant Dates_T :=
      ((Year => 2_025, Month => 1, Day => 2),
       (Year => 2_024, Month => 2, Day => 28),
       (Year => 2_000, Month => 2, Day => 29));
 
-   Mixed_Dates : constant Dates_T :=
+   Valid_And_Invalid_Dates : constant Dates_T :=
      ((Year => 2_025, Month => 4, Day => 30),
       (Year => 2_024, Month => 2, Day => 28),
       (Year => 1_900, Month => 2, Day => 29));
@@ -58,13 +42,13 @@ procedure Main is
 
 begin
 
-   Put_Line ("Good_Dates");
-   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Good_Dates)));
-   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Good_Dates)));
+   Put_Line ("Valid_Dates");
+   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Valid_Dates)));
+   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Valid_Dates)));
 
-   Put_Line ("Mixed_Dates");
-   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Mixed_Dates)));
-   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Mixed_Dates)));
+   Put_Line ("Valid_And_Invalid_Dates");
+   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Valid_And_Invalid_Dates)));
+   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Valid_And_Invalid_Dates)));
 
    Put_Line ("Same_Year_Dates");
    Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Same_Year_Dates)));
