@@ -23,7 +23,7 @@ Destructuring: The Stencil Metaphor
 - Think of a **pattern** as a *stencil* placed over a value
 
 - **Field** 
-  - The "cutout" in the stencil that tells Rust *where* to look
+  - The "cutout" in the stencil that tells the compiler *where* to look
 
 - **Binding** 
   - Where the data "falls through" into your local scope
@@ -44,7 +44,7 @@ Basic Destructuring
 - The pattern mirrors the struct's shape to extract values
 
 - **Order Independence** 
-  - Rust matches by field name, not position
+  - Struct fields are matched by name, not position
 
 - **Implicit Matching** 
   - Patterns work anywhere a variable is introduced
@@ -69,7 +69,7 @@ Shorthand Binding
 
 - Shorthand is a syntactic shortcut for longhand renaming
 
-- Most common way to destructure in Rust
+- Most common way to destructure
 
 .. code:: rust
 
@@ -113,27 +113,26 @@ Ignoring Fields
 
 - Useful when only part of a struct matters
 
-.. container:: latex_environment scriptsize
+.. code:: rust
+  :font-size: scriptsize
 
-  .. code:: rust
+  struct PhysicsObject {
+    id: u32,
+    x: i32,
+    y: i32,
+    velocity: f64,
+  }
 
-    struct PhysicsObject {
-      id: u32,
-      x: i32,
-      y: i32,
-      velocity: f64,
-    }
+  let obj = PhysicsObject { id: 1, x: 10, y: 20, velocity: 5.5 };
 
-    let obj = PhysicsObject { id: 1, x: 10, y: 20, velocity: 5.5 };
+  // Capture 'x' and ignore all other fields
+  let PhysicsObject { x, .. } = obj;
 
-    // Capture 'x' and ignore all other fields
-    let PhysicsObject { x, .. } = obj;
+  // Ignore a specific field by name using '_'
+  let PhysicsObject { id, velocity: _, .. } = obj;
 
-    // Ignore a specific field by name using '_'
-    let PhysicsObject { id, velocity: _, .. } = obj;
-
-    // Capturing multiple specific fields
-    let PhysicsObject { id, velocity, .. } = obj;
+  // Capturing multiple specific fields
+  let PhysicsObject { id, velocity, .. } = obj;
 
 .. note::
 

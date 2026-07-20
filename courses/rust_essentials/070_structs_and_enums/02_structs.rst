@@ -144,24 +144,25 @@ Struct Update Operator
 
 .. container:: latex_environment footnotesize
 
-  .. code:: rust
-
-    struct Settings {
-        font_size: u8,
-        active: bool,
-    }
-    let default_set = Settings {
-        font_size: 14,
-        active: false,
-    };
-    // Only change 'active' to true in 'set_1'
-    let set_1 = Settings {
-        active: true,   // Overridden field
-        ..default_set   // Copy all other fields ('font_size')
-    };
-    let set_2 = Settings {
-        ..default_set   // Copy all fields
-    };
+.. code:: rust
+  :font-size: footnotesize
+ 
+  struct Settings {
+      font_size: u8,
+      active: bool,
+  }
+  let default_set = Settings {
+      font_size: 14,
+      active: false,
+  };
+  // Only change 'active' to true in 'set_1'
+  let set_1 = Settings {
+      active: true,   // Overridden field
+      ..default_set   // Copy all other fields ('font_size')
+  };
+  let set_2 = Settings {
+      ..default_set   // Copy all fields
+  };
 
 .. warning:: Fields are *moved* if their type doesn't implement the :rust:`Copy` trait
 

@@ -14,19 +14,14 @@ Block
 .. code:: rust
 
     let bank = 13;
-    let cash = {
+    let balance = {
         let withdraw = 10;
         println!("withdraw: {withdraw}");
         bank - withdraw
     };
-    println!("cash: {cash}");
+    println!("balance: {balance}");
 
 :command:`withdraw: 10`
 
-:command:`cash: 3`
+:command:`balance: 3`
 
-.. container:: speakernote
-
-  You can show how the value of the block changes by changing the last
-  line in the block. For instance, adding/removing a semicolon or using
-  a :rust:`return`

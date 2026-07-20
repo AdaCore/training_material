@@ -6,7 +6,7 @@ Patterns
 What Is a Pattern?
 --------------------
 
-- Core language feature of Rust
+- Core language feature
 
 - Describes the **structure** of a value
 

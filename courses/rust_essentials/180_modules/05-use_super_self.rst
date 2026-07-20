@@ -94,7 +94,7 @@ The "use" Shortcut
 
   .. code:: rust
 
-    use std::io::(self, Read, Write);
+    use std::io::{self, Read, Write};
 
 -----------------
 Name Collisions
