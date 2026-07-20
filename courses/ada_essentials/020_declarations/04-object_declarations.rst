@@ -36,7 +36,7 @@ Object Declarations
 Elaboration
 -----------
 
-* :dfn:`Elaboration` has several facets:
+* :dfn:`Elaboration` has several facets
 
   * **Initial value** calculation
 
