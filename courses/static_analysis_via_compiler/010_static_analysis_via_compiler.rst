@@ -318,9 +318,9 @@ Controlling Warnings With A Single Switch
   + Likely generates many warnings you'll end up ignoring
   + But you might want some of them, individually
 
-----------------------------------------------
-Highly Optional Warnings :command:`-gnatw.e`
-----------------------------------------------
+-------------------------------------
+Highly Optional Warnings "-gnatw.e"
+-------------------------------------
 
 + Implicit dereferencing (missing optional :ada:`.all`)
 + Activate tagging (warning messages tagged with certain strings)
@@ -1004,6 +1004,8 @@ Quiz
          not overriding procedure Q (X : Dt);
       end Definition;
 
+  .. container:: column
+
     .. code:: Ada
       :number-lines: 1
       :font-size: tiny
@@ -1022,24 +1024,20 @@ Quiz
          end if;
       end Demo;
 
-  .. container:: column
+Which line(s) violate the restriction?
 
-    .. container:: latex_environment footnotesize
+  A. 5, 6, 8, 9, 11
+  B. 11
+  C. :answer:`5, 6, 11`
+  D. No violations
 
-      Which line(s) violate the restriction?
+.. container:: animate
 
-      A. 5, 6, 8, 9, 11
-      B. 11
-      C. :answer:`5, 6, 11`
-      D. No violations
-
-    .. container:: animate
-
-       + Line 5 - Dispatch needed to determine size of O
-       + Line 6 - Just a memory copy (no dispatching)
-       + Line 8 - Membership not a dispatching call
-       + Line 9 - Type conversion so no dispatching
-       + Line 11 - Dispatch needed to find correct :ada:`P`
+  + Line 5 - Dispatch needed to determine size of O
+  + Line 6 - Just a memory copy (no dispatching)
+  + Line 8 - Membership not a dispatching call
+  + Line 9 - Type conversion so no dispatching
+  + Line 11 - Dispatch needed to find correct :ada:`P`
 
 -----------------------------------------
 Exceptions Restrictions Form A Spectrum
@@ -1336,9 +1334,9 @@ Viewing Data Representations Example
          Id at 2 range  0 ..  7;
       end record;
 
-========================================
-GNAT versus GNAT Static Analysis Suite
-========================================
+====================================
+GNAT vs GNAT Static Analysis Suite
+====================================
 
 ----------------------------
 GNAT Static Analysis Suite
