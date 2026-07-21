@@ -234,7 +234,7 @@ Quiz
 
     * Fixing compilation error (rename an :ada:`End_Point` component), then
 
-      * Get a warning on line 20 (because :ada:`A_Line` is constrained to be a :ada:`Line`)
+      * Get a warning on line 18 (because :ada:`A_Line` is constrained to be a :ada:`Line`)
 
          ``incorrect value for discriminant "Kind"``
 
