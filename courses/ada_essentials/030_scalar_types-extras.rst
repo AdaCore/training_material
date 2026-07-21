@@ -37,4 +37,4 @@ More About Scalar Types
 .. include:: 030_scalar_types/06-character_types.rst
 .. include:: 030_scalar_types/07-real_types.rst
 .. include:: 030_scalar_types/11-subtypes_full_picture.rst
-.. include:: 030_scalar_types/12-big_numbers.rst
+.. include:: 030_scalar_types/12-very_large_numbers.rst

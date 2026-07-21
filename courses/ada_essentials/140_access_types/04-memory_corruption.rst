@@ -30,8 +30,8 @@ Uninitialized Pointers
 
 * **Ada:** this is a problem because access type objects are initialized to null
 
-* **Other Languages:** no guarantee that the pointer is null, so you
-  might write to a random memory location
+* **Other Languages:** no guarantee that the pointer is null, so possible to
+  write to random memory location
 
 ------------------------------
 Freeing Already-Freed Memory

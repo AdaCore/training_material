@@ -76,7 +76,7 @@ Who Needs Big_Numbers?
 
 .. note:: 
 
-   Note that you typically wouldn't use :ada:`Big_Numbers` for cryptography because it's vulnerable to timing side-channels attacks.
+   Note that code typically wouldn't use :ada:`Big_Numbers` for cryptography because it's vulnerable to timing side-channels attacks.
 
 -------------------------
 Issues with Big Numbers

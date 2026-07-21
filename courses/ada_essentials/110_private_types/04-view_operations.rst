@@ -6,7 +6,7 @@ View Operations
 View Operations
 -----------------
 
-* Reminder: view is the *interface* you have on the type
+* Reminder: view is the *interface* into the type
 
 .. container:: columns
 

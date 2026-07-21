@@ -15,9 +15,9 @@ Exceptions Are Not Objects
 
    - May be propagated out of scope
 
------------------------------------
-But You Can Treat Them As Objects
------------------------------------
+-------------------------------
+But Can Be Treated As Objects
+-------------------------------
 
 * For raising and handling, and more
 * Standard Library

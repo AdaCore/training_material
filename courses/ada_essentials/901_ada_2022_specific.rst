@@ -272,7 +272,7 @@ Container Aggregates
     - :ada:`Add_Named` named aggregate component
     - :ada:`Add_Unnamed` positional aggregate component
 
-* You **cannot** mix named and unnamed
+* **Cannot** mix named and unnamed
 
 .. include:: examples/ada2022/container_aggregates/extracts/decl_aspect.ads
     :code: Ada
