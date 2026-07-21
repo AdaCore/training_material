@@ -318,7 +318,7 @@ Quiz
       Child_Object : Integer := ? ;
    end Parent.Child;
 
-Select all legal initializations of :ada:`Child_Object`?
+Select all legal initializations of :ada:`Child_Object`
 
    A. ``Parent.Parent_Object + Parent.Sibling.Sibling_Object``
    B. ``Parent_Object + Sibling.Sibling_Object``
