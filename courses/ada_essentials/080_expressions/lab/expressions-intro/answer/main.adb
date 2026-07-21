@@ -48,7 +48,6 @@ procedure Main is
       end loop;
       return True;
    end Same_Year;
-
 --|checks_end
 
 --|main_begin
