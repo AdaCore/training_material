@@ -25,4 +25,6 @@ Summary
    - Language-defined support defined in Appendix A - :ada:`Ada.Strings`
 
 * Default initialization for large arrays may be expensive!
-* Anonymously-typed array objects used in examples for brevity but that doesn't mean you should in real programs
+* Anonymously-typed array objects used in examples for brevity
+
+  * In real code it's best used for singletons

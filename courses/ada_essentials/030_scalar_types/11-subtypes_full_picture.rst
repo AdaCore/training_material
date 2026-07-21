@@ -248,7 +248,7 @@ Idiom: Partition
    Be careful about checking that the partition is complete when
    items are added/removed.
 
-   With a :ada:`case`, the compiler automatically checks that for you.
+   With a :ada:`case`, the compiler automatically checks that
 
 .. tip::
 
