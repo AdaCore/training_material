@@ -27,7 +27,7 @@ Subprogram Contracts Lab
 
 * Goals
 
-   - Basically a stack, except insertion doesn't necessarily happen at "top"
+   - Basically, implement a stack with special "push" rules
 
 ---------------
 Helpful Hints
