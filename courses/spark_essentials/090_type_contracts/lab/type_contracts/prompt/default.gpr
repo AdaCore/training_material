@@ -1,9 +1,9 @@
-project Lab is
+project Default is
 
    for Object_Dir use "obj";
 
    package Compiler is
-      for Default_Switches ("Ada") use ("-g", "-O0", "-gnata", "-gnatyr", "-gnatwa");
+      for Default_Switches ("Ada") use ("-g", "-O0", "-gnata", "-gnat2022", "-gnatX", "-gnatyr", "-gnatwa");
    end Compiler;
 
    package Builder is
@@ -14,4 +14,4 @@ project Lab is
       for Proof_Switches ("Ada") use ("-j0");
    end Prove;
 
-end Lab;
+end Default;
