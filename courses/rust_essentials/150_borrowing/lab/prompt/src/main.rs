@@ -110,7 +110,7 @@ fn task_5() {
     let mut object = Sensor(555);
     println!("Original value: {}", object.read());
     object.calibrate();
-    println!("new value: {}", object.read());  
+    println!("new value: {}", object.read());
 }
 
 fn task_6() {

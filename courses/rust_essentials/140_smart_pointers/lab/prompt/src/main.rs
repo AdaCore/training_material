@@ -23,7 +23,7 @@ fn main() {
 
     // TASK 3 - Print the contents of 'my_box'
     // Hint: Replace ??? with the value inside 'my_box'
-    
+
     println!("Box value is {}", ???);
 
     // Recursion
@@ -87,7 +87,7 @@ fn main() {
 
     // Counting References
 
-    // TASK 9 - demonstrate shared ownership on the heap    
+    // TASK 9 - demonstrate shared ownership on the heap
     // Both 'var_a' and 'var_b' share ownership of the value
 
     // Create the value "5" on the heap

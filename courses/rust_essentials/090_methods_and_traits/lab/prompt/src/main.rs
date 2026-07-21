@@ -2,18 +2,18 @@
 //! Methods and Traits
 //!
 //! Fix all the compile errors below by following the hints provided
-//! 
+//!
 #[allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
-    
+
     // TASK 1 - Method Receiver: Mutable Borrow
     // Hint: The caller must declare the variable mut
     struct Counter { value: i32 }
     impl Counter {
         fn increment(&mut self) { self.value += 1; }
     }
-    
+
     let bad = Counter { value: 0 };
     bad.increment();
 
@@ -24,7 +24,7 @@ fn main() {
         fn finalize(self) -> i32 { self.value }
         fn get(&self) -> i32 { self.value }
     }
-    
+
     let count = Counter { value: 10 };
     let total = count.finalize();
     let current = count.get();
@@ -35,7 +35,7 @@ fn main() {
     impl Counter {
         fn new() -> Self { Counter { value: 0 } }
     }
-    
+
     let new_count = Counter.new();
 
 
@@ -43,7 +43,7 @@ fn main() {
     // Hint: The syntax requires implementing the trait for the type, not the type for the trait
     trait Friend { fn greet(&self); }
     struct Dog { name: String }
-    
+
     impl Dog for Friend {
         fn greet(&self) { println!("Woof!"); }
     }
@@ -57,7 +57,7 @@ fn main() {
         fn speak(&self) { println!("{}", self.message()); }
     }
     struct Cat;
-    
+
     impl Speaker for Cat {
         // Missing implementation for `message`
     }
@@ -66,7 +66,7 @@ fn main() {
     // TASK 6 - Deriving in Complex Structures
     // Hint: When a type derives a trait, its included items must also derive the trait
     struct Engine { horsepower: i32 }
-    
+
     #[derive(Clone)]
     struct Car { engine: Engine }
 
@@ -76,7 +76,7 @@ fn main() {
     trait Dance { fn dance(&self); }
     trait PartyAnimal: Dance { fn party(&self); }
     struct Bear;
-    
+
     impl PartyAnimal for Bear {
         fn party(&self) { println!("Bear party!"); }
     }
@@ -85,12 +85,12 @@ fn main() {
     // TASK 8 - Associated Types
     // Hint: The implementer must explicitly decide the type of an associated type
     trait Animal {
-        type Food; 
+        type Food;
         fn consume(&self, food: Self::Food);
     }
     struct Bird;
     struct Seed;
-    
+
     impl Animal for Bird {
         // Missing the associated type assignment
         fn consume(&self, food: Seed) { println!("Peck peck"); }

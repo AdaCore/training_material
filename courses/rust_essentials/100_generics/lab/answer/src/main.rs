@@ -24,7 +24,7 @@ fn main() {
     // Hint: Vegetable needs to implement `PartialOrd` and `PartialEq`
     #[derive(PartialEq, PartialOrd)] // Fix: Added the required traits via derive macro
     struct Vegetable;
-    
+
     let potato = Vegetable;
     let sweet_potato = Vegetable;
     println!("TASK3 => {}", smaller(potato, sweet_potato));
@@ -57,10 +57,10 @@ fn main() {
     }
 
     #[derive(Debug)] // Fix: Added derive(Debug) to the inner type
-    struct Secret; 
+    struct Secret;
 
     let bad_box = BoxContainer { content: Secret };
-    println!("TASK7 => {:?}", bad_box); 
+    println!("TASK7 => {:?}", bad_box);
 
     // TASK 8 - Generic Traits
     // Hint: Traits can be made generic to interact with multiple types

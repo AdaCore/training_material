@@ -1,13 +1,13 @@
 //! Lab (prompt)
 //! Structs and Enums
 //!
-//! Fix all the compile errors below by following the hints provided 
+//! Fix all the compile errors below by following the hints provided
 //! Use the command 'cargo run' to verify the solution
-//! 
+//!
 #[allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
-    
+
     // TASK 1 - Partial Initialization
     // Hint: Full field initialization is mandatory
     struct User {
@@ -39,11 +39,11 @@ fn main() {
     }
 
     let default_set = Settings { font_size: 18, active: false };
-    
+
     let set_1 = Settings {
         ..default_set,
         active: true,
-    }; 
+    };
 
 
     // TASK 4 - Partial Mutability
@@ -66,14 +66,14 @@ fn main() {
     let hero = Character(1000, 500, true);
 
     println!("TASK5 => hero is masked: {}", hero.3);
-    
+
     // TASK 6 - Type Safety with Tuples
     // Hint: Tuple structs with the same definition are different types
     struct Point(i32, i32);
     struct Coordinates(i32, i32);
     let point = Point(10, 20);
     let mut coordinates = Coordinates(30, 40);
-    
+
     coordinates = point;
 
     // TASK 7 - Enum Pathing
@@ -83,7 +83,7 @@ fn main() {
         Right,
     }
 
-    let direction = Left; 
+    let direction = Left;
 
     // TASK 8 - Enum Data Initialization
     // Hint: Data must be initialized if the variant holds data
