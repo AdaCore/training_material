@@ -26,9 +26,9 @@ Helpful Hints
 
 - Use *subtype predicate* to create subtypes of day of week
 - Use *type invariant* to ensure that every class meets for correct length of time
-- The compiler needs the :command:`-gnata` switch to enable runtime assertions
+- Use the :command:`-gnata` switch to enable runtime assertions
 
-  - This is added to the :ada:`Compiler` package in the GPR file
+  - To enable for a project, modify the GPR file to include
 
     .. code:: Ada
 

@@ -43,9 +43,9 @@ Helpful Hints
   * Adding item to queue adds one to queue length
   * Removing item from queue subtracts one from queue length
 
-* The compiler needs the :command:`-gnata` switch to enable runtime assertions
+* Use the :command:`-gnata` switch to enable runtime assertions
 
-  * This is added to the :ada:`Compiler` package in the GPR file
+  * To enable for a project, modify the GPR file to include
 
     .. code:: Ada
 
