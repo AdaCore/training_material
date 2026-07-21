@@ -36,8 +36,8 @@ Instrument Your Project
 
 * Always best to make sure your code compiles first
 
-   * :menu:`Build` |rightarrow| :menu:`Project` |rightarrow| :menu:`Build All` **OR**
-   * *Build target Build All* icon
+   * *Build target Build All* icon **OR**
+   * :menu:`Build` |rightarrow| :menu:`Project` |rightarrow| :menu:`Build All`
 
 * Set the coverage type to **Stmt**
 
@@ -59,11 +59,9 @@ Instrument Your Project
 
 .. container:: animate 3-
 
-   :menu:`Analyze` |rightarrow| :menu:`Coverage` |rightarrow| :menu:`GNATcoverage Source Traces` |rightarrow| :menu:`Run All Actions` **OR**
+   :menu:`Analyze` |rightarrow| :menu:`Coverage` |rightarrow| :menu:`GNATcoverage Source Traces` |rightarrow| :menu:`Run All Actions`
 
-   Run GNATCoverage with instrumentation test_driver.adb* icon
-
-      * Your coverage report should be displayed
+    * Your coverage report should be displayed
 
 --------------------------------
 Navigating the Coverage Report
