@@ -47,7 +47,7 @@ Import / Export Aspects (1/2)
 Import / Export Aspects (2/2)
 -------------------------------
 
-* You can also import/export variables
+* Can also import/export variables
 
    - Variables imported won't be initialized
    - Ada view
@@ -72,7 +72,7 @@ Import / Export Aspects (2/2)
 Import / Export with Pragmas
 ------------------------------
 
-* You can also use :ada:`pragma` to import/export entities
+* Can also use :ada:`pragma` to import/export entities
 
   .. code:: Ada
 

@@ -11,7 +11,7 @@ Containers Review
    - Solidifies most common containers used in coding
    - Full functionality
 
-      + When writing your own, you may not create all the functions someone else neds
+      + When writing containers, may not create all the functions someone else needs
 
    - Part of the language, so reliability is much higher
 

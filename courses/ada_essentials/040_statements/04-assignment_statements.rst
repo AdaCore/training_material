@@ -77,7 +77,7 @@ Aliasing the Assignment Target
 
    Ada 2022
 
-* C allows you to simplify assignments when the target is used in the expression. This avoids duplicating (possibly long) names.
+* C allows statements to be simplified by using the target in the expression
 
   .. code:: C
 
