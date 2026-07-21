@@ -22,47 +22,53 @@ Private by Default
 Module Visibility
 -------------------
 
-  :filename:`parent.rs`
+:filename:`parent.rs`
 
   .. code:: rust
 
-    pub mod public_child;
-    mod private_child;
+    pub mod child_pub;
+    mod child_priv;
 
-    pub fn orchestrate() {
-        public_child::public_helper();
-        private_child::private_helper();
-        private_child::deeply_hidden(); // ERROR
+    fn parent_secret_handshake() {
+        println!("Hello from the parent's private function!");
     }
 
-    fn parent_internal_logic() {
-        println!("Parent's secret sauce.");
+    pub mod control {
+        pub fn run_private_child() {
+            // Use 'super' to refer to enclosing module ('parent')
+            super::child_priv::secret_mission();
+            // The following will generate an error
+            super::child_priv::deeply_hidden();
+        }
     }
 
-  :filename:`private_child.rs`
+:filename:`child_priv.rs`
 
   .. code:: rust
 
-    pub fn private_helper() {
-        println!("Private child helping the parent.");
-        parent::orchestrate();
-        parent::parent_internal_logic(); 
+    pub fn secret_mission() {
+        println!("I am the private child module executing a task!");
+    
+        // Use 'super' to refer to enclosing module ('parent')
+        super::parent_secret_handshake();
     }
 
     fn deeply_hidden() {
         println!("Not even the parent can see this.");
     }
 
-  :filename:`public_child.rs`
+:filename:`child_pub.rs`
 
   .. code:: rust
 
-    pub fn public_helper() {
-        println!("Public child is open for business.");
-        parent::parent_internal_logic(); 
-        parent::private_child::private_helper(); // ERROR
+    pub fn speak() {
+        println!("I am the public child module!");
+    
+        // Accessing the parent's private function using `super`
+        super::parent_secret_handshake();
     }
 
+:error:`error[E0603]: function 'deeply_hidden' is private`
 
 ---------------------------
 Visibility at Every Level
