@@ -205,8 +205,8 @@ Numeric Conversions
 .. tip::
 
   - Forces conversion to be **intentional**
-  
-  - Using :rust:`as` makes conversion explicit and requires intent
+
+    - Using :rust:`as` makes conversion explicit
 
 ----------------------------
 The "char" Type Is Special
