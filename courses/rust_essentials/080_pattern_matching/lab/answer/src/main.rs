@@ -4,7 +4,7 @@
 #[allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
-    
+
     // TASK 1 - Exhaustiveness in 'match'
     // Hint: All possible cases must be handled
     enum Status {
@@ -25,7 +25,7 @@ fn main() {
     // TASK 2 - Refutable Pattern in a 'let' Binding
     // Hint: Every 'let' binding uses a pattern, but simple bindings require irrefutable patterns
     let secret_value = Some(42);
-    
+
     // Fix: Used 'if let' to handle the conditional/refutable pattern
     if let Some(x) = secret_value {
         println!("The secret is {}", x);
@@ -41,7 +41,7 @@ fn main() {
     }
 
     let p = Player { name: String::from("Hero"), health: 100, mana: 50 };
-    
+
     // Fix: Added '..' to explicitly ignore the 'mana' field
     let Player { name, health, .. } = p;
 
@@ -101,7 +101,7 @@ fn main() {
     // TASK 8 - "if let" Syntax Order
     // Hint: "if let" follows assignment order: Pattern = value
     let optional_code = Some(777);
-    
+
     // Fix: Reordered the expression so the pattern is on the left and the value is on the right
     if let Some(code) = optional_code {
         println!("Code is {}", code);
