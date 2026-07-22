@@ -30,7 +30,7 @@ procedure Main is
       (Year => 2_024, Month => 2, Day => 28),
       (Year => 2_000, Month => 2, Day => 29));
 
-   Valid_And_Invalid_Dates : constant Dates_T :=
+   Mixed_Dates : constant Dates_T :=
      ((Year => 2_025, Month => 4, Day => 30),
       (Year => 2_024, Month => 2, Day => 28),
       (Year => 1_900, Month => 2, Day => 29));
@@ -46,9 +46,9 @@ begin
    Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Valid_Dates)));
    Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Valid_Dates)));
 
-   Put_Line ("Valid_And_Invalid_Dates");
-   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Valid_And_Invalid_Dates)));
-   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Valid_And_Invalid_Dates)));
+   Put_Line ("Mixed_Dates");
+   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Mixed_Dates)));
+   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Mixed_Dates)));
 
    Put_Line ("Same_Year_Dates");
    Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Same_Year_Dates)));
