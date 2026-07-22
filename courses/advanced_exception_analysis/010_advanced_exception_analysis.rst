@@ -147,8 +147,6 @@ Exception Occurrence with Call Chain
 
 Using :command:`-E`
 
-.. container:: latex_environment tiny
-
 .. code:: output
   :font-size: tiny
 
@@ -337,7 +335,7 @@ Ada.Exceptions.Traceback
 
 * Results
 
-  .. code:: error
+  .. code:: output
     :font-size: tiny
 
     obj\main_tracebacks 30

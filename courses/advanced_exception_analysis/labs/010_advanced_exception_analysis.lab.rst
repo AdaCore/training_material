@@ -100,7 +100,7 @@ Get Better Exception Information - Solution
           for Switches("Ada") use ("-Es");
        end Binder;
 
-.. code:: error
+.. code:: output
   :font-size: tiny
 
   obj\main.exe file.txt
