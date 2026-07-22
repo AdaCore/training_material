@@ -956,7 +956,7 @@ def wrap_block(keys, block):
             begins.append(begin)
             ends.insert(0, end)
         elif environment == COLORBOX:
-            # For a colorbox, the key are the options to the color environment
+            # For a colorbox, the keys are the options to the color environment
             begin, end = environment_wrapper(COLORBOX, keys[environment])
             begins.append(begin)
             ends.insert(0, end)
