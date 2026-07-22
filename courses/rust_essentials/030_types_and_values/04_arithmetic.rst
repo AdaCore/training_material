@@ -134,7 +134,7 @@ Arithmetic Nuance: Division
 
   - **Floating Point Division**
 
-    - **Decimal** result requires **floating point** literals
+    - **Decimal** result requires **floating point** operands
     - :rust:`f64`, :rust:`f32`
 
 .. code:: rust
@@ -171,7 +171,7 @@ Integer Overflow
 Handling Overflow Explicitly
 ------------------------------
 
-- What if *programmer* wants to control overflow behavior?
+**There are mechanisms to allow the code to control behavior**
 
 - :rust:`wrapping_add()` 
 
@@ -193,6 +193,12 @@ Handling Overflow Explicitly
 
   100_i8.overflowing_add(50) // Results in (-106, true)
 
+.. container:: latex_environment small
+
+  *Equivalent functions exist for subtraction (*:rust:`*_sub`*) and multiplication (*:rust:`*_mul`*)*
+
 .. warning::
 
-  Should **not** rely on wrapping if calculation overflow is expected
+  These methods should be used to prevent *unexpected* overflow
+
+  *Expected* overflow is better handled through control flow
