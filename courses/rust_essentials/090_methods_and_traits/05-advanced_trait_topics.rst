@@ -15,25 +15,25 @@ Orphan Rule
 
 * To implement trait :rust:`SomeTrait` for :rust:`SomeType`
 
-  * Must own :rust:`SomeTrait` or :rust:`SomeType`
-  * If crate owns neither |rightarrow| compile error
+  * :rust:`SomeTrait` or :rust:`SomeType` must be **defined* in the crate
+  * Otherwise, |rightarrow| compile error
 
 ----------------------
 Orphan Rule Examples
 ----------------------
 
-**Own the type not the trait**
+**Define the type not the trait**
 
   .. code:: rust
 
-    struct MyType(i32);      // Owned type
+    struct MyType(i32);      // Defineed type
     impl Debug for MyType {} // External trait
 
-**Own the trait not the type**
+**Define the trait not the type**
 
   .. code:: rust
 
-    trait Hello { // Owned trait
+    trait Hello { // Defineed trait
         fn hello(&self) -> &'static str;
     }
     impl Hello for String { // External type
@@ -42,7 +42,7 @@ Orphan Rule Examples
         }
     }
 
-**Don't own either**
+**Defined neither**
 
   .. code:: rust
 
