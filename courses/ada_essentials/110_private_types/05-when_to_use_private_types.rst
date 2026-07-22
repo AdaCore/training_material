@@ -8,12 +8,12 @@ When to Use Private Types
 
 * Implementation may change
 
-   - Allows **clients** to be unaffected by changes in representation
+  - Allows **clients** to be unaffected by changes in representation
 
 * Normally available operations do not "make sense"
 
-   - Normally available based upon type's representation
-   - Determined by intent of ADT
+  - Normally available based upon type's representation
+  - Determined by intent of ADT
 
   .. code:: Ada
     :font-size: footnotesize
@@ -33,9 +33,9 @@ When to Use Private Types
        Set (Hot, Hot + Cold);
     end Initialize;
 
-* If :ada:`Valve_Id_T` was not private, call to **Set** would be valid
+* If :ada:`Valve_Id_T` was not private, call to :ada:`Set` would be valid
 
-   - But doesn't make sense
+  - But doesn't make sense
 
 -----------------------------
 When to Avoid Private Types

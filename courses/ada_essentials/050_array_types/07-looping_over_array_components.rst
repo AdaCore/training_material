@@ -105,14 +105,14 @@ Quiz
   .. container:: column
 
      .. code:: Ada
-       :font-size: tiny
+       :font-size: scriptsize
 
-        type Array_T is array (1..5) of Integer
+        type Arr_T is array (1..5) of Integer
            with Default_Component_Value => 1;
-        A : Array_T;
+        A : Arr_T;
 
     .. code:: Ada
-       :font-size: tiny
+       :font-size: scriptsize
 
         for I in A'First + 1 .. A'Last - 1 loop
            A (I) := I * A'Length;
