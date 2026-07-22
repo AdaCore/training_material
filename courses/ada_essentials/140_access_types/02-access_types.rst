@@ -19,9 +19,10 @@ Access Type
 * Conversion is **not** possible between this kind of access type
 
   .. code:: Ada
+    :number-lines: 5
 
-     type Rec_Access_2 is access Rec_T;
-     Rec_Ptr_2 : Rec_Access_2 := Rec_Access_2 (Rec_Ptr);
+    type Rec_Access_2 is access Rec_T;
+    Rec_Ptr_2 : Rec_Access_2 := Rec_Access_2 (Rec_Ptr);
 
   .. code:: error
     :font-size: footnotesize

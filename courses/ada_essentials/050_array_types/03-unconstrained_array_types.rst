@@ -63,7 +63,7 @@ Bounds Must Satisfy Type Constraints
 * :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 2
 
    type Index is range 1 .. 100;
    type Char_Arr is array (Index range <>) of Character;
@@ -73,7 +73,8 @@ Bounds Must Satisfy Type Constraints
 .. code:: error
   :font-size: tiny
 
-  example.adb:5:21: warning: static value out of range of type "Index" defined at line 2
+  main.adb:5:21: warning: static value out of range of type "Index" defined at line 2
+  main.adb:5:21: warning: Constraint_Error will be raised at run time
 
 ------------------
 Null Index Range
@@ -91,7 +92,6 @@ Null Index Range
     :number-lines: 2
 
     type Index_T is range 1 .. 100; -- Index_T'Size = 8
-
     type Array_T is array (Index_T range <>) of Integer;
 
     Typical_Empty_Array : Array_T (1 .. 0);
@@ -101,7 +101,8 @@ Null Index Range
   .. code:: error
     :font-size: tiny
 
-    example.adb:8:35: error: value not in range of type "Index_T" defined at line 2
+    main.adb:7:36: error: value not in range of type "Index_T" defined at line 2
+    main.adb:7:36: error: static expression fails Constraint_Check
 
 * When the index type is a single-valued enumerated type, no empty array is possible
 

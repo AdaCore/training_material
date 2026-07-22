@@ -66,7 +66,8 @@ Dynamic Accessibility Checks
 
 .. code:: error
 
-  raised PROGRAM_ERROR : dynamic_accessibility.adb:12 accessibility check failed
+  raised PROGRAM_ERROR : dynamic_accessibility.adb:12
+    accessibility check failed
 
 -------------------------------------
 Getting Around Accessibility Checks
