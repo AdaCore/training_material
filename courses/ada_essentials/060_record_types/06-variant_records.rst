@@ -137,24 +137,49 @@ Mutable Variant Record Example
   .. code:: Ada
 
     Pat : Person := (Student, 19, 3.9);
-    Sam : Person (Faculty);
+    Sam : Person := (Faculty, 28, 20);
+	
+.. note::
 
-* Can only change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
+  .. code:: Ada
+  
+   Pat : Person := (Faculty, 28, 20);
+	
+  is equivalent to
+  
+  .. code:: Ada
+  
+   Pat : Person; -- mutable! 
+   Pat := (Faculty, 28, 20);
+ 
+* Can change the discriminant of :ada:`Pat`, but only via a whole record assignment
 
   .. code:: Ada
 
-    if Pat.Group = Student then
-      Pat := (Faculty, Pat.Age, 1);
+    if Pat.Group = Faculty then
+      Pat := (Student, Pat.Age, 3.5);
     else
       Pat := Sam;
     end if;
-    Update (Pat);
-    
-* But cannot change the discriminant of :ada:`Sam`
+		
+------------------------------------------
+Immutable Variant Records And Aggregates
+------------------------------------------
 
-  * :ada:`Sam := Pat;` will give a run-time error if :ada:`Pat.Group` is not :ada:`Faculty`
+.. code:: Ada
 
-    * And the compiler will not warn about this!
+  Pat : Person := (Student, 19, 3.9); -- Mutable
+  Sam : Person(Faculty); -- Immutable
+
+  Pat := Sam; -- Allowed
+
+  Sam := Pat; -- Might raise run-time error
+
+* Cannot change the discriminant of :ada:`Sam`
+
+  * will give a run-time error if :ada:`Pat.Group` is not :ada:`Faculty`
+
+  * And the compiler will not warn about this!
 
 ------
 Quiz
