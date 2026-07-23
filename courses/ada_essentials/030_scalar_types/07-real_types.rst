@@ -120,7 +120,6 @@ Floating Point Attributes
 * :ada:`My_Float'Digits`
 
   - Number of digits **requested**
-  - :ada:`My_Float'Digits` |rightarrow| **7**
 
 * :ada:`My_Float'Base`
 
@@ -129,15 +128,27 @@ Floating Point Attributes
 * :ada:`My_Float'Base'Digits`
 
   - Number of **actual** digits
-  - :ada:`My_Float'Base'Digits` |rightarrow| **15**
 
 * :ada:`My_Float'Rounding (X)`
 
    - Integral value nearest to :ada:`X`
    - Rounds away from zero
 
-     - :ada:`Float'Rounding (0.5) = 1`
-     - :ada:`Float'Rounding (-0.5) = -1`
+
+.. list-table::
+  :header-rows: 1
+
+  * - **Attribute**
+    - **Value**
+
+  * - ``My_Float'Digits``
+    - 7
+  * - ``My_Float'Base'Digits``
+    - 15
+  * - ``Float'Rounding (0.5)``
+    - 1
+  * - ``Float'Rounding (-0.5)``
+    - -1
 
 ---------------------------
 Numeric Types Conversion

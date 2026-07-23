@@ -10,16 +10,12 @@ Object Declarations
 
 .. container:: source_include 020_declarations/syntax.bnf :start-after:object_declarations_begin :end-before:object_declarations_end :code:bnf
 
-* An *object* is either :dfn:`variable` or :dfn:`constant`
+* *Object* is either :dfn:`variable` or :dfn:`constant`
 
-   * where
-
-     * **<identifier>** is the defining name for the object
-     * **<typemark>** is the name describing the type of the object
+  * **<identifier>** is the defining name for the object
+  * **<typemark>** is the name describing the type of the object
 
 * Constants must be initialized
-
-   - Deferred constants are completed in the package private section (seen later)
 
 * Examples
 
@@ -38,7 +34,7 @@ Elaboration
 
 * :dfn:`Elaboration` has several facets
 
-  * **Initial value** calculation
+  * Initial value calculation
 
     - Evaluated during elaboration
     - Static expressions are known at compile time
