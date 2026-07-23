@@ -138,20 +138,20 @@ Mutable Variant Record Example
 
     Pat : Person := (Student, 19, 3.9);
     Sam : Person := (Faculty, 28, 20);
-	
+
 .. note::
 
   .. code:: Ada
-  
+
    Pat : Person := (Faculty, 28, 20);
-	
+
   is equivalent to
-  
+
   .. code:: Ada
-  
+
    Pat : Person; -- mutable!
    Pat := (Faculty, 28, 20);
- 
+
 * Can change the discriminant of :ada:`Pat`, but only via a whole record assignment
 
   .. code:: Ada
@@ -161,7 +161,7 @@ Mutable Variant Record Example
     else
       Pat := Sam;
     end if;
-		
+
 ------------------------------------------
 Immutable Variant Records And Aggregates
 ------------------------------------------
@@ -171,9 +171,8 @@ Immutable Variant Records And Aggregates
   Pat : Person := (Student, 19, 3.9); -- Mutable
   Sam : Person(Faculty); -- Immutable
 
+  Sam := Pat; -- Run-time error
   Pat := Sam; -- Allowed
-
-  Sam := Pat; -- Might raise run-time error
 
 * Cannot change the discriminant of :ada:`Sam`
 
