@@ -149,7 +149,7 @@ Mutable Variant Record Example
   
   .. code:: Ada
   
-   Pat : Person; -- mutable! 
+   Pat : Person; -- mutable!
    Pat := (Faculty, 28, 20);
  
 * Can change the discriminant of :ada:`Pat`, but only via a whole record assignment
