@@ -41,7 +41,7 @@ Assigning Types
 Type Inference Explained
 --------------------------
 
-- In most cases, no need to write the type
+- In most cases, there is no need to write the type
 
 - Compiler **infers** it based on the value given
 
