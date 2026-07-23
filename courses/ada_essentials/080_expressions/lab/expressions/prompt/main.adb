@@ -13,7 +13,6 @@ procedure Main is
    end record;
 
    type Dates_T is array (1 .. 3) of Date_T;
-   
    -- implement correctly as an expression function
    function Is_Leap_Year (Year : Positive) return Boolean is (False);
 
