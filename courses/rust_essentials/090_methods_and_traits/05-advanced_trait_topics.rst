@@ -15,7 +15,7 @@ Orphan Rule
 
 * To implement trait :rust:`SomeTrait` for :rust:`SomeType`
 
-  * :rust:`SomeTrait` or :rust:`SomeType` must be **defined* in the crate
+  * :rust:`SomeTrait` or :rust:`SomeType` must be **defined** in the crate
   * Otherwise, |rightarrow| compile error
 
 ----------------------
@@ -26,14 +26,14 @@ Orphan Rule Examples
 
   .. code:: rust
 
-    struct MyType(i32);      // Defineed type
+    struct MyType(i32);      // Defined type
     impl Debug for MyType {} // External trait
 
 **Define the trait not the type**
 
   .. code:: rust
 
-    trait Hello { // Defineed trait
+    trait Hello { // Defined trait
         fn hello(&self) -> &'static str;
     }
     impl Hello for String { // External type

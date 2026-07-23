@@ -24,4 +24,4 @@ Topics Covered
 
 * **Converting to an Iterator**
 
-  * Creating an iteration mechanism for particular type
+  * Creating an iteration mechanism for a particular type

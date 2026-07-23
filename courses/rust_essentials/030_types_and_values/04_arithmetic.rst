@@ -199,6 +199,6 @@ Handling Overflow Explicitly
 
 .. warning::
 
-  These methods should be used to prevent *unexpected* overflow
+  These methods make overflow behavior explicit and predictable
 
-  *Expected* overflow is better handled through control flow
+  Choose the method that matches the intended behavior: checked, wrapping, saturating, or overflowing arithmetic
