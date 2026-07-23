@@ -162,14 +162,14 @@ Mutable Variant Record Example
       Pat := Sam;
     end if;
 
-------------------------------------------
-Immutable Variant Records And Aggregates
-------------------------------------------
+-----------------------------
+Constrained Variant Records
+-----------------------------
 
 .. code:: Ada
 
   Pat : Person := (Student, 19, 3.9); -- Mutable
-  Sam : Person(Faculty); -- Immutable
+  Sam : Person(Faculty); -- Constrained
 
   Sam := Pat; -- Run-time error
   Pat := Sam; -- Allowed
