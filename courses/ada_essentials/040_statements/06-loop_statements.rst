@@ -187,6 +187,7 @@ Low-Level For-loop Parameter Type
        end loop;
 
   .. code:: error
+    :font-size: scriptsize
 
     main.adb:5:21: error: ambiguous bounds in range of iteration
     main.adb:5:21: error: possible interpretations:

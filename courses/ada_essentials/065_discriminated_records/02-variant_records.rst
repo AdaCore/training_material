@@ -240,4 +240,4 @@ Quiz
 
       * When running the executable, exception is raised
 
-         ``CONSTRAINT_ERROR : test.adb:20 discriminant check failed``
+         ``CONSTRAINT_ERROR : test.adb:18 discriminant check failed``
