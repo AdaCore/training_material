@@ -170,9 +170,9 @@ Mutable Variant Record Example
       Pat := Sam;
     end if;
 
------------------------------
-Constrained Variant Records
------------------------------
+----------------------------
+Constrained Variant Record
+----------------------------
 
 .. code:: Ada
 
