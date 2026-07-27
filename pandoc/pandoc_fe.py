@@ -334,7 +334,7 @@ def output_format(extension):
     elif extension == "md":
         return "markdown"
     else:
-        return extension
+        return extension.lower()
 
 
 def parse_rst_list_file(dirname, f):
@@ -461,9 +461,10 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
 
     syntax = "--syntax-definition=" + os.path.join(os.path.dirname(__file__), "bnf.xml")
 
-    preamble = "--include-in-header=" + os.path.join(
-        os.path.dirname(__file__), "preamble.tex"
-    )
+    if output_format(extension) == "beamer":
+        preamble = "--include-in-header=" + os.path.join(
+            os.path.dirname(__file__), "preamble.tex"
+        )
 
     # build list of search directories
     texinputs = set_texinputs(args.directories)
@@ -485,7 +486,7 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
         preamble,
         "--fail-if-warnings",
         "-f rst",
-        "-t " + output_format(extension.lower()),
+        "-t " + output_format(extension),
         "-o " + output_file,
         *source_list,
     )
