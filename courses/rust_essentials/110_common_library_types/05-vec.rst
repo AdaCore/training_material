@@ -71,6 +71,7 @@ Basic Operations
 
 .. code:: error
 
+  thread 'main' (14) panicked at src/main.rs:3:41:
   index out of bounds: the len is 3 but the index is 5
 
 --------------------

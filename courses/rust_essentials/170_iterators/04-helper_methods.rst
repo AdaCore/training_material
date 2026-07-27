@@ -110,9 +110,9 @@ Common Consumers
       let total: i32 = numbers.iter().sum();
       println!("The total is: {total}");
 
-    .. code:: output
+  .. code:: output
 
-      15
+    15
 
 * :rust:`any` **- return True if any value matches condition**
 
@@ -129,7 +129,7 @@ Common Consumers
           println!("All temperatures are above freezing.");
       }
 
-    .. code:: output
+  .. code:: output
 
       Warning: Freezing temperatures detected!
 

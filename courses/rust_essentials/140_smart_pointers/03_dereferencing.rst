@@ -56,7 +56,7 @@ Coercing Types With "Deref"
   
 .. code:: output
 
-  Hello, Rust
+  Hello, Rust!
   
 .. note::
   
