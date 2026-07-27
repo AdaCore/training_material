@@ -6,7 +6,7 @@ Advanced Trait Topics
 Orphan Rule
 -------------
 
-* Implement a trait for a type only if the crate defines the trait or the type
+* Implement a trait for a type only if the current crate defines the trait or the type
 
 * Why do we need this?
 
@@ -15,7 +15,7 @@ Orphan Rule
 
 * To implement trait :rust:`SomeTrait` for :rust:`SomeType`
 
-  * :rust:`SomeTrait` or :rust:`SomeType` must be **defined** in the crate
+  * :rust:`SomeTrait` or :rust:`SomeType` must be **defined** in the current crate
   * Otherwise, |rightarrow| compile error
 
 ----------------------
@@ -80,7 +80,7 @@ Supertraits
 
 **Explanation**
 
-  * To be a :rust:`PartyAnimal` type must know how to :rust:`Dance`
+  * A :rust:`PartyAnimal` type must know how to :rust:`Dance`
 
 ----------------------
 Advanced Supertraits

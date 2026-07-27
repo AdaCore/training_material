@@ -101,7 +101,7 @@ Limitations on Deriving
 **Cannot derive when**
 
   * Behavior depends on logic, not structure
-  * Need validation or side effects
+  * Implementation requires validation or other custom behavior
   * Only part of the data should participate
 
 .. note::

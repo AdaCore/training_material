@@ -154,7 +154,7 @@ Declarative Data Processing
 
 :command:`Sum of even squares: 220`
 
-* Chaining allows creation of new set of data before consuming
+* Chaining creates a new set of data before consumption
 
   * Modify values (:rust:`map`)
   * Skip values (:rust:`filter`)

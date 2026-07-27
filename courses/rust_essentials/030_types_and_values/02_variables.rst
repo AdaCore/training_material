@@ -55,7 +55,7 @@ By Default, Variables Are Immutable
 Making Variables Mutable
 --------------------------
 
-- Sometimes, value *needs* to change
+- Sometimes, a value *needs* to change
 
 - Variables are immutable unless mutability is declared **explicitly**
 

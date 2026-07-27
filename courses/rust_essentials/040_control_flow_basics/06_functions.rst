@@ -94,7 +94,7 @@ Design Philosophy: Clarity and Precision
 
 - Overloading is not supported
   - No multiple same-name functions with different arguments
-  - Guarantees unambiguous function calls
+  - Function selection does not depend on argument types
 - No default arguments
   - Callers must provide a value for every parameter
   - All inputs are strictly explicit
