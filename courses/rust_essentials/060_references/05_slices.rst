@@ -75,7 +75,7 @@ Slice Examples
 .. code:: output
 
   version:         ['8', '0', '0']
-  generation:      ['8']`
+  generation:      ['8']
   arnold:          ['T', '8', '0', '0']
   james:           ['0', '0']
   terminated:      []

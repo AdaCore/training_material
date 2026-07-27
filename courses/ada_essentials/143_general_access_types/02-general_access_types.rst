@@ -19,7 +19,7 @@ Using General Access Types
   * Because each access type deals with its own memory pool
 
   .. code:: Ada
-    :number-line: 2
+    :number-lines: 2
 
     type Acc_T is access Integer;
     type Acc_2 is access Integer;
