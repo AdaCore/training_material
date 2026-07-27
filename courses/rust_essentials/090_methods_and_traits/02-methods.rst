@@ -270,7 +270,7 @@ Method Receivers at a Glance
 
 * :rust:`mut self` (**The Builder** - *takes ownership and allows mutation*)
 
-  * *Power*: Can change an object being returned or discard
+  * *Power*: Can change an object before returning or discarding it
   * *Usage*: Common "Builder Pattern" for constructing complex objects
 
 .. raw:: latex
