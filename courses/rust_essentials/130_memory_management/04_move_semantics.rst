@@ -17,10 +17,12 @@ Transferring Ownership
   .. container:: column
 
     .. image:: comprehensive_rust_training/move_semantics_unified.svg
+      :width: 75%
 
   .. container:: column
 
     .. code:: rust
+      :font-size: scriptsize
 
         let s1 = String::from("Hello");
         let s2 = s1;
