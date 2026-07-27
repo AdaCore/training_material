@@ -34,10 +34,10 @@ Control Flow Basics
 
 .. include:: 040_control_flow_basics/00_introduction.rst
 .. include:: 040_control_flow_basics/01_blocks.rst
-.. include:: 040_control_flow_basics/02_if.rst
-.. include:: 040_control_flow_basics/03_match.rst
+.. include:: 040_control_flow_basics/02_if_expressions.rst
+.. include:: 040_control_flow_basics/03_match_expressions.rst
 .. include:: 040_control_flow_basics/04_loops.rst
-.. include:: 040_control_flow_basics/05_break_continue.rst
+.. include:: 040_control_flow_basics/05_break_and_continue.rst
 .. include:: 040_control_flow_basics/06_functions.rst
 .. include:: 040_control_flow_basics/07_macros.rst
 .. include:: 040_control_flow_basics/88-control_flow_basics.lab.rst

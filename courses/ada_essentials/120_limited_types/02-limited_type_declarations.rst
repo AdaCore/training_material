@@ -69,9 +69,9 @@ Parameter Passing Mechanism
    procedure Lock  (This : in out Spin_Lock);
    procedure Unlock (This : in out Spin_Lock);
 
--------------------------------------
+-------------------------------
 Composites with Limited Types
--------------------------------------
+-------------------------------
 
 * Composite containing a limited type becomes limited as well
 

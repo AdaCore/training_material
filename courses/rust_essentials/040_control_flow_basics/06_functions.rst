@@ -35,9 +35,9 @@ Parameters and Type Signatures
     first + second
   }
 
------------------------------------------
+------------------------------------------
 Return Values (Expression vs. Statement)
------------------------------------------
+------------------------------------------
 
 - Return type is specified after an arrow :rust:`->`
 - No :rust:`->` syntax means function returns the unit type :rust:`()`
@@ -88,9 +88,9 @@ Explicit Exit With "return"
       age >= 18 // Idiomatic way to return a value
   }
 
---------------------------------------------
-Design Philosophy: Clarity and Precision 
---------------------------------------------
+------------------------------------------
+Design Philosophy: Clarity and Precision
+------------------------------------------
 
 - Overloading is not supported
   - No multiple same-name functions with different arguments

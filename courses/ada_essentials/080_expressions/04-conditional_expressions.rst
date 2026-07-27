@@ -25,9 +25,9 @@ Conditional Expressions
 ..
   language_version 2012
 
-------------------
+----------------
 If Expressions
-------------------
+----------------
 
 **Syntax**
 
@@ -43,9 +43,9 @@ If Expressions
 ..
   language_version 2012
 
------------------------------------------
+----------------------------------------
 Result Must Be Compatible with Context
------------------------------------------
+----------------------------------------
 
 * Conditional expression will be assigned to something
 
@@ -136,7 +136,7 @@ The "else" Part When Result Is Boolean
     Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
     Acceptable : Boolean := (if P1 > 0 then P2 > 0);
 
-* Use :ada:`else` if you need to return False at the end
+* Use :ada:`else` if :ada:`False` needs to be returned
 
 ---------------------------------------
 Rationale for Parentheses Requirement
@@ -183,11 +183,11 @@ Rationale for Parentheses Requirement
 
         Subprogram_Call (if A then B else C);
 
-------------------------------
+----------------------------
 When to Use If Expressions
-------------------------------
+----------------------------
 
-* When you need computation to be done prior to sequence of statements
+* When computation should be done prior to sequence of statements
 
   .. code:: Ada
 
@@ -221,9 +221,9 @@ When to Use If Expressions
     High_Bit_Index : constant :=
        (if Integer'Size = 32 then 31 else 63);
 
----------------------
+------------------
 Case Expressions
----------------------
+------------------
 
 * Syntax similar to *case statements*
 

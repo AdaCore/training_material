@@ -60,9 +60,9 @@ Coercing Types With "Deref"
   
   - Compiler coerces: :rust:`&Box<String>` -> :rust:`&String` -> :rust:`&str` 
   
-------------  
+------------
 "DerefMut"
-------------  
+------------
 
 - *Subtrait* of :rust:`Deref`
 

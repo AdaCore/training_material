@@ -10,9 +10,9 @@ Summary
 
 * Named-numbers
 
-* **Elaboration** concept
+* **Initialization** concept
 
-    - Value and memory initialization at **run-time**
+    - Objects are not initialized without specific action
 
 * Simple **scope** and **visibility** rules
 

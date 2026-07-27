@@ -1,8 +1,8 @@
 //! Lab (prompt)
 //! Common Library Types
 //!
-//! Fix all the compile errors below by following the hints provided 
-//! 
+//! Fix all the compile errors below by following the hints provided
+//!
 #[allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
@@ -15,10 +15,10 @@ fn main() {
     // TASK 2 - 'Result' Variants
     // Hint: 'Result' uses 'Ok(T)' and 'Err(E)'
     fn check_positive(num: i32) -> Result<i32, String> {
-        if num > 0 { 
-            Some(num) 
-        } else { 
-            None 
+        if num > 0 {
+            Some(num)
+        } else {
+            None
         }
     }
 

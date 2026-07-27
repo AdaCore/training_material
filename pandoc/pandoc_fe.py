@@ -1,9 +1,9 @@
 import argparse
-import os
-import sys
-import subprocess
-import tempfile
 import multiprocessing
+import os
+import subprocess
+import sys
+import tempfile
 from pathlib import Path
 
 """
@@ -186,7 +186,6 @@ def prepare_title_file(args):
         title_info = parse_title_file(args)
 
         with open(TITLE_FILE_NAME, "w") as tfp:
-
             """
             This is the actual title page for the beamer slide deck
             """
@@ -279,7 +278,7 @@ def set_texinputs(new_directories):
     extend_texinputs_path_list(unique, current.split(separator))
 
     # when TEXINPUTS ends w/ a separator it means to append to standard TeX paths
-    texinputs_append = len(current) and current[-1] == separator
+    texinputs_append = len(current) and current[-1] == separator or not windows()
     texinputs_formated = separator.join(unique) + (
         separator if texinputs_append else ""
     )

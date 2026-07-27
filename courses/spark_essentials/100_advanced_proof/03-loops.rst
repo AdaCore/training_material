@@ -29,7 +29,7 @@ Unrolling Loops
   - On a specific loop with a loop invariant
 
 -------------------------------
-Loop Invariant - a Definition
+Loop Invariant - A Definition
 -------------------------------
 
 * Property of a loop that is true before each iteration
@@ -172,9 +172,9 @@ Accumulating Information
         end loop;
      end Search_Table;
 
-------------------------------
-Attribute :ada:`Loop_Entry`
-------------------------------
+------------------------
+Attribute "Loop_Entry"
+------------------------
 
 * Attribute :ada:`Loop_Entry` used to refer to the value of a variable on
   entry to the loop
@@ -275,7 +275,7 @@ Classical Loop Invariants
   - Loops on arrays or formal containers
 
 -----------------------------
-Quiz: Non-terminating Loops
+Quiz: Non-Terminating Loops
 -----------------------------
 
 What's wrong with the following code?

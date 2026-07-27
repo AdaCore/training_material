@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 ----------------
 Visibility Lab
@@ -24,9 +24,9 @@ Visibility Lab
 
    - There are multiple ways to resolve this!
 
-----------------------------------------
+---------------------------------
 Visibility Lab Solution - Types
-----------------------------------------
+---------------------------------
 
 .. container:: source_include 135_visibility/lab/visibility/answer/quads.ads :code:Ada :number-lines:1
 

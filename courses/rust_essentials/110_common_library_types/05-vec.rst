@@ -43,12 +43,12 @@ Creating Vectors
     // List of 'i8'
     let bytes_1 = vec![1_i8, 2, 3];
     let bytes_2: Vec<i8> = vec![1, 2, 3];
-  
+
 ------------------
 Basic Operations
 ------------------
 
-**Accessing items in the array**
+**Accessing elements in the array**
 
 * **Safe access:** :rust:`v.get(idx)` returns :rust:`Option<&T>`
 
@@ -83,7 +83,7 @@ Working With "Vec"
   println!("All colors");
   for c in &colors { println!("  {}", c); }
 
-  // Pop - remove and return the last item
+  // Pop - remove and return the last element
   let last = colors.pop();
   println!("last: {last:?}");
 

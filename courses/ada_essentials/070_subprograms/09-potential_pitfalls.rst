@@ -106,7 +106,7 @@ Functions' Parameter Modes
 * Can be mode :ada:`in out` and :ada:`out` too
 * **Note:** operator functions can only have mode :ada:`in`
 
-   - Including those you overload
+   - Including overloaded definitions
    - Keeps readers sane
 
 * Justification for only mode :ada:`in` in earlier versions of the language
@@ -118,9 +118,9 @@ Functions' Parameter Modes
 ..
   language_version 2012
 
-----------------------------------
+-----------------------------------
 Easy Cases Detected and Not Legal
-----------------------------------
+-----------------------------------
 
 .. code:: Ada
 

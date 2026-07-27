@@ -118,17 +118,17 @@ Command Line Example Run
 
 *These messages are coming from rules specified in* :filename:`coding_standard.rules`
 
---------------------------------------------------------------
-:toolname:`GNATcheck` From :toolname:`GNAT Studio` Main Menu
---------------------------------------------------------------
+----------------------------------------------
+**GNATcheck** From **GNAT Studio** Main Menu
+----------------------------------------------
 
 :menu:`Analyze` |rightarrow| :menu:`Coding Standard` |rightarrow| :menu:`Check Root Project`
 
 .. image:: gnatcheck/gnatstudio_menu.png
 
-----------------------------------------------------------------
-:toolname:`GNATcheck` From :toolname:`GNAT Studio` Right-Click
-----------------------------------------------------------------
+------------------------------------------------
+**GNATcheck** From **GNAT Studio** Right-Click
+------------------------------------------------
 
 .. container:: latex_environment scriptsize
 
@@ -173,29 +173,17 @@ Specifying Rules File
     * :command:`gnatcheck -rules -from=coding_standard.rules ...`
     * But more commonly defined in project file
 
-.. container:: latex_environment tiny
+.. code:: GPRbuild
 
-  .. container:: columns
-
-    .. container:: column
-
-      .. code:: GPRbuild
-
-        project Simple is
-           for Source_Dirs use ("./include", "./src");
-           for Main use ("diners");
-           for Object_Dir use "./obj";
-           package Check is
-              for Default_Switches ("ada") use
-                 ("-rules", "-from=coding_standard.rules");
-           end Check;
-        end Simple;
-
-    .. container:: column
-
-      :menu:`Edit` |rightarrow| :menu:`Project Properties` |rightarrow| :menu:`Switches` |rightarrow| :menu:`GNATcheck`
-
-      .. image:: gnatcheck/properties_dialog.png
+  project Simple is
+     for Source_Dirs use ("./include", "./src");
+     for Main use ("diners");
+     for Object_Dir use "./obj";
+     package Check is
+        for Default_Switches ("ada") use
+           ("-rules", "-from=coding_standard.rules");
+     end Check;
+  end Simple;
 
 =====
 Lab

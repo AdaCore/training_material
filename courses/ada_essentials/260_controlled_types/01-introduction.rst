@@ -2,9 +2,9 @@
 Introduction
 ==============
 
--------------------------
+--------------------------
 Constructor / Destructor
--------------------------
+--------------------------
 
 * Possible to specify behavior of object initialization, finalization, and assignment
 

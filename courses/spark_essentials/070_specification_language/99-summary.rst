@@ -19,7 +19,7 @@ Specification Language
 
 * Expression functions define **queries** on private types
 
-  - Function spec declared in the visible part
-  - Expression function given in the private part
+  - Function spec declared in the visible section
+  - Expression function given in the private section
   - Preserves abstraction for user
   - Gives enough details for proof

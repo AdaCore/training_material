@@ -10,9 +10,6 @@ Type Derivation
 * Type can be **derived** from a **base type**
 * Base type can be substituted by the derived type
 * Subprograms defined on the base type are **inherited** on derived type
-* This is **not** OOP in Ada
-
-    - Tagged derivation **is** OOP in Ada
 
 ---------------------------
 Reminder: What is a Type?

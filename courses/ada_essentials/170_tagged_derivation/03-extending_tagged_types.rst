@@ -2,9 +2,9 @@
 Extending Tagged Types
 ========================
 
-----------------------------------
-How Do You Extend a Tagged Type?
-----------------------------------
+-----------------------------
+How To Extend a Tagged Type
+-----------------------------
 
 * Premise of a tagged type is to :dfn:`extend` an existing type
 
@@ -198,7 +198,7 @@ Which completion(s) of Create is (are) valid?
    Explanations
 
    A. Correct - :ada:`Parents.Create` returns :ada:`Parent_T`
-   B. Cannot use :ada:`others` to complete private part of an aggregate
+   B. Cannot use :ada:`others` to complete private section of an aggregate
    C. Aggregate has no visibility to :ada:`Id` component, so cannot assign
    D. Correct - :ada:`P` is a :ada:`Parent_T`
 

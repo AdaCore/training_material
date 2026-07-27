@@ -66,9 +66,9 @@ Why Static Analysis Saves Money
 
 .. image:: relative_cost_to_fix_bugs.svg
 
--------------------------------
-Why Use :toolname:`GNAT SAS`?
--------------------------------
+-----------------------
+Why Use **GNAT SAS**?
+-----------------------
 
 + Efficient automated code reviewer
 

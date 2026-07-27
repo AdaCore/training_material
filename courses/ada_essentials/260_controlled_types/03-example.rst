@@ -94,9 +94,9 @@ Unbounded String Implementation
       end Adjust;
    end Unbounded_String_Pkg;
 
-------------------
+--------------------
 Finalizable Aspect
-------------------
+--------------------
 
 * Uses the GNAT-specific :ada:`with Finalizable` aspect
 

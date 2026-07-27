@@ -1,6 +1,6 @@
-==================
+====================
 "Let" Control Flow
-==================
+====================
 
 --------------------
 "let" as a Pattern
@@ -30,7 +30,7 @@ Conditional Matching
 
 - :rust:`match` can always be used to handle this
 
-- Rust provides shorthand forms for common cases
+- Shorthand forms available for common cases
 
 --------------
 Match Guards

@@ -74,9 +74,9 @@ Writing Limited Constructor Functions
      return Global_X; -- this is a copy
    end F;
 
--------------------
- "Built In-Place"
--------------------
+------------------
+"Built In-Place"
+------------------
 
 * Limited aggregates and functions, specifically
 * No copying done by implementation

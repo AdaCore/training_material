@@ -24,9 +24,9 @@ Ada Type Model
     - User-defined
     - Checked at compilation and run-time
 
-------------
+--------------
 Declarations
-------------
+--------------
 
 * :dfn:`Declaration` associates an :dfn:`identifier` to an :dfn:`entity`
 

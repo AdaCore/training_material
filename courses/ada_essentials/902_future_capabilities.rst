@@ -1,6 +1,6 @@
-***********************
+*************************
 Future Ada Capabilities
-***********************
+*************************
 
 .. container:: PRELUDE BEGIN
 
@@ -32,13 +32,13 @@ Future Ada Capabilities
 
 .. container:: PRELUDE END
 
-============
+==============
 Introduction
-============
+==============
 
-------------
+--------------
 Introduction
-------------
+--------------
 
 * AdaCore is developing post-Ada 2022 capabilities
 
@@ -56,9 +56,9 @@ Introduction
    - Features currently being implemented are marked *In Progress* under the slide title
    - Features under discussion are marked *Under Discussion* under the slide title
 
-------------------------
+--------------------------
 How to Enable Extensions
-------------------------
+--------------------------
 
 * Two experimental modes now
 
@@ -69,13 +69,13 @@ How to Enable Extensions
 
 * Useful to share feedback and input
 
-====================
+======================
 Embedded Programming
-====================
+======================
 
----------------------------------------
+-----------------------------------------
 Fixed Lower Bound for Array Types (1/3)
----------------------------------------
+-----------------------------------------
 
 * Ada arrays carry 3 pieces of information
 
@@ -96,9 +96,9 @@ Fixed Lower Bound for Array Types (1/3)
          return S (1); -- May be out of bounds
       end P;
 
----------------------------------------
+-----------------------------------------
 Fixed Lower Bound for Array Types (2/3)
----------------------------------------
+-----------------------------------------
 
 * Ada arrays can have fixed lower bound (FLB)
 
@@ -121,9 +121,9 @@ Fixed Lower Bound for Array Types (2/3)
 
      P (V (6 .. 10)); -- A is 0 .. 4
 
----------------------------------------
+-----------------------------------------
 Fixed Lower Bound for Array Types (3/3)
----------------------------------------
+-----------------------------------------
 
 * FLB can be used for matrixes
 
@@ -140,9 +140,9 @@ Fixed Lower Bound for Array Types (3/3)
 
 * *Recommendation:* unless specifically needed, use FLB
 
---------------------
+----------------------
 Storage Models (1/2)
---------------------
+----------------------
 
 * Ada offers :ada:`Storage_Pools` to override allocation/deallocation for access types
 
@@ -154,9 +154,9 @@ Storage Models (1/2)
 
   * e.g. CUDA
 
---------------------
+----------------------
 Storage Models (2/2)
---------------------
+----------------------
 
 * Storage model works without :ada:`tagged` types
 
@@ -203,9 +203,9 @@ Storage Models (2/2)
         --  CUDA_Storage_Model.Copy_From will perform copy
         Host_Array.all := Device_Array.all;
 
---------------------------------------------
+------------------------------------------
 Constant Size for Variable Objects (1/3)
---------------------------------------------
+------------------------------------------
 
 .. admonition:: Language Variant
 
@@ -231,9 +231,9 @@ Constant Size for Variable Objects (1/3)
 
 * We're extending this mechanism to arrays and tagged types
 
---------------------------------------------
+------------------------------------------
 Constant Size for Variable Objects (2/3)
---------------------------------------------
+------------------------------------------
 
 .. admonition:: Language Variant
 
@@ -262,9 +262,9 @@ Constant Size for Variable Objects (2/3)
    type Foo_Array is array (Positive range <>) of Foo'Class;
    Arr : Foo_Array := (Foo'(null record), Baz'(12, 15));
 
---------------------------------------------
+------------------------------------------
 Constant Size for Variable Objects (3/3)
---------------------------------------------
+------------------------------------------
 
 .. admonition:: Language Variant
 
@@ -294,9 +294,9 @@ Constant Size for Variable Objects (3/3)
       A := (0, 1, 2, 3, 4, 5, 6, 7, 8);
    end;
 
--------------------------------
+-----------------------------
 Embed Data From Binary File
--------------------------------
+-----------------------------
 
 .. admonition:: Language Variant
 
@@ -322,9 +322,9 @@ Embed Data From Binary File
         with External_Initialization => "/some/data.raw";
    end Some_Package;
 
---------------------------
+------------------------
 Access to Array Slices
---------------------------
+------------------------
 
 .. admonition:: Language Variant
 
@@ -344,9 +344,9 @@ Access to Array Slices
 
 * This requires GNAT redesign of so-called fat pointers
 
--------------------------------------
+-----------------------------------
 Creation of Ada Array From Memory
--------------------------------------
+-----------------------------------
 
 .. admonition:: Language Variant
 
@@ -370,13 +370,13 @@ Creation of Ada Array From Memory
 
 * This also requires GNAT redesign of so-called fat pointers
 
-===============
+=================
 Quality of Life
-===============
+=================
 
-------------------------------------------------
+--------------------------------------------------
 Dot Calls for Primitives of Untagged Types (1/2)
-------------------------------------------------
+--------------------------------------------------
 
 * Ada 2012 introduced prefix notation
 
@@ -399,9 +399,9 @@ Dot Calls for Primitives of Untagged Types (1/2)
 
 * Some users introduce tagged types JUST for the purpose of using prefixed notation
 
-------------------------------------------------
+--------------------------------------------------
 Dot Calls for Primitives of Untagged Types (2/2)
-------------------------------------------------
+--------------------------------------------------
 
 * All primitives can now be accessed through prefix notation
 
@@ -425,9 +425,9 @@ Dot Calls for Primitives of Untagged Types (2/2)
      VR.Op1;
      VI.Op2;
 
-------------------------------------
+--------------------------------------
 Default for Generic Formal Functions
-------------------------------------
+--------------------------------------
 
 * Generic can already be given a default matching function
 
@@ -449,9 +449,9 @@ Default for Generic Formal Functions
           is (Item); -- Defaults to the Item value
      package Stacks is
 
---------------------
+----------------------
 String Interpolation
---------------------
+----------------------
 
 * Constructing strings with expressions can be cumbersome
 
@@ -473,9 +473,9 @@ String Interpolation
 
       Put_Line (f"Name is {Name} and Sum is {X + Y}.");
 
---------------------------------------
+----------------------------------------
 Declare Local Variables Without Blocks
---------------------------------------
+----------------------------------------
 
 * Restrictions on declarative parts makes less sense today
 
@@ -493,9 +493,9 @@ Declare Local Variables Without Blocks
       X := X
    end if;
 
------------------------------
+-------------------------------
 Conditional "when" Constructs
------------------------------
+-------------------------------
 
 * Ada already support :ada:`exit when` structure shortening if-condititions
 
@@ -517,9 +517,9 @@ Conditional "when" Constructs
      raise Error with "Unix Error"
         when Imported_C_Func /= 0;
 
--------------------------
+-----------------------
 Deep Delta Aggregates
--------------------------
+-----------------------
 
 .. admonition:: Language Variant
 
@@ -537,9 +537,9 @@ Deep Delta Aggregates
 
      (X with delta A.B => 42)
 
--------------------------------------------
+-----------------------------------------
 Guaranteed Final Control Flow Execution
--------------------------------------------
+-----------------------------------------
 
 .. admonition:: Language Variant
 
@@ -566,9 +566,9 @@ Guaranteed Final Control Flow Execution
 New / Enhanced Paradigms
 ==========================
 
----------------------------
+-----------------------------
 Case Pattern Matching (1/3)
----------------------------
+-----------------------------
 
 .. admonition:: Language Variant
 
@@ -596,9 +596,9 @@ Case Pattern Matching (1/3)
         end case;
      end Caser_1;
 
----------------------------
+-----------------------------
 Case Pattern Matching (2/3)
----------------------------
+-----------------------------
 
 .. admonition:: Language Variant
 
@@ -627,9 +627,9 @@ Case Pattern Matching (2/3)
       when <> => Put_Line ("other shape");
    end case;
 
----------------------------
+-----------------------------
 Case Pattern Matching (3/3)
----------------------------
+-----------------------------
 
 .. admonition:: Language Variant
 
@@ -653,9 +653,9 @@ Pattern matching allows to bind specific values and use them
       when (Has_Value => False) => 0;
    end case;
 
------------------------------------------
+---------------------------------------
 Generic Instantiation Inference (1/2)
------------------------------------------
+---------------------------------------
 
 .. admonition:: Language Variant
 
@@ -680,9 +680,9 @@ Generic Instantiation Inference (1/2)
 
    V : Float := My_Reduce (Some_Array);
 
------------------------------------------
+---------------------------------------
 Generic Instantiation Inference (2/2)
------------------------------------------
+---------------------------------------
 
 .. admonition:: Language Variant
 
@@ -709,9 +709,9 @@ Generic Instantiation Inference (2/2)
     V : Float :=
         Reduce (Array_Type => Float_Array) (Some_Array);
 
-----------------------------------------
+--------------------------------------
 Redesign of Object Orientation (1/2)
-----------------------------------------
+--------------------------------------
 
 .. admonition:: Language Variant
 
@@ -736,9 +736,9 @@ Redesign of Object Orientation (1/2)
 
 * Some enahcements can extend to regular records
 
-----------------------------------------
+--------------------------------------
 Redesign of Object Orientation (2/2)
-----------------------------------------
+--------------------------------------
 
 .. admonition:: Language Variant
 
@@ -768,9 +768,9 @@ Redesign of Object Orientation (2/2)
        end Root;
     end P;
 
------------------------------
+---------------------------
 Other Topics on the Stove
------------------------------
+---------------------------
 
 .. admonition:: Language Variant
 

@@ -285,7 +285,7 @@ Contextual Analysis of Local Subprograms
 
 * Local subprograms without contracts are *inlined* in proof
 
-  - Local: declared inside private part or body
+  - Local: declared inside private section or body
   - Without contracts: no :ada:`Global`, :ada:`Pre`, :ada:`Post`, etc.
   - Additional conditions, details in the SPARK User's Guide
 

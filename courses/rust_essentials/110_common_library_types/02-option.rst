@@ -22,7 +22,7 @@ Why Use "Option<T>"?
   * Requires explicit handling before accessing the value
 
     * Must detemine if value is :rust:`None` or :rust:`Some`
-    * Then extract value if :rust:`Some` 
+    * Then extract value if :rust:`Some`
 
 ----------------------
 What Is "Option<T>"?
@@ -45,7 +45,7 @@ What Is "Option<T>"?
 
     fn main() {
         let user_id = 1;
-    
+
         match find_user(user_id) {
             Some(name) => println!("Found user: {}", name),
             None => println!("User not found."),
@@ -64,17 +64,13 @@ Benefits of "Option"
 
 * Safety and clarity
 
-  * No hidden null pointer 
+  * No hidden null pointer
   * Must explicitly handle absence of value
 
 * Type system enforces handling of missing values
 
   * Cannot just ignore them
   * Fewer runtime surprises
-
-.. note::
-
-  Rust replaces *null* with :rust:`Option` so "nothing" can’t panic behind your back
 
 ------------------
 Common Use Cases
@@ -110,4 +106,3 @@ Common Use Cases
   .. code:: rust
 
     let value = stack.pop();
-

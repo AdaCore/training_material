@@ -13,7 +13,7 @@ Auto-active Proof Lab
 
 - Windows: From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path
 
-   + The file resides in the  the delivered :filename:`labs` folder folder you installed
+   + The file resides in the  the delivered :filename:`labs` folder you installed
    + Pass in the version of SPARK you have installed (e.g. :command:`gpr_project_path 25.1`)
    + This only needs to be done once per command prompt window
 
@@ -22,7 +22,7 @@ Auto-active Proof Lab
    For Linux users, the install location for SPARK varies greatly, so instead there is
    a shell script :filename:`gpr_project_path.sh` which gives you directions
 
-- From the command-line, run :command:`gnatstudio -P lab.gpr`
+- From the command-line, run :command:`gnatstudio -P default.gpr`
 
 - Unfold the source code directory (.) in the project pane
 
@@ -41,7 +41,7 @@ Selection Sort
      and :ada:`Is_Sorted` will help prove :ada:`Selection_Sort`
 
 -----------------------
-Proving the Utilities 
+Proving the Utilities
 -----------------------
 
 .. container:: animate 1-

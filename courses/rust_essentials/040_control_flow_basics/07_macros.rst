@@ -56,9 +56,9 @@ dbg!
    Standard Library
 
 * :rust:`dbg!(expression)` logs the value of the expression
- 
+
 * Returns the value itself
-* Often used for quick, temporary debugging 
+* Often used for quick, temporary debugging
   * Prints the file, line number, and the value
   * Can be used inside other expressions
 * Works the same in both **debug** and **release** modes
@@ -68,7 +68,7 @@ dbg!
     fn factorial(n: u32) -> u32 {
         let mut product = 1;
         for i in 1..=n {
-            product *= dbg!(i); 
+            product *= dbg!(i);
         }
         product
     }
@@ -125,15 +125,15 @@ unreachable!
 
     let number = 3;
     match number {
-        // The match is exhaustive for a 'u32', but in this context,
+        // The match is exhaustive for a 'i32', but in this context,
         // we logically know 'number' will only be 1 or 2.
         1 => println!("One"),
         2 => println!("Two"),
-        
+
         // The underscore _ matches all other possible values.
-        // If we assume 'number' is only ever 1 or 2, this arm 
+        // If we assume 'number' is only ever 1 or 2, this arm
         // should logically be unreachable.
-        _ => unreachable!("Number is outside the expected range!"), 
+        _ => unreachable!("Number is outside the expected range!"),
     }
 
 :command:`thread 'main' (41) panicked at src/main.rs:12:14:`

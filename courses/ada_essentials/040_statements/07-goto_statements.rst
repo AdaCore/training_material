@@ -20,9 +20,9 @@ GOTO Statements
    - Based on common sense
    - Example: cannot jump into a `case` statement
 
---------
+----------
 GOTO Use
---------
+----------
 
 * Mostly discouraged
 * May simplify control flow

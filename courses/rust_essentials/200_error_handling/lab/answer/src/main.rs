@@ -8,7 +8,7 @@
 
 fn main() {
     // TASK 1 - Error Result
-    // Hint: You can return an error using a 'Result' enum variant 'Err' 
+    // Hint: You can return an error using a 'Result' enum variant 'Err'
     enum Reason { TooYoung, TooOld, }
     fn check_age(age: i32) -> Result<i32, Reason> {
         if age < 18 {
@@ -26,9 +26,9 @@ fn main() {
         Err(Reason::TooYoung) => println!("Sorry, you're not old enough yet."),
         Err(Reason::TooOld) => println!("System error: User exceeds maximum age limit."),
     }
-    
+
     // TASK 3 - The Try Operator
-    // Hint: Use the try operator to return an error automatically to the caller of 'register' 
+    // Hint: Use the try operator to return an error automatically to the caller of 'register'
     // if check_age returns an error
     // The try operator tries to convert 'reason' to the return type of 'register' 'string'
     // From trait should be implemented
@@ -43,7 +43,7 @@ fn main() {
     fn register() -> Result<(), String> {
         check_age(10)?;
         Ok(())
-    }  
+    }
 
     // TASK 4 - Handling Propagation
     // Hint: Error has been propagated from 'check_age' to 'register' to 'main'
@@ -53,10 +53,10 @@ fn main() {
         Ok(_) => println!("Registration successful!"),
         Err(e) => println!("Registration failed: {}", e),
     }
-    
+
     // TASK 5 - thiserror
     // Hint: Convert the comments over the two variants into error text using 'thiserror'
-    // Then make sure withdraw returns an 'AccountError' of 'InsufficientFunds' 
+    // Then make sure withdraw returns an 'AccountError' of 'InsufficientFunds'
     // Display the 'balance' and the 'amount'
     use thiserror::Error;
     #[derive(Error, Debug)]
@@ -68,9 +68,9 @@ fn main() {
     }
     fn withdraw(balance: u64, amount: u64) -> Result<u64, AccountError> {
         if amount > balance {
-            return Err(AccountError::InsufficientFunds { 
-                available: balance, 
-                requested: amount 
+            return Err(AccountError::InsufficientFunds {
+                available: balance,
+                requested: amount
             });
         }
         Ok(balance - amount)
@@ -89,7 +89,7 @@ fn main() {
     let result = process_transaction(50, 100);
     if let Err(e) = result {
         // This will print a message that looks like an actual run-time error
-        println!("Error: {}", e); 
+        println!("Error: {}", e);
         // This next line will print the following :
         // Debug Trace: Failed to process withdrawal of $100
         // Caused by:

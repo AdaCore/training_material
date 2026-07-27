@@ -2,9 +2,9 @@
 Miscellaneous
 ===============
 
------------------------------
- Checked Type Conversions
------------------------------
+--------------------------
+Checked Type Conversions
+--------------------------
 
 * Between "closely related" types
 
@@ -27,9 +27,9 @@ Miscellaneous
   - Implicitly defined
   - **Must** be explicitly called
 
--------------
+---------------
 Default Value
--------------
+---------------
 
 * Not defined by language for **scalars**
 * Can be done with an **aspect clause**
@@ -67,9 +67,7 @@ Simple Static Type Derivation
 
 * New type from an existing type
 
-  - **Limited** form of inheritance: operations
-  - **Not** fully OOP
-  - More details later
+  - Allows inheriting of type operations
 
 * Strong type benefits
 

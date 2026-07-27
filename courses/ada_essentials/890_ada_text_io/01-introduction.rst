@@ -2,9 +2,9 @@
 Introduction
 ==============
 
------------------
+-------------
 Ada.Text_IO
------------------
+-------------
 
 * Most common I/O library unit - works with normal text I/O
 * Works with `string` types
@@ -36,9 +36,9 @@ Ada.Text_IO
       Ada.Text_IO.Put_Line ("I just typed: " & From_Input);
    end;
 
-------------------
+-----------------
 Scalar Type I/O
-------------------
+-----------------
 
 * Child generic packages of `Ada.Text_IO` to read / write scalar types
 

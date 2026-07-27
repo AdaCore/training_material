@@ -32,9 +32,9 @@ Annex - Reference Materials
 
 .. container:: PRELUDE END
 
-==========================
+=========================
 General Ada Information
-==========================
+=========================
 
 ---------------------------
 Learning the Ada Language
@@ -69,9 +69,9 @@ Current Ada Standard
 * "ISO/IEC 8652(E) with Technical Corrigendum 1"
 * Useful as a Reference Text but not intended to be read from beginning to end
 
-=====================
+====================
 GNAT-Specific Help
-=====================
+====================
 
 ------------------
 Reference Manual
@@ -81,9 +81,9 @@ Reference Manual
 
 .. image:: gnatstudio-help-gnat.jpeg
 
--------------
+------------
 GNAT Tools
--------------
+------------
 
 * GNAT User's Guide
 
@@ -101,13 +101,13 @@ GNAT Tools
 
 * Many other tools
 
-==================
+=================
 AdaCore Support
-==================
+=================
 
-----------------
+-----------------
 Need More Help?
-----------------
+-----------------
 
 * If you have an AdaCore subscription:
 

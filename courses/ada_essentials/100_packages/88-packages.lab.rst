@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 --------------
 Packages Lab
@@ -62,9 +62,9 @@ Packages Lab Solution - Validation
 
 .. container:: source_include 100_packages/lab/packages/answer/validator.adb :code:Ada :number-lines:1
 
------------------------------------
+------------------------------
 Packages Lab Solution - List
------------------------------------
+------------------------------
 
 .. container:: source_include 100_packages/lab/packages/answer/list.ads :code:Ada :number-lines:1
 

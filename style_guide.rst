@@ -91,6 +91,50 @@ hyphen to describe the change from the base module.
    
    ``195_exceptions-in_depth.rst``
 
+++++++++++++++++++
+Module Structure
+++++++++++++++++++
+
+Each module will contain *chapters* - individual files that address
+a sub-topic within the module. These chapters should conform to
+the following rubric:
+
+* Chapter 1: **Introduction**
+
+  * First slide title: **Topics Covered**
+  
+    * Bold bullets for short title of each sub-topic
+    * Indented bullet for short description of the sub-topic
+
+  * Remaining slides (optional)
+
+    * Background information about the general module purpose
+
+* Chapters 2 through N
+
+  * Various sub-topics within the scope of the module
+
+* Lab (optional)
+
+  * Description of lab
+  * Lab answer
+
+    * Can be multiple slides
+    * Entire code if small
+    * Selected portions if large
+
+* Last chapter: **Summary**
+
+  * First slide title: **What We Covered**
+  
+    * Bold bullets for short title of each sub-topic
+    * Indented bullet(s) for review points for the sub-topic
+
+  * Remaining slides (optional)
+
+    * Only if necessary (exception not the rule)
+    * More specific review of a particular sub-topic
+  
 ----------
 Chapters
 ----------
@@ -120,6 +164,31 @@ the lab will always be **88-<module_name>[-version].lab.rst**. Examples:
   * 88-expressions.lab.rst
   * 99-summary-with_quantified.rst
   * 99-summary.rst
+
+-------------------------
+File Naming Conventions
+-------------------------
+
+* Folder/file names should match their content with the following rules
+
+  * Alpha-numeric characters only (no punctuation, dashes, etc.)
+  * All spaces should be replaced with underscore ("_")
+  * No leading, trailing, or consecutive underscores
+  * Characters should all be lowercase
+
+* Rules for course folder names
+
+  * Folder name for a course should always match the name of the course
+  * Tooling will convert first character in each "word" to upper case
+
+    * In case a course name requires specific upper-case formatting (e.g.
+      "gnatdas" should translate to "GNAT DAS"), you will need to update
+      the "default_title" function in file "pandoc/pandoc_fe.py"
+
+* Rules for module/chapter file names
+
+  * Module and chapter file names should match the module/chapter title.
+  * *(Module/chapter versions are* **not** *part of the title)*
 
 =============
 Style Rules
@@ -151,9 +220,15 @@ Example:
 
     ``-----------------``
 
-Do not use roles or emphasis in slide titles. It can change the color of
-the text, and makes extracting titles from slides more difficult. Current
-behavior is to surround the text you want highlighted with double quotes. 
+Do not use roles (e.g. ":ada:`loop`) in a title - it does not translate
+well for easy RST viewing (like in Git) or in extracting information.
+
+Use the following rules when roles/emphasis seems like a good idea in a title
+
+  * Filenames and toolnames should use bold emphasis in titles
+  * All other roles (such as language tokens, commands, etc) should
+    put the text in quotes (")
+
 
 ---------------
 Code Examples

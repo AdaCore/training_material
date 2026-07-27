@@ -1,10 +1,10 @@
-========
+=====
 Lab
-========
+=====
 
---------------------------
+------------------------
 Interfacing with C Lab
---------------------------
+------------------------
 
 * Requirements
 
@@ -23,25 +23,35 @@ Interfacing with C Lab
       + Distance Type (enumeral)
       + Seconds (floating point)
    
--------------------------------------------------
+--------------------------------------
 Interfacing with C Lab - GNAT Studio
--------------------------------------------------
+--------------------------------------
 
 To compile/link the C file into the Ada executable:
 
-   1. Make sure the C file is in the same directory as the Ada source files
-   2. :menu:`Edit` :math:`\rightarrow` :menu:`Project Properties`
-   3. :menu:`Sources` :math:`\rightarrow` :menu:`Languages` :math:`\rightarrow` Check the "C" box
-   4. Build and execute as normal
+   * Make sure the C file is in the same directory as the Ada source files
+   * Add the following to the :filename:`default.gpr` file
+
+     .. code::
+
+       for Languages use ("Ada", "C");
+
+     *This tells the compiler that the project has both Ada and C sources*
+
+   * Build and execute as normal
+
+.. note::
+
+  The :ada:`Languages` directive is already set in the prompt's :filename:`default.gpr` file
    
------------------------------------------
+---------------------------------------
 Interfacing with C Lab Solution - Ada
------------------------------------------
+---------------------------------------
 
 .. container:: source_include 230_interfacing_with_c/lab/interfacing_with_c/answer/main.adb :code:Ada :number-lines:1
 
----------------------------------------
+-------------------------------------
 Interfacing with C Lab Solution - C
----------------------------------------
+-------------------------------------
 
 .. container:: source_include 230_interfacing_with_c/lab/interfacing_with_c/answer/c_file.c :code:C

@@ -136,9 +136,9 @@ Miscellaneous (2/2)
 Image and Literals
 ====================
 
-----------------------
-Generalized "'Image"
-----------------------
+--------------------
+Generalized 'Image
+--------------------
 
 * All types have a :ada:`Image` attribute
 * Its return value is (mostly) standardized
@@ -188,9 +188,9 @@ User-Defined "Image"
 
 * Using the new package :ada:`Text_Buffers`
 
--------------------------------
-User-Defined "'Image" Example
--------------------------------
+-----------------------------
+User-Defined 'Image Example
+-----------------------------
 
 * :filename:`custom_image.ads`
 
@@ -272,7 +272,7 @@ Container Aggregates
     - :ada:`Add_Named` named aggregate component
     - :ada:`Add_Unnamed` positional aggregate component
 
-* You **cannot** mix named and unnamed
+* **Cannot** mix named and unnamed
 
 .. include:: examples/ada2022/container_aggregates/extracts/decl_aspect.ads
     :code: Ada

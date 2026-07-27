@@ -33,9 +33,9 @@ References
 .. container:: PRELUDE END
 
 .. include:: 060_references/00_introduction.rst
-.. include:: 060_references/01_shared.rst
-.. include:: 060_references/02_exclusive.rst
-.. include:: 060_references/03_navigating.rst
+.. include:: 060_references/01_shared_references.rst
+.. include:: 060_references/02_mutable_references.rst
+.. include:: 060_references/03_binding_vs_reference.rst
 .. include:: 060_references/04_reference_validity.rst
 .. include:: 060_references/05_slices.rst
 .. include:: 060_references/88-references.lab.rst

@@ -131,9 +131,9 @@ About Project Files and Makefiles
 
    gprbuild -P <project-file> ...
 
-===============================
+================================
 Configuring Project Properties
-===============================
+================================
 
 ------------------------------
 Property Values Introduction
@@ -196,9 +196,9 @@ Typed Versus Untyped Variables
 
    - No previous declaration required
 
-----------------------
-Concatenation :ada:`&`
-----------------------
+-------------------
+Concatenation "&"
+-------------------
 
 * :ada:`A & B` concatenate two variables
 * :ada:`String` and :ada:`String`
@@ -496,9 +496,9 @@ Projects for Different Switch Settings
      end Compiler;
    end Release;
 
----------------------------------
-Modularisation using :ada:`with`
----------------------------------
+-----------------------------
+Modularisation Using "with"
+-----------------------------
 
 :filename:`library/library.gpr`
 
@@ -530,9 +530,9 @@ Modularisation using :ada:`with`
      ...
    end Release;
 
--------------------------------------
-Modularisation using :ada:`extends`
--------------------------------------
+--------------------------------
+Modularisation Using "extends"
+--------------------------------
 
 :filename:`common.gpr`
 
@@ -605,9 +605,9 @@ External/Conditional Reference Example
           ...
    end Build;
 
-===========
-GPRCONFIG
-===========
+=============
+"gprconfig"
+=============
 
 --------------------------------
 Configuration File Description
@@ -698,7 +698,7 @@ GPRCONFIG Options
 ===================
 
 ------------------------
-Command line arguments
+Command Line Arguments
 ------------------------
 
 * *--target=platform*
@@ -718,7 +718,7 @@ Command line arguments
    - Optional arguments will be computed automatically
 
 ------------------------------------
-Command line arguments (continued)
+Command Line Arguments (Continued)
 ------------------------------------
 
 * **--batch**

@@ -1,6 +1,6 @@
-***********************
-:toolname:`GNATcheck`
-***********************
+***************
+**GNATcheck**
+***************
 
 .. container:: PRELUDE BEGIN
 
@@ -36,9 +36,9 @@
 Introduction
 ==============
 
-------------------------------
-:toolname:`GNATcheck` Is...
-------------------------------
+---------------------
+**GNATcheck** Is...
+---------------------
 
 + An **automated** coding standards checker
 + Capable of expressing a variety of rules
@@ -73,9 +73,9 @@ Conformance to Standards Requirement - DO-178
    | 
    |     This analysis also ensures that **deviations to the standards are justified.**
 
-------------------------------------------
-:toolname:`GNATcheck` Input Requirements
-------------------------------------------
+----------------------------------
+**GNATcheck** Input Requirements
+----------------------------------
 
 * Can analyze sources that are not legal
 

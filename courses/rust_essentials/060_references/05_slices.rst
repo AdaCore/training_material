@@ -17,7 +17,7 @@ What Are Slices?
 
 .. code:: rust
 
-    let primes: [i32; 6] = [2, 3, 5, 7, 11, 13];  
+    let primes: [i32; 6] = [2, 3, 5, 7, 11, 13];
     let slice: &[i32] = &primes[2..4];
 
 :command:`primes: [2, 3, 5, 7, 11, 13]`
@@ -37,7 +37,7 @@ Slice Creation
 
   * - **Syntax**
     - **Range**
-    
+
   * - :rust:`&a[start..]`
     - Explicit start to implicit end
 
@@ -92,7 +92,7 @@ Fat Pointer
 - Carry **two** components
 
   - **Data Pointer** - memory address where data starts
-  - **Length** - how many items to look at
+  - **Length** - how many elements to look at
 
 .. code:: rust
 
@@ -118,8 +118,8 @@ Fat Pointer
 
 .. code:: rust
 
-   let s1: &str = "Hello World";
-   let s2: &str = &s1[..5];
-   println!("s2: {s2}");
+   let message: &str = "Hello World";
+   let preview: &str = &message[..5];
+   println!("preview: {preview}");
 
-:command:`s2: Hello`
+:command:`preview: Hello`

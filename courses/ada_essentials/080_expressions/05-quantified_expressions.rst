@@ -29,9 +29,9 @@ Quantified Expressions
 ..
   language_version 2012
 
------------------------------------------
-Semantics Are As If You Wrote This Code
------------------------------------------
+-----------------------------------
+Same Behavior without Quantifiers
+-----------------------------------
 
 .. code:: Ada
 
@@ -270,9 +270,9 @@ Index-Based Vs Component-Based Indexing
 ..
   language_version 2012
 
----------------------------
- When the Set Is Empty...
----------------------------
+--------------------------
+When the Set Is Empty...
+--------------------------
 
 * Universally quantified expressions are True
 

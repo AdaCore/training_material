@@ -15,7 +15,7 @@ Subprogram Contracts and Information Hiding
 
 * Information hiding forbids exposing variables and types
 
-  - Global variables in the private part or body
+  - Global variables in the private section or body
   - Use of private types for parameters
 
 * Solution is to use (ghost) query functions

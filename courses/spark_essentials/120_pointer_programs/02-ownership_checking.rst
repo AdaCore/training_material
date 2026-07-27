@@ -198,9 +198,9 @@ Access to Data on the Stack
 
 * Variable is *moved* and cannot be referenced anymore
 
------------------------------------------------
-Attributes :ada:`Old` and :ada:`Loop_Entry`
------------------------------------------------
+-----------------------------------
+Attributes "Old" and "Loop_Entry"
+-----------------------------------
 
 * Attributes :ada:`Old` and :ada:`Loop_Entry` not applicable to pointers
 

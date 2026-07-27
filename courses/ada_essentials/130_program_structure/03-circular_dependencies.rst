@@ -1,6 +1,6 @@
-=========================
+=======================
 Circular Dependencies
-=========================
+=======================
 
 --------------------------------
 Handling Circular Dependencies
@@ -43,9 +43,9 @@ Resulting Design Problem
 
      - Best choice would be to implement both parts in a new package
 
--------------------------------------------
+--------------------------------------------
 Circular Dependency in Package Declaration
--------------------------------------------
+--------------------------------------------
 
 .. code:: Ada
 
@@ -127,7 +127,7 @@ What Is an Incomplete Type?
 
    type Incomplete_T;
 
-* Can be declared in a **private** part of a package
+* Can be declared in a **private** section of a package
 
   - And completed in its body
   - Used to implement opaque pointers

@@ -2,9 +2,9 @@
 Identifiers and Comments
 ==========================
 
------------
+-------------
 Identifiers
------------
+-------------
 
 .. image:: identifier_flow.svg
 

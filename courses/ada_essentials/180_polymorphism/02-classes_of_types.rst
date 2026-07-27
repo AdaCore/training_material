@@ -2,9 +2,9 @@
 Classes of Types
 ==================
 
-----------
+---------
 Classes
-----------
+---------
 
 * In Ada, a Class denotes an inheritance subtree
 * Class of `Root` is the class of `Root` and all its children
