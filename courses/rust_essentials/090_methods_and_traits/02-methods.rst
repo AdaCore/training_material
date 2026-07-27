@@ -231,9 +231,9 @@ Method Receiver - No Receiver
     // OK: 'count' is now a normal value
     println!("Value: {}", count.value);
 
-  .. code:: output
+.. code:: output
 
-    Value: 0
+  Value: 0
 
 **Behavior**
 
