@@ -217,7 +217,7 @@ Quiz
 
    .. container:: animate
 
-      Full definition of :ada:`Priv1_T` adds 
+      Full definition of :ada:`Priv1_T` adds
       restrictions, which is not allowed. :ada:`Priv2_T`
       contains a component whose visible view is :ada:`limited`,
       the internal view is not :ada:`limited` so :ada:`Priv2_T` is
