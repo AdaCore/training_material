@@ -39,10 +39,10 @@ Proof Levels
       :header-rows: 1
 
       * - **--level=**
-        - --prover=
-        - --timeout= *(seconds)*
-        - --memlimit= *(MB)*
-        - --counterexamples=
+        - **--prover=**
+        - **--timeout=** *(seconds)*
+        - **--memlimit=** *(MB)*
+        - **--counterexamples=**
 
       * - **0**
         - cvc5

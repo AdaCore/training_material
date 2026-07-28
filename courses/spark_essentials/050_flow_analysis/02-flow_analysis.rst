@@ -70,11 +70,11 @@ written, or object written only on some paths, or both
  .. list-table::
    :header-rows: 1
 
-  * - Initial Read
+  * - **Initial Read**
 
-    - Partial Write
-    - Full Write
-    - Parameter Mode
+    - **Partial Write**
+    - **Full Write**
+    - **Parameter Mode**
 
   * - |checkmark|
 
