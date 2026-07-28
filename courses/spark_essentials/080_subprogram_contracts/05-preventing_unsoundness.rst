@@ -142,7 +142,7 @@ Subprogram Variants
 Quiz
 ------
 
-Which statement is correct?
+**Which statement is correct?**
 
    A. All functions terminate by definition in SPARK
    B. An inconsistent axiom may be caused only by a non-terminating function

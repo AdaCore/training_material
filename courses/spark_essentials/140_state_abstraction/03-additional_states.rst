@@ -6,7 +6,7 @@ Additional States
 Nested Packages
 -----------------
 
-* State of package :ada:`P` includes state of nested packages :ada:`N`
+**State of package** :ada:`P` **includes state of nested packages** :ada:`N`
 
   - :ada:`N` may have visible state (variables in the public section, abstract states)
 

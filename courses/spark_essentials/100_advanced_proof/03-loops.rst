@@ -71,7 +71,7 @@ Loop Invariants
 Loop Invariants in Proof
 --------------------------
 
-* The loop invariant acts as a cut point for the SP calculus
+**The loop invariant acts as a cut point for the SP calculus**
 
   - Establish it at the beginning of the loop
   - Check that it is preserved by one iteration
@@ -87,7 +87,7 @@ Placement of Loop Invariants
 
  .. container:: column
 
-    * Proof reasons around the *virtual loop*
+   **Proof reasons around the** *virtual **loop***
 
       - Starting from the loop invariant
       - Ending at the loop invariant
