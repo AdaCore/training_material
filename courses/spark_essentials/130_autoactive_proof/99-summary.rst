@@ -3,7 +3,7 @@ Summary
 =========
 
 -------------------
-Auto-active Proof
+Auto-Active Proof
 -------------------
 
 * Not all proofs are easy

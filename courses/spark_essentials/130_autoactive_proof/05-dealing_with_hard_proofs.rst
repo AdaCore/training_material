@@ -1,5 +1,5 @@
 ==========================
-Dealing with Hard Proofs
+Dealing With Hard Proofs
 ==========================
 
 ----------------------------
@@ -64,7 +64,7 @@ Triggering Provers
   - Disable such inlining with an explicit :ada:`Post => True`
 
 -----------------------
-Dealing with Equality
+Dealing With Equality
 -----------------------
 
 * Equality in SPARK :math:`\neq` logical equality
@@ -90,7 +90,7 @@ Dealing with Equality
     - :toolname:`GNATprove` checks that this is sound
 
 ------------------------
-Computing with Provers
+Computing With Provers
 ------------------------
 
 * Provers not a good fit for computing values

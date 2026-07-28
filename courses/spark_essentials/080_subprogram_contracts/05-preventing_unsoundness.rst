@@ -55,7 +55,7 @@ Unfeasible Contracts
     + **Except** when subprogram does not terminate
 
 ---------------------------
-Non-terminating Functions
+Non-Terminating Functions
 ---------------------------
 
 What's wrong with the following code?

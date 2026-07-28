@@ -3,7 +3,7 @@ Contracts by Cases
 ====================
 
 -------------------------------------
-Simplifying Pre- and Postconditions
+Simplifying Pre- And Postconditions
 -------------------------------------
 
 * Assume a subprogram that increments away from zero
