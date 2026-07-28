@@ -26,7 +26,7 @@ Main Language Restrictions
 .. container:: speakernote
 
    There are more minor restrictions on the user of specific features, like
-   some expressions which cannot mention variables.
+   some expressions which cannot mention variables
 
 --------------------------------
 Functions Without Side-Effects

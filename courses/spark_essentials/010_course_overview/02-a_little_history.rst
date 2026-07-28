@@ -45,7 +45,7 @@ The Verifying Compiler
 
 .. container:: speakernote
 
-   It exists. GNATprove. This is what we will talk about.
+   It exists. GNATprove. This is what we will talk about
 
 -----------------------------------------------
 Formal Verification and Programming Languages
@@ -56,12 +56,12 @@ Formal Verification and Programming Languages
 |
 
 * Our ability to deliver automatic formal verification **critically** depends on
-  the **language** that is being analyzed.
+  the **language** that is being analyzed
 
 |
 
 * Most languages were **not** designed with formal verification as a primary design
-  goal.
+  goal
 
 ---------------------------
 Formal Verification Goals

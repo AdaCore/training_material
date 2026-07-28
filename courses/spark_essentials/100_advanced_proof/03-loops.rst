@@ -250,8 +250,8 @@ Loop Frame Condition (2/2)
 .. container:: speakernote
 
    We don't use "(for all K in J+1 .. T'Last =>" here, as that could
-   lead to an index overflow.
-   Hence the use of an if-expression.
+   lead to an index overflow
+   Hence the use of an if-expression
 
 ---------------------------
 Classical Loop Invariants

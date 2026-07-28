@@ -40,7 +40,7 @@ Hoare Triples
 * Meaning of ``{P} S {Q}`` triple:
 
    - If we start in a state where ``P`` is true and execute ``S``, then ``S``
-     will terminate in a state where ``Q`` is true.
+     will terminate in a state where ``Q`` is true
 
 ----------------------
 Quiz - Hoare Triples
@@ -59,10 +59,10 @@ Which one of these is **invalid**?
    Explanations
 
    A. :ada:`Y >= 2` entails :ada:`Y >= 0`
-   B. This is true independent of the precondition.
-   C. This is true independent of the postcondition.
+   B. This is true independent of the precondition
+   C. This is true independent of the postcondition
    D. **Invalid**: :ada:`Y >= 2` does not entail :ada:`Y >= 3`
-   E. This is true independent of the precondition.
+   E. This is true independent of the precondition
 
 -----------------------------------------
 VC Generation - Strongest Postcondition
@@ -102,9 +102,9 @@ Which one(s) of these has a **Strongest Postcondition**?
 
    Explanations
 
-   A. Information about :ada:`X` is lost.
-   B. Information about :ada:`X` is lost.
-   C. Information about :ada:`X` is lost.
+   A. Information about :ada:`X` is lost
+   B. Information about :ada:`X` is lost
+   C. Information about :ada:`X` is lost
    D. Correct
    E. Correct (equivalent to answer D)
 

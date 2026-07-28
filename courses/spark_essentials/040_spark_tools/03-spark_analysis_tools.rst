@@ -106,7 +106,7 @@ Structure of GNATprove
 .. container:: speakernote
 
    Image comes from Appendix of SPARK User's Guide on "SPARK Architecture,
-   Quality Assurance and Maturity".
+   Quality Assurance and Maturity"
 
 -------------------
 Legality Checking

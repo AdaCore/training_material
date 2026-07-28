@@ -62,7 +62,7 @@ Objectives of Using SPARK
 
 .. container:: speakernote
 
-   Details of objectives are in section 8.2 of SPARK UG.
+   Details of objectives are in section 8.2 of SPARK UG
 
 -------------------
 Project Scenarios

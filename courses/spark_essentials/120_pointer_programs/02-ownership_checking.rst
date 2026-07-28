@@ -33,7 +33,7 @@ Access Types in Ada
      type G_Acc is access all Integer;
 
   - Type :ada:`PS_Acc` can only point to the heap, :ada:`GS_Acc` can point to
-    the heap and stack.
+    the heap and stack
 
 * Accessibility levels prevent escaping pointers to the stack
 
