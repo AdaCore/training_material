@@ -17,7 +17,7 @@ Available IDEs Supporting SPARK
 
 * Ada/SPARK extension for Visual Studio Code
 
-   - If you are already using VS Code
+   - For those already using VS Code
 
 -------------------------------------
 Basic **GNAT Studio** Look and Feel

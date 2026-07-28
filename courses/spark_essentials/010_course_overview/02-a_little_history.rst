@@ -18,7 +18,7 @@ Motivating Example
          Value := DurationT(RawDuration * 10);
       else
 
-* Can you see the problem?
+* What's wrong with this code?
 * This error escaped lots of testing and reviews!
 
 .. container:: speakernote
@@ -69,9 +69,9 @@ Formal Verification Goals
 
 * Ideally we would like static verification to be:
 
-  - Deep (tells you something **useful**)
+  - Deep (identifies something **useful**)
   - Sound (with **no false negatives**)
-  - Fast (tells you **now**)
+  - Fast (results **now**)
   - Precise (with as few false alarms/positives as possible)
   - Modular (analyzes modules in parallel)
   - Constructive (works on incomplete programs)

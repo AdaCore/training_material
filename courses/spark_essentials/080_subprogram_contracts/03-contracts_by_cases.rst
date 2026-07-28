@@ -6,7 +6,7 @@ Contracts by Cases
 Simplifying Pre- and Postconditions
 -------------------------------------
 
-* Assume you have a subprogram that increments away from zero
+* Assume a subprogram that increments away from zero
 
   .. code:: Ada
 
@@ -16,7 +16,7 @@ Simplifying Pre- and Postconditions
         elsif Number'Old > 0 then Number = Number'Old + 1
         else Number = Number'Old);
 
-* You are really trying to show different expected outputs over the
+* Trying to show different expected outputs over the
   entire input range
 
   * Almost like a :ada:`case` expression!

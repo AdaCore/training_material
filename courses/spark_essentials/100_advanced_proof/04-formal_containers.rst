@@ -11,7 +11,7 @@ Formal Containers in SPARKlib
   - Distributed with SPARK Pro
   - Copy :filename:`sparklib.gpr` or :filename:`sparklib_light.gpr` locally
   - Set value of :code:`Object_Dir` in the copied project file
-  - To use, add :code:`with "sparklib[_light]";` in your project file
+  - To use, add :code:`with "sparklib[_light]";` in the project file
 
 * Reminder: four kinds of formal containers
 

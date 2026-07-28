@@ -10,7 +10,7 @@ Auto-active Proof
 
 * Understand tool messages
 
-  - Messages guide you to help the tool
+  - Messages guide programmer to help the tool
   - Many useful parts in a message
 
 * Auto-active proof needed for harder proofs

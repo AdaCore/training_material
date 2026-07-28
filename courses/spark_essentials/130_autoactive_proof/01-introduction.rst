@@ -49,7 +49,7 @@ Investigating Unproved Checks
 
 * Need to understand the messages output by :toolname:`GNATprove`!
 
-  - Tool tries to help you help it
+  - Tool tries to help the programmer help the tool
 
 -----------------
 The Proof Cycle
