@@ -2,9 +2,9 @@
 SPARK Analysis Tools
 ======================
 
--------------------------------------
-**GNATprove** - A Command Line Tool
--------------------------------------
+---------------------------------
+GNATprove - A Command Line Tool
+---------------------------------
 
 * Invocation syntax: :command:`gnatprove -P prj-file [switches]`
 * If project file not given, like :toolname:`GPRbuild`:
@@ -26,9 +26,9 @@ SPARK Analysis Tools
     + Prover selection with :command:`--prover=`
     + Prover control with :command:`--timeout= --steps= --memlimit=`
 
-------------------------------------
-**GNATprove** - Project File Usage
-------------------------------------
+--------------------------------
+GNATprove - Project File Usage
+--------------------------------
 
 * Tool package :code:`Prove` corresponds to :toolname:`GNATprove`
 
@@ -95,9 +95,9 @@ Adapting the Project File for Analysis
 
      gnatprove -P my_project -XMODE=Analyze
 
-----------------------------
-Structure of **GNATprove**
-----------------------------
+------------------------
+Structure of GNATprove
+------------------------
 
 |
 
@@ -200,15 +200,15 @@ Categories of Messages
   - Report proved checks with switch :command:`--report=all`
   - Report information about analysis with switch :command:`--info`
 
---------------------------------
-**GNATprove** Output for Users
---------------------------------
+----------------------------
+GNATprove Output for Users
+----------------------------
 
 .. image:: gnatprove-output-options.png
 
------------------------------------------
-Analysis Summary File **gnatprove.out**
------------------------------------------
+---------------------------------------
+Analysis Summary File "gnatprove.out"
+---------------------------------------
 
 * Located in :filename:`gnatprove/` under project object dir
 * An overview of results for all checks in project
