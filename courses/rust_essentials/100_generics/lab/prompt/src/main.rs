@@ -1,8 +1,8 @@
 //! Lab (prompt)
 //! Generics
 //!
-//! Fix all the compile errors below by following the hints provided 
-//! 
+//! Fix all the compile errors below by following the hints provided
+//!
 #[allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
@@ -25,10 +25,10 @@ fn main() {
     // TASK 3 - Meeting Constraints
     // Hint: Vegetable needs to implement `PartialOrd` and `PartialEq`
     struct Vegetable;
-    
+
     let potato = Vegetable;
     let sweet_potato = Vegetable;
-    
+
     println!("{}", smaller(potato, sweet_potato));
 
     // TASK 4 - Turbofish Syntax
@@ -58,7 +58,7 @@ fn main() {
         content: T,
     }
 
-    struct Secret; 
+    struct Secret;
 
     let bad_box = BoxContainer { content: Secret };
     println!("{:?}", bad_box); // Fails if 'Secret' doesn't implement `Debug`

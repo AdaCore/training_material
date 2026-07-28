@@ -64,7 +64,7 @@ Address Values
 * The type :ada:`Address` is declared in :ada:`System`
 
    - But this is a :ada:`private` type
-   - You cannot use a number
+   - Cannot use a number
 
 * Ada standard way to set constant addresses:
 

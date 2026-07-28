@@ -41,7 +41,7 @@ Information Hiding
     .. image:: interface_vs_implementation.svg
        :width: 50%
 
-* Example - you can drive a car without knowing how the engine works:
+* Example - driving a car without knowing how the engine works:
 
   * **Interfaces:** steering wheel, pedals, etc
   * **Implementation:** engine, transmission, brake pads, etc

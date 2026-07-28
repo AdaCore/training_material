@@ -25,5 +25,5 @@ What We Covered
 
 - **Arithmetic Safety** 
 
-    - Rust protects you from undefined behavior
+    - Protects you from undefined behavior
     - **Overflow** is detected (panic) or defined (wrap)

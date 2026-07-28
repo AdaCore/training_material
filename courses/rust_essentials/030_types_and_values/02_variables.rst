@@ -29,7 +29,7 @@ By Default, Variables Are Immutable
 
 - **Immutable** = **unchangeable**
 
-- This is a core concept in Rust
+- This is a core concept
 
   - The **compiler** will generate errors on assignment
 
@@ -57,9 +57,9 @@ Making Variables Mutable
 
 - Sometimes, you *need* to change a value
 
-- Rust requires **explicit** permission to do this
+- Variables are immutable unless mutability is declared **explicitly**
 
-- :rust:`mut` - tells Rust the variable is **mutable**
+- :rust:`mut` - specifies the variable is **mutable**
 
   - Add it to the declaration
   - The keyword follows :rust:`let`
@@ -79,4 +79,4 @@ Making Variables Mutable
 
 .. note::
 
-  In Rust, mutability is an **opt-in** choice
+  Mutability is an **opt-in** choice

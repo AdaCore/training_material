@@ -11,26 +11,63 @@ Automatic Error Type Conversion
 * If error types match |rightarrow| returned directly
 * If they differ |rightarrow| converted using :rust:`From`
 
-.. code:: rust
+.. container:: columns
 
-  enum Reason { TooYoung, TooOld, }
+  .. container:: column
 
-  // Error type is 'Reason'
-  fn check_age(age: i32) -> Result<i32, Reason> {
-      Err(Reason::TooYoung)
-  }
+    .. code:: rust
+      :font-size: tiny
 
-  // Error type is 'String'
-  fn register() -> Result<(), String> {
-      // '?' sees 'Reason', knows the return type is 'String',
-      // and converts it behind the scenes.
-      check_age(10)?; 
-      Ok(())
-  }
+      enum Reason { TooYoung, TooOld, }
+      impl From<Reason> for String {
+          fn from(reason: Reason) -> Self {
+              match reason {
+                  Reason::TooYoung =>
+                      String::from("Too Young"),
+                  Reason::TooOld =>
+                      String::from("Too Old"),
+              }
+          }
+      }
+      // Error type is 'Reason'
+      fn check_age(age: i32) -> Result<i32, Reason> {
+          if age < 18 {
+              Err(Reason::TooYoung)
+          } else if age > 65 {
+              Err(Reason::TooOld)
+          } else {
+              Ok(age)
+          }
+      }
+
+  .. container:: column
+
+    .. code:: rust
+      :font-size: tiny
+
+      // Error type is 'String'
+      fn register(age: i32) -> Result<i32, String> {
+          // '?' sees 'Reason', knows the return type is 'String',
+          // and converts it behind the scenes.
+          check_age(age)?;
+          Ok(age)
+      }
+      match register(10) {
+          Ok(age) => println!("Good enough {age}"),
+          Err(e) => eprintln!("Problem: {e}"),
+      }
+      match register(70) {
+          Ok(age) => println!("Good enough {age}"),
+          Err(e) => eprintln!("Problem: {e}"),
+      }
+
+:error:`Problem: Too Young`
+
+:error:`Problem: Too Old`
 
 .. note::
 
-  Return error type must implement :rust:`From` trait for source error type
+  Return error type (:rust:`String`) must implement :rust:`From<Reason>`
 
   * Compiler verifies a valid path exists to convert the error
   * If not, it throws a *trait bound not satisfied* error

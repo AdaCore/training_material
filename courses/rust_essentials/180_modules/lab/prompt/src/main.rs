@@ -2,7 +2,7 @@
 //! Modules
 //!
 //! Fix all the compile errors below by following the hints provided
-//! 
+//!
 #[allow(dead_code)]
 #[allow(unused_variables)]
 #[allow(unused_imports)]

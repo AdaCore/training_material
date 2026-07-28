@@ -60,9 +60,19 @@ Setting Coverage Type
 
 * For :toolname:`GNAT Studio`, we simplify by using the same coverage type for all steps
 
-   * :menu:`Edit` |rightarrow| :menu:`Project Properties`
+  * In the **Project** pane, right-click on the project name (GPR filename)
 
-      .. image:: gnatdas/cover_properties_dialog.png
+    * Click :menu:`Project` |rightarrow| :menu:`Edit source file`
+
+  * Add the following package to the project source file
+
+    .. code:: Ada
+
+      package Coverage is
+         for Switches ("*") use ("--level=stmt+decision");
+      end Coverage;
+
+    *Common levels are* ``stmt``*,* ``stmt+decision``*,* ``stmt+mcdc``
 
 --------------------
 One-Click Coverage
