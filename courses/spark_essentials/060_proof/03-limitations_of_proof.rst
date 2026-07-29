@@ -106,7 +106,7 @@ Cost/Benefit Analysis
    - Annotations typically much larger than code (:math:`\times` 10)
 
 ---------------------------
-Dealing with False Alarms
+Dealing With False Alarms
 ---------------------------
 
 * Check messages can be justified with pragma :ada:`Annotate`

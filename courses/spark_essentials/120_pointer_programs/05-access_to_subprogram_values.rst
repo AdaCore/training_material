@@ -1,5 +1,5 @@
 =============================
-Access-to-subprogram Values
+Access-to-Subprogram Values
 =============================
 
 -----------------------------

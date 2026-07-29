@@ -66,7 +66,7 @@ Child Packages
                                  P.Priv.Var, ...
 
 -------------------------------
-Constants with Variable Input
+Constants With Variable Input
 -------------------------------
 
 * Constants are not part of the package state usually

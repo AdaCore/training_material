@@ -3,7 +3,7 @@ Migrating to SPARK
 ====================
 
 -----------------------------
-Migrating from Ada to SPARK
+Migrating From Ada to SPARK
 -----------------------------
 
 * Analyzing the Ada code will point to SPARK violations

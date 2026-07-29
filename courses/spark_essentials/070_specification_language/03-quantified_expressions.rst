@@ -3,7 +3,7 @@ Quantified Expressions
 ========================
 
 ------------------
-Range-based Form
+Range-Based Form
 ------------------
 
 * Based on the usual *for loop* syntax over a range
@@ -28,7 +28,7 @@ Range-based Form
   - At run-time, executed as a loop which stops at first value where the property is satisfied
 
 ------------------
-Array-based Form
+Array-Based Form
 ------------------
 
 * Based on the *for loop* syntax over an array
@@ -48,7 +48,7 @@ Array-based Form
 * Note: always in **parentheses**!
 
 ----------------------------------
-Range-based Vs Array-based Forms
+Range-Based vs Array-Based Forms
 ----------------------------------
 
 * Array-based form only possible if :ada:`Property` does **not** refer to the

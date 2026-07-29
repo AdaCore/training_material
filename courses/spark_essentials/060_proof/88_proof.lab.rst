@@ -17,7 +17,7 @@ Proof Lab
 - Unfold the source code directory (.) in the project pane
 
 -------------------------------
-Understanding Run-time Errors
+Understanding Run-Time Errors
 -------------------------------
 
 .. container:: animate 1-
@@ -48,7 +48,7 @@ Understanding Run-time Errors
   :ada:`T` is an unconstrained array, so no guarantees that :ada:`I` and :ada:`J` are valid
 
 ----------------------------
-Absence of Run-time Errors
+Absence of Run-Time Errors
 ----------------------------
 
 .. container:: animate 1-

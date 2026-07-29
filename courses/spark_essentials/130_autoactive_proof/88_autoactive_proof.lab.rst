@@ -3,7 +3,7 @@ Lab
 =====
 
 -----------------------
-Auto-active Proof Lab
+Auto-Active Proof Lab
 -----------------------
 
 - Find the :filename:`autoactive_proof` directory in  the delivered :filename:`labs` folder

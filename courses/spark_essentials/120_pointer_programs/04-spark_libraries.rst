@@ -3,7 +3,7 @@ SPARK Libraries
 =================
 
 ------------------------------
-Pointers with Aliasing (1/2)
+Pointers With Aliasing (1/2)
 ------------------------------
 
 * SPARK Library defines two generics
@@ -24,7 +24,7 @@ Pointers with Aliasing (1/2)
   - All accesses through API check validity of pointer
 
 ------------------------------
-Pointers with Aliasing (2/2)
+Pointers With Aliasing (2/2)
 ------------------------------
 
 * Shared API to create, free, access pointers
