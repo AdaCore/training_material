@@ -37,7 +37,7 @@ procedure Main is
 --|checks_end
 
 --|main_begin
-   Good_Dates : constant Dates_T :=
+   Valid_Dates : constant Dates_T :=
      ((Year => 2_025, Month => 1, Day => 2),
       (Year => 2_024, Month => 2, Day => 28),
       (Year => 2_000, Month => 2, Day => 29));
@@ -54,9 +54,9 @@ procedure Main is
 
 begin
 
-   Put_Line ("Good_Dates");
-   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Good_Dates)));
-   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Good_Dates)));
+   Put_Line ("Valid_Dates");
+   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Valid_Dates)));
+   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Valid_Dates)));
 
    Put_Line ("Mixed_Dates");
    Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Mixed_Dates)));
