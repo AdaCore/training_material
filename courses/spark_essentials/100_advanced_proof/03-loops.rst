@@ -269,7 +269,7 @@ Classical Loop Invariants
 
 |
 
-* SPARK User's Guide gives detailed loop invariants
+* SPARK Programmer's Guide gives detailed loop invariants
 
   - See section *7.9.2 Loop Examples*
   - Loops on arrays or formal containers

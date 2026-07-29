@@ -48,7 +48,7 @@ Array-Based Form
 * Note: always in **parentheses**!
 
 ----------------------------------
-Range-Based vs Array-Based Forms
+Range-Based vs. Array-Based Forms
 ----------------------------------
 
 * Array-based form only possible if :ada:`Property` does **not** refer to the

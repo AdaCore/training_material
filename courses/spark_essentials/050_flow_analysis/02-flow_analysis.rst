@@ -183,7 +183,7 @@ Generation of Data Dependency Contracts
     + Because it is not known if the initial value is read
     + Because it is not known if the object is fully written on all paths
 
-  - Precision can be recovered by adding a user contract
+  - Precision can be recovered by adding a programmer contract
 
 --------------
 Bronze Level

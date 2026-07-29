@@ -59,5 +59,5 @@ The Proof Cycle
 
 .. container:: speakernote
 
-   For SPARK (or other verification systems users) the basic process is the same, but details vary
+   For SPARK (or other verification systems programmers) the basic process is the same, but details vary
 

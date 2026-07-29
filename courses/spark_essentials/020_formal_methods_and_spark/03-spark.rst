@@ -48,7 +48,7 @@ SPARK Is a Language Subset
   - Based on strongly typed feature-rich Ada programming language
   - **Restrictions** on Ada features to make proof easier
 
-    1. Simplify user's effort for annotating the code
+    1. Simplify programmer's effort for annotating the code
 
     2. Simplify the job of automatic provers
 
