@@ -7,7 +7,7 @@ SPARK Analysis Tools
 -------------------------------------
 
 * Invocation syntax: :command:`gnatprove -P prj-file [switches]`
-* If project file not given, like :toolname:`GPRbuild`:
+* If project file not given, like :toolname:`GPRbuild`
 
   - Takes the project file in the **current directory** if present
   - Otherwise generates a basic project file
@@ -106,7 +106,7 @@ Structure of **GNATprove**
 .. container:: speakernote
 
    Image comes from Appendix of SPARK User's Guide on "SPARK Architecture,
-   Quality Assurance and Maturity".
+   Quality Assurance and Maturity"
 
 -------------------
 Legality Checking
@@ -120,7 +120,7 @@ Legality Checking
 
   - Ex: :command:`<expr> cannot depend on variable input <var>`
 
-  - May include fix:
+  - May include fix
 
     .. container:: latex_environment footnotesize
 
@@ -129,7 +129,7 @@ Legality Checking
 
     *apply the suggested fix*
 
-  - May include *explain code*:
+  - May include *explain code*
 
     :color-red:`[E0007]`
 
@@ -151,7 +151,7 @@ Flow Analysis
 
   - Notion of dependency contracts summarize effects of call
 
-* Outputs messages:
+* Outputs messages
 
   - Error messages need to be fixed
   - Check messages need to be reviewed, and either fixed or justified
@@ -170,7 +170,7 @@ Proof
 
   - Notion of functional contracts summarize effects of call
 
-* Outputs messages:
+* Outputs messages
 
   - Check messages need to be reviewed, and either fixed or justified
   - Warnings can be inspected and silenced

@@ -53,13 +53,13 @@ Set Notation
 --------------
 
 * Usable in both *case expressions* / *case statements* and in membership tests
-* Without set notation:
+* Without set notation
 
   .. code:: Ada
 
      if X = 'A' or else X = 'B' or else X = 'C' then
 
-* With set notation:
+* With set notation
 
   .. code:: Ada
 

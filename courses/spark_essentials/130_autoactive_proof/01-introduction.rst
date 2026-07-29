@@ -8,7 +8,7 @@ Not All Proofs Are Easy
 
 * correct spec + correct code |rightarrow| proof?
 
-* We saw already limitations of automatic provers:
+* We saw already limitations of automatic provers
 
   - Arithmetic - non-linear and mixed arithmetic
   - Quantifiers - existential quantifiers and induction

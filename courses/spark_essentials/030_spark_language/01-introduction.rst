@@ -21,7 +21,7 @@ Excluding Ambiguity
 ---------------------
 
 * Soundness requires that program semantics are **clear**
-* Easiest way is to avoid **language** ambiguities:
+* Easiest way is to avoid **language** ambiguities
 
   - No :dfn:`erroneous behavior` from Ada Reference Manual
 
@@ -50,7 +50,7 @@ SPARK Reference Manual
 * Builds on the Ada Reference Manual
 
   - Follows the **same section numbering**
-  - Has similar subsections:
+  - Has similar subsections
 
     + **Syntax**
     + **Name Resolution Rules**

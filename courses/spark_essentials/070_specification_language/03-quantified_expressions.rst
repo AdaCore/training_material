@@ -105,7 +105,7 @@ Iteration Over Formal Containers
   - The API is slightly different from standard Ada containers
   - Available in the SPARK Library
 
-* Available for **all** formal containers:
+* Available for **all** formal containers
 
   - vectors
   - doubly linked lists

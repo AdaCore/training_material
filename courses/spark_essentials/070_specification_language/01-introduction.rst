@@ -15,7 +15,7 @@ Simple Expressions
 
           I in T'Range
 
-    is better than:
+    is better than
 
     .. code:: ada
 

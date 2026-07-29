@@ -37,7 +37,7 @@ Sections With "SPARK_Mode"
 
 |
 
-* Packages can have between 1 and 4 sections:
+* Packages can have between 1 and 4 sections
 
   - package spec visible and private sections, package body declarations and
     statements

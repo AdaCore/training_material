@@ -60,7 +60,7 @@ Static vs Dynamic Predicate
 
 |
 
-* Aspect :ada:`Predicate` is GNAT name for:
+* Aspect :ada:`Predicate` is GNAT name for
 
   - :ada:`Static_Predicate` if predicate is static
   - :ada:`Dynamic_Predicate` otherwise

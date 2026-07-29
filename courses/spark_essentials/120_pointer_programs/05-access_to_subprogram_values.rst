@@ -8,7 +8,7 @@ Higher Order Specialization
 
 * Higher order functions take an anonymous access-to-subprogram parameter
 
-* Example of map:
+* Example of map
 
   .. code:: ada
 

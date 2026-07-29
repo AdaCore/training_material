@@ -63,7 +63,7 @@ Excluded Ada Features
 
 .. container:: speakernote
 
-   And that's it! SPARK supports most features in Ada today.
+   And that's it! SPARK supports most features in Ada today
 
 ----------------------
 Support for Generics
@@ -73,7 +73,7 @@ Support for Generics
 
 |
 
-* Analysis of generics themselves would require:
+* Analysis of generics themselves would require
 
   - Extending the SPARK language with new specifications
 

@@ -68,7 +68,7 @@ Limitations of Automatic Provers - Quantifiers
 Limitations of Automatic Provers - Proof Context
 --------------------------------------------------
 
-* Proof context for a check in a subprogram :ada:`S` is:
+* Proof context for a check in a subprogram :ada:`S` is
 
   - The contracts of all subprograms called by :ada:`S`
   - The body of :ada:`S` prior to the check

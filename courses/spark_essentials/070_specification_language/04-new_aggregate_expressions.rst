@@ -27,7 +27,7 @@ Delta Aggregates
        with Post => Rec = (Rec'Old with delta Comp1 => Val1,
                                               Comp2 => Val2);
 
-* With array object:
+* With array object
 
   - Avoids the introduction of **explicit** quantifiers
   - Can have **overlapping** and **dynamic** choices (values or ranges)
@@ -84,7 +84,7 @@ Container Aggregates
 
 * Available for all functional and formal containers
 
-* Vectors, lists and sets use the positional syntax:
+* Vectors, lists and sets use the positional syntax
 
   .. code:: Ada
 
@@ -92,7 +92,7 @@ Container Aggregates
      L : List := [1, 2, 3];
      S : Set := [1, 2, 3];
 
-* Maps use the named syntax:
+* Maps use the named syntax
 
   .. code:: Ada
 

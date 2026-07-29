@@ -29,7 +29,7 @@ Data Dependencies of a Package
       Initializes    => The_Stack
    is
       -- Flow analysis verifies that Top and Content are
-      -- initialized at package elaboration.
+      -- initialized at package elaboration
 
 --------------------------------
 Flow Dependencies of a Package
@@ -50,5 +50,5 @@ Flow Dependencies of a Package
       V2 : Integer := External_Variable;
    end P;
    -- The association for V1 is omitted, it does not
-   -- depend on any external state.
+   -- depend on any external state
 

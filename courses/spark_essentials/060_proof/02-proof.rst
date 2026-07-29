@@ -123,7 +123,7 @@ Categories of Run-Time Errors
 Quiz - Special Cases of Run-Time Errors
 -----------------------------------------
 
-Consider the following declarations:
+Consider the following declarations
 
 .. code:: ada
 
@@ -133,7 +133,7 @@ Consider the following declarations:
    R : Rec := ...;
    X : Integer;
 
-Which of the following *cannot* cause a run-time error:
+Which of the following *cannot* cause a run-time error
 
    A. ``X := T (T'First)``
    B. ``X := X / (-1);``
@@ -145,7 +145,7 @@ Which of the following *cannot* cause a run-time error:
 
    Explanations: **all** of then can cause a run-time error!
 
-   A. Index check fails if :ada:`T` is empty.
+   A. Index check fails if :ada:`T` is empty
    B. Overflow check fails if :ada:`X = Integer'First`
    C. Overflow check fails if :ada:`X = Integer'First`
    D. Range check fails if :ada:`T'Range` is :ada:`Natural`
