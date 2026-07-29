@@ -48,8 +48,7 @@ Demonstrating Richer Expressions (1/3)
 Demonstrating Richer Expressions (2/3)
 ----------------------------------------
 
-**Use** *delta **aggregates* to state the new value of** :ada:`R` **in the**
-  postcondition of :ada:`Bump_Rec`
+**Use** *delta aggregates* to state the new value of** :ada:`R` **in the postcondition of** :ada:`Bump_Rec`
 
 .. container:: animate 2-
 
@@ -72,8 +71,7 @@ Demonstrating Richer Expressions (2/3)
 Demonstrating Richer Expressions (3/3)
 ----------------------------------------
 
-**Use a** *quantified **expression* to state that all values in array** :ada:`T` **are**
-  preserved after the call to :ada:`Swap_Table`
+**Use a *quantified expression* to state that all values in array** :ada:`T` **are preserved after the call to** :ada:`Swap_Table`
 
    + Except for those at indexes :ada:`I` and :ada:`J`
 
@@ -85,6 +83,7 @@ Demonstrating Richer Expressions (3/3)
 .. container:: animate 3-
 
   .. code:: Ada
+    :font-size: small
 
       procedure Swap_Table (T : in out Table; I, J : Index)
       with
@@ -97,8 +96,7 @@ Demonstrating Richer Expressions (3/3)
 Using Expression Functions (1/3)
 ----------------------------------
 
-**Define an expression function** :ada:`Value_Rec_Is_One` **to express the**
-  condition in the postcondition of :ada:`Init_Rec`
+**Define an expression function** :ada:`Value_Rec_Is_One` **to express the condition in the postcondition of** :ada:`Init_Rec`
 
    + :ada:`Init_Rec` is supposed to set the active field to 1
    + After modification, verify the unit still proves correctly
@@ -124,8 +122,7 @@ Using Expression Functions (1/3)
 Using Expression Functions (2/3)
 ----------------------------------
 
-**Keep the declaration of** :ada:`Value_Rec_Is_One` **in the spec file, but move**
-  the expression function to the body file
+**Keep the declaration of :ada:`Value_Rec_Is_One` **in the spec file, but move the expression function to the body file**
 
    + After modification, verify the unit still proves correctly
 
@@ -156,8 +153,7 @@ Using Expression Functions (2/3)
 Using Expression Functions (3/3)
 ----------------------------------
 
-**Turn the expression function of** :ada:`Value_Rec_Is_One` **into a regular**
-  function body
+**Turn the expression function of** :ada:`Value_Rec_Is_One` **into a regular function body**
 
 .. container:: animate 2-
 

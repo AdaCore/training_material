@@ -62,6 +62,7 @@ Setting the Default "SPARK_Mode" Value
 * Set the :code:`Global_Configuration_Pragmas` attribute in the project file
 
   .. code:: Ada
+    :font-size: small
 
      project Proj is
         package Builder is
@@ -208,7 +209,7 @@ GNATprove Output for Programmers
 
 ---------------------------------------
 Analysis Summary File "gnatprove.out"
-----------------------------------------
+---------------------------------------
 
 * Located in :filename:`gnatprove/` under project object dir
 * An overview of results for all checks in project

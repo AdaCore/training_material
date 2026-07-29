@@ -25,8 +25,7 @@ What Is Flow Analysis?
 Control Flow Graph (CFG)
 --------------------------
 
-**A representation, using** *graph **notation*, of all** *paths* **that might be traversed**
-  through a program during its execution [Wikipedia]
+**A representation, using** *graph notation*, **of all** *paths* **that might be traversed through a program during its execution** [Wikipedia]
 
 .. container:: columns
 

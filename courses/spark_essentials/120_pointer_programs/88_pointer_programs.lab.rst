@@ -81,6 +81,7 @@ Swapping Pointers (2/2)
 .. container:: animate 3-
 
   .. code:: Ada
+    :font-size: small
 
       procedure Swap (X, Y : not null Int_Acc)
         with Post => X.all = Y.all'Old and then Y.all = X.all'Old;
@@ -94,7 +95,7 @@ Allocation and Deallocation
 
 .. container:: animate 1-
 
-**Run** :menu:`SPARK` **|rightarrow|** :menu:`Prove Subprogram` **for** :ada:`Realloc`
+**Run** :menu:`SPARK`** |rightarrow| :menu:`Prove Subprogram` **for** :ada:`Realloc`
 
       + Select :menu:`Report checks proved` option to show all proofs
       + Understand the memory leak message and fix it

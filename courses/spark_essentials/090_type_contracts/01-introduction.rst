@@ -6,10 +6,6 @@ Introduction
 Range Constraints
 -------------------
 
-.. admonition:: Language Variant
-
-   Ada 83
-
 * Scalar ranges gives **tighter** bounds to scalar types
 
   - Integer types: signed, modular
@@ -35,10 +31,6 @@ Range Constraints
 --------------------------
 Discriminant Constraints
 --------------------------
-
-.. admonition:: Language Variant
-
-   Ada 83
 
 * Record discriminants can be **specialized** to specific values
 * Formal bounded containers from SPARK Library
