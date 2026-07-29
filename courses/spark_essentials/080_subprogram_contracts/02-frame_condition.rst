@@ -123,7 +123,7 @@ Frame Condition - Conditions
 
 * :dfn:`Frame condition` is **all** the parts of objects that may be preserved
 
-  - Bounded by user-defined or generated **data dependencies**
+  - Bounded by programmer-defined or generated **data dependencies**
   - Anything else needs to be stated **explicitly**
 
 --------------------------------------------
