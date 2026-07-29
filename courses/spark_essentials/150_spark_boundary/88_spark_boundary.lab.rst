@@ -221,7 +221,7 @@ Software Boundary
   *still want to be able to call* :ada:`Random_Numbers` *from SPARK*
 
 --------------------
-Integration with C
+Integration With C
 --------------------
 
 .. container:: animate 1-

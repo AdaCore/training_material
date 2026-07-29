@@ -81,7 +81,7 @@ Analysis of Array Initialization (2/2)
      end Init_Array;
 
 ---------------------------
-Dealing with False Alarms
+Dealing With False Alarms
 ---------------------------
 
 * A subprogram that may not initialize an output parameter
