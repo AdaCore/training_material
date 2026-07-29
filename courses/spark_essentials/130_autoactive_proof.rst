@@ -33,7 +33,7 @@ Auto-Active Proof
 .. container:: PRELUDE END
 
 .. include:: 130_autoactive_proof/01-introduction.rst
-.. include:: 130_autoactive_proof/02-toolnamegnatprove_messages.rst
+.. include:: 130_autoactive_proof/02-gnatprove_messages.rst
 .. include:: 130_autoactive_proof/03-increasing_the_proof_effort.rst
 .. include:: 130_autoactive_proof/04-ghost_code.rst
 .. include:: 130_autoactive_proof/05-dealing_with_hard_proofs.rst
