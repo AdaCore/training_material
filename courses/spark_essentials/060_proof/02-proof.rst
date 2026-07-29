@@ -123,7 +123,7 @@ Categories of Run-Time Errors
 Quiz - Special Cases of Run-Time Errors
 -----------------------------------------
 
-Consider the following declarations
+**Consider the following declarations**
 
 .. code:: ada
 

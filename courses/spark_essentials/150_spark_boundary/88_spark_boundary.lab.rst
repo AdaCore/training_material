@@ -119,7 +119,7 @@ Abstract States at the Boundary (1/2)
 
 .. container:: animate 1-
 
-   - Add an external state :ada:`State` with both :ada:`Temperature` and
+**Add an external state** :ada:`State` **with both** :ada:`Temperature` **and**
      :ada:`Status` as constituents
 
 .. container:: animate 2-

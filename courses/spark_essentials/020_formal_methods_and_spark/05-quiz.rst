@@ -6,7 +6,7 @@ Quiz
 Quiz - Formal Methods
 -----------------------
 
-Which statement is correct?
+**Which statement is correct?**
 
    A. A formal method analyses code
    B. :answer:`A formal method has no missing alarms.`
@@ -26,7 +26,7 @@ Which statement is correct?
 Quiz - SPARK
 --------------
 
-Which statement is correct?
+**Which statement is correct?**
 
    A. SPARK is a recent programming language
    B. SPARK is based on proof
@@ -46,7 +46,7 @@ Which statement is correct?
 Quiz - SPARK in Practice
 --------------------------
 
-Which statement is correct?
+**Which statement is correct?**
 
    A. :answer:`There are 5 levels of software assurance with SPARK.`
    B. Proving absence of run-time errors is hard with SPARK

@@ -51,7 +51,7 @@ Absence of Run-Time Errors
 
 .. container:: animate 1-
 
-- Add preconditions to avoid run-time errors in the subprograms
+**Add preconditions to avoid run-time errors in the subprograms**
 
 .. container:: animate 2-
 

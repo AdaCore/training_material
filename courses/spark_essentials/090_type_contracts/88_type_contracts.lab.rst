@@ -125,7 +125,7 @@ Type Invariants (1/4)
 Type Invariants (2/4)
 -----------------------
 
-- Fix the invariant check failure on the default value for :ada:`Triplet`
+**Fix the invariant check failure on the default value for** :ada:`Triplet`
 
 .. container:: animate 2-
 
@@ -146,7 +146,7 @@ Type Invariants (2/4)
 Type Invariants (3/4)
 -----------------------
 
-- Fix the invariant check failure in :ada:`Swap_Triplet`
+**Fix the invariant check failure in** :ada:`Swap_Triplet`
 
 .. container:: animate 2-
 
@@ -165,7 +165,7 @@ Type Invariants (3/4)
 Type Invariants (4/4)
 -----------------------
 
-- Fix the invariant check failure in :ada:`Bump_And_Swap_Triplet`
+**Fix the invariant check failure in** :ada:`Bump_And_Swap_Triplet`
 
 .. container:: animate 2-
 
