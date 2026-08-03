@@ -81,7 +81,7 @@ Result Must Be Compatible with Context
 .. code:: Ada
 
    declare
-     Remaining : Natural := 5;  -- arbitrary
+     Remaining : Natural := 5;
    begin
      while Remaining > 0 loop
        Put_Line ("Warning! Self-destruct in" &
@@ -294,7 +294,7 @@ Which statement(s) is (are) legal?
    Explanations
 
    A. Missing parentheses around expression
-   B. Legal - Expression is already enclosed in parentheses so you don't need to add more
+   B. Legal - Expression already in parentheses so no need to add more
    C. Legal - :ada:`else True` not needed but is allowed
-   D. Legal - :ada:`B` will be :ada:`True` if Z >= 0.0
+   D. Legal - :ada:`B` will be :ada:`True` if Z >= 10.0
 

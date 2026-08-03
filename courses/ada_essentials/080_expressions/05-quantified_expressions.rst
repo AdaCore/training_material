@@ -29,35 +29,6 @@ Quantified Expressions
 ..
   language_version 2012
 
------------------------------------
-Same Behavior without Quantifiers
------------------------------------
-
-.. code:: Ada
-
-   function Universal (Set : Components) return Boolean is
-   begin
-     for C of Set loop
-       if not Predicate (C) then
-         return False;  -- Predicate must be true for all
-       end if;
-     end loop;
-     return True;
-   end Universal;
-
-   function Existential (Set : Components) return Boolean is
-   begin
-     for C of Set loop
-       if Predicate (C) then
-         return True;  -- Predicate need only be true for one
-       end if;
-     end loop;
-     return False;
-   end Existential;
-
-..
-  language_version 2012
-
 -------------------------------
 Quantified Expressions Syntax
 -------------------------------
@@ -255,17 +226,19 @@ Index-Based Vs Component-Based Indexing
        for all K in Table'Range =>
           K > Table'First and then Table (K - 1) <= Table (K));
 
-* Answer: **False**. Predicate fails when `K = Table'First`
+.. container:: animate
 
-  + First subcondition is False!
-  + Condition should be
+  * Answer: **False**. Predicate fails when `K = Table'First`
 
-    .. code:: Ada
-      :font-size: small
+    + First subcondition is False!
+    + Condition should be
 
-      Ascending_Order : constant Boolean := (
-         for all K in Table'Range =>
-            K = Table'First or else Table (K - 1) <= Table (K));
+      .. code:: Ada
+        :font-size: small
+
+        Ascending_Order : constant Boolean := (
+           for all K in Table'Range =>
+              K = Table'First or else Table (K - 1) <= Table (K));
 
 ..
   language_version 2012
@@ -327,3 +300,39 @@ Quiz
 ------
 
 .. include:: ../quiz/quantified_expr_equality/quiz.rst
+
+---------------
+Quiz Followup
+---------------
+
+* How would you compare the contents of two arrays?
+
+  .. code:: Ada
+
+    type Array_T is array (1 .. 4) of Integer;
+    One   : Array_T := (1, 2, 3, 4);
+    Two   : Array_T := (2, 4, 3, 1);
+    Three : Array_T := (1, 1, 2, 2);
+
+* Check if all elements of a pattern can be found in the source
+
+  * For every element in :ada:`Pattern`, there is some matching element in :ada:`Source`
+
+  .. code:: Ada
+
+    function Contains
+      (Pattern, Source : Array_T) return Boolean is
+      (for all P of Pattern => (for some S of Source => P = S));
+
+* So :ada:`Contains (One, Two)` returns :ada:`True` |rightarrow| Good!
+* So :ada:`Contains (One, Three)` returns :ada:`False` |rightarrow| Good!
+* But :ada:`Contains (Three, One)` returns :ada:`True` |rightarrow| Bad :(
+
+  * :ada:`Contains` needs to be reflexive
+
+  .. code:: Ada
+
+    function Contains
+      (Left, Right : Array_T) return Boolean is
+      ((for all L of Left => (for some R of Right => L = R)) and
+       (for all R of Right => (for some L of Left => L = R)));
