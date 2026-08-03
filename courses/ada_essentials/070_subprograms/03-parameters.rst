@@ -72,6 +72,10 @@ Parameter Modes
    - Actual is expected to be **both** read and written
    - Actual **must** be a writable object
 
+.. note::
+
+  If no mode is specified, :ada:`in` is assumed
+
 -----------------
 Function Return
 -----------------
@@ -104,6 +108,11 @@ Why Read Mode "out" Parameters?
        Value := Value + K; -- this is a read AND a write
      end loop;
    end Compute;
+
+.. note::
+
+  :ada:`out` parameters are treated as uninitialized, regardless
+  of the value passed in
 
 ------------------------------
 Parameter Passing Mechanisms
@@ -198,21 +207,21 @@ Unconstrained Parameters Surprise
 Naive Implementation
 ----------------------
 
+.. code:: Ada
+
+ function Subtract (Left, Right : Vector)
+   return Vector is
+    Result : Vector (1 .. Left'Length);
+ begin
+    ...
+    for K in Result'Range loop
+      Result (K) := Left (K) - Right (K);
+    end loop;
+
 * **Assumes** bounds are the same everywhere
 * Fails when :ada:`Left'First /= Right'First`
 * Fails when :ada:`Left'Length /= Right'Length`
 * Fails when :ada:`Left'First /= 1`
-
-  .. code:: Ada
-
-   function Subtract (Left, Right : Vector)
-     return Vector is
-      Result : Vector (1 .. Left'Length);
-   begin
-      ...
-      for K in Result'Range loop
-        Result (K) := Left (K) - Right (K);
-      end loop;
 
 ------------------------
 Correct Implementation

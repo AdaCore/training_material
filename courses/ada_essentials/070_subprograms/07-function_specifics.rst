@@ -17,7 +17,7 @@ Return Statements in Functions
 
   .. code:: Ada
 
-      function Add (Left, Right : Integer ) return Integer is
+      function Add (Left, Right : Integer) return Integer is
       begin
          return Left + Right;
       end Add;
