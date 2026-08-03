@@ -18,7 +18,7 @@ Return Statements in Functions
   .. code:: Ada
     :font-size: footnotesize
 
-      function Add (Left, Right : Integer ) return Integer is
+      function Add (Left, Right : Integer) return Integer is
       begin
          return Left + Right;
       end Add;
