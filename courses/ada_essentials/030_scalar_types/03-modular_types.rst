@@ -64,25 +64,23 @@ Package "Interfaces"
 ----------------------
 
 * **Standard** package
-* Integer types with **defined bit length**
+* Integer and unsigned types with **defined bit length**
 
   .. code:: Ada
 
-     type My_Base_Integer is new Integer;
-     pragma Assert (My_Base_Integer'First = -2**31);
-     pragma Assert (My_Base_Integer'Last = 2**31-1);
+    type Integer_8  is range -2 **  7 .. 2 **  7 - 1;
+    for Integer_8'Size use  8;
+
+    type Unsigned_16 is mod 2 ** 16;
+    for Unsigned_16'Size use 16;
+
+   -- and so on for 16, 32, 64 bit types...
 
 * Dealing with hardware registers
 
    * Note: Shorter may not be faster for integer maths
 
       - Modern 64-bit machines are not efficient at 8-bit maths
-
-.. code:: Ada
-
-   type Integer_8 is range -2**7 .. 2**7-1;
-   for Integer_8'Size use 8;
-   -- and so on for 16, 32, 64 bit types...
 
 ------------------------
 Shift/Rotate Functions
