@@ -8,17 +8,20 @@ Benefits of Strongly Typed Numerics
 
 * **Prevent** subtle bugs
 * Cannot mix :ada:`Apples` and :ada:`Oranges`
+
+  .. code:: Ada
+
+    type Yen is range 0 .. 1_000_000;
+    type Ruble is range 0 .. 1_000_000;
+    Mine : Yen := 1;
+    Yours : Ruble := 1;
+    Mine := Yours; -- illegal
+
 * Force to clarify **representation** needs
 
-    - eg. constant with or with fractional part
+  .. code:: Ada
 
-      .. code:: Ada
-
-         type Yen is range 0 .. 1_000_000;
-         type Ruble is range 0 .. 1_000_000;
-         Mine : Yen := 1;
-         Yours : Ruble := 1;
-         Mine := Yours; -- illegal
+    type Float_T is digits 6 range 0.0 .. 100.0;
 
 ------------------------------------
 User-Defined Numeric Type Benefits
