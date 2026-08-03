@@ -65,6 +65,14 @@ Extra Object-Level Operations
    * Inequality for all discrete types
 
 * Logical (for :ada:`Boolean` component type)
+
+  .. code:: Ada
+
+    type Bool_Array_T is array (1 .. 2) of Boolean;
+    A : Bool_Array_T := (True, False);
+    B : Bool_Array_T := (False, True);
+    C : Bool_Array_T := B xor A;
+
 * Slicing
 
    - Portion of array

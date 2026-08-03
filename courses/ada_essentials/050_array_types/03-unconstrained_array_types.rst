@@ -101,8 +101,6 @@ Null Index Range
 
     :error:`example.adb:8:35: error: value not in range of type "Index_T" defined at line 2`
 
-* When the index type is a single-valued enumerated type, no empty array is possible
-
 ------------------
 Indefinite Types
 ------------------
@@ -181,20 +179,14 @@ Quiz
    type Bit_T is range 0 .. 1;
    type Bit_Array_T is array (Positive range <>) of Bit_T;
 
-.. container:: columns
-
- .. container:: column
-
-   Which declaration(s) is (are) legal?
+Which declaration(s) is (are) legal?
 
    A. ``AAA : Bit_Array_T (0..99);``
    B. :answermono:`BBB : Bit_Array_T (1..32);`
    C. :answermono:`CCC : Bit_Array_T (17..16);`
    D. ``DDD : Bit_Array_T;``
 
- .. container:: column
-
-  .. container:: animate
+.. container:: animate
 
    Explanations
 

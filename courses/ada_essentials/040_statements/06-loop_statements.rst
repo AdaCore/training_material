@@ -148,7 +148,7 @@ Variable and Sequence of Values
    - Has a view as constant
    - No assignment or update possible
 
-* Initialized as :ada:`'First`, incremented as :ada:`'Succ`
+* Initialized with :ada:`'First`, incremented using :ada:`'Succ`
 * Syntactic sugar: several forms allowed
 
 .. code:: Ada
@@ -234,6 +234,8 @@ Reversing Low-Level Iteration Direction
       .. code:: Ada
 
          for This_Day in reverse Mon .. Fri loop
+
+* Initialized using :ada:`'Last`, decremented with :ada:`'Pred`
 
 -------------------------------
 For-Loop Parameter Visibility
