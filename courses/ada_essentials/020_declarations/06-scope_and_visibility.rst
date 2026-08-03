@@ -92,6 +92,14 @@ Visibility in Action
        My_Obj := Small;    -- compile error: outer My_Obj is not Size
      end;
 
+* In GNAT, the compiler switch :command:`-gnatwh` will give a warning
+
+  .. code:: error
+    :font-size: small
+
+    main.adb:9:07: warning: declaration hides "My_Obj" at line 4
+
+
 -------------------
 Overcoming Hiding
 -------------------

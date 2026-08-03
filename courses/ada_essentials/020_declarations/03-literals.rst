@@ -36,8 +36,9 @@ Based Numeric Literals
 
      16#FFF#           => 4095
      2#1111_1111_1111# => 4095 -- With underline
-     16#F.FF#E+2       => 4095.0
+     7#1_4640#         => 4095
      8#10#E+3          => 4096 (8 * 8**3)
+     16#F.FF#E+2       => 4095.0
 
 ----------------------------------
 Comparison to C's Based Literals

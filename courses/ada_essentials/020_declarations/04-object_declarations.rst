@@ -52,10 +52,7 @@ Initialization
 
   Runtime does not initialize variables
 
-*Special cases (to be discussed later)*
-
-  * *Access (pointer) types*
-  * *Default value aspects*
+  *Certain types (and their attributes) have their own rules (discussed later)*
 
 -------------
 Elaboration
@@ -83,20 +80,16 @@ Multiple Object Declarations
 
   .. code:: Ada
 
-     Val_1, Val_2 : Some_Type := Next_Available (Some_Num);
+     Val_1, Val_2 : Integer := Next_Available (Some_Num);
 
 * Identical to series of single declarations
 
   .. code:: Ada
 
-     Val_1 : Some_Type := Next_Available (Some_Num);
-     Val_2 : Some_Type := Next_Available (Some_Num);
+     Val_1 : Integer := Next_Available (Some_Num);
+     Val_2 : Integer := Next_Available (Some_Num);
 
-.. warning:: May get different value!
-
-  .. code:: Ada
-
-     T1, T2 : Time := Current_Time;
+  * So :ada:`Val_1` and :ada:`Val_2` may have different values!
 
 -------------------------
 Predefined Declarations
