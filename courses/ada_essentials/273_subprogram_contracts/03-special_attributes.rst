@@ -31,81 +31,89 @@ Evaluate an Expression on Subprogram Entry
           Pre  => This < Integer'Last,
           Post => This = This'Old + 1;
 
-----------------------------
-Example for Attribute 'Old
-----------------------------
+----------------------------------
+Example for Attribute 'Old (1/3)
+----------------------------------
 
-.. code:: Ada
+* We have a procedure that replaces digits in a string with "*"
 
-      Global : String := Init_Global;
-      ...
-      -- In Global, move character at Index to the left one position,
-      -- and then increment the Index
-      procedure Shift_And_Advance (Index : in out Integer) is
-      begin
-         Global (Index) := Global (Index + 1);
-         Index          := Index + 1;
-      end Shift_And_Advance;
-
-* Note the different uses of `'Old` in the postcondition
+  * Replace the character at the current index with "*"
+  * Increment the current index
 
   .. code:: Ada
 
-     procedure Shift_And_Advance (Index : in out Integer) with Post =>
-        -- Global (Index) before call (so Global and Index are original)
-        Global (Index)'Old
-           -- Original Global and Original Index
-           = Global'Old (Index'Old)
-        and
-        -- Global after call and Index before call
-        Global (Index'Old)
-           -- Global and Index after call
-           = Global (Index);
+    Text  : String(1..5) := "12-45";
+    Index : Integer := 1;
+    procedure Sanitize_Digit;
 
------------------------------------------
-Error on Conditional Evaluation of 'Old
------------------------------------------
-
-* This code is **incomplete**
+* We add a postcondition to ensure correct behavior
 
   .. code:: Ada
-    :font-size: scriptsize
 
-    procedure Shift_And_Advance (Index : in out Integer) with
-      Post =>
-        Global (Index)'Old = Global'Old (Index'Old) and
-        Global (Index'Old) = Global (Index);
+    procedure Sanitize_Digit
+      with Post =>
+        not (Is_Digit (Text(Index)'Old))
+        or  Text(Index'Old) = '*';
 
-  * What happens when :ada:`Index` is not in range for :ada:`Global`?
+  * Check that character used to be a digit
+  * If yes, character is now a "*"
 
-* So we add a range check
+----------------------------------
+Example for Attribute 'Old (2/3)
+----------------------------------
 
-  .. code:: Ada
-    :font-size: scriptsize
+* But we have no guarantee that :ada:`Index` is in range
 
-    procedure Shift_And_Advance (Index : in out Integer) with
-      Post =>
-        (if Index in Global'Range then
-           Global (Index)'Old = Global'Old (Index'Old) and
-           Global (Index'Old) = Global (Index));
-
-  * This code is still wrong!
-
-    * :ada:`Global (Index)'Old` is evaluated on **entry**
-    * :ada:`Index` is only being verified **after** the call
-
-* (One) Correct solution
+  * So modify the postcondition to check it
 
   .. code:: Ada
-    :font-size: scriptsize
 
-    procedure Shift_And_Advance (Index : in out Integer) with
-      Post =>
-        (if Index in Global'Range then
-           Global'Old (Index) = Global'Old (Index'Old) and
-           Global (Index'Old) = Global (Index));
+    procedure Sanitize_Digit
+      with Post =>
+        (if Index in Text'Range then
+          not (Is_Digit (Text(Index)'Old))
+          or  Text(Index'Old) = '*');
 
-  * Check at the old position now copies entire :ada:`Global`
+* But this won't fix the problem!
+
+  * :ada:`Text(Index)'Old` is evaluated on **entry**
+  * What happens when :ada:`Index` is out of range?
+
+* One possible solution 
+
+  .. code:: Ada
+
+    procedure Sanitize_Digit
+      with Post =>
+        (if Index'Old in Text'Range then
+          not (Is_Digit (Text'Old(Index'Old)))
+          or  Text(Index'Old) = '*');
+
+----------------------------------
+Example for Attribute 'Old (3/3)
+----------------------------------
+
+
+**Using** :ada:`'Old` **wisely to examine a character**
+
+  .. list-table::
+    :widths: 40 10 50
+
+    * - :ada:`Text (Index)'Old`
+      - ``1``
+      - *Indexed character value on entry*
+
+    * - :ada:`Text'Old (Index'Old)`
+      - ``1``
+      - *Use entry index and entry text*
+
+    * - :ada:`Text (Index'Old)`
+      - ``*``
+      - *Use entry index and current text*
+
+    * - :ada:`Text (Index)`
+      - ``2``
+      - *Uses current index and current text*
 
 -----------------------------------------
 Postcondition Usage of Function Results
