@@ -93,11 +93,11 @@ Floating Point Type Operators
 
 * By increasing precedence
 
-   :relational operator: :ada:`= | /= | < | >= | > | >=`
-   :binary adding operator: :ada:`+ | -`
-   :unary adding operator: :ada:`+ | -`
-   :multiplying operator: :ada:`* | /`
-   :highest precedence operator: :ada:`** | abs`
+  :relational operator: **=** :nbsp:` ` **/=** :nbsp:` ` **<** :nbsp:` ` **<=** :nbsp:` ` **>** :nbsp:` ` **>=**
+  :binary adding operator: **+** :nbsp:` ` **-**
+  :unary adding operator: **+** :nbsp:` ` **-**
+  :multiplying operator: **\*** :nbsp:` ` **/** :nbsp:` `
+  :highest precedence operator: **\*\*** :nbsp:` ` :ada:`abs`
 
 .. note::
 

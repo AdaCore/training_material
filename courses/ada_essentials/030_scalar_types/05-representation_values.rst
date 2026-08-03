@@ -63,7 +63,7 @@ Order Attributes for Discrete Types
 * :ada:`T'Val (Input)`
 
    - Converts logical position number to :ada:`T`
-   - :ada:`Numbers_T'Pos(3)` |rightarrow| :ada:`Four`
+   - :ada:`Numbers_T'Val(3)` |rightarrow| :ada:`Four`
 
 ------
 Quiz
