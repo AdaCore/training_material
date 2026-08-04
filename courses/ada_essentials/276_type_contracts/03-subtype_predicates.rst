@@ -433,9 +433,9 @@ Subtype Predicates Aren't Bullet-Proof
      Values : Table := (1, 3, 5, 7, 9);
    begin
      ...
-     Values (3) := 0; -- does not generate an exception!
-     ...
-     Values := (1, 3, 0, 7, 9); -- does generate an exception
+     Values (3) := 0;           -- no exception generated!
+     Call_Something (Values);   -- but this will generate one
+     Values := (1, 3, 0, 7, 9); -- as will this
      ...
    end Demo;
 
@@ -502,23 +502,30 @@ Enabling/Disabling Contract Verification
 
      .. code:: Ada
 
+        -- Applies to all assertion names
         pragma Assertion_Policy (policy_name);
+
+        -- Applies to specific assertion name(s)
         pragma Assertion_Policy (
            assertion_name => policy_name
            {, assertion_name => policy_name});
+
+   - :ada:`policy_name` can be either :ada:`Check` or :ada:`Ignore`
+
+   - :ada:`assertion_name` can be
+
+     * :ada:`Assert`
+     * :ada:`Static_Predicate`
+     * :ada:`Dynamic_Predicate`
+     * :ada:`Pre`
+     * :ada:`Post`
+     * :ada:`Type_Invariant`
 
 * Vendors may define additional policies (GNAT does)
 * Default, without pragma, is implementation-defined
 * Vendors almost certainly offer compiler switch
 
-   - GNAT uses same switch as for pragma Assert: ``-gnata``
-
-.. container:: speakernote
-
-   The simple form of Assertion Policy just applies the specified policy to all forms of assertion.
-   Note that the Assert procedures in Ada.Assertions are not controlled by the pragma.  They are procedures like any other.
-   A switch is likely offered because otherwise one must edit the source code to change settings, like the situation with pragma Inline.
-   Pragma Suppress can also be applied.
+   - GNAT uses same switch as for :ada:`pragma Assert`: ``-gnata``
 
 ------
 Quiz

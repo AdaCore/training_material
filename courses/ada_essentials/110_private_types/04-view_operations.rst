@@ -59,7 +59,7 @@ Client View's Activities
 
 * Assignment, equality and inequality, conversions
 * **Designer's** declared subprograms
-* **Client's** -declared subprograms
+* **Client's** declared subprograms
 
    - Using parameters of the exported private type
    - Dependent on **designer's** operations

@@ -17,9 +17,9 @@
 
 Which declaration(s) of ``F`` is (are) valid?
 
-A. ``return Return : T := (I => 1)``
-B. :answermono:`return Result : T`
-C. ``return Value := (others => 1)``
+A. ``return Return : T := (I => 1);``
+B. :answermono:`return Result : T;`
+C. ``return Value := (others => 1);``
 D. | :answermono:`return R : T do`
    |    :answermono:`R.I := 1;`
    | :answermono:`end return;`

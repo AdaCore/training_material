@@ -12,7 +12,7 @@ Introduction
    - Changes to an abstraction's internals shouldn't break **clients**
    - Including type representation
 
-* Need tool-enforced rules to isolate dependencies
+* Need tool- or language-enforced rules to isolate dependencies
 
    - Between implementations of abstractions and their **clients**
    - In other words, "information hiding"

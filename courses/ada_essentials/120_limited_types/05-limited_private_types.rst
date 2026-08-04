@@ -33,7 +33,6 @@ Limited Private Type Rationale (1)
      end record;
      procedure Lock (This : in out Spin_Lock);
      procedure Unlock (This : in out Spin_Lock);
-     pragma Inline (Lock, Unlock);
    end Multiprocessor_Mutex;
 
 ------------------------------------
@@ -47,7 +46,6 @@ Limited Private Type Rationale (2)
      type Spin_Lock is limited private;
      procedure Lock (The_Lock : in out Spin_Lock);
      procedure Unlock (The_Lock : in out Spin_Lock);
-     pragma Inline (Lock, Unlock);
    private
      type Spin_Lock is ...
    end MultiProcessor_Mutex;
@@ -116,7 +114,7 @@ Explicitly Limited Completions
 Effects of Explicitly Limited Completions
 -------------------------------------------
 
-* Allows no internal copying too
+* Prevents internal copying as well
 * Forces parameters to be passed by-reference
 
 .. code:: Ada

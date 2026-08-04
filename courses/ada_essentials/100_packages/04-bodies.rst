@@ -30,7 +30,8 @@ Bodies Are Never Optional
    - Based on declarations in that spec
 
 * A change from Ada 83
-* A (nasty) justification example will be shown later
+
+  * A (nasty) justification example will be shown later
 
 --------------------------------------
 Example Spec That Cannot Have a Body

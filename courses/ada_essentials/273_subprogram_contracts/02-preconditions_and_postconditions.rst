@@ -47,7 +47,7 @@ Requirements and Guarantees
 
   .. code:: Ada
 
-     procedure Turn_On;
+     procedure Turn_On
        with Pre  => Has_Power,
             Post => System_Ready;
 
@@ -248,3 +248,4 @@ when :ada:`Print_Something` is run?
    The call to :ada:`To_Integer` will fail its precondition, which is considered
    an :ada:`Assertion_Error` exception.
 
+   :ada:`Assertion_Error` *is only raised if compiled with assertions enabled*
