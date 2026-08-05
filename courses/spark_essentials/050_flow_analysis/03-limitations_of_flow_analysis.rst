@@ -86,9 +86,8 @@ Dealing with False Alarms
 
 * A subprogram that may not initialize an output parameter
 
-  .. container:: latex_environment scriptsize
-
-    .. code:: Ada
+  .. code:: Ada
+    :font-size: scriptsize
 
       procedure Initialize (List    : out List_T;
                             Success : out Boolean) is
@@ -102,13 +101,14 @@ Dealing with False Alarms
 
 * Can generate an analysis message
 
-  :error:`medium: "List" might not be initialized in "Initialize"`
+  .. code:: error
+
+    medium: "List" might not be initialized in "Initialize"
 
 * Use :ada:`pragma Annotate` to justify the behavior
 
-  .. container:: latex_environment scriptsize
-
-    .. code:: Ada
+  .. code:: Ada
+    :font-size: scriptsize
 
       procedure Initialize (List    : out List_T;
                             Success : out Boolean);
