@@ -31,7 +31,7 @@ The Verifying Compiler
 
 * Could a compiler find the error we just saw?
 
-  - Formal **verification** of source code
+  - **Formal verification** of source code
 
 * What if we had a verifying compiler?
 
