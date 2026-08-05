@@ -1,6 +1,6 @@
-====================
+===================
 Enumeration Types
-====================
+===================
 
 -------------------
 Enumeration Types
@@ -73,9 +73,9 @@ Enumeration Type Attributes
   - Going past the end (:ada:`Days'Pred(Mon)` or :ada:`Days'Succ(Sun)`) raises :ada:`Constraint_Error`
   - These attributes are available for all scalars, but not particularly useful for numerics
 
----------------
+-----------------
 Character Types
----------------
+-----------------
 
 * Literals
 

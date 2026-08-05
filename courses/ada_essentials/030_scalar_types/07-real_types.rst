@@ -26,9 +26,9 @@ Real Types
 
 * Class focuses on floating-point
 
-------------------------------------------
+-----------------------------------------
 Real Type (Floating and Fixed) Literals
-------------------------------------------
+-----------------------------------------
 
 * **Must** contain a fractional part
 * No silent promotion
@@ -150,9 +150,9 @@ Floating Point Attributes
   * - ``Float'Rounding (-0.5)``
     - -1
 
----------------------------
+--------------------------
 Numeric Types Conversion
----------------------------
+--------------------------
 
 * Ada's integer and real are :dfn:`numeric`
 

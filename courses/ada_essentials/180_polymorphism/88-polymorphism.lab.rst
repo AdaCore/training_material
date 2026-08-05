@@ -7,6 +7,7 @@ Lab
 ------------------
 Polymorphism Lab
 ------------------
+
 * Requirements
 
    - Create a multi-level types hierarchy of shapes

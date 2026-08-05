@@ -76,9 +76,9 @@ Predefined Signed Integer Types
         
         * But usage may be difficult to avoid
 
----------------------------------
+-----------------------------------
 Operators for Signed Integer Type
----------------------------------
+-----------------------------------
 
 * By increasing precedence
 
