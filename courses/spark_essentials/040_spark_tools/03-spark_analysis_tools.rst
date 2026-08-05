@@ -118,22 +118,28 @@ Legality Checking
 
   - Need to fix to go beyond this step
 
-  - Ex: :command:`<expr> cannot depend on variable input <var>`
+* Example
 
-  - May include fix:
+  .. code:: Ada
+    :number-lines: 5
 
-    .. container:: latex_environment footnotesize
+    Global : Integer := 123;
 
-       :color-red:`use instead a constant initialized to the
-       expression with variable input`
+    type Buffer is record
+       Maximum : Integer := Global;
+    end record;
 
-    *apply the suggested fix*
+  .. code:: error
+    :font-size: tiny
+    :number-lines: 1
 
-  - May include *explain code*:
+    example.ads:8:28: error: default initialization cannot depend on variable input "Global"[#0] [E0007]
+    example.ads:8:28: error: use instead a constant initialized to the expression with variable input
+    example.ads:8:28: error: launch "gnatprove --explain=E0007" for more information
 
-    :color-red:`[E0007]`
-
-    *run* :command:`gnatprove --explain=E0007` *for more information*
+  * Failure described on line 1
+  * Possible solution described on line 2
+  * Command to get full explanation on line 3
 
 * Includes ownership checking, detailed in course on Pointer Programs
 
