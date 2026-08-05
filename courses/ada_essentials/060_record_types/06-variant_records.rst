@@ -55,7 +55,7 @@ Immutable Variant Record
 
 .. note::
 
-   :ada:`case` block must be **last** part of the definition - therefore only **one** per record
+   :ada:`case` block must be **last** part of definition - so only **one** per record
 
 * In a variant record, a discriminant can be used to specify the :dfn:`variant part` (line 8)
 
@@ -124,9 +124,6 @@ Mutable Variant Record
   end record;
 
 * :ada:`Pat : Person;` is **mutable**
-* :ada:`Sam : Person (Faculty);` is **not mutable**
-
-  * Declaring an object with an **explicit** discriminant value (:ada:`Faculty`) makes it immutable
 
 --------------------------------
 Mutable Variant Record Example
@@ -137,30 +134,21 @@ Mutable Variant Record Example
   .. code:: Ada
 
     Pat : Person := (Student, 19, 3.9);
-    Sam : Person := (Faculty, 28, 20);
+    Sam : Person;
+	
+    begin
+   
+      Sam := (Faculty, 28, 20);
+      if Pat.Group = Student then
+        -- Pat.Group := Faculty; -- ILLEGAL
+        Pat := (Faculty, Pat.Age, 0);
+      else
+        Sam := Pat;
+      end if;
 
-.. note::
+* Can change the discriminant of :ada:`Pat` and `Sam`
 
-  .. code:: Ada
-
-   Pat : Person := (Faculty, 28, 20);
-
-  is equivalent to
-
-  .. code:: Ada
-
-   Pat : Person; -- mutable!
-   Pat := (Faculty, 28, 20);
-
-* Can change the discriminant of :ada:`Pat`, but only via a whole record assignment
-
-  .. code:: Ada
-
-    if Pat.Group = Faculty then
-      Pat := (Student, Pat.Age, 3.5);
-    else
-      Pat := Sam;
-    end if;
+  * but only via a whole record assignment
 
 ----------------------------
 Constrained Variant Record
@@ -168,18 +156,25 @@ Constrained Variant Record
 
 .. code:: Ada
 
-  Pat : Person := (Student, 19, 3.9); -- Mutable
-  Sam : Person(Faculty); -- Constrained
+  Unconstrained : Person := (Student, 19, 3.9);
+  Constrained : Person(Student) := (Student, 19, 3.9);
+  
+* :ada:`Constrained` is limited to :ada:`Student`
+  
+.. code:: Ada  
 
-  Sam := Pat; -- Run-time error
-  Pat := Sam; -- Allowed
+  Unconstrained := (Student, 21, 4.0);
+  Constrained := (Student, 21, 4.0);
 
-* Cannot change the discriminant of :ada:`Sam`
+  Unconstrained := (Faculty, 21, 0);
+  Constrained := (Faculty, 21, 0); -- ILLEGAL
 
-  * will give a run-time error if :ada:`Pat.Group` is not :ada:`Faculty`
+* Cannot change the discriminant of :ada:`Constrained`
 
-  * And the compiler will not warn about this!
+  * Will give a run-time error
 
+  * And **NO** compiler warning!
+  
 ------
 Quiz
 ------
