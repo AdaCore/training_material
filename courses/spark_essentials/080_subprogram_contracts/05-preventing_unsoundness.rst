@@ -81,8 +81,11 @@ What's wrong with the following code?
    * :toolname:`GNATprove` does not generate an axiom for :ada:`Half`
 
      - Because function may not terminate
-     - :command:`info: function contract not available for proof`
      - Info message issued when using switch :command:`--info`
+
+     .. code:: output
+
+       info: function contract not available for proof
 
 -----------------------
 Terminating Functions

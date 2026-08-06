@@ -59,9 +59,10 @@ Silver/Gold/Platinum Levels
         Y := Temp;
      end Swap;
 
-  :command:`basics.ads:3:20: warning: unused initial value of "X"`
+  .. code:: error
 
-  :command:`basics.ads:5:30: medium: postcondition might fail, cannot prove Y = X'Old`
+    basics.ads:3:20: warning: unused initial value of "X"
+    basics.ads:5:30: medium: postcondition might fail, cannot prove Y = X'Old
 
 -------------------------------
 Run-Time Errors Are Pervasive
