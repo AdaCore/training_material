@@ -61,9 +61,12 @@ Flow Dependencies (2/2)
         with Global => null,
              Depends => (T => null);
 
-  :color-red:`basics.ads:39:23: medium: missing self-dependency "T => T" (array bounds are preserved)`
+  .. code:: error
 
-   *Correct dependency*
+    basics.ads:39:23: medium: missing self-dependency "T => T"
+       (array bounds are preserved)
+
+  *Correct dependency*
 
   .. code:: Ada
 
@@ -82,24 +85,26 @@ Imprecise Flow Dependencies (1/2)
 
 .. container:: animate 2-
 
-   :color-red:`basics.ads:51:11: error: parameter "Cond" is missing from input dependence list`
+  .. code:: error
 
-   :color-red:`basics.ads:51:11: error: add "null => Cond" dependency to ignore this input`
+    basics.ads:51:11: error: parameter "Cond" is missing from input dependence list
+    basics.ads:51:11: error: add "null => Cond" dependency to ignore this input
 
-   **Cond** *is a parameter, so it must be added to the dependency contract*
+  **Cond** *is a parameter, so it must be added to the dependency contract*
 
    - Fix the dependency contract and rerun flow analysis
 
 .. container:: animate 3-
 
-   :color-red:`basics.ads:51:18: medium: missing dependency "R => Cond"`
+  .. code:: error
 
-   :color-red:`basics.ads:52:26: medium: incorrect dependency "null => Cond"`
+    basics.ads:51:18: medium: missing dependency "R => Cond"
+    basics.ads:52:26: medium: incorrect dependency "null => Cond"
 
-   *Initialization of parameter* **R** *is path-dependent, and that path is*
-   *controlled by* **Cond** *- so it must be listed as a dependency of* **R**
+  *Initialization of parameter* **R** *is path-dependent, and that path is*
+  *controlled by* **Cond** *- so it must be listed as a dependency of* **R**
 
-   - Fix the dependency contract and rerun flow analysis
+  - Fix the dependency contract and rerun flow analysis
 
 .. container:: animate 4-
 
@@ -129,13 +134,14 @@ Imprecise Flow Dependencies (2/2)
 
 .. container:: animate 3-
 
-   :color-red:`basics.ads:55:18: medium: missing dependency "T => Val"`
+  .. code:: error
 
-   :color-red:`basics.ads:56:25: medium: incorrect dependency "null => Val"`
+    basics.ads:55:18: medium: missing dependency "T => Val"
+    basics.ads:56:25: medium: incorrect dependency "null => Val"
 
-   *Remember, even though we can see that* **T (T'First)** *doesn't actually depend on*
-   **Val,** *flow analysis does not look at array index values - so it assumes*
-   *there is a dependency*
+  *Remember, even though we can see that* **T (T'First)** *doesn't actually depend on*
+  **Val,** *flow analysis does not look at array index values - so it assumes*
+  *there is a dependency*
 
 .. container:: animate 4-
 

@@ -111,7 +111,7 @@ Intermission - Permutations
   equal to the next element
 
    - So the function will return True for all of these arrays:
-     ``[1, 2, 3]``, ``[1, 1, 1]``, ``[1, 1, 3]``, ``[123, 231, 312]``
+     ``[1,2,3]``, ``[1,1,1]``, ``[1,1,3]``, ``[123,231,312]``
 
 - For **proof**, when we sort an array, we need to know the contents of the array
   are the same but reordered
@@ -226,15 +226,14 @@ Selection Sort (3/3)
 
 .. container:: animate 2-
 
-   :color-red:`sort.ads:27:17: medium: postcondition might fail`
+  .. code:: error
 
-   :color-red:`sort.ads:27:17: cannot prove Is_Permutation_Array (Permutation)`
+    sort.ads:27:17: medium: postcondition might fail
+    sort.ads:27:17: cannot prove Is_Permutation_Array (Permutation)
+    sort.adb:71:1: possible fix: loop invariant at sort.adb:71 should mention Permutation
+    sort.ads:18:1: medium: in inlined expression function body at sort.ads:18
 
-   :color-red:`sort.adb:71:1: possible fix: loop invariant at sort.adb:71 should mention Permutation`
-
-   :color-red:`sort.ads:18:1: medium: in inlined expression function body at sort.ads:18`
-
-   * Add a loop invariant to verify the permutation
+  * Add a loop invariant to verify the permutation
 
       * Hint: It doesn't have to mention it directly - it can use :ada:`Is_Perm`
         which will be inlined
@@ -247,7 +246,9 @@ Selection Sort (3/3)
 
   * Running the proof again fails because we can't verify the first time through the loop
 
-      :color-red:`sort.adb:75:33: medium: loop invariant might fail in first iteration`
+    .. code:: error
+
+      sort.adb:75:33: medium: loop invariant might fail in first iteration
 
    - We need to initialize :ada:`Permutation`
 
