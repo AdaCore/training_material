@@ -37,9 +37,12 @@ System Boundary (1/2)
 
    *Lots of errors, including:*
 
-   :color-red:`alarm.ads:6:13: error: function "Get_Temperature" with volatile input global "Temperature" with effective reads is not allowed in SPARK`
+   .. code:: error
 
-   :color-red:`alarm.ads:8:13: error: function "Get_Status" with volatile input global "Status" with effective reads is not allowed in SPARK`
+     alarm.ads:6:13: error: function "Get_Temperature" with volatile input global "Temperature"
+       with effective reads is not allowed in SPARK
+     alarm.ads:8:13: error: function "Get_Status" with volatile input global "Status"
+       with effective reads is not allowed in SPARK
 
    *Without specifying volatility property,* :ada:`Effective_Reads` *is True (so*
    *a function read could cause a state change, which is a side effect)*
@@ -77,12 +80,15 @@ System Boundary (2/2)
 
 .. container:: animate 2-
 
-   :color-red:`alarm.ads:6:13: error: nonvolatile function "Get_Temperature" with volatile input global "Temperature" is not allowed in SPARK [E0006]`
+  .. code:: error
 
-   *When* :ada:`Get_Temperature` *is called, the result is volatile,*
-   *so successive calls can yield different results*
+    alarm.ads:6:13: error: nonvolatile function "Get_Temperature" with volatile input
+      global "Temperature" is not allowed in SPARK [E0006]
 
-   - Tell the prover that the result of :ada:`Get_Temperature` is volatile
+  *When* :ada:`Get_Temperature` *is called, the result is volatile,*
+  *so successive calls can yield different results*
+
+  - Tell the prover that the result of :ada:`Get_Temperature` is volatile
 
 .. container:: animate 3-
 
@@ -95,11 +101,13 @@ System Boundary (2/2)
 
 .. container:: animate 4-
 
-   :color-red:`alarm.adb:15:10: error: call to a volatile function in interfering context is not allowed in SPARK`
+  .. code:: error
 
-   *Reads of volatile functions should be stored*
+    alarm.adb:15:10: error: call to a volatile function in interfering context is not allowed in SPARK
 
-   - Update :ada:`Set_Status` to use the volatile function in a "non-interfering context"
+  *Reads of volatile functions should be stored*
+
+  - Update :ada:`Set_Status` to use the volatile function in a "non-interfering context"
 
 .. container:: animate 5-
 
@@ -169,11 +177,15 @@ Abstract States at the Boundary (2/2)
 
 .. container:: animate 2-
 
-   :color-red:`alarm.adb:2:24: error: non-external state "Input_State" cannot contain external constituents in refinement`
+  .. code:: error
+    :font-size: small
 
-   :color-red:`alarm.adb:3:24: error: non-external state "Output_State" cannot contain external constituents in refinement`
+    alarm.adb:2:24: error: non-external state "Input_State" cannot
+       contain external constituents in refinement
+    alarm.adb:3:24: error: non-external state "Output_State" cannot
+       contain external constituents in refinement
 
-   *The state references external data - the prover must be made aware*
+  *The state references external data - the prover must be made aware*
 
 .. container:: animate 3-
 
@@ -203,11 +215,15 @@ Software Boundary
 
 .. container:: animate 2-
 
-   :color-red:`random_numbers.adb:5:4: error: "Generator" is not allowed in SPARK (due to entity declared with SPARK_Mode Off)`
+  .. code:: error
+    :font-size: small
 
-   :ada:`GNAT.Random` *is not in SPARK mode; we cannot call non-SPARK from SPARK*
+    random_numbers.adb:5:4: error: "Generator" is not allowed in SPARK
+       (due to entity declared with SPARK_Mode Off)
 
-   - Turn off SPARK mode for :ada:`Random_Numbers`
+  :ada:`GNAT.Random` *is not in SPARK mode; we cannot call non-SPARK from SPARK*
+
+  - Turn off SPARK mode for :ada:`Random_Numbers`
 
 .. container:: animate 3-
 
@@ -232,16 +248,15 @@ Integration with C
 
 .. container:: animate 2-
 
-   :color-red:`main.adb:12:4: warning: no Global contract available for "Swap"`
+  .. code:: error
 
-   :color-red:`main.adb:12:4: warning: assuming "Swap" has no effect on global items`
+    main.adb:12:4: warning: no Global contract available for "Swap"
+    main.adb:12:4: warning: assuming "Swap" has no effect on global items
+    main.adb:12:4: warning: no Always_Terminates aspect available for "Swap"
+    main.adb:12:4: warning: assuming "Swap" always terminates
 
-   :color-red:`main.adb:12:4: warning: no Always_Terminates aspect available for "Swap"`
-
-   :color-red:`main.adb:12:4: warning: assuming "Swap" always terminates`
-
-   *Because the implementation of* :ada:`Swap` *is external, the prover*
-   *can not examine the body, so it has to make assumptions*
+  *Because the implementation of* :ada:`Swap` *is external, the prover*
+  *can not examine the body, so it has to make assumptions*
 
   - Fix the warnings with suitable annotations on the declaration of :ada:`Swap`
 

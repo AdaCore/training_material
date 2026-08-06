@@ -33,17 +33,19 @@ Understanding Run-time Errors
 
 .. container:: animate 2-
 
-   :color-red:`basics.adb:14:24: medium: overflow check might fail`
+  .. code:: error
 
-   :color-red:`basics.adb:14:24: cannot prove upper bound for R.A + 1`
+    basics.adb:14:24: medium: overflow check might fail
+    basics.adb:14:24: cannot prove upper bound for R.A + 1
 
-      Nothing prevents :ada:`R.A` from being :ada:`Integer'Last` which would cause a run-time error
+  Nothing prevents :ada:`R.A` from being :ada:`Integer'Last` which would cause a run-time error
 
-   :color-red:`basics.adb:23:19: medium: array index check might fail`
+  .. code:: error
 
-   :color-red:`basics.adb:23:19: reason for check: value must be a valid index into the array`
+    basics.adb:23:19: medium: array index check might fail
+    basics.adb:23:19: reason for check: value must be a valid index into the array
 
-      **T** is an unconstrained array, so there are no guarantees that **I** and **J** are valid
+  **T** *is an unconstrained array, so no guarantee that* **I** *and* **J** *are valid*
 
 ----------------------------
 Absence of Run-time Errors
@@ -100,13 +102,14 @@ Proving the Code Works
 
 .. container:: animate 3-
 
-   :color-red:`basics.ads:39:14: medium: postcondition might fail`
+  .. code:: error
 
-   :color-red:`basics.ads:39:14: cannot prove The_Table (I) = The_Table (J)'Old`
+    basics.ads:39:14: medium: postcondition might fail
+    basics.ads:39:14: cannot prove The_Table (I) = The_Table (J)'Old
 
-      The prover can't verify the result because it has no knowledge of the result for the call to :ada:`Swap_Table`
+  * The prover can't verify the result because it has no knowledge of the result for the call to :ada:`Swap_Table`
 
-   - Add a postcondition to :ada:`Swap_Table` 
+ - Add a postcondition to :ada:`Swap_Table` 
 
 .. container:: animate 4-
 
