@@ -1,0 +1,11 @@
+project Default is
+
+   for Main use ("test_program.adb");
+
+   for Object_Dir use "obj";
+
+   package Compiler is
+      for Default_Switches ("Ada") use ("-g", "-O0", "-gnata", "-gnatyr", "-gnatwa");
+   end Compiler;
+
+end Default;
