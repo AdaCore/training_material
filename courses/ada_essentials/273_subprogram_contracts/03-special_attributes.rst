@@ -37,7 +37,7 @@ Example for Attribute 'Old (1/3)
 
 * We have a procedure that replaces digits in a string with "*"
 
-  * Replace the character at the current index with "*"
+  * If character at current index is a digit, replace with "*"
   * Increment the current index
 
   .. code:: Ada
@@ -52,11 +52,10 @@ Example for Attribute 'Old (1/3)
 
     procedure Sanitize_Digit
       with Post =>
+        --  Original position was not a digit
         not (Is_Digit (Text(Index)'Old))
+        --  or else it is now a '*'
         or  Text(Index'Old) = '*';
-
-  * Check that character used to be a digit
-  * If yes, character is now a "*"
 
 ----------------------------------
 Example for Attribute 'Old (2/3)
@@ -67,6 +66,7 @@ Example for Attribute 'Old (2/3)
   * So modify the postcondition to check it
 
   .. code:: Ada
+    :font-size: small
 
     procedure Sanitize_Digit
       with Post =>
@@ -82,38 +82,46 @@ Example for Attribute 'Old (2/3)
 * One possible solution 
 
   .. code:: Ada
+    :font-size: small
 
     procedure Sanitize_Digit
       with Post =>
+        --  If input Index is in range
         (if Index'Old in Text'Range then
+          -- Either text at original index was not digit
           not (Is_Digit (Text'Old(Index'Old)))
+          -- Or text at original index is now "*"
           or  Text(Index'Old) = '*');
 
 ----------------------------------
 Example for Attribute 'Old (3/3)
 ----------------------------------
 
-
 **Using** :ada:`'Old` **wisely to examine a character**
 
   .. list-table::
+    :header-rows: 1
     :widths: 40 10 50
+
+    * - **Code**
+      - **Value**
+      - **What Was Copied**
 
     * - :ada:`Text (Index)'Old`
       - ``1``
-      - *Indexed character value on entry*
+      - *Character at original* :ada:`Index`
 
     * - :ada:`Text'Old (Index'Old)`
       - ``1``
-      - *Use entry index and entry text*
+      - *All of* :ada:`Text` *and* :ada:`Index`
 
     * - :ada:`Text (Index'Old)`
       - ``*``
-      - *Use entry index and current text*
+      - *Just* :ada:`Index`
 
     * - :ada:`Text (Index)`
       - ``2``
-      - *Uses current index and current text*
+      - *Nothing*
 
 -----------------------------------------
 Postcondition Usage of Function Results
