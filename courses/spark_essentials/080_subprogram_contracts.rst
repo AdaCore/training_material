@@ -37,4 +37,5 @@ Subprogram Contracts
 .. include:: 080_subprogram_contracts/03-contracts_by_cases.rst
 .. include:: 080_subprogram_contracts/04-contracts_and_refinement.rst
 .. include:: 080_subprogram_contracts/05-preventing_unsoundness.rst
+.. include:: 080_subprogram_contracts/88-subprogram_contracts.lab.rst
 .. include:: 080_subprogram_contracts/99-summary.rst

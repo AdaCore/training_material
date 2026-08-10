@@ -7,6 +7,13 @@ is
 
    package IO is new Ada.Text_IO.Integer_IO (Integer);
 
+   procedure Add
+     (X, Y :     Integer;
+      Z    : out Integer) is
+   begin
+      Z := Saturated_Add (X, Y);
+   end Add;
+
    function Saturated_Add
      (X, Y : Integer)
       return Integer is
@@ -25,17 +32,33 @@ is
             return X + Y;
          end if;
 
-      else -- one positive or null, one negative or null, adding them is safe
+      else -- one positive or zero, one negative or zero, adding them is safe
          return X + Y;
       end if;
    end Saturated_Add;
 
-   procedure Add
-     (X, Y :     Integer;
-      Z    : out Integer) is
+   procedure Move_Along_X
+     (Coord  : in out Coordinate_T;
+      Change :        Integer) is
    begin
-      Z := Saturated_Add (X, Y);
-   end Add;
+      Coord.X := Saturated_Add (Coord.X, Change);
+   end Move_Along_X;
+
+   procedure Move_Along_Y
+     (Coord  : in out Coordinate_T;
+      Change :        Integer) is
+   begin
+      Coord.Y := Saturated_Add (Coord.Y, Change);
+   end Move_Along_Y;
+
+   procedure Navigate
+     (Coord    : in out Coordinate_T;
+      X_Change :        Integer;
+      Y_Change :        Integer) is
+   begin
+      Move_Along_X (Coord, X_Change);
+      Move_Along_Y (Coord, Y_Change);
+   end Navigate;
 
    procedure Convert
      (S     :     String;
