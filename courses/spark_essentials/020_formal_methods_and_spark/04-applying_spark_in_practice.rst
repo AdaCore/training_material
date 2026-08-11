@@ -79,3 +79,22 @@ Project Scenarios
   - Either completely in SPARK
   - More often interfacing with other code in Ada/C/C++, etc.
 
+------
+Quiz
+------
+
+Which statement is correct?
+
+   A. :answer:`There are 5 levels of software assurance with SPARK.`
+   B. Proving absence of run-time errors is hard with SPARK.
+   C. Full functional correctness is impossible to prove with SPARK.
+   D. SPARK code cannot be mixed with other programming languages.
+
+.. container:: animate
+
+   Explanations
+
+   A. Correct
+   B. AoRTE is a common objective with SPARK because it is simple.
+   C. Full functional correctness is hard but can be achieved.
+   D. SPARK code can be interfaced with code in Ada/C/C++, etc.
