@@ -68,12 +68,20 @@ Styles
 * :dfn:`This` is a definition
 * :ada:`procedure Ada_Code (True, Is_Highlighted, 1234);`
 * :filename:`this/is/a.path`
-* :command:`commands are emphasised --like-this`
+* :command:`commands are emphazised --like-this`
 * :error:`This is an error message`
 
 .. warning:: This is a warning
 .. note:: This is an important piece of information
 .. tip:: This is a tip
+
+.. code:: output
+
+  This is an output message
+
+.. code:: error
+
+  This is an error message
 
 ---------------------
 A Note about Syntax
