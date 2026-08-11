@@ -28,7 +28,7 @@ package Basics is
      Pre  => Value_Rec (R) < Integer'Last,
      Post => Value_Rec (R) = Value_Rec (R)'Old + 1;
 
-   procedure Swap_Table (T : in out Table; I, J : Index)
+   procedure Swap_Table_Parameter (T : in out Table; I, J : Index)
    with
      Pre  => I in T'Range and then J in T'Range,
      Post => T (I) = T (J)'Old and then T (J) = T (I)'Old;
@@ -38,7 +38,7 @@ package Basics is
      Pre  => Value_Rec (The_Rec) < Integer'Last,
      Post => Value_Rec (The_Rec) = Value_Rec (The_Rec)'Old + 1;
 
-   procedure Swap_The_Table (I, J : Index)
+   procedure Swap_Global_Table (I, J : Index)
      with Post => The_Table (I) = The_Table (J)'Old
        and then The_Table (J) = The_Table (I)'Old;
 

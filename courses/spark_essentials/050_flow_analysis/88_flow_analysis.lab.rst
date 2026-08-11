@@ -120,7 +120,7 @@ Adding Our Own Global Contracts
 
      .. code:: Ada
 
-         procedure Swap_Rec (R : in out Rec)
+         procedure Swap_Rec_Parameter (R : in out Rec)
            with Global => null;
 
   - Now run :menu:`Examine File` again
@@ -129,8 +129,8 @@ Adding Our Own Global Contracts
 
    ::
 
-      high: "The_Rec" must be listed in the Global aspect of "Swap_The_Rec"
-      high: "The_Table" must be listed in the Global aspect of "Swap_The_Table"
+      high: "The_Rec" must be listed in the Global aspect of "Swap_Global_Rec"
+      high: "The_Table" must be listed in the Global aspect of "Swap_Global_Table"
       high: "The_Rec" must be listed in the Global aspect of "Init_The_Rec"
       high: "The_Table" must be listed in the Global aspect of "Init_The_Table"
 
@@ -142,9 +142,9 @@ Adding Our Own Global Contracts
 
   .. code:: Ada
 
-      procedure Swap_The_Rec
+      procedure Swap_Global_Rec
         with Global => (In_Out => Basics.The_Rec);
-      procedure Swap_The_Table (I, J : Index)
+      procedure Swap_Global_Table (I, J : Index)
         with Global => (In_Out => Basics.The_Table);
       procedure Init_The_Rec
         with Global => (Output => Basics.The_Rec);

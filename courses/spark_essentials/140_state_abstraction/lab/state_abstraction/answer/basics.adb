@@ -9,12 +9,12 @@ is
       Y := Tmp;
    end Swap;
 
-   procedure Swap_Rec (R : in out Rec) is
+   procedure Swap_Rec_Parameter (R : in out Rec) is
    begin
       Swap (R.A, R.B);
-   end Swap_Rec;
+   end Swap_Rec_Parameter;
 
-   procedure Swap_Table (T : in out Table; I, J : Index) is
+   procedure Swap_Table_Parameter (T : in out Table; I, J : Index) is
    begin
       if I /= J then
          Swap (T (I), T (J));
@@ -22,17 +22,17 @@ is
                           "formal parameters * might be aliased",
                           "I /= J so T(I) and T(J) cannot alias");
       end if;
-   end Swap_Table;
+   end Swap_Table_Parameter;
 
-   procedure Swap_The_Rec is
+   procedure Swap_Global_Rec is
    begin
-      Swap_Rec (The_Rec);
-   end Swap_The_Rec;
+      Swap_Rec_Parameter (The_Rec);
+   end Swap_Global_Rec;
 
-   procedure Swap_The_Table (I, J : Index) is
+   procedure Swap_Global_Table (I, J : Index) is
    begin
-      Swap_Table (The_Table, I, J);
-   end Swap_The_Table;
+      Swap_Table_Parameter (The_Table, I, J);
+   end Swap_Global_Table;
 
    procedure Init_Rec (R : out Rec) is
    begin

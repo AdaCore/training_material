@@ -66,7 +66,7 @@ Absence of Run-time Errors
       with
         Pre => Value_Rec (R) < Integer'Last;
 
-      procedure Swap_Table (T : in out Table; I, J : Index)
+      procedure Swap_Table_Parameter (T : in out Table; I, J : Index)
       with
         Pre => I in T'Range and then J in T'Range;
 
@@ -84,14 +84,14 @@ Proving the Code Works
 
 .. container:: animate 1-
 
-   - Add a postcondition to procedure :ada:`Swap_The_Table` stating that the
+   - Add a postcondition to procedure :ada:`Swap_Global_Table` stating that the
      values at indexes :ada:`I` and :ada:`J` have been exchanged
 
 .. container:: animate 2-
 
   .. code:: Ada
 
-      procedure Swap_The_Table (I, J : Index)
+      procedure Swap_Global_Table (I, J : Index)
       with
         Post => The_Table (I) = The_Table (J)'Old
           and then The_Table (J) = The_Table (I)'Old;
@@ -104,15 +104,15 @@ Proving the Code Works
 
    :color-red:`basics.ads:39:14: cannot prove The_Table (I) = The_Table (J)'Old`
 
-      The prover can't verify the result because it has no knowledge of the result for the call to :ada:`Swap_Table`
+      The prover can't verify the result because it has no knowledge of the result for the call to :ada:`Swap_Table_Parameter`
 
-   - Add a postcondition to :ada:`Swap_Table` 
+   - Add a postcondition to :ada:`Swap_Table_Parameter` 
 
 .. container:: animate 4-
 
   .. code:: Ada
 
-      procedure Swap_Table (T : in out Table; I, J : Index)
+      procedure Swap_Table_Parameter (T : in out Table; I, J : Index)
       with
         Pre  => I in T'Range and then J in T'Range,
         Post => T (I) = T (J)'Old and then T (J) = T (I)'Old;
@@ -127,11 +127,11 @@ Proving the Code Works (Continued)
 
 .. container:: animate 2-
 
-   - :ada:`Swap_The_Table` now proves
+   - :ada:`Swap_Global_Table` now proves
 
       - Prover assumes a postcondition in a called subprogram is True
 
-   - :ada:`Swap_Table` now fails to prove
+   - :ada:`Swap_Table_Parameter` now fails to prove
 
       - Prover doesn't know anything about :ada:`Swap`
 
