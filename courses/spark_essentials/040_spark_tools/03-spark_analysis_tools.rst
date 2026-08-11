@@ -62,6 +62,7 @@ Setting the Default "SPARK_Mode" Value
 * Set the :code:`Global_Configuration_Pragmas` attribute in the project file
 
   .. code:: Ada
+    :font-size: small
 
      project Proj is
         package Builder is
@@ -130,16 +131,19 @@ Legality Checking
     end record;
 
   .. code:: error
-    :font-size: tiny
     :number-lines: 1
+    :font-size: footnotesize
 
-    example.ads:8:28: error: default initialization cannot depend on variable input "Global"[#0] [E0007]
-    example.ads:8:28: error: use instead a constant initialized to the expression with variable input
-    example.ads:8:28: error: launch "gnatprove --explain=E0007" for more information
+    example.ads:8:28: error: default initialization cannot depend
+       on variable input "Global"[#0] [E0007]
+    example.ads:8:28: error: use instead a constant initialized
+       to the expression with variable input
+    example.ads:8:28: error: launch "gnatprove --explain=E0007"
+       for more information
 
   * Failure described on line 1
-  * Possible solution described on line 2
-  * Command to get full explanation on line 3
+  * Possible solution described on line 3
+  * Command to get full explanation on line 5
 
 * Includes ownership checking, detailed in course on Pointer Programs
 
