@@ -20,18 +20,25 @@ Subprogram Contracts Lab
 Simple Subprogram Contract
 ----------------------------
 
+.. note::
+
+  Most of this lab is based on the concept of "Saturated Add". Review the body of :ada:`Math`
+  to get an understanding of the implementation. (There are no bugs!)
+
+  This means the addition has *floor* and *ceiling* values
+
 .. container:: animate 1-
 
   Add a postcondition to :ada:`Add` to verify :ada:`Z`
 
 .. container:: animate 2-
 
-  *Hint: with a saturated add, the result is either the addition of*
-  *the two values,* :ada:`Integer`First`, *or* :ada:`Integer`Last`
+  *Hint: in our code, floor is* :ada:`Integer'First` *and*
+  *ceiling is* :ada:`Integer`Last`
 
 .. container:: animate 3-
 
-  .. code::
+  .. code:: ada
     :number-lines: 12
 
     procedure Add
@@ -41,40 +48,40 @@ Simple Subprogram Contract
 
   Prove the subprogram
 
-.. container:: animate -
+.. container:: animate 4-
 
   .. code:: error
 
     math.ads:15:14: medium: postcondition might fail
 
-  This is OK for now - the proof fails because we cannot prove
-  :ada:`Saturated_Add`
+  *Proof fails because we cannot prove* :ada:`Saturated_Add`
 
 --------------------------------------
 More Complicated Subprogram Contract
 --------------------------------------
 
-.. container:: animate 1-
+:ada:`Saturated_Add` has three possible inputs
 
-  :ada:`Saturated_Add` has three possible inputs
+  * :ada:`X + Y` is an out-of-range negative number
+  * :ada:`X + Y` is an out-of-range positive number
+  * :ada:`X + Y` is an in-range number
 
-    * :ada:`X + Y` is an out-of-range negative number
-    * :ada:`X + Y` is an out-of-range positive number
-    * :ada:`X + Y` is some number
-
-  Use :ada:`Contract_Cases` to define results for those three conditions
+Use :ada:`Contract_Cases` to define expected results for those conditions
 
 .. container:: animate 2-
 
   .. code:: ada
 
-   function Saturated_Add
-     (X, Y : Integer)
-      return Integer with
-     Contract_Cases =>
-      ((X + Y in Integer)    => Saturated_Add'Result = X + Y,
-       X + Y < Integer'First => Saturated_Add'Result = Integer'First,
-       X + Y > Integer'Last  => Saturated_Add'Result = Integer'Last);
+    function Saturated_Add
+      (X, Y : Integer)
+       return Integer with
+      Contract_Cases =>
+       ((X + Y in Integer)    =>
+           Saturated_Add'Result = X + Y,
+        X + Y < Integer'First =>
+           Saturated_Add'Result = Integer'First,
+        X + Y > Integer'Last  =>
+           Saturated_Add'Result = Integer'Last);
 
 -------------------------------------
 Dealing With Frame Conditions (1/3)
@@ -107,7 +114,7 @@ Dealing With Frame Conditions (1/3)
     math.adb:60:1: possible fix: call at math.adb:60 should
        mention Coord (for argument Coord) in a postcondition
 
-  :ada:`Move_Along_X` and :ada:`Move_Along_Y` do not describe the output
+  :ada:`Move_Along_X` *and* :ada:`Move_Along_Y` *do not describe the output*
 
 -------------------------------------
 Dealing With Frame Conditions (2/3)
@@ -136,13 +143,13 @@ Dealing With Frame Conditions (2/3)
 
 .. container:: animate 3-
 
-  If you did not consider the "frame conditions" (as in the above example) you might see
+  *If you did not consider the "frame conditions" (as above) you should see*
 
   .. code:: error
 
     math.ads:47:7: medium: postcondition might fail
 
-  The prover does know what happened to the other field in the :ada:`Move_*` subprograms
+  *Prover does know what happened to the other field in* :ada:`Move_*` *subprograms*
 
 -------------------------------------
 Dealing With Frame Conditions (3/3)
@@ -160,14 +167,16 @@ Dealing With Frame Conditions (3/3)
       (Coord  : in out Coordinate_T;
        Change :        Integer) with
       Post =>
-       Coord.X = Saturated_Add (Coord.X'Old, Change) and Coord.Y = Coord.Y'Old;
+       Coord.X = Saturated_Add (Coord.X'Old, Change) and
+       Coord.Y = Coord.Y'Old;
 
     procedure Move_Along_Y
       (Coord  : in out Coordinate_T;
        Change :        Integer) with
-      Post => Coord = (Coord.X'Old, Saturated_Add (Coord.Y'Old, Change));
+      Post => Coord = (Coord.X'Old,
+                       Saturated_Add (Coord.Y'Old, Change));
 
-  Note two different ways of validating the record
+  *Note two different ways of validating the record*
 
 --------------------
 Proving Exceptions
@@ -181,10 +190,12 @@ Proving Exceptions
 
   .. code:: error
 
-    math.adb:74:10: medium: unexpected exception might be raised
-    math.adb:80:10: medium: unexpected exception might be raised
+    math.adb:74:10: medium: unexpected exception
+       might be raised
+    math.adb:80:10: medium: unexpected exception
+       might be raised
 
-  Exceptions are being raised by the code - need to tell it to the prover
+  *Exceptions are being raised by the code - need to tell it to the prover*
 
   Add :ada:`Exceptional_Cases` aspect to the Subprogram
 
@@ -195,4 +206,5 @@ Proving Exceptions
     procedure Convert
       (S     :     String;
        Value : out Integer) with
-      Exceptional_Cases => (Invalid_String | Constraint_Error => True);
+      Exceptional_Cases =>
+         (Invalid_String | Constraint_Error => True);
