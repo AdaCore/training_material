@@ -2,11 +2,11 @@
 Storage Pool Example
 ======================
 
---------------------------------
-Creating Your Own Storage Pool
---------------------------------
+-------------------------
+Creating a Storage Pool
+-------------------------
 
-* To create your own storage pool API you must
+* To create a storage pool API
 
   * Create a concrete type for the storage pool
   * Create concrete versions of the abstract primitive subprograms
@@ -20,7 +20,7 @@ Creating Your Own Storage Pool
 Create Concrete Type/Primitives
 ---------------------------------
 
-* In the spec for :ada:`Memory_Mgmt`, you need to create the type and primitives
+* In the spec for :ada:`Memory_Mgmt`, need to create the type and primitives
 
 .. container:: source_include 146_storage_pools/examples/storage_pool_example/memory_mgmt.ads code:Ada :start-after:concrete_start :end-before:concrete_end
 
@@ -28,7 +28,7 @@ Create Concrete Type/Primitives
 Implement Mechanism - Storage Pool
 ------------------------------------
 
-* In addition, you need to actually create a visible object in the spec to be used for the storage pool
+* In addition, need to actually create a visible object in the spec to be used for the storage pool
 
 .. container:: source_include 146_storage_pools/examples/storage_pool_example/memory_mgmt.ads :start-after:implementation_begin :end-before:implementation_end code:Ada
 

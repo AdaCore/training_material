@@ -11,7 +11,7 @@ Import / Export Aspects (1/2)
    * :ada:`Import` indicates a subprogram imported into Ada
    * :ada:`Export` indicates a subprogram exported from Ada
 
-* Need aspects definining calling convention and external name
+* Need aspects defining calling convention and external name
 
   * :ada:`Convention => C` tells linker to use C-style calling convention
   * :ada:`External_Name => "<name>"` defines object name for linker
@@ -47,7 +47,7 @@ Import / Export Aspects (1/2)
 Import / Export Aspects (2/2)
 -------------------------------
 
-* You can also import/export variables
+* Can also import/export variables
 
    - Variables imported won't be initialized
    - Ada view
@@ -72,7 +72,7 @@ Import / Export Aspects (2/2)
 Import / Export with Pragmas
 ------------------------------
 
-* You can also use :ada:`pragma` to import/export entities
+* Can also use :ada:`pragma` to import/export entities
 
   .. code:: Ada
 

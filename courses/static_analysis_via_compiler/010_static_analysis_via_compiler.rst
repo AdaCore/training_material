@@ -821,31 +821,6 @@ Warnings Versus Errors
   + Style violations become errors too
   + Warning messages still appear but no code generation
 
----------------------------------------------
-IDE Integration (Project Properties Editor)
----------------------------------------------
-
-.. image:: gnat_studio/menu-edit/project_properties/build-switches-ada.jpg
-
------------------
-Warnings Dialog
------------------
-
-.. image:: gnat_studio/menu-edit/project_properties/build-switches-ada-warnings.jpg
-
----------------------
-Style Checks Dialog
----------------------
-
-.. image:: gnat_studio/menu-edit/project_properties/build-switches-ada-style.jpg
-
---------------------------------------
-Dialog Pop-Ups Explain Style Options
---------------------------------------
-
-.. image:: gnat_studio/menu-edit/project_properties/build-switches-ada-style-tooltip.jpg
-
-
 =============================
 Language Subset Definitions
 =============================

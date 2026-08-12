@@ -8,7 +8,7 @@ Beyond One-Off Tasks: Task and Protected Types
 
 * Creating templates for tasks and protected objects
 
-  * When you need multiple tasks or protected objects that behave similarly
+  * When multiple tasks or protected objects that behave similarly are needed
 
 * Task (and protected) types rather than objects
 

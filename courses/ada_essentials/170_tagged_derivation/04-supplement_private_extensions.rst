@@ -2,9 +2,9 @@
 Supplement: Private Extensions
 ================================
 
-----------------------------------
-How Do You Extend a Tagged Type?
-----------------------------------
+-----------------------------
+How To Extend a Tagged Type
+-----------------------------
 
 * Premise of a tagged type is to :dfn:`extend` an existing type
 

@@ -27,12 +27,7 @@ Subprogram Contracts Lab
 
 * Goals
 
-   - Basically a stack, except insertion doesn't necessarily happen at "top"
-   - To enable assertions in the runtime from :toolname:`GNAT Studio`
-
-      * :menu:`Edit` :math:`\rightarrow` :menu:`Project Properties`
-      * **Build** :math:`\rightarrow` **Switches** :math:`\rightarrow` **Ada**
-      * Click on *Enable assertions*
+   - Basically, implement a stack with special "push" rules
 
 ---------------
 Helpful Hints
@@ -47,6 +42,20 @@ Helpful Hints
 
   * Adding item to queue adds one to queue length
   * Removing item from queue subtracts one from queue length
+
+* Use the :command:`-gnata` switch to enable runtime assertions
+
+  * To enable for a project, modify the GPR file to include
+
+    .. code:: Ada
+
+      package Compiler is
+        for Switches ("ada") use ("-gnata");
+      end Compiler;
+
+.. note::
+
+  The compiler switch is already set in the prompt's :filename:`default.gpr` file
 
 --------------------------------
 Extra Credit (If Time Permits)

@@ -8,19 +8,19 @@ Big Picture
 
 * Most applications reside in more than one file
 
-  * *Modules* are how Rust organizes code
+  * Rust uses *modules* to organize code
 
 * Encapsulation
 
-  * Group related code together
+  * Groups related code together
 
     * Functions, structs, traits
 
-  * Hide implementation details from programmer
+  * Hides implementation details from programmer
 
 * Namespacing
 
-  * Prevent "name collisions"
+  * Prevents "name collisions"
 
 * Unit of organization
 
@@ -30,7 +30,7 @@ Big Picture
 Complete Picture
 ------------------
 
-**Rust code is made up of**
+**Code is made up of**
 
 .. list-table::
   :header-rows: 1

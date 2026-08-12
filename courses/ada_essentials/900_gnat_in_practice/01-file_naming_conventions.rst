@@ -117,14 +117,14 @@ Converting to GNAT Naming Conventions
 Using Other Naming Conventions
 --------------------------------
 
-* Sometimes you don't want to change filenames
+* Sometimes changing filenames isn't possible
 
    * Sharing source across multiple compilers
    * Different versions of a file based on build parameters
 
 * Controlled via package :ada:`Naming` in project file
 
-   * **Example:** your source files use :filename:`.1.ada` for specs and :filename:`.2.ada` for bodies
+   * **Example:** source files use :filename:`.1.ada` for specs and :filename:`.2.ada` for bodies
 
      .. code:: Ada
 
