@@ -171,7 +171,7 @@ Which subtype definition is valid?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. This generates a run-time error because the first enumeral specified is not in the range of :ada:`Weekdays_T`
    B. Compile error - no type specified

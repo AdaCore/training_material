@@ -106,7 +106,7 @@ Quiz
     type Str_T is array (Positive range <>) of Char_T;
     Example : Str_T := "CC" & A & NUL;
 
-Which of the following proposition(s) is (are) true
+Which of the following propositions are true? (Select all that apply)
 
 A. The code fails at run-time
 B. ``Example'Length = 3``
@@ -115,7 +115,7 @@ D. :answermono:`Example (3) = A`
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Unconstrained string is initialized correctly
    B. Null character in Ada is still a character, so length is 4
@@ -133,7 +133,7 @@ Quiz
     with Ada.Characters.Handling;
     use Ada.Characters.Handling;
 
-Which of the following proposition(s) are true?
+Which of the following propositions are true? (Select all that apply)
 
 A. ``NUL = 0``
 B. ``NUL = '\0'``
@@ -142,7 +142,7 @@ D. :answermono:`Is_Control (NUL)`
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`NUL` is an enumeral - it has no value
    B. :ada:`NUL` cannot be treated as a C-style value

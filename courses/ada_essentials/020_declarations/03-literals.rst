@@ -67,7 +67,7 @@ Which one of the below is a valid numeric literal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Underscores are not significant - they can be anywhere (except first and last character, or next to another underscore)
    B. Must have digits on both sides of decimal

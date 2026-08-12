@@ -116,7 +116,7 @@ Quiz
    function "*" (V : Vertical_T; H : Horizontal_T) return Positive;
    P : Positive;
 
-Which statement(s) is (are) legal?
+Which of the following statements are legal? (Select all that apply)
 
    A. :answermono:`P := Horizontal_T'(Middle) * Middle;`
    B. :answermono:`P := Top * Right;`
@@ -125,10 +125,9 @@ Which statement(s) is (are) legal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Qualifying one parameter resolves ambiguity
    B. No overloaded names
    C. Use of :ada:`Top` resolves ambiguity
    D. When overloading subprogram names, best to not just switch the order of parameters
-

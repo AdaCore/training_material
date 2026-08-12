@@ -1,4 +1,4 @@
--- Which of the following declaration(s) is (are) valid?
+-- Which of the following declarations are legal? (Select all that apply)
 procedure Main is
    --$ begin question
    package Pkg is

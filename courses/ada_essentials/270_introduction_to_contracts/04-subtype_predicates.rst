@@ -226,7 +226,7 @@ D. | ``subtype Wknd is Days_T with``
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Static predicate is allowed when condition is a static membership test
    B. :ada:`if` statement not allowed in a predicate

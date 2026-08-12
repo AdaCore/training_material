@@ -111,7 +111,7 @@ D. (100, 101, 102)
 
 .. container:: animate
 
- Explanations
+ Explanation
 
  A. :ada:`Color => 100`
  B. Multiple declaration calls :ada:`Next` twice

@@ -3,7 +3,7 @@ Very Large Numbers
 ====================
 
 ------------------------------------------
-Why Float or Integer Just Doesn’t Cut It
+Why Float or Integer Just Doesn't Cut It
 ------------------------------------------
 
 - Standard types (:ada:`Integer`, :ada:`Float`) have limited precision

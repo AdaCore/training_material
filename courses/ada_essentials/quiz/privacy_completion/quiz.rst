@@ -6,7 +6,7 @@
 
     type T is private;
 
-Which completion(s) is (are) correct for the type :ada:`T`?
+Which of the following completions are legal for :ada:`type T`? (Select all that apply)
 
 A. :answermono:`type T is tagged null record`
 B. ``type T is limited null record``

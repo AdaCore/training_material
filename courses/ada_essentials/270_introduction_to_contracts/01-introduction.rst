@@ -36,6 +36,7 @@ Ada Contracts
    - Range specifications
    - Parameter modes
    - Generic contracts
+   - OOP :ada:`interface` types
    - Work well, but on a restricted set of use-cases
 
 * Contract aspects to be more expressive
@@ -109,7 +110,7 @@ Defensive Programming
 Quiz
 ------
 
-Which of the following statements is (are) correct?
+Which of the following statements are true? (Select all that apply)
 
     A. Contract principles apply only to newer versions of the language
     B. :answer:`Contract should hold even for unique conditions and corner cases`
@@ -118,7 +119,7 @@ Which of the following statements is (are) correct?
 
 .. container:: animate
 
-    Explanations
+    Explanation
 
     A. No, but design-by-contract **aspects** were fully integrated into Ada 2012
     B. Yes, special case should be included in the contract
@@ -129,7 +130,7 @@ Which of the following statements is (are) correct?
 Quiz
 ------
 
-Which of the following statements is (are) correct?
+Which of the following statements are true? (Select all that apply)
 
     A. :answer:`Assertions can be used in declarations`
     B. Assertions can be used in expressions
@@ -138,7 +139,7 @@ Which of the following statements is (are) correct?
 
 .. container:: animate
 
-    Explanations
+    Explanation
 
     A. Will be checked at elaboration
     B. No assertion expression, but :ada:`raise` expression exists
@@ -158,10 +159,9 @@ Which of the following statements is (are) correct?
 
 .. container:: animate
 
-    Explanations
+    Explanation
 
     A. Principles are sane, contracts extend those
     B. See previous slide example
     C. e.g. generic contracts are resolved at compile-time
     D. A failing contract **will cause** a runtime error, only extensive (dynamic / static) analysis of contracted code may provide confidence in the absence of runtime errors (AoRTE)
-    

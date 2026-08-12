@@ -104,7 +104,7 @@ Quiz
       Field : Integer;
    end record;
 
-Which piece(s) of code is (are) a legal constructor for :ada:`Limited_T`?
+Which of the following are legal constructors for :ada:`Limited_T`? (Select all that apply)
 
 .. container:: latex_environment tiny
 
@@ -170,4 +170,3 @@ D. ``return Zero;``
 
    :ada:`A` contains an "in-place" return. The rest all rely on
    other objects, which would require an (illegal) copy.
-

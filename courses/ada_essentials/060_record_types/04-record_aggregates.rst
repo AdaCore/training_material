@@ -205,7 +205,7 @@ Quiz
    Obj1 : Record1_T;
    Obj2 : Record2_T;
 
-Which assignment(s) is (are) legal?
+Which of the following assignments are legal? (Select all that apply)
 
 .. container:: latex_environment small
 

@@ -1,4 +1,4 @@
--- Which piece(s) of code correctly perform(s) equality check on A and B?
+-- Which pieces of code correctly perform an equality check on :ada:`A` and :ada:`B`? (Select all that apply)
 procedure Main is
    --$ begin question
    type T1 is array (1 .. 3) of Integer;

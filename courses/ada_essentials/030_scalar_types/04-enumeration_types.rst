@@ -163,7 +163,7 @@ Quiz
 
    type Enum_T is (Able, Baker, Charlie);
 
-Which statement(s) is (are) legal?
+Which of the following statements are legal? (Select all that apply)
 
 A. :answermono:`V1 :  Enum_T := Enum_T'Value ("Able");`
 B. :answermono:`V2 :  Enum_T := Enum_T'Value ("BAKER");`
@@ -172,7 +172,7 @@ D. ``V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");``
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Legal - String matches an enumeral
    B. Legal - conversion is case-insensitive

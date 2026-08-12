@@ -74,7 +74,7 @@ Quiz
     type Direction_T is (Left, Top, Right, Bottom);
     Dir : Direction_T := Left;
 
-Which of the following proposition(s) are true?
+Which of the following propositions are true? (Select all that apply)
 
 A. ``Direction_T'Value (Dir) = 1``
 B. :answermono:`Direction_T'Pos (Dir) = 0`
@@ -83,10 +83,9 @@ D. ``Direction_T'Val (Direction_T'Pos (Dir) - 1) = Bottom``
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`'Value` converts an image to a string
    B. :ada:`'Pos` returns position in enumeration starting at 0
    C. :ada:`'Image` returns a string
    D. Argument of :ada:`'Val` must be in range - here it's -1
-

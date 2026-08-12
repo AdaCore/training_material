@@ -186,7 +186,7 @@ all values :ada:`Length` and :ada:`Height`?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Parameters are :ada:`Positive`, so this is unnecessary
    B. Overflow for large numbers

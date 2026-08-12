@@ -189,7 +189,7 @@ What is the value returned by :ada:`Service_Code (Appliance_Robot'Class (Robot_O
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Correct - :ada:`Robot_Object` is actually a :ada:`Vacuum_Robot`, so that is the version of :ada:`Service_Code` that is called
    B. Would be correct if :ada:`Robot_Object` was an :ada:`Appliance_Robot` - :ada:`Appliance_Robot'Class` leaves the object as :ada:`Vacuum_Robot`

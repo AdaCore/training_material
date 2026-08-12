@@ -59,7 +59,7 @@ Usage
 Quiz
 ------
 
-Which one(s) of the following can be made generic?
+Which of the following constructs can be made generic? (Select all that apply)
 
 .. code:: Ada
 
