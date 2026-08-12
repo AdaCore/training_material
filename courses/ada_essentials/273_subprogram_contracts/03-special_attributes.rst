@@ -88,9 +88,9 @@ Example for Attribute 'Old (2/3)
       with Post =>
         -- If input 'Index' is in range
         (if Index'Old in Text'Range then
-          -- Either text at original index was not digit
+          -- Either text at original position was not digit
           not (Is_Digit (Text'Old(Index'Old)))
-          -- Or text at original index is now "*"
+          -- Or text at original position is now '*'
           or  Text(Index'Old) = '*');
 
 ----------------------------------
