@@ -174,7 +174,7 @@ Quiz
 
   .. container:: column
 
-    Which component(s) does :ada:`Variant_Object` contain?
+    Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
 
     A. :ada:`Variant_Object.Value,`
        :ada:`Variant_Object.State`
@@ -184,7 +184,7 @@ Quiz
 
 .. container:: animate
 
-  **Explanation**
+  Explanation
 
   * Variant block covers all possible values of :ada:`Valid`, so no
     compilation error.
@@ -251,4 +251,3 @@ Quiz
       * If you then ran the executable, you would get an exception 
 
          ``CONSTRAINT_ERROR : test.adb:20 discriminant check failed``
-   

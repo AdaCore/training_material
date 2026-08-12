@@ -132,7 +132,7 @@ Quiz
 
 .. container:: animate
 
-  **Explanation**
+  Explanation
 
   * :ada:`Default_Component_Value` so all components intialized to 1
 
