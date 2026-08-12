@@ -147,9 +147,7 @@ Quiz
    B. | :answermono:`X := B;`
       | :answermono:`Y := C;`
    C. | ``X := One_T(X + C);``
-   D. | :answermono:`X := One_T(Y);`
-      | :answermono:`Y := Two_T(X);`
-   E. | ``B := One_T(Y) + X;``
+   D. | ``B := One_T(Y) + X;``
 
    .. container:: animate
 
@@ -159,8 +157,7 @@ Quiz
         for any integer-based object
      B. Legal - :ada:`B, C` are correctly typed
      C. Illegal - No such "+" operator: must convert operand individually
-     D. Legal - Correct conversion and types
-     E. Illegal - Even though the right-hand side matches the type,
+     D. Illegal - Even though the right-hand side matches the type,
         :ada:`B` is a constant and cannot be modified
         
 .. raw:: latex

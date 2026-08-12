@@ -104,7 +104,7 @@ Quiz
       Field : Integer;
    end record;
 
-Which of the following pieces of code are legal constructors for :ada:`Limited_T`? (Select all that apply)
+Which of the following are legal constructors for :ada:`Limited_T`? (Select all that apply)
 
 .. container:: latex_environment tiny
 
