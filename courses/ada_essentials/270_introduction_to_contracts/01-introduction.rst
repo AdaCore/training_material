@@ -119,7 +119,7 @@ Which of the following statements are true? (Select all that apply)
 
 .. container:: animate
 
-    Explanations
+    Explanation
 
     A. No, but design-by-contract **aspects** were fully integrated into Ada 2012
     B. Yes, special case should be included in the contract
@@ -139,7 +139,7 @@ Which of the following statements are true? (Select all that apply)
 
 .. container:: animate
 
-    Explanations
+    Explanation
 
     A. Will be checked at elaboration
     B. No assertion expression, but :ada:`raise` expression exists
@@ -159,7 +159,7 @@ Which of the following statements is (are) correct?
 
 .. container:: animate
 
-    Explanations
+    Explanation
 
     A. Principles are sane, contracts extend those
     B. See previous slide example

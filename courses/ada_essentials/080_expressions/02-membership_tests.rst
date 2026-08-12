@@ -85,7 +85,7 @@ Which of the following conditions are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`Wed` and :ada:`Fri` are not Boolean expressions - need to compare each of them to :ada:`Today`
    B. Legal - should always return :ada:`True`

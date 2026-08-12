@@ -231,7 +231,7 @@ Which of the following code blocks are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Cannot extend a non-tagged type
    B. Correct

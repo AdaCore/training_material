@@ -170,7 +170,7 @@ Which of the following statements are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. All objects are just Boolean values
    B. A component of :ada:`TwoD` is the same type as :ada:`OneD`

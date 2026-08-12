@@ -136,7 +136,7 @@ Which of the following assignments are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`T1` and :ada:`T2` are :ada:`limited types`
    B. :ada:`R1` and :ada:`R2` contain :ada:`limited` types so they are also :ada:`limited`

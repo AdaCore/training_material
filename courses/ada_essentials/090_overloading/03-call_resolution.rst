@@ -125,7 +125,7 @@ Which of the following statements are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Qualifying one parameter resolves ambiguity
    B. No overloaded names

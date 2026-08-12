@@ -186,7 +186,7 @@ Which of the following components are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Visible section does not know :ada:`Private_T` is discrete
    B. Visible section does not know possible values for :ada:`Private_T`

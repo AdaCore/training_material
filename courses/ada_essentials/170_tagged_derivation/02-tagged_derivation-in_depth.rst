@@ -194,7 +194,7 @@ Which of the following code blocks are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Cannot extend a non-tagged type
    B. :ada:`B1` is a tagged type, and :ada:`B2` extends :ada:`B1`

@@ -196,7 +196,7 @@ Quiz
 
   .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`Bit_Array_T` index is :ada:`Positive` which starts at 1
    B. OK, indexes are in range

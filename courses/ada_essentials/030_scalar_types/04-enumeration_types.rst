@@ -172,7 +172,7 @@ D. ``V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");``
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Legal - String matches an enumeral
    B. Legal - conversion is case-insensitive

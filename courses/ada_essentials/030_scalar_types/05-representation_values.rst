@@ -83,7 +83,7 @@ D. ``Direction_T'Val (Direction_T'Pos (Dir) - 1) = Bottom``
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`'Value` converts an image to a string
    B. :ada:`'Pos` returns position in enumeration starting at 0

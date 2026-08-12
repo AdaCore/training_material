@@ -239,7 +239,7 @@ Quiz
 
    .. container:: animate
 
-      Explanations
+      Explanation
 
       A. :ada:`One` is never printed, as although :ada:`(A - C)` is not in the range of :ada:`0 .. 100`, this is only checked on assignment (so after the addition of :ada:`B`).
       B. Line 6 does not raise an exception, (so ``One`` is not printed), but Line 2 does - causing ``Two`` to be printed.

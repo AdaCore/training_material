@@ -121,7 +121,7 @@ D. ``Program Error``
 
 .. container:: animate
 
-  Explanations
+  Explanation
 
   A. ``"Unknown Problem"`` is printed by the :ada:`when others` due to the raise on line 9 when :ada:`P` is 0
   B. ``"Success"`` is printed when  0 < :ada:`P` < :ada:`Integer'Last`

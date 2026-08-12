@@ -48,7 +48,7 @@ Quiz
 
   .. container:: animate
 
-    Explanations
+    Explanation
 
     A. Legal - components are :ada:`Boolean`
     B. Legal - object types match

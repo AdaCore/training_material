@@ -291,7 +291,7 @@ Which of the following statements are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Missing parentheses around expression
    B. Legal - Expression is already enclosed in parentheses so you don't need to add more

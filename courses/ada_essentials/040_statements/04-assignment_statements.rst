@@ -153,7 +153,7 @@ Quiz
 
    .. container:: animate
 
-     Explanations
+     Explanation
 
      A. Legal - :ada:`A` is an untyped constant so it can be used
         for any integer-based object

@@ -189,7 +189,7 @@ Quiz
 
    .. container:: animate
 
-      Explanations
+      Explanation
 
       A. :ada:`Object_A` is in the public part of :ada:`P` - visible to any unit that :ada:`with`'s :ada:`P`
       B. :ada:`Object_B` is in the private section of :ada:`P` - visible in the private section or body of any descendant of :ada:`P`

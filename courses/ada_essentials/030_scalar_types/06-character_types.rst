@@ -115,7 +115,7 @@ D. :answermono:`Example (3) = A`
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Unconstrained string is initialized correctly
    B. Null character in Ada is still a character, so length is 4
@@ -142,7 +142,7 @@ D. :answermono:`Is_Control (NUL)`
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`NUL` is an enumeral - it has no value
    B. :ada:`NUL` cannot be treated as a C-style value

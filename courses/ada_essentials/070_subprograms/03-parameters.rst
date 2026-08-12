@@ -259,7 +259,7 @@ Which of the following calls are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`P4` is :ada:`out`, it **must** be a variable
    B. :ada:`P2` has no default value, it **must** be specified

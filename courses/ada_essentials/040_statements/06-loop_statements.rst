@@ -354,7 +354,7 @@ Which of the following loop blocks are legal? (Select all that apply)
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Cannot assign to a loop parameter
    B. Legal - 10 iterations
