@@ -6,12 +6,12 @@
 
 fn main() {
     // TASK 1 - Looping via Array Indices
-    // Hint: Print ALL values. Check the output to verify you printed all elements  
+    // Hint: Print ALL values. Check the output to verify you printed all elements
     let array = [2, 4, 6, 8];
     for idx in 0..4 {
         println!("{}", array[idx]);
     }
-    
+
     // TASK 2 - Using Our Iterator
     // Hint: The 'for' loop calls '.next()' under the hood
     struct SliceIter<'s> {
@@ -46,7 +46,7 @@ fn main() {
     for n in numbers_2.iter() {
         println!("{n}");
     }
-    println!("Done printing {} items.", numbers_2.len());    
+    println!("Done printing {} items.", numbers_2.len());
 
     // TASK 4 - Common Iterator Adapters
     // Hint: 'map' transforms values during iteration, 'filter' selects values matching condition
@@ -66,7 +66,7 @@ fn main() {
     for elem in flush.iter().filter(is_even) {
         println!("This value is divisible by 2: {elem}");
     }
-    
+
     // TASK 5 - Common Consumers
     // Hint: 'sum' adds all values and return a single value, 'any' returns True if any value matches condition
     fn is_freezing(temp: &i32) -> bool {
@@ -76,7 +76,7 @@ fn main() {
     // Sum all values into 'Total'
     let total: i32 = hand.iter().sum();
     println!("The total is: {total}");
-    
+
     let temperatures = [22, 28, -2, 15, 30];
     // Print the warning if any temperature is below 0
     if temperatures.iter().any(is_freezing){
@@ -84,7 +84,7 @@ fn main() {
     } else {
         println!("All temperatures are above freezing.");
     }
-    
+
     // TASK 6 - Chaining
     // Hint: Chaining allows you to create a new set of data before consuming
     fn is_even_owned(x: &i32) -> bool {
@@ -98,7 +98,7 @@ fn main() {
         .map(square)           // Square values
         .sum();                // Total: 220
     println!("Sum of even squares: {}", result);
-        
+
     // TASK 7 - Collecting "Result"
     // Hint: 'collect()' stores results in a collection
     fn parse_i32(s: &str) -> Result<i32, std::num::ParseIntError> {

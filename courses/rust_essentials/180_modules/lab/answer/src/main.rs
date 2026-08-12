@@ -86,7 +86,7 @@ fn main() {
 
     // Fix: Used the wildcard '*' to import everything from the networking module
     use networking::*;
-    
+
     let tcp: TcpStream = TcpStream;
     let udp: UdpSocket = UdpSocket;
 

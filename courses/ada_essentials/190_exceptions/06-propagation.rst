@@ -36,6 +36,7 @@ Propagation Demo
 
    .. code:: Ada
      :number-lines: 1
+     :font-size: small
 
       procedure Do_Something is
         Error : exception;
@@ -56,6 +57,7 @@ Propagation Demo
 
    .. code:: Ada
      :number-lines: 16
+     :font-size: small
 
       begin -- Do_Something
         Maybe_Raise (3);

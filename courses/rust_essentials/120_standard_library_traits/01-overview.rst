@@ -30,7 +30,7 @@ Review: What Is a Trait?
 What Is a Standard Library Trait?
 -----------------------------------
 
-* Predefined in Rust’s Standard Library
+* Predefined in Standard Library
 
   * Describe common behaviors
   * Integrate programmer types with both language features and library API's

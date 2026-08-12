@@ -62,7 +62,18 @@ Preparing the GUI
 
 2. Set the coding standards for the project to :filename:`coding_standard.rules`
 
-   :menu:`Edit` -> :menu:`Project Properties` -> :menu:`Switches` -> :menu:`GNATcheck`
+   * In the **Project** pane, right-click on the project name (GPR filename)
+
+     * Click :menu:`Project` :math:`\rightarrow` :menu:`Edit source file`
+
+   * Add the following package to the project source file
+
+   .. code:: Ada
+
+     package Check is
+        for Default_Switches ("ada") use
+           ("-rules", "-from=coding_standard.rules");
+     end Check;
 
 ----------------------
 Running From the GUI

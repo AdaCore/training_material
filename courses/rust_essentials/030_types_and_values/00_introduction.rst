@@ -20,4 +20,4 @@ Topics Covered
 
 - **Type Inference** 
 
-    - How Rust is smart enough to often guess the type of data
+    - How the compiler is smart enough to often guess the type of data

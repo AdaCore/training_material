@@ -10,9 +10,9 @@ Specification Language Lab
 
    + You can copy it locally, or work with it in-place
 
-- In that directory's :filename:`prompt` folder, open the project :filename:`lab.gpr` in :toolname:`GNAT Studio`
+- In that directory's :filename:`prompt` folder, open the project :filename:`default.gpr` in :toolname:`GNAT Studio`
 
-   + Or, on the command-line, do :command:`gnatstudio -P lab.gpr`
+   + Or, on the command-line, do :command:`gnatstudio -P default.gpr`
 
 - Unfold the source code directory (.) in the project pane
 

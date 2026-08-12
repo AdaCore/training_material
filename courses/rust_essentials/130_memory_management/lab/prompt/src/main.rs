@@ -14,24 +14,24 @@ fn main() {
     struct Point(i32, i32);
     { // Outer scope starts
         { // Inner scope starts
-            let pt = Point(3, 4); 
+            let pt = Point(3, 4);
             println!("x: {}", pt.0);
-        } 
-        println!("y: {}", pt.1); 
-    } 
-    
+        }
+        println!("y: {}", pt.1);
+    }
+
     // TASK 2 - Ownership Principles
     // Hint: Every value has precisely one owner at all times
-    let poodle = String::from("ball"); 
-    let yorkie = poodle; 
-    println!("{}", poodle); 
+    let poodle = String::from("ball");
+    let yorkie = poodle;
+    println!("{}", poodle);
 
-    // TASK 3 - Explicit Duplication   
+    // TASK 3 - Explicit Duplication
     // Hint: Modify the code so that 'yorkie' has a copy of the same ball 'poodle' has
     let poodle_2 = String::from("ball");
     let yorkie_2 = poodle;
-    println!("{}", poodle_2); 
-    println!("{}", yorkie_2); 
+    println!("{}", poodle_2);
+    println!("{}", yorkie_2);
 
     // TASK 4 - "Clone Away" Strategy
     // Hint: Modify the function call without creating new variables to have multiple agent smiths saying hello!
@@ -43,7 +43,7 @@ fn main() {
     say_hello(agent);
     say_hello(agent);
     say_hello(agent);
-    
+
     // TASK 5 - Custom "Copy" Types
     // Hint: Copy is not a 'standalone' trait. It has requirements
     #[derive(Copy)]
@@ -57,7 +57,7 @@ fn main() {
     struct User(i32, String);
     let user_a = User(42, String::from("Alice"));
     let user_b = user_a;
-    println!("We are {} and {}", user_a.1, user_b.1); 
+    println!("We are {} and {}", user_a.1, user_b.1);
 
     // TASK 7 - "Copy" and "Drop"
     // Hint: Some traits cannot be implemented together for a type

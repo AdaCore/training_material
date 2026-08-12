@@ -32,22 +32,21 @@ Encapsulation in Structs
 
   * Control how data is read or modified
 
-.. container:: latex_environment scriptsize
+.. code:: rust
+  :font-size: scriptsize
 
-  .. code:: rust
+  pub struct Students {
+      names: Vec<String>, // Private!
+  }
 
-    pub struct Students {
-        names: Vec<String>, // Private!
-    }
-
-    impl Students {
-        pub fn new() -> Self {
-            Self { names: Vec::new() }
-        }
-        pub fn add(&mut self, name: String) {
-            if !name.is_empty() { self.names.push(name); }
-        }
-    }
+  impl Students {
+      pub fn new() -> Self {
+          Self { names: Vec::new() }
+      }
+      pub fn add(&mut self, name: String) {
+          if !name.is_empty() { self.names.push(name); }
+      }
+  }
 
 --------------------------------------------
 Breaking Encapsulation - Or, When to "pub"

@@ -35,7 +35,7 @@ Tuples and Arrays
 .. include:: 050_tuples_and_arrays/00_introduction.rst
 .. include:: 050_tuples_and_arrays/01_arrays.rst
 .. include:: 050_tuples_and_arrays/02_tuples.rst
-.. include:: 050_tuples_and_arrays/03_destructuring.rst
+.. include:: 050_tuples_and_arrays/03_patterns_and_destructuring.rst
 .. include:: 050_tuples_and_arrays/88-tuples_and_arrays.lab.rst
 .. include:: 050_tuples_and_arrays/99_summary.rst
 

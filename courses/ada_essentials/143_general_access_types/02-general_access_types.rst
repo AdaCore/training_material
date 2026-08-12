@@ -142,7 +142,7 @@ Deallocating General Access Types
 
 .. tip::
 
-   If you need to create/free memory, best to use pool-specific
+   When creating/freeing memory, best to use pool-specific
    access types
 
 ------
