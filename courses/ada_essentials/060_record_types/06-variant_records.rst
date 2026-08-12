@@ -193,7 +193,7 @@ Quiz
 
 .. container:: animate
 
-  **Explanation**
+  Explanation
 
   * Variant block covers all possible values of :ada:`Valid`, so no
     compilation error
