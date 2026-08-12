@@ -154,7 +154,7 @@ Quiz
 Quiz
 ------
 
-Which code block(s) is (are) legal?
+Which of the following code blocks are legal? (Select all that apply)
 
 .. container:: columns
 
@@ -194,10 +194,9 @@ Which code block(s) is (are) legal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Cannot extend a non-tagged type
    B. :ada:`B1` is a tagged type, and :ada:`B2` extends :ada:`B1`
    C. Components must have distinct names
    D. Types derived from a tagged type must have an extension
-

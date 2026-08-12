@@ -232,7 +232,7 @@ What will get printed?
 
 .. container:: animate
 
-  Explanations
+  Explanation
 
   A. :ada:`One` is never printed. Although :ada:`(A - C)` is not in range, this is only checked on assignment (after addition of :ada:`B`).
   B. No exception on Line 6 (``One`` is not printed), but Line 2 does - so ``Two`` to be printed.

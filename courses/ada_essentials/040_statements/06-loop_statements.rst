@@ -337,7 +337,7 @@ Quiz
 
    A, B : Integer := 123;
 
-Which loop block(s) is (are) legal?
+Which of the following loop blocks are legal? (Select all that apply)
 
   A. | ``for A in 1 .. 10 loop``
      |    ``A := A + 1;``
@@ -354,7 +354,7 @@ Which loop block(s) is (are) legal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Cannot assign to a loop parameter
    B. Legal - 10 iterations
