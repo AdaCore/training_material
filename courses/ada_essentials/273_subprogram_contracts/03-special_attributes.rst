@@ -11,7 +11,7 @@ Evaluate an Expression on Subprogram Entry
   .. code:: Ada
 
       procedure Increment (This : in out Integer)
-       with Post => ??? -- how to assert incrementation of `This`?
+       with Post => ??? -- how to assert incrementation of 'This'?
 
 * Language-defined attribute :ada:`'Old`
 * Expression is **evaluated** at subprogram entry
@@ -52,9 +52,9 @@ Example for Attribute 'Old (1/3)
 
     procedure Sanitize_Digit
       with Post =>
-        --  Original position was not a digit
+        -- Original position was not a digit
         not (Is_Digit (Text(Index)'Old))
-        --  or else it is now a '*'
+        -- Or else it is now a '*'
         or  Text(Index'Old) = '*';
 
 ----------------------------------
@@ -86,7 +86,7 @@ Example for Attribute 'Old (2/3)
 
     procedure Sanitize_Digit
       with Post =>
-        --  If input Index is in range
+        -- If input 'Index' is in range
         (if Index'Old in Text'Range then
           -- Either text at original index was not digit
           not (Is_Digit (Text'Old(Index'Old)))
