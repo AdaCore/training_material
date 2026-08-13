@@ -35,14 +35,14 @@ Basic **GNAT Studio** Look and Feel
 Project Tree Contextual Menu
 ------------------------------
 
-.. image:: spark_rightclick-source_tree.jpeg
+.. image:: spark_essentials/spark_rightclick-source_tree.png
    :width: 100%
 
 -----------------------------
 Source Code Contextual Menu
 -----------------------------
 
-.. image:: spark_rightclick-code.jpeg
+.. image:: spark_essentials/spark_rightclick-code.png
 
 .. container:: speakernote
 
