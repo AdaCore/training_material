@@ -123,7 +123,7 @@ Renames in Ada 2022
 
 * Ada 2022 allows simpler renames for objects
 
-  * If you are renaming an object, don't you already know the type?
+  * When renaming an object, isn't the type already known?
 
 .. code:: Ada
 

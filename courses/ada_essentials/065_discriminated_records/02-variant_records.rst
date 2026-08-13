@@ -31,7 +31,7 @@ What is a Variant Record?
 
 * Variant records are considered the same type
 
-   * So you can have
+   * So code could look like
 
      .. code:: Ada
 
@@ -48,7 +48,7 @@ Immutable Variant Record
 
    * It is an :dfn:`indefinite type`, similar to an unconstrained array
 
-     * So you must add a constraint (discriminant) when creating an object
+     * Constraint (discriminant) must be added when creating an object
      * But it can be unconstrained when used as a parameter
 
 * For example
@@ -122,7 +122,7 @@ Mutable Variant Record
 Mutable Variant Record Example
 --------------------------------
 
-* You can only change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
+* Can only change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
 
   .. code:: Ada
 
@@ -133,7 +133,7 @@ Mutable Variant Record Example
     end if;
     Update (Pat);
 
-* But you cannot change the discriminant like a regular component
+* But cannot change the discriminant like a regular component
 
   .. code:: Ada
 
@@ -141,9 +141,9 @@ Mutable Variant Record Example
 
   :error:`error: assignment to discriminant not allowed`
     
-* And you cannot change the discriminant of :ada:`Sam`
+* And cannot change the discriminant of :ada:`Sam`
 
-  * :ada:`Sam := Pat;` will give you a run-time error if :ada:`Pat.Kind` is not :ada:`Contractor`
+  * :ada:`Sam := Pat;` will give a run-time error if :ada:`Pat.Kind` is not :ada:`Contractor`
 
     * And the compiler will not warn about this!
 
@@ -173,7 +173,7 @@ Quiz
 
   .. container:: column
 
-    Which component(s) does :ada:`Variant_Object` contain?
+    Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
 
     A. :ada:`Variant_Object.Value,`
        :ada:`Variant_Object.State`
@@ -183,7 +183,7 @@ Quiz
 
 .. container:: animate
 
-  **Explanation**
+  Explanation
 
   * Variant block covers all possible values of :ada:`Valid`, so no
     compilation error.

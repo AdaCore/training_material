@@ -39,7 +39,7 @@ Why Are Lifetimes Often Omitted?
 Lifetime Elision
 ------------------
 
-- Most Rust code does **not** write lifetimes explicitly
+- Most code omits explicit lifetime annotations
 
 - :dfn:`Lifetime elision` rules can be applied
 

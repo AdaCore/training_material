@@ -8,7 +8,7 @@
        S : String (1 .. Size);
     end record;
 
-Which proposition(s) will compile and run without error?
+Which of the following propositions will compile and run without error? (Select all that apply)
 
 A. ``V : R := (6, "Hello")``
 B. ``V : R := (5, "Hello")``

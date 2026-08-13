@@ -487,10 +487,10 @@ GNAT-Specific Aspect Name "Predicate"
 
    - But not inverse
 
-* Slight disadvantage: you don't find out if your predicate is not actually static
+* Slight disadvantage: predicate could not actually be static
 
-   - Until you use it where only static predicates are allowed
-   - Then you get a compile error
+   - Until used where only static predicates are allowed
+   - Then compile error occurs
 
 ------------------------------------------
 Enabling/Disabling Contract Verification
@@ -545,7 +545,7 @@ D. | ``subtype Sub_Day is Days_T with``
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Static predicate is allowed when condition is a static membership test
    B. :ada:`if` statement not allowed in a predicate

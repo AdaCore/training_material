@@ -7,7 +7,7 @@
     type T1 is array (1 .. 3) of Integer;
     type T2 is array (1 .. 3) of Integer;
 
-Which piece(s) of code correctly perform(s) equality check on A and B?
+Which pieces of code correctly perform an equality check on :ada:`A` and :ada:`B`? (Select all that apply)
 
 A. | :answermono:`function "=" (A : T1; B : T2) return Boolean is`
    |   :answermono:`(A = T1 (B));`

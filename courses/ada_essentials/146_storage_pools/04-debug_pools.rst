@@ -44,7 +44,7 @@ Useful GNAT.Debug_Pools APIs
      Cumulate      : Boolean := False;
      Display_Slots : Boolean := False;
      Display_Leaks : Boolean := False);
-  --  Pass in your own output routines
+  --  Pass in output routines
   
   procedure Print_Info_Stdout
     (Pool          : Debug_Pool;

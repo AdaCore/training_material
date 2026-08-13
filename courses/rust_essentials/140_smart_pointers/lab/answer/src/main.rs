@@ -27,7 +27,7 @@ fn main() {
 
     // TASK 4 - Create the two 'Doll' values below
     // 'Inside' holds a boxed 'Doll'; 'Empty' is the base case
-    
+
     let a_doll = Doll::Inside(Box::new(Doll::Empty));
     let last_doll = Doll::Empty;
 
@@ -52,7 +52,7 @@ fn main() {
     }
 
     let my_box = Box::new(String::from("Rust"));
-    
+
     hello_again(&my_box);
 
     // Mutability

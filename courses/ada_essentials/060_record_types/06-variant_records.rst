@@ -139,7 +139,7 @@ Mutable Variant Record Example
     Pat : Person := (Student, 19, 3.9);
     Sam : Person (Faculty);
 
-* You can only change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
+* Can only change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
 
   .. code:: Ada
 
@@ -150,9 +150,9 @@ Mutable Variant Record Example
     end if;
     Update (Pat);
     
-* But you cannot change the discriminant of :ada:`Sam`
+* But cannot change the discriminant of :ada:`Sam`
 
-  * :ada:`Sam := Pat;` will give you a run-time error if :ada:`Pat.Group` is not :ada:`Faculty`
+  * :ada:`Sam := Pat;` will give a run-time error if :ada:`Pat.Group` is not :ada:`Faculty`
 
     * And the compiler will not warn about this!
 
@@ -182,7 +182,7 @@ Quiz
 
   .. container:: column
 
-    Which component(s) does :ada:`Variant_Object` contain?
+    Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
 
     A. :ada:`Variant_Object.Value,`
        :ada:`Variant_Object.State`
@@ -192,7 +192,7 @@ Quiz
 
 .. container:: animate
 
-  **Explanation**
+  Explanation
 
   * Variant block covers all possible values of :ada:`Valid`, so no
     compilation error

@@ -114,5 +114,4 @@ B. :answer:`No`
 
 .. container:: animate
 
-    A :ada:`record` definition cannot have a component of an indefinite type. :ada:`String` is indefinite if you don't specify its size.
-
+    A :ada:`record` definition cannot have a component of an indefinite type. :ada:`String` is indefinite if size isn't specified

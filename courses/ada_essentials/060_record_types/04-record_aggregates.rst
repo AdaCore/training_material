@@ -205,7 +205,7 @@ Quiz
    Obj1 : Record1_T;
    Obj2 : Record2_T;
 
-Which assignment(s) is (are) legal?
+Which of the following assignments are legal? (Select all that apply)
 
 .. container:: latex_environment small
 
@@ -240,7 +240,7 @@ Delta Aggregates
      end record;
      Location : constant Coordinate_T := (1.0, 2.0, 3.0);
 
-* Prior to Ada 2022, you would copy and then modify
+* Prior to Ada 2022, code would have to copy and then modify
 
   .. code:: Ada
 
@@ -252,11 +252,12 @@ Delta Aggregates
         New_Location := (Z => 0.0, others => <>);
      end;
 
-* Now in Ada 2022 we can just specify the change during the copy
+* Now in Ada 2022, can just specify the change during the copy
 
   .. code:: Ada
 
      New_Location : Coordinate_T := (Location with delta Z => 0.0);
 
-  *Note for record delta aggregates you must use named notation*
+.. note::
 
+  For record delta aggregates, named notation must be used

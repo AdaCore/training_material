@@ -1,12 +1,12 @@
 //! Lab (prompt)
 //! Pattern Matching
 //!
-//! Fix all the compile errors below by following the hints provided 
-//! 
+//! Fix all the compile errors below by following the hints provided
+//!
 #[allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
-    
+
     // TASK 1 - Exhaustiveness in 'match'
     // Hint: All possible cases must be handled
     enum Status {
@@ -25,7 +25,7 @@ fn main() {
     // TASK 2 - Refutable Pattern in a 'let' Binding
     // Hint: Every 'let' binding uses a pattern, but simple bindings require irrefutable patterns
     let secret_value = Some(42);
-    
+
     let Some(x) = secret_value;
     println!("The secret is {}", x);
 
@@ -39,7 +39,7 @@ fn main() {
     }
 
     let p = Player { name: String::from("Hero"), health: 100, mana: 50 };
-    
+
     let Player { name, health } = p;
 
 
@@ -75,7 +75,7 @@ fn main() {
 
     let c = Coordinates { x: 5, y: 10 };
     let Coordinates { my_x: x, my_y: y } = c;
-    
+
     println!("The coordinates are: {},{}", my_x, my_y);
 
 
@@ -94,7 +94,7 @@ fn main() {
     // TASK 8 - "if let" Syntax Order
     // Hint: "if let" follows assignment order: Pattern = value
     let optional_code = Some(777);
-    
+
     if let optional_code = Some(code) {
         println!("Code is {}", code);
     }

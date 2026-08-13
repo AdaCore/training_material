@@ -45,7 +45,7 @@ Flat Arrays
 
       type Line_Acc is access String (1 .. 80);
 
-* You can use big flat array to index memory
+* Can use big flat array to index memory
 
    - See :ada:`GNAT.Table`
    - Not portable

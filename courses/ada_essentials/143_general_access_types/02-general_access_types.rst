@@ -142,7 +142,7 @@ Deallocating General Access Types
 
 .. tip::
 
-   If you need to create/free memory, best to use pool-specific
+   When creating/freeing memory, best to use pool-specific
    access types
 
 ------
@@ -160,7 +160,7 @@ Quiz
    General_Ptr       : General_T;
    Pool_Specific_Ptr : Pool_T;
 
-Which assignment(s) is (are) legal?
+Which of the following assignments are legal? (Select all that apply)
 
 A. ``General_Ptr := Random_Object'Access;``
 B. :answermono:`General_Ptr := Aliased_Object'Access;`

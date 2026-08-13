@@ -35,11 +35,11 @@ fn main() {
     }
 
     let default_set = Settings { font_size: 18, active: false };
-    
+
     let set_1 = Settings {
         active: true,
         ..default_set // The update operator must be the last element in the struct initialization
-    }; 
+    };
 
     // TASK 4 - Partial Mutability
     // Hint: Mutability applies to the entire instance; no partial application for fields
@@ -90,7 +90,7 @@ fn main() {
     let direction = Direction::Left;
 
     println!("TASK7 => direction: {:?}", direction);
-    
+
     // TASK 8 - Enum Data Initialization
     // Hint: data must be initialized if the variant holds data
     #[derive(Debug)]

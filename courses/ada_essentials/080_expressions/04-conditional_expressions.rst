@@ -136,7 +136,7 @@ The "else" Part When Result Is Boolean
     Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
     Acceptable : Boolean := (if P1 > 0 then P2 > 0);
 
-* Use :ada:`else` if you need to return False at the end
+* Use :ada:`else` if :ada:`False` needs to be returned
 
 ---------------------------------------
 Rationale for Parentheses Requirement
@@ -187,7 +187,7 @@ Rationale for Parentheses Requirement
 When to Use If Expressions
 ----------------------------
 
-* When you need computation to be done prior to sequence of statements
+* When computation should be done prior to sequence of statements
 
   .. code:: Ada
 
@@ -282,7 +282,7 @@ Quiz
    B : Boolean;
    Z : Float := Get_Length;
 
-Which statement(s) is (are) legal?
+Which of the following statements are legal? (Select all that apply)
 
    A. ``F := if Z < 0.0 then Sqrt (-1.0 * Z) else Sqrt (Z);``
    B. :answermono:`F := Sqrt (if Z < 0.0 then -1.0 * Z else Z);`
@@ -291,7 +291,7 @@ Which statement(s) is (are) legal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Missing parentheses around expression
    B. Legal - Expression is already enclosed in parentheses so you don't need to add more

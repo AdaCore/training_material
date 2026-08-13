@@ -24,7 +24,6 @@ Package Visible and Private Sections for Views
    - No compilable references to type's actual representation
 
 .. code:: Ada
-  :font-size: small
 
    package name is
    ... exported declarations of types, variables, subprograms ...
@@ -159,7 +158,7 @@ Benefits of Views
 
 * Implementers can create bullet-proof abstractions
 
-   - If a facility isn't working, you know where to look
+   - If a facility isn't working, the implementation should be investigated
 
 * Fixing bugs is less likely to introduce new ones
 
@@ -174,7 +173,7 @@ Quiz
 
       type Record_T is record
 
-Which component(s) is (are) legal?
+Which of the following components are legal? (Select all that apply)
 
    A. ``Component_A : Integer := Private_T'Pos (Private_T'First);``
    B. ``Component_B : Private_T := null;``
@@ -187,10 +186,9 @@ Which component(s) is (are) legal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Visible section does not know :ada:`Private_T` is discrete
    B. Visible section does not know possible values for :ada:`Private_T`
    C. Visible section does not know possible values for :ada:`Private_T`
    D. Correct - type will have a known size at run-time
-
