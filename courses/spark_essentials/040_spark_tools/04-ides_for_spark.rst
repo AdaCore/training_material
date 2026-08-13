@@ -23,7 +23,7 @@ Available IDEs Supporting SPARK
 Basic **GNAT Studio** Look and Feel
 -------------------------------------
 
-.. image:: spark_essentials/spark_with_gnatstudio.svg
+.. image:: spark_essentials/spark_with_gnatstudio.png
 
 ---------------------------------
 **GNATprove** "SPARK" Main Menu
