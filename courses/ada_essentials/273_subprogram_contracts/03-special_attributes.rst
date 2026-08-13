@@ -11,7 +11,7 @@ Evaluate an Expression on Subprogram Entry
   .. code:: Ada
 
       procedure Increment (This : in out Integer)
-       with Post => ??? -- how to assert incrementation of `This`?
+       with Post => ??? -- how to assert incrementation of 'This'?
 
 * Language-defined attribute :ada:`'Old`
 * Expression is **evaluated** at subprogram entry
@@ -31,81 +31,97 @@ Evaluate an Expression on Subprogram Entry
           Pre  => This < Integer'Last,
           Post => This = This'Old + 1;
 
-----------------------------
-Example for Attribute 'Old
-----------------------------
+----------------------------------
+Example for Attribute 'Old (1/3)
+----------------------------------
 
-.. code:: Ada
+* We have a procedure that replaces digits in a string with "*"
 
-      Global : String := Init_Global;
-      ...
-      -- In Global, move character at Index to the left one position,
-      -- and then increment the Index
-      procedure Shift_And_Advance (Index : in out Integer) is
-      begin
-         Global (Index) := Global (Index + 1);
-         Index          := Index + 1;
-      end Shift_And_Advance;
-
-* Note the different uses of `'Old` in the postcondition
+  * If character at current index is a digit, replace with "*"
+  * Increment the current index
 
   .. code:: Ada
 
-     procedure Shift_And_Advance (Index : in out Integer) with Post =>
-        -- Global (Index) before call (so Global and Index are original)
-        Global (Index)'Old
-           -- Original Global and Original Index
-           = Global'Old (Index'Old)
-        and
-        -- Global after call and Index before call
-        Global (Index'Old)
-           -- Global and Index after call
-           = Global (Index);
+    Text  : String(1..5) := "12-45";
+    Index : Integer := 1;
+    procedure Sanitize_Digit;
 
------------------------------------------
-Error on Conditional Evaluation of 'Old
------------------------------------------
-
-* This code is **incomplete**
+* We add a postcondition to ensure correct behavior
 
   .. code:: Ada
-    :font-size: scriptsize
 
-    procedure Shift_And_Advance (Index : in out Integer) with
-      Post =>
-        Global (Index)'Old = Global'Old (Index'Old) and
-        Global (Index'Old) = Global (Index);
+    procedure Sanitize_Digit
+      with Post =>
+        -- Original position was not a digit
+        not (Is_Digit (Text(Index)'Old))
+        -- Or else it is now a '*'
+        or  Text(Index'Old) = '*';
 
-  * What happens when :ada:`Index` is not in range for :ada:`Global`?
+----------------------------------
+Example for Attribute 'Old (2/3)
+----------------------------------
 
-* So we add a range check
+* But we have no guarantee that :ada:`Index` is in range
 
-  .. code:: Ada
-    :font-size: scriptsize
-
-    procedure Shift_And_Advance (Index : in out Integer) with
-      Post =>
-        (if Index in Global'Range then
-           Global (Index)'Old = Global'Old (Index'Old) and
-           Global (Index'Old) = Global (Index));
-
-  * This code is still wrong!
-
-    * :ada:`Global (Index)'Old` is evaluated on **entry**
-    * :ada:`Index` is only being verified **after** the call
-
-* (One) Correct solution
+  * So modify the postcondition to check it
 
   .. code:: Ada
-    :font-size: scriptsize
+    :font-size: small
 
-    procedure Shift_And_Advance (Index : in out Integer) with
-      Post =>
-        (if Index in Global'Range then
-           Global'Old (Index) = Global'Old (Index'Old) and
-           Global (Index'Old) = Global (Index));
+    procedure Sanitize_Digit
+      with Post =>
+        (if Index in Text'Range then
+          not (Is_Digit (Text(Index)'Old))
+          or  Text(Index'Old) = '*');
 
-  * Check at the old position now copies entire :ada:`Global`
+* But this won't fix the problem!
+
+  * :ada:`Text(Index)'Old` is evaluated on **entry**
+  * What happens when :ada:`Index` is out of range?
+
+* One possible solution 
+
+  .. code:: Ada
+    :font-size: small
+
+    procedure Sanitize_Digit
+      with Post =>
+        -- If input 'Index' is in range
+        (if Index'Old in Text'Range then
+          -- Either text at original position was not digit
+          not (Is_Digit (Text'Old(Index'Old)))
+          -- Or text at original position is now '*'
+          or  Text(Index'Old) = '*');
+
+----------------------------------
+Example for Attribute 'Old (3/3)
+----------------------------------
+
+**Using** :ada:`'Old` **wisely to examine a character**
+
+  .. list-table::
+    :header-rows: 1
+    :widths: 40 10 50
+
+    * - **Code**
+      - **Value**
+      - **What Was Copied**
+
+    * - :ada:`Text (Index)'Old`
+      - ``1``
+      - *Character at original* :ada:`Index`
+
+    * - :ada:`Text'Old (Index'Old)`
+      - ``1``
+      - *All of* :ada:`Text` *and* :ada:`Index`
+
+    * - :ada:`Text (Index'Old)`
+      - ``*``
+      - *Just* :ada:`Index`
+
+    * - :ada:`Text (Index)`
+      - ``2``
+      - *Nothing*
 
 -----------------------------------------
 Postcondition Usage of Function Results
