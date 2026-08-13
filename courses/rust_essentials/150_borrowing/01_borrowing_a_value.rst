@@ -39,11 +39,13 @@ Local Borrows
     let w1 = &mut scanner; // Mutable borrow
     w1.0 += 10; 
     println!("Calibrated to: {}", w1.0);
+    println!("Original     : {}", scanner.0);
 
+.. code:: output
 
-:command:`Reads: 42 and 42`
-
-:command:`Calibrated to: 52`
+  Reads: 42 and 42
+  Calibrated to: 52
+  Original     : 52
 
 --------------------------------------
 Mixing Mutable and Immutable Borrows

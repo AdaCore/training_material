@@ -38,7 +38,11 @@ Ownership Principles
       let poodle = String::from("ball"); // 'poodle' owns the ball
       let yorkie = poodle; // 'poodle' lets go, 'yorkie' picked it up
             
-      // println!("{}", poodle); // Error
       println!("{}", yorkie);
+      println!("{}", poodle);
   } // 'yorkie' drops the ball, and leaves
   // 'poodle' leaves quietly
+
+.. code:: error
+
+  error[E0382]: borrow of moved value: `poodle`

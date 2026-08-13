@@ -20,7 +20,7 @@ Limitations of Strict Rules
 -----------
 
 - Guarantees safe modification through a shared, read-only reference
-- Designed for types that implement :rust:`Copy trait`
+- Designed for types that implement :rust:`Copy` trait
   - Such as integers or booleans
 - References to the inner data are never exposed
 
