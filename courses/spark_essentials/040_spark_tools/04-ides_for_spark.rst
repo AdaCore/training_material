@@ -52,13 +52,13 @@ Source Code Contextual Menu
 "Basic" Proof Dialog Panel
 ----------------------------
 
-.. image:: prove_dialog-basic.png
+.. image:: spark_essentials/prove_dialog-basic.png
 
 ---------------------------------------------
 Example Analysis Results in **GNAT Studio**
 ---------------------------------------------
 
-.. image:: gnatprove-output-ide.jpeg
+.. image:: spark_essentials/gnatprove-output-ide.png
 
 ----------------------------------
 Preference for Selecting Profile
@@ -81,11 +81,11 @@ Preference for Selecting Profile
 
  .. container:: column
 
-    .. image:: gnatstudio-preferences-spark.jpeg
+    .. image:: spark_essentials/gnatstudio-preferences-spark.png
 
 -------------------------------
 "Advanced" Proof Dialog Panel
 -------------------------------
 
-.. image:: prove_dialog-advanced.png
+.. image:: spark_essentials/prove_dialog-advanced.png
 
