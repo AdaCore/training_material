@@ -116,7 +116,10 @@ Aliasing the Assignment Target
             Value := Update (@);
             Value := Increment (@);
 
-   :error:`example.adb:13:21: error: actual for "X" must be a variable`
+     .. code:: error
+       :font-size: footnotesize
+
+       example.adb:13:21: error: actual for "X" must be a variable
 
 ------
 Quiz

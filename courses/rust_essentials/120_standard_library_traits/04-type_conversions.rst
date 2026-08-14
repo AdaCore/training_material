@@ -148,9 +148,10 @@ Safer Conversions
     }
 }
 
-:command:`'as' result:    300 -> 44`
+.. code:: output
 
-:command:`'TryFrom' result: Error! 300 is too big for u8`
+  'as' result:    300 -> 44
+  'TryFrom' result: Error! 300 is too big for u8
 
 ------------------------
 Conversion vs. Casting
