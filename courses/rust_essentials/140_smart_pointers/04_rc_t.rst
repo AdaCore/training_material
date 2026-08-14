@@ -39,9 +39,10 @@ Multiple Ownership With "Rc<T>"
   let var_b = Rc::clone(&var_a);
   println!("Count: {}", Rc::strong_count(&var_a)); 
   
-:command:`Count: 1`
+.. code:: output
 
-:command:`Count: 2`
+  Count: 1
+  Count: 2
 
 ------------------
 Immutable Access
@@ -58,4 +59,6 @@ Immutable Access
 
   *tic += 10; // Error: no mutable access
   
-:error:`error[E0594]: cannot assign to data in an 'Rc'`
+.. code:: error
+
+  error[E0594]: cannot assign to data in an 'Rc'

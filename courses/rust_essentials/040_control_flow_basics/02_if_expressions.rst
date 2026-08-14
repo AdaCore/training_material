@@ -26,7 +26,9 @@ Using "if" as a Statement
         println!("New graphics card acquired.");
     }
 
-:command:`New graphics card acquired.`
+.. code:: output
+
+  New graphics card acquired.
 
 -----------------------------
 Using "if" as an Expression
@@ -44,7 +46,9 @@ Using "if" as an Expression
     }; // Note the ; here to terminate the let statement
     println!("Pet Status: {}", status);
 
-:command:`Pet Status: Starving. Call the vet and the police.`
+.. code:: output
+
+  Pet Status: Starving. Call the vet and the police.
 
 -------------------------
 Return Type Consistency
@@ -60,7 +64,9 @@ Return Type Consistency
         "large"  // Note the absence of ; 
     };
 
-:error:`error[E0308]: 'if' and 'else' have incompatible types`
+.. code:: error
+
+  error[E0308]: 'if' and 'else' have incompatible types
 
 - :rust:`"small"` and :rust:`"large"` are both strings
   - Adding a :rust:`;` after a value makes the types different

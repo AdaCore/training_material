@@ -52,13 +52,19 @@ The "Observer" (let r = &x)
 
     *rf = 1776; // Error
 
-:error:`error[E0594]: cannot assign to '*rf', which is behind a '&'' reference`
+.. code:: error
+  :font-size: scriptsize
+
+  error[E0594]: cannot assign to '*rf', which is behind a '&'' reference
 
 .. code:: rust
 
     rf = &future; // Error
 
-:error:`error[E0384]: cannot assign twice to immutable variable 'rf'`
+.. code:: error
+  :font-size: scriptsize
+
+  error[E0384]: cannot assign twice to immutable variable 'rf'
 
 .. note::
 
@@ -80,9 +86,10 @@ The "Rebinder" (let mut r = &x)
     rf = &news_b;
     *rf = "Peace"; // Error
 
-.. container:: latex_environment footnotesize
-  
-  :error:`error[E0594]: cannot assign to '*rf', which is behind a '&'' reference`
+.. code:: error
+  :font-size: scriptsize
+
+  error[E0594]: cannot assign to '*rf', which is behind a '&'' reference
 
 .. note::
 
@@ -104,7 +111,10 @@ The "Modifier" (let r = &mut x)
     *rf = 1;
     rf = &mut room_102; // Error
 
-:error:`error[E0384]: cannot assign twice to immutable variable 'rf'`
+.. code:: error
+  :font-size: small
+
+  error[E0384]: cannot assign twice to immutable variable 'rf'
 
 .. note::
 

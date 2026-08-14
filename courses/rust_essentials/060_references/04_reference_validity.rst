@@ -18,7 +18,9 @@ References End at Their Last Use
 - :rust:`ref_2` creation is allowed
 - :rust:`ref_1` and :rust:`ref_2` do not overlap
 
-:command:`ref_1: 10`
+.. code:: output
+
+  ref_1: 10
 
 .. note::
 
@@ -40,4 +42,6 @@ References Are Always Safe to Use
    };
    println!("Jack screams: {rose}");
 
-:error:`error[E0597]: 'jack' does not live long enough`
+.. code:: error
+
+  error[E0597]: 'jack' does not live long enough

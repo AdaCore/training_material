@@ -51,7 +51,9 @@ Limitations of Strict Rules
    
    println!("Sensor read {} time(s)", scanner.read_count.get());
 
-:command:`Sensor read 1 time(s)`
+.. code:: output
+
+  Sensor read 1 time(s)
 
 --------------
 "RefCell<T>"

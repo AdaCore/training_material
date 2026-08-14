@@ -17,7 +17,9 @@ Lifetimes in Structs
       inscription: &str,
   }
 
-:error:`error[E0106]: missing lifetime specifier`
+.. code:: error
+
+  error[E0106]: missing lifetime specifier
 
 .. code:: Rust
 

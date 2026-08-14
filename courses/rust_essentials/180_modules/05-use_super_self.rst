@@ -118,7 +118,10 @@ Name Collisions
       render(); // Error - which one did you mean?
   }
 
-:error:`error[E0252]: the name 'render' is defined multiple times`
+.. code:: error
+  :font-size: small
+
+  error[E0252]: the name 'render' is defined multiple times
 
 **Solution: Rename with** :rust:`as`
 

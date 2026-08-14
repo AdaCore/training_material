@@ -40,10 +40,10 @@ Local Borrows
     w1.0 += 10; 
     println!("Calibrated to: {}", w1.0);
 
+.. code:: output
 
-:command:`Reads: 42 and 42`
-
-:command:`Calibrated to: 52`
+  Reads: 42 and 42
+  Calibrated to: 52
 
 --------------------------------------
 Mixing Mutable and Immutable Borrows
@@ -66,7 +66,10 @@ Mixing Mutable and Immutable Borrows
 
 .. container:: latex_environment tiny
 
-    :error:`error[E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable`
+.. code:: error
+  :font-size: tiny
+
+  error[E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable
 
 ------------------
 Function Borrows
@@ -95,9 +98,10 @@ Function Borrows
     calibrate(&mut scanner);   // Mutable borrow starts and ends
     read(&scanner);            // Read-only borrow starts and ends
 
-:command:`Read: 42`
+.. code:: output
 
-:command:`Read: 52`
+  Read: 42
+  Read: 52
 
 .. note::
 
@@ -126,9 +130,10 @@ Overlapping Borrows
     
     println!("Reader sees: {}", active_reader.0);
 
-.. container:: latex_environment footnotesize
+.. code:: error
+  :font-size: tiny
 
-    :error:`[E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable`
+  [E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable
 
 --------------------------
 Multiple Mutable Borrows
@@ -149,9 +154,10 @@ Multiple Mutable Borrows
     let mut scanner = Sensor(42);
     sync_sensors(&mut scanner, &mut scanner); // Error
 
-.. container:: latex_environment scriptsize
+.. code:: error
+  :font-size: scriptsize
 
-    :error:`error[E0499]: cannot borrow 'scanner' as mutable more than once at a time`
+  error[E0499]: cannot borrow 'scanner' as mutable more than once at a time
 
 ----------------
 Method Borrows
@@ -204,6 +210,7 @@ Conflicting Self Borrows
     scanner.calibrate(); // This won't compile
     println!("Reference sees: {}", snapshot.read());
 
-.. container:: latex_environment scriptsize
+.. code:: error
+  :font-size: tiny
 
-    :error:`error[E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable`
+  error[E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable

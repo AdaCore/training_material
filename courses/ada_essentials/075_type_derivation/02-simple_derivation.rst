@@ -25,19 +25,27 @@ Simple Type Derivation
 * The types are not the same
 
   .. code:: Ada
+      :number-lines:  1
 
+    procedure Main is
+      type Integer_T is range 0 .. 100;
+      type Natural_T is new Integer_T;
       I_Obj : Integer_T := 0;
       N_Obj : Natural_T := 0;
+   begin
+      I_Obj := N_Obj;
+      I_Obj := Integer_T (N_Obj);
+   end Main;
 
-  * :ada:`I_Obj := N_Obj;` |rightarrow| generates a compile error
+  * Assigning one to the other generates a compile error
 
-    :error:`expected type "Integer_T" defined at line 2`
+    .. code:: error
+      :font-size: scriptsize
+    
+      main.adb:7:16: error: expected type "Integer_T" defined at line 2
+      main.adb:7:16: error: found type "Natural_T" defined at line 3
 
-  * But a child can be converted to the parent
-
-   .. code:: Ada
-
-     I_Obj := Integer_T (N_Obj);
+  * But a child can be converted to the parent (line 8)
 
 --------------------------------------
 Simple Derivation and Type Structure

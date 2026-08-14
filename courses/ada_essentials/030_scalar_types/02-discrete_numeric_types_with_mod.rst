@@ -55,9 +55,10 @@ Signed Integer Bounds
 
       type Big_Integer_T is range 0 .. 2**128;
 
-    .. container:: latex_environment scriptsize
+    .. code:: error
+      :font-size: scriptsize
 
-      :error:`main.adb:3:26: error: integer type definition bounds out of range`
+      main.adb:3:26: error: integer type definition bounds out of range
 
 ---------------------------------
 Predefined Signed Integer Types

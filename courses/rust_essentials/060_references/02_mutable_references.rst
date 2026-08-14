@@ -18,7 +18,9 @@ Mutable References (AKA Exclusive References)
     *big_brother = 5; 
     println!("Truth: {two_plus_two}");
 
-:command:`Truth: 5`
+.. code:: output
+
+  Truth: 5
 
 .. note::
 

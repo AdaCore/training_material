@@ -21,7 +21,7 @@ Block
     };
     println!("balance: {balance}");
 
-:command:`withdraw: 10`
+.. code:: output
 
-:command:`balance: 3`
-
+  withdraw: 10
+  balance: 3

@@ -20,11 +20,11 @@
         println!("Count: {}", count);
     }; 
 
-:command:`Count: 3`
+.. code:: output
 
-:command:`Count: 4`
-
-:command:`Count: 5`
+  Count: 3
+  Count: 4
+  Count: 5
   
 -------------------------------------------
 Returning a Value With "loop" and "break"
@@ -42,7 +42,9 @@ Returning a Value With "loop" and "break"
     };
     println!("Result: {}", result);
 
-:command:`Result: 6`
+.. code:: output
+
+  Result: 6
 
 --------
 Labels
@@ -67,7 +69,9 @@ Labels
     } // Outer loop ends
     println!("Sugar crash at: {}", eaten);
     
-:command:`Sugar crash at: 13`
+.. code:: output
+
+  Sugar crash at: 13
 
 --------------
 Block Labels
@@ -84,6 +88,7 @@ Block Labels
       }
       println!("After");
 
-:command:`Before`
+.. code:: output
 
-:command:`After`
+  Before
+  After

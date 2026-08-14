@@ -28,7 +28,9 @@ Destructuring a Tuple
   // 'name' is more meaningful than 'person_data.0'
   println!("Name: {name}, {profession}");
 
-:command:`Name: Renoir, Painter`
+.. code:: output
+
+  Name: Renoir, Painter
 
 ----------------------------------
 Irrefutable Patterns With Tuples
@@ -81,11 +83,11 @@ Destructuring an Array
   println!("pants: {}", pants);
   println!("socks: {}", socks);
 
-:command:`shirts: 10`
+.. code:: output
 
-:command:`pants: 20`
-
-:command:`socks: 30`
+  shirts: 10
+  pants: 20
+  socks: 30
 
 ----------------------------
 Ignoring Specific Elements
@@ -102,9 +104,10 @@ Ignoring Specific Elements
   println!("Second color: {}", second); // green
   println!("Fourth color: {}", fourth); // yellow
 
-:command:`Second color: green`
+.. code:: output
 
-:command:`Fourth color: yellow`
+  Second color: green
+  Fourth color: yellow
 
 ----------------------------
 Ignoring Multiple Elements
@@ -122,9 +125,10 @@ Ignoring Multiple Elements
   println!("First: {}", first);
   println!("Second: {}", second);
 
-:command:`First: 1`
+.. code:: output
 
-:command:`Second: 2`
+  First: 1
+  Second: 2
 
 ----------------------
 Nested Destructuring
@@ -140,4 +144,6 @@ Nested Destructuring
   println!("Drawing line from ({}, {}) to ({}, {})",
             start_x, start_y, end_x, end_y);
 
-:command:`Drawing line from (10, 20) to (80, 90)`
+.. code:: output
+
+  Drawing line from (10, 20) to (80, 90)

@@ -58,7 +58,9 @@ Match Arms
     _ => println!("Wow, that's a lot of ice cream!"),
   }
 
-:command:`Wow, that's a lot of ice cream!`
+.. code:: output
+
+  Wow, that's a lot of ice cream!
 
 ----------------
 Exhaustiveness
@@ -86,9 +88,10 @@ Exhaustiveness
     Direction::South => println!("Heading Down"),
   }
 
-.. container:: latex_environment scriptsize
+.. code:: error
+  :font-size: tiny
 
-  :error:`error[E0004]: non-exhaustive patterns: 'Direction::East' and 'Direction::West' not covered`
+  error[E0004]: non-exhaustive patterns: 'Direction::East' and 'Direction::West' not covered
 
 ------------------------
 Matching With Bindings
@@ -109,7 +112,9 @@ Matching With Bindings
     _ => println!("Keep playing!"),
   }
 
-:command:`Level 10! Bonus: 250`
+.. code:: output
+
+  Level 10! Bonus: 250
 
 ----------------------------
 Nested Patterns in "match"
@@ -130,7 +135,9 @@ Nested Patterns in "match"
     (x, y) => println!("({}, {})", x, y),
   }
 
-:command:`on y-axis at 0`
+.. code:: output
+
+  on y-axis at 0
 
 .. note::
 
