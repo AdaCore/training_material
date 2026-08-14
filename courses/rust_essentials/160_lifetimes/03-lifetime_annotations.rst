@@ -53,7 +53,9 @@ Why Do We Need Lifetime Annotations?
         }
     }
 
-:error:`error[E0106]: missing lifetime specifier`
+.. code:: error
+
+  error[E0106]: missing lifetime specifier
 
 .. note::
 
