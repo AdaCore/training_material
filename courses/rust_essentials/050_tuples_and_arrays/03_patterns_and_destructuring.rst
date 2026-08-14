@@ -126,7 +126,6 @@ Ignoring Multiple Elements
   println!("Last: {}", last);
 
 .. code:: output
-<<<<<<< HEAD
   :font-size: small
 
   First: 1
@@ -155,11 +154,6 @@ Ignoring Multiple Elements
 
   Fifth: 5
   Sixth: 66
-=======
-
-  First: 1
-  Second: 2
->>>>>>> origin/master
 
 ----------------------
 Nested Destructuring
