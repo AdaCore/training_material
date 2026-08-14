@@ -52,9 +52,10 @@ Patterns Are Declarative
     println!("On Y axis at {ver} (using 'if')");
   }
 
-:command:`On Y axis at 7 (using 'match')`
+.. code:: output
 
-:command:`On Y axis at 7 (using 'if')`
+  On Y axis at 7 (using 'match')
+  On Y axis at 7 (using 'if')
 
 ----------------------
 Patterns as Bindings
@@ -92,7 +93,9 @@ Literal Patterns
     _ => println!("too many"),
   }
 
-:command:`too many`
+.. code:: output
+
+  too many
 
 ------------------
 Wildcard Pattern
@@ -118,7 +121,9 @@ Wildcard Pattern
     Status::Error => println!("error"),
   }
 
-:command:`ok`
+.. code:: output
+
+  ok
 
 -----------------------
 Binding With Patterns
@@ -136,7 +141,9 @@ Binding With Patterns
 
   println!("first is {}, second is {}", first, second);
 
-:command:`first is 10, second is 20`
+.. code:: output
+
+  first is 10, second is 20
 
 ---------------------
 Pattern Composition
@@ -158,7 +165,9 @@ Pattern Composition
     _ => {}
   }
 
-:command:`on y-axis at 5`
+.. code:: output
+
+  on y-axis at 5
 
 - If line 1 was :rust:`let point = (5, 0);`
 
@@ -198,7 +207,9 @@ Pattern Vocabulary
       _ => println!("Other"),
   }
 
-:command:`Value 5 is in range`
+.. code:: output
+
+  Value 5 is in range
 
 -----------------------------
 Patterns in Rust Constructs

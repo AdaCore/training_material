@@ -41,11 +41,11 @@ println!
     // Expressions not allowed inside the curly braces
     println!("Hello {name}!");
 
-:command:`Hello!`
+.. code:: output
 
-:command:`Hello, World, the answer is 42.`
-
-:command:`Hello World!`
+  Hello!
+  Hello, World, the answer is 42.
+  Hello World!
 
 ------
 dbg!
@@ -74,11 +74,11 @@ dbg!
     }
     let result = factorial(3);
 
-:command:`[src/main.rs:5:20] i = 1`
+.. code:: output
 
-:command:`[src/main.rs:5:20] i = 2`
-
-:command:`[src/main.rs:5:20] i = 3`
+  [src/main.rs:5:20] i = 1
+  [src/main.rs:5:20] i = 2
+  [src/main.rs:5:20] i = 3
 
 -------
 todo!
@@ -104,8 +104,10 @@ todo!
         fizzbuzz(10);
     }
 
-:command:`thread 'main' (11) panicked at src/main.rs:4:5:`
-:command:`not yet implemented: Implement this`
+.. code:: output
+
+  thread 'main' (11) panicked at src/main.rs:4:5:
+  not yet implemented: Implement this
 
 --------------
 unreachable!
@@ -136,8 +138,11 @@ unreachable!
         _ => unreachable!("Number is outside the expected range!"),
     }
 
-:command:`thread 'main' (41) panicked at src/main.rs:12:14:`
-:command:`internal error: entered unreachable code: Number is outside the expected range!`
+.. code:: output
+  :font-size: tiny
+
+  thread 'main' (41) panicked at src/main.rs:12:14:
+  internal error: entered unreachable code: Number is outside the expected range!
 
 .. container:: speakernote
 

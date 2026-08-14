@@ -95,15 +95,17 @@ Freeze Point for Tagged Types
 
    procedure Prim3 (Child : Child_T); -- compile error
 
-.. container:: latex_environment scriptsize
+.. code:: error
+  :font-size: small
 
-  :error:`example.ads:6:04: warning: no primitive operations for "Root_T" after this line`
-
-  :error:`example.ads:8:14: error: this primitive operation is declared too late`
-
-  :error:`example.ads:10:04: warning: no primitive operations for "Child_T" after this line`
-
-  :error:`example.ads:12:14: error: this primitive operation is declared too late`
+  example.ads:6:04: warning: no primitive operations
+    for "Root_T" after this line
+  example.ads:8:14: error: this primitive operation
+    is declared too late
+  example.ads:10:04: warning: no primitive operations
+    for "Child_T" after this line
+  example.ads:12:14: error: this primitive operation
+    is declared too late
 
 ------------------
 Tagged Aggregate

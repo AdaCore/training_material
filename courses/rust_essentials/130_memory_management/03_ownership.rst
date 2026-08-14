@@ -21,7 +21,9 @@ Scope and Validity
        println!("y: {}", pt.1); // Error
    } // Outer scope ends
 
-:error:`error[E0425]: cannot find value 'pt' in this scope`
+.. code:: error
+
+  error[E0425]: cannot find value 'pt' in this scope
 
 ----------------------
 Ownership Principles
@@ -41,4 +43,8 @@ Ownership Principles
       // println!("{}", poodle); // Error
       println!("{}", yorkie);
   } // 'yorkie' drops the ball, and leaves
-  // 'poodle' leaves quietly
+    // 'poodle' leaves quietly
+
+.. code:: output
+
+  ball

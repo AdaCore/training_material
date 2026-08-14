@@ -79,5 +79,7 @@ Collecting "Result"
       .collect();
   println!("good_numbers: {:?}", good_numbers);
 
-:command:`bad_numbers: Err(ParseIntError { kind: InvalidDigit })`
-:command:`good_numbers: Ok([1, 2, 42])`
+.. code:: output
+
+  bad_numbers: Err(ParseIntError { kind: InvalidDigit })
+  good_numbers: Ok([1, 2, 42])
