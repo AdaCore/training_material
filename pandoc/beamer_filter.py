@@ -91,6 +91,13 @@ COLORBOX = "tcolorbox"
 ERROR_COLORS = "fg=error_fg bg=error_bg"
 OUTPUT_COLORS = "fg=output_fg bg=output_bg"
 
+# If a code block uses a language from NEED_BACKGROUND
+# but no colors were already set, use CODEBLOCK_COLORS
+
+NEED_BACKGROUND = ["ada", "c", "c++", "rust", "bnf"]
+CODEBLOCK_COLORS = "bg=codeblock_background"
+
+
 ##
 ## END CONFIGURATION INFORMATION
 #############################################################################
@@ -307,14 +314,20 @@ def modify_header(value):
 
 """
 BlockQuote forces bullet lists to appear one bullet at a time.
-Returning 'value' effectively strips BlockQuote from the AST
+Returning 'value' effectively strips BlockQuote from the AST.
+In addition, if a CodeBlock is indented more than the correc
+number of spaces it gets wrapped in a BlockQuote. In that case,
+we want to handle the CodeBlock like other CodeBlocks.
 """
 
 
-def bullet_point_fix(value):
+def process_blockquote(value):
     global bullet_point_animation
 
-    if not bullet_point_animation:
+    if len(value) == 1 and value[0]['t'] == 'CodeBlock':
+        return process_codeblock(value[0]['c'])
+
+    elif not bullet_point_animation:
         return value
     else:
         return None
@@ -1017,7 +1030,7 @@ def expand_keys(pair):
     return key, val
 
 
-def process_codeblock(key, value):
+def process_codeblock(value):
     """
     This routine will look for our own attributes added to the ".. code::"
     command to implement things like background color and font sizing
@@ -1032,7 +1045,7 @@ def process_codeblock(key, value):
 
     try:
         keys = {}
-        keys["language"] = classes[0]
+        keys["language"] = classes[0].lower()
 
         if "error" in classes:
             keys[COLORBOX] = build_colorbox(ERROR_COLORS)
@@ -1042,6 +1055,14 @@ def process_codeblock(key, value):
             if len(pair) > 0:
                 key, val = expand_keys(pair)
                 keys[key] = val
+
+        # if COLORBOX not set, but a language we want is, set appropriate color
+        if keys["language"] in NEED_BACKGROUND:
+            if COLORBOX in keys.keys():
+                pass
+            else:
+                keys[COLORBOX] = build_colorbox(CODEBLOCK_COLORS)
+
     except:
         pass
 
@@ -1068,10 +1089,10 @@ def perform_filter(key, value, format, meta):
     ## Beamer-specific manipulations
     elif format == "beamer":
         if key == "BlockQuote":
-            return bullet_point_fix(value)
+            return process_blockquote(value)
 
         elif key == "CodeBlock":
-            return process_codeblock(key, value)
+            return process_codeblock(value)
 
         elif key == "Header":
             modify_header(value)
