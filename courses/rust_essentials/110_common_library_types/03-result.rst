@@ -62,4 +62,6 @@ Common Usage
       Err(e)    => println!("Error: {e}"),
   }
 
-:command:`Error: Cannot divide by zero!`
+.. code:: output
+
+  Error: Cannot divide by zero!

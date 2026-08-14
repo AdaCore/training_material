@@ -91,11 +91,17 @@ See what happens when your data is invalid / illegal
 
   * Compile warning
 
-    :error:`main.adb:35:43: warning: division by zero`
+    .. code:: error
+      :font-size: tiny
+
+      main.adb:35:43: warning: division by zero
 
   * Runtime error
 
-    :error:`raised CONSTRAINT_ERROR : main.adb:35 divide by zero`
+    .. code:: error
+      :font-size: tiny
+
+      raised CONSTRAINT_ERROR : main.adb:35 divide by zero
 
 .. container:: animate 1-
 
@@ -110,9 +116,11 @@ See what happens when your data is invalid / illegal
 
   * Compile error
 
-    :error:`main.adb:37:30: error: Pred of "Cmyk_T'First"`
+    .. code:: error
+      :font-size: tiny
 
-    :error:`main.adb:37:30: error: static expression fails Constraint_Check`
+      main.adb:37:30: error: Pred of "Cmyk_T'First"
+      main.adb:37:30: error: static expression fails Constraint_Check
 
 .. container:: animate 1-
 
@@ -132,7 +140,10 @@ See what happens when your data is invalid / illegal
 
   * Compile error
 
-    :error:`main.adb:36:32: error: value not in range of type "Degrees_T" defined at line 8`
+    .. code:: error
+      :font-size: tiny
+
+      main.adb:36:32: error: value not in range of type "Degrees_T" defined at line 8
 
 ------------------------------------------
 Scalar Types Lab Solution - Declarations

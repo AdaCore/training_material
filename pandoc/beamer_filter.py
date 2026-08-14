@@ -87,6 +87,9 @@ SUPPORTED_CLASSES = [
     "latex_environment",
 ]
 
+COLORBOX = "tcolorbox"
+ERROR_COLORS = "fg=error_fg bg=error_bg"
+OUTPUT_COLORS = "fg=output_fg bg=output_bg"
 
 ##
 ## END CONFIGURATION INFORMATION
@@ -948,7 +951,13 @@ def wrap_block(keys, block):
     ends = []
     for environment in keys.keys():
         if environment == "font-size":
+            # For 'font-size', the key is the environment name
             begin, end = environment_wrapper(keys[environment])
+            begins.append(begin)
+            ends.insert(0, end)
+        elif environment == COLORBOX:
+            # For a colorbox, the keys are the options to the color environment
+            begin, end = environment_wrapper(COLORBOX, keys[environment])
             begins.append(begin)
             ends.insert(0, end)
 
@@ -959,6 +968,53 @@ def wrap_block(keys, block):
     for one in ends:
         new_value.append(one)
     return new_value
+
+
+def build_colorbox(values):
+    """
+    Allow setting of foreground and/or background colors
+    for a code block.
+    For now, rather than specifying no border, we will set
+    the border color to the background color (if one is set)
+    """
+
+    fg = None
+    bg = None
+
+    colors = values.split(" ")
+    for color in colors:
+        if color.startswith("fg="):
+            fg = color[3:]
+        elif color.startswith("bg="):
+            bg = color[3:]
+
+    retval = "[left=-3mm,right=0mm,top=1mm,bottom=1mm,boxsep=0mm,"
+    if fg != None:
+        retval = retval + "coltext=" + fg + ","
+    if bg != None:
+        retval = retval + "colback=" + bg + ","
+        retval = retval + "colframe=" + bg + ","
+    if retval[-1] == ",":
+        retval = retval[:-1]
+    retval = retval + "]"
+
+    return retval
+
+
+def expand_keys(pair):
+    """
+    When processing keys for a code block, handle colors
+    in a special manner
+    """
+
+    key = pair[0].lower()
+    val = pair[1].lower()
+
+    if key == "colors":
+        key = COLORBOX
+        val = build_colorbox(val)
+
+    return key, val
 
 
 def process_codeblock(key, value):
@@ -977,9 +1033,15 @@ def process_codeblock(key, value):
     try:
         keys = {}
         keys["language"] = classes[0]
+
+        if "error" in classes:
+            keys[COLORBOX] = build_colorbox(ERROR_COLORS)
+        elif "output" in classes:
+            keys[COLORBOX] = build_colorbox(OUTPUT_COLORS)
         for pair in kvs:
             if len(pair) > 0:
-                keys[pair[0].lower()] = pair[1].lower()
+                key, val = expand_keys(pair)
+                keys[key] = val
     except:
         pass
 

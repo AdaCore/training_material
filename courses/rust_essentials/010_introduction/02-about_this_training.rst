@@ -73,3 +73,11 @@ Styles
 .. warning:: This is a warning
 .. note:: This is an important piece of info
 .. tip:: This is a tip
+
+.. code:: output
+
+  This is an output message
+
+.. code:: error
+
+  This is an error message
