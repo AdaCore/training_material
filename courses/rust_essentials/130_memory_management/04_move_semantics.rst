@@ -17,10 +17,12 @@ Transferring Ownership
   .. container:: column
 
     .. image:: comprehensive_rust_training/move_semantics_unified.svg
+      :width: 75%
 
   .. container:: column
 
     .. code:: rust
+      :font-size: scriptsize
 
         let s1 = String::from("Hello");
         let s2 = s1;
@@ -28,7 +30,10 @@ Transferring Ownership
         println!("{}", s1); // Error
         println!("s2: {}", s2);
 
-    :error:`error[E0382]: borrow of moved value: 's1'`
+    .. code:: error
+      :font-size: tiny
+
+      error[E0382]: borrow of moved value: 's1'
 
 .. note::
 
@@ -50,7 +55,9 @@ Functions and Ownership
     say_hello(name);
     say_hello(name); // Error
 
-:error:`error[E0382]: use of moved value: 'name'`
+.. code:: error
+
+  error[E0382]: use of moved value: 'name'
 
 .. note::
 

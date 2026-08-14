@@ -28,7 +28,9 @@ Using "match" as a Statement
         _ => println!("Suspicion"),  // Trailing comma is allowed, idiomatic
     }
 
-:command:`Happiness!`
+.. code:: output
+
+  Happiness!
 
 --------------------------------
 The "match" Must Be Exhaustive
@@ -47,7 +49,9 @@ The "match" Must Be Exhaustive
       _ => println!("Other!"), // Catches all other possibilities
   }
 
-:command:`Other!`
+.. code:: output
+
+  Other!
 
 - Use :rust:`|` to match several values to one arm
 
@@ -60,7 +64,9 @@ The "match" Must Be Exhaustive
       _ => println!("Suspicion."),
   }
 
-:command:`Perfect!`
+.. code:: output
+
+  Perfect!
 
 --------------------------------
 Using "match" as an Expression
@@ -105,4 +111,6 @@ Using "match" as an Expression
     };
     println!("Current mood: {}", current_mood);
 
-:command:`Current mood: Melting!`
+.. code:: output
+
+  Current mood: Melting!

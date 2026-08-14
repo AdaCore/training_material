@@ -69,7 +69,10 @@ Basic Operations
   let v = vec![1, 2, 3];
   println!("The sixth element is: {}", v[5]);
 
-:error:`index out of bounds: the len is 3 but the index is 5`
+.. code:: error
+
+  thread 'main' (14) panicked at src/main.rs:3:41:
+  index out of bounds: the len is 3 but the index is 5
 
 --------------------
 Working With "Vec"
@@ -94,16 +97,12 @@ Working With "Vec"
   println!("one: {one:?}");
   println!("five: {five:?}");
 
-:command:`All colors`
+.. code:: output
 
-:command:`  Red`
-
-:command:`  Green`
-
-:command:`  Blue`
-
-:command:`last: Some("Blue")`
-
-:command:`one: Some("Green")`
-
-:command:`five: None`
+  All colors
+    Red
+    Green
+    Blue
+  last: Some("Blue")
+  one: Some("Green")
+  five: None
