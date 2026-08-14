@@ -324,8 +324,8 @@ we want to handle the CodeBlock like other CodeBlocks.
 def process_blockquote(value):
     global bullet_point_animation
 
-    if len(value) == 1 and value[0]['t'] == 'CodeBlock':
-        return process_codeblock(value[0]['c'])
+    if len(value) == 1 and value[0]["t"] == "CodeBlock":
+        return process_codeblock(value[0]["c"])
 
     elif not bullet_point_animation:
         return value
