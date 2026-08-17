@@ -25,7 +25,9 @@ Trait Bounds
 Adding Constraints
 --------------------
 
-**Adding a trait to a generic specifiies what capabilities the type must have**
+.. container:: latex_environment small
+
+  **Adding a trait to a generic specifies what capabilities the type must have**
 
 .. code:: rust
 

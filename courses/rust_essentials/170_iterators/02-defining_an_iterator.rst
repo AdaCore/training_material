@@ -69,6 +69,12 @@ What Is an Iterator?
         println!("{}", num);
     }
 
+.. code:: output
+
+  1
+  2
+  3
+
 .. note::
 
-  Iterators mean you don't need to worry about "how" to loop
+  With iterators, you don't need to worry about "how" to loop

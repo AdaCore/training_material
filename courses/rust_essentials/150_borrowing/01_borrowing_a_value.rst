@@ -43,7 +43,7 @@ Local Borrows
 
 .. code:: output
 
-  Reads: 42 and 42
+  Reads        : 42 and 42
   Calibrated to: 52
   Original     : 52
 

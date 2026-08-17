@@ -121,6 +121,7 @@ Ignoring Multiple Elements
 
   let data = [1, 22, 333, 44, 5, 66];
 
+  // Get first and last, skip everything in-between
   let [first, .., last] = data;
   println!("First: {}", first);
   println!("Last: {}", last);
@@ -133,6 +134,8 @@ Ignoring Multiple Elements
 
 .. code:: rust
 
+
+  // Get first and second, skip everything after
   let [one, two, ..] = data;
   println!("One: {}", one);
   println!("Two: {}", two);
@@ -145,6 +148,7 @@ Ignoring Multiple Elements
 
 .. code:: rust
 
+  // Get last two, skip everything before
   let [.., fifth, sixth] = data;
   println!("Fifth: {}", fifth);
   println!("Sixth: {}", sixth);
