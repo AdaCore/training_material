@@ -33,7 +33,7 @@ Building Your First Program
 
 * You should see something like
 
-::
+.. code:: output
 
   Compiling hello v0.1.0 (C:\rust\hello_world)
   Finished `dev` profile [unoptimized + debuginfo] 
@@ -51,7 +51,7 @@ Running Your First Program
 
 * You should see an output like the following
 
-::
+.. code:: output
   
   Finished `dev` profile [unoptimized + debuginfo] 
   target(s) in 0.01s

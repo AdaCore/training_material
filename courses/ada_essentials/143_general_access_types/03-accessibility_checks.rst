@@ -37,11 +37,13 @@ Access Type Scoping Example
 
 * Issues with nesting
 
-.. container:: source_include 143_general_access_types/examples/accessibility_checks/nesting_example.adb :code:Ada :number-lines:1
+.. container:: source_include 143_general_access_types/examples/accessibility_checks/example.adb :code:Ada :number-lines:1
 
-:color-red:`nesting_example.adb:12:23: error: non-local pointer cannot point to local object`
+.. code:: error
+  :font-size: scriptsize
 
-:color-red:`nesting_example.adb:17:39: error: cannot convert local pointer to non-local access type`
+  example.adb:12:23: error: non-local pointer cannot point to local object
+  example.adb:17:39: error: cannot convert local pointer to non-local access type
 
 * To avoid having to face these issues, avoid nested access types
 
@@ -62,7 +64,10 @@ Dynamic Accessibility Checks
 
 .. container:: source_include 143_general_access_types/examples/accessibility_checks/dynamic_accessibility.adb :code:Ada :number-lines:4 :start-after:snippet_begin :end-before:snippet_end
 
-:color-red:`raised PROGRAM_ERROR : dynamic_accessibility.adb:12 accessibility check failed`
+.. code:: error
+
+  raised PROGRAM_ERROR : dynamic_accessibility.adb:12
+    accessibility check failed
 
 -------------------------------------
 Getting Around Accessibility Checks
@@ -104,7 +109,7 @@ Quiz
       Local_Object  : aliased Integer;
    begin
 
-Which assignment(s) is (are) legal?
+Which of the following assignments are legal? (Select all that apply)
 
 A. :answermono:`Global_Access := Global_Object'Access;`
 B. ``Global_Access := Local_Object'Access;``
@@ -113,7 +118,7 @@ D. :answermono:`Local_Access  := Local_Object'Access;`
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Access type has same depth as object
    B. Access type is not allowed to have higher level than accessed object

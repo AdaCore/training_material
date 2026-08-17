@@ -15,7 +15,7 @@
     
        O : T := F;
 
-Which declaration(s) of ``F`` is (are) valid?
+Which declarations of :ada:`F` are legal? (Select all that apply)
 
 A. ``return Return : T := (I => 1)``
 B. :answermono:`return Result : T`

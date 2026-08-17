@@ -167,7 +167,7 @@ What will get printed for these values of Input_Value?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    .. container:: latex_environment tiny
 
