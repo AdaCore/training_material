@@ -236,7 +236,7 @@ Which statement is correct?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Cannot mix positional and named notation
    B. Correct - others not needed but is allowed

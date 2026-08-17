@@ -13,7 +13,7 @@
        Enumerated     : Boolean;
        Floating_Point : Float;
 
-Which of the following piece(s) of code is (are) legal?
+Which of the following pieces of code are legal? (Select all that apply)
 
 A. :answermono:`procedure Write_A is new Write (Integer, Numeric)`
 B. :answermono:`procedure Write_B is new Write (Boolean, Enumerated)`

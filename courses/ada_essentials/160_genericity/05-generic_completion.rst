@@ -28,7 +28,9 @@ Generic and Freezing Points
      type Actual_T is null record;
   end Example;
 
-:error:`example.ads:4:45: error: premature use of private type`
+.. code:: error
+
+  example.ads:4:45: error: premature use of private type
 
 -------------------------------
 Generic Incomplete Parameters
@@ -71,7 +73,7 @@ Quiz
        -- Complete here
     end G_P;
 
-Which of the following statement(s) is (are) legal for ``G_P``'s body?
+Which of the following statements would be legal in :ada:`G_P`'s body? (Select all that apply)
 
 A. :answermono:`Flag := A1 /= null;`
 B. ``Flag := A1.all'Size > 32;``

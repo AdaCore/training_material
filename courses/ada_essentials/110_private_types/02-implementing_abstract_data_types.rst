@@ -24,7 +24,6 @@ Package Visible and Private Sections for Views
    - No compilable references to type's actual representation
 
 .. code:: Ada
-  :font-size: small
 
    package name is
    ... exported declarations of types, variables, subprograms ...
@@ -140,9 +139,10 @@ Compile-Time Visibility Protection
     My_Stack.Top := 1;  -- Client cannot see inside "Stack"
   end Client;
 
-.. container:: latex_environment scriptsize
+.. code:: error
+  :font-size: scriptsize
 
-  :error:`client.adb:5:05: error: invalid prefix in selected component "My_Stack"`
+  client.adb:5:05: error: invalid prefix in selected component "My_Stack"
 
 -------------------
 Benefits of Views
@@ -174,7 +174,7 @@ Quiz
 
       type Record_T is record
 
-Which component(s) is (are) legal?
+Which of the following components are legal? (Select all that apply)
 
    A. ``Component_A : Integer := Private_T'Pos (Private_T'First);``
    B. ``Component_B : Private_T := null;``
@@ -187,10 +187,9 @@ Which component(s) is (are) legal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Visible section does not know :ada:`Private_T` is discrete
    B. Visible section does not know possible values for :ada:`Private_T`
    C. Visible section does not know possible values for :ada:`Private_T`
    D. Correct - type will have a known size at run-time
-
