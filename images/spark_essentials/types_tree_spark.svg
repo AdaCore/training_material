@@ -16,7 +16,7 @@
 <line x1 = "199.0" y1 = "145" x2 = "199.0" y2 = "135" stroke = "black" stroke-width = "2"/>
 <line x1 = "199.0" y1 = "195" x2 = "199.0" y2 = "205" stroke = "black" stroke-width = "2"/>
   <text alignment-baseline="middle" font-family="Arial" font-size="12px" text-anchor="middle" x="199.0" y="175.0">Scalar</text>
-  <rect fill="#00D455" height="50" rx="10" ry="10" stroke="red" stroke-width="3" width="88" x="355" y="145"/>
+  <rect fill="#00D455" height="50" rx="10" ry="10" stroke="red" stroke-width="4" width="88" x="355" y="145"/>
 <line x1 = "399.0" y1 = "145" x2 = "399.0" y2 = "135" stroke = "black" stroke-width = "2"/>
   <text alignment-baseline="middle" font-family="Arial" font-size="12px" text-anchor="middle" x="399.0" y="175.0">Access</text>
   <rect fill="#80E5FF" height="50" rx="10" ry="10" stroke="black" width="88" x="505" y="145"/>
@@ -28,10 +28,10 @@
   <rect fill="#80E5FF" height="50" rx="10" ry="10" stroke="black" width="88" x="705" y="145"/>
 <line x1 = "749.0" y1 = "145" x2 = "749.0" y2 = "135" stroke = "black" stroke-width = "2"/>
   <text alignment-baseline="middle" font-family="Arial" font-size="12px" text-anchor="middle" x="749.0" y="175.0">Interface</text>
-  <rect fill="#80E5FF" height="50" rx="10" ry="10" stroke="red" stroke-width="3" width="88" x="805" y="145"/>
+  <rect fill="#80E5FF" height="50" rx="10" ry="10" stroke="red" stroke-width="4" width="88" x="805" y="145"/>
 <line x1 = "849.0" y1 = "145" x2 = "849.0" y2 = "135" stroke = "black" stroke-width = "2"/>
   <text alignment-baseline="middle" font-family="Arial" font-size="12px" text-anchor="middle" x="849.0" y="175.0">Protected</text>
-  <rect fill="#80E5FF" height="50" rx="10" ry="10" stroke="red" stroke-width="3" width="88" x="905" y="145"/>
+  <rect fill="#80E5FF" height="50" rx="10" ry="10" stroke="red" stroke-width="4" width="88" x="905" y="145"/>
 <line x1 = "949.0" y1 = "145" x2 = "949.0" y2 = "135" stroke = "black" stroke-width = "2"/>
   <text alignment-baseline="middle" font-family="Arial" font-size="12px" text-anchor="middle" x="949.0" y="175.0">Task</text>
   <rect fill="#00FF66" height="50" rx="10" ry="10" stroke="black" width="88" x="55" y="215"/>
@@ -76,10 +76,10 @@
 <line x1 = "248.0" y1 = "275" x2 = "350.0" y2 = "275" stroke = "black" stroke-width = "2"/>
 <line x1 = "98.0" y1 = "345" x2 = "200.0" y2 = "345" stroke = "black" stroke-width = "2"/>
 <line x1 = "298.0" y1 = "345" x2 = "400.0" y2 = "345" stroke = "black" stroke-width = "2"/>
-<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="575" y="300" >Access:</text>
-<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="575" y="320" >Protected:</text>
-<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="575" y="340" >Task:</text>
-<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="645" y="300" >Strict ownership/borrowing</text>
-<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="645" y="320" >Only simple boolean entries</text>
-<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="645" y="340" >No "entry", "accept", "select", "abort"</text>
+<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  text-anchor="end" x="660" y="300" >Access:</text>
+<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  text-anchor="end" x="660" y="320" >Protected:</text>
+<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  text-anchor="end" x="660" y="340" >Task:</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="675" y="300" >Strict ownership/borrowing</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="675" y="320" >Only simple boolean entries</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="675" y="340" >No "entry", "accept", "select", "abort"</text>
 </svg>
