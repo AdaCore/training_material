@@ -1,4 +1,4 @@
--- Which statement(s) is (are) legal?
+-- Which of the following statements are legal? (Select all that apply)
 
 procedure Main is
    --$ begin question

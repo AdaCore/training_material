@@ -171,31 +171,29 @@ Low-Level For-loop Parameter Type
    - As long as it is clear for the compiler
    - Warning: same name can belong to several enums
 
-.. container:: latex_environment scriptsize
+.. code:: Ada
+  :number-lines: 1
+  :font-size: scriptsize
 
-  .. code:: Ada
-    :number-lines: 1
+  procedure Main is
+     type Color_T is (Red, White, Blue);
+     type Rgb_T is (Red, Green, Blue);
+  begin
+     for Color in Red .. Blue loop  -- which Red and Blue?
+        null;
+     end loop;
+     for Color in Rgb_T'(Red) .. Blue loop -- OK
+        null;
+     end loop;
 
-    procedure Main is
-       type Color_T is (Red, White, Blue);
-       type Rgb_T is (Red, Green, Blue);
-    begin
-       for Color in Red .. Blue loop  -- which Red and Blue?
-          null;
-       end loop;
-       for Color in Rgb_T'(Red) .. Blue loop -- OK
-          null;
-       end loop;
+.. code:: error
+  :font-size: scriptsize
 
-  :error:`main.adb:5:21: error: ambiguous bounds in range of iteration`
-
-  :error:`main.adb:5:21: error: possible interpretations:`
-
-  :error:`main.adb:5:21: error: type "Rgb_T" defined at line 3`
-
-  :error:`main.adb:5:21: error: type "Color_T" defined at line 2`
-
-  :error:`main.adb:5:21: error: ambiguous bounds in discrete range`
+  main.adb:5:21: error: ambiguous bounds in range of iteration
+  main.adb:5:21: error: possible interpretations:
+  main.adb:5:21: error: type "Rgb_T" defined at line 3
+  main.adb:5:21: error: type "Color_T" defined at line 2
+  main.adb:5:21: error: ambiguous bounds in discrete range
 
 * Type is :ada:`Integer` unless otherwise specified
 
@@ -337,7 +335,7 @@ Quiz
 
    A, B : Integer := 123;
 
-Which loop block(s) is (are) legal?
+Which of the following loop blocks are legal? (Select all that apply)
 
   A. | ``for A in 1 .. 10 loop``
      |    ``A := A + 1;``
@@ -354,7 +352,7 @@ Which loop block(s) is (are) legal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Cannot assign to a loop parameter
    B. Legal - 10 iterations

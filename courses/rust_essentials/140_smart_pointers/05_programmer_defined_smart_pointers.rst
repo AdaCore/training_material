@@ -25,7 +25,10 @@ Implementing Smart Pointers
   let name = MyBox::new(5);  
   println!("Hello, 00{}!", *name );
   
-:error:`error[E0614]: type 'MyBox<{integer}>' cannot be dereferenced`
+.. code:: error
+  :font-size: footnotesize
+
+  error[E0614]: type 'MyBox<{integer}>' cannot be dereferenced
 
 ------------------------------------
 Working With Custom Smart Pointers
@@ -70,7 +73,7 @@ Working With Custom Smart Pointers
     println!("Hello, 00{}!", *name );
   } // 'name' is dropped here
 
-:command:`Hello, 007!`
+.. code:: output
 
-:command:`You have a mission!`
-  
+  Hello, 007!
+  You have a mission!

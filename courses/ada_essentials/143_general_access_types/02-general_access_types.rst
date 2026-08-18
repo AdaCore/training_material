@@ -10,26 +10,33 @@ Using General Access Types
 
   .. code:: Ada
 
-    type Gen_Access_T is access all Integer;
-    type Gen_Access_2 is access all Integer;
-    Allocated : Gen_Access_T := new Integer'(123);
+    type Gen_Acc_T is access all Integer;
+    type Gen_Acc_2 is access all Integer;
+    Allocated : Gen_Acc_T := new Integer'(123);
 
 * Remember, we cannot compare pool-specific access types
 
   * Because each access type deals with its own memory pool
 
   .. code:: Ada
+    :number-lines: 2
 
-    type Access_T is access Integer;
-    type Access_2 is access Integer;
-    Acc1 : Access_T := new Integer;
-    Acc2 : Access_2 := Access_2 (Acc1);  -- Compile error
+    type Acc_T is access Integer;
+    type Acc_2 is access Integer;
+    Acc1 : Acc_T := new Integer;
+    Acc2 : Acc_2 := Acc_2 (Acc1);
+
+  .. code:: error
+    :font-size: footnotesize
+
+    main.adb:5:24: error: target type must be general access type
+    main.adb:5:24: error: add "all" to type "Acc_2" defined at line 3
 
 * But general access types don't refer to a specific pool
 
   .. code:: Ada
 
-    Alloc2 : Gen_Access_2 := Gen_Access_2 (Allocated);
+    Alloc2 : Gen_Acc_2 := Gen_Acc_2 (Allocated);
 
 -----------------------
 Referencing the Stack
@@ -83,9 +90,10 @@ Referencing the Stack
      Put_Line ("After:" & Object'Image);
   end Example;
 
-:command:`Before: 100`
+.. code:: output
 
-:command:`After: 123`
+  Before: 100
+  After: 123
 
 ----------------------
 "Aliased" Parameters
@@ -160,7 +168,7 @@ Quiz
    General_Ptr       : General_T;
    Pool_Specific_Ptr : Pool_T;
 
-Which assignment(s) is (are) legal?
+Which of the following assignments are legal? (Select all that apply)
 
 A. ``General_Ptr := Random_Object'Access;``
 B. :answermono:`General_Ptr := Aliased_Object'Access;`
