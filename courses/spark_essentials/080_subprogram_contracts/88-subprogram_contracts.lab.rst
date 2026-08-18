@@ -149,7 +149,7 @@ Dealing With Frame Conditions (2/3)
 
     math.ads:47:7: medium: postcondition might fail
 
-  *Prover does know what happened to the other field in* :ada:`Move_*` *subprograms*
+  *Prover does **not** know what happened to the other field in* :ada:`Move_*` *subprograms*
 
 -------------------------------------
 Dealing With Frame Conditions (3/3)
