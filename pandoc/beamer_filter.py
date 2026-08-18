@@ -74,6 +74,7 @@ ADMONITION_FORMAT = {
     "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
 }
 
+COURSE_FOLDER = None
 
 # SUPPORTED_CLASSES names all of the RST constructs
 # we have added to the default class names
@@ -1057,7 +1058,7 @@ def process_codeblock(value):
                 keys[key] = val
 
         # if COLORBOX not set, but a language we want is, set appropriate color
-        if keys["language"] in NEED_BACKGROUND:
+        if COURSE_FOLDER == "ada_essentials" and keys["language"] in NEED_BACKGROUND:
             if COLORBOX in keys.keys():
                 pass
             else:
@@ -1071,12 +1072,39 @@ def process_codeblock(value):
     return new_value
 
 
+"""
+This routine will save the metadata passed into Pandoc.
+For now, we are looking for the "folder" key so we can
+do course-specific processing within the filter.
+We use "@once" so this routine is only ever called
+once per invocation.
+"""
+
+def process_metadata(meta):
+    global COURSE_FOLDER
+    global process_metadata
+
+    # if the folder containing the RST file was passed in as metadata
+    folder_info = meta.get('folder')
+    # get the value from the "content" field for this key
+    COURSE_FOLDER = folder_info.get('c')
+
+    # replace this routine with an empty routine
+    process_metadata = do_nothing
+
+
+def do_nothing(meta):
+    pass
+
+
 #####################
 ## MAIN SUBPROGRAM ##
 #####################
 
 
 def perform_filter(key, value, format, meta):
+    process_metadata(meta)
+
     # For an inserted image, 'value' is a triplet whose 3rd element is
     # a doublet, the first element of which is the path to the file.
     if key == "Image":
