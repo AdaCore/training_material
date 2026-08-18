@@ -131,7 +131,6 @@ Legality Checking
     end record;
 
   .. code:: error
-    :number-lines: 1
     :font-size: footnotesize
 
     example.ads:8:28: error: default initialization cannot depend
