@@ -6,13 +6,13 @@ SPARK Language Subset
 Categories of Types in Ada
 ----------------------------
 
-.. image:: types_tree.png
+.. image:: types_tree_complete.svg
 
 ------------------------------
 Categories of Types in SPARK
 ------------------------------
 
-.. image:: types_tree.png
+.. image:: spark_essentials/types_tree_spark.svg
 
 SPARK supports all the types in Ada, with some restrictions
 
