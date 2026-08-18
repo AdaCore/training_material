@@ -194,7 +194,7 @@ Quiz
 
 Which statement is correct?
 
-   A. A formal method analyses code.
+   A. A formal method analyzes code.
    B. :answer:`A formal method has no missing alarms.`
    C. A formal method has no false alarms.
    D. Static analysis of programs should be automatic, precise and sound.
