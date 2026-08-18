@@ -113,22 +113,51 @@ Ignoring Specific Elements
 Ignoring Multiple Elements
 ----------------------------
 
-  - Ignore multiple elements using the **rest pattern** (:rust:`..`)
-  - Can only be used **once** per pattern
-    - Anywhere within the element list
+- Ignore multiple elements using the **rest pattern** (:rust:`..`)
+- Can only be used **once** per pattern
+  - Anywhere within the element list
 
 .. code:: rust
 
-  let data = [1, 2, 3, 4, 5, 6];
-  // Get the first two elements, ignore the rest
-  let [first, second, ..] = data;
+  let data = [1, 22, 333, 44, 5, 66];
+
+  // Get first and last, skip everything in-between
+  let [first, .., last] = data;
   println!("First: {}", first);
-  println!("Second: {}", second);
+  println!("Last: {}", last);
 
 .. code:: output
+  :font-size: small
 
   First: 1
-  Second: 2
+  Last: 66
+
+.. code:: rust
+
+
+  // Get first and second, skip everything after
+  let [one, two, ..] = data;
+  println!("One: {}", one);
+  println!("Two: {}", two);
+
+.. code:: output
+  :font-size: small
+
+  One: 1
+  Two: 22
+
+.. code:: rust
+
+  // Get last two, skip everything before
+  let [.., fifth, sixth] = data;
+  println!("Fifth: {}", fifth);
+  println!("Sixth: {}", sixth);
+
+.. code:: output
+  :font-size: small
+
+  Fifth: 5
+  Sixth: 66
 
 ----------------------
 Nested Destructuring

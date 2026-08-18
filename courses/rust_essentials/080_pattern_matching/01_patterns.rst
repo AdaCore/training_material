@@ -38,6 +38,11 @@ Patterns Are Declarative
 
 .. code:: rust
 
+  struct Point {
+      x: i64,
+      y: i64,
+  }
+
   let point = Point { x: 0, y: 7 };
 
   // Declarative: Describing the 'stencil'
