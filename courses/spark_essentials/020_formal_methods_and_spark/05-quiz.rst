@@ -19,7 +19,7 @@ Which statement is correct?
 
    A. Formal methods can also apply to requirements, models, data, etc.
    B. Correct
-   C. To achieve soundness, it may be impossible to avoid false alarms.
+   C. To achieve soundness, it may be impossible to avoid false alarms
    D. Pick any two!
 
 --------------
@@ -37,9 +37,9 @@ Which statement is correct?
 
    Explanations
 
-   A. SPARK is a subset of Ada dating back to the 80s.
-   B. SPARK is also based on flow analysis which is a form of abstract interpretation.
-   C. SPARK subset restricts the features of Ada for proof.
+   A. SPARK is a subset of Ada dating back to the 80s
+   B. SPARK is also based on flow analysis which is a form of abstract interpretation
+   C. SPARK subset restricts the features of Ada for proof
    D. Correct
 
 --------------------------
@@ -58,7 +58,7 @@ Which statement is correct?
    Explanations
 
    A. Correct
-   B. AoRTE is a common objective with SPARK because it is simple.
-   C. Full functional correctness is hard but can be achieved.
+   B. AoRTE is a common objective with SPARK because it is simple
+   C. Full functional correctness is hard but can be achieved
    D. SPARK code can be interfaced with code in Ada/C/C++, etc.
 
