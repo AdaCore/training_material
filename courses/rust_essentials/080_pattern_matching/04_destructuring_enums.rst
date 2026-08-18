@@ -161,7 +161,7 @@ Enums as Robust Data Models
 
 - **Future-Proofing** 
 
-  - If a new variant added later, the compiler identifies every :rust:`match` that needs updating
+  - If a new variant is added later, the compiler identifies every :rust:`match` that needs updating
 
 - **Pattern Enforcement** 
 

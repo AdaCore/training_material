@@ -41,9 +41,9 @@ Assigning Types
 Type Inference Explained
 --------------------------
 
-- In most cases, there is no need to write the type
+- In most cases, there's no need to write the type
 
-- Compiler **infers** it based on the value given
+- Compiler **infers** it based on the provided value
 
   - This is why :rust:`let apples = 5` worked in our earlier example!
 

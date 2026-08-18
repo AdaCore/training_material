@@ -10,7 +10,7 @@ Implicit Conversion
 
   * Actually loops over an *iterator*
 
-* When the code looks like
+* When code looks like
 
   .. code:: rust
 

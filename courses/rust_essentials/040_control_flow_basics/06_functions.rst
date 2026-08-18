@@ -97,7 +97,7 @@ Design Philosophy: Clarity and Precision
   - Function selection does not depend on argument types
 - No default arguments
   - Callers must provide a value for every parameter
-  - All inputs are strictly explicit
+  - All inputs must be explicitly specified
 - Fixed number of arguments
   - Take a strict number of inputs
   - *Macros* (like :rust:`println!`) can take variable arguments
