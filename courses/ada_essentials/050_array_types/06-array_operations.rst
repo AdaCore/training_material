@@ -26,6 +26,7 @@ Object-Level Operations
    - Bounds must be compatible (not necessarily equal)
 
    .. code:: Ada
+     :font-size: tiny
 
       declare
          type Index1_T is range 1 .. 2;

@@ -69,6 +69,7 @@ Selectors
 * Usually functions
 
 .. code:: Ada
+  :font-size: small
 
    type Types_Pkg;
    package Database is

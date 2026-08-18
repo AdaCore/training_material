@@ -18,6 +18,7 @@ Nested Subprogram Example
 ---------------------------
 
 .. code:: Ada
+   :font-size: small
    :number-lines: 1
 
    procedure Populate_Lines 

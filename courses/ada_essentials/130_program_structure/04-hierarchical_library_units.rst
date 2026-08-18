@@ -71,6 +71,7 @@ Programming by Extension
 * :dfn:`Parent unit`
 
   .. code:: Ada
+    :font-size: small
 
      package Complex is
        type Number is private;
@@ -100,6 +101,7 @@ Extension Can See Private Section
 -----------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    with Ada.Text_IO;
    package body Complex.Utils is
@@ -121,6 +123,7 @@ Subsystem Approach
 --------------------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    with Interfaces.C;
    package OS is -- Unix and/or POSIX
@@ -180,9 +183,8 @@ Hierarchical Visibility
     + All child units come after the root parent's specification
     + Grandchildren within children, great-grandchildren within ...
 
-.. container:: latex_environment tiny
-
-  .. code:: Ada
+.. code:: Ada
+  :font-size: tiny
 
      package OS is
        -- Some code
@@ -194,32 +196,30 @@ Hierarchical Visibility
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-        package OS.Child is
-          type Child_T is private;
-        private 
-          type Child_T is record
-            Field : OS_Private_T;
-          end record;
-        end OS.Child;
+      package OS.Child is
+        type Child_T is private;
+      private 
+        type Child_T is record
+          Field : OS_Private_T;
+        end record;
+      end OS.Child;
       
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-        package OS.Sibling is
-          type Sibling_T is private;
-        private 
-          type Sibling_T is record
-            Field1 : OS_Private_T; -- OK
-            Field2 : Child_T;      -- Error
-          end record;
-        end OS.Sibling;
+      package OS.Sibling is
+        type Sibling_T is private;
+      private 
+        type Sibling_T is record
+          Field1 : OS_Private_T; -- OK
+          Field2 : Child_T;      -- Error
+        end record;
+      end OS.Sibling;
 
 .. raw:: latex
 
@@ -253,36 +253,31 @@ Example of Visibility As If Nested
 "with" Clauses for Ancestors Are Implicit
 -------------------------------------------
 
-.. container:: columns
+* Because children can reference ancestors' private sections
 
- .. container:: column
+  - Code is not in executable unless somewhere in the :ada:`with` clauses
 
-    * Because children can reference ancestors' private sections
-
-       - Code is not in executable unless somewhere in the :ada:`with` clauses
-
-    * Explicit clauses for ancestors are redundant but OK
-
- .. container:: column
+* Explicit clauses for ancestors are redundant but OK
 
    .. container:: latex_environment small
 
-     .. code:: Ada
+.. code:: Ada
+  :font-size: footnotesize
 
-      package Parent is
-        ...
-      private
-        A : Integer := 10;
-      end Parent;
+  package Parent is
+     ...
+  private
+     A : Integer := 10;
+  end Parent;
 
-      -- no "with" of parent needed
-      package Parent.Child is
-         ...
-      private
-        B : Integer := Parent.A;
-        -- no dot-notation needed
-        C : Integer := A;
-      end Parent.Child;
+  -- no "with" of parent needed
+  package Parent.Child is
+     ...
+  private
+    B : Integer := Parent.A;
+    -- no dot-notation needed
+    C : Integer := A;
+  end Parent.Child;
 
 ------------------------------------------
 "with" Clauses for Siblings Are Required

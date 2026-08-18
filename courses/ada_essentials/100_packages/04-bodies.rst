@@ -77,6 +77,7 @@ Required Body Example
 -----------------------
 
 .. code:: Ada
+  :font-size: small
 
    package body VT100 is
      -- This function is not visible outside this package

@@ -66,6 +66,7 @@ Reserved Words
 ----------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    abort          else              null               reverse
    abs            elsif             of                 select

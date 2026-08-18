@@ -19,6 +19,7 @@ Synchronous Task Control
       + But can be set by several tasks
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Ada.Synchronous_Task_Control is
       type Suspension_Object is limited private;

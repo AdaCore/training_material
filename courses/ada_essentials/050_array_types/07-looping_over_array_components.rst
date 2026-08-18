@@ -15,6 +15,7 @@ Note on Default Initialization for Array Types
 * Uses aspect `Default_Component_Value`
 
   .. code:: Ada
+    :font-size: small
 
      type Vector is array (Positive range <>) of Float
         with Default_Component_Value => 0.0;
@@ -73,6 +74,7 @@ Array Component For-Loop Example
 * Given an array
 
   .. code:: Ada
+    :font-size: small
 
        type T is array (Positive range <>) of Integer;
        Primes : T := (2, 3, 5, 7, 11);

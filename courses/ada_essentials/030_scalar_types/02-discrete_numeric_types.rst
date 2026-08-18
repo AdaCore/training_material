@@ -56,7 +56,7 @@ Signed Integer Bounds
       type Big_Integer_T is range 0 .. 2**128;
 
     .. code:: error
-      :font-size: scriptsize
+      :font-size: tiny
 
       main.adb:3:26: error: integer type definition bounds out of range
 

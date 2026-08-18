@@ -37,6 +37,7 @@ Expression Functions Example
 * Expression function
 
 .. code:: Ada
+  :font-size: small
 
    function Square (X : Integer) return Integer is (X ** 2);
 
@@ -73,6 +74,7 @@ Which statement is True?
    D. An expression function does not allow assignment statements, but it can call another function that is **not** an expression function.
 
   .. code:: Ada
+    :font-size: small
 
      function Normal_Fun (Input  :     Character;
                           Output : out Integer)

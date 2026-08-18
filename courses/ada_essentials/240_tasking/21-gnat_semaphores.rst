@@ -28,6 +28,7 @@ Interface
 -----------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    protected type Counting_Semaphore
       (Initial_Value : Natural;
@@ -59,6 +60,7 @@ Idiom: Scope Locks
 * Automatic release
 
 .. code:: Ada
+  :font-size: footnotesize
 
     type Scope_Lock (Lock : access Mutual_Exclusion) is
        new Ada.Finalization.Limited_Controlled with null record;

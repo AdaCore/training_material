@@ -41,6 +41,7 @@ Limited Private Type Rationale (2)
 ------------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    package MultiProcessor_Mutex is
      -- copying is prevented AND users cannot see contents
@@ -100,6 +101,7 @@ Explicitly Limited Completions
 * Requires a record type as the completion
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package MultiProcessor_Mutex is
      type Spin_Lock is limited private;

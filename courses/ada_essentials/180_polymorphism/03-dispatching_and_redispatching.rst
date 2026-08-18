@@ -31,11 +31,12 @@ Calls on Class-Wide Types (2/3)
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-   *Ada*
+    **Ada**
 
-   .. code:: Ada
+    .. code:: Ada
+      :font-size: scriptsize
 
       declare
         Stray : Animal'Class :=
@@ -46,11 +47,12 @@ Calls on Class-Wide Types (2/3)
         Stray.Feed;  -- calls Feed of Animal
         My_Dog.Feed; -- calls Feed of Dog
 
- .. container:: column
+  .. container:: column
 
-   *C++*
+    **C++**
 
-   .. code:: C++
+    .. code:: C++
+      :font-size: scriptsize
 
       Animal * Stray = 
                   new Animal ();
@@ -66,11 +68,12 @@ Calls on Class-Wide Types (3/3)
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-   *Ada*
+    **Ada**
 
-   .. code:: Ada
+    .. code:: Ada
+      :font-size: tiny
 
       declare
         Stray : Animal'Class :=
@@ -81,11 +84,12 @@ Calls on Class-Wide Types (3/3)
         Animal (Stray).Feed;  -- calls Feed of Animal
         Animal (My_Dog).Feed; -- calls Feed of Animal
 
- .. container:: column
+  .. container:: column
 
-   *C++*
+    **C++**
 
-   .. code:: C++
+    .. code:: C++
+      :font-size: tiny
 
       Animal * Stray = 
                   new Animal ();
@@ -101,6 +105,7 @@ Definite and Class-Wide Views
 * In Ada, dispatching occurs only on class-wide views
 
 .. code:: Ada
+  :font-size: scriptsize
 
    type Animal is tagged null record;
    procedure Groom (The_Animal : Animal);
@@ -146,6 +151,7 @@ Redispatching Example
 -----------------------
 
 .. code:: Ada
+  :font-size: small
 
    procedure Feed (Anml : Animal) is
       Fish : Animal'Class renames
@@ -166,6 +172,7 @@ Quiz
 ------
 
 .. code::Ada
+  :font-size: tiny
 
    package Robots is
       type Robot is tagged null record;

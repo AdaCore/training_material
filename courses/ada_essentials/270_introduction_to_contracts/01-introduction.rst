@@ -66,6 +66,7 @@ Ada Contracts
 * Raises language-defined :ada:`Assertion_Error` exception if expression does not hold
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Ada.Assertions is
      Assertion_Error : exception;
@@ -80,6 +81,7 @@ Defensive Programming
 * Should be replaced by subprogram contracts when possible
 
 .. code:: Ada
+  :font-size: scriptsize
 
    procedure Push (Stack : Stack_Type) is
       Entry_Length : constant Positive := Length (Stack);
@@ -94,6 +96,7 @@ Defensive Programming
    - **Not** a drop-in replacement for all defensive code
 
 .. code:: Ada
+  :font-size: small
 
    procedure Force_Acquire (Resource : Shared_Resource) is
    begin

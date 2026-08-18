@@ -73,6 +73,7 @@ Default Initialization Via Aspect Clause
 * Components of scalar types take type's default if no explicit default value specified by record type
 
 .. code:: Ada
+  :font-size: small
 
    type Toggle_Switch is (Off, On)
        with Default_Value => Off;
@@ -93,6 +94,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    function Next return Natural; -- returns next number (starts at 1)
 

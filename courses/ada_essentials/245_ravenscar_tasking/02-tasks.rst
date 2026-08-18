@@ -40,6 +40,7 @@ Ravenscar Tasks Declaration Example
 :filename:`my_tasks.adb`
 
 .. code:: Ada
+  :font-size: scriptsize
 
     with Ada.Text_IO; use Ada.Text_IO;
     with Ada.Real_Time; use Ada.Real_Time;

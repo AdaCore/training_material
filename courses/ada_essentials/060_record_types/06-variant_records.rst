@@ -9,6 +9,7 @@ Variant Record Types
 * A :dfn:`discriminated record` uses a special field (:dfn:`discriminant`) to specify information about the record
 
   .. code:: ada
+    :font-size: footnotesize
 
      type Discriminated_Record (Discriminant : Natural) is record
         Text : String (1..Discriminant);
@@ -95,12 +96,14 @@ Immutable Variant Record Example
   * :ada:`Pat.Pubs := 3;` would generate a compiler warning because compiler knows :ada:`Pat` is a :ada:`Student`
 
     .. code:: error
+      :font-size: footnotesize
 
       warning: Constraint_Error will be raised at run time
 
   * :ada:`Do_Something (Pat);` generates a run-time error, because only at runtime is the discriminant for :ada:`Param` known
 
     .. code:: error
+      :font-size: footnotesize
 
       raised CONSTRAINT_ERROR : discriminant check failed
 
@@ -113,6 +116,7 @@ Mutable Variant Record
 * Type will become :dfn:`mutable` if its discriminant has a *default value* **and** we instantiate the object without specifying a discriminant
 
 .. code:: Ada
+   :font-size: footnotesize
    :number-lines: 2
 
   type Person_Group is (Student, Faculty);
@@ -164,36 +168,28 @@ Mutable Variant Record Example
 Quiz
 ------
 
-.. container:: columns
+.. code:: Ada
+  :font-size: footnotesize
+  :number-lines: 2
 
-  .. container:: column
+  type Variant_T (Valid : Integer) is record
+      case Valid is
+      when Integer'First .. -1 =>
+          Value : Integer;
+          State : Boolean;
+      when others =>
+          Number : Natural;
+      end case;
+  end record;
 
-    .. container:: latex_environment tiny
+  Variant_Object : Variant_T (1);
 
-      .. code:: Ada
-        :number-lines: 2
+Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
 
-        type Variant_T (Valid : Integer) is record
-            case Valid is
-            when Integer'First .. -1 =>
-                Value : Integer;
-                State : Boolean;
-            when others =>
-                Number : Natural;
-            end case;
-        end record;
-
-        Variant_Object : Variant_T (1);
-
-  .. container:: column
-
-    Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
-
-    A. :ada:`Variant_Object.Value,`
-       :ada:`Variant_Object.State`
-    B. :answermono:`Variant_Object.Number`
-    C. None: Compilation error
-    D. None: Run-time error
+A. :ada:`Variant_Object.Value,` :ada:`Variant_Object.State`
+B. :answermono:`Variant_Object.Number`
+C. None: Compilation error
+D. None: Run-time error
 
 .. container:: animate
 
@@ -212,6 +208,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: small
 
     type Variant_T (Floating : Boolean := False) is record
         case Floating is

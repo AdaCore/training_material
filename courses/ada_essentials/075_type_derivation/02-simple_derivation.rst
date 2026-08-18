@@ -9,6 +9,7 @@ Simple Type Derivation
 * Most types can be derived
 
   .. code:: Ada
+    :font-size: footnotesize
 
     type Natural_T is new Integer_T range 0 .. Integer_T'Last;
 
@@ -40,7 +41,7 @@ Simple Type Derivation
   * Assigning one to the other generates a compile error
 
     .. code:: error
-      :font-size: scriptsize
+      :font-size: tiny
     
       main.adb:7:16: error: expected type "Integer_T" defined at line 2
       main.adb:7:16: error: found type "Natural_T" defined at line 3
@@ -60,12 +61,14 @@ Simple Derivation and Type Structure
 * Scalar ranges can be reduced
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Positive_T is new Natural_T range 1 .. Natural_T'Last;
 
 * Unconstrained types can be constrained
 
   .. code:: Ada
+    :font-size: small
 
      type Arr_T is array (Integer range <>) of Integer;
      type Ten_Elem_Arr_T is new Arr_T (1 .. 10);

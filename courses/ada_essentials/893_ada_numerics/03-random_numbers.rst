@@ -24,6 +24,7 @@ Randon Number Usage
 ---------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
   with Ada.Numerics.Discrete_Random;
   with Ada.Numerics.Float_Random;

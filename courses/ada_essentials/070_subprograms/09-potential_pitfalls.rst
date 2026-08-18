@@ -90,6 +90,7 @@ Parameter Aliasing
 * Ada detects some cases and raises :ada:`Program_Error`
 
 .. code:: Ada
+  :font-size: small
 
    procedure Update (Doubled, Tripled : in out Integer);
    ...
@@ -124,6 +125,7 @@ Easy Cases Detected and Not Legal
 -----------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    procedure Example (A : in out Positive) is
       function Increment (This : Integer) return Integer is

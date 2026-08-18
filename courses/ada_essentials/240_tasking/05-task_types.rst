@@ -19,6 +19,7 @@ Reusable Task Patterns
 ------------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    -- Simple task that, upon startup, loops forever
    -- calling some procedure and pausing

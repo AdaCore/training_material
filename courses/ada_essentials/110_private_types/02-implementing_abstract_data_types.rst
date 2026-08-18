@@ -24,6 +24,7 @@ Package Visible and Private Sections for Views
    - No compilable references to type's actual representation
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package name is
    ... exported declarations of types, variables, subprograms ...
@@ -54,6 +55,7 @@ Declaring Private Types for Views
    - **Not** visible to **designer** until reached
 
 .. code:: Ada
+  :font-size: footnotesize
 
     package Bounded_Stacks is
       type Stack is private;
@@ -130,6 +132,7 @@ Compile-Time Visibility Protection
 * Therefore **clients** cannot compile code referencing representation
 
 .. code:: Ada
+  :font-size: small
   :number-lines: 1
 
   with Bounded_Stacks;

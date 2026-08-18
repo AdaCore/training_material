@@ -82,6 +82,7 @@ Multiple Object Declarations
 * Allowed for convenience
 
   .. code:: Ada
+    :font-size: small
 
      Val_1, Val_2 : Some_Type := Next_Available (Some_Num);
 
@@ -130,6 +131,7 @@ Implicit Vs Explicit Declarations
 * :dfn:`Implicit` |rightarrow| **automatically** by the compiler
 
   .. code:: Ada
+    :font-size: small
 
      function "+" (Left, Right : Counter) return Counter;
      function "-" (Left, Right : Counter) return Counter;

@@ -96,6 +96,7 @@ Why Two Predicate Forms?
 * Dynamic Predicate
 
   .. code:: Ada
+    :font-size: small
 
      subtype Even is Integer with Dynamic_Predicate =>
         Even mod 2 = 0; -- Boolean expression
@@ -104,6 +105,7 @@ Why Two Predicate Forms?
 * Static Predicate
 
   .. code:: Ada
+    :font-size: small
 
      type Serial_Baud_Rate is range 110 .. 115200
        with Static_Predicate => Serial_Baud_Rate  in
@@ -148,6 +150,7 @@ References Are Not Checked
 ----------------------------
 
 .. code:: Ada
+   :font-size: scriptsize
    :number-lines: 1
 
    with Ada.Text_IO;   use Ada.Text_IO;
@@ -167,6 +170,7 @@ References Are Not Checked
 * Output would look like
 
   .. code:: Ada
+    :font-size: small
 
        Current_Value is 1969492223
        Next_Value is 4220029
@@ -212,6 +216,7 @@ Allowed Static Predicate Content (1)
 * Example 1
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Serial_Baud_Rate is range 110 .. 115200
        with Static_Predicate => Serial_Baud_Rate in
@@ -222,6 +227,7 @@ Allowed Static Predicate Content (1)
 * Example 2
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
       -- only way to create subtype of non-contiguous values
@@ -235,6 +241,7 @@ Allowed Static Predicate Content (2)
 * Case expressions in which dependent expressions are static and selected by current instance
 
   .. code:: Ada
+    :font-size: small
 
      type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
      subtype Weekend is Days with Static_Predicate =>
@@ -245,6 +252,7 @@ Allowed Static Predicate Content (2)
 * Note: if-expressions are disallowed, and not needed
 
   .. code:: Ada
+    :font-size: small
 
      subtype Drudge is Days with Static_Predicate =>
        -- not legal
@@ -277,6 +285,7 @@ Dynamic Predicate Expression Content
 * Plus additional operators, etc.
 
   .. code:: Ada
+    :font-size: small
 
      subtype Even is Integer
        with Dynamic_Predicate => Even mod 2 = 0;
@@ -316,6 +325,7 @@ Types Controlling For-Loops
 * Types with static predicates can be used
 
   .. code:: Ada
+    :font-size: footnotesize
 
       type Days is (Sun, Mon, Tues, Wed, Thu, Fri, Sat);
       subtype Weekend is Days
@@ -333,6 +343,7 @@ Why Allow Types with Static Predicates?
 * Efficient code can be generated for usage
 
   .. code:: Ada
+    :font-size: tiny
 
      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
      subtype Weekend is Days with Static_Predicate => Weekend in Sat | Sun;
@@ -406,6 +417,7 @@ Initial Values Can Be Problematic
    - Example
 
      .. code:: Ada
+       :font-size: scriptsize
 
         subtype Even is Integer
           with Dynamic_Predicate => Even mod 2 = 0;
@@ -423,6 +435,7 @@ Subtype Predicates Aren't Bullet-Proof
 * For composite types, predicate checks apply to whole object values, not individual components
 
 .. code:: Ada
+  :font-size: scriptsize
 
    procedure Demo is
      type Table is array (1 .. 5) of Integer
@@ -448,6 +461,7 @@ Beware Accidental Recursion in Predicate
 * Infinitely recursive example
 
   .. code:: Ada
+    :font-size: small
 
      type Sorted_Table is array (1 .. N) of Integer with
         Dynamic_Predicate => Sorted (Sorted_Table);
@@ -457,6 +471,7 @@ Beware Accidental Recursion in Predicate
 * Non-recursive example
 
   .. code:: Ada
+    :font-size: scriptsize
 
      type Sorted_Table is array (1 .. N) of Integer with
         Dynamic_Predicate =>

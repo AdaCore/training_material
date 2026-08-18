@@ -24,6 +24,7 @@ Base Ranges
 * Can be accessed with :ada:`'Base` attribute
 
   .. code:: Ada
+    :font-size: small
 
      type Foo is range -30_000 .. 30_000;
      function "+" (Left, Right : Foo'Base) return Foo'Base;
@@ -109,6 +110,7 @@ Floating Point Division by Zero
   .. container:: latex_environment small
 
     .. code:: Ada
+      :font-size: scriptsize
     
       type My_Float is new Float range Float'First .. Float'Last;
       subtype Sub_Float is Float range Float'First .. Float'Last;

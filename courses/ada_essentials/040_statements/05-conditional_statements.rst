@@ -70,6 +70,7 @@ Simple "case" Statements
 --------------------------
 
 .. code:: Ada
+  :font-size: small
 
    type Directions is  (Forward, Backward, Left, Right);
    Direction : Directions;
@@ -130,6 +131,7 @@ Case Statement Rules
 * Must be in last position
 
 .. code:: Ada
+  :font-size: small
 
    case Today is   -- work schedule
      when Monday =>
@@ -151,6 +153,7 @@ Dangers of "Others" Case Alternative
     - Compiler won't warn: :ada:`others` hides it
 
 .. code:: Ada
+  :font-size: small
 
    type Agencies_T is (NASA, ESA, RFSA); -- could easily grow
    Bureau : Agencies_T;

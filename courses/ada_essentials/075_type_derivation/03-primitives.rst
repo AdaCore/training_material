@@ -9,6 +9,7 @@ Primitive Operations
 * Primitive Operations are those subprograms associated with a type
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Integer_T is range -(2**63) .. 2**63-1 with Size => 64; 
    procedure Increment_With_Truncation (Val : in out Integer_T);
@@ -64,6 +65,7 @@ Primitive of Multiple Types
 A subprogram can be a primitive of several types
 
 .. code:: Ada
+  :font-size: small
 
       package P is
          type Distance_T is range 0 .. 9999;
@@ -96,6 +98,7 @@ Creating Primitives for Children
 * We can also remove a primitive (see next slide)
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Integer_T is range -(2**63) .. 2**63-1; 
    procedure Increment_With_Truncation (Val : in out Integer_T);
@@ -117,6 +120,7 @@ Overriding Indications
    .. container:: latex_environment footnotesize
 
      .. code:: Ada
+       :font-size: footnotesize
 
         type Child_T is new Integer_T range -1000 .. 1000;
         procedure Increment_With_Truncation

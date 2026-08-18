@@ -26,6 +26,7 @@ Syntax and Examples
 Records can be **discriminated** as well
 
 .. code:: Ada
+  :font-size: footnotesize
 
     type Varying_Length_String (Size : Natural := 0) is record
        Text : String (1 .. Size);

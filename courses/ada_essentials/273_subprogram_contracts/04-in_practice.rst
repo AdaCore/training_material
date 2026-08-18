@@ -48,6 +48,7 @@ Postconditions Are Good Documentation
 ---------------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    procedure Reset
        (Unit : in out DMA_Controller;
@@ -82,6 +83,7 @@ Postcondition Compared to Their Body: Example
 -----------------------------------------------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    function Greatest_Common_Denominator (Num1, Num2 : Natural)
      return Integer with
@@ -107,6 +109,7 @@ Postconditions and Expression Functions
   * There is no postcondition specified
 
 .. code:: Ada
+  :font-size: small
 
   function Add (L, R : Integer) return Integer is
      (L + R);
@@ -136,6 +139,7 @@ Contracts Code Reuse
    - Allows for **code reuse**
 
    .. code:: Ada
+     :font-size: scriptsize
 
       procedure Withdraw (This   : in out Account;
                           Amount :        Currency) with
@@ -157,6 +161,7 @@ Subprogram Contracts on Private Types
 ---------------------------------------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Bank is
      type Account is private;
@@ -188,6 +193,7 @@ Preconditions or Explicit Checks?
 * With preconditions
 
   .. code:: Ada
+    :font-size: small
 
      type Stack (Capacity : Positive) is tagged private;
      procedure Push (This : in out Stack;
@@ -197,6 +203,7 @@ Preconditions or Explicit Checks?
 * With defensive code, comments, and return values
 
   .. code:: Ada
+    :font-size: small
 
      -- returns True iff push is successful
      function Try_Push (This : in out Stack;
@@ -227,6 +234,7 @@ Raising Specific Exceptions
 * Use *raise expression* in a precondition to get a different exception
 
   .. code:: Ada
+    :font-size: footnotesize
 
      procedure Push (This : in out Stack;
                      Value : Content) with
@@ -255,14 +263,15 @@ Assertion Policy
 
 * Certain advantage over explicit checks which are **harder** to disable
 
-   - Conditional compilation via global :ada:`constant Boolean`
+  - Conditional compilation via global :ada:`constant Boolean`
 
-   .. code:: Ada
+  .. code:: Ada
+    :font-size: scriptsize
 
-      procedure Push (This : in out Stack;  Value : Content) is
-      begin
-        if Debugging then
-          if Full (This) then
-            raise Overflow;
-          end if;
+    procedure Push (This : in out Stack;  Value : Content) is
+    begin
+      if Debugging then
+        if Full (This) then
+          raise Overflow;
         end if;
+      end if;

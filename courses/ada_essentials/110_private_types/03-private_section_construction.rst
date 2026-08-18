@@ -23,6 +23,7 @@ Declarative Regions
    - Thus anything declared in specification is visible in body
 
 .. code:: Ada
+  :font-size: small
 
    package Foo is
       type Private_T is private;
@@ -111,6 +112,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: small
 
    package Example is
       type Private_T is private;

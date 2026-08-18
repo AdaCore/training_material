@@ -19,6 +19,7 @@ Synchronous Task Control
       + But can be set by several tasks
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Ada.Synchronous_Task_Control is
       type Suspension_Object is limited private;
@@ -41,6 +42,7 @@ Timing Events
 * Do not require a :ada:`task` or a :ada:`delay` statement
 
   .. code:: Ada
+    :font-size: scriptsize
 
      package Ada.Real_Time.Timing_Events is
         type Timing_Event is tagged limited private;

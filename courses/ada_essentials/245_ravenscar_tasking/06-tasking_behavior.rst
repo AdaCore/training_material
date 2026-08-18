@@ -28,6 +28,7 @@ What Tasks Look Like in Ravenscar
 * Time-triggered task
 
   .. code:: Ada
+    :font-size: small
 
      task body Cyclic is
        Period : constant Time_Span : Milliseconds (10);
@@ -166,6 +167,7 @@ Ceiling Locking
 * Example of priority inversion
 
 .. code::
+  :font-size: scriptsize
 
    The_Lock : Lock;
 

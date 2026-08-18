@@ -32,6 +32,7 @@ Allocations
 * The object can be created by copying an existing object - using a qualifier
 
    .. code:: Ada
+     :font-size: footnotesize
 
       V : String_Access := new String'("This is a String");
 

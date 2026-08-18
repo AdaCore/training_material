@@ -17,6 +17,7 @@ Unconstrained Array Type Declarations
 **Examples**
 
 .. code:: Ada
+  :font-size: small
 
      type Index is range 1 .. Integer'Last;
      type Char_Arr is array (Index range <>) of Character;
@@ -41,6 +42,7 @@ Supplying Index Constraints for Objects
    - Object (or constant) initialization
 
      .. code:: Ada
+       :font-size: footnotesize
 
          Weekend : Schedule := (Sat => 4.0, Sun => 0.0);
          -- (Note this is an array aggregate, explained later)
@@ -63,6 +65,7 @@ Bounds Must Satisfy Type Constraints
 * :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
+   :font-size: small
    :number-lines: 2
 
    type Index is range 1 .. 100;
@@ -89,6 +92,7 @@ Null Index Range
   * Provided values are within the index's base type
 
   .. code:: Ada
+    :font-size: small
     :number-lines: 2
 
     type Index_T is range 1 .. 100; -- Index_T'Size = 8
@@ -139,6 +143,7 @@ No Indefinite Component Types
 .. container:: latex_environment small
 
   .. code:: Ada
+     :font-size: footnotesize
      :number-lines: 2
 
      type Component_T is array (Integer range <>) of Boolean;
@@ -167,6 +172,7 @@ Arrays of Arrays
    - One per array
 
 .. code:: Ada
+  :font-size: small
 
    declare
       type Array_of_10 is array (1..10) of Integer;
@@ -181,6 +187,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: small
 
    type Bit_T is range 0 .. 1;
    type Bit_Array_T is array (Positive range <>) of Bit_T;

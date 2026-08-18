@@ -9,6 +9,7 @@ Access Type Scoping
 * The :dfn:`depth` of an object depends on its nesting within declarative scopes
 
   .. code:: Ada
+    :font-size: small
 
      package body P is
         -- Library level, depth 0
@@ -40,7 +41,7 @@ Access Type Scoping Example
 .. container:: source_include 143_general_access_types/examples/accessibility_checks/example.adb :code:Ada :number-lines:1
 
 .. code:: error
-  :font-size: scriptsize
+  :font-size: tiny
 
   example.adb:12:23: error: non-local pointer cannot point to local object
   example.adb:17:39: error: cannot convert local pointer to non-local access type

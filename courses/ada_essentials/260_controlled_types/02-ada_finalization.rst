@@ -7,6 +7,7 @@ Package Spec
 --------------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Ada.Finalization is
 

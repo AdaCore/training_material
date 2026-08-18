@@ -22,6 +22,7 @@ Enumeration Types
 **Examples**
 
 .. code:: Ada
+  :font-size: small
 
    type Colors is (Red, Orange, Yellow, Green, Blue, Violet);
    type Stop_Light is (Red, Yellow, Green);
@@ -90,6 +91,7 @@ Character Types
 * Can be user-defined
 
   .. code:: Ada
+    :font-size: small
 
      type EBCDIC is (nul, ..., 'a' , ..., 'A', ..., del);
      Control : EBCDIC := 'A';
@@ -132,6 +134,7 @@ Boolean Operators' Operand Evaluation
   - Division by zero
 
 .. code:: Ada
+  :font-size: small
 
   if Divisor /= 0 and K / Divisor = Max then ... -- Problem!
 

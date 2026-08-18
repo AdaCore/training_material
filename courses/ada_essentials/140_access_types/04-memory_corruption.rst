@@ -38,6 +38,7 @@ Freeing Already-Freed Memory
 ------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    declare
       type An_Access is access Integer;
@@ -61,6 +62,7 @@ Referencing Already-Freed Memory
 ----------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    declare
       type An_Access is access Integer;
@@ -82,6 +84,7 @@ Memory Leak
 -------------
 
 .. code:: Ada
+  :font-size: small
 
    declare
       type An_Access is access Integer;

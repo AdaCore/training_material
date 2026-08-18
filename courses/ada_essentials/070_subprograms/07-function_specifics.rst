@@ -16,6 +16,7 @@ Return Statements in Functions
 * Example
 
   .. code:: Ada
+    :font-size: footnotesize
 
       function Add (Left, Right : Integer ) return Integer is
       begin

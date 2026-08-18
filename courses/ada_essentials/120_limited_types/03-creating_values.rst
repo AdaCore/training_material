@@ -16,6 +16,7 @@ Creating Values
     - :dfn:`limited aggregate` when used for a :ada:`limited` type
 
 .. code:: Ada
+  :font-size: small
 
    type Spin_Lock is limited record
      Flag : Interfaces.Unsigned_8;

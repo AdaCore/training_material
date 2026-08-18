@@ -17,6 +17,7 @@ Constrained Array Type Declarations
 **Examples**
 
 .. code:: Ada
+  :font-size: scriptsize
 
      type Integer_Array_T is array (1 .. 3) of Integer;
      type Boolean_Array_T is array (Boolean) of Integer;
@@ -53,5 +54,5 @@ Quiz
     A. Legal - components are :ada:`Boolean`
     B. Legal - object types match
     C. Legal - components are :ada:`Boolean`
-    D. Although the sizes are the same and the components are the same, the type is different
+    D. Sizes and components are the same, but the type is different
 

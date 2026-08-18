@@ -17,6 +17,7 @@ Strings
   - `String`, with `Character` as component
 
     .. code:: Ada
+      :font-size: footnotesize
 
       subtype Positive is Integer range 1 .. Integer'Last;
       type String is array (Positive range <>) of Character;
@@ -40,6 +41,7 @@ Application-Defined String Types
 * Recall character types are enumeration types with at least one character literal value
 
 .. code:: Ada
+  :font-size: small
 
    type Roman_Digit is ('I', 'V', 'X', 'L', 'C', 'D', 'M');
    type Roman_Number is array (Positive range <>)
@@ -81,11 +83,11 @@ String Literals
 
    String_Of_Length_One : constant String := "A";
 
-   Embedded_Single_Quotes : constant String
-                          := "Embedded 'single' quotes";
+   Embedded_Single_Quotes : constant String :=
+         "Embedded 'single' quotes";
                           
-   Embedded_Double_Quotes : constant String
-                          := "Embedded ""double"" quotes";
+   Embedded_Double_Quotes : constant String :=
+         "Embedded ""double"" quotes";
 
 .. container:: speakernote
 

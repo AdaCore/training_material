@@ -52,6 +52,7 @@
 * Applies to end of body, from first occurrence
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Distance_Pkg is
       Distance : Float := 12.34;
@@ -85,6 +86,7 @@ No Meaning Changes
 * Any directly visible names still refer to the original entities
 
 .. code:: Ada
+  :font-size: scriptsize
 
    package Distance_Pkg is
      Distance : Float;
@@ -107,6 +109,7 @@ No Ambiguity
 --------------
 
 .. code:: Ada
+  :font-size: small
 
    package Miles_Pkg is
      Distance : Float;

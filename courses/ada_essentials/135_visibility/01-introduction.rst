@@ -8,7 +8,8 @@ Improving Readability
 
 * Descriptive names plus hierarchical packages makes for very long statements
 
-  .. code::
+  .. code:: Ada
+    :font-size: small
 
      Messages.Queue.Diagnostics.Inject_Fault (
         Fault    => Messages.Queue.Diagnostics.CRC_Failure,
@@ -16,7 +17,8 @@ Improving Readability
 
 * Operators treated as functions defeat the purpose of overloading
 
-  .. code::
+  .. code:: Ada
+    :font-size: small
 
      Complex1 := Complex_Types."+" (Complex2, Complex3);
 

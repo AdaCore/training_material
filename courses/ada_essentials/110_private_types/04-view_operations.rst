@@ -32,6 +32,7 @@ Clients Have the Partial View
 * Exported subprograms
 
 .. code:: Ada
+  :font-size: small
 
    package Bounded_Stacks is
      type Stack is private;
@@ -50,19 +51,19 @@ Client View's Activities
 
 * Declarations of objects
 
-   - Constants and variables
-   - Must call **designer's** functions for values
+  - Constants and variables
+  - Must call **designer's** functions for values
 
-   .. code:: Ada
+  .. code:: Ada
 
-      C : Complex.Number := Complex.I;
+    C : Complex.Number := Complex.I;
 
 * Assignment, equality and inequality, conversions
 * **Designer's** declared subprograms
 * **Client's** -declared subprograms
 
-   - Using parameters of the exported private type
-   - Dependent on **designer's** operations
+  - Using parameters of the exported private type
+  - Dependent on **designer's** operations
 
 -------------------------------------
 Client Manipulation of Private Data

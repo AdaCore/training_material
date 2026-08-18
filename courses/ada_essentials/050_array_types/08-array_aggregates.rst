@@ -30,6 +30,7 @@ Aggregate "Positional" Form
 * Uses implicit ascending index values
 
 .. code:: Ada
+  :font-size: small
 
    type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
    type Working is array (Days) of Boolean;
@@ -47,6 +48,7 @@ Aggregate "Named" Form
 * Ranges and choice lists are allowed (like case choices)
 
 .. code:: Ada
+  :font-size: small
 
    type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
    type Working is array (Days) of Boolean;
@@ -63,6 +65,7 @@ Combined Aggregate Forms Not Allowed
 * Are only allowed for record types (shown in subsequent section)
 
 .. code:: Ada
+  :font-size: small
 
    type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
    type Working is array (Days) of Boolean;
@@ -81,6 +84,7 @@ Aggregates Are True Literal Values
 * Used any place a value of the type may be used
 
 .. code:: Ada
+  :font-size: small
 
    type Schedule is array (Mon .. Fri) of Float;
    Work : Schedule;
@@ -129,6 +133,7 @@ Aggregate Consistency Rules
 * Can be used to apply defaults too
 
 .. code:: Ada
+  :font-size: small
 
    type Schedule is array (Days) of Float;
    Work : Schedule;
@@ -173,6 +178,7 @@ Defaults Within Array Aggregates
 **Examples**
 
 .. code:: Ada
+  :font-size: small
 
     type Int_Arr is array (1 .. N) of Integer;
     Named_Notation      : Int_Arr := (1 => 2, 2 .. N => <>);
@@ -195,6 +201,7 @@ Named Format Aggregate Rules
    - Except for single choice format
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Float_Arr is array (Integer range <>) of Float;
    Ages : Float_Arr (1 .. 10) := (1 .. 3 => X, 4 .. 10 => Y);
@@ -254,6 +261,7 @@ Aggregates in Ada 2022
 * Ada 2022 allows us to use square brackets **"[...]"** in defining aggregates
 
   .. code:: Ada
+    :font-size: small
 
      type Array_T is array (positive range <>) of Integer;
 
@@ -297,6 +305,7 @@ Iterated Component Association
 * Index-based iterator
 
   .. code:: Ada
+    :font-size: small
 
      type Array_T is array (positive range <>) of Integer;
      Object1 : Array_T(1..5) := (for J in 1 .. 5 => J * 2);
@@ -380,6 +389,7 @@ Delta Aggregates
    * Aggregate indicates an object plus the values changed - the *delta*
 
      .. code:: Ada
+       :font-size: scriptsize
 
          New_Location : Coordinate_T := [Location with delta 3 => 0.0];
 

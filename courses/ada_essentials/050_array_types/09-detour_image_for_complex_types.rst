@@ -65,6 +65,7 @@ Defining the 'Image Attribute
 * Then we need to declare the procedure
 
   .. code:: Ada
+    :font-size: scriptsize
 
      procedure Array_T_Image
        (Output : in out Ada.Strings.Text_Buffers.Root_Buffer_Type'Class;
@@ -76,6 +77,7 @@ Defining the 'Image Attribute
 * And then we define it
 
   .. code:: Ada
+    :font-size: tiny
 
      procedure Array_T_Image
        (Output : in out Ada.Strings.Text_Buffers.Root_Buffer_Type'Class;

@@ -71,6 +71,7 @@ Subtype Predicate Examples
 * Dynamic Predicate
 
   .. code:: Ada
+    :font-size: small
 
      subtype Even is Integer with Dynamic_Predicate =>
         Even mod 2 = 0; -- Boolean expression
@@ -79,6 +80,7 @@ Subtype Predicate Examples
 * Static Predicate
 
   .. code:: Ada
+    :font-size: small
 
      type Serial_Baud_Rate is range 110 .. 115200
        with Static_Predicate => Serial_Baud_Rate  in
@@ -136,6 +138,7 @@ Static Predicates
 * Example
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Serial_Baud_Rate is range 110 .. 115200
        with Static_Predicate => Serial_Baud_Rate in
@@ -154,6 +157,7 @@ Dynamic Predicate Expression Content
 * Plus additional operators, etc.
 
   .. code:: Ada
+    :font-size: small
 
      subtype Even is Integer
        with Dynamic_Predicate => Even mod 2 = 0;
@@ -176,6 +180,7 @@ Beware Accidental Recursion in Predicate
 * Infinitely recursive example
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Sorted_Table is array (1 .. Max_Size) of Integer with
         Dynamic_Predicate => Sorted (Sorted_Table);
@@ -185,6 +190,7 @@ Beware Accidental Recursion in Predicate
 * Non-recursive example
 
   .. code:: Ada
+    :font-size: scriptsize
 
      type Sorted_Table is array (1 .. Max_Size) of Integer with
         Dynamic_Predicate =>
@@ -195,6 +201,7 @@ Beware Accidental Recursion in Predicate
 * Type-based example
 
   .. code:: Ada
+    :font-size: small
 
      type Table_Type is array (1 .. Max_Size) of Integer;
      subtype Sorted_Table is Table_Type with
@@ -206,6 +213,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: small
 
    type Days_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
    function Is_Weekday (The_Day : Days_T) return Boolean is

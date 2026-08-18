@@ -58,6 +58,7 @@ Generic Subprogram Parameters
 * Must be introduced by :ada:`with` to differ from the generic unit
 
   .. code:: Ada
+    :font-size: footnotesize
 
      generic
         type T is private;
@@ -83,6 +84,7 @@ Generic Subprogram Parameters - Default Values (1/2)
 ------------------------------------------------------
 
 .. code:: Ada
+   :font-size: small
    :number-lines: 3
 
    generic
@@ -96,6 +98,7 @@ If nothing specified for **"*"** in instance, compiler uses subprogram with **sa
   - Parameter profile (types only, not parameter name)
 
 .. code:: Ada
+   :font-size: footnotesize
    :number-lines: 4
 
    type Record_T is record
@@ -112,7 +115,7 @@ If nothing specified for **"*"** in instance, compiler uses subprogram with **sa
 * :ada:`Need_Operator` generates compile error
 
 .. code:: error
-  :font-size: scriptsize
+  :font-size: tiny
 
   main.adb:11:4: error: instantiation error at gen.ads:5
   gen.ads:5:1: error: instantiation error at gen.ads:5
@@ -126,6 +129,7 @@ Generic Subprogram Parameters - Default Values (2/2)
 ------------------------------------------------------
 
 .. code:: Ada
+   :font-size: small
    :number-lines: 2
 
    procedure Flip (Switch : in out Boolean);

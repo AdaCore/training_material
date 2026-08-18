@@ -34,6 +34,7 @@ Same Behavior without Quantifiers
 -----------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    function Universal (Set : Components) return Boolean is
    begin
@@ -88,6 +89,7 @@ Simple Examples
 -----------------
 
 .. code:: Ada
+  :font-size: small
 
    Values : constant array (1 .. 10) of Integer := (...);
    Is_Any_Even : constant Boolean :=
@@ -110,6 +112,7 @@ Universal Quantifier
 * Functional equivalent
 
   .. code:: Ada
+    :font-size: footnotesize
 
      function Universal (Set : Components) return Boolean is
      begin
@@ -132,6 +135,7 @@ Universal Quantifier Illustration
 * Given a set of integer answers to a quiz, there are no answers that are not 42 (i.e., all are 42)
 
 .. code:: Ada
+  :font-size: small
 
    Ultimate_Answer : constant := 42; -- to everything...
    Answers : constant array (1 .. 10)
@@ -175,6 +179,7 @@ Existential Quantifier
 * Functional equivalent
 
   .. code:: Ada
+    :font-size: footnotesize
 
      function Existential (Set : Components) return Boolean is
      begin
@@ -197,6 +202,7 @@ Existential Quantifier Illustration
 * Given set of Integer answers to a quiz, there is at least one answer that is 42
 
 .. code:: Ada
+  :font-size: small
 
    Ultimate_Answer : constant := 42; -- to everything...
    Answers : constant array (1 .. 10)
@@ -218,6 +224,7 @@ Index-Based Vs Component-Based Indexing
 * Given an array of Integers
 
   .. code:: Ada
+    :font-size: small
 
      Values : constant array (1 .. 10) of Integer := (...);
 
@@ -247,7 +254,7 @@ Index-Based Vs Component-Based Indexing
 * What will be the value of `Ascending_Order`?
 
   .. code:: Ada
-    :font-size: small
+    :font-size: footnotesize
 
     Table : constant array (1 .. 10) of Integer :=
        (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
@@ -261,7 +268,7 @@ Index-Based Vs Component-Based Indexing
   + Condition should be
 
     .. code:: Ada
-      :font-size: small
+      :font-size: scriptsize
 
       Ascending_Order : constant Boolean := (
          for all K in Table'Range =>

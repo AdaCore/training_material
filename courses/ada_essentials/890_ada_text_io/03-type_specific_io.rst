@@ -7,6 +7,7 @@ Ada.Text_IO.Integer_IO
 ------------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    declare
       type Integer_T is range -1_000 .. 1_000;
@@ -33,6 +34,7 @@ Ada.Text_IO.Float_IO
 ----------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    declare
       type Float_T is digits 6 range -100.0 .. 100.0;
@@ -60,6 +62,7 @@ Ada.Text_IO.Enumeration_IO
 ----------------------------
 
 .. code:: Ada
+  :font-size: tiny
 
    declare
       type Enumeration_T is (Red, Yellow, Green);

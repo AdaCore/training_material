@@ -130,6 +130,7 @@ Declaration
 * Examples chosen for the next slides:
 
 .. code:: Ada
+  :font-size: small
 
    package Pkg_Vectors is new Ada.Containers.Bounded_Vectors
      (Index_Type => Index_Type,
@@ -143,6 +144,7 @@ Declaration
      (Element_Type => String);
 
 .. code:: Ada
+  :font-size: small
 
    package Pkg_Maps is new Ada.Containers.Hashed_Maps
      (Key_Type => Ada.Strings.Unbounded.Unbounded_String,
@@ -157,6 +159,7 @@ Instantiation
 * May require an initial :ada:`Empty_xxx` value
 
 .. code:: Ada
+  :font-size: small
 
    Student_Per_Day : Pkg_Vectors.Vector (5);
    -- Warning: initial size is 0, using an Empty_Vector as

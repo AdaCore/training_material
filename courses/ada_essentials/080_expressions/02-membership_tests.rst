@@ -16,6 +16,7 @@ Membership Tests
 **Examples**
 
 .. code:: Ada
+  :font-size: small
 
    X : Integer := ...
    B : Boolean := X in 0..5;

@@ -63,6 +63,7 @@ Defensive Programming
 * Should be replaced by subprogram contracts when possible
 
 .. code:: Ada
+  :font-size: tiny
 
    procedure Push (The_Stack : Stack) is
       Entry_Length : constant Positive := Length (The_Stack);
@@ -150,6 +151,7 @@ Preconditions and Postconditions Example
 * Multiple aspects separated by commas
 
 .. code:: Ada
+  :font-size: small
 
      procedure Push (This : in out Stack;
                      Value : Content)
@@ -163,6 +165,7 @@ Preconditions and Postconditions Example
 * Precondition
 
   .. code:: Ada
+    :font-size: small
 
      procedure Compute_Square_Root (Input : Integer;
                                     Result : out Natural)
@@ -173,6 +176,7 @@ Preconditions and Postconditions Example
 * Subtype
 
   .. code:: Ada
+    :font-size: small
 
      procedure Compute_Square_Root (Input  : Natural;
                                     Result : out Natural)

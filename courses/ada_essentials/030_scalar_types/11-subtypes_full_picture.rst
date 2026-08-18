@@ -71,6 +71,7 @@ Subtypes Localize Dependencies
 * No subtypes
 
   .. code:: Ada
+    :font-size: small
 
      type Vector is array (1 .. 12) of Some_Type;
 
@@ -83,6 +84,7 @@ Subtypes Localize Dependencies
 * Subtypes
 
   .. code:: Ada
+    :font-size: small
 
      type Counter is range 0 .. 12;
      subtype Index is Counter range 1 .. Counter'Last;
@@ -186,6 +188,7 @@ Attributes Reflect the Underlying Type
 * Assignment must still satisfy target constraints
 
   .. code:: Ada
+    :font-size: footnotesize
 
       Shade : Color range Red .. Blue := Brown; -- run-time error
       Hue : Rainbow := Rainbow'Succ (Blue);     -- run-time error
@@ -198,6 +201,7 @@ Valid attribute
 * :ada:`True` |rightarrow| the current representation for the given scalar is valid
 
 .. code:: Ada
+  :font-size: scriptsize
 
     procedure Main is
        subtype Small_T is Integer range 1 .. 3;
@@ -232,6 +236,7 @@ Idiom: Extended Ranges
       + A count goes from 0 to max length
 
         .. code:: Ada
+          :font-size: footnotesize
    
            -- ARM A.10.1
            package Text_IO is
@@ -257,6 +262,7 @@ Idiom: Partition
    Can have non-consecutive values with the :ada:`Predicate` aspect.
 
 .. code:: Ada
+  :font-size: tiny
 
    type Commands_T is (Lights_On, Lights_Off, Read, Write, Accelerate, Stop);
    --  Complete partition of the commands
@@ -294,6 +300,7 @@ Idiom: Subtypes as Local Constraints
 * Constrain input range
 
 .. code:: Ada
+  :font-size: tiny
 
    subtype Incrementable_Integer is Integer range Integer'First .. Integer'Last - 1;
    function Increment (I : Incrementable_Integer) return Integer;
@@ -301,6 +308,7 @@ Idiom: Subtypes as Local Constraints
 * Constrain output range
 
 .. code:: Ada
+  :font-size: tiny
 
    subtype Valid_Fingers_T is Integer range 1 .. 5;
    Fingers : Valid_Fingers_T := Prompt_And_Get_Integer ("Give me the number of a finger");
@@ -308,6 +316,7 @@ Idiom: Subtypes as Local Constraints
 * Constrain array index
 
 .. code:: Ada
+  :font-size: small
 
    procedure Read_Index_And_Manipulate_Char (S : String) is
       subtype S_Index is Positive range S'Range;

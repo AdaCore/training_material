@@ -9,6 +9,7 @@ Strong Typing
 * Ada supports strong typing
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Small_Integer_T is range -1_000 .. 1_000;
      type Enumerated_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
@@ -119,58 +120,42 @@ Invariants Don't Apply Internally
 Quiz
 ------
 
-.. container:: columns
+.. code:: Ada
+  :font-size: scriptsize
 
- .. container:: column
+  package Counter is
+    type Count_T is private;
+    procedure Increment (Val : in out Count_T);
+  private
+    function Check_Limit (Value : Integer) return Boolean;
+    type Count_T is new Integer with
+       Type_Invariant => Check_Limit (Integer (Count_T));
+  end Counter;
 
-  .. container:: latex_environment tiny
+  package body Counter is
+    function Increment_Helper (Helper_Val : Count_T) return Count_T is
+       Next_Value : Count_T := Helper_Val + 1;
+    begin
+       return Next_Value;
+    end Increment_Helper;
+    procedure Increment (Val : in out Count_T) is
+    begin
+       Val := Val + 1;
+       Val := Increment_Helper (Val);
+    end Increment;
+    function Check_Limit (Value : Integer) return Boolean is
+       (Value <= 100); --  check against constraint
+  end Counter;
 
-    .. code:: Ada
+If `Increment` is called from outside of Counter, how many times is `Check_Limit` called?
 
-       package Counter is
-          type Count_T is private;
-          procedure Increment (Val : in out Count_T);
-       private
-          function Check_Limit (Value : Integer) 
-                                return Boolean;
-          type Count_T is new Integer with
-             Type_Invariant =>
-                Check_Limit (Integer (Count_T));
-       end Counter;
+  A. 1
+  B. :answer:`2`
+  C. 3
+  D. 4
 
-       package body Counter is
-          function Increment_Helper
-            (Helper_Val : Count_T)
-             return Count_T is
-             Next_Value : Count_T := Helper_Val + 1;
-          begin
-             return Next_Value;
-          end Increment_Helper;
-          procedure Increment (Val : in out Count_T) is
-          begin
-             Val := Val + 1;
-             Val := Increment_Helper (Val);
-          end Increment;
-          function Check_Limit (Value : Integer)
-                                return Boolean is
-             (Value <= 100); --  check against constraint
-       end Counter;
+.. container:: animate
 
- .. container:: column
-
-    If `Increment` is called from outside of Counter, how many times is `Check_Limit` called?
-
-       A. 1
-       B. :answer:`2`
-       C. 3
-       D. 4
-
-    .. container:: animate
-
-       Type Invariants are only evaluated on entry into/exit from
-       externally visible subprograms. So :ada:`Check_Limit` is called when
-       entering/exiting :ada:`Increment` - not :ada:`Increment_Helper`
-
-.. raw:: latex
-
-  \vspace{5mm}
+   Type Invariants are only evaluated on entry into/exit from
+   externally visible subprograms. So :ada:`Check_Limit` is called when
+   entering/exiting :ada:`Increment` - not :ada:`Increment_Helper`

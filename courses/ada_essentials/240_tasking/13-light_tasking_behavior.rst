@@ -28,6 +28,7 @@ What Tasks Look Like in Ravenscar
 * Time-triggered task
 
   .. code:: Ada
+    :font-size: small
 
      task body Cyclic is
        Period : constant Time_Span : Milliseconds (10);
@@ -167,21 +168,20 @@ Ceiling Locking
 
   .. container:: column
 
-    .. container:: latex_environment scriptsize
+    * Example of priority inversion
 
-      * Example of priority inversion
+    .. code::
+      :font-size: tiny
 
-        .. code::
+      Lock : Lock_T;
 
-          Lock : Lock_T;
-
-          Task_1 : Task (Priority => 1);
-          Task_2 : Task (Priority => 2);
-          Task_3 : Task (Priority => 3);
+      Task_1 : Task (Priority => 1);
+      Task_2 : Task (Priority => 2);
+      Task_3 : Task (Priority => 3);
 
   .. container:: column
 
-    .. container:: latex_environment scriptsize
+    .. container:: latex_environment tiny
 
       * Task_1 locks Lock
       * Task_3 starts, gets scheduled (Task_3 > Task_1)

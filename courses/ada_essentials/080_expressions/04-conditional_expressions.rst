@@ -54,6 +54,7 @@ Result Must Be Compatible with Context
   * Compile error if this is not true
 
 .. code:: Ada
+  :font-size: footnotesize
   :number-lines: 9
 
   Hours_Worked : Float :=
@@ -80,6 +81,7 @@ Result Must Be Compatible with Context
 -------------------------
 
 .. code:: Ada
+  :font-size: small
 
    declare
      Remaining : Natural := 5;  -- arbitrary
@@ -132,7 +134,7 @@ The "else" Part When Result Is Boolean
 * So for convenience and elegance it can be omitted
 
   .. code:: Ada
-    :font-size: small
+    :font-size: footnotesize
 
     Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
     Acceptable : Boolean := (if P1 > 0 then P2 > 0);
@@ -149,7 +151,7 @@ Rationale for Parentheses Requirement
   * Problem
 
     .. code:: Ada
-      :font-size: footnotesize
+      :font-size: scriptsize
 
        Size : Integer := if Exact then Measure else Estimate + 1;
 
@@ -164,14 +166,14 @@ Rationale for Parentheses Requirement
   * Solution
 
     .. code:: Ada
-      :font-size: footnotesize
+      :font-size: scriptsize
 
        Size : Integer := (if Exact then Measure else Estimate) + 1;
 
     **OR**
 
     .. code:: Ada
-      :font-size: footnotesize
+      :font-size: scriptsize
 
        Size : Integer := (if Exact then Measure else Estimate + 1)
 
@@ -256,6 +258,7 @@ Case Expressions
 ---------------------------
 
 .. code:: Ada
+  :font-size: small
 
    Leap : constant Boolean :=
       (Today.Year mod 4 = 0 and Today.Year mod 100 /= 0)

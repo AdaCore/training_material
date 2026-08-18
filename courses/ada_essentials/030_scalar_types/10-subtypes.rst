@@ -25,6 +25,7 @@ Subtype Example
 * Enumeration type with :ada:`range` constraint
 
   .. code:: Ada
+    :font-size: small
 
      type Days is (Sun, Mon, Tues, Wed, Thurs, Fri, Sat);
      subtype Weekdays is Days range Mon .. Fri;
@@ -39,6 +40,7 @@ Subtype Example
 * Constraints on ranges
 
   .. code:: Ada
+    :font-size: small
 
     type Integer is range -(2**31) .. +(2**31 - 1);
     subtype Natural  is Integer range 0 .. Integer'Last;
@@ -56,6 +58,7 @@ Kinds of Constraints
 * Range constraints on scalar types
 
   .. code:: Ada
+    :font-size: small
 
      subtype Positive is Integer range 1 .. Integer'Last;
      subtype Natural is Integer range 0 .. Integer'Last;
@@ -141,6 +144,7 @@ Range Constraint Examples
 ---------------------------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    subtype Proper_Subset is Positive range 1 .. 10;
    subtype Same_Constraints is Positive
@@ -158,6 +162,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Days_Of_Week_T is (Sat, Sun, Mon, Tue, Wed, Thu, Fri);
    subtype Weekdays_T is Days_Of_Week_T range Mon .. Fri;

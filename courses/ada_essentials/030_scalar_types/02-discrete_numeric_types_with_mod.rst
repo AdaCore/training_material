@@ -56,7 +56,7 @@ Signed Integer Bounds
       type Big_Integer_T is range 0 .. 2**128;
 
     .. code:: error
-      :font-size: scriptsize
+      :font-size: tiny
 
       main.adb:3:26: error: integer type definition bounds out of range
 
@@ -149,6 +149,7 @@ Modular Types
 * Resulting range is  :ada:`0 .. modulus - 1`
 
   .. code:: Ada
+    :font-size: small
 
      type Unsigned_Word is mod 2**16; -- 16 bits, 0..65535
      type Byte is mod 256;            -- 8 bits, 0..255

@@ -38,6 +38,7 @@ Unbounded String Definition
 -----------------------------
 
 .. code:: Ada
+  :font-size: small
 
    with Ada.Finalization; use Ada.Finalization;
    package Unbounded_String_Pkg is
@@ -62,6 +63,7 @@ Unbounded String Implementation
 ---------------------------------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    with Ada.Unchecked_Deallocation;
    package body Unbounded_String_Pkg is
@@ -101,6 +103,7 @@ Finalizable Aspect
 * Uses the GNAT-specific :ada:`with Finalizable` aspect
 
 .. code:: Ada
+  :font-size: small
 
    type Ctrl is record
       Id : Natural := 0;

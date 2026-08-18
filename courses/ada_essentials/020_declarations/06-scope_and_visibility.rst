@@ -74,6 +74,7 @@ Visibility in Action
 * **Name hiding**: a name used in an *inner scope* can hide the same name visible in the *outer scope*
 
   .. code:: Ada
+    :font-size: scriptsize
 
      type Color is (Red, Green, Blue);
      type Size  is (Small, Medium, Large);
@@ -107,6 +108,7 @@ Overcoming Hiding
         - May need refactoring...
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Color is (Red, Green, Blue);
    type Size  is (Small, Medium, Large);

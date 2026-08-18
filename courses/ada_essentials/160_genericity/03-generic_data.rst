@@ -14,6 +14,7 @@ Definitions
     - Capabilities: e.g. :ada:`tagged`, primitives
 
 .. code:: Ada
+  :font-size: scriptsize
 
    generic
       type Pv is private;           -- allocation, copy, assignment, "="
@@ -26,6 +27,7 @@ Definitions
 * Actual parameter **may** require constraints, and **must** provide capabilities
 
 .. code:: Ada
+  :font-size: small
 
    package Pkg is new Generic_Pkg (
       Pv => Integer, -- has capabilities of private
@@ -54,6 +56,7 @@ Representative Examples
 * Not limited to those choices
 
 .. code:: Ada
+  :font-size: small
 
    type T is not null access all limited tagged private;
 

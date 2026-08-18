@@ -104,22 +104,23 @@ Record Types
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
     * Ada doesn't force any particular memory layout
     * Depending on optimization of constraints, layout can be optimized for speed, size, or not optimized
 
     .. code:: Ada
+      :font-size: small
 
-       type Enum is (E1, E2, E3);
-       type Rec is record
-          A : Integer;
-          B : Boolean;
-          C : Boolean;
-          D : Enum;
-       end record;
+      type Enum is (E1, E2, E3);
+      type Rec is record
+         A : Integer;
+         B : Boolean;
+         C : Boolean;
+         D : Enum;
+      end record;
 
- .. container:: column
+  .. container:: column
 
     .. image:: record_packing_examples.svg
       :height: 75%
@@ -180,38 +181,40 @@ Record Representation Clauses
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
     * Exact mapping between a record and its binary representation
     * Optimization purposes, or hardware requirements
 
-       - Driver mapped on the address space, communication protocol...
+      - Driver mapped on the address space, communication protocol...
 
     * Components represented as
 
       .. code:: Ada
+        :font-size: small
 
         <typemark> at <byte> range
            <starting_bit> ..
            <ending_bit>
 
- .. container:: column
+  .. container:: column
 
-   .. code:: Ada
+    .. code:: Ada
+      :font-size: small
 
-     type Rec1 is record
+      type Rec1 is record
         A : Integer range 0 .. 4;
         B : Boolean;
         C : Integer;
         D : Enum;
-     end record;
-     for Rec1 use record
+      end record;
+      for Rec1 use record
         A at 0 range 0 ..  2;
         B at 0 range 3 ..  3;
         C at 0 range 4 .. 35;
         -- unused space here
         D at 5 range 0 ..  2;
-     end record;
+      end record;
 
 ------------------
 Unchecked Unions
@@ -244,6 +247,7 @@ Array Representation Clauses
 * :ada:`Component_Size` for array's **component's** size
 
 .. code:: Ada
+  :font-size: small
 
    -- with aspect
    type Array_T is array (1 .. 1000) of Boolean
@@ -267,6 +271,7 @@ Endianness Specification
 * Compiler will peform needed bitwise transformations when performing operations
 
 .. code:: Ada
+  :font-size: footnotesize
 
    -- with aspect
    type Array_T is array (1 .. 1000) of Boolean with

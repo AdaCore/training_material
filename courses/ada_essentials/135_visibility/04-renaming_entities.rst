@@ -15,6 +15,7 @@ Three Positives Make a Negative
 * Can result in cumbersome references
 
   .. code:: Ada
+    :font-size: scriptsize
 
      -- use cosine rule to determine distance between two points,
      -- given angle and distances between observer and 2 points
@@ -35,6 +36,7 @@ Writing Readable Code - Part 1
 * We could use :ada:`use` on package names to remove some dot-notation
 
   .. code:: Ada
+    :font-size: tiny
 
      -- use cosine rule to determine distance between two points, given angle
      -- and distances between observer and 2 points A**2 = B**2 + C**2 -
@@ -95,6 +97,7 @@ Writing Readable Code - Part 2
    - Declarations as "glue" to the implementation details
 
 .. code:: Ada
+  :font-size: scriptsize
 
       begin
          package Math renames Math_Utilities;

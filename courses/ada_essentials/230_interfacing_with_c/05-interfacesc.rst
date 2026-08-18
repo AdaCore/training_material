@@ -18,6 +18,7 @@ Interfaces.C
 --------------
 
 .. code:: Ada
+  :font-size: tiny
 
    package Interfaces.C is
 
@@ -72,6 +73,7 @@ Interfaces.C.Extensions
 -------------------------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Interfaces.C.Extensions is
 
@@ -104,6 +106,7 @@ Interfaces.C.Pointers
 -----------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    generic
       type Index is (<>);
@@ -142,6 +145,7 @@ Interfaces.C.Strings
 ----------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    package Interfaces.C.Strings is
 

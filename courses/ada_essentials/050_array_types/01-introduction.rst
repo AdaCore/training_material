@@ -19,6 +19,7 @@ Array Examples
 ----------------
 
 .. code:: Ada
+  :font-size: footnotesize
 
   type <typemark> is array (<index_constraint>) of <component_type>;
 
@@ -34,6 +35,7 @@ where
       - All components are of this same type and size
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Array_One is array (1 .. 100) of Integer;
 
@@ -81,6 +83,7 @@ Array Type Index Constraints
 * Used to define constrained array types
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Schedule is array (Days range Mon .. Fri) of Float;
      type Flags_T is array (-10 .. 10) of Boolean;
@@ -100,6 +103,7 @@ Run-Time Index Checking
 * Invalid index values result in :ada:`Constraint_Error`
 
 .. code:: Ada
+  :font-size: footnotesize
 
    procedure Test is
      type Int_Arr is array (1..10) of Integer;

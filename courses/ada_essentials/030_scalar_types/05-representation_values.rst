@@ -12,6 +12,7 @@ Enumeration Representation Values
   - Redefinition syntax
 
     .. code:: Ada
+      :font-size: scriptsize
 
         type Enum_T is (Able, Baker, Charlie, David);
         for Enum_T use

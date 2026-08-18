@@ -67,6 +67,7 @@ Freeze Point for Tagged Types
 * Declaring tagged type primitives past freeze point is **forbidden**
 
 .. code:: Ada
+   :font-size: footnotesize
    :number-lines: 3
 
    type Root_T is tagged null record;
@@ -99,6 +100,7 @@ Overriding Indicators
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 
   .. code:: Ada
+    :font-size: footnotesize
 
       type Shape_T is tagged record
          Name : String (1..10);

@@ -27,6 +27,7 @@ Ada.Text_IO
       * Operations for streaming data to/from binary files
 
 .. code:: Ada
+  :font-size: small
 
    declare
       -- read from default input file
@@ -52,6 +53,7 @@ Scalar Type I/O
 * Create instances of the generic package to read/write
 
 .. code:: Ada
+  :font-size: small
 
    declare
       type Float_T is digits 6;

@@ -112,6 +112,7 @@ Completion Examples
 * Completions
 
   .. code:: Ada
+    :font-size: small
 
      procedure Swap (A, B : in out Integer) is
        Temp : Integer := A;
@@ -144,6 +145,7 @@ Direct Recursion - No Declaration Needed
     - It can call **itself** without a declaration
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Vector_T is array (Natural range <>) of Integer;
    Empty_Vector : constant Vector_T (1 .. 0) := (others => 0);

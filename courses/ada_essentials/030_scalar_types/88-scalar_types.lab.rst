@@ -84,6 +84,7 @@ See what happens when your data is invalid / illegal
 .. container:: animate 2-
 
   .. code:: Ada
+    :font-size: footnotesize
     :number-lines: 35
 
     Test_Score_Total := Test_Score_Total /
