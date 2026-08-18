@@ -130,19 +130,29 @@ Legality Checking
        Maximum : Integer := Global;
     end record;
 
-  .. code:: error
-    :font-size: footnotesize
+  * First line describes the failure
 
-    example.ads:8:28: error: default initialization cannot depend
-       on variable input "Global"[#0] [E0007]
-    example.ads:8:28: error: use instead a constant initialized
-       to the expression with variable input
-    example.ads:8:28: error: launch "gnatprove --explain=E0007"
-       for more information
+    .. code:: error
+      :font-size: footnotesize
 
-  * Failure described on line 1
-  * Possible solution described on line 3
-  * Command to get full explanation on line 5
+      example.ads:8:28: error: default initialization cannot depend
+         on variable input "Global"[#0] [E0007]
+
+  * Then a possible solution is suggested
+
+    .. code:: error
+      :font-size: footnotesize
+
+      example.ads:8:28: error: use instead a constant initialized
+         to the expression with variable input
+
+  * Finally instructions on getting a full explanation
+
+    .. code:: error
+      :font-size: footnotesize
+
+      example.ads:8:28: error: launch "gnatprove --explain=E0007"
+         for more information
 
 * Includes ownership checking, detailed in course on Pointer Programs
 
