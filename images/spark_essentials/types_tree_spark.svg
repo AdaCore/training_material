@@ -76,9 +76,12 @@
 <line x1 = "248.0" y1 = "275" x2 = "350.0" y2 = "275" stroke = "black" stroke-width = "2"/>
 <line x1 = "98.0" y1 = "345" x2 = "200.0" y2 = "345" stroke = "black" stroke-width = "2"/>
 <line x1 = "298.0" y1 = "345" x2 = "400.0" y2 = "345" stroke = "black" stroke-width = "2"/>
-<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  text-anchor="end" x="660" y="300" >Access:</text>
-<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  text-anchor="end" x="660" y="320" >Protected:</text>
-<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  text-anchor="end" x="660" y="340" >Task:</text>
+<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="595" y="300" >Access</text>
+<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="595" y="320" >Protected</text>
+<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="595" y="340" >Task</text>
+<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="660" y="300" >:</text>
+<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="660" y="320" >:</text>
+<text xml:space="preserve" fill="#ff0000" stroke="#ff0000" stroke-width="0.5"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="660" y="340" >:</text>
 <text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="675" y="300" >Strict ownership/borrowing</text>
 <text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="675" y="320" >Only simple boolean entries</text>
 <text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="14px" font-family='arial' font-weight="normal"  x="675" y="340" >No "entry", "accept", "select", "abort"</text>
