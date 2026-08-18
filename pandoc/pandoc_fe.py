@@ -409,6 +409,14 @@ def expand_source(source_file):
         return files
 
 
+def get_metadata():
+    global ARGS_SOURCE
+    retval = ""
+    if len(ARGS_SOURCE) > 0:
+        retval = "--metadata=folder:" + os.path.basename(os.path.dirname(os.path.abspath(ARGS_SOURCE[0])) )
+    return retval
+
+
 def pandoc_prepare_run(args):
     global ARGS_SOURCE
     return (
@@ -484,6 +492,7 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
         theme,
         color,
         preamble,
+        get_metadata(),
         "--fail-if-warnings",
         "-f rst",
         "-t " + output_format(extension),
