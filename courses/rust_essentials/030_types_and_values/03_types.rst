@@ -204,7 +204,7 @@ Numeric Conversions
 
 .. tip::
 
-  - Forces conversion to be **intentional**
+  - Forces the programmer to be **intentional**
 
     - Using :rust:`as` makes conversion explicit
 

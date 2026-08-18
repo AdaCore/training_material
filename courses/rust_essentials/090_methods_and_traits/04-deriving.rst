@@ -166,12 +166,10 @@ Limitations on Deriving
       - Compiler ensures logic is safe
       - Compiler ensures manual code is safe
 
-.. note::
+* Derive is for Computers
 
-  **Derive** is for **Computers**
+  * Simple behaviors (clone, print) can be done by the compiler
 
-    If compiler needs to know how to clone data or print it for a log, let it do the work
+* Manual is for Humans
 
-  **Manual** is for **Humans**
-
-    When formatting a string that a programmer will read, such as with :rust:`Display`, a manual implementation is usually needed to make it look polished
+  * More complicated behaviors should be done by the programmer

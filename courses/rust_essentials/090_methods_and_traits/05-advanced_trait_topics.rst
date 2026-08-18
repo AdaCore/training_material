@@ -6,7 +6,10 @@ Advanced Trait Topics
 Orphan Rule
 -------------
 
-* Implement a trait for a type only if the current crate defines the trait or the type
+* Implement a trait for a type only if the current crate defines
+
+  * Either the trait
+  * Or the type
 
 * Why do we need this?
 

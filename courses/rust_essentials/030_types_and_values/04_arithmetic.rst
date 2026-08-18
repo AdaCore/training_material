@@ -197,8 +197,11 @@ Handling Overflow Explicitly
 
   *Equivalent functions exist for subtraction (*:rust:`*_sub`*) and multiplication (*:rust:`*_mul`*)*
 
-.. warning::
+* These methods make overflow behavior explicit and predictable
 
-  These methods make overflow behavior explicit and predictable
+* Choose the method that matches the intended behavior
 
-  Choose the method that matches the intended behavior: checked, wrapping, saturating, or overflowing arithmetic
+  * Checked
+  * Wrapping
+  * Saturating
+  * Overflowing arithmetic
