@@ -413,7 +413,9 @@ def get_metadata():
     global ARGS_SOURCE
     retval = ""
     if len(ARGS_SOURCE) > 0:
-        retval = "--metadata=folder:" + os.path.basename(os.path.dirname(os.path.abspath(ARGS_SOURCE[0])) )
+        retval = "--metadata=folder:" + os.path.basename(
+            os.path.dirname(os.path.abspath(ARGS_SOURCE[0]))
+        )
     return retval
 
 
