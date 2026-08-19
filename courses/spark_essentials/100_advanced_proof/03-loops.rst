@@ -77,24 +77,18 @@ Loop Invariants in Proof
   - Check that it is preserved by one iteration
   - Assume it to check the remaining of the program
 
-.. image:: loop_invariants.png
+.. image:: spark_essentials/loop_invariants.svg
 
 ------------------------------
 Placement of Loop Invariants
 ------------------------------
 
-.. container:: columns
+* Proof reasons around the *virtual loop*
 
- .. container:: column
+  - Starting from the loop invariant
+  - Ending at the loop invariant
 
-    * Proof reasons around the *virtual loop*
-
-      - Starting from the loop invariant
-      - Ending at the loop invariant
-
- .. container:: column
-
-    .. image:: loop_invariants_placement.png
+.. image:: spark_essentials/loop_invariants_placement.svg
 
 ------------------------------------------
 Four Properties of a Good Loop Invariant
