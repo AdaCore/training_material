@@ -36,5 +36,4 @@ Formal Methods and SPARK
 .. include:: 020_formal_methods_and_spark/02-formal_methods.rst
 .. include:: 020_formal_methods_and_spark/03-spark.rst
 .. include:: 020_formal_methods_and_spark/04-applying_spark_in_practice.rst
-.. include:: 020_formal_methods_and_spark/05-quiz.rst
 .. include:: 020_formal_methods_and_spark/99-summary.rst
