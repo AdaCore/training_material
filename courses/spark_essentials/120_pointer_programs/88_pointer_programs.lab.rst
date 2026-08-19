@@ -38,15 +38,14 @@ Swapping Pointers (1/2)
 
 .. container:: animate 2-
 
-   :color-red:`pointers.ads:11:14: error: return from "Swap_Ptr" with moved value for "X"`
+  .. code:: error
 
-   :color-red:`pointers.adb:16:1: error: object was moved at pointers.adb:16 [E0010]`
+    pointers.ads:11:14: error: return from "Swap_Ptr" with moved value for "X"
+    pointers.adb:16:1: error: object was moved at pointers.adb:16 [E0010]
+    pointers.ads:11:14: error: launch "gnatprove --explain=E0010" for more information
 
-   :color-red:`pointers.ads:11:14: error: launch "gnatprove --explain=E0010" for more information`
-
-   - Run the suggested :toolname:`GNATprove` command to see what help is available
-
-   - Fix the ownership error in :ada:`Swap_Ptr`
+  - Run the suggested :toolname:`GNATprove` command to see what help is available
+  - Fix the ownership error in :ada:`Swap_Ptr`
 
 .. container:: animate 3-
 
@@ -114,7 +113,10 @@ Allocation and Deallocation
 
   *Note the message verifying no memory leak*
 
-  :color-red:`pointers.adb:29:9: info: absence of resource or memory leak proved`
+  .. code:: error
+    :font-size: small
+
+    pointers.adb:29:9: info: absence of resource or memory leak proved
 
 ---------------------
 Recursion and Loops
@@ -130,9 +132,11 @@ Recursion and Loops
 
 .. container:: animate 2-
 
-   :color-red:`pointers.ads:47:19: medium: postcondition might fail`
+  .. code:: error
 
-   - Add :ada:`Loop_Invariant` to help prover verify postcondition
+    pointers.ads:47:19: medium: postcondition might fail
+
+  - Add :ada:`Loop_Invariant` to help prover verify postcondition
 
       - Hint: as we traverse the list, we want to check the values in
         the list match the values of the borrowed pointer when we
