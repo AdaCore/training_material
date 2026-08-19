@@ -90,4 +90,4 @@ Which statement is correct?
    A. SPARK is a subset of Ada dating back to the 80s.
    B. SPARK is also based on flow analysis which is a form of abstract interpretation.
    C. SPARK subset restricts the features of Ada for proof.
-   D. Correct
+   D. Correct.

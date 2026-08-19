@@ -204,6 +204,6 @@ Which statement is correct?
    Explanations
 
    A. Formal methods can also apply to requirements, models, data, etc.
-   B. Correct
+   B. Correct.
    C. To achieve soundness, it may be impossible to avoid false alarms.
    D. Pick any two!

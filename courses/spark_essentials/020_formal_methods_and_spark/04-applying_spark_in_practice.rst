@@ -94,7 +94,7 @@ Which statement is correct?
 
    Explanations
 
-   A. Correct
+   A. Correct.
    B. AoRTE is a common objective with SPARK because it is simple.
    C. Full functional correctness is hard but can be achieved.
    D. SPARK code can be interfaced with code in Ada/C/C++, etc.
