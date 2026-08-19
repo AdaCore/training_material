@@ -122,16 +122,18 @@ Legality Checking
 
   - May include fix:
 
-    .. container:: latex_environment footnotesize
+    .. code:: error
+      :font-size: tiny
 
-       :color-red:`use instead a constant initialized to the
-       expression with variable input`
+      use instead a constant initialized to the expression with variable input
 
     *apply the suggested fix*
 
   - May include *explain code*:
 
-    :color-red:`[E0007]`
+    .. code:: error
+
+      [E0007]
 
     *run* :command:`gnatprove --explain=E0007` *for more information*
 

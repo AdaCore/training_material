@@ -44,15 +44,17 @@ Creating an Abstract State
 
 .. container:: animate 3-
 
-   :color-red:`basics.adb:2:36: error: cannot use "The_Rec" in refinement, constituent is not a hidden state of package "Basics"`
+  .. code:: error
+    :font-size: tiny
 
-   :color-red:`basics.adb:2:45: error: cannot use "The_Table" in refinement, constituent is not a hidden state of package "Basics"`
+    basics.adb:2:36: error: cannot use "The_Rec" in refinement, constituent is not a hidden state of package "Basics"
+    basics.adb:2:45: error: cannot use "The_Table" in refinement, constituent is not a hidden state of package "Basics"
 
-   - :ada:`Abstract_State` is only for hidden data
+  - :ada:`Abstract_State` is only for hidden data
 
-      - :ada:`The_Rec` and :ada:`The_Table` are visible to the outside world
+    - :ada:`The_Rec` and :ada:`The_Table` are visible to the outside world
 
-   - Move :ada:`The_Rec` and :ada:`The_Table` into the private section of the package
+  - Move :ada:`The_Rec` and :ada:`The_Table` into the private section of the package
 
 ----------------------------
 Defining an Abstract State
@@ -64,17 +66,17 @@ Defining an Abstract State
 
 .. container:: animate 2-
 
-   :color-red:`basics.ads:69:4: error: indicator Part_Of is required in this context [E0009]`
+  .. code:: error
+    :font-size: scriptsize
 
-   :color-red:`basics.ads:69:4: error: "The_Rec" is declared in the private section of package "Basics"`
+    basics.ads:69:4: error: indicator Part_Of is required in this context [E0009]
+    basics.ads:69:4: error: "The_Rec" is declared in the private section of package "Basics"
+    basics.ads:70:4: error: indicator Part_Of is required in this context [E0009]
+    basics.ads:70:4: error: "The_Table" is declared in the private section of package "Basics"
 
-   :color-red:`basics.ads:70:4: error: indicator Part_Of is required in this context [E0009]`
+  *(other errors ignored for now)*
 
-   :color-red:`basics.ads:70:4: error: "The_Table" is declared in the private section of package "Basics"`
-
-   *(other errors ignored for now)*
-
-   - Global data needs to be part of the state
+  - Global data needs to be part of the state
 
       - But you cannot refine it in the spec
       - So you need to indicate that :ada:`The_Rec` and :ada:`The_Table` are part of the state
@@ -92,14 +94,16 @@ Using the Abstract State
 
 .. container:: animate 1-
 
-   - Now to address the ignored errors:
+  - Now to address the ignored errors:
 
-      :color-red:`basics.ads:29:28: error: "The_Rec" is undefined (more references follow)`
+    .. code:: error
+      :font-size: footnotesize
 
-      :color-red:`basics.ads:34:28: error: "The_Table" is undefined (more references follow)`
+      basics.ads:29:28: error: "The_Rec" is undefined (more references follow)
+      basics.ads:34:28: error: "The_Table" is undefined (more references follow)
 
-   - Update the global contracts to indicate that :ada:`State` is being modified, not
-     any particular object
+    - Update the global contracts to indicate that :ada:`State` is being modified, not
+      any particular object
 
       - Also need to update dependency contracts, because now data depends on the state,
         not any particular object
@@ -130,11 +134,14 @@ Initializing the State
 
 .. container:: animate 2-
 
-   :color-red:`basics.ads:2:26: warning: no subprogram exists that can initialize abstract state "Basics.State"`
+  .. code:: error
+    :font-size: tiny
 
-   - We are not guaranteeing that the global data is initialized
+    basics.ads:2:26: warning: no subprogram exists that can initialize abstract state "Basics.State"
 
-   - Write subprogram :ada:`Init_The_State` to initialize the global state
+  - We are not guaranteeing that the global data is initialized
+
+  - Write subprogram :ada:`Init_The_State` to initialize the global state
 
 .. container:: animate 3-
 
