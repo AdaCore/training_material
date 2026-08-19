@@ -22,6 +22,6 @@ What Is SPARK?
 
 |
 
-.. image:: ada_vs_spark_venn.png
+.. image:: spark_essentials/ada_vs_spark_venn.svg
    :width: 85%
 

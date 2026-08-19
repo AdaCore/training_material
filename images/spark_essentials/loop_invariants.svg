@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="130.0" width="360" >
+<ellipse fill="none" stroke="#cc0000" stroke-width="1" cx="180.0" cy="65.0" rx="50" ry="20.0" />
+<ellipse fill="#cccc00" stroke="none" cx="55" cy="25.0" rx="50" ry="20.0" />
+<polygon fill="#cccc00" stroke="none" points="130.0,25.0 55,15.0 55,35.0 "/>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="55" y="23.0" >Path before the</text>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="55" y="35.0" >loop invariant</text>
+<ellipse fill="#0000cc" stroke="none" cx="55" cy="105.0" rx="50" ry="20.0" />
+<polygon fill="#0000cc" stroke="none" points="130.0,105.0 55,95.0 55,115.0 "/>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="55" y="103.0" >Path exiting</text>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="55" y="115.0" >the loop</text>
+<ellipse fill="#cc0000" stroke="none" cx="305.0" cy="65.0" rx="50" ry="20.0" />
+<polygon fill="#cc0000" stroke="none" points="230.0,65.0 305.0,55.0 305.0,75.0 "/>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="305.0" y="63.0" >Path from/to the</text>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="305.0" y="75.0" >loop invariant</text>
+<line fill="none" stroke="#cccc00" stroke-width="1" x1="130.0" y1="65.0" x2="130.0" y2="5.0" />
+<line fill="none" stroke="#0000cc" stroke-width="1" x1="130.0" y1="65.0" x2="130.0" y2="125.0" />
+<circle fill="#000000" stroke="none" cx="130.0" cy="65.0" r="6.0" />
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="10px" font-family='Times New Roman' font-weight="bolder"  text-anchor="middle" x="130.0" y="68.0" >I</text>
+</svg>
