@@ -33,14 +33,14 @@ Aliasing and Initialization - Messages
 
 .. container:: animate 2-
 
-   ::
+  .. code:: error
 
-      basics.adb:17:13: medium: formal parameters "X" and "Y" might be aliased
-      basics.ads:25:26: medium: "T" might not be initialized in "Init_Table"
+    basics.adb:17:13: medium: formal parameters "X" and "Y" might be aliased
+    basics.ads:25:26: medium: "T" might not be initialized in "Init_Table"
 
-   * We want to fix the code, or add an annotation to prevent the messages
+  * We want to fix the code, or add an annotation to prevent the messages
 
-      * We do not want any messages from our analysis
+    * We do not want any messages from our analysis
 
 -------------------------------------
 Aliasing and Initialization - Fixes
@@ -127,16 +127,16 @@ Adding Our Own Global Contracts
 
 .. container:: animate 3-
 
-   ::
+  .. code:: error
 
-      high: "The_Rec" must be listed in the Global aspect of "Swap_The_Rec"
-      high: "The_Table" must be listed in the Global aspect of "Swap_The_Table"
-      high: "The_Rec" must be listed in the Global aspect of "Init_The_Rec"
-      high: "The_Table" must be listed in the Global aspect of "Init_The_Table"
+    high: "The_Rec" must be listed in the Global aspect of "Swap_The_Rec"
+    high: "The_Table" must be listed in the Global aspect of "Swap_The_Table"
+    high: "The_Rec" must be listed in the Global aspect of "Init_The_Rec"
+    high: "The_Table" must be listed in the Global aspect of "Init_The_Table"
 
-   * Analysis shows global data has been modified in these subprograms
+  * Analysis shows global data has been modified in these subprograms
 
-      * Add the appropriate contracts
+    * Add the appropriate contracts
 
 .. container:: animate 4-
 
@@ -163,21 +163,20 @@ Verifying Results
 
 .. container:: animate 2-
 
-   ::
+  .. code:: error
 
-      basics.adb:12:14: info: non-aliasing of formal parameters "X" and "Y" proved
-      basics.adb:18:16: info: justified that formal parameters "X" and "Y" might be aliased
-      basics.ads:11:11: info: data dependencies proved
-      basics.ads:17:11: info: data dependencies proved
-      basics.ads:20:11: info: data dependencies proved
-      basics.ads:23:11: info: data dependencies proved
-      basics.ads:26:11: info: data dependencies proved
-      basics.ads:28:24: info: initialization of "R" proved
-      basics.ads:29:11: info: data dependencies proved
-      basics.ads:31:26: info: initialization of "T" proved
-      basics.ads:32:11: info: data dependencies proved
-      basics.ads:35:11: info: data dependencies proved
-      basics.ads:35:38: info: initialization of "The_Rec" proved
-      basics.ads:38:11: info: data dependencies proved
-      basics.ads:38:38: info: initialization of "The_Table" proved
-
+    basics.adb:12:14: info: non-aliasing of formal parameters "X" and "Y" proved
+    basics.adb:18:16: info: justified that formal parameters "X" and "Y" might be aliased
+    basics.ads:11:11: info: data dependencies proved
+    basics.ads:17:11: info: data dependencies proved
+    basics.ads:20:11: info: data dependencies proved
+    basics.ads:23:11: info: data dependencies proved
+    basics.ads:26:11: info: data dependencies proved
+    basics.ads:28:24: info: initialization of "R" proved
+    basics.ads:29:11: info: data dependencies proved
+    basics.ads:31:26: info: initialization of "T" proved
+    basics.ads:32:11: info: data dependencies proved
+    basics.ads:35:11: info: data dependencies proved
+    basics.ads:35:38: info: initialization of "The_Rec" proved
+    basics.ads:38:11: info: data dependencies proved
+    basics.ads:38:38: info: initialization of "The_Table" proved

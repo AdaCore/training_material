@@ -49,6 +49,7 @@ Array Initialization Loop
    4. Change the type :ada:`Table` to be an unconstrained array
 
   .. code:: ada
+    :font-size: small
 
       type Table is array (Index range <>) of Integer;
 
@@ -73,8 +74,9 @@ Helping Prove the Loop
 .. container:: animate 2-
 
   .. code:: Ada
+    :font-size: scriptsize
 
-      pragma Loop_Invariant (for all K in T'First .. J => T(K) = 0);                                  
+      pragma Loop_Invariant (for all K in T'First .. J => T(K) = 0);
 
   2. Postcondition :ada:`Init_Table` now proves but ...
 
@@ -98,6 +100,7 @@ Helping Prove the Loop
 .. container:: animate 5-
 
   .. code:: Ada
+    :font-size: small
 
       pragma Loop_Invariant
          (for all K in T'First .. J => T(K)'Initialized);
@@ -110,42 +113,46 @@ Array Mapping Loop
 
 .. container:: animate 1-
 
-   1. Run :toolname:`GNATprove` to prove the subprogram :ada:`Bump_Table`
+  1. Run :toolname:`GNATprove` to prove the subprogram :ada:`Bump_Table`
 
-   ::
+  .. code:: error
+    :font-size: scriptsize
 
-      loop_init.adb:14:24: info: cannot unroll loop (too many loop iterations)
-      loop_init.ads:19:39: medium: postcondition might fail
+    loop_init.adb:14:24: info: cannot unroll loop
+       (too many loop iterations)
+    loop_init.ads:19:39: medium: postcondition might fail
 
 .. container:: animate 2-
 
-   2. Add a loop invariant in :ada:`Bump_Table`
+  2. Add a loop invariant in :ada:`Bump_Table`
 
-      * Hint: use attribute :ada:`Loop_Entry`
-      * Can you prove the subprogram without a loop frame condition?
+    * Hint: use attribute :ada:`Loop_Entry`
+    * Can you prove the subprogram without a loop frame condition?
 
 .. container:: animate 3-
 
-   3. No frame condition in this case
+  3. No frame condition in this case
 
   .. code:: Ada
+    :font-size: scriptsize
 
       pragma Loop_Invariant
          (for all K in T'First .. J => T(K) = T'Loop_Entry(K) + 1);
 
-  4. Change the assignment inside the loop into the following, and try to prove: :ada:`T(J + 0) := T (J) + 1;` 
+  4. Change the assignment inside the loop into the following, and try to prove: :ada:`T(J + 0) := T (J) + 1;`
 
 .. container:: animate 4-
 
-   ::
+  .. code:: error
+    :font-size: scriptsize
 
-      loop_init.adb:16:62: medium: loop invariant might not be preserved
-         by an arbitrary iteration
-      loop_init.adb:16:62: cannot prove T(K) = T'Loop_Entry(K) + 1
+    loop_init.adb:16:62: medium: loop invariant might not be preserved
+        by an arbitrary iteration
+    loop_init.adb:16:62: cannot prove T(K) = T'Loop_Entry(K) + 1
 
-   5. We need to add a frame condition (things that haven't changed)
+  5. We need to add a frame condition (things that haven't changed)
 
-.. container:: animate 6-
+.. container:: animate 5-
 
   .. code:: Ada
 
