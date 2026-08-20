@@ -33,9 +33,22 @@ Destructuring: The Stencil Metaphor
 
 .. code:: rust
 
-  // Placing the stencil (pattern) over the point 'p'
+  struct Point {
+      x: i64,
+      y: i64,
+  }
+  let point = Point { x: 12, y: -34 };
+
+  // Placing the stencil (pattern) over 'point'
   // 'x' and 'y' are the cutouts; data fills new variables
-  let Point { x, y } = p;
+  let Point { x, y } = point;
+
+  println!("Coordinates ({x}, {y})")
+
+.. code:: output
+
+  Coordinates (12, -34)
+
 
 ---------------------
 Basic Destructuring
