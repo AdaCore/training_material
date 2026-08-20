@@ -327,11 +327,11 @@ correct wrapper to get colored backgrounds for code blocks.
 def process_blockquote(value):
     new_inner_content = []
     for item in value:
-        if isinstance(item, dict) and item.get('t') == 'CodeBlock':
-            new_inner_content.extend(process_codeblock(item['c']))
+        if isinstance(item, dict) and item.get("t") == "CodeBlock":
+            new_inner_content.extend(process_codeblock(item["c"]))
         else:
             new_inner_content.append(item)
-            
+
     # Returning this ALWAYS unwraps every BlockQuote in the document
     return new_inner_content
 
