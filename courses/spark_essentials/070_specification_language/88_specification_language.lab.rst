@@ -122,7 +122,7 @@ Using Expression Functions (1/3)
 Using Expression Functions (2/3)
 ----------------------------------
 
-**Keep the declaration of :ada:`Value_Rec_Is_One` **in the spec file, but move the expression function to the body file**
+**Keep the declaration of** :ada:`Value_Rec_Is_One` **in the spec file, but move the expression function to the body file**
 
    + After modification, verify the unit still proves correctly
 
