@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Python filter for generating 'beamer' output from Pandoc
 
@@ -530,7 +529,12 @@ def animate(classes, contents):
     value = []
     value.append(first)
     for c in contents:
-        value.append(c)
+        item = c
+        if c.get('t') == 'CodeBlock' and c.get('c') != None:
+            item = process_codeblock (c.get('c'))
+            value.extend (item)
+        else:
+            value.append(c)
     value.append(last)
 
     return value
