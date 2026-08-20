@@ -316,22 +316,24 @@ def modify_header(value):
 """
 BlockQuote forces bullet lists to appear one bullet at a time.
 Returning 'value' effectively strips BlockQuote from the AST.
-In addition, if a CodeBlock is indented more than the correc
-number of spaces it gets wrapped in a BlockQuote. In that case,
-we want to handle the CodeBlock like other CodeBlocks.
+In addition, if indentation is incorrect, a CodeBlock will
+not be processed correctly.
+We will return a list of the items in a blockquote (because
+we don't actually use blockquotes) and build the
+correct wrapper to get colored backgrounds for code blocks.
 """
 
 
 def process_blockquote(value):
-    global bullet_point_animation
-
-    if len(value) == 1 and value[0]["t"] == "CodeBlock":
-        return process_codeblock(value[0]["c"])
-
-    elif not bullet_point_animation:
-        return value
-    else:
-        return None
+    new_inner_content = []
+    for item in value:
+        if isinstance(item, dict) and item.get('t') == 'CodeBlock':
+            new_inner_content.extend(process_codeblock(item['c']))
+        else:
+            new_inner_content.append(item)
+            
+    # Returning this ALWAYS unwraps every BlockQuote in the document
+    return new_inner_content
 
 
 """
