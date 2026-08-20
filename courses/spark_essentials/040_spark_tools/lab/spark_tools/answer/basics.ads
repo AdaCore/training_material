@@ -13,6 +13,7 @@ is
       At_Index  : out Index;
       Status    : out Boolean) with
      Post => (not Status) or else (The_Array (At_Index) = Val);
-   --  Returns True if A contains value Val, in which case it also returns
-   --  in At_Index the first index with value Val. Returns False otherwise.
+   --  Returns True if The_Array contains value Val, in which case
+   --  it also returns in At_Index the first index with value Val.
+   --  Returns False otherwise.
 end Basics;

@@ -10,6 +10,7 @@ package Basics is
       Val       :     Element;
       At_Index  : out Index)
       return Boolean;
-      --  Returns True if A contains value Val, in which case it also returns
-      --  in At_Index the first index with value Val. Returns False otherwise.
+      --  Returns True if The_Array contains value Val, in which case
+      --  it also returns in At_Index the first index with value Val.
+      --  Returns False otherwise.
 end Basics;
