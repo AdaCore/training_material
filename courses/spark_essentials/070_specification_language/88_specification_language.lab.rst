@@ -48,7 +48,7 @@ Demonstrating Richer Expressions (1/3)
 Demonstrating Richer Expressions (2/3)
 ----------------------------------------
 
-**Use** *delta aggregates* to state the new value of** :ada:`R` **in the postcondition of** :ada:`Bump_Rec`
+**Use** *delta aggregates* **to state the new value of** :ada:`R` **in the postcondition of** :ada:`Bump_Rec`
 
 .. container:: animate 2-
 
@@ -71,7 +71,7 @@ Demonstrating Richer Expressions (2/3)
 Demonstrating Richer Expressions (3/3)
 ----------------------------------------
 
-**Use a *quantified expression* to state that all values in array** :ada:`T` **are preserved after the call to** :ada:`Swap_Table`
+**Use a** *quantified expression* **to state that all values in array** :ada:`T` **are preserved after the call to** :ada:`Swap_Table`
 
    + Except for those at indexes :ada:`I` and :ada:`J`
 
@@ -83,7 +83,7 @@ Demonstrating Richer Expressions (3/3)
 .. container:: animate 3-
 
   .. code:: Ada
-    :font-size: small
+    :font-size: footnotesize
 
       procedure Swap_Table (T : in out Table; I, J : Index)
       with

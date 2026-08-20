@@ -6,10 +6,10 @@ Lab
 SPARK Tutorial
 ----------------
 
-* Open the SPARK Programmer's Guide
+* Open the SPARK User's Guide
 
   - From your SPARK release (under menu :menu:`Help` |rightarrow| :menu:`SPARK`
-    |rightarrow| :menu:`SPARK Programmer's Guide` in :toolname:`GNAT Studio`)
+    |rightarrow| :menu:`SPARK User's Guide` in :toolname:`GNAT Studio`)
 
   - Or online at :url:`https://www.adacore.com/documentation`
 

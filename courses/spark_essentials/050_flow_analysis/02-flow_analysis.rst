@@ -9,7 +9,7 @@ Uncontrolled Data Visibility Problem
 .. image:: subprograms_accessing_global.svg
   :width: 75%
 
-**Effects of changes are** *potentially pervasive* so one must understand everything before changing anything**
+*Effects of changes are* **potentially pervasive** *so one must understand everything before changing anything*
 
 ---------------------------
 Data Dependency Contracts

@@ -19,7 +19,7 @@ Pointer Programs Lab
 
 .. note::
 
-   For Linux programmers, the install location for SPARK varies greatly, so instead there is
+   For Linux users, the install location for SPARK varies greatly, so instead there is
    a shell script :filename:`gpr_project_path.sh` which gives you directions
 
 - From the command-line, run :command:`gnatstudio -P default.gpr`
@@ -81,7 +81,7 @@ Swapping Pointers (2/2)
 .. container:: animate 3-
 
   .. code:: Ada
-    :font-size: small
+    :font-size: footnotesize
 
       procedure Swap (X, Y : not null Int_Acc)
         with Post => X.all = Y.all'Old and then Y.all = X.all'Old;
@@ -95,7 +95,7 @@ Allocation and Deallocation
 
 .. container:: animate 1-
 
-**Run** :menu:`SPARK`** |rightarrow| :menu:`Prove Subprogram` **for** :ada:`Realloc`
+**Run** :menu:`SPARK` |rightarrow| :menu:`Prove Subprogram` **for** :ada:`Realloc`
 
       + Select :menu:`Report checks proved` option to show all proofs
       + Understand the memory leak message and fix it

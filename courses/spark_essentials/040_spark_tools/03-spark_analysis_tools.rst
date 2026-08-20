@@ -106,7 +106,7 @@ Structure of GNATprove
 
 .. container:: speakernote
 
-   Image comes from Appendix of SPARK Programmer's Guide on "SPARK Architecture,
+   Image comes from Appendix of SPARK User's Guide on "SPARK Architecture,
    Quality Assurance and Maturity"
 
 -------------------
@@ -214,7 +214,7 @@ Analysis Summary File "gnatprove.out"
 * Located in :filename:`gnatprove/` under project object dir
 * An overview of results for all checks in project
 * Especially useful when results must be documented
-* Details in SPARK Programmer's Guide
+* Details in SPARK User's Guide
 
 .. code:: output
   :font-size: tiny
