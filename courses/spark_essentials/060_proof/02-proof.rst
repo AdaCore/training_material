@@ -60,6 +60,7 @@ Silver/Gold/Platinum Levels
      end Swap;
 
   .. code:: error
+    :font-size: tiny
 
     basics.ads:3:20: warning: unused initial value of "X"
     basics.ads:5:30: medium: postcondition might fail, cannot prove Y = X'Old
