@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Python filter for generating 'beamer' output from Pandoc
 
