@@ -474,6 +474,38 @@ def is_source_include(classes):
     return ("container" in classes) and ("source_include" in classes)
 
 
+"""
+   The 'contents' part of a filter 'value' AST can be a list of
+   nodes. Each node is a dictionary with a type key ('t') and
+   a content key ('c'). When we want to wrap those contents in 
+   some raw LaTeX constructs, our default behavior would be to
+   just add a node to start the LaTeX wrapper at the front of
+   the list and a node to end the LaTeX wrapper at the end.
+   However, this will "hide" anything inside that list from
+   any of our internal processing. So, we need to check each
+   node if we want to process it, which will return a list of
+   new nodes.
+   This routine will be used by our wrapping functions (like
+   'overlay' or 'animate' to centralize the processing we
+   need done.
+"""
+
+
+def build_wrapped_list(first_node, last_node, original_contents):
+
+    value = []
+    value.append(first_node)
+    for c in original_contents:
+        item = c
+        if c.get("t") == "CodeBlock" and c.get("c") != None:
+            item = process_codeblock(c.get("c"))
+            value.extend(item)
+        else:
+            value.append(c)
+    value.append(last_node)
+    return value
+
+
 ###############
 ## ANIMATION ##
 ###############
@@ -526,18 +558,7 @@ def animate(classes, contents):
     }
     last = {"t": "RawBlock", "c": ["latex", "\\end{visibleenv}"]}
 
-    value = []
-    value.append(first)
-    for c in contents:
-        item = c
-        if c.get("t") == "CodeBlock" and c.get("c") != None:
-            item = process_codeblock(c.get("c"))
-            value.extend(item)
-        else:
-            value.append(c)
-    value.append(last)
-
-    return value
+    return build_wrapped_list(first, last, contents)
 
 
 ##############
@@ -584,18 +605,7 @@ def overlay(classes, contents):
     }
     last = {"t": "RawBlock", "c": ["latex", "\\end{onlyenv}"]}
 
-    value = []
-    value.append(first)
-    for c in contents:
-        item = c
-        if c.get("t") == "CodeBlock" and c.get("c") != None:
-            item = process_codeblock(c.get("c"))
-            value.extend(item)
-        else:
-            value.append(c)
-    value.append(last)
-
-    return value
+    return build_wrapped_list(first, last, contents)
 
 
 ########################
@@ -633,12 +643,7 @@ def latex_environment(classes, contents):
         first = {"t": "RawBlock", "c": ["latex", begin]}
         last = {"t": "RawBlock", "c": ["latex", "\\end{" + environment + "}"]}
 
-        value = []
-        value.append(first)
-        for c in contents:
-            value.append(c)
-        value.append(last)
-        return value
+        return build_wrapped_list(first, last, contents)
 
     else:
         return contents
