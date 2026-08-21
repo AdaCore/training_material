@@ -127,7 +127,7 @@ About Project Files and Makefiles
 * A project file describes a project
 * Command lines using project files fit naturally in the Makefile paradigm
 
-.. code:: console
+.. code:: output
 
    gprbuild -P <project-file> ...
 
@@ -570,7 +570,7 @@ External and Conditional References
 
 * Set via command line switch (for example)
 
-.. code:: console
+.. code:: output
 
    gprbuild -P... -Xname=value  ...
    gprbuild -Pbuild.gpr -Xtarget=test  /common/main.adb

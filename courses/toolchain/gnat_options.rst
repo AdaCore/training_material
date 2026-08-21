@@ -58,7 +58,7 @@ Targets and Runtimes
 ----------------------
 
 * Most tools have a "native" name (gcc, gnat, etc.)
-* The name of the tool for the target is "**target**-**toolname**"
+* The name of the tool for the target is **target**-**toolname**
 
    - powerpc-wrs-vxworksae-gcc
    - arm-elf-eabi-gnat
@@ -141,11 +141,9 @@ Intermediate representation
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-  .. container:: latex_environment small
-
-   * ``-gnatR#`` displays representations of
+    * ``-gnatR#`` displays representations of
 
       .. list-table::
 
@@ -167,13 +165,12 @@ Intermediate representation
 
       * Helps optimizing data structures
 
- .. container:: column
+  .. container:: column
 
-  .. container:: latex_environment small
-
-   * ``-gnatR1``
+    * ``-gnatR1``
 
       .. code:: Ada
+        :font-size: footnotesize
 
          type Rec1 is record
             A : Boolean;
@@ -195,13 +192,12 @@ Intermediate representation (cont)
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-  .. container:: latex_environment small
-
-   * ``-gnatR2``
+    * ``-gnatR2``
 
       .. code:: Ada
+        :font-size: footnotesize
 
          type Rec2 is record
             A : Boolean;
@@ -216,13 +212,12 @@ Intermediate representation (cont)
             B at 4 range  0 .. 31;
          end record;
 
- .. container:: column
+  .. container:: column
 
-  .. container:: latex_environment small
-
-   * ``-gnatR3``
+    * ``-gnatR3``
 
       .. code:: Ada
+        :font-size: footnotesize
 
          type Rec3 is record
             A : Boolean;
