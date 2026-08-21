@@ -82,6 +82,7 @@ Frame Condition - Arrays
 * Use universal quantification to denote components preserved
 
   .. code:: ada
+    :font-size: small
 
      procedure Swap_Table (T : in out Table; I, J : Index)
        with Post =>
@@ -90,7 +91,8 @@ Frame Condition - Arrays
 
 * Or with a delta aggregate
 
-   .. code:: ada
+  .. code:: ada
+    :font-size: small
 
      procedure Swap_Table (T : in out Table; I, J : Index)
        with Post =>

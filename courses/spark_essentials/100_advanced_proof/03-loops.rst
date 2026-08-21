@@ -14,7 +14,7 @@ Unrolling Loops
 
 * Confirming message issued when using switch :command:`--info`
 
-  .. code:: console
+  .. code:: output
 
      info: unrolling loop
 
