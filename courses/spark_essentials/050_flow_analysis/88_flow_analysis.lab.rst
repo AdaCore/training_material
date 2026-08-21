@@ -34,6 +34,7 @@ Aliasing and Initialization - Messages
 .. container:: animate 2-
 
   .. code:: error
+    :font-size: tiny
 
     basics.adb:17:13: medium: formal parameters "X" and "Y" might be aliased
     basics.ads:25:26: medium: "T" might not be initialized in "Init_Table"
@@ -56,6 +57,7 @@ Aliasing and Initialization - Fixes
 .. container:: animate 2-
 
   .. code:: Ada
+    :font-size: scriptsize
 
       if I /= J then
          Swap (T (I), T (J));
@@ -128,6 +130,7 @@ Adding Our Own Global Contracts
 .. container:: animate 3-
 
   .. code:: error
+    :font-size: tiny
 
     high: "The_Rec" must be listed in the Global aspect of "Swap_The_Rec"
     high: "The_Table" must be listed in the Global aspect of "Swap_The_Table"
@@ -164,6 +167,7 @@ Verifying Results
 .. container:: animate 2-
 
   .. code:: error
+    :font-size: tiny
 
     basics.adb:12:14: info: non-aliasing of formal parameters "X" and "Y" proved
     basics.adb:18:16: info: justified that formal parameters "X" and "Y" might be aliased

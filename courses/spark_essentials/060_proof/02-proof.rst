@@ -59,9 +59,11 @@ Silver/Gold/Platinum Levels
         Y := Temp;
      end Swap;
 
-  :command:`basics.ads:3:20: warning: unused initial value of "X"`
+  .. code:: error
+    :font-size: tiny
 
-  :command:`basics.ads:5:30: medium: postcondition might fail, cannot prove Y = X'Old`
+    basics.ads:3:20: warning: unused initial value of "X"
+    basics.ads:5:30: medium: postcondition might fail, cannot prove Y = X'Old
 
 -------------------------------
 Run-Time Errors Are Pervasive
@@ -165,6 +167,7 @@ Categories of Assertions
   - This may require **guarding** the precondition
 
   .. code:: ada
+    :font-size: footnotesize
 
      procedure Update (T : in out Table; X : Index; V : Value)
        with Pre => T (X) /= V; -- Index check might fail
@@ -177,6 +180,7 @@ Categories of Assertions
   - Still better to include info for AoRTE in **caller**
 
   .. code:: ada
+    :font-size: footnotesize
 
      procedure Find (T : Table; X : out Index; V : Value)
        with Post => T (X) = V; -- Not known that X in T'Range
@@ -194,6 +198,7 @@ Levels of Software Assurance
     + Typically a few preconditions only
 
       .. code:: ada
+        :font-size: scriptsize
 
          procedure Update (T : in out Table; X : Index; V : Value)
            with Pre => X in T'Range;
@@ -204,6 +209,7 @@ Levels of Software Assurance
   - Functional contracts added to **express desired properties**
 
   .. code:: ada
+    :font-size: scriptsize
 
          procedure Update (T : in out Table; X : Index; V : Value)
            with Pre  => X in T'Range,
@@ -215,6 +221,7 @@ Levels of Software Assurance
   - But the **full** functional specification is expressed as contracts
 
   .. code:: ada
+    :font-size: scriptsize
 
          procedure Update (T : in out Table; X : Index; V : Value)
            with Pre  => X in T'Range,
@@ -310,6 +317,7 @@ Overflow Checking (1/2)
 * Remember: assertions might fail overflow checks
 
   .. code:: ada
+    :font-size: footnotesize
 
      procedure Saturate_Add (X, Y : Natural; Z : out Natural)
        with Post => Z = Integer'Min (X + Y, Natural'Last);
@@ -317,6 +325,7 @@ Overflow Checking (1/2)
 * Sometimes property can be expressed to avoid overflows
 
   .. code:: ada
+    :font-size: footnotesize
 
      procedure Saturate_Add (X, Y : Natural; Z : out Natural)
        with Post => Z =
@@ -325,6 +334,7 @@ Overflow Checking (1/2)
 * Or a larger integer type can be used for computations
 
   .. code:: ada
+    :font-size: footnotesize
 
      subtype LI is Long_Integer;
 
@@ -342,6 +352,7 @@ Overflow Checking (2/2)
   - Or Ada stdlib: :filename:`Ada.Numerics.Big_Numbers.Big_Integers`
 
   .. code:: Ada
+    :font-size: footnotesize
 
      function Big (Arg : Integer) return Big_Integer is
        (To_Big_Integer (Arg)) with Ghost;
@@ -357,6 +368,7 @@ Overflow Checking (2/2)
   - Only applies to arithmetic operations (not :ada:`Integer'Min`)
 
   .. code:: ada
+    :font-size: footnotesize
 
      procedure Saturate_Add (X, Y : Natural; Z : out Natural)
        with Post => Z =

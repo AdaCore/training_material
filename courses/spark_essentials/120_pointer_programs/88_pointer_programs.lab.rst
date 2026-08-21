@@ -81,6 +81,7 @@ Swapping Pointers (2/2)
 .. container:: animate 3-
 
   .. code:: Ada
+    :font-size: footnotesize
 
       procedure Swap (X, Y : not null Int_Acc)
         with Post => X.all = Y.all'Old and then Y.all = X.all'Old;
