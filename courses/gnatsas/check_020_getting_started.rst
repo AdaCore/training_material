@@ -174,7 +174,7 @@ Specifying Rules File
     * :command:`gnatcheck -rules -from=coding_standard.rules ...`
     * But more commonly defined in project file
 
-.. code:: GPRbuild
+.. code:: ada
 
   project Simple is
      for Source_Dirs use ("./include", "./src");

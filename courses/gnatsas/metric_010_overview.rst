@@ -79,11 +79,10 @@ Invoking From the Command Line
 
 * Command line help (partial output)
 
-  .. container:: latex_environment footnotesize
+  :command:`gnatmetric --help`
 
-    :command:`gnatmetric --help`
-
-    ::
+  .. code:: output
+    :font-size: tiny
 
       usage: gnatmetric [options] {filename}
        options:
@@ -105,7 +104,7 @@ Invoking From the Command Line
 
   .. container:: latex_environment footnotesize
 
-   :command:`gnatmetric -P sdc.gpr -U --lines-all --complexity-all --syntax-all --coupling-all`
+    :command:`gnatmetric -P sdc.gpr -U --lines-all --complexity-all --syntax-all --coupling-all`
 
 -----------------------------
 Useful Command Line Options
@@ -113,39 +112,39 @@ Useful Command Line Options
 
 .. container:: latex_environment scriptsize
 
- .. list-table::
+  .. list-table::
 
-  * - :command:`--help`
+    * - :command:`--help`
 
-    - Display usage and exit
+      - Display usage and exit
 
-  * - :command:`-Pproject`
+    * - :command:`-Pproject`
 
-    - Use project file project. Only one such switch can be used
+      - Use project file project. Only one such switch can be used
 
-  * - :command:`-U main`
+    * - :command:`-U main`
 
-    - Process the closure of units rooted at unit :ada:`main`
+      - Process the closure of units rooted at unit :ada:`main`
 
-  * - :command:`--contract-all`
+    * - :command:`--contract-all`
 
-    - All contract metrics
+      - All contract metrics
 
-  * - :command:`--complexity-all`
+    * - :command:`--complexity-all`
 
-    - All complexity metrics
+      - All complexity metrics
 
-  * - :command:`--lines-all`
+    * - :command:`--lines-all`
 
-    - All line metrics
+      - All line metrics
 
-  * - :command:`--syntax-all`
+    * - :command:`--syntax-all`
 
-    - All syntax element metrics
+      - All syntax element metrics
 
-  * - :command:`--coupling-all`
+    * - :command:`--coupling-all`
 
-    - All coupling metrics
+      - All coupling metrics
 
 ================
 Output Control
@@ -201,7 +200,7 @@ Execution Log
 
 :command:`gnatmetric -P default.gpr -U --lines-all`
 
-::
+.. code:: output
 
   Line metrics summed over 11 units
     all lines            : 141
@@ -219,7 +218,8 @@ Command Results
 
 :command:`gnatmetric -P default.gpr -U --lines-all`
 
-::
+.. code:: output
+  :font-size: footnotesize
 
   Metrics computed for src\line_metrics_example.adb
   containing package body Line_Metrics_Example
@@ -272,7 +272,8 @@ Complete Results
 
 *(partial file)*
 
-::
+.. code:: output
+  :font-size: scriptsize
 
   <file name="C:\temp\gnatmetric\src\line_metrics_example.adb">
      <metric name="all_lines">19</metric>
@@ -445,9 +446,8 @@ Line Metrics Output
 
 :filename:`line_metrics_example.metrix`
 
-.. container:: latex_environment footnotesize
-
-  ::
+.. code:: output
+  :font-size: scriptsize
 
     === Code line metrics ===
       all lines           : 19
@@ -556,6 +556,7 @@ Syntax Element Metrics Code Example
 -------------------------------------
 
 .. code:: Ada
+  :font-size: footnotesize
    :number-lines: 1
 
   package body Syntax_Metrics_Example is
@@ -592,51 +593,50 @@ Syntax Element Metrics Output
 
 :filename:`syntax_metrics_example.metrix`
 
-.. container:: latex_environment footnotesize
+.. code:: output
+  :font-size: scriptsize
 
-  ::
+  Syntax_Metrics_Example (package body - library item at lines  1: 25)
 
-    Syntax_Metrics_Example (package body - library item at lines  1: 25)
+  === Element metrics ===
+     all subprogram bodies    : 1
+     all statements           : 3
+     all declarations         : 9
+     logical SLOC             : 12
+     maximal unit nesting     : 1
+     maximal construct nesting: 2
 
-    === Element metrics ===
-       all subprogram bodies    : 1
-       all statements           : 3
-       all declarations         : 9
-       logical SLOC             : 12
-       maximal unit nesting     : 1
-       maximal construct nesting: 2
+     "&" (expression function at lines  3: 6)
 
-       "&" (expression function at lines  3: 6)
+     === Element metrics ===
+        all statements           : 0
+        all declarations         : 2
+        logical SLOC             : 2
+        maximal construct nesting: 1
+        all parameters           : 2
+        IN parameters            : 2
+        OUT parameters           : 0
+        IN OUT parameters        : 0
 
-       === Element metrics ===
-          all statements           : 0
-          all declarations         : 2
-          logical SLOC             : 2
-          maximal construct nesting: 1
-          all parameters           : 2
-          IN parameters            : 2
-          OUT parameters           : 0
-          IN OUT parameters        : 0
+     To_String (expression function at lines  8: 11)
 
-       To_String (expression function at lines  8: 11)
+     === Element metrics ===
+        all statements           : 0
+        all declarations         : 2
+        logical SLOC             : 2
+        maximal construct nesting: 1
+        all parameters           : 1
+        IN parameters            : 1
+        OUT parameters           : 0
+        IN OUT parameters        : 0
 
-       === Element metrics ===
-          all statements           : 0
-          all declarations         : 2
-          logical SLOC             : 2
-          maximal construct nesting: 1
-          all parameters           : 1
-          IN parameters            : 1
-          OUT parameters           : 0
-          IN OUT parameters        : 0
+     From_String (function body at lines  13: 23)
 
-       From_String (function body at lines  13: 23)
-
-       === Element metrics ===
-          all statements           : 3
-          all declarations         : 4
-          logical SLOC             : 7
-          maximal construct nesting: 1
+     === Element metrics ===
+        all statements           : 3
+        all declarations         : 4
+        logical SLOC             : 7
+        maximal construct nesting: 1
 
 ------------------------------
 Complexity Metrics Explained
@@ -783,38 +783,37 @@ Complexity Metrics Output
 
 :filename:`complexity_metrics_example.metrix`
 
-.. container:: latex_environment footnotesize
+.. code:: output
+  :font-size: scriptsize
 
-  ::
+  Complexity_Metrics_Example (package body - library item at lines  1: 19)
 
-    Complexity_Metrics_Example (package body - library item at lines  1: 19)
+     Example (procedure body at lines  3: 17)
 
-       Example (procedure body at lines  3: 17)
+     === Complexity metrics ===
+        statement complexity     : 3
+        expression complexity    : 0
+        cyclomatic complexity    : 3
+        essential complexity     : 1
+        maximum loop nesting     : 1
+        extra exit points        : 0
 
-       === Complexity metrics ===
-          statement complexity     : 3
-          expression complexity    : 0
-          cyclomatic complexity    : 3
-          essential complexity     : 1
-          maximum loop nesting     : 1
-          extra exit points        : 0
+        Set (procedure body at lines  6: 10)
 
-          Set (procedure body at lines  6: 10)
+        === Complexity metrics ===
+           statement complexity     : 1
+           expression complexity    : 0
+           cyclomatic complexity    : 1
+           essential complexity     : 1
+           maximum loop nesting     : 0
+           extra exit points        : 0
 
-          === Complexity metrics ===
-             statement complexity     : 1
-             expression complexity    : 0
-             cyclomatic complexity    : 1
-             essential complexity     : 1
-             maximum loop nesting     : 0
-             extra exit points        : 0
-
-    === Average complexity metrics ===
-          statement_complexity     :  2.00
-          expression_complexity    :  0.00
-          cyclomatic_complexity    :  2.00
-          essential_complexity     :  1.00
-          max_loop_nesting         :  1.00
+  === Average complexity metrics ===
+        statement_complexity     :  2.00
+        expression_complexity    :  0.00
+        cyclomatic_complexity    :  2.00
+        essential_complexity     :  1.00
+        max_loop_nesting         :  1.00
 
 ----------------------------
 Coupling Metrics Explained
@@ -908,31 +907,32 @@ Coupling Metrics Output
 
 .. container:: latex_environment footnotesize
 
-  ::
+.. code:: output
+  :font-size: scriptsize
 
-    Coupling metrics:
-    =================
-       Unit Coupling_Metrics_Dependency (coupling_metrics_dependency.ads)
-          tagged fan-out coupling   : 0
-          hierarchy fan-out coupling: 0
-          tagged fan-in coupling    : 0
-          hierarchy fan-in coupling : 0
-          control fan-out coupling  : 0
-          control fan-in coupling   : 2
-          unit fan-out coupling     : 0
-          unit fan-in coupling      : 2
+  Coupling metrics:
+  =================
+     Unit Coupling_Metrics_Dependency (coupling_metrics_dependency.ads)
+        tagged fan-out coupling   : 0
+        hierarchy fan-out coupling: 0
+        tagged fan-in coupling    : 0
+        hierarchy fan-in coupling : 0
+        control fan-out coupling  : 0
+        control fan-in coupling   : 2
+        unit fan-out coupling     : 0
+        unit fan-in coupling      : 2
 
-       Unit Coupling_Metrics_Example (coupling_metrics_example.ads)
-          control fan-out coupling  : 1
-          control fan-in coupling   : 1
-          unit fan-out coupling     : 1
-          unit fan-in coupling      : 1
+     Unit Coupling_Metrics_Example (coupling_metrics_example.ads)
+        control fan-out coupling  : 1
+        control fan-in coupling   : 1
+        unit fan-out coupling     : 1
+        unit fan-in coupling      : 1
 
-       Unit Main (main.adb)
-          control fan-out coupling  : 2
-          control fan-in coupling   : 0
-          unit fan-out coupling     : 2
-          unit fan-in coupling      : 0
+     Unit Main (main.adb)
+        control fan-out coupling  : 2
+        control fan-in coupling   : 0
+        unit fan-out coupling     : 2
+        unit fan-in coupling      : 0
 
 =====
 Lab

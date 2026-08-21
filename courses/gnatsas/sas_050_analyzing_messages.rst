@@ -118,6 +118,7 @@ Manual Review
   * Reviewer updates *<insert review>* text
 
     .. code:: Ada
+      :font-size: tiny
 
       pragma Annotate
         (CodePeer, False_Positive, "array index check", "<insert review>");

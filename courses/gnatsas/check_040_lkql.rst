@@ -84,7 +84,7 @@ LKQL Features (General Purpose Subset)
 
   * All functions are first class citizens
 
-    .. code:: graphql
+    .. code:: output
 
        fun add(x, y) = x * y
        fun sub(x, y) = x - y
@@ -97,14 +97,15 @@ LKQL Features (General Purpose Subset)
 
 * LKQL supports list comprehensions with the same syntax as Python
 
-  .. code:: graphql
+  .. code:: output
+    :font-size: footnotesize
 
      val odds = [num for num in [1, 2, 3, 4, 5] if is_odd(num)]
      val ids = [node for node in nodes if node is Identifier]
 
 * You can use LKQL block expressions to declare local values and add some sequentiality
 
-  .. code:: graphql
+  .. code:: output
 
      val complex = {
         val part = 40;
@@ -121,7 +122,8 @@ LKQL Features (Query Subset)
 
   * LKQL also provides selector operations (e.g. **any children**)
 
-  .. code:: graphql
+  .. code:: output
+    :font-size: footnotesize
 
      val ids = from nodes select Identifier
      val if_id_child = select IfStmt(any children is Identifier)
@@ -130,7 +132,7 @@ LKQL Features (Query Subset)
 
   * This will yield every child but will not recurse for the **if statement** children:
 
-    .. code:: graphql
+    .. code:: output
 
        selector children_until_if
        | IfStmt  => this
@@ -177,10 +179,9 @@ Testing LKQL with Its REPL
 
 * Then you can run any LKQL expression or declaration and immediately see the result
 
-  .. container:: latex_environment scriptsize
-
-    ::
-
+  .. code:: output
+    :font-size: tiny
+    
       > select AdaNode  # Get the list of all Ada nodes in your project
       [...]
       > val ids = select Identifiers  # Assign "ids" value
@@ -212,11 +213,10 @@ Mapping Python API to LKQL API
 
   * So we can do
 
-    .. container:: latex_environment small
+    .. code:: output
+      :font-size: scriptsize
 
-      .. code:: graphql
-
-          val expr_types = [node.p_expression_type() for node in select Expr]
+      val expr_types = [node.p_expression_type() for node in select Expr]
 
 -------------------------------
 Integrating LKQL in GNATcheck
@@ -273,9 +273,10 @@ Example of Boolean Rules
 
     .. container:: latex_environment tiny
 
-      * Flag every :ada:`goto` and :ada:`if` statemnt
+      * Flag every :ada:`goto` and :ada:`if` statement
 
-        .. code:: graphql
+    .. code:: output
+      :font-size: tiny
 
            @check
            fun goto_and_if(node) =
@@ -284,30 +285,34 @@ Example of Boolean Rules
               | IfStmt   => true
               | *        => false
 
+    .. container:: latex_environment tiny
+
       * Flag every :lkql:`Identifier` called :ada:`dummy` (case-insensitive)
 
-        .. code:: graphql
+    .. code:: output
+      :font-size: tiny
 
            @check
            fun dummy_id(node) =
               node is id@Identifier
               when id.p_name_is("dummy")
 
+    .. container:: latex_environment tiny
+
       * Flags every *Binary Operator* with any child a *Numeric Literal*
 
-        .. code:: graphql
+    .. code:: output
+      :font-size: tiny
 
            @check
            fun op_with_num(node) =
-              node is BinOp(any children
-                            is NumLiteral)
+              node is BinOp(any children is NumLiteral)
 
   .. container:: column
 
-    .. container:: latex_environment tiny
-
-      .. code:: Ada
-          :number-lines: 1
+    .. code:: Ada
+      :font-size: tiny
+      :number-lines: 1
 
           procedure Test is
              My_Int : Integer := 10 * 5;
@@ -321,9 +326,12 @@ Example of Boolean Rules
              <<label>>
           end Test;
 
+    .. container:: latex_environment tiny
+
       Running :toolname:`GNATcheck` with these rules on this Ada source will produce:
 
-          ::
+    .. code:: output
+      :font-size: tiny
 
              test.adb:02:24: op_with_num
              test.adb:03:04: dummy_id
@@ -355,7 +363,7 @@ Example of Unit Rules
 
 *Flag every* :ada:`goto` *statement and give target label line in associated message*
 
-   .. code:: graphql
+.. code:: output
 
       @unit_check
       fun goto_line(unit) = [
@@ -382,7 +390,7 @@ Example of Unit Rules
 
 *Running* :toolname:`GNATcheck` *with this rule will produce:*
 
-  ::
+.. code:: output
 
     test.adb:04:04: go to line 5 [goto_line]
     test.adb:07:04: go to line 3 [goto_line]
@@ -425,7 +433,7 @@ You configure an LKQL rule behavior with annotation arguments
 
 *Example of an LKQL rule with rule arguments*
 
-        .. code:: graphql
+.. code:: output
 
            @check(
               message: "There is a body node",
@@ -452,7 +460,7 @@ Rule Function Parameters
 
    * Flag all *Identifier* nodes with too many characters according to given threshold
 
-   .. code:: graphql
+   .. code:: output
 
       @check
       fun too_long_id(node, threshold=15) =
@@ -475,7 +483,7 @@ Configuring a GNATcheck Run with LKQL
 
 * Example LKQL configuration file
 
-  .. code:: graphql
+  .. code:: output
 
      val rules = @{
         identifier_suffixes: [

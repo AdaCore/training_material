@@ -168,6 +168,7 @@ Understanding a Check Message
 .. container:: latex_environment small
 
   .. code:: Ada
+    :font-size: scriptsize
      :number-lines: 17
 
      Read_A_Valid_Token : declare
@@ -221,6 +222,7 @@ Determining Cause of Message
      ---------------
 
   .. code:: Ada
+    :font-size: scriptsize
 
      --
      --  Subprogram: input.next_word
@@ -292,6 +294,7 @@ Potential Logic Errors
     ``stack.adb:41:4: medium warning: suspicious precondition (Inspector): precondition for Last does not have a contiguous range of values``
 
   .. code:: Ada
+    :font-size: footnotesize
     :number-lines: 1
 
     --  Subprogram: stack.push
@@ -321,6 +324,7 @@ Determining Cause of Message
   * What happens in the code when Last is 199, 200, or 201?
 
 .. code:: Ada
+  :font-size: scriptsize
   :number-lines: 41
 
    procedure Push (V : Value) is
