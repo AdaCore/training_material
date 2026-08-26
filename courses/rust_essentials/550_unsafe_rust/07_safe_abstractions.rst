@@ -1,12 +1,12 @@
-==================
+===================
 Safe Abstractions
-==================
+===================
 
 ---------------------------------
 Encapsulating Unsafe Operations
 ---------------------------------
 
-Unsafe Rust relies on **encapsulation**
+**Unsafe Rust relies on encapsulation**
 
 * Keep unsafe operations small and easy to audit
 * Enforce checks and invariants at the boundary
@@ -23,7 +23,7 @@ The standard library applies this pattern throughout :rust:`Vec<T>`,
 Why "split_at_mut" Needs Unsafe Rust
 --------------------------------------
 
-:rust:`split_at_mut` creates two disjoint mutable slices from one slice
+:rust:`split_at_mut` **creates two disjoint mutable slices from one slice**
 
 * Caller supplies the split index
 * Bounds check guarantees :rust:`mid <= len`
