@@ -2,11 +2,11 @@
 Mutable Statics
 =================
 
----------------------------------
+-------------------------------
 Immutable and Mutable Statics
----------------------------------
+-------------------------------
 
-Static variables store data for the lifetime of the program
+**Static variables store data for the lifetime of the program**
 
 * Reading an immutable static is safe
 * :rust:`static mut` permits mutation through a global name
@@ -22,9 +22,9 @@ Static variables store data for the lifetime of the program
 
   Global mutable state weakens local reasoning; prefer ownership or a small access-control abstraction.
 
------------------------------
+----------------------------
 Accessing a Mutable Static
------------------------------
+----------------------------
 
 .. code:: rust
 

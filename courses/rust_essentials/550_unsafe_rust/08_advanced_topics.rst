@@ -1,12 +1,12 @@
-=========================
+======================
 What We Didn't Cover
-=========================
+======================
 
---------------------------------------
+---------------------------------------
 Advanced Tools and Low-Level Features
---------------------------------------
+---------------------------------------
 
-Topics for deeper study include
+**Topics for deeper study include**
 
 * **Miri**
 
@@ -23,11 +23,11 @@ Topics for deeper study include
   * Uninitialized memory with :rust:`MaybeUninit<T>`
   * Layout guarantees such as :rust:`#[repr(C)]` and :rust:`#[repr(packed)]`
 
--------------------------------
+-----------------------------
 Concurrency and Unsafe Rust
--------------------------------
+-----------------------------
 
-This module does not cover concurrency or thread-safety proofs
+**This module does not cover concurrency or thread-safety proofs**
 
 * Data races and cross-thread aliasing
 * The unsafe auto traits :rust:`Send` and :rust:`Sync`
@@ -39,9 +39,9 @@ This module does not cover concurrency or thread-safety proofs
 
   Incorrect concurrency invariants can make otherwise Safe Rust unsound.
 
-------------------------------------------
+--------------------------------------
 Manual Memory and Pointer Operations
-------------------------------------------
+--------------------------------------
 
 * **Custom Allocators**
 
