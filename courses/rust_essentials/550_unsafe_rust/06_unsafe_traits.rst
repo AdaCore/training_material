@@ -2,12 +2,11 @@
 Unsafe Traits
 ===============
 
---------------------------
+------------------------
 When a Trait Is Unsafe
---------------------------
+------------------------
 
-Declare a trait unsafe when Safe Rust may rely on invariants that the compiler
-cannot verify
+**Declare a trait unsafe when Safe Rust may rely on invariants that the compiler cannot verify**
 
 * Declared with :rust:`unsafe trait`
 * Defines a safety contract for every implementation
@@ -30,7 +29,7 @@ cannot verify
 Implementing an Unsafe Trait
 ------------------------------
 
-Implementing an unsafe trait requires an explicit promise
+**Implementing an unsafe trait requires an explicit promise**
 
 * Use :rust:`unsafe impl`
 * Verify every required invariant
