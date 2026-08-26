@@ -28,22 +28,24 @@ Accessing a Mutable Static
 
 .. code:: rust
 
-  static mut COUNTER: u32 = 0;
+  static mut RAPTORS_LOOSE: u32 = 0;
 
   /// # Safety
-  ///
-  /// Access to `COUNTER` must not overlap or be reentrant
-  unsafe fn add_to_count(inc: u32) {
-      // SAFETY: Required by this function's contract
-      unsafe { COUNTER += inc; }
+  /// Access to `RAPTORS_LOOSE` must be exclusive
+  unsafe fn release_raptor() {
+    // SAFETY: Required by this function's contract
+    unsafe {
+      RAPTORS_LOOSE += 1;
+    }
   }
 
   fn main() {
-      // SAFETY: Access is exclusive and non-reentrant
-      unsafe {
-          add_to_count(3);
-          println!("COUNTER: {}", COUNTER);
-      }
+    // SAFETY: Single-threaded exclusive access
+    unsafe {
+        release_raptor();
+        let raptors = RAPTORS_LOOSE;
+        println!("Raptors loose: {}", raptors);
+    }
   }
 
 .. note::
