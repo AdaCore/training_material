@@ -40,7 +40,7 @@ Creating Raw Pointers
 
 .. warning::
 
-  Safe pointer creation does not make the pointer safe to dereference.
+  Safe pointer creation does not make the pointer safe to dereference
 
 ----------------------------
 Dereferencing Raw Pointers
@@ -54,7 +54,7 @@ Dereferencing Raw Pointers
     let face_hugger = &raw mut ellen_ripley;
 
     // SAFETY: 'face_hugger' points to live, aligned,
-    // initialized memory with exclusive access.
+    // initialized memory with exclusive access
     unsafe {
         *face_hugger = 426;
         println!("Ellen Ripley status: {}", *face_hugger);
@@ -62,7 +62,7 @@ Dereferencing Raw Pointers
 
 .. note::
 
-  The safety comment explains why the dereference is valid.
+  The safety comment explains why the dereference is valid
 
 ---------------------------------
 Aliasing and Safety Obligations
@@ -76,8 +76,8 @@ Aliasing and Safety Obligations
   let mario = &raw mut coins;
   let luigi = mario; // Both point to 'coins'
 
-  // SAFETY: 'coins' is live, aligned, and initialized.
-  // Writes are sequential, with no reference access.
+  // SAFETY: 'coins' is live, aligned, and initialized
+  // Writes are sequential, with no reference access
   unsafe {
       *mario = 64;
       *luigi = 120;
@@ -89,4 +89,4 @@ Aliasing and Safety Obligations
 
 .. warning::
 
-  Rust permits these pointer operations, but their safety must be justified.
+  Rust permits these pointer operations, but their safety must be justified

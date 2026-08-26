@@ -42,7 +42,7 @@ Five Superpowers
 
 .. note::
 
-  These operations require safety guarantees that Rust cannot verify.
+  These operations require safety guarantees that Rust cannot verify
 
 ---------------------------
 What "unsafe" Does Not Do
@@ -60,7 +60,7 @@ What "unsafe" Does Not Do
 
 .. note::
 
-  Unsafe Rust remains subject to normal language checks outside these five operations.
+  Unsafe Rust remains subject to normal language checks outside these five operations
 
 --------------------
 The "unsafe" Block
@@ -75,7 +75,7 @@ The "unsafe" Block
       let flux_capacitor = &target_year as *const i32;
 
       // SAFETY: 'flux_capacitor' points to the live,
-      // aligned local 'target_year'.
+      // aligned local 'target_year'
       unsafe {
           println!("Target year is: {}", *flux_capacitor);
       }
@@ -83,4 +83,4 @@ The "unsafe" Block
 
 .. note::
 
-  Raw-pointer creation is safe, but dereferencing requires an unsafe block.
+  Raw-pointer creation is safe, but dereferencing requires an unsafe block
