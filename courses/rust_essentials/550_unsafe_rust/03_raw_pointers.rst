@@ -6,7 +6,7 @@ Raw Pointers
 Raw Pointer Types
 -------------------
 
-Raw pointers provide low-level access without reference guarantees
+**Raw pointers provide low-level access without reference guarantees**
 
 * :rust:`*const T` - raw pointer used to read a :rust:`T`
 * :rust:`*mut T` - raw pointer that may write a :rust:`T`
@@ -24,7 +24,7 @@ Raw pointers provide low-level access without reference guarantees
 Creating Raw Pointers
 -----------------------
 
-Creating a raw pointer is safe and needs no unsafe block
+**Creating a raw pointer is safe and needs no unsafe block**
 
 .. code:: rust
 
@@ -46,7 +46,7 @@ Creating a raw pointer is safe and needs no unsafe block
 Dereferencing Raw Pointers
 ----------------------------
 
-Dereferencing a raw pointer requires an unsafe block
+**Dereferencing a raw pointer requires an unsafe block**
 
 .. code:: rust
 
@@ -64,11 +64,11 @@ Dereferencing a raw pointer requires an unsafe block
 
   The safety comment explains why the dereference is valid.
 
--------------------------------
+---------------------------------
 Aliasing and Safety Obligations
--------------------------------
+---------------------------------
 
-Raw pointers may alias the same memory without a compilation error
+**Raw pointers may alias the same memory without a compilation error**
 
 .. code:: rust
 

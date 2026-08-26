@@ -6,7 +6,7 @@ Unsafe Functions
 Declaring and Calling
 -----------------------
 
-Use an unsafe function when callers must uphold unchecked preconditions
+**Use an unsafe function when callers must uphold unchecked preconditions**
 
 * Declared with :rust:`unsafe fn`
 * Caller must satisfy the documented safety contract
@@ -30,11 +30,11 @@ Use an unsafe function when callers must uphold unchecked preconditions
       }
   }
 
------------------
+------------------
 Safety Contracts
------------------
+------------------
 
-An unsafe function transfers a proof obligation to its caller
+**An unsafe function transfers a proof obligation to its caller**
 
 * :rust:`# Safety` documents the required invariants
 * Each call site should explain why they hold
@@ -50,7 +50,7 @@ An unsafe function transfers a proof obligation to its caller
 Foreign Function Interface (FFI)
 ----------------------------------
 
-FFI calls code written in another language, commonly C
+**FFI calls code written in another language, commonly C**
 
 * Rust cannot verify the external implementation
 * Rust 2024 requires :rust:`unsafe extern` blocks
