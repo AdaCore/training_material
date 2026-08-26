@@ -2,22 +2,24 @@
 Summary
 =========
 
+--------------------------
+Recap: Five Superpowers
+--------------------------
+
+- Dereference raw pointers
+- Call unsafe functions or methods
+- Access or modify mutable statics
+- Implement unsafe traits
+- Access union fields
+
 -----------------
 What We Covered
 -----------------
 
-* **Safe / Unsafe Split**
+* **Safe vs. Unsafe Split**
 
-  - Unsafe Rust adds five explicit operations
+  - Unsafe Rust introduces explicit safety obligations
   - Unchecked safety requirements must be upheld
-
-* **Five Superpowers**
-
-  - Dereference raw pointers
-  - Call unsafe functions or methods
-  - Access or modify mutable statics
-  - Implement unsafe traits
-  - Access union fields
 
 * **Raw Pointers**
 
