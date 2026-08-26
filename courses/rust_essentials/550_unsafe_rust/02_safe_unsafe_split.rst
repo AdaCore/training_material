@@ -6,7 +6,7 @@ Safe vs. Unsafe Split
 Safe Rust and Unsafe Rust
 ---------------------------
 
-Rust has a safe subset and an unsafe subset
+**Rust has a safe subset and an unsafe subset**
 
 .. list-table::
   :header-rows: 1
@@ -32,7 +32,7 @@ Rust has a safe subset and an unsafe subset
 Five Superpowers
 ------------------
 
-The :rust:`unsafe` keyword permits five additional operations
+**The** :rust:`unsafe` **keyword permits five additional operations**
 
 #. Dereference a raw pointer
 #. Call an unsafe function or method
@@ -66,7 +66,7 @@ What "unsafe" Does Not Do
 The "unsafe" Block
 --------------------
 
-Place unsafe operations inside an unsafe block
+**Place unsafe operations inside an unsafe block**
 
 .. code:: rust
 
