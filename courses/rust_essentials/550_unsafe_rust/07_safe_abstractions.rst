@@ -56,7 +56,7 @@ A Safe "split_at_mut" Wrapper
       let ptr = values.as_mut_ptr();
       assert!(mid <= len);
 
-      // SAFETY: Both ranges are in-bounds and disjoint.
+      // SAFETY: Both ranges are in-bounds and disjoint
       unsafe {
           (
               slice::from_raw_parts_mut(ptr, mid),
@@ -67,4 +67,4 @@ A Safe "split_at_mut" Wrapper
 
 .. note::
 
-  The wrapper is safe because it returns two in-bounds, disjoint slices.
+  The wrapper is safe because it returns two in-bounds, disjoint slices

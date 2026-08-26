@@ -66,7 +66,7 @@ Foreign Function Interface (FFI)
 
   fn main() {
       // SAFETY: The declaration matches C `abs`;
-      // '-3' is a valid 'c_int' input.
+      // '-3' is a valid 'c_int' input
       unsafe {
           println!("abs(-3): {}", abs(-3));
       }

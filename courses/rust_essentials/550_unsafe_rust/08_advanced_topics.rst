@@ -37,7 +37,7 @@ Concurrency and Unsafe Rust
 
 .. warning::
 
-  Incorrect concurrency invariants can make otherwise Safe Rust unsound.
+  Incorrect concurrency invariants can make otherwise Safe Rust unsound
 
 --------------------------------------
 Manual Memory and Pointer Operations
@@ -57,4 +57,4 @@ Manual Memory and Pointer Operations
 
 .. warning::
 
-  Unsafe code requires precise knowledge of memory layout, optimization, and the target architecture.
+  Unsafe code requires precise knowledge of memory layout, optimization, and the target architecture
