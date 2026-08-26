@@ -20,7 +20,7 @@ Immutable and Mutable Statics
 
 .. warning::
 
-  Global mutable state weakens local reasoning; prefer ownership or a small access-control abstraction.
+  Global mutable state weakens local reasoning; prefer ownership or a small access-control abstraction
 
 ----------------------------
 Accessing a Mutable Static
@@ -32,14 +32,14 @@ Accessing a Mutable Static
 
   /// # Safety
   ///
-  /// Access to `COUNTER` must not overlap or be reentrant.
+  /// Access to `COUNTER` must not overlap or be reentrant
   unsafe fn add_to_count(inc: u32) {
-      // SAFETY: Required by this function's contract.
+      // SAFETY: Required by this function's contract
       unsafe { COUNTER += inc; }
   }
 
   fn main() {
-      // SAFETY: Access is exclusive and non-reentrant.
+      // SAFETY: Access is exclusive and non-reentrant
       unsafe {
           add_to_count(3);
           println!("COUNTER: {}", COUNTER);
@@ -48,4 +48,4 @@ Accessing a Mutable Static
 
 .. note::
 
-  Rust 2024 rejects mutable-static references by default.
+  Rust 2024 rejects mutable-static references by default
