@@ -6,7 +6,7 @@ Unsafe Traits
 When a Trait Is Unsafe
 ------------------------
 
-**Declare a trait unsafe when Safe Rust may rely on invariants that the compiler cannot verify**
+**Unsafe traits define invariants that the compiler cannot verify**
 
 * Declared with :rust:`unsafe trait`
 * Defines a safety contract for every implementation
