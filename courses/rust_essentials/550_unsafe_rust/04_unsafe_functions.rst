@@ -16,7 +16,7 @@ Declaring and Calling
 
   /// # Safety
   ///
-  /// Callers must satisfy the documented requirements.
+  /// Callers must satisfy the documented requirements
   unsafe fn dangerous() {
       // Implementation goes here
   }
@@ -24,7 +24,7 @@ Declaring and Calling
   fn main() {
       // dangerous(); // Error: requires an unsafe block
 
-      // SAFETY: All documented requirements hold.
+      // SAFETY: All documented requirements hold
       unsafe {
           dangerous();
       }
@@ -44,7 +44,7 @@ Safety Contracts
 
 .. note::
 
-  :rust:`unsafe fn` defines a boundary contract; :rust:`unsafe { ... }` marks the operations that rely on it.
+  :rust:`unsafe fn` defines a boundary contract; :rust:`unsafe { ... }` marks the operations that rely on it
 
 ----------------------------------
 Foreign Function Interface (FFI)
@@ -65,9 +65,15 @@ Foreign Function Interface (FFI)
   }
 
   fn main() {
-      // SAFETY: The declaration matches C `abs`;
-      // '-3' is a valid 'c_int' input
-      unsafe {
-          println!("abs(-3): {}", abs(-3));
-      }
+      let meaning_of_life: c_int = -42;
+
+      // SAFETY: The declaration matches C 'abs',
+      // and 'abs(-42)' is representable as 'c_int'
+      let answer = unsafe { abs(meaning_of_life) };
+
+      println!("The answer is: {answer}");
   }
+
+.. code:: output
+
+  The answer is: 42
