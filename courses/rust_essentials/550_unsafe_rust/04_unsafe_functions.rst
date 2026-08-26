@@ -6,7 +6,7 @@ Unsafe Functions
 Declaring and Calling
 -----------------------
 
-**Use an unsafe function when callers must uphold unchecked preconditions**
+**Use an unsafe function when safety depends on caller guarantees**
 
 * Declared with :rust:`unsafe fn`
 * Caller must satisfy the documented safety contract

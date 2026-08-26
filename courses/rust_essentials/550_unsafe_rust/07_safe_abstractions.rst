@@ -15,9 +15,7 @@ Encapsulating Unsafe Operations
   * Callers need no unsafe block
 
 * Otherwise, expose an unsafe API and document its :rust:`# Safety` contract
-
-The standard library applies this pattern throughout :rust:`Vec<T>`,
-:rust:`String`, and many other types.
+* Examples: :rust:`Vec<T>`, :rust:`String`, and many others
 
 --------------------------------------
 Why "split_at_mut" Needs Unsafe Rust
@@ -28,7 +26,7 @@ Why "split_at_mut" Needs Unsafe Rust
 * Caller supplies the split index
 * Bounds check guarantees :rust:`mid <= len`
 * Returned ranges do not overlap
-* Raw pointers express a split indexing cannot prove
+* Raw pointers express a split the borrow checker cannot prove
 
 .. code:: rust
 
