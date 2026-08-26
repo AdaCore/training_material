@@ -26,13 +26,13 @@ Safe Rust and Unsafe Rust
 
   * - **Capabilities**
     - Standard operations
-    - Five extra operations
+    - Five core unsafe operations
 
 ------------------
 Five Superpowers
 ------------------
 
-**The** :rust:`unsafe` **keyword permits five additional operations**
+**Unsafe Rust has five core "superpowers"**
 
 #. Dereference a raw pointer
 #. Call an unsafe function or method
@@ -60,7 +60,7 @@ What "unsafe" Does Not Do
 
 .. note::
 
-  Unsafe Rust remains subject to normal language checks outside these five operations
+  Unsafe Rust remains subject to normal language checks
 
 --------------------
 The "unsafe" Block
