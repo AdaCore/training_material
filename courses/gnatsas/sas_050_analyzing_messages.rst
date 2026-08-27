@@ -175,10 +175,10 @@ Custom Review Statuses
 
   .. container:: column
 
-Resulting in an updated **Manual review** dialog
+    Resulting in an updated **Manual review** dialog
 
-  .. image:: gnatsas/sas_manual_review_custom.png
-    :width: 20%
+    .. image:: gnatsas/sas_manual_review_custom.png
+      :width: 50%
 
 ==================
 Code Annotations
