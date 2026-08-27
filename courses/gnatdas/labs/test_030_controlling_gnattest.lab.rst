@@ -33,25 +33,29 @@ Build Harness for One Unit
 
 .. container:: animate 3-
 
-   ::
+  ::
 
      cd obj/my_test
      gprbuild -P test_driver
      test_runner
-     ...
-     7 tests run: 0 passed; 7 failed; 0 crashed.
 
-   * Now run the tests with *not implemented* tests indicating *passed*
+  .. code:: output
+
+    7 tests run: 0 passed; 7 failed; 0 crashed.
+
+  * Now run the tests with *not implemented* tests indicating *passed*
 
 .. container:: animate 4-
 
-   ::
+  ::
 
      cd obj/my_test
      gprbuild -P test_driver
      test_runner --skeleton-default=pass
-     ...
-     7 tests run: 7 passed; 0 failed; 0 crashed.
+
+  .. code:: output
+
+    7 tests run: 7 passed; 0 failed; 0 crashed.
 
 --------------
 Create Tests
@@ -108,29 +112,35 @@ Ensure Every Test Starts the Same
 
 .. container:: animate 2-
 
-   * Answer
+  * Answer
 
-      ::
+    ::
 
         cd obj/my_test
         gprbuild -P test_driver
         test_runner
         ...
-        7 tests run: 2 passed; 5 failed; 0 crashed.
 
-   * Rerun the tests but do not display the passed tests
+  .. code:: output
+
+    7 tests run: 2 passed; 5 failed; 0 crashed.
+
+  * Rerun the tests but do not display the passed tests
 
 .. container:: animate 3-
 
-   * Answer
+  * Answer
 
-      ::
+    ::
 
         test_runner --passed-tests=hide
         ...
-        7 tests run: 2 passed; 5 failed; 0 crashed.
 
-      *Status is the same, we just do not see individual passed tests*
+  .. code:: output
+
+    7 tests run: 2 passed; 5 failed; 0 crashed.
+
+  *Status is the same, we just do not see individual passed tests*
 
 -------------------
 Add "Global" Code

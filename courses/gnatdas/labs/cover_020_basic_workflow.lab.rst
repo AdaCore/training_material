@@ -185,12 +185,13 @@ Possible Solution
 
 .. container:: animate 2-
 
-   * Whenever you update your source code, you need to re-instrument your project
-   * If you modify your source code, previous :filename:`srctrace` files will be out-of-date, generating a message like:
+  * Whenever you update your source code, you need to re-instrument your project
+  * If you modify your source code, previous :filename:`srctrace` files will be out-of-date, generating a message like:
 
-      ::
+  .. code:: error
+    :font-size: tiny
 
-         warning: traces for body of test_driver (from test_driver.exe-65ba6772-4f18-65baa1dd.srctrace)
-             are inconsistent with the corresponding Source Instrumentation Data
+    warning: traces for body of test_driver (from test_driver.exe-65ba6772-4f18-65baa1dd.srctrace)
+      are inconsistent with the corresponding Source Instrumentation Data
 
       
