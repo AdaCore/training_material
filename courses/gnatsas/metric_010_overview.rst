@@ -557,7 +557,7 @@ Syntax Element Metrics Code Example
 
 .. code:: Ada
   :font-size: footnotesize
-   :number-lines: 1
+  :number-lines: 1
 
   package body Syntax_Metrics_Example is
 
@@ -904,8 +904,6 @@ Coupling Metrics Output
 -------------------------
 
 :command:`gnatmetric -Pdefault.gpr -U --coupling-all`
-
-.. container:: latex_environment footnotesize
 
 .. code:: output
   :font-size: scriptsize

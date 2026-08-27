@@ -165,11 +165,9 @@ Finding a Check Message
 Understanding a Check Message
 -------------------------------
 
-.. container:: latex_environment small
-
-  .. code:: Ada
-    :font-size: scriptsize
-     :number-lines: 17
+.. code:: Ada
+  :font-size: scriptsize
+  :number-lines: 17
 
      Read_A_Valid_Token : declare
         Word : String := Input.Next_Word;
@@ -289,9 +287,11 @@ Potential Logic Errors
 
 * In the **Locations** window, click on the message for line 41 of :filename:`stack.adb`
 
-  .. container:: latex_environment tiny
+  .. code:: error
+    :font-size: scriptsize
 
-    ``stack.adb:41:4: medium warning: suspicious precondition (Inspector): precondition for Last does not have a contiguous range of values``
+    stack.adb:41:4: medium warning: suspicious precondition (Inspector):
+      precondition for Last does not have a contiguous range of values``
 
   .. code:: Ada
     :font-size: footnotesize
