@@ -21,3 +21,5 @@ What Is SPARK?
 * Programming language - relationship with Ada:
 
 .. image:: ada_vs_spark_venn.png
+   :width: 85%
+
