@@ -27,7 +27,7 @@ What Is an Iteration?
 
     * - *Termination Condition*
       - When do we exit the loop
-      - :rust:`idx < 3`
+      - :rust:`idx < 4`
 
     * - *State Update*
       - Moving to next item in loop
@@ -64,10 +64,16 @@ What Is an Iterator?
     let numbers = vec![1, 2, 3];
 
     // '.iter()' creates the iterator
-    let it = numbers.iter()
-        for num in it {
-            println!("{}", num);
-        }
+    let it = numbers.iter();
+    for num in it {
+        println!("{}", num);
+    }
+
+.. code:: output
+
+  1
+  2
+  3
 
 .. note::
 

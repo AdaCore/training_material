@@ -101,7 +101,7 @@ Casting Between Primitive Types
 
 * Casting truncates using **bitmasking** - keeps the lower bits
 
-  * :rust:`enum` and pointers keeps lower bits
+  * Even for things like :rust:`enum` and pointers
   * :rust:`From` and :rust:`Into` are safer
 
 ------------------
