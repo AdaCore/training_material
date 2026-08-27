@@ -111,7 +111,7 @@ Advanced Supertraits
 
 **Explanation**
 
-  * To be a :rust:`LifeOfParty` type must know how to :rust:`Dance` and :rust:`Sing`
+  * A :rust:`LifeOfParty` type must know how to :rust:`Dance` and :rust:`Sing`
 
 ------------------
 Associated Types
