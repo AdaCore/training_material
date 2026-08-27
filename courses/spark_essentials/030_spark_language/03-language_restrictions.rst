@@ -25,7 +25,7 @@ Main Language Restrictions
 
 .. container:: speakernote
 
-   There are more minor restrictions on the programmer of specific features, like
+   There are more minor restrictions on the use of specific features, like
    some expressions which cannot mention variables
 
 --------------------------------
