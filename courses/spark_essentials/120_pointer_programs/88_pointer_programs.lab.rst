@@ -95,10 +95,10 @@ Allocation and Deallocation
 
 .. container:: animate 1-
 
-**Run** :menu:`SPARK` |rightarrow| :menu:`Prove Subprogram` **for** :ada:`Realloc`
+  - Run :menu:`SPARK` |rightarrow| :menu:`Prove Subprogram` for :ada:`Realloc`
 
-      + Select :menu:`Report checks proved` option to show all proofs
-      + Understand the memory leak message and fix it
+    + Select :menu:`Report checks proved` option to show all proofs
+    + Understand the memory leak message and fix it
 
 .. container:: animate 2-
 
