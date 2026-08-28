@@ -144,8 +144,6 @@ Struct Update Operator
 - Base instance can't be followed by a comma
   - Must be at the end of the declaration  
 
-.. container:: latex_environment footnotesize
-
 .. code:: rust
   :font-size: footnotesize
  

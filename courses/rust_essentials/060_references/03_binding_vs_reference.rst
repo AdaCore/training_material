@@ -6,8 +6,6 @@ Binding vs. Reference
 Rust's Reference System
 -------------------------
 
-.. container:: latex_environment scriptsize
-
 .. list-table::
   :header-rows: 1
 

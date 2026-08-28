@@ -64,8 +64,6 @@ Enum Initialization
     // Error! Must provide the content of 'Move'
     let no_color = Message::Move;
 
-.. container:: latex_environment footnotesize
-
 .. code:: error
   :font-size: footnotesize
 

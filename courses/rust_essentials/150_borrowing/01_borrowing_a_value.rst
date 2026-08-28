@@ -66,8 +66,6 @@ Mixing Mutable and Immutable Borrows
 
     println!("Read: {}, Write: {}", reader.0, writer.0);
 
-.. container:: latex_environment tiny
-
 .. code:: error
   :font-size: tiny
 

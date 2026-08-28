@@ -91,8 +91,6 @@ Deriving in Complex Structures
         child: Child,
     }
 
-.. container:: latex_environment scriptsize
-
 .. code:: error
   :font-size: scriptsize
 

@@ -85,8 +85,6 @@ No "Copy" Without "Clone"
    let user_a = User(42, String::from("Alice"));    
    let user_b = user_a;
 
-.. container:: latex_environment footnotesize
-
 .. code:: error
   :font-size: footnotesize
 

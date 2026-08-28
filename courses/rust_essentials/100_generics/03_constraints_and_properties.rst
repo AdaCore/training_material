@@ -36,8 +36,6 @@ Adding Constraints
     item < 10 
   }
 
-.. container:: latex_environment scriptsize
-
 .. code:: error
   :font-size: scriptsize
 

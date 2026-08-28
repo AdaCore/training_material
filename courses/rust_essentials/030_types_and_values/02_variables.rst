@@ -47,8 +47,6 @@ By Default, Variables Are Immutable
   // This will cause an ERROR! We can't change the value
   my_var = 20;
 
-.. container:: latex_environment scriptsize
-
 .. code:: error
   :font-size: scriptsize
 
