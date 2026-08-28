@@ -27,7 +27,7 @@ Trait Prerequisites
 
 * :rust:`Debug`
 
-  * For developer-facing details
+  * For programmer-facing details
 
 ------------------
 Trait Definition

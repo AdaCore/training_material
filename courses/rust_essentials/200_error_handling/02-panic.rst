@@ -60,9 +60,10 @@ Bounds Error Example
       println!("{}", my_vector[42]);
   }
 
-:error:`thread 'main' (32) panicked at src/main.rs:4:21:`
+.. code:: error
 
-:error:`index out of bounds: the len is 3 but the index is 42`
+  thread 'main' (32) panicked at src/main.rs:4:21:
+  index out of bounds: the len is 3 but the index is 42
 
 ----------------------
 Manual Panic Example
@@ -79,9 +80,10 @@ Manual Panic Example
       }
   }
 
-:error:`thread 'main' (12) panicked at src/main.rs:5:9:`
+.. code:: error
 
-:error:`Vector is empty!`
+  thread 'main' (12) panicked at src/main.rs:5:9:
+  Vector is empty!
 
 ----------------
 When to Panic?

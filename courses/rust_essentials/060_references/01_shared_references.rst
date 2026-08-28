@@ -35,7 +35,9 @@ Using Reference (Accessing Data)
     let reference: &char = &first; // Refers to 'first'
     println!("reference: {}", *reference);
 
-:command:`reference: A`
+.. code:: output
+
+  reference: A
 
 ------------------------------------------
 Automatic Dereferencing for Field Access
@@ -52,9 +54,10 @@ Automatic Dereferencing for Field Access
     println!("x: {}, y: {}", coordinates.0, coordinates.1);
     println!("ref x: {}, ref y: {}", reference.0, reference.1);
 
-:command:`x: 3, y: 5`
+.. code:: output
 
-:command:`ref x: 3, ref y: 5`
+  x: 3, y: 5
+  ref x: 3, ref y: 5
 
 ------------------------
 Reference Reassignment
@@ -69,6 +72,7 @@ Reference Reassignment
     reference = &second; // Now refers to 'second'
     println!("reference: {}", *reference);
 
-:command:`reference: A`
+.. code:: output
 
-:command:`reference: B`
+  reference: A
+  reference: B

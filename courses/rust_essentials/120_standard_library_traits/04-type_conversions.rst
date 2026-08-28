@@ -101,7 +101,7 @@ Casting Between Primitive Types
 
 * Casting truncates using **bitmasking** - keeps the lower bits
 
-  * :rust:`enum` and pointers keeps lower bits
+  * Even for things like :rust:`enum` and pointers
   * :rust:`From` and :rust:`Into` are safer
 
 ------------------
@@ -148,9 +148,10 @@ Safer Conversions
     }
 }
 
-:command:`'as' result:    300 -> 44`
+.. code:: output
 
-:command:`'TryFrom' result: Error! 300 is too big for u8`
+  'as' result:    300 -> 44
+  'TryFrom' result: Error! 300 is too big for u8
 
 ------------------------
 Conversion vs. Casting
