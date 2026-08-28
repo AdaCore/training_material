@@ -83,7 +83,8 @@ fn main() {
     }
 
     // TASK 6 - Chaining
-    // Hint: Chaining allows you to create a new set of data before consuming
+    // Hint: Chaining builds a pipeline that is evaluated when the
+    //   iterator is consumed
     fn is_even_owned(x: &i32) -> bool {
         *x % 2 == 0
     }
