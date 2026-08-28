@@ -109,7 +109,7 @@ Proving the Code Works
 
   * The prover can't verify the result because it has no knowledge of the result for the call to :ada:`Swap_Table`
 
- - Add a postcondition to :ada:`Swap_Table` 
+ - Add a postcondition to :ada:`Swap_Table`
 
 .. container:: animate 4-
 

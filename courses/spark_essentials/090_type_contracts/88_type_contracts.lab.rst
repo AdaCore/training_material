@@ -37,7 +37,7 @@ Type Predicates (1/2)
 .. container:: animate 2-
 
   .. code:: error
-    :font-size: 
+    :font-size:  small
 
     basics.adb:5:8: medium: predicate check might fail
     basics.adb:12:8: medium: predicate check might fail
