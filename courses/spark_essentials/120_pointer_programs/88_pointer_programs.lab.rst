@@ -114,7 +114,7 @@ Allocation and Deallocation
 
   *Note the message verifying no memory leak*
 
-  .. code:: error
+  .. code:: output
 
     pointers.adb:29:9: info: absence of resource or
        memory leak proved
