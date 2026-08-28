@@ -190,7 +190,7 @@ Extra Credit
 
 .. container:: latex_environment LARGE
 
-  Now that the code proves correctly, write a test to confirm it!
+  Now that the code proves correctly, use :ada:`Test_Program` to confirm it!
 
 .. container:: animate 2-
 
