@@ -50,7 +50,7 @@ Application-Defined String Types
 Specifying Constraints Via Initial Value
 ------------------------------------------
 
-* Lower bound is :ada:`Index_subtype'First`
+* Lower bound is :ada:`Index_Subtype'First`
 * Upper bound is taken from number of items in value
 
 .. code:: Ada
