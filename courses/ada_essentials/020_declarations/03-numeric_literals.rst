@@ -1,9 +1,9 @@
-==========
-Literals
-==========
+==================
+Numeric Literals
+==================
 
 ------------------
-Numeric Literals
+Decimal Literals
 ------------------
 
 **Syntax**
@@ -20,9 +20,9 @@ Numeric Literals
      12      0       1E6         123_456
      12.0    0.0     3.14159_26  2.3E-4
 
-------------------------
-Based Numeric Literals
-------------------------
+----------------
+Based Literals
+----------------
 
 **Syntax**
 
