@@ -35,7 +35,7 @@ Based Literals
   .. code:: Ada
 
      16#FFF#           => 4095
-     2#1111_1111_1111# => 4095 -- With underline
+     2#1111_1111_1111# => 4095 -- With underscore
      16#F.FF#E+2       => 4095.0
      8#10#E+3          => 4096 (8 * 8**3)
 
