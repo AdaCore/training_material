@@ -10,7 +10,10 @@ Introducing Block Statements
 
    - Optional *declarative part*
    - Can be **nested**
-   - Declarations **can hide** outer variables
+
+.. warning::
+
+  Declarations **can hide** outer variables
 
 .. raw:: latex
 
