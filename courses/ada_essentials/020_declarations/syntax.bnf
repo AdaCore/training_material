@@ -1,6 +1,6 @@
 --|numeric_literals_begin
 decimal_literal ::= numeral [.numeral] [exponent]
-numeral ::= digit {[underline] digit}
+numeral ::= digit {[_] digit}
 exponent ::= E [+] numeral | E - numeral
 --|numeric_literals_end
 
@@ -9,7 +9,7 @@ based_literal ::=
    base # based_numeral [.based_numeral] # [exponent]
 base ::= numeral
 based_numeral ::= 
-   extended_digit {[underline] extended_digit}
+   extended_digit {[_] extended_digit}
 --|based_numeric_literals_end
 
 --|object_declarations_begin
