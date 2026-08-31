@@ -12,7 +12,7 @@ Note on Default Initialization for Array Types
    * But if the array type is used in multiple places, it would be better to initialize at the type level
    * No matter how many dimensions, there is only one component type
 
-* Uses aspect `Default_Component_Value`
+* Uses aspect :ada:`Default_Component_Value`
 
   .. code:: Ada
 
