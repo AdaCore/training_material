@@ -63,16 +63,18 @@ Bounds Must Satisfy Type Constraints
 * :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 2
 
    type Index is range 1 .. 100;
    type Char_Arr is array (Index range <>) of Character;
    Good : Char_Arr (50 .. 75);
    Bad  : Char_Arr (0 .. 10); -- run-time error
 
-.. container:: latex_environment tiny
+.. code:: error
+  :font-size: tiny
 
-  :error:`example.adb:5:21: warning: static value out of range of type "Index" defined at line 2`
+  main.adb:5:21: warning: static value out of range of type "Index" defined at line 2
+  main.adb:5:21: warning: Constraint_Error will be raised at run time
 
 ------------------
 Null Index Range
@@ -90,16 +92,17 @@ Null Index Range
     :number-lines: 2
 
     type Index_T is range 1 .. 100; -- Index_T'Size = 8
-
     type Array_T is array (Index_T range <>) of Integer;
 
     Typical_Empty_Array : Array_T (1 .. 0);
     Weird_Empty_Array   : Array_T (123 .. -5);
     Bad_Empty_Array     : Array_T (999 .. 0);
 
-  .. container:: latex_environment scriptsize
+  .. code:: error
+    :font-size: tiny
 
-    :error:`example.adb:8:35: error: value not in range of type "Index_T" defined at line 2`
+    main.adb:7:36: error: value not in range of type "Index_T" defined at line 2
+    main.adb:7:36: error: static expression fails Constraint_Check
 
 ------------------
 Indefinite Types
@@ -140,9 +143,10 @@ No Indefinite Component Types
      type Good is array (1 .. 10) of Component_T (1 .. 20); -- OK
      type Bad is array (1 .. 10) of Component_T; -- compile error
 
-.. container:: latex_environment scriptsize
+.. code:: error
+  :font-size: scriptsize
 
-  :error:`example.adb:4:35: error: unconstrained element type in array declaration`
+  example.adb:4:35: error: unconstrained element type in array declaration
 
 .. container:: speakernote
 
@@ -179,18 +183,18 @@ Quiz
    type Bit_T is range 0 .. 1;
    type Bit_Array_T is array (Positive range <>) of Bit_T;
 
-Which declaration(s) is (are) legal?
+Which of the following declarations are legal? (Select all that apply)
 
-   A. ``AAA : Bit_Array_T (0..99);``
-   B. :answermono:`BBB : Bit_Array_T (1..32);`
-   C. :answermono:`CCC : Bit_Array_T (17..16);`
-   D. ``DDD : Bit_Array_T;``
+  A. ``AAA : Bit_Array_T (0..99);``
+  B. :answermono:`BBB : Bit_Array_T (1..32);`
+  C. :answermono:`CCC : Bit_Array_T (17..16);`
+  D. ``DDD : Bit_Array_T;``
 
 .. container:: animate
 
-   Explanations
+  Explanation
 
-   A. :ada:`Bit_Array_T` index is :ada:`Positive` which starts at 1
-   B. OK, indexes are in range
-   C. OK, indicates a zero-length array
-   D. Object must be constrained
+  A. :ada:`Bit_Array_T` index is :ada:`Positive` which starts at 1
+  B. OK, indexes are in range
+  C. OK, indicates a zero-length array
+  D. Object must be constrained

@@ -184,7 +184,7 @@ D. :answer:`0.0`
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Result of :ada:`F := F / Float (I);`
    B. Result of :ada:`F := F / I;`

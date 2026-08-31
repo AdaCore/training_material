@@ -94,11 +94,15 @@ Immutable Variant Record Example
 
   * :ada:`Pat.Pubs := 3;` would generate a compiler warning because compiler knows :ada:`Pat` is a :ada:`Student`
 
-    * ``warning: Constraint_Error will be raised at run time``
+    .. code:: error
+
+      warning: Constraint_Error will be raised at run time
 
   * :ada:`Do_Something (Pat);` generates a run-time error, because only at runtime is the discriminant for :ada:`Param` known
 
-    * ``raised CONSTRAINT_ERROR : discriminant check failed``
+    .. code:: error
+
+      raised CONSTRAINT_ERROR : discriminant check failed
 
 * :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
 
@@ -183,7 +187,7 @@ Quiz
 
   .. container:: column
 
-    Which component(s) does :ada:`Variant_Object` contain?
+    Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
 
     A. :ada:`Variant_Object.Value,`
        :ada:`Variant_Object.State`
@@ -193,7 +197,7 @@ Quiz
 
 .. container:: animate
 
-  **Explanation**
+  Explanation
 
   * Variant block covers all possible values of :ada:`Valid`, so no
     compilation error
@@ -231,4 +235,3 @@ D. None: Run-time error
 .. container:: animate
 
     The variant part cannot be followed by a component declaration (:ada:`Flag : Character` here)
-

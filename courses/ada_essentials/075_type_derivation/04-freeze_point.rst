@@ -107,7 +107,7 @@ Quiz
 
   .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`Proc_A` appears immediately after type declaration
    B. Freeze: :ada:`Parent` has been derived

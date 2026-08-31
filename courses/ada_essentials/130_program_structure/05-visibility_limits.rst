@@ -183,7 +183,7 @@ Quiz
 
   .. container:: column
 
-   Which return statement(s) would be legal in ``P.Child.X?``
+   Which of the following are legal return statements for :ada:`P.Child.X`? (Select all that apply)
 
       A.  :answermono:`return Object_A;`
       B.  :answermono:`return Object_B;`
@@ -192,10 +192,9 @@ Quiz
 
    .. container:: animate
 
-      Explanations
+      Explanation
 
       A. :ada:`Object_A` is in the public section of :ada:`P` - visible to any unit that :ada:`with`'s :ada:`P`
       B. :ada:`Object_B` is in the private section of :ada:`P` - visible in the private section or body of any descendant of :ada:`P`
       C. :ada:`Object_C` is in the body of :ada:`P`, so it is only visible in the body of :ada:`P`
       D. A and B are both valid completions
-

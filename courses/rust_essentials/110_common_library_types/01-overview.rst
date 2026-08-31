@@ -68,16 +68,16 @@ Introducing: The Prelude
 
   * Types so essential that they're needed in every file
 
-.. container:: latex_environment footnotesize
+**Without Prelude**
 
-  **Without Prelude**
+.. code:: rust
+  :font-size: tiny
 
-  .. code:: rust
+  let long: std::result::Result<i8, std::string::String> = std::result::Result::Ok(6);
 
-    let long: std::result::Result<i8, String> = std::result::Result::Ok(6);
+**With Prelude**
 
-  **With Prelude**
+.. code:: rust
+  :font-size: scriptsize
 
-  .. code:: rust
-
-    let short: Result<i8, String> = Ok(5);
+  let short: Result<i8, String> = Ok(5);

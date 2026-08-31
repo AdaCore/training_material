@@ -243,7 +243,7 @@ when :ada:`Print_Something` is run?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    The call to :ada:`To_Integer` will fail its precondition, which is considered
    an :ada:`Assertion_Error` exception.

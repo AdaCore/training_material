@@ -166,7 +166,7 @@ Quiz
     type Eight_Bits is mod 256;
     Value : Eight_Bits := 255;
 
-Which statement(s) is (are) legal?
+Which of the following statements are legal? (Select all that apply)
 
 A. :answermono:`Value := Value + 1;`
 B. :answermono:`Value := 16#ff#;`
@@ -175,7 +175,7 @@ D. :answermono:`Value := 255 + 11;`
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`Value` will just wrap around to be 0
    B. Assigning to an in-range hex value
@@ -196,7 +196,7 @@ Quiz
     type My_8_Bits is mod 256;
     Value_2 : My_8_Bits := 255;
 
-Which statement(s) is (are) legal?
+Which of the following statements are legal? (Select all that apply)
 
 A. :answermono:`Value_1 := Rotate_Left (Value_1, 1);`
 B. ``Value_1 := Positive'First;``
@@ -206,7 +206,7 @@ E. ``Value_2 := My_8_Bits'Mod (2.0);``
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. **Rotate_** primitives are available for types derived from **Interfaces.Unsigned_**
    B. :ada:`Positive` is an integer type, so not compatible

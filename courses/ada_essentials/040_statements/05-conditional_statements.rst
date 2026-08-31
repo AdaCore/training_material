@@ -190,7 +190,7 @@ D. | ``end if;``
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    * :ada:`A` uses the C-style equality/inequality operators
    * :ada:`D` is legal because :ada:`else` is not required for an :ada:`if` block
@@ -220,7 +220,7 @@ D. | :answermono:`end case;`
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    * Ada requires all possibilities to be covered
    * Add :ada:`when others` or :ada:`when Sat`

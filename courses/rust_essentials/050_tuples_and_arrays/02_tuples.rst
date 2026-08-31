@@ -19,6 +19,7 @@ Basics
    println!("Number of tentacles: {}", alien_report.0); 
    println!("Hostile? {}", alien_report.1);
 
-:command:`Number of tentacles: 3`
+.. code:: output
 
-:command:`Hostile? false`
+  Number of tentacles: 3
+  Hostile? false

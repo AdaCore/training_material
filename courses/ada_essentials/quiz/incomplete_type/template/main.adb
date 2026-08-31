@@ -1,4 +1,4 @@
--- In the same scope, which of the following types is (are) legal?
+-- Select all types that are legal when defined in the same scope.
 
 procedure Main is
    --$ line question

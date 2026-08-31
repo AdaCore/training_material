@@ -183,9 +183,10 @@ Aggregates with "others"
    Good2 : Record_T := (A => 9, others => 87);
    Bad   : Record_T := (others => 0);
 
-.. container:: latex_environment scriptsize
+.. code:: error
+  :font-size: scriptsize
 
-  :error:`example.adb:10:25: error: components in "others" choice must have same type`
+  example.adb:10:25: error: components in "others" choice must have same type
 
 ------
 Quiz
@@ -205,7 +206,7 @@ Quiz
    Obj1 : Record1_T;
    Obj2 : Record2_T;
 
-Which assignment(s) is (are) legal?
+Which of the following assignments are legal? (Select all that apply)
 
 .. container:: latex_environment small
 

@@ -70,9 +70,10 @@ Result Must Be Compatible with Context
   Bad_Expression : Float :=
      (if Overtime then 1.5 else 1);
 
-.. container:: latex_environment footnotesize
+.. code:: error
+  :font-size: tiny
 
-  :error:`example.adb:21:33: error: type of "else" incompatible with that of "then" expression`
+  example.adb:21:33: error: type of "else" incompatible with that of "then" expression
 
 -------------------------
 "If Expression" Example
@@ -282,7 +283,7 @@ Quiz
    B : Boolean;
    Z : Float := Get_Length;
 
-Which statement(s) is (are) legal?
+Which of the following statements are legal? (Select all that apply)
 
    A. ``F := if Z < 0.0 then Sqrt (-1.0 * Z) else Sqrt (Z);``
    B. :answermono:`F := Sqrt (if Z < 0.0 then -1.0 * Z else Z);`
@@ -291,7 +292,7 @@ Which statement(s) is (are) legal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. Missing parentheses around expression
    B. Legal - Expression already in parentheses so no need to add more

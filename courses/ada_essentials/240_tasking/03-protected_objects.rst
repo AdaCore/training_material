@@ -91,7 +91,7 @@ Quiz
        Object : Integer := 0;
     end Counter;
 
-Which completion(s) of :ada:`Counter` is (are) illegal?
+Which completions of :ada:`Counter` are not legal? (Select all that apply)
 
  .. container:: latex_environment footnotesize
 

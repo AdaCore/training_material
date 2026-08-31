@@ -126,7 +126,7 @@ Quiz
       R1, R2 : P.R;
    begin
 
-Which assignment(s) is (are) legal?
+Which of the following assignments are legal? (Select all that apply)
 
    A. ``T1    := T2;``
    B. ``R1    := R2;``
@@ -135,7 +135,7 @@ Which assignment(s) is (are) legal?
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
    A. :ada:`T1` and :ada:`T2` are :ada:`limited types`
    B. :ada:`R1` and :ada:`R2` contain :ada:`limited` types so they are also :ada:`limited`
