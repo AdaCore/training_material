@@ -53,9 +53,9 @@ Upgrading to SPARK Mode (1/2)
 
   .. code:: error
 
-    basics.ads:11:7: error: function cannot have parameter of
+    basics.ads:12:7: error: function cannot have parameter of
        mode "out" or "in out" in SPARK [E0015]
-    basics.ads:11:7: error: launch "gnatprove --explain=E0015"
+    basics.ads:12:7: error: launch "gnatprove --explain=E0015"
        for more information
 
 -------------------------------
@@ -78,20 +78,20 @@ Upgrading to SPARK Mode (2/2)
     procedure Search
       (The_Array :     Arr;
        Val       :     Element;
-       At_Index  : out Index;
-       Status    : out Boolean) is
-       Pos : Index := A'First;
+       At_Index  : out Integer;
+       Success   : out Boolean) is
+       Pos : Integer := The_Array'First;
     begin
-       while Pos < The_Array'Last loop
+       while Pos in The_Array'Range loop
           if The_Array (Pos) = Val then
              At_Index := Pos;
-             Status   := True;
+             Success  := True;
              return;
           end if;
           Pos := Pos + 1;
        end loop;
-       Status := False;
-   end Search;
+       Success := False;
+    end Search;
 
 .. container:: animate 3-
 
@@ -118,14 +118,15 @@ Performing Flow Analysis
 .. container:: animate 2-
 
   .. code:: error
+    :font-size: scriptsize
 
-    medium: "At_Index" might not be initialized in "Search"
-   --> basics.ads:13:07
-      13 |          At_Index : out Index;
-         |          ^~~~~~~~
-         + reason for check: OUT parameter should be initialized on return
-         + possible fix: initialize "At_Index" on all paths or make
-              "At_Index" an IN OUT parameter
+     medium: "At_Index" might not be initialized in "Search"
+    --> basics.ads:12:07
+       12 |          At_Index  : out Integer;
+          |          ^~~~~~~~
+          + reason for check: OUT parameter should be initialized on return
+          + possible fix: initialize "At_Index" on all paths or make
+            "At_Index" an IN OUT parameter
 
   * Cannot require caller to check :ada:`Status`
 
@@ -134,7 +135,7 @@ Performing Flow Analysis
   * Update the code and check the data flow again
 
 ------------------------------
-Proving the Code Works (1/2)
+Proving the Code Works (1/3)
 ------------------------------
 
 .. container:: animate 1-
@@ -156,33 +157,60 @@ Proving the Code Works (1/2)
     * If a procedure has no postconditions, implied postcondition is **True**
 
 ------------------------------
-Proving the Code Works (2/2)
+Proving the Code Works (2/3)
 ------------------------------
 
 .. container:: animate 1-
 
-  * Add postconditions such that
+  * Add postcondition such that if :ada:`Val` is in :ada:`The_Array` then
 
-    * If :ada:`Val` is in :ada:`The_Array` then
+    * :ada:`At_Index` should be the index of :ada:`Val` in :ada:`The_Array`
+    * :ada:`Status` should be :ada:`True`
 
-      * :ada:`At_Index` should be the index of :ada:`Val` in :ada:`The_Array`
-      * :ada:`Status` should be :ada:`True`
+.. container:: animate 2-
 
-    * Otherwise
+  .. code:: Ada 
+    :number-lines: 12
 
-      * :ada:`Status` should be :ada:`False`
+    procedure Search (The_Array :     Arr;
+                      Val       :     Element;
+                      At_Index  : out Integer;
+                      Success   : out Boolean) with
+       Post => Success and then At_Index in The_Array'Range
+               and then The_Array (At_Index) = Val;
+
+  * Does this prove?
+
+.. container:: animate 3-
+
+  .. code:: error
+
+    medium: postcondition might fail, cannot prove Success
+   --> basics.ads:16:07
+      16 |          Success and then At_Index in The_Array'Range
+
+  *We are not handling the case where the value isn't found*
+
+------------------------------
+Proving the Code Works (3/3)
+------------------------------
+
+.. container:: animate 1-
+
+  * Add a postcondition for when the value isn't found
 
 .. container:: animate 2-
 
   .. code:: Ada
 
-    procedure Search
-      (The_Array :     Arr;
-       Val       :     Element;
-       At_Index  : out Index;
-       Status    : out Boolean) with
-      Post => (not Status)
-              or else (The_Array (At_Index) = Val);
+    procedure Search (The_Array :     Arr;
+                      Val       :     Element;
+                      At_Index  : out Integer;
+                      Success   : out Boolean) with
+       Post => (Success and then At_Index in The_Array'Range
+                and then The_Array (At_Index) = Val)
+               or else
+               (not Success);
 
 --------------
 Extra Credit
@@ -203,7 +231,7 @@ Extra Credit
        The_Array : constant Arr := (10, 1, 9, 2, 8, 3, 7, 4, 6, 5);
 
        procedure Run_One (Val : Element) is
-          At_Index : Index;
+          At_Index : Integer;
           Status   : Boolean;
        begin
           Search (The_Array, Val, At_Index, Status);
@@ -221,5 +249,6 @@ Extra Credit
        Run_One (10);
        Run_One (-1);
        Run_One (11);
+       Run_One (5);
 
     end Test_Program;

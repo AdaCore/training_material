@@ -5,22 +5,20 @@ is
    procedure Search
      (The_Array :     Arr;
       Val       :     Element;
-      At_Index  : out Index;
-      Status    : out Boolean) is
-      Pos : Index := The_Array'First;
+      At_Index  : out Integer;
+      Success   : out Boolean) is
+      Pos : Integer := The_Array'First;
    begin
-      while Pos < The_Array'Last loop
+      while Pos in The_Array'Range loop
          if The_Array (Pos) = Val then
             At_Index := Pos;
-            Status   := True;
+            Success  := True;
             return;
          end if;
-
          Pos := Pos + 1;
       end loop;
-
-      At_Index := Index'First;
-      Status   := False;
+      Success  := False;
+      At_Index := The_Array'Last + 1;
    end Search;
 
 end Basics;

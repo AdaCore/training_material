@@ -3,11 +3,11 @@ package body Basics is
    function Search
      (The_Array :     Arr;
       Val       :     Element;
-      At_Index  : out Index)
+      At_Index  : out Integer)
       return Boolean is
-      Pos : Index := The_Array'First;
+      Pos : Integer := The_Array'First;
    begin
-      while Pos < The_Array'Last loop
+      while Pos in The_Array'Range loop
          if The_Array (Pos) = Val then
             At_Index := Pos;
             return True;
