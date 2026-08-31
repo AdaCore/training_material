@@ -8,8 +8,8 @@ exponent ::= E [+] numeral | E - numeral
 based_literal ::= 
    base # based_numeral [.based_numeral] # [exponent]
 base ::= numeral
-based_numeral ::= 
-   extended_digit {[_] extended_digit}
+based_numeral ::= extended_digit {[_] extended_digit}
+extended_digit ::= digit | A | B | C | D | E | F
 --|based_numeric_literals_end
 
 --|object_declarations_begin
