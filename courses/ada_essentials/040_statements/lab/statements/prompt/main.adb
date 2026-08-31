@@ -15,9 +15,9 @@ begin
 
    --  Print a header indicating what day of the week it is
    Put_Line ("Day of Week");        --  (example)
-   --  For Saturday, print a line for every other hour (e.g. 3, 5, 7)
-   Put_Line (Hours'Image (Start));  --  (example)
+   --  For Sunday, print a line to indicate no work performed
+   Put_Line ("Work");               --  (example)
    --  For other days, print a line for every hour
-   Put_Line (Hours'Image (Finish)); --  (example)
+   Put_Line (Hours'Image (Start)); --  (example)
 
 end Main;
