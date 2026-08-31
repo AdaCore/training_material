@@ -56,7 +56,7 @@ Declaring Floating Point Types
   - *digits* |rightarrow| **minimum** number of significant digits
   - **Decimal** digits, not bits
 
-* Compiler choses representation
+* Compiler chooses representation
 
   - From **available** floating point types
   - May be **more** accurate, but not less
@@ -67,6 +67,8 @@ Declaring Floating Point Types
   .. code:: Ada
 
     type Very_Precise_T is digits System.Max_Digits;
+
+.. note::
 
   *Need to do* :ada:`with System;` *to get visibility*
 
