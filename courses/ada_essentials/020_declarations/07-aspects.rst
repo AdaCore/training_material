@@ -98,7 +98,7 @@ In the Olden Days ...
 
       type Msg_Integer is new Integer;
       for Msg_Integer'Size use 8;
-      Message  : Msg_Integer;
+      Message : Msg_Integer;
 
 * These are still available in Ada 2012 and beyond
 
