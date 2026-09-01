@@ -6,7 +6,7 @@ Introduction
 Topics Covered
 ----------------
 
-* **Safe vs. Unsafe Split**
+* **Safe vs. Unsafe**
 
   - What :rust:`unsafe` allows and what remains checked
 
