@@ -33,7 +33,7 @@ begin
    New_Line;
 
    Array_Var (Mon .. Wed) := Const_Arr (Wed .. Fri);
-   Array_Var (Thu .. Fri) := (others => Natural'First);
+   Array_Var (Thu .. Sun) := (others => Natural'First);
    for Item of Array_Var loop
       Put_Line (Item'Image);
    end loop;
