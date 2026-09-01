@@ -89,7 +89,7 @@ String Literals
 
 .. note::
 
-  Ada does not use an escape characters in strings
+  Ada does not use escape characters in strings
 
 .. container:: speakernote
 
