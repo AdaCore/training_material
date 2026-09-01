@@ -16,7 +16,7 @@ Recap: Five Superpowers
 What We Covered
 -----------------
 
-* **Safe vs. Unsafe Split**
+* **Safe vs. Unsafe**
 
   - Unsafe Rust introduces explicit safety obligations
   - Unchecked safety requirements must be upheld
