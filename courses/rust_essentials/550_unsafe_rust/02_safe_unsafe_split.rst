@@ -36,7 +36,7 @@ Five Superpowers
 
 #. Dereference a raw pointer
 #. Call an unsafe function or method
-#. Access or modify a mutable static variable
+#. Access or modify a mutable static variable (:rust:`static mut`)
 #. Implement an unsafe trait
 #. Access a field of a union
 
