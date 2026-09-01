@@ -112,7 +112,7 @@ Parameter Modes
      with Convention => C_Pass_By_Copy;
 
      procedure F1 (P : in R1);
-     procedure F2 (P : R2);
+     procedure F2 (P : in out R2);
 
 * C View
 
@@ -124,5 +124,5 @@ Parameter Modes
      struct R2 {
         int V;
      };
-     void f1 (R1 p);
-     void f2 (R2 p);
+     void f1 (struct R1 p);
+     void f2 (struct R2 *p);
