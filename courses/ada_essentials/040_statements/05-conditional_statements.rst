@@ -206,18 +206,18 @@ Which choice needs to be modified to make a valid :ada:`case` block
 
    case A is
 
-A. | ``when Sun =>``
-   |    ``Put_Line ("Day Off");``
-B. | ``when Mon | Fri =>``
-   |    ``Put_Line ("Short Day");``
-C. | ``when Tue .. Thu =>``
-   |    ``Put_Line ("Long Day");``
-D. | :answermono:`end case;`
+A. ``when Sun        => Put_Line ("Day Off");``
+B. :answermono:`when Mon or Fri => Put_Line ("Short Day");`
+C. ``when Tue .. Thu => Put_Line ("Long Day");``
+D. ``when others     => Put_Line ("As needed");``
+
+.. code:: Ada
+
+   end case;
 
 .. container:: animate
 
    Explanation
 
-   * Ada requires all possibilities to be covered
-   * Add :ada:`when others` or :ada:`when Sat`
-
+   * :ada:`Sat` is covered by :ada:`when others`
+   * Choice uses the pipe ('|') symbol: :ada:`when Mon | Fri`
