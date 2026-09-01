@@ -70,7 +70,7 @@ Declaring Floating Point Types
 
 .. note::
 
-  *Need to do* :ada:`with System;` *to get visibility*
+  Need to do :ada:`with System;` to get visibility
 
 ---------------------------------
 Predefined Floating Point Types
