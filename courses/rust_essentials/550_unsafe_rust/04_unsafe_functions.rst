@@ -36,7 +36,7 @@ Safety Contracts
 
 **An unsafe function transfers a proof obligation to its caller**
 
-* :rust:`# Safety` documents the required invariants
+* :rust:`# Safety` documents the requirements callers must uphold
 * Each call site should explain why they hold
 * Unsafe operations in the function body remain unsafe
 
