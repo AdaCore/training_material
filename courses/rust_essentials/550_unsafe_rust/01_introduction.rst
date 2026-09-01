@@ -25,7 +25,7 @@ Topics Covered
 
 * **Mutable Statics**
 
-  - Reading and modifying global mutable state
+  - Modifying global mutable state (:rust:`static mut`)
 
 * **Unsafe Traits**
 
