@@ -74,7 +74,7 @@ Quiz
 
    type Days_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
    subtype Weekdays_T is Days_T range Mon .. Fri;
-   Today : Days_T;
+   Today : Days_T := Mon;
 
 Which of the following conditions are legal? (Select all that apply)
 
