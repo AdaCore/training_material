@@ -8,7 +8,7 @@ Advanced Tools and Low-Level Features
 
 **Topics for deeper study include**
 
-* **Miri**
+* **Miri (tool/interpreter)**
 
   * Interprets Rust's Mid-level Intermediate Representation (MIR)
   * Detects many forms of undefined behavior in unsafe code
