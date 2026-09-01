@@ -17,7 +17,9 @@ Expression Functions
 
    function function_specification is (expression);
 
-NB: Parentheses around expression are **required**
+.. note::
+
+   Parentheses around expression are **required**
 
 * Can complete a prior declaration
 
