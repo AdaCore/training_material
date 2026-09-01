@@ -92,15 +92,16 @@ Parameter Modes
 
 * :ada:`in` scalar parameters passed by copy
 * :ada:`out` and :ada:`in out` scalars passed using temporary pointer on C side
-* By default, composite types passed by reference on all modes except when the type is marked :ada:`C_Pass_By_Copy`
+* By default, composite types passed by reference on all modes
 
-   - Be very careful with records - some C ABI pass small structures by copy!
+  * Except when the type is marked :ada:`C_Pass_By_Copy`
+  * Be very careful with records - some C ABI pass small structures by copy!
 
 * Ada View
 
   .. code:: Ada
 
-     Type R1 is record
+     type R1 is record
         V : int;
      end record
      with Convention => C;
@@ -109,6 +110,9 @@ Parameter Modes
         V : int;
      end record
      with Convention => C_Pass_By_Copy;
+
+     procedure F1 (P : in R1);
+     procedure F2 (P : R2);
 
 * C View
 
@@ -122,4 +126,3 @@ Parameter Modes
      };
      void f1 (R1 p);
      void f2 (R2 p);
-
