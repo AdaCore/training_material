@@ -86,43 +86,103 @@ Passing Structures As Parameters
 ..
   language_version 2012
 
------------------
-Parameter Modes
------------------
+-----------------------------
+Parameter Modes for Scalars
+-----------------------------
 
 * :ada:`in` scalar parameters passed by copy
 * :ada:`out` and :ada:`in out` scalars passed using temporary pointer on C side
-* By default, composite types passed by reference on all modes
-
-  * Except when the type is marked :ada:`C_Pass_By_Copy`
-  * Be very careful with records - some C ABI pass small structures by copy!
 
 * Ada View
 
   .. code:: Ada
 
-     type R1 is record
-        V : int;
-     end record
-     with Convention => C;
+    procedure Use_Scalar
+      (Value  : in out Interfaces.C.int;
+       Change : in     Interfaces.C.int) with
+      Import, Convention => C, External_Name => "use_scalar";
 
-     type R2 is record
-        V : int;
-     end record
-     with Convention => C_Pass_By_Copy;
+    The_Value : Interfaces.C.int := 1200;
 
-     procedure F1 (P : in R1);
-     procedure F2 (P : in out R2);
+    Use_Scalar (Value, 34);
+    Put_Line (Value'Image);
 
 * C View
 
   .. code:: C
 
-     struct R1{
-        int V;
-     };
-     struct R2 {
-        int V;
-     };
-     void f1 (struct R1 p);
-     void f2 (struct R2 *p);
+    void use_scalar (int *value, int change) {
+      *value = *value + change;
+    }
+
+.. code:: output
+
+  1234
+
+-------------------------------------------
+Parameter Modes For Composite Types (1/2)
+-------------------------------------------
+
+* Composite types passed by reference on all modes
+
+  * Except when the type is marked :ada:`C_Pass_By_Copy`
+
+* Ada View
+
+  .. code:: Ada
+
+   type Reference_T is record
+      Sensor_ID : Interfaces.c.int;
+      Reading   : Interfaces.c.double;
+   end record with Convention => C;
+
+   type Copy_T is record
+      Sensor_ID : Interfaces.c.int;
+      Reading   : Interfaces.c.double;
+   end record with Convention => C_Pass_By_Copy;
+
+   procedure Pass_By_Reference (Data : in Reference_T)
+     with Import, Convention    => C, External_Name => "pass_by_reference";
+
+   procedure Pass_By_Copy (Data : in Copy_T)
+     with Import, Convention    => C, External_Name => "pass_by_copy";
+
+   Reference : Reference_T := (1, 2.3);
+   Copy : Copy_T := (4, 5.6);
+
+   Pass_By_Reference (Reference);
+   Pass_By_Copy (Copy);
+
+-------------------------------------------
+Parameter Modes For Composite Types (1/2)
+-------------------------------------------
+
+* C View
+
+  .. code:: C
+
+    typedef struct {
+        int sensor_id;
+        double reading;
+    } Struct_T;
+
+    void pass_by_reference(const Struct_T *data) {
+      printf("ID: %d, Value: %f\n", data->sensor_id, data->reading);
+    }
+
+    void pass_by_copy(Struct_T data) {
+      printf("ID: %d, Value: %f\n", data.sensor_id, data.reading);
+    }
+
+* Pass-By-Copy for mode :ada:`in` parameter is **not** a pointer
+
+  * But **is** a pointer when parameter needs to be writable
+
+.. code:: output
+
+  ID: 1, Value: 2.300000
+  ID: 4, Value: 5.600000
+
+.. warning::
+
+  Be very careful with records - some C ABI pass small structures by copy!
