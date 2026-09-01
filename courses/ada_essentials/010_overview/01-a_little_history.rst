@@ -14,7 +14,7 @@ The Name
    - **First** computer program
    - On **Babbage's Analytical Engine**
 
-* International Standards Organization (ISO) standard
+* International Organization for Standardization (ISO) standard
 
    - Updated about every 10 years
 
