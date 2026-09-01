@@ -62,7 +62,7 @@ Dereferencing Raw Pointers
 
 .. note::
 
-  The safety comment explains why the dereference is valid
+  A ``// SAFETY:`` comment is idiomatic documentation, not a requirement
 
 ---------------------------------
 Aliasing and Safety Obligations
