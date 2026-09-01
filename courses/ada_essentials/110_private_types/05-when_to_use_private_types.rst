@@ -34,7 +34,7 @@ When to Use Private Types
        Set (Hot, Hot + Cold);
     end Initialize;
 
-* If :ada:`Valve_Id_T` was not private, call to **Set** would be valid
+* If :ada:`Valve_Id_T` was not private, call to :ada:`Set` would be valid
 
    - But doesn't make sense
 
