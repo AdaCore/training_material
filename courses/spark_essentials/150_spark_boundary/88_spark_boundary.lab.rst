@@ -223,7 +223,7 @@ Software Boundary
     :font-size: small
 
     random_numbers.adb:5:4: error: "Generator" is not allowed in SPARK
-        (due to entity declared with SPARK_Mode Off)`
+        (due to entity declared with SPARK_Mode Off)
 
   :ada:`GNAT.Random` *is not in SPARK mode; we cannot call non-SPARK from SPARK*
 
