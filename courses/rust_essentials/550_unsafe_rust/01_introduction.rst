@@ -31,6 +31,10 @@ Topics Covered
 
   - Implementing traits with requirements the compiler cannot verify
 
+* **Unions**
+
+  - Shared storage and field access
+
 * **Safe Abstractions**
 
   - Hiding unsafe operations behind safe interfaces
