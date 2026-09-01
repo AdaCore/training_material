@@ -77,7 +77,7 @@ Enumeration Type Attributes
 Character Types
 -----------------
 
-* **Special-case** of enumerated type
+* **Special case** of enumerated type
 
    - At least one character enumeral
 
