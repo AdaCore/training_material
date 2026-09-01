@@ -11,10 +11,6 @@ Introducing Block Statements
    - Optional *declarative part*
    - Can be **nested**
 
-.. warning::
-
-  Declarations **can hide** outer variables
-
 .. raw:: latex
 
   \vspace{5mm}
@@ -42,6 +38,10 @@ Introducing Block Statements
           U := V;
           V := Temp;
         end Swap;
+
+.. warning::
+
+  Declarations **can hide** outer variables
 
 ----------------------
 Scope and "Lifetime"
