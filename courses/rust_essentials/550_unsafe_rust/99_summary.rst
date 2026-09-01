@@ -31,6 +31,11 @@ What We Covered
   - Callers uphold documented safety contracts
   - An :rust:`unsafe impl` promises required invariants
 
+* **Unions**
+
+  - Fields share storage
+  - Reading a union field requires :rust:`unsafe`
+
 * **Safe Abstractions**
 
   - Keep unsafe operations small and auditable

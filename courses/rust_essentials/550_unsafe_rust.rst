@@ -38,6 +38,7 @@ Unsafe Rust
 .. include:: 550_unsafe_rust/04_unsafe_functions.rst
 .. include:: 550_unsafe_rust/05_mutable_statics.rst
 .. include:: 550_unsafe_rust/06_unsafe_traits.rst
-.. include:: 550_unsafe_rust/07_safe_abstractions.rst
-.. include:: 550_unsafe_rust/08_advanced_topics.rst
+.. include:: 550_unsafe_rust/07_unions.rst
+.. include:: 550_unsafe_rust/08_safe_abstractions.rst
+.. include:: 550_unsafe_rust/09_advanced_topics.rst
 .. include:: 550_unsafe_rust/99_summary.rst
