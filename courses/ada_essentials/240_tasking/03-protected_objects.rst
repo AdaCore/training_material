@@ -63,7 +63,7 @@ Example: Protected Objects - Declaration
 .. include:: ../examples/protected_objects/src/protected_objects.ads
     :code: Ada
 
-.. note:
+.. note::
 
   All global data **must** appear in the :ada:`private` section
 
