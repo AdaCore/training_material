@@ -8,7 +8,7 @@
 <rect fill="#ffb380" stroke="none" height="9" width="20.0029296875" x="4.0" y="36" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="43" >Str   : String := "Hello;"</text>
 <rect fill="#ffb380" stroke="none" height="9" width="20.0029296875" x="4.0" y="47" />
-<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="54" >Pos   : Integer := Character'val(Str(2));</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="54" >Pos   : Integer := Character'Val(Str(2));</text>
 <rect fill="#ffb380" stroke="none" height="9" width="32.0048828125" x="4.0" y="58" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="65" >Index : Types.SmallT := Types.SmallT(Pos);</text>
 <rect fill="#ffb380" stroke="none" height="9" width="20.0029296875" x="4.0" y="69" />
