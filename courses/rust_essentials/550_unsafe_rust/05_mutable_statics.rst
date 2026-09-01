@@ -20,7 +20,7 @@ Immutable and Mutable Statics
 
 .. warning::
 
-  Global mutable state weakens local reasoning; prefer ownership or a small access-control abstraction
+  Global mutable state weakens local reasoning; better to use ownership or a small access-control abstraction
 
 ----------------------------
 Accessing a Mutable Static
