@@ -29,7 +29,7 @@ Topics Covered
 
 * **Unsafe Traits**
 
-  - Implementing traits with safety invariants
+  - Implementing traits with requirements the compiler cannot verify
 
 * **Safe Abstractions**
 
