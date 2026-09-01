@@ -18,7 +18,7 @@ Safe Rust and Unsafe Rust
 
   * - **Memory Safety**
     - Enforced by compiler
-    - Safety invariant required
+    - Safety requirements upheld by programmer
 
   * - **Usage**
     - Default
