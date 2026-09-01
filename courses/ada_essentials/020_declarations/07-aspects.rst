@@ -96,9 +96,10 @@ In the Olden Days ...
   
     .. code:: Ada
 
-      type Msg_Integer is new Integer;
-      for Msg_Integer'Size use 8;
-      Message : Msg_Integer;
+      type Msg_Type is range 0 .. 255;
+      for Msg_Type'Size use 8;
+      Message : Msg_Type;
+
 
 * These are still available in Ada 2012 and beyond
 
