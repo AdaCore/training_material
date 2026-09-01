@@ -15,5 +15,7 @@ D. ``function ":=" (A : T) return T is (A)``
 
 .. container:: animate
 
+    A. Legal
     B. Infinite recursion (will result in Storage_Error at run-time)
+    C. Legal
     D. Unlike some languages, there is no assignment operator

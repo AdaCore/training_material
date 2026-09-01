@@ -5,12 +5,14 @@ procedure Main is
 
    --$ line cut
    function "+" (V : T) return Boolean is (V /= 0);
+   -- Legal
    --$ begin cut
    function "+" (A, B : T) return T is (A + B);
    -- Infinite recursion (will result in Storage_Error at run-time)
    --$ end cut
    --$ begin cut
    function "=" (A, B : T) return T is (A - B);
+   -- Legal
    --$ end cut
    --$ begin cut
    function ":=" (A : T) return T is (A);
