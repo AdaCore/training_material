@@ -12,14 +12,14 @@ Encapsulating Unsafe Operations
 * Enforce checks and invariants at the boundary
 * Expose a safe API when safe use is guaranteed
 
-  * Callers need no unsafe block
+  * Callers need no :rust:`unsafe` block
 
 * Otherwise, expose an unsafe API and document its :rust:`# Safety` contract
 * Examples: :rust:`Vec<T>`, :rust:`String`, and many others
 
---------------------------------------
-Why "split_at_mut" Needs Unsafe Rust
---------------------------------------
+-------------------------------------------
+Example: Safely Splitting a Mutable Slice
+-------------------------------------------
 
 :rust:`split_at_mut` **creates two disjoint mutable slices from one slice**
 
