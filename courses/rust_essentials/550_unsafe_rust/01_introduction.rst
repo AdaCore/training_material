@@ -18,9 +18,10 @@ Topics Covered
 
   - Creating and dereferencing raw pointers
 
-* **Unsafe Functions and Foreign Function Interface (FFI)**
+* **Unsafe Functions**
 
   - Calling code with unchecked preconditions
+  - Foreign Function Interface (FFI)
 
 * **Mutable Statics**
 
