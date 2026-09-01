@@ -62,7 +62,7 @@ Dereferencing Raw Pointers
 
 .. note::
 
-  A ``// SAFETY:`` comment is idiomatic documentation, not a requirement
+  A :rust:`// SAFETY:` comment is idiomatic documentation, not a requirement
 
 ---------------------------------
 Aliasing and Safety Obligations
