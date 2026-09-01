@@ -511,7 +511,7 @@ Enabling/Disabling Contract Verification
 * Default, without pragma, is implementation-defined
 * Vendors almost certainly offer compiler switch
 
-   - GNAT uses same switch as for pragma Assert: ``-gnata``
+   - GNAT uses same switch as for :ada:`pragma Assert`:` :command:`-gnata`
 
 .. container:: speakernote
 
