@@ -36,7 +36,7 @@ Signed Integer Bounds
 
 .. note::
 
-  *Later we'll learn about scoping and how to define dynamic bounds*
+  Later we'll learn about scoping and how to define dynamic bounds
 
 * Compiler selects **base type**
 
