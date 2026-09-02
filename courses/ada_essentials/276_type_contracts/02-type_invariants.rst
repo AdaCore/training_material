@@ -20,7 +20,6 @@ Type Invariants
      Workday : Weekdays := Mon;
 
 * Type invariants apply across entire lifetime for complex abstract data types
-* Part of ADT concept, so only for private types
 
 ------------------------------
 Type Invariant Verifications
