@@ -15,11 +15,11 @@ begin
             Finish := 0;
          when Saturday =>
             Start     := 9;
-            Finish    := 13;
+            Finish    := 12;
             Big_Block := True;
          when Monday .. Friday =>
             Start     := 9;
-            Finish    := 17;
+            Finish    := 16;
             Big_Block := False;
       end case;
       Put_Line (Days_Of_Week_T'Image (Day));

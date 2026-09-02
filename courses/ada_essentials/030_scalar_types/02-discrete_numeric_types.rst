@@ -34,7 +34,9 @@ Signed Integer Bounds
 
 * Bounds must be known at compile time
 
-  *Later we'll learn about scoping and how to define dynamic bounds*
+.. note::
+
+  Later we'll learn about scoping and how to define dynamic bounds
 
 * Compiler selects **base type**
 

@@ -10,7 +10,6 @@ Introducing Block Statements
 
    - Optional *declarative part*
    - Can be **nested**
-   - Declarations **can hide** outer variables
 
 .. raw:: latex
 
@@ -40,13 +39,17 @@ Introducing Block Statements
           V := Temp;
         end Swap;
 
+.. warning::
+
+  Declarations **can hide** outer variables
+
 ----------------------
 Scope and "Lifetime"
 ----------------------
 
 * Object in scope |rightarrow| exists while its enclosing block exists
 
-.. note:: No *scoping* keywords (C's :c:`static`, :c:`auto` etc...)
+.. note:: No *scoping* keywords (C's :c:`static`, :c:`auto`, etc...)
 
 .. image:: block_scope_example.svg
     :height: 50%

@@ -39,7 +39,7 @@ Generic Constants/Variables As Parameters
          V   : Positive := 10;
          Max : Float;
 
-         procedure My_Repository is new Repository
+         package My_Repository is new Repository
            (Component_T    => Float,
             Array_size     => V,
             High_Watermark => Max);

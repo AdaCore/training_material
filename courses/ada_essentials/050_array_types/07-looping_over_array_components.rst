@@ -12,7 +12,7 @@ Note on Default Initialization for Array Types
    * But if the array type is used in multiple places, it would be better to initialize at the type level
    * No matter how many dimensions, there is only one component type
 
-* Uses aspect `Default_Component_Value`
+* Uses aspect :ada:`Default_Component_Value`
 
   .. code:: Ada
 
@@ -136,8 +136,8 @@ Quiz
 
   * :ada:`Default_Component_Value` so all components intialized to 1
 
-  * First :ada:`for` loop iterates over indexes :ada:`Ada'First + 1` (2)
-    through :ada:`Ada'Last - 1` (4) - so array now is 1, 10, 15, 20, 1
+  * First :ada:`for` loop iterates over indexes :ada:`A'First + 1` (2)
+    through :ada:`A'Last - 1` (4) - so array now is **1 10 15 20 1**
 
   * Second :ada:`for` loop iterates over whole array backwards
     (:ada:`reverse`) giving the answer of **1 20 15 10 1**

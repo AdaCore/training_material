@@ -10,7 +10,7 @@ Mode "out" Risk for Scalars
 * Else "By-copy" mechanism will copy something back
 
    - May be junk
-   - :ada:`Constraint_Error` or unknown behaviour further down
+   - :ada:`Constraint_Error` or unknown behavior further down
 
 .. code:: Ada
 
