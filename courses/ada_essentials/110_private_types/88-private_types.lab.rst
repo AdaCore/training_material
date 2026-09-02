@@ -2,6 +2,23 @@
 Lab
 =====
 
+------------------
+Before You Start
+------------------
+
+This lab wants you to implement *Abstract Data Types (ADTs)*
+
+Abstract Data Type
+  Model for data structures with certain operations
+
+Map (or Map ADT)
+  ADT that stores collection of key-value pairs
+  where each unique key is associated with exactly one value 
+
+Set (or Set ADT)
+  ADT that stores a collection of unique,
+  unordered values with no duplicate elements
+
 -------------------
 Private Types Lab
 -------------------
