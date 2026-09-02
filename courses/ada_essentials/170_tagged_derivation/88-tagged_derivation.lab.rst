@@ -19,7 +19,7 @@ Tagged Derivation Lab
 
 * Hints
 
-   - Use `overriding` and `not overriding` as appropriate **(Ada 2005 and above)**
+   - Use `overriding` and `not overriding` as appropriate
 
 -----------------------------------------------
 Tagged Derivation Lab Solution - Types (Spec)
