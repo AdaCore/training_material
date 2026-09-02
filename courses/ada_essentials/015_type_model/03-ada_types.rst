@@ -45,7 +45,7 @@ Understanding Types vs Subtypes
         type Temperature is range -273 .. 5000;
         subtype Celsius is Temperature range -273 .. 100;
 
-* Subtype that does **not** add a restriction is generally refered to as an *alias*
+* Subtype that does **not** add a restriction is generally referred to as an *alias*
 
   .. code:: Ada
 

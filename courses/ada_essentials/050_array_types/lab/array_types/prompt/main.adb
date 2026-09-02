@@ -23,7 +23,7 @@ begin
       -- Print the array index and the item
 
    -- Copy part of Constant_Array to part of Array_Var
-   -- Set another part of Array_Var to a known value
+   -- Clear the rest of the Array_Var
    -- For every item of Array_Var
       -- Print the item
 

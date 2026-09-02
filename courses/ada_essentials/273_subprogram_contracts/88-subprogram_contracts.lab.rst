@@ -61,8 +61,6 @@ Helpful Hints
 Extra Credit (If Time Permits)
 --------------------------------
 
-* Prevent adding duplicate item to queue
-
 * Do the contracts guarantee
 
   * Item actually gets added to queue?
