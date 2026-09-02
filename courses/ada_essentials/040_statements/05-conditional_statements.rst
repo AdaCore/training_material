@@ -220,4 +220,4 @@ D. ``when others     => Put_Line ("As needed");``
    Explanation
 
    * :ada:`Sat` is covered by :ada:`when others`
-   * Must use the pipe ('|') symbol for a non-contiguous range (:ada:`when Mon | Fri`)
+   * Multiple discrete choices are separated with the pipe (|) symbol (:ada:`when Mon | Fri`)
