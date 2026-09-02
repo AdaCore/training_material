@@ -17,12 +17,12 @@ The Notion of a Pattern
         Right := V;
      end Swap_Int;
 
-     procedure Swap_Bool (Left, Right : in out Float) is
+     procedure Swap_Float (Left, Right : in out Float) is
         V : Float := Left;
      begin
         Left := Right;
         Right := V;
-     end Swap_Bool;
+     end Swap_Float;
 
 * It would be nice to extract these properties in some common pattern, and then just replace the parts that need to be replaced
 

@@ -38,7 +38,7 @@ Import / Export Aspects (1/2)
         // some code
      }
 
-     extern void ada_some_procedure (void);
+     extern void some_ada_procedure (void);
 
 ..
   language_version 2012
