@@ -104,8 +104,8 @@ Parameter Modes for Scalars
 
     The_Value : Interfaces.C.int := 1200;
 
-    Use_Scalar (Value, 34);
-    Put_Line (Value'Image);
+    Use_Scalar (The_Value, 34);
+    Put_Line (The_Value'Image);
 
 * C View
 
@@ -154,7 +154,7 @@ Parameter Modes For Composite Types (1/2)
    Pass_By_Copy (Copy);
 
 -------------------------------------------
-Parameter Modes For Composite Types (1/2)
+Parameter Modes For Composite Types (2/2)
 -------------------------------------------
 
 * C View
