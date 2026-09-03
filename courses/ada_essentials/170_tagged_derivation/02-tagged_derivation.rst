@@ -2,26 +2,24 @@
 Tagged Derivation
 ===================
 
------------------------------------
-Difference with Simple Derivation
------------------------------------
+---------------------------
+Can Change Type Structure
+---------------------------
 
-* Tagged derivation **can** change the structure of a type
+* Keywords :ada:`tagged record` and :ada:`with record`
 
-    - Keywords :ada:`tagged record` and :ada:`with record`
+   .. code:: Ada
 
-      .. code:: Ada
+      type Root_T is tagged record
+         F1 : Integer;
+      end record;
 
-         type Root_T is tagged record
-            F1 : Integer;
-         end record;
+      type Child_T is new Root_T with record
+         F2 : Integer;
+      end record;
 
-         type Child_T is new Root_T with record
-            F2 : Integer;
-         end record;
-
-         Root_Object  : Root_T := (F1 => 101);
-         Child_Object : Child_T := (F1 => 201, F2 => 202);
+      Root_Object  : Root_T := (F1 => 101);
+      Child_Object : Child_T := (F1 => 201, F2 => 202);
 
 ----------------
 Type Extension
