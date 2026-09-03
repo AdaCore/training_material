@@ -190,7 +190,7 @@ D. | ``end if;``
 
    A. Uses the C-style equality/inequality operators
    B. :ada:`elsif` is a legal part of an :ada:`if` statement
-   B. Multiple :ada:`elsif` branches are allowed
+   C. Multiple :ada:`elsif` branches are allowed
    D. It is legal to end an :ada:`if` statement without an :ada:`else`
 
 ------
