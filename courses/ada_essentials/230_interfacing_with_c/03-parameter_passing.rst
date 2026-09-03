@@ -136,13 +136,13 @@ Parameter Modes for Composite Types (1/2)
   .. code:: Ada
 
    type Reference_T is record
-      Sensor_ID : Interfaces.c.int;
-      Reading   : Interfaces.c.double;
+      Sensor_ID : Interfaces.C.int;
+      Reading   : Interfaces.C.double;
    end record with Convention => C;
 
    type Copy_T is record
-      Sensor_ID : Interfaces.c.int;
-      Reading   : Interfaces.c.double;
+      Sensor_ID : Interfaces.C.int;
+      Reading   : Interfaces.C.double;
    end record with Convention => C_Pass_By_Copy;
 
    procedure Pass_By_Reference (Data : in Reference_T)
