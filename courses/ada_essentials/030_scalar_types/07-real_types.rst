@@ -43,7 +43,7 @@ Real Type (Floating and Fixed) Literals
    -- floating point with range
    type Percentage is digits 7 range 0.0 .. 100.0;
    Valid_Score   : Percentage := 95.5;  
-   Bad_Score     : Percentage := -10.0;  -- runtime error
+   Bad_Score     : Percentage := -10.0;  -- run-time error
 
 --------------------------------
 Declaring Floating Point Types
@@ -56,7 +56,7 @@ Declaring Floating Point Types
   - *digits* |rightarrow| **minimum** number of significant digits
   - **Decimal** digits, not bits
 
-* Compiler choses representation
+* Compiler chooses representation
 
   - From **available** floating point types
   - May be **more** accurate, but not less
@@ -68,7 +68,9 @@ Declaring Floating Point Types
 
     type Very_Precise_T is digits System.Max_Digits;
 
-  *Need to do* :ada:`with System;` *to get visibility*
+.. note::
+
+  Need to do :ada:`with System;` to get visibility
 
 ---------------------------------
 Predefined Floating Point Types

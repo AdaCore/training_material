@@ -1,9 +1,9 @@
-==========
-Literals
-==========
+==================
+Numeric Literals
+==================
 
 ------------------
-Numeric Literals
+Decimal Literals
 ------------------
 
 **Syntax**
@@ -20,9 +20,9 @@ Numeric Literals
      12      0       1E6         123_456
      12.0    0.0     3.14159_26  2.3E-4
 
-------------------------
-Based Numeric Literals
-------------------------
+----------------
+Based Literals
+----------------
 
 **Syntax**
 
@@ -35,7 +35,7 @@ Based Numeric Literals
   .. code:: Ada
 
      16#FFF#           => 4095
-     2#1111_1111_1111# => 4095 -- With underline
+     2#1111_1111_1111# => 4095 -- With underscore
      7#1_4640#         => 4095
      8#10#E+3          => 4096 (8 * 8**3)
      16#F.FF#E+2       => 4095.0

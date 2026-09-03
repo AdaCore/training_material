@@ -76,7 +76,7 @@ Views
 
     Initial_Value : constant Float := 32.0;
 
-  - **Initial_Value** cannot be assigned a new value
+  - :ada:`Initial_Value` cannot be assigned a new value
 
 * **Purpose:** control usage in accordance with design
 

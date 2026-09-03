@@ -30,7 +30,7 @@ Testing Constraints Via Membership
    type Calendar_Days  is
        (Mon, Tues, Wed, Thur, Fri, Sat, Sun);
    subtype Weekdays is Calendar_Days range Mon .. Fri;
-   Day : Calendar_Days; // Value is given later
+   Day : Calendar_Days; -- Value is given later
    ...
    if Day in Mon .. Fri then ...
    if Day in Weekdays then ... -- same as above
@@ -74,7 +74,7 @@ Quiz
 
    type Days_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
    subtype Weekdays_T is Days_T range Mon .. Fri;
-   Today : Days_T;
+   Today : Days_T := Mon;
 
 Which of the following conditions are legal? (Select all that apply)
 

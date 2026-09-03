@@ -28,8 +28,8 @@ Ada Contracts
 
 * Ada contracts include enforcement
 
-   - At compile-time: specific constructs, features, and rules
-   - At run-time: language-defined and user-defined exceptions
+   - **Compile-time:** specific constructs, features, and rules
+   - **Run-time:** language-defined and user-defined exceptions
 
 * Facilities as part of the language definition
 

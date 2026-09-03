@@ -60,11 +60,11 @@ Scalar Types Lab Hints
    - Do you need fractions or just whole numbers?
    - What happens when you want the number to wrap?
 
-* Predefined package `Ada.Text_IO` is handy...
+* Predefined package :ada:`Ada.Text_IO` is handy...
 
-   - Procedure `Put_Line` takes a `String` as the parameter
+   - Procedure :ada:`Put_Line` takes a :ada:`String` as the parameter
 
-* Remember attribute `'Image` returns a `String`
+* Remember attribute :ada:`'Image` returns a :ada:`String`
 
   .. code:: Ada
 

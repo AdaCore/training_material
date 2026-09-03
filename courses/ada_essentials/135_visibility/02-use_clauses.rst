@@ -102,9 +102,9 @@ No Meaning Changes
      end;
    end Example;
 
---------------
-No Ambiguity
---------------
+----------------------
+No Ambiguity Allowed
+----------------------
 
 .. code:: Ada
 
@@ -137,7 +137,7 @@ No Ambiguity
 * A clause for a child does **not** imply one for its parent
 * A clause for a parent makes the child **directly** visible
 
-   - Since children are 'inside' declarative region of parent
+   - Since children are "inside" declarative region of parent
 
 .. code:: Ada
 
