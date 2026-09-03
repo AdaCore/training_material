@@ -188,8 +188,10 @@ D. | ``end if;``
 
    Explanation
 
-   * :ada:`A` uses the C-style equality/inequality operators
-   * :ada:`D` is legal because :ada:`else` is not required for an :ada:`if` block
+   A. Uses the C-style equality/inequality operators
+   B. :ada:`elsif` is a legal part of an :ada:`if` statement
+   C. Multiple :ada:`elsif` branches are allowed
+   D. It is legal to end an :ada:`if` statement without an :ada:`else`
 
 ------
 Quiz
