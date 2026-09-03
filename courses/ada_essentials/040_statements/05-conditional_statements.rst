@@ -173,7 +173,7 @@ Quiz
    A : Integer := 100;
    B : Integer := 200;
 
-Which choice needs to be modified to make a valid :ada:`if` block
+Which choice needs to be modified to make a valid :ada:`if` block?
 
 A. | :answermono:`if A == B and then A != 0 then`
    |    :answermono:`A := Integer'First;`
@@ -198,26 +198,26 @@ Quiz
 .. code:: Ada
 
    type Enum_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
-   A : Enum_T;
+   function Get_Today return Enum_T;
 
-Which choice needs to be modified to make a valid :ada:`case` block
+Which choice needs to be modified to make a valid :ada:`case` block?
 
 .. code:: Ada
 
-   case A is
+   case Get_Today is
 
-A. | ``when Sun =>``
-   |    ``Put_Line ("Day Off");``
-B. | ``when Mon | Fri =>``
-   |    ``Put_Line ("Short Day");``
-C. | ``when Tue .. Thu =>``
-   |    ``Put_Line ("Long Day");``
-D. | :answermono:`end case;`
+A. ``when Sun        => Put_Line ("Day Off");``
+B. :answermono:`when Mon or Fri => Put_Line ("Short Day");`
+C. ``when Tue .. Thu => Put_Line ("Long Day");``
+D. ``when others     => Put_Line ("As needed");``
+
+.. code:: Ada
+
+   end case;
 
 .. container:: animate
 
    Explanation
 
-   * Ada requires all possibilities to be covered
-   * Add :ada:`when others` or :ada:`when Sat`
-
+   * :ada:`Sat` is covered by :ada:`when others`
+   * Multiple discrete choices are separated with the pipe (|) symbol (:ada:`when Mon | Fri`)
