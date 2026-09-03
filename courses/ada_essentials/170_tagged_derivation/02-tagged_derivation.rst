@@ -21,6 +21,10 @@ Can Change Type Structure
       Root_Object  : Root_T := (F1 => 101);
       Child_Object : Child_T := (F1 => 201, F2 => 202);
 
+.. note::
+
+   Unlike *type derivation*, which can only constrain the type (or create an alias)
+
 ----------------
 Type Extension
 ----------------
