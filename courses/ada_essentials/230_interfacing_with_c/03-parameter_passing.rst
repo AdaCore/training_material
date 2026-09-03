@@ -12,7 +12,7 @@ Parameter Passing to/from C
    - The mode of the parameter
    - The Convention applied on the Ada side of the subprogram declaration
 
-* The exact meaning of *Convention C*, for example, is documented in *LRM* B.1 - B.3, and in the *GNAT User's Guide* section 3.11.
+* The exact meaning of *Convention C*, for example, is documented in *RM* B.1 - B.3, and in the *GNAT User's Guide* section 3.11.
 
 -----------------------------------
 Passing Scalar Data As Parameters

@@ -48,9 +48,9 @@ Learning the Ada Language
 Reference Manual
 ------------------
 
-* **LRM** - Language Reference Manual (or just **RM**)
+* **RM** - Language Reference Manual
 
-   - Always on-line (including all previous versions) at `www.adaic.org <www.adaic.org>`_
+   - Always on-line (including all previous versions) at `adacore.com <https://www.adacore.com/documentation?tab=gnat>`_
 
 * Finding stuff in the RM
 
