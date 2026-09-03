@@ -87,7 +87,9 @@ Simple "case" Statements
        Turn (-1);
    end case;
 
-*Note*: No fall-through between cases
+.. note::
+
+   No fall-through between cases
 
 ----------------------
 Case Statement Rules
