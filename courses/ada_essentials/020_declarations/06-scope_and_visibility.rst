@@ -77,30 +77,34 @@ Visibility in Action
 * **Name hiding**: a name used in an *inner scope* can hide the same name visible in the *outer scope*
 
   .. code:: Ada
+    :number-lines: 3
 
-     type Color is (Red, Green, Blue);
-     type Size  is (Small, Medium, Large);
+    type Color is (Red, Green, Blue);
+    type Size  is (Small, Medium, Large);
 
-     declare
-       My_Obj : Color;     -- outer My_Obj
-     begin
-       My_Obj := Green;    -- assigns to outer My_Obj (Color)
-       declare
-         My_Obj : Size;    -- hides outer My_Obj
-       begin
-         My_Obj := Medium; -- OK: inner My_Obj is Size
-         My_Obj := Red;    -- compile error: inner My_Obj is not Color
-       end;
-       My_Obj := Blue;     -- OK: outer My_Obj is Color
-       My_Obj := Small;    -- compile error: outer My_Obj is not Size
-     end;
+    My_Obj : Color;     -- outer My_Obj
+
+  .. code:: Ada
+    :number-lines: 8
+
+    begin
+      My_Obj := Green;    -- assigns to outer My_Obj (Color)
+      declare
+        My_Obj : Size;    -- hides outer My_Obj
+      begin
+        My_Obj := Medium; -- OK: inner My_Obj is Size
+        My_Obj := Red;    -- compile error: inner My_Obj is not Color
+      end;
+      My_Obj := Blue;     -- OK: outer My_Obj is Color
+      My_Obj := Small;    -- compile error: outer My_Obj is not Size
+    end;
 
 * In GNAT, the compiler switch :command:`-gnatwh` will give a warning
 
   .. code:: error
     :font-size: small
 
-    main.adb:9:07: warning: declaration hides "My_Obj" at line 4
+    main.adb:11:07: warning: declaration hides "My_Obj" at line 6
 
 
 -------------------

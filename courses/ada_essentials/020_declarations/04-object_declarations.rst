@@ -87,7 +87,7 @@ Multiple Object Declarations
      Val_1 : Integer := Next_Available (Some_Num);
      Val_2 : Integer := Next_Available (Some_Num);
 
-  * So :ada:`Val_1` and :ada:`Val_2` may have different values!
+  * :ada:`Val_1` and :ada:`Val_2` may have different values!
 
 -------------------------
 Predefined Declarations

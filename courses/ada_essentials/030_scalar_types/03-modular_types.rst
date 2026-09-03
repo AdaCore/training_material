@@ -68,8 +68,8 @@ Package "Interfaces"
 
   .. code:: Ada
 
-    type Integer_8  is range -2 **  7 .. 2 **  7 - 1;
-    for Integer_8'Size use  8;
+    type Integer_8  is range -2 ** 7 .. 2 ** 7 - 1;
+    for Integer_8'Size use 8;
 
     type Unsigned_16 is mod 2 ** 16;
     for Unsigned_16'Size use 16;
