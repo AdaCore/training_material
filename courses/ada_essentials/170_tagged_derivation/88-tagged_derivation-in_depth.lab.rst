@@ -19,7 +19,7 @@ Tagged Derivation Lab
 
 * Hints
 
-   - Use `overriding` and `not overriding` as appropriate
+   - Use :ada:`overriding` and :ada:`not overriding` as appropriate
    - Data hiding is important! 
 
 -----------------------------------------------
