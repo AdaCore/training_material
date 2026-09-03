@@ -36,7 +36,7 @@ Private Types
 .. include:: 110_private_types/02-implementing_abstract_data_types.rst
 .. include:: 110_private_types/03-private_section_construction.rst
 .. include:: 110_private_types/04-view_operations.rst
-.. include:: 110_private_types/05-when_to_use_private_types.rst
+.. include:: 110_private_types/05-usage.rst
 .. include:: 110_private_types/06-idioms.rst
 .. include:: 110_private_types/88-private_types.lab.rst
 .. include:: 110_private_types/99-summary.rst
