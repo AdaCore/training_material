@@ -233,7 +233,7 @@ Idiom: Extended Ranges
 
         .. code:: Ada
    
-           -- ARM A.10.1
+           -- RM A.10.1
            package Text_IO is
               ...
               type Count is range 0 .. implementation-defined;
