@@ -20,7 +20,7 @@
 <text xml:space="preserve" fill="#800000" stroke="none"  text-align="left" font-size="11px" font-family='arial' font-weight="bold" font-style="italic"  text-anchor="middle" x="217.75" y="155.0" >Failure</text>
 <polygon fill="#aa0000" stroke="#000000" stroke-width="1.0" points="432.5,158.0 342.5,192.0 252.5,158.0 342.5,124.0 "/>
 <text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="14px" font-family='arial' font-weight="bold"  text-anchor="middle" x="342.5" y="151.0" >Raise</text>
-<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="14px" font-family='arial' font-weight="bold"  text-anchor="middle" x="342.5" y="166.0" >assertion Error</text>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="14px" font-family='arial' font-weight="bold"  text-anchor="middle" x="342.5" y="166.0" >assertion error</text>
 <polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(0, 477.5, 158.0)" points="477.5,158.0 474.5,155.0 474.5,157.75 432.5,157.75 432.5,158.25 474.5,158.25 474.5,161.0 "/>
 <polygon fill="#00aa00" stroke="#000000" stroke-width="1.0" points="185,294.0 5,294.0 5,226.0 185,226.0 "/>
 <text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="14px" font-family='arial' font-weight="bold"  text-anchor="middle" x="95" y="263.5" >Call subprogram</text>
@@ -41,7 +41,7 @@
 <text xml:space="preserve" fill="#800000" stroke="none"  text-align="left" font-size="11px" font-family='arial' font-weight="bold" font-style="italic"  text-anchor="middle" x="465.25" y="359.0" >Failure</text>
 <polygon fill="#aa0000" stroke="#000000" stroke-width="1.0" points="680.0,362.0 590.0,396.0 500.0,362.0 590.0,328.0 "/>
 <text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="14px" font-family='arial' font-weight="bold"  text-anchor="middle" x="590.0" y="355.0" >Raise</text>
-<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="14px" font-family='arial' font-weight="bold"  text-anchor="middle" x="590.0" y="370.0" >assertion Error</text>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="14px" font-family='arial' font-weight="bold"  text-anchor="middle" x="590.0" y="370.0" >assertion error</text>
 <polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(0, 725.0, 362.0)" points="725.0,362.0 722.0,359.0 722.0,361.75 680.0,361.75 680.0,362.25 722.0,362.25 722.0,365.0 "/>
 <polygon fill="#00aa00" stroke="#000000" stroke-width="1.0" points="432.5,498.0 252.5,498.0 252.5,430.0 432.5,430.0 "/>
 <text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="center" font-size="14px" font-family='arial' font-weight="bold"  text-anchor="middle" x="342.5" y="467.5" >Return to caller</text>
