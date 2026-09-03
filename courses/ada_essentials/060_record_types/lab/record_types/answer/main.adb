@@ -13,41 +13,40 @@ procedure Main is
       Inches : Inches_T;
    end record;
 
-   Point_1  : Distance_T;
-   Point_2  : Distance_T;
-   Distance : Distance_T;
+   Ladder_Height : Distance_T;
+   Worker_Height : Distance_T;
+   Maximum_Reach : Distance_T;
 
    Total : Integer;
    --Declarations
 
---Implementation
+   --Implementation
 begin
-   Point_1.Feet   := 12;
-   Point_1.Inches := 7;
+   Ladder_Height.Feet   := 12;
+   Ladder_Height.Inches := 7;
 
-   Point_2 := (Feet   => 6,
-               Inches => 8);
+   Worker_Height := (Feet => 6, Inches => 8);
 
-   Distance := (0, 0);
+   Maximum_Reach := (0, 0);
 
-   Total := Integer (Point_1.Inches) +
-            Integer (Point_2.Inches);
+   Total := Integer (Ladder_Height.Inches) + Integer (Worker_Height.Inches);
    if Total >= Max_Inches then
-      Distance.Inches := Inches_T (Total - Max_Inches);
-      Distance.Feet   := 1;
+      Maximum_Reach.Inches := Inches_T (Total - Max_Inches);
+      Maximum_Reach.Feet   := 1;
    else
-      Distance.Inches := Point_1.Inches + Point_2.Inches;
+      Maximum_Reach.Inches := Ladder_Height.Inches + Worker_Height.Inches;
    end if;
-   Distance.Feet := Distance.Feet + Point_1.Feet + Point_2.Feet;
+   Maximum_Reach.Feet :=
+     Maximum_Reach.Feet + Ladder_Height.Feet + Worker_Height.Feet;
 
-   Put_Line ("Point 1: " &
-               Point_1.Feet'Image &
-               Point_1.Inches'Image);
-   Put_Line ("Point 2: " &
-               Point_2.Feet'Image &
-               Point_2.Inches'Image);
-   Put_Line ("Distance: " &
-               Distance.Feet'Image &
-               Distance.Inches'Image);
+   Put_Line
+     ("Ladder Height: " & Ladder_Height.Feet'Image &
+      Ladder_Height.Inches'Image);
+   Put_Line
+     ("Worker Height: " & Worker_Height.Feet'Image &
+      Worker_Height.Inches'Image);
+   Put_Line
+     ("Maximum Reach: " & Maximum_Reach.Feet'Image &
+      Maximum_Reach.Inches'Image);
 end Main;
 --Implementation
