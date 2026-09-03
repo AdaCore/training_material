@@ -15,7 +15,7 @@ Private Types Lab
 
    - Map operations should include
 
-      + Add a country (and it's information) to the map
+      + Add a country (and its information) to the map
       + Query the map for countries
       + Query each country for its content
 
