@@ -2,23 +2,6 @@
 Lab
 =====
 
-------------------
-Before You Start
-------------------
-
-This lab wants you to implement *Abstract Data Types (ADTs)*
-
-Abstract Data Type
-  Model for data structures with certain operations
-
-Map (or Map ADT)
-  ADT that stores collection of key-value pairs
-  where each unique key is associated with exactly one value 
-
-Set (or Set ADT)
-  ADT that stores a collection of unique,
-  unordered values with no duplicate elements
-
 -------------------
 Private Types Lab
 -------------------
@@ -28,11 +11,11 @@ Private Types Lab
    - Implement a program to create a map such that
 
       + Map key is a country name
-      + Map component content should include the associated continent and the colors in the flag
+      + Map component should contain the associated continent and the colors in the flag
 
    - Map operations should include
 
-      + Add a country to the map
+      + Add a country (and it's information) to the map
       + Query the map for countries
       + Query each country for its content
 
@@ -44,16 +27,16 @@ Private Types Lab
 
 * Hints
 
-   - Should implement a **map** ADT (to keep track of the flags)
+   - Should implement a **map** ADT where the key is the country
 
-      + This **map** will contain the country, continent, and flag colors
+      + For each country entry, the data will consist of continent and flag color set
 
-   - Should implement a **set** ADT (to keep track of the colors)
+   - Should implement a **set** ADT to collect colors
 
-      + This **set** will be the description of the map component
+      + Each flag will be represented by a set of colors
 
    - Each ADT should be its own package
-   - At a minimum, the **map** and **set** type should be `private`
+   - At a minimum, the **country map** and **color set** type should be `private`
 
    - :ada:`Types` package containing enumerals for continents, countries,
      and colors is part of the **prompt**
