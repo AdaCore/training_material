@@ -129,7 +129,7 @@ Parameter Modes for Composite Types (1/2)
 
 * Composite types passed by reference for all modes
 
-  * Except records with the aspect :ada:`C_Pass_By_Copy`
+  * Except records with the aspect :ada:`C_Pass_By_Copy` passed as :ada:`in`
 
 * Ada View
 
