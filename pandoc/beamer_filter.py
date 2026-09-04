@@ -1105,8 +1105,9 @@ def process_metadata(meta):
 
     # if the folder containing the RST file was passed in as metadata
     folder_info = meta.get("folder")
-    # get the value from the "content" field for this key
-    COURSE_FOLDER = folder_info.get("c")
+    if folder_info != None:
+        # get the value from the "content" field for this key
+        COURSE_FOLDER = folder_info.get("c")
 
     # replace this routine with an empty routine
     process_metadata = do_nothing

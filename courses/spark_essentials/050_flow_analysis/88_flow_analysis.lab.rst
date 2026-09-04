@@ -166,7 +166,7 @@ Verifying Results
 
 .. container:: animate 2-
 
-  .. code:: error
+  .. code:: output
     :font-size: tiny
 
     basics.adb:12:14: info: non-aliasing of formal parameters "X" and "Y" proved
