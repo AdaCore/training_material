@@ -49,6 +49,6 @@ Flow Dependencies of a Package
       V1 : Integer := 0;
       V2 : Integer := External_Variable;
    end P;
-   -- The association for V1 is omitted, it does not
-   -- depend on any external state
+   -- The association for V1 is omitted, it does
+   -- not depend on any external state
 
