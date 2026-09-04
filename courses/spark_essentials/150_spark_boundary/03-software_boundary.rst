@@ -327,7 +327,7 @@ Modeling an API
 
 |
 
-* Relevant global data should be modelled
+* Relevant global data should be modeled
 
   - As abstract states when not accessed concurrently
   - As external states when accessed concurrently
