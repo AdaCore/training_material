@@ -80,7 +80,7 @@ Reading a union field requires :rust:`unsafe`
 * A read interprets the stored bits as the selected field type
 * Rust does not check which field was written previously
 * Pattern matching on a union field is also an unsafe read
-* The stored bits must form a valid value for the field being read
+* Stored bits must form a valid value for the field being read
 
 .. warning::
 
