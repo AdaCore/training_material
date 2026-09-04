@@ -97,7 +97,7 @@ Using the Abstract State
   - Now to address the ignored errors:
 
     .. code:: error
-      :font-size: footnotesize
+      :font-size: scriptsize
 
       basics.ads:29:28: error: "The_Rec" is undefined (more references follow)
       basics.ads:34:28: error: "The_Table" is undefined (more references follow)
@@ -110,7 +110,7 @@ Using the Abstract State
 
 .. container:: animate 2-
 
-   *Some examples*
+  *Some examples*
 
   .. code:: Ada
 

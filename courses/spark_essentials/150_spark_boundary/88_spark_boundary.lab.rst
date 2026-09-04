@@ -45,13 +45,13 @@ System Boundary (1/2)
     alarm.ads:8:13: error: function "Get_Status" with volatile input
         global "Status" with effective reads is not allowed in SPARK
 
-   *Without specifying volatility property,* :ada:`Effective_Reads` *is True (so*
-   *a function read could cause a state change, which is a side effect)*
+  *Without specifying volatility property,* :ada:`Effective_Reads` *is True (so*
+  *a function read could cause a state change, which is a side effect)*
 
-   - Specify correct volatility properties for :ada:`Temperature` and :ada:`Status`
+  - Specify correct volatility properties for :ada:`Temperature` and :ada:`Status`
 
-     + :ada:`Temperature` can be written to at any time
-     + :ada:`Status` can be read at any time, so consecutive writes are expected
+    + :ada:`Temperature` can be written to at any time
+    + :ada:`Status` can be read at any time, so consecutive writes are expected
 
 .. container:: animate 3-
 
