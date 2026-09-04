@@ -248,7 +248,7 @@ Selection Sort (3/3)
   * Running the proof again fails because we can't verify the first time through the loop
 
     .. code:: error
-      :font-size: footnotesize
+      :font-size: scriptsize
 
       sort.adb:75:33: medium: loop invariant might fail in first iteration
 
