@@ -89,16 +89,11 @@ Defensive Programming
       Acquire (Resource);
    end;
 
------------------------------
-Pre/Postcondition Semantics
------------------------------
-
-* Calls inserted automatically by compiler
-
-|
+------------------------------------------
+Pre/Postcondition Semantics Illustration
+------------------------------------------
 
 .. image:: pre_and_post_insertion_flow.svg
-   :width: 90%
 
 -------------------------------------
 Contract with Quantified Expression
