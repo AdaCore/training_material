@@ -111,8 +111,9 @@ Why Read Mode "out" Parameters?
 
 .. note::
 
-  :ada:`out` parameters are treated as uninitialized, regardless
-  of the value passed in
+  :ada:`out` parameters use only default initializations for the type
+
+  They do **not** read passed-in data
 
 ------------------------------
 Parameter Passing Mechanisms

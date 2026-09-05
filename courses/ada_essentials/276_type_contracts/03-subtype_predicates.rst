@@ -433,9 +433,9 @@ Subtype Predicates Aren't Bullet-Proof
      Values : Table := (1, 3, 5, 7, 9);
    begin
      ...
-     Values (3) := 0;           -- no exception generated!
-     Call_Something (Values);   -- but this will generate one
-     Values := (1, 3, 0, 7, 9); -- as will this
+     Values (3) := 0;           -- No exception generated!
+     Call_Something (Values);   -- But this will generate one
+     Values := (1, 3, 0, 7, 9); -- As will this
      ...
    end Demo;
 
