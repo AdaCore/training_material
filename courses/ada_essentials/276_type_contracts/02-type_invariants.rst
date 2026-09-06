@@ -2,24 +2,80 @@
 Type Invariants
 =================
 
------------------
-Type Invariants
------------------
+-------------------------------
+Complicated Type Restrictions
+-------------------------------
 
-* There may be conditions that must hold over entire lifetime of objects
+* Pre/postconditions add restrictions to subprogram calls/behavior
 
-   - Pre/postconditions apply only to subprogram calls
+  * What about types (and therefore objects)?
 
 * Sometimes low-level facilities can express it
 
   .. code:: Ada
 
-     subtype Weekdays is Days range Mon .. Fri;
+    type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+    subtype Weekdays is Days range Mon .. Fri;
+    -- Restricts "Weekdays" to only part of "Days"
 
-     -- Guaranteed (absent unchecked conversion)
-     Workday : Weekdays := Mon;
+    type Bit_Array_T is array (Integer range <>) of Bit;
+    type Flags_T is new Array_T (1 .. 8);
+    -- Restricts "Flags_T" to always be 8 elements
 
-* Type invariants apply across entire lifetime for complex abstract data types
+* What about more complicated requirements?
+
+  .. code:: Ada
+
+    type Course_Description is record
+       Start_Time : Ada.Calendar.Time;
+       End_Time   : Ada.Calendar.Time;
+    end record;
+    --  How do we enforce "End_Time" > "Start_Time"?
+
+    type Account is record
+      Balance     : Currency;
+      Deposits    : Currency_List;
+      Withdrawals : Currency_List;
+    end record;
+    --  How do we ensure Balance is always accurate?
+    
+-----------------
+Type Invariants
+-----------------
+
+* In Ada, a :dfn:`Type Invariant` is a condition that *always holds* for the client
+
+  * But does not have to hold for the supplier
+
+* Therefore it's only useful (and allowed for) private types
+
+  .. code:: Ada
+
+    package Bank is
+      type Account is private with
+        Type_Invariant => Consistent_Balance (Account);
+      ...
+    private
+      type Account is record
+        Balance     : Currency;
+        Deposits    : Currency_List;
+        Withdrawals : Currency_List;
+      end record;
+
+* But it makes more sense to "hide" the invariant completely
+
+  .. code:: Ada
+
+    package Bank is
+      type Account is private;
+      ...
+    private
+      type Account is record
+        Balance     : Currency;
+        Deposits    : Currency_List;
+        Withdrawals : Currency_List;
+      end record
+        with Type_Invariant => Consistent_Balance (Account);
 
 ------------------------------
 Type Invariant Verifications
@@ -124,40 +180,22 @@ Default Type Initialization for Invariants
      end Zero;
    end Operations;
 
----------------------------------
-Type Invariant Clause Placement
----------------------------------
-
-* Can move aspect clause to private section
-
-  .. code:: Ada
-
-     package Operations is
-       type Private_T is private;
-       procedure Op (This : in out Private_T);
-     private
-       type Private_T is new Integer with
-         Type_Invariant => Private_T = 0,
-         Default_Value => 0;
-     end Operations;
-
-* It is really an implementation aspect
-
-   * Client shouldn't care!
-
-.. container:: speakernote
-
-   Alternatively, declaring the 'Zero' predicate function and making it visible to clients will allow them to re-state the invariant for subclasses.
-   That's useful because new, added primitive operations do not inherit the parent's type invariant.
-   In other words the invariant isn't really inherited, it just comes for free with those primitives that are inherited (and not overridden).
-
 ------------------------------
 Invariants Are Not Foolproof
 ------------------------------
 
-* Access to ADT representation via pointer could allow back door manipulation
-* These are private types, so access to internals must be granted by the private type's code
-* Granting internal representation access for an ADT is a highly questionable design!
+* Local subprograms are not checked
+
+  * They could leave a parameter in an invalid state
+  * Validity is not checked until public interface
+
+* Elements that are access types provide back channel access
+
+  * Pointed-to data could be modified outside the interface
+
+* Exceptions may be propagated out of supplier
+
+  * Can leave the parameter in an incomplete state
 
 ------
 Quiz
