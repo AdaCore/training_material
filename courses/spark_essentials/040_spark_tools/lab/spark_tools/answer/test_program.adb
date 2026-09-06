@@ -4,7 +4,7 @@ procedure Test_Program is
    The_Array : constant Arr := (10, 1, 9, 2, 8, 3, 7, 4, 6, 5);
 
    procedure Run_One (Val : Element) is
-      At_Index : Index;
+      At_Index : Integer;
       Status   : Boolean;
    begin
       Search (The_Array, Val, At_Index, Status);
@@ -22,5 +22,6 @@ begin
    Run_One (10);
    Run_One (-1);
    Run_One (11);
+   Run_One (5);
 
 end Test_Program;

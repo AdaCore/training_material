@@ -1,8 +1,9 @@
 package Basics is
 
+   subtype Index is Integer range 1 .. 10;
    type Element is new Integer;
 
-   type Arr is array (Integer range 1 .. 10) of Element;
+   type Arr is array (Index) of Element;
 
    function Search
      (The_Array :     Arr;
