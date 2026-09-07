@@ -248,4 +248,4 @@ when :ada:`Print_Something` is run?
    The call to :ada:`To_Integer` will fail its precondition, which is considered
    an :ada:`Assertion_Error` exception.
 
-   :ada:`Assertion_Error` *is only raised if compiled with assertions enabled*
+   :ada:`Assertion_Error` *is only raised if compiled with the specific assertion enabled*
