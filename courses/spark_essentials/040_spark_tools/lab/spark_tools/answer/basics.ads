@@ -16,7 +16,7 @@ is
       (Success and then At_Index in The_Array'Range
        and then The_Array (At_Index) = Val)
       or else (not Success);
-   --  Returns True if The_Array contains value Val, in which case
-   --  it also returns in At_Index the first index with value Val.
-   --  Returns False otherwise.
+   --  Success is True if The_Array contains value Val, in which case
+   --  it also set At_Index to the first index with value Val.
+   --  Success is False otherwise (and At_Index should be "don't care")
 end Basics;

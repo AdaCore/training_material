@@ -212,6 +212,10 @@ Proving the Code Works (3/3)
                or else
                (not Success);
 
+  * This postcondition only verifies when :ada:`Success` is :ada:`True`
+
+    * Validating :ada:`Val` is **not** in :ada:`The_Array` is not covered here
+
 --------------
 Extra Credit
 --------------
