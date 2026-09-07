@@ -85,7 +85,7 @@ Demonstrating Richer Expressions (3/3)
 .. container:: animate 3-
 
   .. code:: Ada
-    :font-sizde: small
+    :font-size: small
 
       procedure Swap_Table (T : in out Table; I, J : Index)
       with

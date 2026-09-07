@@ -291,7 +291,7 @@ Potential Logic Errors
     :font-size: scriptsize
 
     stack.adb:41:4: medium warning: suspicious precondition (Inspector):
-      precondition for Last does not have a contiguous range of values``
+      precondition for Last does not have a contiguous range of values
 
   .. code:: Ada
     :font-size: footnotesize
