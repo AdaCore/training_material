@@ -8,3 +8,4 @@
 580_design_patterns.rst
 590_concurrency.rst
 600_interoperability.rst
+190_testing.rst
