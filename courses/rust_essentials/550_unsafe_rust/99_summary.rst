@@ -19,12 +19,12 @@ What We Covered
 * **Safe vs. Unsafe**
 
   - Unsafe Rust introduces explicit safety obligations
-  - Unchecked safety requirements must be upheld
+  - Safety requirements the compiler cannot verify must be upheld
 
 * **Raw Pointers**
 
   - May be null, dangling, misaligned, or invalid
-  - Creation is safe; dereferencing is unsafe
+  - Creation is safe; dereferencing is an unsafe operation
 
 * **Unsafe Functions and Traits**
 
@@ -34,7 +34,7 @@ What We Covered
 * **Unions**
 
   - Fields share storage
-  - Reading a union field requires :rust:`unsafe`
+  - Reading a union field is an unsafe operation
 
 * **Safe Abstractions**
 
