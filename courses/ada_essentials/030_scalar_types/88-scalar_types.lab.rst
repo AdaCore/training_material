@@ -69,82 +69,7 @@ Scalar Types Lab Hints
   .. code:: Ada
 
      <typemark>'Image (Object)
-     Object'Image   
-
----------------------------
-Scalar Types Extra Credit
----------------------------
-
-See what happens when your data is invalid / illegal
-
-.. container:: animate 1-
-
-   **Number of tests = 0**
-
-.. container:: animate 2-
-
-  .. code:: Ada
-    :font-size: footnotesize
-    :number-lines: 35
-
-    Test_Score_Total := Test_Score_Total /
-                        Test_Score_Total_T (Number_Of_Tests);
-
-  * Compile warning
-
-    .. code:: error
-      :font-size: tiny
-
-      main.adb:35:43: warning: division by zero
-
-  * Runtime error
-
-    .. code:: error
-      :font-size: tiny
-
-      raised CONSTRAINT_ERROR : main.adb:35 divide by zero
-
-.. container:: animate 1-
-
-  **Color type only has one value**
-
-.. container:: animate 3-
-
-  .. code:: Ada
-    :number-lines: 37
-
-    Color := Cmyk_T'Pred (Cmyk_T'Last);
-
-  * Compile error
-
-    .. code:: error
-      :font-size: tiny
-
-      main.adb:37:30: error: Pred of "Cmyk_T'First"
-      main.adb:37:30: error: static expression fails Constraint_Check
-
-.. container:: animate 1-
-
-  **Add number larger than 360 to the circle value**
-
-.. container:: animate 4-
-
-  .. code:: Ada
-    :number-lines: 8
-
-      type Degrees_T is mod 360;
-
-  .. code:: Ada
-    :number-lines: 36
-
-    Angle := Angle + 459;
-
-  * Compile error
-
-    .. code:: error
-      :font-size: tiny
-
-      main.adb:36:32: error: value not in range of type "Degrees_T" defined at line 8
+     Object'Image
 
 ------------------------------------------
 Scalar Types Lab Solution - Declarations
@@ -155,6 +80,76 @@ Scalar Types Lab Solution - Declarations
 --------------------------------------------
 Scalar Types Lab Solution - Implementation
 --------------------------------------------
-  
+
 .. container:: source_include 030_scalar_types/lab/scalar_types/answer/main.adb :start-after:--Implementation :end-before:--Implementation :code:Ada :number-lines:18
 
+----------------------------------------------
+Scalar Types Extra Credit - Compiler Warning
+----------------------------------------------
+
+* Set :ada:`Number_Of_Tests` to ``0``
+
+  * Does it compile?
+  * Does it run?
+
+  .. code:: Ada
+    :font-size: small
+    :number-lines: 35
+
+    Test_Score_Total := Test_Score_Total /
+                        Test_Score_Total_T (Number_Of_Tests);
+
+.. container:: animate 2-
+
+  **Compile warning**
+
+  .. code:: error
+    :font-size: small
+
+    main.adb:35:43: warning: division by zero
+
+.. container:: animate 3-
+
+  **Runtime error**
+
+  .. code:: error
+    :font-size: small
+
+    raised CONSTRAINT_ERROR : main.adb:35 divide by zero
+
+-------------------------------------------------------
+Scalar Types Extra Credit - Invalid Static Expression
+-------------------------------------------------------
+
+* Set :ada:`Cmyk_T` to contain only one enumeral
+
+  .. code:: Ada
+    :number-lines: 37
+
+    Color := Cmyk_T'Pred (Cmyk_T'Last);
+
+.. container:: animate 2-
+
+  .. code:: error
+    :font-size: small
+
+    main.adb:37:30: error: Pred of "Cmyk_T'First"
+    main.adb:37:30: error: static expression fails Constraint_Check
+
+--------------------------------------------
+Scalar Types Extra Credit - Compiler Error
+--------------------------------------------
+
+* Add number larger than 360 to :ada:`Angle`
+
+  .. code:: Ada
+    :number-lines: 36
+
+    Angle := Angle + 459;
+
+.. container:: animate 2-
+
+  .. code:: error
+    :font-size: scriptsize
+
+    main.adb:36:32: error: value not in range of type "Degrees_T" defined at line 8
