@@ -6,19 +6,15 @@ Raw Pointers
 Raw Pointer Types
 -------------------
 
-**Raw pointers provide low-level access without reference guarantees**
-
-* :rust:`*const T` - raw pointer used to read a :rust:`T`
-* :rust:`*mut T` - raw pointer that may write a :rust:`T`
-
-**Characteristics of Raw Pointers**
-
-* May alias other raw pointers
-* May be null, dangling, or misaligned
-* May point to uninitialized or invalid memory
-* Do not own the pointed-to value
-
-  * No automatic lifetime or cleanup management
+* Raw pointers provide low-level access without reference guarantees
+  * :rust:`*const T` - raw pointer used to read a :rust:`T`
+  * :rust:`*mut T` - raw pointer that may write a :rust:`T`
+* Characteristics of Raw Pointers
+  * May alias other raw pointers
+  * May be null, dangling, or misaligned
+  * May point to uninitialized or invalid memory
+  * Do not own the pointed-to value
+    * No reference-lifetime guarantees or automatic cleanup management
 
 -----------------------
 Creating Raw Pointers
@@ -57,7 +53,7 @@ Dereferencing Raw Pointers
     // initialized memory with exclusive access
     unsafe {
         *face_hugger = 426;
-        println!("Ellen Ripley status: {}", *face_hugger);
+        println!("Ripley status: {}", *face_hugger);
     }
 
 .. note::
