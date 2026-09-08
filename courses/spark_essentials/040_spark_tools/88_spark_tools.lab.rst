@@ -128,7 +128,7 @@ Performing Flow Analysis
           + possible fix: initialize "At_Index" on all paths or make
             "At_Index" an IN OUT parameter
 
-  * Cannot require caller to check :ada:`Status`
+  * Cannot require caller to check :ada:`Success`
 
     * :ada:`At_Index` must always be initialized
 
@@ -165,7 +165,7 @@ Proving the Code Works (2/3)
   * Add postcondition such that if :ada:`Val` is in :ada:`The_Array` then
 
     * :ada:`At_Index` should be the index of :ada:`Val` in :ada:`The_Array`
-    * :ada:`Status` should be :ada:`True`
+    * :ada:`Success` should be :ada:`True`
 
 .. container:: animate 2-
 
