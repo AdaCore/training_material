@@ -6,13 +6,12 @@ Unions
 What Is a "union"?
 --------------------
 
-A :rust:`union` stores different fields in shared storage
-
-* Declared similarly to a :rust:`struct`, using the :rust:`union` keyword
-* The fields share common storage
-* The union is large enough to hold its largest field
-* Initialization specifies exactly one field
-* Rust does not track an active field
+* A :rust:`union` stores different fields in shared storage
+  * Declared similarly to a :rust:`struct`, using the :rust:`union` keyword
+  * The fields share common storage
+  * The union is large enough to hold its largest field
+  * Initialization specifies exactly one field
+  * Rust does not track an active field
 
 .. code:: rust
 
@@ -58,7 +57,7 @@ Writing Union Fields
 Reading Union Fields
 --------------------
 
-Reading a union field requires :rust:`unsafe`
+**Reading a union field is an unsafe operation**
 
 .. code:: rust
 

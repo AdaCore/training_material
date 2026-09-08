@@ -6,7 +6,7 @@ Mutable Statics
 Immutable and Mutable Statics
 -------------------------------
 
-**Static variables store data for the lifetime of the program**
+**Static items provide data for the duration of the program**
 
 * Reading an immutable static is safe
 * :rust:`static mut` permits mutation through a global name
