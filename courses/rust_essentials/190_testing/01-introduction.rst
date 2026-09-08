@@ -24,7 +24,7 @@ What Is Unit Test?
 
 * Given a known set of inputs, output is predicatable
 
-  * If outputs do not match expections then either
+  * If outputs do not match expections then either ...
 
     * Code is wrong
     * Expections are wrong
