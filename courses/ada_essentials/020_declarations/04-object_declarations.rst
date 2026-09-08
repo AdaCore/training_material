@@ -50,7 +50,7 @@ Initialization
 
   Runtime does not initialize variables
 
-  *Certain types (and their attributes) have their own rules (discussed later)*
+  *Certain types (and their definitions) have their own rules (discussed later)*
 
 -------------
 Elaboration
