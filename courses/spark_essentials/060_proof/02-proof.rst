@@ -145,7 +145,7 @@ Which of the following *cannot* cause a run-time error:
 
    Explanations: **all** of then can cause a run-time error!
 
-   A. Index check fails if :ada:`T` is empty.
+   A. Index check fails if :ada:`T` is empty
    B. Overflow check fails if :ada:`X = Integer'First`
    C. Overflow check fails if :ada:`X = Integer'First`
    D. Range check fails if :ada:`T'Range` is :ada:`Natural`

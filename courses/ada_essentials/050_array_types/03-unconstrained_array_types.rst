@@ -36,7 +36,7 @@ Supplying Index Constraints for Objects
 
      .. code:: Ada
 
-         Weekdays : Schedule(Mon..Fri);
+         Weekdays : Schedule(Mon .. Fri);
 
    - Object (or constant) initialization
 
@@ -63,16 +63,18 @@ Bounds Must Satisfy Type Constraints
 * :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 2
 
    type Index is range 1 .. 100;
    type Char_Arr is array (Index range <>) of Character;
    Good : Char_Arr (50 .. 75);
    Bad  : Char_Arr (0 .. 10); -- run-time error
 
-.. container:: latex_environment tiny
+.. code:: error
+  :font-size: tiny
 
-  :error:`example.adb:5:21: warning: static value out of range of type "Index" defined at line 2`
+  main.adb:5:21: warning: static value out of range of type "Index" defined at line 2
+  main.adb:5:21: warning: Constraint_Error will be raised at run time
 
 ------------------
 Null Index Range
@@ -90,16 +92,17 @@ Null Index Range
     :number-lines: 2
 
     type Index_T is range 1 .. 100; -- Index_T'Size = 8
-
     type Array_T is array (Index_T range <>) of Integer;
 
     Typical_Empty_Array : Array_T (1 .. 0);
     Weird_Empty_Array   : Array_T (123 .. -5);
     Bad_Empty_Array     : Array_T (999 .. 0);
 
-  .. container:: latex_environment scriptsize
+  .. code:: error
+    :font-size: tiny
 
-    :error:`example.adb:8:35: error: value not in range of type "Index_T" defined at line 2`
+    main.adb:7:36: error: value not in range of type "Index_T" defined at line 2
+    main.adb:7:36: error: static expression fails Constraint_Check
 
 * When the index type is a single-valued enumerated type, no empty array is possible
 

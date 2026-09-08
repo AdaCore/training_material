@@ -1,4 +1,4 @@
-package body Nesting_Example is
+package body Example is
    type Access_Level_0 is access all Integer;
    Pointer_At_0 : Access_Level_0;
    Object_At_0  : aliased Integer;
@@ -16,4 +16,4 @@ package body Nesting_Example is
       Pointer_At_1 := new Integer;
       Pointer_at_0 := Access_Level_0 (Pointer_at_1); -- illegal
    end Proc;
-end Nesting_Example;
+end Example;

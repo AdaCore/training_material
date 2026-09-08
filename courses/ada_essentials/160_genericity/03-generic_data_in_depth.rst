@@ -79,9 +79,10 @@ Generic Types Parameters (3/3)
          Bad  : Any_T;      -- Compilation error, no constraint to this
        begin
 
-    .. container:: latex_environment footnotesize
+    .. code:: error
+      :font-size: tiny
 
-      :error:`generic_procedure.adb:3:11: error: unconstrained subtype not allowed (need initialization)`
+      generic_procedure.adb:3:11: error: unconstrained subtype not allowed (need initialization)
 
   * Instantiations
 
@@ -101,9 +102,10 @@ Generic Types Parameters (3/3)
        -- thinks it can make copies
        procedure Bad is new Generic_Procedure (Limited_T);
 
-    .. container:: latex_environment footnotesize
+    .. code:: error
+      :font-size: tiny
 
-      :error:`instances.ads:15:44: error: actual for non-limited "Any_T" cannot be a limited type`
+      instances.ads:15:44: error: actual for non-limited "Any_T" cannot be a limited type
 
 ------------------------------------
 Generic Parameters Can Be Combined

@@ -14,10 +14,10 @@ begin
             Finish := 0;
          when Saturday =>
             Start     := 9;
-            Finish    := 13;
+            Finish    := 12;
          when Monday .. Friday =>
             Start     := 9;
-            Finish    := 17;
+            Finish    := 16;
       end case;
       Put_Line (Day'Image);
       Put_Line ("======");

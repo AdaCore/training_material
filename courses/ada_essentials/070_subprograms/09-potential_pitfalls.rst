@@ -10,7 +10,7 @@ Mode "out" Risk for Scalars
 * Else "By-copy" mechanism will copy something back
 
    - May be junk
-   - :ada:`Constraint_Error` or unknown behaviour further down
+   - :ada:`Constraint_Error` or unknown behavior further down
 
 .. code:: Ada
 
@@ -95,9 +95,10 @@ Parameter Aliasing
    ...
    Update (Doubled => A, Tripled => A);
 
-.. container:: latex_environment small
+.. code:: error
+  :font-size: scriptsize
 
-  :error:`error: writable actual for "Doubled" overlaps with actual for "Tripled"`
+  error: writable actual for "Doubled" overlaps with actual for "Tripled"
 
 ----------------------------
 Functions' Parameter Modes

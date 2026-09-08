@@ -49,7 +49,10 @@ By Default, Variables Are Immutable
 
 .. container:: latex_environment scriptsize
 
-  :error:`error[E0384]: cannot assign twice to immutable variable 'my_var'`
+.. code:: error
+  :font-size: scriptsize
+
+  error[E0384]: cannot assign twice to immutable variable 'my_var'
 
 --------------------------
 Making Variables Mutable
@@ -73,9 +76,10 @@ Making Variables Mutable
   change_me = 6;
   println!("change_me is now: {change_me}");
 
-:command:`change_me is: 5`
+.. code:: output
 
-:command:`change_me is now: 6`
+  change_me is: 5
+  change_me is now: 6
 
 .. note::
 

@@ -34,7 +34,9 @@ Signed Integer Bounds
 
 * Bounds must be known at compile time
 
-  *Later we'll learn about scoping and how to define dynamic bounds*
+.. note::
+
+  Later we'll learn about scoping and how to define dynamic bounds
 
 * Compiler selects **base type**
 
@@ -55,9 +57,10 @@ Signed Integer Bounds
 
       type Big_Integer_T is range 0 .. 2**128;
 
-    .. container:: latex_environment scriptsize
+    .. code:: error
+      :font-size: scriptsize
 
-      :error:`main.adb:3:26: error: integer type definition bounds out of range`
+      main.adb:3:26: error: integer type definition bounds out of range
 
 ---------------------------------
 Predefined Signed Integer Types

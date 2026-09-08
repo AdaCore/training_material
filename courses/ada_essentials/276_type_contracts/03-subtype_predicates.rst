@@ -381,19 +381,19 @@ In Some Cases Neither Kind Is Allowed
 Special Attributes for Predicated Types
 -----------------------------------------
 
-* Attributes `'First_Valid` and `'Last_Valid`
+* Attributes :ada:`'First_Valid` and :ada:`'Last_Valid`
 
    - Can be used for any static subtype
    - Especially useful with static predicates
-   - `'First_Valid` returns smallest valid value, taking any range or predicate into account
-   - `'Last_Valid` returns largest valid value, taking any range or predicate into account
+   - :ada:`'First_Valid` returns smallest valid value, taking any range or predicate into account
+   - :ada:`'Last_Valid` returns largest valid value, taking any range or predicate into account
 
-* Attributes `'Range`, `'First` and `'Last` are not allowed
+* Attributes :ada:`'Range`, :ada:`'First` and :ada:`'Last` are not allowed
 
    - Reflect non-predicate constraints so not valid
-   - `'Range` is just a shorthand for `'First` .. `'Last`
+   - :ada:`'Range` is just a shorthand for :ada:`'First .. 'Last`
 
-* `'Succ` and `'Pred` are allowed since work on underlying type
+* :ada:`'Succ` and :ada:`'Pred` are allowed since work on underlying type
 
 -----------------------------------
 Initial Values Can Be Problematic
@@ -511,7 +511,7 @@ Enabling/Disabling Contract Verification
 * Default, without pragma, is implementation-defined
 * Vendors almost certainly offer compiler switch
 
-   - GNAT uses same switch as for pragma Assert: ``-gnata``
+   - GNAT uses same switch as for :ada:`pragma Assert`: :command:`-gnata`
 
 .. container:: speakernote
 

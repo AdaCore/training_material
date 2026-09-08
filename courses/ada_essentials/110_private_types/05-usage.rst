@@ -1,6 +1,6 @@
-===========================
-When to Use Private Types
-===========================
+=======
+Usage
+=======
 
 ---------------------------
 When to Use Private Types
@@ -49,7 +49,7 @@ When to Avoid Private Types
 
    - Those that cannot be redefined by programmers
    - Would otherwise be hidden by a private type
-   - If `Vector` is private, indexing of components is annoying
+   - If :ada:`Vector` is private, indexing of components is annoying
 
      .. code:: Ada
 

@@ -18,9 +18,10 @@ Explicit Duplication
   println!("{}", poodle); // 'poodle' still has its ball
   println!("{}", yorkie); // 'yorkie' has its own copy
 
-:command:`ball`
+.. code:: output
 
-:command:`ball`
+  ball
+  ball
 
 ---------------------
 Cost of Duplication
@@ -37,9 +38,10 @@ Cost of Duplication
     println!("T-Rex One: {} bytes", t_rex_one.len());
     println!("T-Rex Two: {} bytes", t_rex_two.len());        
 
-:command:`T-Rex One: 10485760 bytes`
+.. code:: output
 
-:command:`T-Rex Two: 10485760 bytes`
+  T-Rex One: 10485760 bytes
+  T-Rex Two: 10485760 bytes
 
 ---------------------------
 The "Clone Away" Strategy

@@ -81,9 +81,10 @@ Length vs. Characters
 
     \vspace{2mm}
 
-:command:`Length = 23`
+.. code:: output
 
-:command:`Chars = 20`
+  Length = 23
+  Chars = 20
 
 .. note::
 

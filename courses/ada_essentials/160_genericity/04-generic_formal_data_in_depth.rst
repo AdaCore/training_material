@@ -39,7 +39,7 @@ Generic Constants/Variables As Parameters
          V   : Positive := 10;
          Max : Float;
 
-         procedure My_Repository is new Repository
+         package My_Repository is new Repository
            (Component_T    => Float,
             Array_size     => V,
             High_Watermark => Max);
@@ -111,11 +111,12 @@ If nothing specified for **"*"** in instance, compiler uses subprogram with **sa
 * :ada:`Specify_Operator` passes in appropriate definition via :ada:`Multiply`
 * :ada:`Need_Operator` generates compile error
 
-:error:`main.adb:11:4: error: instantiation error at gen.ads:5`
+.. code:: error
+  :font-size: scriptsize
 
-:error:`gen.ads:5:1: error: instantiation error at gen.ads:5`
-
-:error:`main.adb:11:4: error: no visible subprogram matches the specification for "*"`
+  main.adb:11:4: error: instantiation error at gen.ads:5
+  gen.ads:5:1: error: instantiation error at gen.ads:5
+  main.adb:11:4: error: no visible subprogram matches the specification for "*"
 
 ..
   language_version 2005

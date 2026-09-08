@@ -23,7 +23,7 @@ Available IDEs Supporting SPARK
 Basic **GNAT Studio** Look and Feel
 -------------------------------------
 
-.. image:: gnatstudio-look_and_feel.png
+.. image:: spark_essentials/spark_with_gnatstudio.png
 
 ---------------------------------
 **GNATprove** "SPARK" Main Menu
@@ -35,14 +35,14 @@ Basic **GNAT Studio** Look and Feel
 Project Tree Contextual Menu
 ------------------------------
 
-.. image:: spark_rightclick-source_tree.jpeg
+.. image:: spark_essentials/spark_rightclick-source_tree.png
    :width: 100%
 
 -----------------------------
 Source Code Contextual Menu
 -----------------------------
 
-.. image:: spark_rightclick-code.jpeg
+.. image:: spark_essentials/spark_rightclick-code.png
 
 .. container:: speakernote
 
@@ -52,13 +52,13 @@ Source Code Contextual Menu
 "Basic" Proof Dialog Panel
 ----------------------------
 
-.. image:: prove_dialog-basic.png
+.. image:: spark_essentials/prove_dialog-basic.png
 
 ---------------------------------------------
 Example Analysis Results in **GNAT Studio**
 ---------------------------------------------
 
-.. image:: gnatprove-output-ide.jpeg
+.. image:: spark_essentials/gnatprove-output-ide.png
 
 ----------------------------------
 Preference for Selecting Profile
@@ -81,11 +81,11 @@ Preference for Selecting Profile
 
  .. container:: column
 
-    .. image:: gnatstudio-preferences-spark.jpeg
+    .. image:: spark_essentials/gnatstudio-preferences-spark.png
 
 -------------------------------
 "Advanced" Proof Dialog Panel
 -------------------------------
 
-.. image:: prove_dialog-advanced.png
+.. image:: spark_essentials/prove_dialog-advanced.png
 

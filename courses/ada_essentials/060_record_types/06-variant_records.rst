@@ -94,11 +94,15 @@ Immutable Variant Record Example
 
   * :ada:`Pat.Pubs := 3;` would generate a compiler warning because compiler knows :ada:`Pat` is a :ada:`Student`
 
-    * ``warning: Constraint_Error will be raised at run time``
+    .. code:: error
+
+      warning: Constraint_Error will be raised at run time
 
   * :ada:`Do_Something (Pat);` generates a run-time error, because only at runtime is the discriminant for :ada:`Param` known
 
-    * ``raised CONSTRAINT_ERROR : discriminant check failed``
+    .. code:: error
+
+      raised CONSTRAINT_ERROR : discriminant check failed
 
 * :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
 

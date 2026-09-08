@@ -99,9 +99,10 @@ Type Inference
     // With a string
     let name = validate("Rustacean");
 
-:command:`You're doing great, little value!`
+.. code:: output
 
-:command:`You're doing great, little value!`
+  You're doing great, little value!
+  You're doing great, little value!
    
 ----------------------------------
 Multiple Generic Type Parameters

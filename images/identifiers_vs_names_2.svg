@@ -9,7 +9,7 @@
 <rect fill="#aaeeff" stroke="none" height="9" width="44.0068359375" x="52.0078125" y="47" />
 <rect fill="#aaeeff" stroke="none" height="9" width="56.0087890625" x="118.0185546875" y="47" />
 <rect fill="#aaeeff" stroke="none" height="9" width="20.0029296875" x="202.0322265625" y="47" />
-<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="54" >Pos   : Integer := Character'val(Str(2));</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="54" >Pos   : Integer := Character'Val(Str(2));</text>
 <rect fill="#aaeeff" stroke="none" height="9" width="74.01171875" x="52.0078125" y="58" />
 <rect fill="#aaeeff" stroke="none" height="9" width="74.01171875" x="148.0234375" y="58" />
 <rect fill="#aaeeff" stroke="none" height="9" width="20.0029296875" x="226.0361328125" y="58" />

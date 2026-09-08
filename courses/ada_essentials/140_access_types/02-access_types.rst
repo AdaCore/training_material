@@ -19,11 +19,15 @@ Access Type
 * Conversion is **not** possible between this kind of access type
 
   .. code:: Ada
+    :number-lines: 5
 
-     type Rec_Access_2 is access Rec_T;
-     Rec_Ptr_2 : Rec_Access_2 := Rec_Access_2 (Rec_Ptr);
+    type Rec_Access_2 is access Rec_T;
+    Rec_Ptr_2 : Rec_Access_2 := Rec_Access_2 (Rec_Ptr);
 
-  :color-red:`example.adb:6:32: error: target type must be general access type`
+  .. code:: error
+    :font-size: footnotesize
+
+    example.adb:6:32: error: target type must be general access type
 
 .. note::
 
@@ -73,7 +77,7 @@ Deallocations
 * But it may need to be done if memory is limited
 
    - There's no simple way of doing it
-   - Ada provides `Ada.Unchecked_Deallocation`
+   - Ada provides :ada:`Ada.Unchecked_Deallocation`
    - Has to be instantiated (it's a generic)
    - Works on an object, reset to :ada:`null` afterwards
 

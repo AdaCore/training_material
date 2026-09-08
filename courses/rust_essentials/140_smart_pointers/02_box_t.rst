@@ -24,7 +24,9 @@ What Is "Box<T>"
   // Implicit dereference
   println!("Box value is {}", my_box);
   
-:command:`Box value is 5`
+.. code:: output
+
+  Box value is 5
  
 ------------------------------------
 Using "Box<T>" for Recursive Types
@@ -42,7 +44,10 @@ Using "Box<T>" for Recursive Types
         Empty,
       }
   
-    :error:`error[E0072]: recursive type 'Doll' has infinite size`
+    .. code:: error
+      :font-size: small
+
+      error[E0072]: recursive type 'Doll' has infinite size
 
 - :rust:`Box<T>` provides a pointer with known size
 

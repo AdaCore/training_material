@@ -28,7 +28,9 @@ Destructuring a Tuple
   // 'name' is more meaningful than 'person_data.0'
   println!("Name: {name}, {profession}");
 
-:command:`Name: Renoir, Painter`
+.. code:: output
+
+  Name: Renoir, Painter
 
 ----------------------------------
 Irrefutable Patterns With Tuples
@@ -81,11 +83,11 @@ Destructuring an Array
   println!("pants: {}", pants);
   println!("socks: {}", socks);
 
-:command:`shirts: 10`
+.. code:: output
 
-:command:`pants: 20`
-
-:command:`socks: 30`
+  shirts: 10
+  pants: 20
+  socks: 30
 
 ----------------------------
 Ignoring Specific Elements
@@ -102,29 +104,60 @@ Ignoring Specific Elements
   println!("Second color: {}", second); // green
   println!("Fourth color: {}", fourth); // yellow
 
-:command:`Second color: green`
+.. code:: output
 
-:command:`Fourth color: yellow`
+  Second color: green
+  Fourth color: yellow
 
 ----------------------------
 Ignoring Multiple Elements
 ----------------------------
 
-  - Ignore multiple elements using the **rest pattern** (:rust:`..`)
-  - Can only be used **once** per pattern
-    - Anywhere within the element list
+- Ignore multiple elements using the **rest pattern** (:rust:`..`)
+- Can only be used **once** per pattern
+  - Anywhere within the element list
 
 .. code:: rust
 
-  let data = [1, 2, 3, 4, 5, 6];
-  // Get the first two elements, ignore the rest
-  let [first, second, ..] = data;
+  let data = [1, 22, 333, 44, 5, 66];
+
+  // Get first and last, skip everything in-between
+  let [first, .., last] = data;
   println!("First: {}", first);
-  println!("Second: {}", second);
+  println!("Last: {}", last);
 
-:command:`First: 1`
+.. code:: output
+  :font-size: small
 
-:command:`Second: 2`
+  First: 1
+  Last: 66
+
+.. code:: rust
+
+
+  // Get first and second, skip everything after
+  let [one, two, ..] = data;
+  println!("One: {}", one);
+  println!("Two: {}", two);
+
+.. code:: output
+  :font-size: small
+
+  One: 1
+  Two: 22
+
+.. code:: rust
+
+  // Get last two, skip everything before
+  let [.., fifth, sixth] = data;
+  println!("Fifth: {}", fifth);
+  println!("Sixth: {}", sixth);
+
+.. code:: output
+  :font-size: small
+
+  Fifth: 5
+  Sixth: 66
 
 ----------------------
 Nested Destructuring
@@ -140,4 +173,6 @@ Nested Destructuring
   println!("Drawing line from ({}, {}) to ({}, {})",
             start_x, start_y, end_x, end_y);
 
-:command:`Drawing line from (10, 20) to (80, 90)`
+.. code:: output
+
+  Drawing line from (10, 20) to (80, 90)

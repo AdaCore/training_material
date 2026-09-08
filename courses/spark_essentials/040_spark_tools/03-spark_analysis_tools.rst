@@ -215,8 +215,51 @@ Analysis Summary File **gnatprove.out**
 * Especially useful when results must be documented
 * Details in SPARK User's Guide
 
-|
+.. code:: output
+  :font-size: tiny
 
-.. image:: gnatprove-output-file.jpeg
-   :width: 60%
+  =========================
+  Summary of SPARK analysis
+  =========================
 
+  ----------------------------------------------------------------------------------------------------
+  SPARK Analysis results        Total        Flow                       Provers   Justified   Unproved
+  ----------------------------------------------------------------------------------------------------
+  Data Dependencies                11          11                             .           .          .
+  Flow Dependencies                11          11                             .           .          .
+  Initialization                    8           8                             .           .          .
+  Non-Aliasing                      2           1                             .           1          .
+  Run-time Checks                  14           .                     10 (CVC5)           .          4
+  Assertions                        .           .                             .           .          .
+  Functional Contracts             14           .    14 (CVC5 80%, Trivial 20%)           .          .
+  LSP Verification                  .           .                             .           .          .
+  Termination                       1           1                             .           .          .
+  Concurrency                       .           .                             .           .          .
+  ----------------------------------------------------------------------------------------------------
+  Total                            61    32 (52%)                      24 (39%)      1 (2%)     4 (7%)
+
+
+  max steps used for successful proof: 2
+
+  ============================
+  Most difficult proved checks
+  ============================
+
+  No check found with max time greater than 1 second
+
+  ========================
+  Detailed analysis report
+  ========================
+
+  Analyzed 2 units
+  in unit basics, 12 subprograms and packages out of 12 analyzed
+    Basics at basics.ads:1 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+    Basics.Swap_Global_Rec at basics.ads:28 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+    Basics.Swap_Global_Table at basics.ads:33 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+    Basics.Swap_Rec_Parameter at basics.ads:18 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+    Basics.Swap_Table_Parameter at basics.ads:23 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and not proved, 0 checks out of 2 proved
+     Justified check messages:
+      basics.adb:18:16: justified that formal parameters "X" and "Y" might be aliased (SPARK RM 6.4.2) (marked as: false positive, reason: "I /= J so T(I) and T(J) cannot alias")
+  in unit math, 11 subprograms and packages out of 29 analyzed
+    Math at math.ads:1 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+    Math.Add at math.ads:12 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)

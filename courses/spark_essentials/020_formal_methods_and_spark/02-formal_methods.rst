@@ -188,3 +188,22 @@ Deductive Verification
   - So the analysis now **knows** that :ada:`T` is initialized with value zero between
     indexes :ada:`A` and :ada:`B`
 
+------
+Quiz
+------
+
+Which statement is correct?
+
+   A. A formal method analyzes code.
+   B. :answer:`A formal method has no missing alarms.`
+   C. A formal method has no false alarms.
+   D. Static analysis of programs should be automatic, precise and sound.
+
+.. container:: animate
+
+   Explanations
+
+   A. Formal methods can also apply to requirements, models, data, etc.
+   B. Correct.
+   C. To achieve soundness, it may be impossible to avoid false alarms.
+   D. Pick any two!

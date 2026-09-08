@@ -34,7 +34,7 @@ Declarations
 
 .. include:: 020_declarations/01-introduction.rst
 .. include:: 020_declarations/02-identifiers_and_comments.rst
-.. include:: 020_declarations/03-literals.rst
+.. include:: 020_declarations/03-numeric_literals.rst
 .. include:: 020_declarations/04-object_declarations.rst
 .. include:: 020_declarations/05-named_numbers.rst
 .. include:: 020_declarations/06-scope_and_visibility.rst
