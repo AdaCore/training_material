@@ -20,7 +20,7 @@ Topics Covered
 
 * **Unsafe Functions**
 
-  - Calling code with unchecked preconditions
+  - Calling unsafe functions with caller safety obligations
   - Foreign Function Interface (FFI)
 
 * **Mutable Statics**

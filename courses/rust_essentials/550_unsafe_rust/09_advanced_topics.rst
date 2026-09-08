@@ -57,4 +57,4 @@ Manual Memory and Pointer Operations
 
 .. warning::
 
-  Unsafe code requires precise knowledge of memory layout, optimization, and the target architecture
+  Unsafe code may require precise knowledge of memory layout, optimization, and the target architecture
