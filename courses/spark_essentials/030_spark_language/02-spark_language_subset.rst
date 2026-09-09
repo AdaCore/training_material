@@ -8,13 +8,15 @@ Categories of Types in Ada
 
 .. image:: types_tree_complete.svg
 
+**Complete Ada type tree**
+
 ------------------------------
 Categories of Types in SPARK
 ------------------------------
 
 .. image:: spark_essentials/types_tree_spark.svg
 
-SPARK supports all the types in Ada, with some restrictions
+**SPARK supports all the types in Ada, with some restrictions**
 
 ---------------------
 Assertions in SPARK

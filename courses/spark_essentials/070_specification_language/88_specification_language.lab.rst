@@ -83,7 +83,7 @@ Demonstrating Richer Expressions (3/3)
 .. container:: animate 3-
 
   .. code:: Ada
-    :font-size: footnotesize
+    :font-size: scriptsize
 
       procedure Swap_Table (T : in out Table; I, J : Index)
       with
@@ -213,9 +213,11 @@ If You Have Time (1/2)
       with
         Pre => Start > Stop or else (Start in T'Range and then Stop in T'Range);
 
-  **Note:** *Zero length arrays are defined as* :ada:`'First` *being larger than* :ada:`'Last`
-  *So our precondition verifies that* :ada:`Start` *and* :ada:`Stop` *are valid indexes*
-  *into the array*
+  .. note::
+
+    Zero length arrays are defined as :ada:`'First` being larger than :ada:`'Last`
+
+    So our precondition verifies that :ada:`Start` and :ada:`Stop` are valid indexes into the array
 
 ------------------------
 If You Have Time (2/2)

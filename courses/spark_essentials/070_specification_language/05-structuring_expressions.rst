@@ -69,7 +69,7 @@ Expression Functions Without Postconditions
      function Max (X, Y : Integer) return Integer is
       (if X > Y then X else Y);
 
-is equivalent to
+**is equivalent to**
 
 .. code:: Ada
 

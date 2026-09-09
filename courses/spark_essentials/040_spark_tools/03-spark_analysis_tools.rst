@@ -119,7 +119,9 @@ Legality Checking
 
   - Need to fix to go beyond this step
 
-  - Ex: :command:`<expr> cannot depend on variable input <var>`
+  .. code:: error
+
+    <expr> cannot depend on variable input <var>
 
   - May include fix
 
@@ -180,7 +182,7 @@ Proof
 Categories of Messages
 ------------------------
 
-* :dfn:`Error messages` start with :command:`error:`
+* :dfn:`Error messages` start with :error:`error:`
 
   - :toolname:`GNATprove` aborts analysis and exits with error status
 
@@ -207,9 +209,9 @@ GNATprove Output for Programmers
 
 .. image:: gnatprove-output-options.png
 
----------------------------------------
-Analysis Summary File "gnatprove.out"
----------------------------------------
+---------------------------------------------
+Analysis Summary File "gnatprove.out" (1/2)
+---------------------------------------------
 
 * Located in :filename:`gnatprove/` under project object dir
 * An overview of results for all checks in project
@@ -239,6 +241,12 @@ Analysis Summary File "gnatprove.out"
   ----------------------------------------------------------------------------------------------------
   Total                            61    32 (52%)                      24 (39%)      1 (2%)     4 (7%)
 
+---------------------------------------------
+Analysis Summary File "gnatprove.out" (2/2)
+---------------------------------------------
+
+.. code:: output
+  :font-size: tiny
 
   max steps used for successful proof: 2
 
@@ -254,13 +262,12 @@ Analysis Summary File "gnatprove.out"
 
   Analyzed 2 units
   in unit basics, 12 subprograms and packages out of 12 analyzed
-    Basics at basics.ads:1 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
-    Basics.Swap_Global_Rec at basics.ads:28 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
-    Basics.Swap_Global_Table at basics.ads:33 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
-    Basics.Swap_Rec_Parameter at basics.ads:18 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
-    Basics.Swap_Table_Parameter at basics.ads:23 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and not proved, 0 checks out of 2 proved
-     Justified check messages:
-      basics.adb:18:16: justified that formal parameters "X" and "Y" might be aliased (SPARK RM 6.4.2) (marked as: false positive, reason: "I /= J so T(I) and T(J) cannot alias")
+    Basics at basics.ads:1 flow analyzed
+      (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+    Basics.Swap_Global_Rec at basics.ads:28 flow analyzed
+      (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+    ...
   in unit math, 11 subprograms and packages out of 29 analyzed
-    Math at math.ads:1 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
-    Math.Add at math.ads:12 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+    Math at math.ads:1 flow analyzed
+      (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+    ...
