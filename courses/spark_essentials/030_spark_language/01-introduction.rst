@@ -60,5 +60,7 @@ SPARK Reference Manual
     + **Verification Rules** *(specific to SPARK RM)*
     + **Examples**
 
-:url:`https://docs.adacore.com/live/wave/spark2014/html/spark2014_rm/packages.html`
+`Click here for the SPARK Reference Manual <https://docs.adacore.com/live/wave/spark2014/html/spark2014_rm/index.html>`_
+
+
 
