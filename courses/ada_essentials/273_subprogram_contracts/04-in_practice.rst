@@ -234,9 +234,9 @@ Raising Specific Exceptions
 
 .. note::
 
-  Postcondition failure only ever makes sense as an Assertion_Error
+  * Postcondition failure only ever makes sense as an Assertion_Error
 
-    It's the supplier's fault, not the client's
+    * It's the supplier's fault, not the client's
 
 ------------------
 Assertion Policy

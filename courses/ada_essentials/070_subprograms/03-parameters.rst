@@ -95,23 +95,23 @@ Function Return
 Why Read Mode "out" Parameters?
 ---------------------------------
 
-* No need for readable temporary variable
-
-* Warning: initial value is **not defined**
+**No need for readable temporary variable**
 
 .. code:: Ada
 
-   procedure Compute (Value : out Integer) is
-   begin
-     Value := 0;
-     for K in 1 .. 10 loop
-       Value := Value + K; -- this is a read AND a write
-     end loop;
-   end Compute;
+  procedure Compute (Value : out Integer) is
+  begin
+    Value := 0;
+    for K in 1 .. 10 loop
+      Value := Value + K; -- this is a read AND a write
+    end loop;
+  end Compute;
 
-.. note::
+.. warning::
 
-  An :ada:`out` parameter should not be assumed to preserve the value passed in
+  An :ada:`out` parameter is uninitialized **unless** the type auto-initializes
+
+  (Auto-initialization will be discussed later)
 
 ------------------------------
 Parameter Passing Mechanisms
