@@ -113,7 +113,8 @@ Children Can Break Abstraction
       type Array_T is array (1 .. N) of Foo;
       type Stack_T is record
          Values : Array_T;
-          Top   : Natural range 0 .. Array_T'last := 0;
+         Top    : Natural range 0 .. Array_T'last := 0;
+      end record;
    end Stack;
 
    package body Stack.Reset is

@@ -528,6 +528,8 @@ Enabling/Disabling Contract Verification
 
    - :ada:`policy_name` can be either :ada:`Check` or :ada:`Ignore`
 
+     - Compilers can define their own names as well
+
    - Some common values of :ada:`assertion_name` are
 
      * :ada:`Assert`
