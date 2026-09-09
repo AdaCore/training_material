@@ -188,20 +188,18 @@ Handling Overflow Explicitly
 .. code:: rust
   
   127_i8.wrapping_add(1)     // Results in -128
-
   120_i8.saturating_add(20)  // Results in 127 (max 'i8' value)
-
   100_i8.overflowing_add(50) // Results in (-106, true)
 
-.. container:: latex_environment small
-
-  *Equivalent functions exist for subtraction (*:rust:`*_sub`*) and multiplication (*:rust:`*_mul`*)*
-
 * These methods make overflow behavior explicit and predictable
-
 * Choose the method that matches the intended behavior
 
   * Checked
   * Wrapping
   * Saturating
   * Overflowing arithmetic
+
+.. note::
+
+  Equivalent functions exist for subtraction (:rust:`*_sub`) and multiplication (:rust:`*_mul`)
+

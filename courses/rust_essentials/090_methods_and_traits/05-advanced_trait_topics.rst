@@ -85,7 +85,7 @@ Supertraits
 
 **Explanation**
 
-  * A :rust:`PartyAnimal` type must know how to :rust:`Dance`
+  * A :rust:`PartyAnimal` must know how to :rust:`Dance`
 
 ----------------------
 Advanced Supertraits
@@ -113,7 +113,7 @@ Advanced Supertraits
 
 **Explanation**
 
-  * A :rust:`LifeOfParty` type must know how to :rust:`Dance` and :rust:`Sing`
+  * A :rust:`LifeOfParty` must know how to :rust:`Dance` and :rust:`Sing`
 
 ------------------
 Associated Types
