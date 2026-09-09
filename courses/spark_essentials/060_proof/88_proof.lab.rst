@@ -37,13 +37,13 @@ Understanding Run-time Errors
 
    :color-red:`basics.adb:14:24: cannot prove upper bound for R.A + 1`
 
-      Nothing prevents :ada:`R.A` from being :ada:`Integer'Last` which would cause a run-time error
+   Nothing prevents :ada:`R.A` from being :ada:`Integer'Last` which would cause a run-time error
 
    :color-red:`basics.adb:23:19: medium: array index check might fail`
 
    :color-red:`basics.adb:23:19: reason for check: value must be a valid index into the array`
 
-      **T** is an unconstrained array, so there are no guarantees that **I** and **J** are valid
+   :ada:`T` is an unconstrained array, so there are no guarantees that :ada:`I` and :ada:`J` are valid
 
 ----------------------------
 Absence of Run-time Errors
@@ -104,7 +104,7 @@ Proving the Code Works
 
    :color-red:`basics.ads:39:14: cannot prove The_Table (I) = The_Table (J)'Old`
 
-      The prover can't verify the result because it has no knowledge of the result for the call to :ada:`Swap_Table_Parameter`
+   The prover can't verify the result because it has no knowledge of the result for the call to :ada:`Swap_Table_Parameter`
 
    - Add a postcondition to :ada:`Swap_Table_Parameter`
 
