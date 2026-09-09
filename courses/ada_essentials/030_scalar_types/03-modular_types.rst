@@ -64,7 +64,7 @@ Package "Interfaces"
 ----------------------
 
 * **Standard** package
-* Integer and unsigned types with **defined bit length**
+* Signed and modular integer types with **defined bit length**
 
   .. code:: Ada
 
