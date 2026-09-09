@@ -212,11 +212,10 @@ Mapping Python API to LKQL API
 
   * So we can do
 
-    .. container:: latex_environment small
+    .. code:: graphql
+      :font-size: small
 
-      .. code:: graphql
-
-          val expr_types = [node.p_expression_type() for node in select Expr]
+      val expr_types = [node.p_expression_type() for node in select Expr]
 
 -------------------------------
 Integrating LKQL in GNATcheck
