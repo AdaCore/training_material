@@ -131,14 +131,13 @@ Running Multiple Test Harnesses
 
       * Can be edited in-place or copied
 
-.. container:: latex_environment tiny
+.. code:: output
+  :font-size: tiny
 
-  .. code:: output
-
-      depend.ads:2:4: error: corresponding test FAILED: Test not implemented. (depend-test_data-tests.adb:44)
-      simple.ads:7:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:65)
-      simple.ads:3:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:44)
-      3 tests run: 0 passed; 3 failed; 0 crashed.
+  depend.ads:2:4: error: corresponding test FAILED: Test not implemented. (depend-test_data-tests.adb:44)
+  simple.ads:7:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:65)
+  simple.ads:3:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:44)
+  3 tests run: 0 passed; 3 failed; 0 crashed.
 
 ============
 Test Stubs
