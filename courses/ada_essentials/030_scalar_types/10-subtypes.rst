@@ -131,10 +131,10 @@ Optimizations of Constraint Checks
   .. code:: Ada
 
      procedure Demo is
-       P, K : Integer range 0 .. 100;
+       Pizza_Ready, Pizza_Baking : Integer range 0 .. 100;
      begin
-       P := K;
-       --  But K is not initialized!
+       Pizza_Ready := Pizza_Baking;
+       -- But Pizza_Baking is not initialized!
 
 ---------------------------
 Range Constraint Examples

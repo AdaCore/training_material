@@ -9,7 +9,7 @@ Semaphores
 * Shared counters
 * Multitask-safe
 
-    - Support priorities from "Real-time Systems" LRM Annex D
+    - Support priorities from "Real-time Systems" RM Annex D
 
 * :ada:`Counting_Semaphore` and :ada:`Binary_Semaphore`
 
@@ -17,7 +17,7 @@ Semaphores
     - Counting holds an Integer
     - Binary holds a Boolean
 
-* Priority ceiling (LRM D.3)
+* Priority ceiling (RM D.3)
 
     - For :ada:`pragma Locking_Policy (Ceiling_Locking)`
     - Protects against priority inversions

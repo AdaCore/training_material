@@ -274,18 +274,17 @@ Index-Based Vs Component-Based Indexing
 When the Set Is Empty...
 --------------------------
 
-* Universally quantified expressions are True
+* **Universally** quantified expressions are **True**
 
    - Definition: there is no member of the set for which the predicate does not hold
    - If the set is empty, there is no such member, so True
    - "All people 12-feet tall will be given free chocolate."
 
-* Existentially quantified expressions are False
+* **Existentially** quantified expressions are **False**
 
    - Definition: there is at least one member of the set for which the predicate holds
-
-* If the set is empty, there is no such member, so False
-* Common convention in set theory, arbitrary but settled
+   - If the set is empty, there is no such member, so False
+   - Common convention in set theory, arbitrary but settled
 
 ..
   language_version 2012

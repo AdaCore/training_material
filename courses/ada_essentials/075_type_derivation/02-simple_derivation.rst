@@ -16,7 +16,7 @@ Simple Type Derivation
 
    - The data **representation** of the parent
 
-      * Integer based, 64 bits
+      * Integer-based, 64 bits
 
    - The **primitives** of the parent
 

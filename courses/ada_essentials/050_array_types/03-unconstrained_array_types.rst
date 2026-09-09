@@ -36,7 +36,7 @@ Supplying Index Constraints for Objects
 
      .. code:: Ada
 
-         Weekdays : Schedule(Mon..Fri);
+         Weekdays : Schedule(Mon .. Fri);
 
    - Object (or constant) initialization
 

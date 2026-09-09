@@ -77,16 +77,16 @@ Enumeration Type Attributes
 Character Types
 -----------------
 
+* **Special case** of enumerated type
+
+   - At least one character enumeral
+
+* System-defined :ada:`Character`
 * Literals
 
    - Enclosed in single quotes eg. :ada:`'A'`
    - Case-sensitive
 
-* **Special-case** of enumerated type
-
-   - At least one character enumeral
-
-* System-defined :ada:`Character`
 * Can be user-defined
 
   .. code:: Ada

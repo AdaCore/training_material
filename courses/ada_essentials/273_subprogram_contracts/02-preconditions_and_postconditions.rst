@@ -89,16 +89,11 @@ Defensive Programming
       Acquire (Resource);
    end;
 
------------------------------
-Pre/Postcondition Semantics
------------------------------
-
-* Calls inserted automatically by compiler
-
-|
+------------------------------------------
+Pre/Postcondition Semantics Illustration
+------------------------------------------
 
 .. image:: pre_and_post_insertion_flow.svg
-   :width: 90%
 
 -------------------------------------
 Contract with Quantified Expression
@@ -233,7 +228,7 @@ Quiz
       Put_Line (I'Image);
    end Print_Something;
 
-Assuming :ada:`To_Integer` is defined somewhere, what happens
+Assuming :ada:`To_Integer` is completed somewhere, what happens
 when :ada:`Print_Something` is run?
 
    A. "0" is printed

@@ -77,7 +77,7 @@ Deallocations
 * But it may need to be done if memory is limited
 
    - There's no simple way of doing it
-   - Ada provides `Ada.Unchecked_Deallocation`
+   - Ada provides :ada:`Ada.Unchecked_Deallocation`
    - Has to be instantiated (it's a generic)
    - Works on an object, reset to :ada:`null` afterwards
 
