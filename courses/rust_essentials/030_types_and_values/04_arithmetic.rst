@@ -201,5 +201,5 @@ Handling Overflow Explicitly
 
 .. note::
 
-  Equivalent functions exist for subtraction (:rust:`*_sub`) and multiplication (:rust:`*_mul`)
+  Equivalent methods exist for subtraction (:rust:`*_sub`) and multiplication (:rust:`*_mul`)
 
