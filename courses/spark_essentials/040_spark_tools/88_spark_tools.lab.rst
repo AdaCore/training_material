@@ -93,11 +93,11 @@ Upgrading to SPARK Mode (2/2)
        Success := False;
     end Search;
 
-.. container:: animate 3-
+.. note::
 
-  *To see how to keep* :ada:`Search` *as a function*, *refer to the* **SPARK Tutorial**
+  To see how to keep :ada:`Search` as a function, refer to the
+  :url:`SPARK Tutorial <https://docs.adacore.com/live/wave/spark2014/html/spark2014_rm/index.html>`
 
-  :url:`https://docs.adacore.com/live/wave/spark2014/html/spark2014_ug/en/tutorial.html`
 
 --------------------------
 Performing Flow Analysis
@@ -179,7 +179,7 @@ Proving the Code Works (2/3)
        Post => Success and then At_Index in The_Array'Range
                and then The_Array (At_Index) = Val;
 
-  * Does this prove?
+  Does this prove?
 
 .. container:: animate 3-
 
@@ -222,7 +222,7 @@ Extra Credit
 
 .. container:: latex_environment LARGE
 
-  Now that the code proves correctly, use :ada:`Test_Program` to confirm it!
+  **Now that the code proves correctly, use** :ada:`Test_Program` **to confirm it!**
 
 .. container:: animate 2-
 
