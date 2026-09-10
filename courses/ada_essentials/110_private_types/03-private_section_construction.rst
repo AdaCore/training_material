@@ -61,8 +61,8 @@ Full Type Declaration
 
  .. container:: column
 
-     .. code:: Ada
-       :font-size: small
+   .. code:: Ada
+     :font-size: small
 
         package Designer is
           type Item_T is private;

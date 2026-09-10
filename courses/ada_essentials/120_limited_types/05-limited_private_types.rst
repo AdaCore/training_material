@@ -181,8 +181,8 @@ Quiz
 
   .. container:: column
 
-      .. code:: Ada
-        :font-size: tiny
+    .. code:: Ada
+      :font-size: tiny
 
        package Example is
          type Lim1_T is limited private;

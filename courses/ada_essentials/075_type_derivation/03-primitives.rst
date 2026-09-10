@@ -114,8 +114,8 @@ Overriding Indications
 * **Optional** indications
 * Checked by compiler
 
-     .. code:: Ada
-       :font-size: footnotesize
+  .. code:: Ada
+    :font-size: footnotesize
 
         type Child_T is new Integer_T range -1000 .. 1000;
         procedure Increment_With_Truncation
@@ -125,24 +125,24 @@ Overriding Indications
 
 * **Replacing** a primitive: :ada:`overriding` indication
 
-     .. code:: Ada
-       :font-size: footnotesize
+  .. code:: Ada
+    :font-size: footnotesize
 
         overriding procedure Increment_With_Truncation
            (Val : in out Child_T);
 
 * **Adding** a primitive: :ada:`not overriding` indication
 
-     .. code:: Ada
-       :font-size: footnotesize
+  .. code:: Ada
+    :font-size: footnotesize
 
         not overriding procedure Just_For_Child
            (Val : in out Child_T);
 
 * **Removing** a primitive: :ada:`overriding` as :ada:`abstract`
 
-     .. code:: Ada
-       :font-size: footnotesize
+  .. code:: Ada
+    :font-size: footnotesize
 
         overriding procedure Just_For_Child
            (Val : in out Grandchild_T) is abstract;

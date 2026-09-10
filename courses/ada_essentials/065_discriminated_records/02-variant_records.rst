@@ -157,9 +157,9 @@ Quiz
 
   .. container:: column
 
-      .. code:: Ada
-        :font-size: tiny
-        :number-lines: 2
+    .. code:: Ada
+      :font-size: tiny
+      :number-lines: 2
 
         type Variant_T (Valid : Integer) is record
             case Valid is

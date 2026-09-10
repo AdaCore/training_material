@@ -193,8 +193,8 @@ Hierarchical Visibility
 
   .. container:: column
 
-      .. code:: Ada
-        :font-size: tiny
+    .. code:: Ada
+      :font-size: tiny
 
         package OS.Child is
           type Child_T is private;
@@ -206,8 +206,8 @@ Hierarchical Visibility
       
   .. container:: column
 
-      .. code:: Ada
-        :font-size: tiny
+    .. code:: Ada
+      :font-size: tiny
 
         package OS.Sibling is
           type Sibling_T is private;
@@ -262,8 +262,8 @@ Example of Visibility As If Nested
 
  .. container:: column
 
-     .. code:: Ada
-       :font-size: small
+   .. code:: Ada
+     :font-size: small
 
       package Parent is
         ...

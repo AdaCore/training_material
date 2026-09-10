@@ -89,7 +89,7 @@ Aggregate Completeness
 
    * Aggregate must be complete - compiler error
 
-      .. code:: Ada
+     .. code:: Ada
 
          S := (10, 20, 12);
          Send (S);
