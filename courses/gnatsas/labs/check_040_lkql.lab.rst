@@ -343,8 +343,6 @@ Step 8 - Implement Fourth Criteria
 
 1. We can implement this similar to the subtype check using
 
-.. container:: latex_environment scriptsize
-
   .. code:: output
     :font-size: scriptsize
 
@@ -352,8 +350,6 @@ Step 8 - Implement Fourth Criteria
        for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
 
 2. Add this expression to the :lkql:`types` function
-
-.. container:: latex_environment scriptsize
 
   .. code:: output
     :font-size: tiny
@@ -462,9 +458,7 @@ Improving the Behavior Part 1
 
 * Query functions can be instructed to cached their results
 
-   * Use :lqkl:`@memoized` attribute
-
-.. container:: latex_environment scriptsize
+  * Use :lqkl:`@memoized` attribute
 
   .. code:: output
     :font-size: tiny
@@ -485,8 +479,6 @@ Improving the Behavior Part 2
 
    * Typically more arithmentic/logical operations than conversions, subtypes, instantiations
    * Swap filtering order to check for those last
-
-.. container:: latex_environment small
 
   .. code:: output
     :font-size: scriptsize

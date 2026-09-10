@@ -18,9 +18,12 @@ Prevent Application Crash
 
 * Run executable
 
-  ::
+  .. code:: output
 
     obj\main.exe
+
+  .. code:: error
+
     raised CONSTRAINT_ERROR: a-comlin.adb:61 explicit raise
 
   * (Application needs a filename on the command line)
@@ -35,23 +38,25 @@ Prevent Application Crash - Solution
 
 * Code modifications
 
-  .. container:: latex_environment footnotesize
-  
-    .. code:: Ada
-      :number-lines: 9
+  .. code:: Ada
+    :number-lines: 9
+    :font-size: footnotesize
 
-      exception
-         when The_Err : others =>
-            Put_Line ("ERROR: " & Exception_Information (The_Err));
+    exception
+       when The_Err : others =>
+          Put_Line ("ERROR: " & Exception_Information (The_Err));
 
 * Output
 
-  .. container:: latex_environment footnotesize
+  .. code:: output
+    :font-size: footnotesize
 
-    ::
+    obj\main.exe
 
-      obj\main.exe
-      ERROR: raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
+  .. code:: error
+    :font-size: footnotesize
+
+    ERROR: raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
 
 ----------------------------------
 Get Better Exception Information
@@ -59,11 +64,14 @@ Get Better Exception Information
 
 * Run executable passing in the supplied filename :filename:`file.txt`
 
-.. container:: latex_environment footnotesize
-
-  ::
+  .. code:: output
+    :font-size: footnotesize
 
     obj\main.exe file.txt
+
+  .. code:: error
+    :font-size: footnotesize
+
     ERROR: raised CONSTRAINT_ERROR : bad input for 'Value: "$39"
 
 * Update the project properties to get stack trace information
@@ -85,29 +93,30 @@ Get Better Exception Information - Solution
          for Switches("Ada") use ("-Es");
       end Binder;
 
-  .. column::
+.. code:: output
+  :font-size: tiny
 
-    .. container:: latex_environment tiny
+  obj\main.exe file.txt
 
-      ::
+.. code:: error
+  :font-size: tiny
 
-        obj\main.exe file.txt
-        ERROR: raised CONSTRAINT_ERROR : bad input for 'Value: "$39"
-        [C:\temp\advanced_exception_analysis\obj\main.exe]
-        0x7ff7964d721d ada__finalization___assign__3 at ???
-        0x7ff7964d2642 ada__finalization___assign__3 at ???
-        0x7ff7964d2840 ada__finalization___assign__3 at ???
-        0x7ff7964d2b54 ada__finalization___assign__3 at ???
-        0x7ff7964a3ad9 Numbers.Convert at numbers.adb:34
-        0x7ff7964a4a26 Parser.Load at parser.adb:33
-        0x7ff7964a1762 Main at main.adb:7
-        0x7ff7964a1fe4 Main at b__main.adb:254
-        0x7ff7964a1423 __tmainCRTStartup at ???
-        0x7ff7964a113b mainCRTStartup at ???
-        [C:\Windows\System32\KERNEL32.DLL]
-        0x7ffedfa37032
-        [C:\Windows\SYSTEM32\ntdll.dll]
-        0x7ffedffc264f
+  ERROR: raised CONSTRAINT_ERROR : bad input for 'Value: "$39"
+  [C:\temp\advanced_exception_analysis\obj\main.exe]
+  0x7ff7964d721d ada__finalization___assign__3 at ???
+  0x7ff7964d2642 ada__finalization___assign__3 at ???
+  0x7ff7964d2840 ada__finalization___assign__3 at ???
+  0x7ff7964d2b54 ada__finalization___assign__3 at ???
+  0x7ff7964a3ad9 Numbers.Convert at numbers.adb:34
+  0x7ff7964a4a26 Parser.Load at parser.adb:33
+  0x7ff7964a1762 Main at main.adb:7
+  0x7ff7964a1fe4 Main at b__main.adb:254
+  0x7ff7964a1423 __tmainCRTStartup at ???
+  0x7ff7964a113b mainCRTStartup at ???
+  [C:\Windows\System32\KERNEL32.DLL]
+  0x7ffedfa37032
+  [C:\Windows\SYSTEM32\ntdll.dll]
+  0x7ffedffc264f
 
 ----------------------
 How Did We Get Here?
@@ -115,7 +124,7 @@ How Did We Get Here?
 
 * We know our problems are coming from parsing the input file
 
-  * Add an exception handler to the :ada:'Parser.Load` loop
+  * Add an exception handler to the :ada:`Parser.Load` loop
 
     * Just print the exception raised and allow the loop to continue
 
@@ -168,7 +177,7 @@ How Did We Get Here? - Solution
 How Did We Get Here? - Output
 -------------------------------
 
-::
+.. code:: output
 
   obj\main.exe file.txt
   Convert(Category_T): groceries> [C:\temp\advanced_exception_analysis\obj\main.exe]

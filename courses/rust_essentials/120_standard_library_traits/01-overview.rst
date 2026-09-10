@@ -32,8 +32,8 @@ What Is a Standard Library Trait?
 
 * Predefined in Standard Library
 
-  * Describe common behaviors
-  * Integrate programmer types with both language features and library API's
+  * Describes common behaviors
+  * Integrates programmer types with language features and library API's
 
 * Defines standardized capabilities
 

@@ -72,3 +72,22 @@ History of SPARK
   - Pointers added in 2019
   - Exceptions added in 2023
 
+------
+Quiz
+------
+
+Which statement is correct?
+
+   A. SPARK is a recent programming language.
+   B. SPARK is based on proof.
+   C. SPARK analysis can be applied to any Ada program.
+   D. :answer:`SPARK requires annotating the code with specifications`.
+
+.. container:: animate
+
+   Explanations
+
+   A. SPARK is a subset of Ada dating back to the 80s.
+   B. SPARK is also based on flow analysis which is a form of abstract interpretation.
+   C. SPARK subset restricts the features of Ada for proof.
+   D. Correct.

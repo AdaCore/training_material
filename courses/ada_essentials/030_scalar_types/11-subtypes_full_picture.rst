@@ -238,7 +238,7 @@ Idiom: Extended Ranges
         .. code:: Ada
           :font-size: footnotesize
    
-           -- ARM A.10.1
+           -- RM A.10.1
            package Text_IO is
               ...
               type Count is range 0 .. implementation-defined;

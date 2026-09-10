@@ -166,19 +166,19 @@ Understanding a Check Message
 -------------------------------
 
 .. code:: Ada
-  :font-size: scriptsize
   :number-lines: 17
+  :font-size: small
 
-     Read_A_Valid_Token : declare
-        Word : String := Input.Next_Word;
+  Read_A_Valid_Token : declare
+     Word : String := Input.Next_Word;
 
-     begin
-        --  Figure out which kind of token we have from the first
-        --  character and delegate the full token recognition to
-        --  the Read routine in the appropriate Instruction, Values
-        --  or Values.Operations package.
+  begin
+     --  Figure out which kind of token we have from the first
+     --  character and delegate the full token recognition to
+     --  the Read routine in the appropriate Instruction, Values
+     --  or Values.Operations package.
 
-        case Word (Word'First) is
+     case Word (Word'First) is
 
 .. container:: latex_environment small
 
@@ -200,7 +200,7 @@ Understanding a Check Message
      * - ``requires (Input.Next_Word'First) <= (Input.Next_Word'Last)``
        - Explanation / possible remediation
 
-* :toolname:`GNATsas` is warning that line 26 indexes into array* :ada:`Word` without ever checking if the array is not empty, possibly raising a :ada:`Constraint_Error`
+* :toolname:`GNATsas` is warning that line 26 indexes into array :ada:`Word` without ever checking if the array is not empty, possibly raising a :ada:`Constraint_Error`
 
   * So we need to investigate how :ada:`Word` is initialized, so we will look at :ada:`Input.Next_Word`
 

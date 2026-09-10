@@ -95,5 +95,5 @@ A Note about Syntax
 * BNF in this course may be simplified to focus only on our needs
 
   * Elements missing or renamed
-  * Full BNF is available in the Reference Manual
+  * Full BNF is available in the Reference Manual (RM)
 

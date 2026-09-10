@@ -13,41 +13,40 @@ procedure Main is
       Inches : Inches_T;
    end record;
 
-   Point_1  : Distance_T;
-   Point_2  : Distance_T;
-   Distance : Distance_T;
+   Ladder_Height : Distance_T;
+   Worker_Height : Distance_T;
+   Maximum_Reach : Distance_T;
 
    Total : Integer;
    --Declarations
 
---Implementation
+   --Implementation
 begin
-   Point_1.Feet   := 12;
-   Point_1.Inches := 7;
+   Ladder_Height.Feet   := 12;
+   Ladder_Height.Inches := 7;
 
-   Point_2 := (Feet   => 6,
-               Inches => 8);
+   Worker_Height := (Feet => 6, Inches => 8);
 
-   Distance := (0, 0);
+   Maximum_Reach := (0, 0);
 
-   Total := Integer (Point_1.Inches) +
-            Integer (Point_2.Inches);
+   Total := Integer (Ladder_Height.Inches) + Integer (Worker_Height.Inches);
    if Total >= Max_Inches then
-      Distance.Inches := Inches_T (Total - Max_Inches);
-      Distance.Feet   := 1;
+      Maximum_Reach.Inches := Inches_T (Total - Max_Inches);
+      Maximum_Reach.Feet   := 1;
    else
-      Distance.Inches := Point_1.Inches + Point_2.Inches;
+      Maximum_Reach.Inches := Ladder_Height.Inches + Worker_Height.Inches;
    end if;
-   Distance.Feet := Distance.Feet + Point_1.Feet + Point_2.Feet;
+   Maximum_Reach.Feet :=
+     Maximum_Reach.Feet + Ladder_Height.Feet + Worker_Height.Feet;
 
-   Put_Line ("Point 1: " &
-               Feet_T'Image(Point_1.Feet) &
-               Inches_T'Image(Point_1.Inches));
-   Put_Line ("Point 2: " &
-               Feet_T'Image(Point_2.Feet) &
-               Inches_T'Image(Point_2.Inches));
-   Put_Line ("Distance: " &
-               Feet_T'Image(Distance.Feet) &
-               Inches_T'Image(Distance.Inches));
+   Put_Line
+     ("Ladder Height: " & Feet_T'Image (Ladder_Height.Feet) &
+      Inches_T'Image (Ladder_Height.Inches));
+   Put_Line
+     ("Worker Height: " & Feet_T'Image (Worker_Height.Feet) &
+      Inches_T'Image (Worker_Height.Inches));
+   Put_Line
+     ("Maximum Reach: " & Feet_T'Image (Maximum_Reach.Feet) &
+      Inches_T'Image (Maximum_Reach.Inches));
 end Main;
 --Implementation

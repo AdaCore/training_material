@@ -14,7 +14,7 @@ Strings
 
 * Language defines various types
 
-  - `String`, with `Character` as component
+  - :ada:`String`, with :ada:`Character` as component
 
     .. code:: Ada
       :font-size: footnotesize
@@ -22,8 +22,8 @@ Strings
       subtype Positive is Integer range 1 .. Integer'Last;
       type String is array (Positive range <>) of Character;
 
-  - `Wide_String`, with `Wide_Character` as component
-  - `Wide_Wide_String`, with `Wide_Wide_Character` as component
+  - :ada:`Wide_String`, with :ada:`Wide_Character` as component
+  - :ada:`Wide_Wide_String`, with :ada:`Wide_Wide_Character` as component
 
     - Ada 2005 and later
 
@@ -52,7 +52,7 @@ Application-Defined String Types
 Specifying Constraints Via Initial Value
 ------------------------------------------
 
-* Lower bound is :ada:`Index_subtype'First`
+* Lower bound is :ada:`Index_Subtype'First`
 * Upper bound is taken from number of items in value
 
 .. code:: Ada

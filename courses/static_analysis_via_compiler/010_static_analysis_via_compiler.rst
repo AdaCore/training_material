@@ -318,9 +318,9 @@ Controlling Warnings With A Single Switch
   + Likely generates many warnings you'll end up ignoring
   + But you might want some of them, individually
 
-----------------------------------------------
-Highly Optional Warnings :command:`-gnatw.e`
-----------------------------------------------
+-------------------------------------
+Highly Optional Warnings "-gnatw.e"
+-------------------------------------
 
 + Implicit dereferencing (missing optional :ada:`.all`)
 + Activate tagging (warning messages tagged with certain strings)
@@ -855,18 +855,19 @@ Definition of Language Subsets
 Example Restriction & Violation Message
 -----------------------------------------
 
+.. code:: Ada
+  :number-lines: 1
+  :font-size: tiny
+
+  pragma Restrictions (No_Implicit_Heap_Allocations);
+
+  with Ada.Command_Line;
+  package Lib_Level is
+     -- Command_Name returns an unconstrained type
+     Command_Name : constant String := Ada.Command_Line.Command_Name;
+  end Lib_Level;
+
 .. container:: latex_environment tiny
-
-  .. code:: Ada
-     :number-lines: 1
-
-     pragma Restrictions (No_Implicit_Heap_Allocations);
-
-     with Ada.Command_Line;
-     package Lib_Level is
-        -- Command_Name returns an unconstrained type
-        Command_Name : constant String := Ada.Command_Line.Command_Name;
-     end Lib_Level;
 
   ::
 
@@ -964,56 +965,54 @@ Quiz
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-        package Definition is
-           type T is tagged record
-              Data : Natural;
-           end record;
-           procedure P (X : T);
-           type Dt is new T with record
-              More_Data : Natural;
-           end record;
-           not overriding procedure Q (X : Dt);
-        end Definition;
-
-      .. code:: Ada
-        :number-lines: 1
-
-        pragma Restrictions (No_Dispatching_Calls);
-
-        with Definition; use Definition;
-        procedure Demo (O : T'Class) is
-           N : Natural := O'Size;
-           C : T'Class := O;
-        begin
-           if O in Dt'Class then
-              Q (Dt (O));
-           else
-              P (O);
-           end if;
-        end Demo;
+      package Definition is
+         type T is tagged record
+            Data : Natural;
+         end record;
+         procedure P (X : T);
+         type Dt is new T with record
+            More_Data : Natural;
+         end record;
+         not overriding procedure Q (X : Dt);
+      end Definition;
 
   .. container:: column
 
-    .. container:: latex_environment footnotesize
+    .. code:: Ada
+      :number-lines: 1
+      :font-size: tiny
 
-      Which line(s) violate the restriction?
+      pragma Restrictions (No_Dispatching_Calls);
 
-      A. 5, 6, 8, 9, 11
-      B. 11
-      C. :answer:`5, 6, 11`
-      D. No violations
+      with Definition; use Definition;
+      procedure Demo (O : T'Class) is
+         N : Natural := O'Size;
+         C : T'Class := O;
+      begin
+         if O in Dt'Class then
+            Q (Dt (O));
+         else
+            P (O);
+         end if;
+      end Demo;
 
-    .. container:: animate
+Which line(s) violate the restriction?
 
-       + Line 5 - Dispatch needed to determine size of O
-       + Line 6 - Just a memory copy (no dispatching)
-       + Line 8 - Membership not a dispatching call
-       + Line 9 - Type conversion so no dispatching
-       + Line 11 - Dispatch needed to find correct :ada:`P`
+  A. 5, 6, 8, 9, 11
+  B. 11
+  C. :answer:`5, 6, 11`
+  D. No violations
+
+.. container:: animate
+
+  + Line 5 - Dispatch needed to determine size of O
+  + Line 6 - Just a memory copy (no dispatching)
+  + Line 8 - Membership not a dispatching call
+  + Line 9 - Type conversion so no dispatching
+  + Line 11 - Dispatch needed to find correct :ada:`P`
 
 -----------------------------------------
 Exceptions Restrictions Form A Spectrum
@@ -1310,9 +1309,9 @@ Viewing Data Representations Example
          Id at 2 range  0 ..  7;
       end record;
 
-========================================
-GNAT versus GNAT Static Analysis Suite
-========================================
+====================================
+GNAT vs GNAT Static Analysis Suite
+====================================
 
 ----------------------------
 GNAT Static Analysis Suite

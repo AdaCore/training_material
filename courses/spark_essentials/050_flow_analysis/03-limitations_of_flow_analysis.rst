@@ -86,19 +86,18 @@ Dealing with False Alarms
 
 * A subprogram that may not initialize an output parameter
 
-  .. container:: latex_environment scriptsize
+  .. code:: Ada
+    :font-size: scriptsize
 
-    .. code:: Ada
-
-      procedure Initialize (List    : out List_T;
-                            Success : out Boolean) is
-        begin
-         Success := False;
-         if List'Length > 0 then
-            Success := True;
-            List := (others => 0);
-         end if;
-      end Initialize;
+    procedure Initialize (List    : out List_T;
+                          Success : out Boolean) is
+      begin
+       Success := False;
+       if List'Length > 0 then
+          Success := True;
+          List := (others => 0);
+       end if;
+    end Initialize;
 
 * Can generate an analysis message
 
@@ -106,16 +105,15 @@ Dealing with False Alarms
 
 * Use :ada:`pragma Annotate` to justify the behavior
 
-  .. container:: latex_environment scriptsize
+  .. code:: Ada
+    :font-size: scriptsize
 
-    .. code:: Ada
-
-      procedure Initialize (List    : out List_T;
-                            Success : out Boolean);
-      pragma Annotate (Gnatprove,
-                       False_Positive,
-                       """List"" might not be initialized",
-                       "Not initialized in certain states");
+    procedure Initialize (List    : out List_T;
+                          Success : out Boolean);
+    pragma Annotate (Gnatprove,
+                     False_Positive,
+                     """List"" might not be initialized",
+                     "Not initialized in certain states");
 
 * Justification inserted immediately after the check message location
 * Relaxed initialization will be seen in course on Advanced Proof

@@ -91,20 +91,21 @@ Typical Exception Occurrence
 
 * What happens when an exception is propagated out of :ada:`main`?
 
-.. container:: latex_environment footnotesize
+.. code:: Ada
+  :number-lines: 3
+  :font-size: footnotesize
 
-  .. code:: Ada
-    :number-lines: 3
+  procedure Main is
+     type Short_T is range -1_000 .. 1_000;
+     Input : Short_T := Short_T'Value (Ada.Command_Line.Argument (1));
 
-    procedure Main is
-       type Short_T is range -1_000 .. 1_000;
-       Input : Short_T := Short_T'Value (Ada.Command_Line.Argument (1));
-
-::
+.. code:: output
 
   obj\main.exe
 
 .. container:: animate
+
+  .. code:: error
 
     raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
 
@@ -152,42 +153,46 @@ Exception Occurrence with Call Chain
 
 Using :command:`-E`
 
-.. container:: latex_environment tiny
+.. code:: output
+  :font-size: tiny
 
-  ::
+  obj\main.exe
 
-    obj\main.exe
+.. code:: error
+  :font-size: tiny
 
-    Execution of obj\main.exe terminated by unhandled exception
-    raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
-    Load address: 0x7ff76a030000
-    Call stack traceback locations:
-    0x7ff76a032223 0x7ff76a031737 0x7ff76a032076 0x7ff76a031423
-        0x7ff76a03113b 0x7ffedfa37032 0x7ffedffc264f
+  Execution of obj\main.exe terminated by unhandled exception
+  raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
+  Load address: 0x7ff76a030000
+  Call stack traceback locations:
+  0x7ff76a032223 0x7ff76a031737 0x7ff76a032076 0x7ff76a031423
+      0x7ff76a03113b 0x7ffedfa37032 0x7ffedffc264f
 
 Using :command:`-Es`
 
-.. container:: latex_environment tiny
+.. code:: output
+  :font-size: tiny
 
-  ::
+  obj\main.exe
 
-    obj\main.exe
+.. code:: error
+  :font-size: tiny
 
-    raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
-    [C:\temp\advanced_exception_analysis\obj\main.exe]
-    0x7ff7ece72233 ada__command_line__argument at ???
-    0x7ff7ece71737 _ada_main at ???
-    0x7ff7ece72082 main at ???
-    0x7ff7ece71423 __tmainCRTStartup at ???
-    0x7ff7ece7113b mainCRTStartup at ???
-    [C:\Windows\System32\KERNEL32.DLL]
-    0x7ffedfa37032
-    [C:\Windows\SYSTEM32\ntdll.dll]
-    0x7ffedffc264f
+  raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
+  [C:\temp\advanced_exception_analysis\obj\main.exe]
+  0x7ff7ece72233 ada__command_line__argument at ???
+  0x7ff7ece71737 _ada_main at ???
+  0x7ff7ece72082 main at ???
+  0x7ff7ece71423 __tmainCRTStartup at ???
+  0x7ff7ece7113b mainCRTStartup at ???
+  [C:\Windows\System32\KERNEL32.DLL]
+  0x7ffedfa37032
+  [C:\Windows\SYSTEM32\ntdll.dll]
+  0x7ffedffc264f
 
-=======================================
-Information Within Exception Handlers
-=======================================
+==================================
+Providing Additional Information
+==================================
 
 ----------------
 Ada.Exceptions
@@ -198,26 +203,26 @@ Ada.Exceptions
   * :ada:`Exception_Information` provides whatever runtime has available
   * What is available depends on binder switches
 
-.. container:: latex_environment footnotesize
+.. code:: Ada
+  :number-lines: 1
+  :font-size: footnotesize
 
-  .. code:: Ada
-    :number-lines: 1
+  with Ada.Command_Line; use Ada.Command_Line;
+  with Ada.Exceptions;   use Ada.Exceptions;
+  with Ada.Text_IO;      use Ada.Text_IO;
+  procedure Main_Exceptions is
+  ...
 
-    with Ada.Command_Line; use Ada.Command_Line;
-    with Ada.Exceptions;   use Ada.Exceptions;
-    with Ada.Text_IO;      use Ada.Text_IO;
-    procedure Main_Exceptions is
-    ...
+.. code:: Ada
+  :number-lines: 17
+  :font-size: footnotesize
 
-  .. code:: Ada
-    :number-lines: 17
-
-    ...
-      Put_Line (Input'Image & " => " & Short_T'Image (Three (Input)));
-    exception
-       when The_Err : others =>
-          Put_Line ("FAILED: " & Exception_Information (The_Err));
-    end Main_Exceptions;
+  ...
+    Put_Line (Input'Image & " => " & Short_T'Image (Three (Input)));
+  exception
+     when The_Err : others =>
+        Put_Line ("FAILED: " & Exception_Information (The_Err));
+  end Main_Exceptions;
 
 ---------------------------------
 Available Exception Information
@@ -225,16 +230,25 @@ Available Exception Information
 
 * No binder switches
 
-  ::
+  .. code:: output
+    :font-size: tiny
 
     obj\main_exceptions.exe foo
+
+  .. code:: error
+    :font-size: tiny
+
     FAILED: raised CONSTRAINT_ERROR : bad input for 'Value: "foo"
 
 * Using :command:`-E`
 
-  ::
+  .. code:: output
+    :font-size: tiny
 
     obj\main.exe foo
+
+  .. code:: error
+    :font-size: tiny
 
     FAILED: raised CONSTRAINT_ERROR : bad input for 'Value: "foo"
     Load address: 0x7ff7ad110000
@@ -244,9 +258,13 @@ Available Exception Information
 
 * Using :command:`-Es`
 
-  ::
+  .. code:: output
+    :font-size: tiny
 
     obj\main.exe foo
+
+  .. code:: error
+    :font-size: tiny
 
     FAILED: raised CONSTRAINT_ERROR : bad input for 'Value: "foo"
     [C:\temp\advanced_exception_analysis\obj\main_exceptions.exe]
@@ -323,7 +341,8 @@ Ada.Exceptions.Traceback
 
 * Results
 
-  ::
+  .. code:: output
+    :font-size: tiny
 
     obj\main_tracebacks 30
     FAILED: CONSTRAINT_ERROR at:
@@ -399,9 +418,8 @@ Controlling Exception Tracing
 
     * In the runtime, not in user code
 
-.. container:: latex_environment scriptsize
-
-  .. code:: Ada
+.. code:: Ada
+  :font-size: scriptsize
 
     -- Set the decorator (function that returns a string from a
     -- traceback array) that will get called when an exception occurs
@@ -428,14 +446,13 @@ Controlling Exception Actions
   * Callback is called before any unwinding
   * Also contains routine to dump core
 
-.. container:: latex_environment scriptsize
+.. code:: Ada
+  :font-size: scriptsize
 
-  .. code:: Ada
-
-    -- On Constraint Error, call Core_Dump
-    GNAT.Exception_Actions.Register_Id_Action (
-      Constraint_Error'Identity,
-      GNAT.Exception_Actions.Core_Dump'Access );
+  -- On Constraint Error, call Core_Dump
+  GNAT.Exception_Actions.Register_Id_Action (
+    Constraint_Error'Identity,
+    GNAT.Exception_Actions.Core_Dump'Access );
 
 * For more information, see documentation in :ada:`GNAT.Exception_Actions`
 
