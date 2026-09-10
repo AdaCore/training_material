@@ -11,6 +11,6 @@ package Basics is
       At_Index  : out Integer)
       return Boolean;
       --  Returns True if The_Array contains value Val, in which case
-      --  it also returns in At_Index the first index with value Val.
+      --  At_Index will contain the first index with value Val.
       --  Returns False otherwise.
 end Basics;
