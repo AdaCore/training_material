@@ -17,7 +17,7 @@ Functional Specifications
    - Being in a given state is a functional property
    - Can use normal queries
 
-     + e.g. contracts on :filename:`Ada.Text_IO` use :ada:`Is_Open`
+     + e.g. contracts on :ada:`Ada.Text_IO` use :ada:`Is_Open`
 
    - Or ghost imported functions that cannot be executed
 
