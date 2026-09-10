@@ -213,11 +213,10 @@ If You Have Time (1/2)
       with
         Pre => Start > Stop or else (Start in T'Range and then Stop in T'Range);
 
-  .. note::
+  * Precondition verifies that :ada:`Start` and :ada:`Stop` are valid indexes into the array
 
-    Zero length arrays are defined as :ada:`'First` being larger than :ada:`'Last`
+    * Because zero length arrays are defined as :ada:`'First` being larger than :ada:`'Last`
 
-    So our precondition verifies that :ada:`Start` and :ada:`Stop` are valid indexes into the array
 
 ------------------------
 If You Have Time (2/2)
