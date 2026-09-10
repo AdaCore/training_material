@@ -123,8 +123,8 @@ Quiz
 
  .. container:: column
 
-    .. code:: Ada
-      :font-size: tiny
+   .. code:: Ada
+     :font-size: tiny
 
        package Counter is
           type Count_T is private;

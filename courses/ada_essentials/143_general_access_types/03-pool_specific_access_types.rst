@@ -31,7 +31,7 @@ Allocations
 
 * The object can be created by copying an existing object - using a qualifier
 
-   .. code:: Ada
+  .. code:: Ada
 
       V : String_Access := new String'("This is a String");
 

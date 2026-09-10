@@ -87,7 +87,7 @@ Miscellaneous (1/2)
 
 * Enumeration representation attributes
 
-    .. code:: Ada
+  .. code:: Ada
 
         type E is (A, B);
         for E use (A => 10, B => 20);

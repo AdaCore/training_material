@@ -29,24 +29,24 @@ Character Transformation
 
 * Functions to force case 
 
-    .. code:: Ada
-      :font-size: footnotesize
+  .. code:: Ada
+    :font-size: footnotesize
 
       function To_Lower (Item : in Character) return Character;
       function To_Upper (Item : in Character) return Character;
 
 * Functions to force case (string version)
 
-    .. code:: Ada
-      :font-size: footnotesize
+  .. code:: Ada
+    :font-size: footnotesize
 
       function To_Lower (Item : in String) return String;
       function To_Upper (Item : in String) return String;
 
 * Functions to convert to/from :ada:`Wide_Character` and :ada:`Wide_String`
 
-    .. code:: Ada
-      :font-size: footnotesize
+  .. code:: Ada
+    :font-size: footnotesize
 
        function To_Character (Item       : Wide_Character;
                               Substitute : Character := ' ')

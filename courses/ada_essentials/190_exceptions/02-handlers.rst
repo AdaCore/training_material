@@ -119,7 +119,7 @@ When an Exception Is Raised
 
    * Callee
 
-      .. code:: Ada
+     .. code:: Ada
 
          procedure Joy_Ride is
            ...
