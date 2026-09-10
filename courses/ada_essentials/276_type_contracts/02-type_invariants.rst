@@ -19,7 +19,7 @@ Complicated Type Restrictions
     -- Restricts "Weekdays" to only part of "Days"
 
     type Bit_Array_T is array (Integer range <>) of Bit;
-    type Flags_T is new Array_T (1 .. 8);
+    type Flags_T is new Bit_Array_T (1 .. 8);
     -- Restricts "Flags_T" to always be 8 elements
 
 * What about more complicated requirements?
