@@ -348,8 +348,8 @@ Overflow Checking (2/2)
 
 * Alternative: use a library of big integers
 
-  - From SPARK Library :filename:`SPARK.Big_Integers`
-  - Or Ada stdlib: :filename:`Ada.Numerics.Big_Numbers.Big_Integers`
+  - From SPARK Library :ada:`SPARK.Big_Integers`
+  - Or Ada stdlib: :ada:`Ada.Numerics.Big_Numbers.Big_Integers`
 
   .. code:: Ada
     :font-size: footnotesize
