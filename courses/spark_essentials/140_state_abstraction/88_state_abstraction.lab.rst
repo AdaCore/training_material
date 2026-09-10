@@ -110,12 +110,12 @@ Using the Abstract State
 
   .. code:: Ada
 
-      procedure Swap_The_Rec
+      procedure Swap_Global_Rec
       with
         Global  => (In_Out => State),
         Depends => (The_Rec => +null);
 
-      procedure Swap_The_Table (I, J : Index)
+      procedure Swap_Global_Table (I, J : Index)
       with
         Global  => (In_Out => State),
         Depends => (The_Table => +(I, J));

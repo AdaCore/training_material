@@ -24,11 +24,11 @@ package Basics is
 
    procedure Bump_Rec (R : in out Rec);
 
-   procedure Swap_Table (T : in out Table; I, J : Index);
+   procedure Swap_Table_Parameter (T : in out Table; I, J : Index);
 
    procedure Bump_The_Rec;
 
-   procedure Swap_The_Table (I, J : Index);
+   procedure Swap_Global_Table (I, J : Index);
 
    procedure Init_Rec (R : out Rec);
 

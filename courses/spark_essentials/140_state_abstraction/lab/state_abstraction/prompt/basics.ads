@@ -15,22 +15,22 @@ package Basics is
    The_Rec : Rec;
    The_Table : Table (1 .. 10);
 
-   procedure Swap_Rec (R : in out Rec)
+   procedure Swap_Rec_Parameter (R : in out Rec)
    with
      Global  => null,
      Depends => (R => +null);
 
-   procedure Swap_Table (T : in out Table; I, J : Index)
+   procedure Swap_Table_Parameter (T : in out Table; I, J : Index)
    with
      Global  => null,
      Depends => (T => +(I, J));
 
-   procedure Swap_The_Rec
+   procedure Swap_Global_Rec
    with
      Global  => (In_Out => The_Rec),
      Depends => (The_Rec => +null);
 
-   procedure Swap_The_Table (I, J : Index)
+   procedure Swap_Global_Table (I, J : Index)
    with
      Global  => (In_Out => The_Table),
      Depends => (The_Table => +(I, J));

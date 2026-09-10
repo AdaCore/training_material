@@ -17,7 +17,7 @@ package body Basics is
       end case;
    end Bump_Rec;
 
-   procedure Swap_Table (T : in out Table; I, J : Index) is
+   procedure Swap_Table_Parameter (T : in out Table; I, J : Index) is
    begin
       if I /= J then
          Swap (T (I), T (J));
@@ -25,17 +25,17 @@ package body Basics is
                           "formal parameters * might be aliased",
                           "I /= J so T(I) and T(J) cannot alias");
       end if;
-   end Swap_Table;
+   end Swap_Table_Parameter;
 
    procedure Bump_The_Rec is
    begin
       Bump_Rec (The_Rec);
    end Bump_The_Rec;
 
-   procedure Swap_The_Table (I, J : Index) is
+   procedure Swap_Global_Table (I, J : Index) is
    begin
-      Swap_Table (The_Table, I, J);
-   end Swap_The_Table;
+      Swap_Table_Parameter (The_Table, I, J);
+   end Swap_Global_Table;
 
    procedure Init_Rec (R : out Rec) is
    begin
