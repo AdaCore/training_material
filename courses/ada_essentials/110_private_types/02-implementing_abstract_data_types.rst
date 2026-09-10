@@ -169,21 +169,20 @@ Quiz
 
 .. code:: Ada
 
-   package P is
-      type Private_T is private;
+  type Private_T is private;
 
-      type Record_T is record
+  type Record_T is record
 
 Which of the following components are legal? (Select all that apply)
 
-   A. ``Component_A : Integer := Private_T'Pos (Private_T'First);``
-   B. ``Component_B : Private_T := null;``
-   C. ``Component_C : Private_T := 0;``
-   D. :answermono:`Component_D : Integer := Private_T'Size;`
+A. ``Component_A : Integer := Private_T'Pos (Private_T'First);``
+B. ``Component_B : Private_T := null;``
+C. ``Component_C : Private_T := 0;``
+D. :answermono:`Component_D : Integer := Private_T'Size;`
 
-      .. code:: Ada
+.. code:: Ada
 
-         end record;
+   end record;
 
 .. container:: animate
 
