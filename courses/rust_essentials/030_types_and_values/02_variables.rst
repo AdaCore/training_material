@@ -6,7 +6,7 @@ Variables
 What Is a Variable?
 ---------------------
 
-- Think of a variable as a **labeled box** where you can store a single piece of info (a "value")
+- Like a **labeled box** that stores a single piece of information ("value")
 
   - **Label** - variable's name (e.g., :rust:`score`)
   - **Contents** - value (e.g., :rust:`100`)
@@ -47,8 +47,6 @@ By Default, Variables Are Immutable
   // This will cause an ERROR! We can't change the value
   my_var = 20;
 
-.. container:: latex_environment scriptsize
-
 .. code:: error
   :font-size: scriptsize
 
@@ -58,7 +56,7 @@ By Default, Variables Are Immutable
 Making Variables Mutable
 --------------------------
 
-- Sometimes, you *need* to change a value
+- Sometimes, a value *needs* to change
 
 - Variables are immutable unless mutability is declared **explicitly**
 

@@ -6,9 +6,10 @@ Advanced Trait Topics
 Orphan Rule
 -------------
 
-* Implement a trait for a type only if you own the trait or the type
+* Implement a trait for a type only if the current crate defines
 
-  * "Own" means: defined in your crate
+  * Either the trait
+  * Or the type
 
 * Why do we need this?
 
@@ -17,25 +18,25 @@ Orphan Rule
 
 * To implement trait :rust:`SomeTrait` for :rust:`SomeType`
 
-  * You must own :rust:`SomeTrait` or :rust:`SomeType`
-  * If you own neither |rightarrow| compile error
+  * :rust:`SomeTrait` or :rust:`SomeType` must be **defined** in the current crate
+  * Otherwise, |rightarrow| compile error
 
 ----------------------
 Orphan Rule Examples
 ----------------------
 
-**Own the type not the trait**
+**Define the type not the trait**
 
   .. code:: rust
 
-    struct MyType(i32);      // Owned type
+    struct MyType(i32);      // Defined type
     impl Debug for MyType {} // External trait
 
-**Own the trait not the type**
+**Define the trait not the type**
 
   .. code:: rust
 
-    trait Hello { // Owned trait
+    trait Hello { // Defined trait
         fn hello(&self) -> &'static str;
     }
     impl Hello for String { // External type
@@ -44,7 +45,7 @@ Orphan Rule Examples
         }
     }
 
-**Don't own either**
+**Defined neither**
 
   .. code:: rust
 
@@ -84,7 +85,7 @@ Supertraits
 
 **Explanation**
 
-  * To be a :rust:`PartyAnimal` you must know how to :rust:`Dance`
+  * A :rust:`PartyAnimal` must know how to :rust:`Dance`
 
 ----------------------
 Advanced Supertraits
@@ -112,7 +113,7 @@ Advanced Supertraits
 
 **Explanation**
 
-  * To be a :rust:`LifeOfParty` you must know how to :rust:`Dance` and :rust:`Sing`
+  * A :rust:`LifeOfParty` must know how to :rust:`Dance` and :rust:`Sing`
 
 ------------------
 Associated Types

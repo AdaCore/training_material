@@ -77,4 +77,4 @@ What Is an Iterator?
 
 .. note::
 
-  With iterators, you don't need to worry about "how" to loop
+  Iterators remove the need to worry about "how" to loop

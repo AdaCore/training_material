@@ -75,7 +75,7 @@ Destructuring Variant Data
     Message::Write(text) => println!("text: {text}"),
 
     // Ignore: Using '_' because we don't need the string
-    // Note: You must keep the parens for variants with data
+    // Note: Must keep the parens for variants with data
     Message::Write(_) => println!("Received a message, but ignoring content"),
 
     // Ignore All: Using '..' for complex variants
@@ -169,7 +169,7 @@ Enums as Robust Data Models
 
 - **Future-Proofing** 
 
-  - If you add a new variant later, the compiler identifies every :rust:`match` that needs updating
+  - If a new variant is added later, the compiler identifies every :rust:`match` that needs updating
 
 - **Pattern Enforcement** 
 

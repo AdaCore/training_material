@@ -41,9 +41,9 @@ Assigning Types
 Type Inference Explained
 --------------------------
 
-- In most cases, you don't need to write the type
+- In most cases, there's no need to write the type
 
-- Compiler **infers** it based on the value you give it
+- Compiler **infers** it based on the provided value
 
   - This is why :rust:`let apples = 5` worked in our earlier example!
 
@@ -70,7 +70,7 @@ Inference Is Smart
 
 - Type inference isn't just about defaults
 
-  - ...but also *how you use* a variable
+  - ...but also **how** a variable is used
 
 - A variable's type might not be known until later in the function
 
@@ -189,7 +189,7 @@ Utilizing Different Bases
 Numeric Conversions
 ---------------------
 
-**Types are not automatically converted for you**
+**Types are not automatically converted**
 
 .. code:: rust
 
@@ -204,9 +204,9 @@ Numeric Conversions
 
 .. tip::
 
-  - Forces you to be **intentional**
-  
-  - Applying :rust:`as` to a variable makes you think before doing
+  - Forces the programmer to be **intentional**
+
+    - Using :rust:`as` makes conversion explicit
 
 ----------------------------
 The "char" Type Is Special

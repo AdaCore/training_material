@@ -161,7 +161,7 @@ Declarative Data Processing
 
   Sum of even squares: 220
 
-* Chaining allows you to create a new set of data before consuming
+* Chaining builds a pipeline that is evaluated when the iterator is consumed
 
   * Modify values (:rust:`map`)
   * Skip values (:rust:`filter`)

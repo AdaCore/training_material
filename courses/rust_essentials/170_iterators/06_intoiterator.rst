@@ -10,7 +10,7 @@ Implicit Conversion
 
   * Actually loops over an *iterator*
 
-* When you write
+* When code looks like
 
   .. code:: rust
 
@@ -72,7 +72,7 @@ The "IntoIterator" Trait
 Making a Type Iterable
 ------------------------
 
-**Implement** :rust:`IntoIterator` **for your own collection**
+**Implement** :rust:`IntoIterator` **for a custom collection type**
 
 .. code:: rust
 

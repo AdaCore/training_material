@@ -144,8 +144,6 @@ Struct Update Operator
 - Base instance can't be followed by a comma
   - Must be at the end of the declaration  
 
-.. container:: latex_environment footnotesize
-
 .. code:: rust
   :font-size: footnotesize
  
@@ -212,7 +210,6 @@ Tuple Structs
         i64,   // Money
         bool,  // Is good?
     );
-    // How you use it:
     let hero = Character(10000, -500, true);
     println!("Power level is : {}", hero.0);
     println!("Money is : {}", hero.1);
