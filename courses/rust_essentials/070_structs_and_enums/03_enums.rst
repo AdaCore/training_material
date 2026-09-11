@@ -61,10 +61,8 @@ Enum Initialization
 
     let white = Message::ChangeColor(255,255,255); // OK
 
-    // Error! You must provide the content of 'Move'
+    // Error! Must provide the content of 'Move'
     let no_color = Message::Move;
-
-.. container:: latex_environment footnotesize
 
 .. code:: error
   :font-size: footnotesize

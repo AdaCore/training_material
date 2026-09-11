@@ -180,7 +180,7 @@ Conversion vs. Casting
 
     * - :rust:`as` (Narrowing)
       - Dangerous
-      - Only when you **want** to truncate bits
+      - Only when truncating bits is **intentional**
 
 .. tip::
 

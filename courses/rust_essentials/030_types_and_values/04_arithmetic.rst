@@ -43,7 +43,7 @@ The Exponent Trap
 - **Common Mistake:** using :rust:`^`
 
   - :rust:`^` is the **Bitwise XOR operator**
-  - Code will compile, but your math will be wrong!
+  - Code will compile, but math will be wrong!
 
 .. code:: rust
 
@@ -51,7 +51,7 @@ The Exponent Trap
 
 - **Correct Way:** use methods
 
-  - Must use a method specific to your data type
+  - Must use a method specific to data type
   - :rust:`.pow(u32) ` - integers
   - :rust:`.powf(f64)` - floats
 
@@ -134,7 +134,7 @@ Arithmetic Nuance: Division
 
   - **Floating Point Division**
 
-    - To get a **decimal** result, you *must* use **floating point** numbers
+    - **Decimal** result requires **floating point** operands
     - :rust:`f64`, :rust:`f32`
 
 .. code:: rust
@@ -158,20 +158,20 @@ Integer Overflow
   - **Debug Builds**
 
     - Overflow is checked
-    - Your program will :rust:`panic!` (crash)
-    - An error will tell you exactly what happened
+    - Program will :dfn:`panic` (crash)
+    - An error will describe exactly what happened
 
   - **Release Builds**
 
     - Overflow checks are disabled by default
-    - It performs **two's complement wrapping**
+    - Performs **two's complement wrapping**
     - **Example:** For :rust:`u8`, :rust:`255 + 1` "wraps around" to :rust:`0`
 
 ------------------------------
 Handling Overflow Explicitly
 ------------------------------
 
-- What if *you* want to control overflow behavior?
+**There are mechanisms to allow the code to control behavior**
 
 - :rust:`wrapping_add()` 
 
@@ -188,11 +188,18 @@ Handling Overflow Explicitly
 .. code:: rust
   
   127_i8.wrapping_add(1)     // Results in -128
-
   120_i8.saturating_add(20)  // Results in 127 (max 'i8' value)
-
   100_i8.overflowing_add(50) // Results in (-106, true)
 
-.. warning::
+* These methods make overflow behavior explicit and predictable
+* Choose the method that matches the intended behavior
 
-  You should **not** rely on wrapping if you expect a calculation overflow
+  * Checked
+  * Wrapping
+  * Saturating
+  * Overflowing arithmetic
+
+.. note::
+
+  Equivalent methods exist for subtraction (:rust:`*_sub`) and multiplication (:rust:`*_mul`)
+

@@ -31,8 +31,6 @@ Slice Creation
 
 **Created by referring to a collection, and specifying the range**
 
-.. container:: latex_environment scriptsize
-
 .. list-table::
   :header-rows: 1
 

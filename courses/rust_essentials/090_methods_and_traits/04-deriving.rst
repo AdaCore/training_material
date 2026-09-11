@@ -91,8 +91,6 @@ Deriving in Complex Structures
         child: Child,
     }
 
-.. container:: latex_environment scriptsize
-
 .. code:: error
   :font-size: scriptsize
 
@@ -102,10 +100,10 @@ Deriving in Complex Structures
 Limitations on Deriving
 -------------------------
 
-**You cannot derive when**
+**Cannot derive when**
 
   * Behavior depends on logic, not structure
-  * You need validation or side effects
+  * Implementation requires validation or other custom behavior
   * Only part of the data should participate
 
 .. note::
@@ -156,7 +154,7 @@ Limitations on Deriving
 
     * -
       - It's "all-or-nothing" for every field in the struct
-      - You can hide fields, transform data, skip logic
+      - Can hide fields, transform data, skip logic
 
     * -
       -
@@ -170,12 +168,10 @@ Limitations on Deriving
       - Compiler ensures logic is safe
       - Compiler ensures manual code is safe
 
-.. note::
+* Derive is for Computers
 
-  **Derive** is for **Computers**
+  * Simple behaviors (clone, print) can be done by the compiler
 
-    If you just need the compiler to know how to clone your data or print it for a log, let it do the work
+* Manual is for Humans
 
-  **Manual** is for **Humans**
-
-    If you are formatting a string that a programmer will read (like :rust:`Display`), you usually need a manual implementation to make it look "pretty"
+  * More complicated behaviors should be done by the programmer
