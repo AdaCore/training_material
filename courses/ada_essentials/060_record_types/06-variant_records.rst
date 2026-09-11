@@ -24,9 +24,9 @@ Discriminated Record Types
 
 * Aggregate assignment is allowed
 
-----------------
-Variant Record
-----------------
+----------------------
+Variant Record Types
+----------------------
 
 * A :dfn:`variant record` is a special case of discriminated record
 
@@ -157,6 +157,11 @@ Unconstrained Variant Record Example
 
 * Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
 
+* Can change the discriminant of :ada:`Pat` and :ada:`Sam`
+
+  * ...but only via a whole record assignment
+  * Direct assignment will still result in an error
+
   .. code:: Ada
 
     Pat : Person := (Student, 19, 3.9);
@@ -172,10 +177,7 @@ Unconstrained Variant Record Example
         Sam := Pat;
       end if;
 
-* Can change the discriminant of :ada:`Pat` and `Sam`
 
-  * But only via a whole record assignment
-  * Direct assignment will still result in an error
 
 ------
 Quiz
