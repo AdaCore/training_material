@@ -34,6 +34,5 @@ Testing
 
 .. include:: 190_testing/01-introduction.rst
 .. include:: 190_testing/02-simple_unit_test.rst
-.. include:: 190_testing/03-validating_values.rst
 .. include:: 190_testing/88-testing.lab.rst
 .. include:: 190_testing/99-summary.rst
