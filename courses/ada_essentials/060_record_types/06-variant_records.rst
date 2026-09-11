@@ -69,8 +69,8 @@ Constrained Variant Record
 
 * Assigning an initial value to record declaration makes it :dfn:`Constrained`
 
-  * wether *discriminated* or *variant*
-  * Discriminant cannot be modified later on 
+  * Whether *discriminated* or *variant*
+  * Discriminant cannot be modified later on
 
   .. code:: Ada
 
@@ -133,9 +133,9 @@ Unconstrained Record
 ----------------------
 
 * A record *object* is :dfn:`Unconstrained` if **Both**
-  * Discriminant has a *default value* 
+  * Discriminant has a *default value*
   * Object is instantiated without specifying the discriminant
-    * thus using the default value at instantiation
+    * Thus using the default value at instantiation
 
 .. code:: Ada
    :font-size: footnotesize
@@ -171,7 +171,7 @@ Unconstrained Variant Record Example
       Sam := (Faculty, 28, 20);
       if Pat.Group = Student then
         -- Pat.Group := Faculty; -- ILLEGAL
-        Pat := (Faculty, Pat.Age, 0);
+        Pat := (Faculty, Pat.Age, 1);
       else
         Sam := Pat;
       end if;
@@ -220,8 +220,8 @@ Quiz
 
   * Discriminant has a value (1) which is in range, so no run-time error
 
-  * :ada:`Valid` is 1, so it enters the :ada:`when others` block on line 7.
-    The block only contains component :ada:`Number`.
+  * :ada:`Valid` is 1, so it enters the :ada:`when others` block on line 7
+    The block only contains component :ada:`Number`
 
 ------
 Quiz
