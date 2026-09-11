@@ -130,9 +130,5 @@ Which of the following statements are legal? (Select all that apply)
    A. Qualifying one parameter resolves ambiguity
    B. No overloaded names
    C. Use of :ada:`Top` resolves ambiguity
-<<<<<<< HEAD
    D. Named association removes the positional distinction between the overloads. 
       Both have formals :ada:`H : Horizontal_T` and :ada:`V : Vertical_T`, so ambiguous.
-=======
-   D. When overloading subprogram names, best to not just switch the order of parameters
->>>>>>> 0f29b457 (Resolve "Rephrasing quiz opening statements")

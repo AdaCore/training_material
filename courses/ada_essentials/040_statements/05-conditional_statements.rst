@@ -222,12 +222,6 @@ D. ``when others     => Put_Line ("As needed");``
 .. container:: animate
 
    Explanation
-<<<<<<< HEAD
-=======
-
-   * Ada requires all possibilities to be covered
-   * Add :ada:`when others` or :ada:`when Sat`
->>>>>>> 0f29b457 (Resolve "Rephrasing quiz opening statements")
 
    * :ada:`Sat` is covered by :ada:`when others`
    * Multiple discrete choices are separated with the pipe (|) symbol (:ada:`when Mon | Fri`)
