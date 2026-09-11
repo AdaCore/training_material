@@ -2,9 +2,9 @@
 Variant Records
 =================
 
-----------------------
-Variant Record Types
-----------------------
+----------------------------
+Discriminated Record Types
+----------------------------
 
 * A :dfn:`discriminated record` uses a special field (:dfn:`discriminant`) to specify information about the record
 
@@ -17,24 +17,23 @@ Variant Record Types
   * All objects of :ada:`Discriminated_Record` are of the same type, regardless
     of the value of :ada:`Discriminant`
 
-* A :dfn:`variant record` is a special case of discriminated record
+* Discriminant is treated as any other component
 
+  * But is constant in a *constrained* variant record
   * Discriminant is a discrete type
-  * Used in a :ada:`case` block to control visibility of components
-
-* Kind of :dfn:`storage overlay`
-
-   + Similar to :C:`union` in C
-   + But preserves **type checking**
-   + And object size **is related to** discriminant
 
 * Aggregate assignment is allowed
 
---------------------------
-Immutable Variant Record
---------------------------
+----------------
+Variant Record
+----------------
 
-* Discriminant must be set at creation time and cannot be modified
+* A :dfn:`variant record` is a special case of discriminated record
+
+  * Used in a :ada:`case` block to control visibility of components
+  * Discriminant can be used to specify the :dfn:`variant part`
+  * Components listed will only be visible if choice matches discriminant
+  * Component names need to be unique (even across discriminants)
 
 .. code:: Ada
    :number-lines: 2
@@ -57,30 +56,50 @@ Immutable Variant Record
 
    :ada:`case` block must be **last** part of definition - so only **one** per record
 
-* In a variant record, a discriminant can be used to specify the :dfn:`variant part` (line 8)
+* Kind of :dfn:`storage overlay`
 
-   + Similar to case statements (all values must be covered)
-   + Components listed will only be visible if choice matches discriminant
-   + Component names need to be unique (even across discriminants)
+   + Similar to :C:`union` in C
+   + But preserves **type checking**
+   + And object size **is related to** discriminant
 
-* Discriminant is treated as any other component
+----------------------------
+Constrained Variant Record
+----------------------------
 
-  * But is a constant in an immutable variant record
+* Assigning an initial value to record declaration makes it :dfn:`Constrained`
 
-----------------------------------
-Immutable Variant Record Example
-----------------------------------
-
-* Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
+  * wether *discriminated* or *variant*
+  * Discriminant cannot be modified later on 
 
   .. code:: Ada
+
+    type Person_Group is (Student, Faculty);
+    type Person (Group : Person_Group) is
+    record
+      --  Components common across all discriminants
+      --  (must appear before variant part)
+      Age : Positive;
+      case Group is --  Variant part of record
+          when Student => -- 1st variant
+            Gpa  : Float range 0.0 .. 4.0;
+          when Faculty => -- 2nd variant
+            Pubs : Positive;
+      end case;
+    end record;
 
     Pat : Person (Student);
     Sam : Person := (Faculty, 33, 5);
 
-* :ada:`Pat` has :ada:`Group`, :ada:`Age`, and :ada:`Gpa`
+* Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
+
+  * :ada:`Pat` has :ada:`Group`, :ada:`Age`, and :ada:`Gpa`
   * :ada:`Sam` has :ada:`Group`, :ada:`Age`, and :ada:`Pubs`
-  * Aggregate specifies all components, including the discriminant
+
+* Aggregate specifies all components, including the discriminant
+
+----------------------------
+Constrained Record Example
+----------------------------
 
 * Compiler can detect some problems, but more often clashes are run-time errors
 
@@ -94,19 +113,26 @@ Immutable Variant Record Example
 
   * :ada:`Pat.Pubs := 3;` would generate a compiler warning because compiler knows :ada:`Pat` is a :ada:`Student`
 
-    * ``warning: Constraint_Error will be raised at run time``
+    .. code:: error
+
+      warning: Constraint_Error will be raised at run time
 
   * :ada:`Do_Something (Pat);` generates a run-time error, because only at runtime is the discriminant for :ada:`Param` known
 
-    * ``raised CONSTRAINT_ERROR : discriminant check failed``
+    .. code:: error
+
+      raised CONSTRAINT_ERROR : discriminant check failed
 
 * :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
 
-------------------------
-Mutable Variant Record
-------------------------
+----------------------
+Unconstrained Record
+----------------------
 
-* Type will become :dfn:`mutable` if its discriminant has a *default value* **and** we instantiate the object without specifying a discriminant
+* A record *object* is :dfn:`Unconstrained` if **Both**
+  * Discriminant has a *default value* 
+  * Object is instantiated without specifying the discriminant
+    * thus using the default value at instantiation
 
 .. code:: Ada
    :number-lines: 2
@@ -123,11 +149,11 @@ Mutable Variant Record
      end case;
   end record;
 
-* :ada:`Pat : Person;` is **mutable**
+* :ada:`Pat : Person;` is **Unconstrained**
 
---------------------------------
-Mutable Variant Record Example
---------------------------------
+--------------------------------------
+Unconstrained Variant Record Example
+--------------------------------------
 
 * Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
 
@@ -135,9 +161,9 @@ Mutable Variant Record Example
 
     Pat : Person := (Student, 19, 3.9);
     Sam : Person;
-	
+
     begin
-   
+
       Sam := (Faculty, 28, 20);
       if Pat.Group = Student then
         -- Pat.Group := Faculty; -- ILLEGAL
@@ -148,33 +174,9 @@ Mutable Variant Record Example
 
 * Can change the discriminant of :ada:`Pat` and `Sam`
 
-  * but only via a whole record assignment
+  * But only via a whole record assignment
+  * Direct assignment will still result in an error
 
-----------------------------
-Constrained Variant Record
-----------------------------
-
-.. code:: Ada
-
-  Unconstrained : Person := (Student, 19, 3.9);
-  Constrained : Person(Student) := (Student, 19, 3.9);
-  
-* :ada:`Constrained` is limited to :ada:`Student`
-  
-.. code:: Ada  
-
-  Unconstrained := (Student, 21, 4.0);
-  Constrained := (Student, 21, 4.0);
-
-  Unconstrained := (Faculty, 21, 0);
-  Constrained := (Faculty, 21, 0); -- ILLEGAL
-
-* Cannot change the discriminant of :ada:`Constrained`
-
-  * Will give a run-time error
-
-  * And **NO** compiler warning!
-  
 ------
 Quiz
 ------
@@ -202,7 +204,7 @@ Quiz
 
   .. container:: column
 
-    Which component(s) does :ada:`Variant_Object` contain?
+    Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
 
     A. :ada:`Variant_Object.Value,`
        :ada:`Variant_Object.State`
@@ -212,7 +214,7 @@ Quiz
 
 .. container:: animate
 
-  **Explanation**
+  Explanation
 
   * Variant block covers all possible values of :ada:`Valid`, so no
     compilation error
@@ -250,4 +252,3 @@ D. None: Run-time error
 .. container:: animate
 
     The variant part cannot be followed by a component declaration (:ada:`Flag : Character` here)
-
