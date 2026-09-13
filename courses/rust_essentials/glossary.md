@@ -4,7 +4,7 @@
 
 # Rust Terminology Guide for Training Material
 
-**Version:** 2026.07.23.03
+**Version:** 2026.09.13.01
 **Status:** Normative trainer reference
 
 This document defines the preferred Rust terminology for trainers, course authors,
@@ -231,7 +231,8 @@ Use **parameter** for a name in a declaration.
 Example:
 - `x` in `fn f(x: i32)`
 
-Use **argument** for a value or expression supplied at a call site.
+Use **argument** for an expression supplied in a function, method, or closure
+call.
 
 Example:
 - `5` in `f(5)`
@@ -243,10 +244,12 @@ Use **generic parameter** for a placeholder declared by a generic definition.
 Example:
 - `T` in `struct Box<T>`
 
-Use **generic argument** for a concrete type, lifetime, or const supplied to it.
+Use **generic argument** for a type, lifetime, or const supplied at a use site.
 
 Example:
 - `u8` in `Vec<u8>`
+
+A generic argument may itself refer to a generic parameter.
 
 ### Trait and trait bound
 
@@ -255,8 +258,8 @@ Use **trait** for the interface or behavioral abstraction itself.
 Example:
 - `Display`
 
-Use **trait bound** for a restriction placed on a generic parameter or associated
-type.
+Use **trait bound** for a constraint involving a trait, such as requiring a type
+to implement it.
 
 Example:
 - `T: Display`
@@ -282,6 +285,9 @@ Use **lifetime annotation** for syntax such as `'a` when it relates lifetimes.
 Use **lifetime parameter** for a named lifetime declared as a generic parameter,
 such as `'a` in `struct View<'a>`.
 
+Use **lifetime bound** for an outlives relationship, such as `'a: 'b` or `T: 'a`,
+not for a trait requirement.
+
 Do not imply that writing an annotation extends a reference's lifetime.
 
 ### Macro terminology
@@ -295,6 +301,9 @@ Use **procedural macro** for:
 
 Do not imply that every macro invocation uses `!`: custom derives and
 attribute-like procedural macros use attributes.
+
+Macro input follows the macro's syntax; it is not necessarily a list of
+expressions.
 
 ### Failure terminology
 
@@ -312,9 +321,10 @@ Use **slice** for a dynamically sized view into a contiguous sequence.
 Examples:
 - `[T]` is the slice type;
 - `&[T]` is a shared borrowed slice;
-- `&mut [T]` is a mutable borrowed slice.
+- `&mut [T]` is a mutable borrowed slice;
+- `Box<[T]>` is an owned boxed slice.
 
-A slice does not own its elements.
+A borrowed slice (`&[T]` or `&mut [T]`) does not own its elements.
 
 ### String terminology
 
@@ -388,7 +398,8 @@ or `super`.
 
 ### `Self` and `self`
 
-Use **`Self`** for the type alias denoting the implementing or current type.
+Use **`Self`** for the current or implementing type: an implicit type parameter
+in a trait, and an implicit type alias in an `impl`.
 
 Use **`self`** for the receiver parameter or receiver value of a method.
 
@@ -445,7 +456,7 @@ Example:
 
 ### Expression
 
-Use for Rust code that evaluates to a value.
+Use for Rust code that evaluates to a value or diverges without producing one.
 
 Examples:
 - `if` expression
@@ -455,16 +466,17 @@ Examples:
 
 ### Expression statement
 
-Use for an expression placed in statement position so that its value is discarded.
+Use for an expression placed in statement position; any value it produces is
+discarded.
 
 Example:
 - `5;`
 
 Do not say that the statement itself evaluates to `()`. More precisely:
 
-- a block ending in `5` has the value `5`;
-- a block ending in `5;` discards `5` and has no tail expression, so the block has
-  the value `()`.
+- `{ 5 }` evaluates to `5`;
+- `{ 5; }` discards `5` and evaluates to `()` because it has no tail expression
+  and completes normally.
 
 ### Statement
 
@@ -501,7 +513,7 @@ Contrast with **Relative path**.
 
 ### Argument
 
-An expression supplied to a function, method, closure, or macro invocation.
+An expression supplied in a function, method, or closure call.
 
 ```rust
 draw(point, 3);
@@ -510,6 +522,13 @@ draw(point, 3);
 `point` and `3` are arguments.
 
 Do not use *argument* for the names declared in a function signature.
+
+Macro arguments follow the macro's input syntax rather than a universal
+expression-based argument list. Depending on the macro, its input may include
+expressions, patterns, types, items, or other token sequences.
+
+For example, in `matches!(value, Some(_))`, `value` is an expression and `Some(_)`
+is a pattern.
 
 ### Associated function
 
@@ -571,7 +590,18 @@ let total = {
 
 The block evaluates to `25`. `subtotal + 5` is its tail expression.
 
-A block with no tail expression has the value `()`.
+A block with no tail expression evaluates to `()` if it completes normally. A
+diverging block does not produce a value.
+
+```rust
+fn stop() -> ! {
+    loop {};
+}
+```
+
+`loop {};` is an expression statement, so this function-body block has no tail
+expression. The block diverges instead of evaluating to `()`. The `!` return type
+indicates that `stop` never returns normally.
 
 ### Borrow / borrowing
 
@@ -745,7 +775,8 @@ Do not use **panic** as a synonym for a recoverable error.
 
 ### Expression
 
-Rust syntax that evaluates to a value and may have side effects.
+Rust syntax whose evaluation may produce a value or diverge, and may have side
+effects.
 
 Examples include:
 
@@ -758,12 +789,17 @@ Examples include:
 
 Use **if expression**, **match expression**, and **loop expression**.
 
+An expression **diverges** when its evaluation does not complete normally and
+therefore produces no value, for example `return`, `panic!()`, or a `loop` without
+a reachable `break`.
+
 When an expression's result is ignored, say that the expression is *used in
 statement position* rather than renaming it an “if statement” or “match statement.”
 
 ### Expression statement
 
-A statement formed from an expression whose value is discarded.
+A statement formed from an expression, discarding its value if evaluation
+completes normally.
 
 ```rust
 calculate();
@@ -788,7 +824,7 @@ let b = {
 - the second block has type `()` because it has no tail expression.
 
 Avoid saying that the statement `5;` itself “evaluates to `()`.” Statements do not
-produce values; the containing block does.
+produce values; a containing block may produce a value if it completes normally.
 
 ### Field
 
@@ -843,13 +879,26 @@ A closure may capture its environment.
 
 ### Generic argument
 
-A concrete type, lifetime, or const used when instantiating a generic construct.
+A type, lifetime, or const supplied at a use site of a generic construct.
 
 ```rust
 Vec::<u8>::new()
 ```
 
 `u8` is a generic type argument.
+
+A generic argument need not be concrete; it may itself refer to a generic
+parameter:
+
+```rust
+fn wrap<T>(value: T) -> Option<T> {
+    Some(value)
+}
+```
+
+`T` is declared as a type parameter of `wrap`. Its occurrence in `Option<T>`
+supplies a type argument to `Option`. The distinction is declaration versus use,
+not generic versus concrete.
 
 ### Generic parameter
 
@@ -1201,9 +1250,10 @@ Contrast with **Absolute path**.
 
 ### `Self`
 
-A type alias, written with a capital `S`, for the current or implementing type.
+`Self`, written with a capital `S`, denotes the current or implementing type.
 
-In an inherent implementation:
+In an inherent or trait implementation, it acts as an implicit type alias for
+the implementing type. For example, in an inherent implementation:
 
 ```rust
 impl Buffer {
@@ -1215,7 +1265,9 @@ impl Buffer {
 
 `Self` denotes `Buffer`.
 
-In a trait, `Self` denotes the type that implements the trait.
+In a trait definition, `Self` is an implicit type parameter representing the
+type that implements the trait. It is not a type alias for one particular
+implementing type.
 
 Contrast with lowercase **`self`**, which is a method receiver parameter or receiver
 value. `Self` is a type; `self` is a value-level name.
@@ -1280,8 +1332,8 @@ The main categories are:
 
 A statement does not produce a value.
 
-A semicolon commonly forms an expression statement and causes the expression's
-value to be discarded.
+A semicolon commonly forms an expression statement; any value the expression
+produces is discarded.
 
 Do not classify `if`, `match`, `while`, `for`, or `loop` as fundamentally separate
 “statement constructs”; they are expressions in Rust.
@@ -1367,8 +1419,7 @@ Do not call `T: Render` a trait; it is a **trait bound** involving the trait
 
 ### Trait bound
 
-A constraint requiring a type, lifetime, or associated type to satisfy a trait or
-lifetime relationship.
+A bound involving a trait, normally requiring a type to implement that trait.
 
 ```rust
 fn print<T: Display>(value: T) {
@@ -1394,6 +1445,12 @@ Preferred wording:
 - “`T` has a `Display` bound”;
 - “the generic parameter is constrained by the `Display` trait”;
 - “add a `Send + Sync` trait bound.”
+
+Lifetime bounds, such as `'a: 'b` and `T: 'a`, express outlives relationships
+rather than trait implementation requirements. Lifetimes do not implement traits.
+
+The special bound `?Sized` relaxes the implicit `Sized` trait bound; it does not
+require a type to be unsized.
 
 Avoid saying that the bound itself is a trait.
 
@@ -1554,14 +1611,24 @@ Prefer:
 Prefer:
 - parameter
 
+### Generic argument as necessarily concrete
+
+Avoid this restriction.
+
+A generic argument can itself refer to a generic parameter. Distinguish a
+parameter declaration from an argument supplied at a use site.
+
 ### Trait when referring to a restriction
 
 Prefer:
-- trait bound
+- trait bound, for a restriction involving a trait
 
 Example:
 - `T: Display` is a trait bound;
 - `Display` is the trait.
+
+For an outlives requirement such as `'a: 'b` or `T: 'a`, use **lifetime bound**,
+not **trait bound**.
 
 ### Anonymous function when discussing captures
 
@@ -1594,6 +1661,13 @@ Avoid this claim.
 Only function-like macro invocations use `!`. Custom derives and attribute-like
 procedural macros use attributes.
 
+### Macro arguments are always expressions
+
+Avoid this claim.
+
+Macro arguments follow the macro's input syntax, which may accept patterns,
+types, items, or other token sequences as well as expressions.
+
 ### Panic as a normal recoverable error
 
 Prefer:
@@ -1611,8 +1685,8 @@ abort and is the precise mechanism being discussed.
 ### Slice as an owned collection
 
 Prefer:
-- borrowed slice;
-- boxed slice;
+- borrowed slice, for `&[T]` or `&mut [T]`;
+- owned boxed slice, for `Box<[T]>`;
 - `Vec<T>`, when ownership and growth are intended.
 
 ### String as an unqualified type name
@@ -1634,8 +1708,9 @@ Prefer:
 Avoid this formulation.
 
 Prefer:
-- the expression's value is discarded;
-- when a block has no tail expression, the block has the value `()`.
+- any value produced by the expression is discarded;
+- a block with no tail expression evaluates to `()` if it completes normally;
+- a diverging block does not produce a value.
 
 ### Copying when the value is actually moved
 
@@ -1677,8 +1752,10 @@ Prefer:
 Avoid this.
 
 Prefer:
-- **`Self`** for the current type alias;
+- **`Self`** for the current or implementing type;
 - **`self`** for the method receiver value or parameter.
+
+In traits, describe `Self` as an implicit type parameter, not as a type alias.
 
 ### Unchecked code as a synonym for unsafe code
 
@@ -1743,10 +1820,13 @@ Before approving Rust training material, check that:
 - [ ] enum alternatives are called **variants**;
 - [ ] iterator outputs are called **items** when tied to `Iterator::Item`;
 - [ ] declarations use **parameters** and calls use **arguments**;
-- [ ] generic definitions use **generic parameters** and instantiations use
+- [ ] generic definitions declare **generic parameters** and uses supply
       **generic arguments**;
+- [ ] generic arguments are not required to be concrete;
 - [ ] a behavioral abstraction is called a **trait**;
 - [ ] a restriction such as `T: Display` is called a **trait bound**;
+- [ ] outlives relationships such as `'a: 'b` and `T: 'a` are called **lifetime
+      bounds**, not trait bounds;
 - [ ] functions with a `self` receiver are **methods**;
 - [ ] functions without `self` inside an `impl` are **associated functions**;
 - [ ] anonymous function-like values that capture their environment are called
@@ -1759,15 +1839,21 @@ Before approving Rust training material, check that:
 - [ ] `macro_rules!` macros are called **declarative macros**;
 - [ ] custom derives, attribute-like macros, and function-like procedural macros are
       distinguished;
+- [ ] macro arguments are not assumed to be expressions;
 - [ ] expected failures represented by `Result` are called **recoverable errors**;
 - [ ] **panic** is not presented as ordinary recoverable error handling;
 - [ ] `[T]`, `&[T]`, and `&mut [T]` are described as slice forms rather than owned
       vectors;
+- [ ] borrowed slices (`&[T]` and `&mut [T]`) are distinguished from owned boxed
+      slices (`Box<[T]>`);
 - [ ] `String` and `&str` are distinguished when ownership matters;
 - [ ] shadowing is not described as mutation;
 - [ ] `if`, `match`, and loops are described as **expressions**;
-- [ ] an **expression statement** is described as discarding an expression's value;
+- [ ] an **expression statement** is described as discarding any value produced by
+      its expression;
 - [ ] statements are not said to produce values;
+- [ ] diverging expressions and blocks are not said to produce a value;
+- [ ] the no-tail-expression rule for `()` is qualified by normal completion;
 - [ ] `match` branches are called **arms**;
 - [ ] package, target, crate, and module are not used interchangeably;
 - [ ] move, `Copy`, and `Clone` are distinguished;
@@ -1781,7 +1867,8 @@ Before approving Rust training material, check that:
       **interior mutability**;
 - [ ] Rust name-resolution paths are distinguished from filesystem paths;
 - [ ] absolute and relative paths are named consistently;
-- [ ] `Self` is described as a type alias and is not confused with `self`;
+- [ ] `Self` is described as an implicit type parameter in traits and an implicit
+      type alias in implementations, and is not confused with `self`;
 - [ ] unsafe code is described using **unsafe block**, **unsafe function**, **unsafe
       trait**, or **unsafe operation**;
 - [ ] unsafe code is not described as disabling all compiler checks;
@@ -1792,11 +1879,16 @@ Before approving Rust training material, check that:
 - [The Rust Reference - Glossary](https://doc.rust-lang.org/reference/glossary.html)
 - [The Rust Reference - Items](https://doc.rust-lang.org/reference/items.html)
 - [The Rust Reference - Associated Items](https://doc.rust-lang.org/reference/items/associated-items.html)
+- [The Rust Reference - Traits](https://doc.rust-lang.org/reference/items/traits.html)
+- [The Rust Reference - Generic Parameters](https://doc.rust-lang.org/reference/items/generics.html)
+- [The Rust Reference - Type Parameters](https://doc.rust-lang.org/reference/types/parameters.html)
 - [The Rust Reference - Tuple Types](https://doc.rust-lang.org/reference/types/tuple.html)
 - [The Rust Reference - Array Types](https://doc.rust-lang.org/reference/types/array.html)
 - [The Rust Reference - Slice Types](https://doc.rust-lang.org/reference/types/slice.html)
 - [The Rust Reference - Enumerations](https://doc.rust-lang.org/reference/items/enumerations.html)
 - [The Rust Reference - Expressions](https://doc.rust-lang.org/reference/expressions.html)
+- [The Rust Reference - Block Expressions](https://doc.rust-lang.org/reference/expressions/block-expr.html)
+- [The Rust Reference - Never Type](https://doc.rust-lang.org/reference/types/never.html)
 - [The Rust Reference - Closure Expressions](https://doc.rust-lang.org/reference/expressions/closure-expr.html)
 - [The Rust Reference - Statements](https://doc.rust-lang.org/reference/statements.html)
 - [The Rust Reference - Functions](https://doc.rust-lang.org/reference/items/functions.html)
@@ -1812,13 +1904,20 @@ Before approving Rust training material, check that:
 - [Standard library - `Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html)
 - [The Rust Reference - Trait and Lifetime Bounds](https://doc.rust-lang.org/reference/trait-bounds.html)
 - [The Rust Reference - Macros](https://doc.rust-lang.org/reference/macros.html)
+- [The Rust Reference - Macros by Example](https://doc.rust-lang.org/reference/macros-by-example.html)
 - [The Rust Reference - Procedural Macros](https://doc.rust-lang.org/reference/procedural-macros.html)
 - [The Rust Book - Validating References with Lifetimes](https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html)
 - [The Rust Book - Unrecoverable Errors with `panic!`](https://doc.rust-lang.org/book/ch09-01-unrecoverable-errors-with-panic.html)
 - [The Rust Book - Recoverable Errors with `Result`](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html)
 - [Standard library - `String`](https://doc.rust-lang.org/std/string/struct.String.html)
 - [Standard library - `str`](https://doc.rust-lang.org/std/primitive.str.html)
+- [Standard library - `matches!`](https://doc.rust-lang.org/std/macro.matches.html)
+- [Standard library - `Self`](https://doc.rust-lang.org/std/keyword.SelfTy.html)
 - [The Cargo Book - Cargo Targets](https://doc.rust-lang.org/cargo/reference/cargo-targets.html)
+
+Supplementary terminology clarification, subordinate to the source hierarchy above:
+
+- [Rust FLS - Glossary (`Self`)](https://rust-lang.github.io/fls/glossary.html)
 
 ## Version and change history
 
@@ -1826,6 +1925,27 @@ Version identifiers use `YYYY.MM.DD.NN`, where `NN` is a two-digit revision
 sequence starting at `01` for the first revision made on that date. Because the
 date is already embedded in the identifier, changelog headings do not repeat it
 separately.
+
+### 2026.09.13.01
+
+Corrected the six terminology issues identified in the review of MR !634.
+
+Changes included in version 2026.09.13.01:
+
+- distinguished trait bounds from lifetime bounds and clarified the `?Sized`
+  exception to trait implementation requirements;
+- removed the requirement that generic arguments be concrete and added an example
+  of a generic parameter used as a type argument;
+- distinguished function-call arguments from macro input, which may include
+  non-expression syntax;
+- described `Self` as an implicit type parameter in traits and an implicit type
+  alias in implementations;
+- qualified the slice ownership rule to distinguish borrowed and owned boxed
+  slices;
+- qualified the no-tail-expression rule for `()` by normal completion and clarified
+  divergence in expression and statement terminology;
+- synchronized the Quick guide, Core terms, avoid-rules, and review checklist;
+- added reference sources supporting the corrected definitions.
 
 ### 2026.07.23.03
 
