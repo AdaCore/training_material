@@ -4,7 +4,7 @@
 
 # Rust Terminology Guide for Training Material
 
-**Version:** 2026.09.13.01
+**Version:** 2026.09.14.01
 **Status:** Normative trainer reference
 
 This document defines the preferred Rust terminology for trainers, course authors,
@@ -16,6 +16,7 @@ when quoting compiler output, library documentation, or another source verbatim.
 
 ## Contents
 
+- [AI-assisted review](#ai-assisted-review)
 - [AI-assisted maintenance](#ai-assisted-maintenance)
 - [Authority](#authority)
 - [Quick terminology guide](#quick-terminology-guide)
@@ -26,6 +27,48 @@ when quoting compiler output, library documentation, or another source verbatim.
 - [Review checklist](#review-checklist)
 - [Reference sources](#reference-sources)
 - [Version and change history](#version-and-change-history)
+
+## AI-assisted review
+
+To review training material with a conversational AI assistant, attach or paste
+the complete glossary and the material to review, then use the following prompt.
+
+```text
+Review the attached Rust training material against the complete Rust Terminology
+Guide provided with this prompt.
+
+Treat the glossary as the normative terminology reference. Check the entire
+resource, including prose, headings, captions, code explanations, diagrams,
+tables, exercises, and speaker notes when available.
+
+For every terminology issue found:
+
+- identify the page/slide/section;
+- quote or identify the problematic wording;
+- state which glossary rule it conflicts with;
+- provide the preferred replacement wording;
+- classify it as **ERROR** if technically misleading or **TERMINOLOGY** if
+  primarily a consistency issue.
+
+Do not report wording that already complies with the glossary.
+
+Do not invent issues merely to fill the report.
+
+Preserve compiler output, quoted external documentation, and code verbatim unless
+the surrounding explanation is incorrect.
+
+At the end, provide:
+
+- a concise summary of the material's terminology quality;
+- a list of all required corrections;
+- any cases that need human verification because the glossary does not clearly
+  settle them.
+
+When reviewing a PDF or slide deck, inspect the actual rendered pages/slides, not
+only extracted text.
+```
+
+For glossary updates, use [AI-assisted maintenance](#ai-assisted-maintenance).
 
 ## AI-assisted maintenance
 
@@ -1925,6 +1968,25 @@ Version identifiers use `YYYY.MM.DD.NN`, where `NN` is a two-digit revision
 sequence starting at `01` for the first revision made on that date. Because the
 date is already embedded in the identifier, changelog headings do not repeat it
 separately.
+
+### 2026.09.14.01
+
+Added a reusable prompt for reviewing Rust training material with a conversational
+AI assistant.
+
+Changes included in version 2026.09.14.01:
+
+- added an AI-assisted review section near the top of the document, separate from
+  the existing glossary-maintenance guidance;
+- included the complete review prompt, covering the entire resource and requiring
+  inspection of rendered pages or slides for PDFs and slide decks;
+- specified the required finding details and the **ERROR** and **TERMINOLOGY**
+  classifications;
+- included safeguards against unnecessary or invented findings, instructions for
+  preserving verbatim content, and a final summary of corrections and cases needing
+  human verification;
+- added the new section to the table of contents while preserving existing
+  terminology definitions, maintenance instructions, review rules, and references.
 
 ### 2026.09.13.01
 
