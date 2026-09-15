@@ -349,7 +349,7 @@ Modeling an API - Example
 **Standard unit** :ada:`Ada.Text_IO` **is modeled in SPARK**
 
   - Subprograms can be called in SPARK code
-  - File system is not precisely modelled
+  - File system is not precisely modeled
 
 .. code:: ada
 
