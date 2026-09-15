@@ -102,7 +102,7 @@ Visibility in Action
 * In GNAT, the compiler switch :command:`-gnatwh` will give a warning
 
   .. code:: error
-    :font-size: small
+    :font-size: footnotesize
 
     main.adb:11:07: warning: declaration hides "My_Obj" at line 6
 
@@ -119,7 +119,7 @@ Overcoming Hiding
 
     * Repeated name reuse is an indication of a *bigger problem*
 
-        - May need refactoring...
+        - May need refactoring ...
 
 .. code:: Ada
 
