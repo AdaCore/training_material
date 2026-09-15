@@ -43,7 +43,7 @@ Complicated Type Restrictions
 Type Invariants
 -----------------
 
-* In Ada, a :dfn:`Type Invariant` is a condition that *always holds* for the client
+* In Ada, a :dfn:`Type Invariant` is a condition that *must hold* at defined check points
 
   * But does not have to hold for the supplier
 
