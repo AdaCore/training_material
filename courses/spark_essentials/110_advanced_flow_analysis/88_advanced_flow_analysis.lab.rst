@@ -90,7 +90,7 @@ Imprecise Flow Dependencies (1/2)
     basics.ads:51:11: error: parameter "Cond" is missing from input dependence list
     basics.ads:51:11: error: add "null => Cond" dependency to ignore this input
 
-  **Cond** *is a parameter, so it must be added to the dependency contract*
+  :ada:`Cond` *is a parameter, so it must be added to the dependency contract*
 
    - Fix the dependency contract and rerun flow analysis
 
@@ -101,15 +101,15 @@ Imprecise Flow Dependencies (1/2)
     basics.ads:51:18: medium: missing dependency "R => Cond"
     basics.ads:52:26: medium: incorrect dependency "null => Cond"
 
-  *Initialization of parameter* **R** *is path-dependent, and that path is*
-  *controlled by* **Cond** *- so it must be listed as a dependency of* **R**
+  *Initialization of parameter* :ada:`R` *is path-dependent, and that path is*
+  *controlled by* :ada:`Cond` *- so it must be listed as a dependency of* :ada:`R`
 
   - Fix the dependency contract and rerun flow analysis
 
 .. container:: animate 4-
 
-   *Note that by adding* **Cond** *as a dependency of* **R**, *we no longer*
-   *need an entry specifically for* **Cond**
+   *Note that by adding* :ada:`Cond` *as a dependency of* :ada:`R`, *we no longer*
+   *need an entry specifically for* :ada:`Cond`
 
   .. code:: Ada
 
@@ -128,7 +128,7 @@ Imprecise Flow Dependencies (2/2)
 
 .. container:: animate 2-
 
-   *Same problem as before - missing a dependency contract for* **Val**
+   *Same problem as before - missing a dependency contract for* :ada:`Val`
 
    - Fix the dependency contract and rerun flow analysis
 
@@ -139,8 +139,8 @@ Imprecise Flow Dependencies (2/2)
     basics.ads:55:18: medium: missing dependency "T => Val"
     basics.ads:56:25: medium: incorrect dependency "null => Val"
 
-  *Remember, even though we can see that* **T (T'First)** *doesn't actually depend on*
-  **Val,** *flow analysis does not look at array index values - so it assumes*
+  *Remember, even though we can see that* :ada:`T (T'First)` *doesn't actually depend on*
+  :ada:`Val,` *flow analysis does not look at array index values - so it assumes*
   *there is a dependency*
 
 .. container:: animate 4-
