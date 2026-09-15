@@ -113,7 +113,7 @@ Allocation and Deallocation
 
   *Note the message verifying no memory leak*
 
-  .. code:: error
+  .. code:: output
     :font-size: small
 
     pointers.adb:29:9: info: absence of resource or memory leak proved
@@ -132,7 +132,7 @@ Recursion and Loops
 
 .. container:: animate 2-
 
-  .. code:: error
+  .. code:: output
 
     pointers.ads:47:19: medium: postcondition might fail
 
