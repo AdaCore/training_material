@@ -89,13 +89,13 @@ Miscellaneous (1/2)
 
   .. code:: Ada
 
-        type E is (A, B);
-        for E use (A => 10, B => 20);
-        ...
-        E'Enum_Rep (A); -- 10
-        E'Enum_Val (10); -- A
+    type State_T is (Enable, Disable);
+    for State_T use (Enable => 10, Disable => 20);
+    ...
+    State_T'Enum_Rep (Enable); -- 10
+    State_T'Enum_Val (10); -- Enable
 
-    - :ada:`'Enum_Rep` already present in GNAT
+  - :ada:`'Enum_Rep` already present in GNAT
 
 * Staticness
 

@@ -201,7 +201,7 @@ Quiz
 
 .. code:: Ada
   :font-size: footnotesize
-  :number-lines: 2
+  :number-lines: 3
 
   type Coord_T is record
      X, Y : Float;
@@ -232,14 +232,8 @@ Quiz
 
 .. container:: animate
 
-  .. container:: latex_environment footnotesize
+  Multiple problems with this code
 
-    * Fixing compilation error (rename an :ada:`End_Point` component), then
-
-      * Get a warning on line 18 (because :ada:`A_Line` is constrained to be a :ada:`Line`)
-
-         ``incorrect value for discriminant "Kind"``
-
-      * When running the executable, exception is raised
-
-         ``CONSTRAINT_ERROR : test.adb:18 discriminant check failed``
+  * Compile error on line 14 for duplicate :ada:`End_Point` components
+  * **If** that is fixed, compile warning on line 19 because discriminants do not match
+  * Then  run-time error on line 19
