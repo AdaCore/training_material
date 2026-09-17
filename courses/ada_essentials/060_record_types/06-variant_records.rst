@@ -32,6 +32,7 @@ Variant Record Types
 
   * Used in a :ada:`case` block to control visibility of components
   * Discriminant can be used to specify the :dfn:`variant part`
+    * A discriminant controlling a variant part must have a discrete type
   * Components listed will only be visible if choice matches discriminant
   * Component names need to be unique (even across discriminants)
 
@@ -66,10 +67,11 @@ Variant Record Types
 Constrained Variant Record
 ----------------------------
 
-* Assigning an initial value to record declaration makes it :dfn:`Constrained`
+* A :dfn:`constrained` record object has fixed discriminant values
 
-  * Whether *discriminated* or *variant*
-  * Discriminant cannot be modified later on
+  * :ada:`Pat` is explicitly constrained by :ada:`Person (Student)`
+  * :ada:`Sam` is constrained by its initial value because
+    :ada:`Person` has no discriminant default
 
   .. code:: Ada
 
@@ -129,10 +131,10 @@ Constrained Record Example
 Unconstrained Record
 ----------------------
 
-* A record *object* is :dfn:`Unconstrained` if **Both**
+* A record *object* is :dfn:`unconstrained` if **both**
+
   * Discriminant has a *default value*
-  * Object is instantiated without specifying the discriminant
-    * Thus using the default value at instantiation
+  * Object declaration does not specify a discriminant constraint
 
 .. code:: Ada
    :number-lines: 2
