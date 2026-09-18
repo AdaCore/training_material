@@ -132,7 +132,7 @@ Recursion and Loops
 
 .. container:: animate 2-
 
-  .. code:: output
+  .. code:: error
 
     pointers.ads:47:19: medium: postcondition might fail
 
