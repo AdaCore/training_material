@@ -140,7 +140,7 @@ Imprecise Flow Dependencies (2/2)
     basics.ads:56:25: medium: incorrect dependency "null => Val"
 
   *Remember, even though we can see that* :ada:`T (T'First)` *doesn't actually depend on*
-  :ada:`Val,` *flow analysis does not look at array index values - so it assumes*
+  :ada:`Val`, *flow analysis does not look at array index values - so it assumes*
   *there is a dependency*
 
 .. container:: animate 4-

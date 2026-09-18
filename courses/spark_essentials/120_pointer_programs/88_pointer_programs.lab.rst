@@ -83,11 +83,11 @@ Swapping Pointers (2/2)
   .. code:: Ada
 
       procedure Swap (X, Y : not null Int_Acc)
-        with Post => X.all = Y.all'Old and thsn
+        with Post => X.all = Y.all'Old and then
                      Y.all = X.all'Old;
 
       procedure Swap_Ptr (X, Y : in out not null Int_Acc)
-        with Post => X.all = Y.all'Old and thsn
+        with Post => X.all = Y.all'Old and then
                      Y.all = X.all'Old;
 
 -----------------------------
