@@ -432,11 +432,9 @@ Subtype Predicates Aren't Bullet-Proof
            (Idx = Table'First or else Table (Idx-1) <= Table (Idx)));
      Values : Table := (1, 3, 5, 7, 9);
    begin
-     ...
-     Values (3) := 0;           -- No exception generated!
-     Call_Something (Values);   -- But this will generate one
-     Values := (1, 3, 0, 7, 9); -- As will this
-     ...
+     Values (3) := 0;           -- Predicate not checked
+     Call_Something (Values);   -- Predicate is checked
+     Values := (1, 3, 0, 7, 9); -- Predicate is checked
    end Demo;
 
 ------------------------------------------
