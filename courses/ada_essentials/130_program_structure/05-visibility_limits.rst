@@ -118,7 +118,7 @@ Children Can Break Abstraction
    end Stack;
 
    package body Stack.Reset is
-      procedure Reset (S : in out Stack_T)
+      procedure Reset (S : in out Stack_T) is
       begin
         S.Top := 0;
       end Reset;
