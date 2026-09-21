@@ -6,13 +6,25 @@ Introduction
 Topics Covered
 ----------------
 
-* Topic 1
+* **Building unit tests**
 
-  - Subtopic 1a
+  - Creating a test framework
+  - Specifying and running tests
+  - Verifying test results
 
-* Topic 2
+* **Improving unit tests**
 
-  - Subtopic 2a
+  - Adding information to assertion failures
+  - Capturing expected panics
+  - Using :rust:`Result` to connect test conditions
+
+* **Running unit tests**
+
+  - Options for the test environment vs. test application
+  - Resolving conflicts when running multiple tests
+  - Capturing standard output from the tests
+  - Selecting which tests to run
+  - Selecting which tests **not** to run
 
 --------------------
 What Is Unit Test?
