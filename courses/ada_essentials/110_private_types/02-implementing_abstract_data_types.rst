@@ -167,6 +167,8 @@ Benefits of Views
 Quiz
 ------
 
+In a package public section you have the following:
+
 .. code:: Ada
 
   type Private_T is private;
