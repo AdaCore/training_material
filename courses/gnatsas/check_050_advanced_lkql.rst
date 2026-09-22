@@ -497,7 +497,7 @@ Configuring a GNATcheck Run with LKQL
 Lab
 =====
 
-.. include:: labs/check_040_lkql.lab.rst
+.. include:: labs/check_050_advanced_lkql.lab.rst
 
 =========
 Summary
