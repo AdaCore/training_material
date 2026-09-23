@@ -32,7 +32,11 @@ Introduction to LKQL
 
 .. container:: PRELUDE END
 
+.. role:: lkql(code)
+    :language: lkql
+
 .. include:: check_040_introduction_to_lkql/01-introduction.rst
 .. include:: check_040_introduction_to_lkql/02-general_purpose_subset.rst
 .. include:: check_040_introduction_to_lkql/03-query_language_subset.rst
+.. include:: check_040_introduction_to_lkql/04-building_a_simple_rule.rst
 
