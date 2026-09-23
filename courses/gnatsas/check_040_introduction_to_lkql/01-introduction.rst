@@ -41,9 +41,32 @@ LangKit Query Language (LKQL)
 * Designed to be simple and concise
 * Has a `reference manual <https://docs.adacore.com/live/wave/lkql/html/gnatcheck_rm/gnatcheck_rm/lkql_language_reference.html>`_
 
-.. note::
+-----------
+Why LKQL?
+-----------
 
-  :toolname:`GNATcheck` uses LKQL to enable users to write their own rules
+* :toolname:`GNATcheck` uses LKQL to specify the rules it verifies
+
+  * "Predefined" rules are just a text library of LKQL rules
+
+  :command:`gnatcheck -P default.gpr --rule renamings`
+
+  :filename:`<SAS installation>/share/lkql/renamings.lkql`
+
+  .. code:: graphql
+
+    @check(message="renaming declaration", category="Feature")
+    fun renamings(node) =
+        |" Flag renaming declarations.
+        |"
+        |" .. rubric:: Example
+        |"
+        |" .. code-block:: ada
+        |"    :emphasize-lines: 2
+        |"
+        |"    I : Integer;
+        |"    J : Integer renames I;     --  FLAG
+        node is RenamingClause
 
 -------------------
 LKQL Construction
