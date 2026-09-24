@@ -53,7 +53,7 @@ Why LKQL?
 
   :filename:`<SAS installation>/share/lkql/renamings.lkql`
 
-  .. code:: graphql
+  .. code:: lkql
 
     @check(message="renaming declaration", category="Feature")
     fun renamings(node) =

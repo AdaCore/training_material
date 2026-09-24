@@ -40,7 +40,7 @@ Query Expression
 
 * Simple query
 
-  .. code:: graphql
+  .. code:: lkql
 
     # Select all non-null nodes
     select AdaNode
@@ -51,14 +51,14 @@ Query Expression
 
 * Specify query root via ``from``
 
-  .. code:: graphql
+  .. code:: lkql
 
     # Select all non-null nodes starting from node theNode
     from theNode select AdaNode
 
 * Specifying a selector using ``through``
 
-  .. code:: graphql
+  .. code:: lkql
 
     # Selects parents of first basic declaration
     from (select first BasicDecl) through parent select *
@@ -87,7 +87,7 @@ Pattern Categories
     * Pattern - match multiple node kinds
     * Wildcard pattern - matchin all node kinds
 
-  .. code:: graphql
+  .. code:: lkql
     :font-size: small
 
     select *                           # Will select every node
@@ -98,7 +98,7 @@ Pattern Categories
 
   * Match a value based on a pattern
 
-  .. code:: graphql
+  .. code:: lkql
 
     v is 12              # Integer pattern
     v is "hello.*?world" # Regex pattern
@@ -107,7 +107,7 @@ Pattern Categories
 
   * Use ``when`` for an arbitrary boolean condition
 
-    .. code:: graphql
+    .. code:: lkql
 
       select BasicDecl when some_condition
 
@@ -127,7 +127,7 @@ Selector Declaration
     * ``max_depth`` - traversal depth is higher than some value
     * ``depth`` - traversal depth is exactly some value
 
-  .. code:: graphql
+  .. code:: lkql
 
     # Calling selectors directly
     val kids = children(node, depth=3)
