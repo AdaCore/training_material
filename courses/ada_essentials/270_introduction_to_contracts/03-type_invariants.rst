@@ -31,12 +31,6 @@ Strong Typing
    * Property of type that is always true, unconditionally
    * Can add arbitrary constraints to a type, unlike the "basic" type system
 
-----------
-Examples
-----------
-
-.. include:: ../examples/adv_275_type_contracts/type_invariants.rst
-
 ----------------
 Type Invariant
 ----------------

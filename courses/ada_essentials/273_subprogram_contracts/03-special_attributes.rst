@@ -192,18 +192,6 @@ of the call :ada:`Set_And_Move ('X', Index)`?
 Stack Example (Spec with Contracts)
 -------------------------------------
 
-.. container:: columns
+.. include:: ../examples/adv_270_subprogram_contracts/special_attributes_spec.rst
 
-  .. container:: column
-
-    .. container:: latex_environment tiny
-
-      .. include:: ../examples/adv_270_subprogram_contracts/special_attributes_spec.rst
-
-  .. container:: column
-
-    .. container:: latex_environment tiny
-
-      .. include:: ../examples/adv_270_subprogram_contracts/special_attributes_body.rst
-
-
+.. include:: ../examples/adv_270_subprogram_contracts/special_attributes_body.rst

@@ -63,12 +63,6 @@ Requirements / Guarantees: Quiz
      - :animate:`Guarantee`
      - :animate:`Requirement`
 
-----------
-Examples
-----------
-
-.. include:: ../examples/adv_270_subprogram_contracts/preconditions_and_postconditions.rst
-
 ---------------
 Preconditions
 ---------------
