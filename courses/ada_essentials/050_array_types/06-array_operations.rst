@@ -26,23 +26,23 @@ Object-Level Operations
    - Bounds must be compatible (not necessarily equal)
 
    .. code:: Ada
-     :font-size: tiny
+     :font-size: small
 
       declare
-         type Index1_T is range 1 .. 2;
-         type Index2_T is range 101 .. 102;
-         type Array1_T is array (Index1_T) of Integer;
-         type Array2_T is array (Index2_T) of Integer;
-         type Array3_T is array (Boolean) of Integer;
+        type Index1_T is range 1 .. 2;
+        type Index2_T is range 101 .. 102;
+        type Array1_T is array (Index1_T) of Integer;
+        type Array2_T is array (Index2_T) of Integer;
+        type Array3_T is array (Boolean) of Integer;
 
-         One   : Array1_T;
-         Two   : Array2_T;
-         Three : Array3_T;
+        One   : Array1_T;
+        Two   : Array2_T;
+        Three : Array3_T;
 
       begin
 
-         One := Array1_T (Two);    -- OK
-         Two := Array2_T (Three);  -- Illegal (indexes not convertible)
+        One := Array1_T (Two);    -- OK
+        Two := Array2_T (Three);  -- Indexes not convertible
 
 -------------------------------
 Extra Object-Level Operations

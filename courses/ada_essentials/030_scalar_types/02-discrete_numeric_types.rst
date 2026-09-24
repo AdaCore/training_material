@@ -105,7 +105,7 @@ Signed Integer Overflows
 * Finite binary representation
 * Common source of bugs
 
-::
+.. code:: output
 
    K : Short_Integer := 16#7FFF#;
    ...

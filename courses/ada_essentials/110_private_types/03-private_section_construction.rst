@@ -70,7 +70,7 @@ Full Type Declaration
           type Item_T is private;
           ...
         private
-          type Vector is array (1.. 10)
+          type Vector is array (1..10)
              of Integer;
           function Initial
              return Vector;

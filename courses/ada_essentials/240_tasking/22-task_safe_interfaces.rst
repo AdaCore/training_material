@@ -15,8 +15,6 @@ Access Protected
 ------------------
 
 * Access to :ada:`protected` objects' subprograms
-* :ada:`type P is access protected procedure (args...)`
-* :ada:`type F is access protected function (args...) return ...`
 
 .. code:: Ada
 
