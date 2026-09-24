@@ -31,6 +31,7 @@ Creating an Abstract State
 .. container:: animate 2-
 
   .. code:: Ada
+    :font-size: footnotesize
 
       package Basics
         with Abstract_State => State
@@ -45,6 +46,7 @@ Creating an Abstract State
 .. container:: animate 3-
 
   .. code:: error
+    :font-size: tiny
 
     basics.adb:2:36: error: cannot use "The_Rec" in refinement, constituent is
        not a hidden state of package "Basics"
@@ -68,6 +70,7 @@ Defining an Abstract State
 .. container:: animate 2-
 
   .. code:: error
+    :font-size: footnotesize
 
     basics.ads:69:4: error: indicator Part_Of is required in
        this context [E0009]
@@ -88,6 +91,7 @@ Defining an Abstract State
 .. container:: animate 3-
 
   .. code:: Ada
+    :font-size: small
 
       The_Rec : Rec with Part_Of => State;
       The_Table : Table (1 .. 10) with Part_Of => State;
@@ -101,6 +105,7 @@ Using the Abstract State
    - Now to address the ignored errors:
 
      .. code:: error
+       :font-size: tiny
 
        basics.ads:29:28: error: "The_Rec" is undefined (more references follow)
        basics.ads:34:28: error: "The_Table" is undefined (more references follow)
@@ -139,7 +144,8 @@ Initializing the State
 
   .. code:: error
 
-     basics.ads:2:26: warning: no subprogram exists that can initialize abstract state "Basics.State"
+     basics.ads:2:26: warning: no subprogram exists that
+       can initialize abstract state "Basics.State"
 
   - We are not guaranteeing that the global data is initialized
 

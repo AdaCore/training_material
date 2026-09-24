@@ -38,7 +38,7 @@ Silver/Gold/Platinum Levels
 * Check that assertions are always true
 * Check that code respects functional contracts
 
-  *basics.ads*
+  :filename:`basics.ads`
 
   .. code:: Ada
      :number-lines: 3
@@ -47,7 +47,7 @@ Silver/Gold/Platinum Levels
      with
        Post => X = Y'Old and Y = X'Old;
 
-  *basics.adb*
+  :filename:`basics.adb`
 
   .. code:: Ada
      :number-lines: 5
