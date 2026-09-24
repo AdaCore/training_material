@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language name="lkql" version="1.2">
+  <highlighting>
+
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+        <!-- Miscellany -->
+        <RegExpr String="@(check|memoized|unit_check)\b" attribute="Control Flow"/>
+        <RegExpr String="\bval\b" attribute="Keyword"/>
+        <RegExpr attribute="Documentation" String="\|['&quot;].*" />
+
+        <!-- Comments -->
+        <Detect2Chars char="(" char1="*" context="Comment" attribute="Comment"/>
+        <RegExpr String="#.*$" attribute="Comment"/>
+
+        <!-- Strings -->
+        <RegExpr String="'([^'\\]|\\.)*'" attribute="String"/>
+        <RegExpr String="&quot;([^&quot;\\]|\\.)*&quot;" attribute="String"/>
+
+        <!-- Rule head -->
+        <RegExpr String="^\s*fun\s+[A-Za-z_][A-Za-z0-9_]*" attribute="RuleHead"/>
+
+        <!-- Structural brackets -->
+        <RegExpr String="[\{\}\(\)]" attribute="Group"/>
+
+        <!-- Operators/separators -->
+        <RegExpr attribute="Operator" String="(&gt;=|&lt;=|==|!=|&lt;&gt;|=&gt;|-&gt;|[+\-*/%=&lt;&gt;&amp;|^~!])" />
+
+        <!-- Node -->
+        <RegExpr String="\b(AbortAbsent|AbortNode|AbortPresent|AbortStmt)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AbstractAbsent|AbstractFormalSubpDecl|AbstractNode)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AbstractPresent|AbstractStateDecl|AbstractStateDeclExpr)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AbstractStateDeclList|AbstractSubpDecl|AcceptStmt)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AcceptStmtBody|AcceptStmtWithStmts|AccessDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AccessToSubpDef|AdaList|AdaNode|AdaNodeList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(Aggregate|AggregateAssoc|AliasedAbsent|AliasedNode)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AliasedPresent|AllAbsent|AllNode|AllPresent)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(Allocator|AlternativesList|AnonymousExprDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AnonymousType|AnonymousTypeAccessDef|AnonymousTypeDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ArrayIndices|ArraySubcomponentChoiceName)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ArrayTypeDef|AspectAssoc|AspectAssocList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AspectClause|AspectSpec|AssertionLevelDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AssignStmt|AssocList|AtClause|AttributeDefClause)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(AttributeRef|BaseAggregate|BaseAssoc|BaseAssocList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(BaseFormalParamDecl|BaseFormalParamHolder)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(BaseId|BaseLoopStmt|BasePackageDecl|BaseRecordDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(BaseSubpBody|BaseSubpSpec|BaseSubtypeDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(BaseTypeAccessDef|BaseTypeDecl|BasicAssoc)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(BasicAssocList|BasicDecl|BasicSubpDecl|BeginBlock)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(BinOp|BlockStmt|BodyNode|BodyStub|BoxExpr)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(BracketAggregate|BracketDeltaAggregate|CallExpr)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(CallStmt|CaseExpr|CaseExprAlternative|CaseExprAlternativeList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(CaseStmt|CaseStmtAlternative|CaseStmtAlternativeList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(CharLiteral|ClassicSubpDecl|ClasswideTypeDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(CompilationUnit|CompilationUnitList|ComponentClause)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ComponentDecl|ComponentDef|ComponentList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(CompositeConstraint|CompositeConstraintAssoc)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(CompositeStmt|ConcatOp|ConcatOperand|ConcatOperandList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ConcreteFormalSubpDecl|ConcreteTypeDecl|CondExpr)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ConstantAbsent|ConstantNode|ConstantPresent)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ConstrainedArrayIndices|ConstrainedSubtypeIndication)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(Constraint|ConstraintList|DecimalFixedPointDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(DeclBlock|DeclExpr|DeclList|DeclarativePart)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(DefiningName|DefiningNameList|DelayStmt|DeltaAggregate)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(DeltaConstraint|DerivedTypeDef|DigitsConstraint)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(DiscreteBaseSubtypeDecl|DiscreteSubtypeIndication)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(DiscreteSubtypeName|DiscriminantChoiceList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(DiscriminantPart|DiscriminantSpec|DiscriminantSpecList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(DottedName|ElsePart|ElsifExprPart|ElsifExprPartList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ElsifStmtPart|ElsifStmtPartList|EndName|EntryBody)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(EntryCompletionFormalParams|EntryDecl|EntryIndexSpec)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(EntrySpec|EnumLitSynthTypeExpr|EnumLiteralDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(EnumLiteralDeclList|EnumRepClause|EnumSubpSpec)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(EnumTypeDef|ErrorDecl|ErrorStmt|ExceptionDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ExceptionHandler|ExitStmt|ExplicitDeref|Expr)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ExprAlternativesList|ExprFunction|ExprList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ExtendedReturnStmt|ExtendedReturnStmtObjectDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(FinallyPart|FloatingPointDef|ForLoopIterFilter)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ForLoopSpec|ForLoopStmt|ForLoopVarDecl|FormalDiscreteTypeDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(FormalSubpDecl|FormalTypeDecl|FormatStringChunk)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(FormatStringChunkList|FormatStringLiteral)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(FormatStringTokEnd|FormatStringTokMid|FormatStringTokNode)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(FormatStringTokStart|FormatStringTokString)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(GenericDecl|GenericFormal|GenericFormalObjDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(GenericFormalPackage|GenericFormalPart|GenericFormalSubpDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(GenericFormalTypeDecl|GenericInstantiation)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(GenericPackageDecl|GenericPackageInstantiation)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(GenericPackageInternal|GenericPackageRenamingDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(GenericRenamingDecl|GenericSubpDecl|GenericSubpInstantiation)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(GenericSubpInternal|GenericSubpRenamingDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(GotoStmt|HandledStmts|Identifier|IdentifierList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(IfExpr|IfStmt|IncompleteFormalTypeDecl|IncompleteTaggedTypeDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(IncompleteTypeDecl|IntLiteral|InterfaceKind)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(InterfaceKindLimited|InterfaceKindProtected)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(InterfaceKindSynchronized|InterfaceKindTask)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(InterfaceTypeDef|IterType|IterTypeIn|IterTypeOf)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(IteratedAssoc|KnownDiscriminantPart|Label)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(LabelDecl|LibraryItem|LimitedAbsent|LimitedNode)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(LimitedPresent|LoopSpec|LoopStmt|MembershipExpr)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ModIntTypeDef|Mode|ModeDefault|ModeIn|ModeInOut)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ModeOut|ModifiesClause|ModifiesClauseList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ModifiesExpr|MultiAbstractStateDecl|MultiDimArrayAssoc)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(Name|NameList|NamedStmt|NamedStmtDecl|NoTypeObjectRenamingDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(NotNull|NotNullAbsent|NotNullPresent|NullComponentDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(NullLiteral|NullRecordAggregate|NullRecordDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(NullStmt|NullSubpDecl|NumLiteral|NumberDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ObjectDecl|Op|OpAbs|OpAnd|OpAndThen|OpConcat)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(OpDiv|OpDoubleDot|OpEq|OpGt|OpGte|OpIn|OpLt)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(OpLte|OpMinus|OpMod|OpMult|OpNeq|OpNot|OpNotIn)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(OpOr|OpOrElse|OpPlus|OpPow|OpRem|OpXor|OrdinaryFixedPointDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(OthersDesignator|OverridingNode|OverridingNotOverriding)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(OverridingOverriding|OverridingUnspecified)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(PackageBody|PackageBodyStub|PackageDecl|PackageRenamingDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ParamAssoc|ParamSpec|ParamSpecList|Params)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ParenAbstractStateDecl|ParenExpr|ParentList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(PpDirective|PpElseDirective|PpElsifDirective)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(PpEndIfDirective|PpIfDirective|PpThenKw|PragmaArgumentAssoc)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(PragmaNode|PragmaNodeList|PrivateAbsent|PrivateNode)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(PrivatePart|PrivatePresent|PrivateTypeDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ProtectedAbsent|ProtectedBody|ProtectedBodyStub)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ProtectedDef|ProtectedNode|ProtectedPresent)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ProtectedTypeDecl|PublicPart|QualExpr|QuantifiedExpr)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(Quantifier|QuantifierAll|QuantifierSome|RaiseExpr)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(RaiseStmt|RangeConstraint|RangeSpec|RealLiteral)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(RealTypeDef|RecordDef|RecordRepClause|RecordTypeDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ReduceAttributeRef|RelationOp|RenamingClause)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(RequeueStmt|ReturnStmt|ReverseAbsent|ReverseNode)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ReversePresent|SelectStmt|SelectWhenPart)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SelectWhenPartList|SignedIntTypeDef|SimpleDeclStmt)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SimpleStmt|SingleProtectedDecl|SingleTaskDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SingleTaskTypeDecl|SingleTokNode|Stmt|StmtList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(StringLiteral|SubpBody|SubpBodyStub|SubpDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SubpKind|SubpKindFunction|SubpKindProcedure)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SubpRenamingDecl|SubpSpec|SubtypeDecl|SubtypeIndication)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(Subunit|SynchronizedAbsent|SynchronizedNode)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SynchronizedPresent|SynthAnonymousTypeDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SyntheticBinarySpec|SyntheticCharEnumLit)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SyntheticDefiningName|SyntheticFormalParamDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SyntheticIdentifier|SyntheticObjectDecl|SyntheticRenamingClause)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(SyntheticSubpDecl|SyntheticTypeExpr|SyntheticUnarySpec)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(TaggedAbsent|TaggedNode|TaggedPresent|TargetName)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(TaskBody|TaskBodyStub|TaskDef|TaskTypeDecl)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(TerminateAlternative|ThenAbortPart|TypeAccessDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(TypeAttributesRepository|TypeDecl|TypeDef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(TypeExpr|UnOp|UnconstrainedArrayIndex|UnconstrainedArrayIndexList)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(UnconstrainedArrayIndices|UnknownDiscriminantPart)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(UntilAbsent|UntilNode|UntilPresent|UpdateAttributeRef)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(UseClause|UsePackageClause|UseTypeClause)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ValueSequence|Variant|VariantList|VariantPart)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(WhileLoopSpec|WhileLoopStmt|WithClause|WithPrivate)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(WithPrivateAbsent|WithPrivatePresent)\b"
+                 attribute="Keyword"/>
+
+        <!-- Symbol -->
+        <RegExpr String="\b(AnalysisUnitKind|CallExprKind|CompletionItemKind)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(DesignatedEnvKind|GrammarRule|LookupKind)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(RefResultKind)\b"
+                 attribute="Keyword"/>
+
+        <!-- List -->
+        <RegExpr String="\b(List[AcceptStmt]|List[AdaNode]|List[AnalysisUnit])\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(List[Aspect]|List[BaseFormalParamDecl]|List[BaseTypeDecl])\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(List[BasicDecl]|List[CompilationUnit]|List[DefiningName])\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(List[DiscriminantValues]|List[DocAnnotation])\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(List[EvalDiscreteRange]|List[Expr]|List[GenericInstantiation])\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(List[LogicContext]|List[ParamActual]|List[ParamSpec])\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(List[PragmaNode]|List[RefResult]|List[Shape])\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(List[SolverDiagnostic]|List[Substitution])\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(List[Symbol]|List[TypeDecl])\b"
+                 attribute="Keyword"/>
+
+        <!-- Object -->
+        <RegExpr String="\b(Aspect|CompletionItem|DiscreteRange|DiscriminantValues)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(DocAnnotation|EvalDiscreteRange|LogicContext)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(ParamActual|RefResult|RefdDecl|Shape|SolverDiagnostic)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(Substitution)\b"
+                 attribute="Keyword"/>
+
+        <!-- Fields -->
+        <RegExpr String="\b(f_aggregate|f_alternatives|f_ancestor_expr)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_args|f_aspect_assocs|f_aspects|f_assocs)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_at_expr|f_attribute|f_attribute_expr|f_barrier)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_body|f_body_decl|f_call|f_call_name|f_cases)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_choices|f_clauses|f_component_def|f_component_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_components|f_cond_expr|f_constraint|f_constraint_expr)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_constraints|f_decl|f_decls|f_default_expr)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_default_type|f_definition|f_delta|f_designator)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_designators|f_dest|f_digits|f_discr_name)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_discr_specs|f_discriminants|f_else_expr)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_else_part|f_end_name|f_entry_index_expr)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_entry_name|f_entry_params|f_enum_literals)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_error_message|f_exception_name|f_exceptions)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_expr|f_family_type|f_finally_part|f_first_operand)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_formal_part|f_generic_pkg_name|f_generic_subp_name)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_guard|f_guards|f_handled_exceptions|f_has_abort)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_has_abstract|f_has_aliased|f_has_all|f_has_constant)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_has_limited|f_has_not_null|f_has_private)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_has_protected|f_has_reverse|f_has_synchronized)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_has_tagged|f_has_until|f_has_with_private)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_id|f_id_type|f_ids|f_index_spec|f_indices)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_interface_kind|f_interfaces|f_is_tagged)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_item|f_iter_assoc|f_iter_expr|f_iter_filter)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_key_expr|f_kind|f_label_name|f_left|f_left_param)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_list|f_loop_name|f_loop_spec|f_loop_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_lower_bound|f_membership_exprs|f_mid_exprs)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_mode|f_name|f_names|f_num_digits|f_objects)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_op|f_opening_chunk|f_operand|f_operator)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_other_operands|f_overriding|f_package_decl)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_package_name|f_packages|f_param_type|f_params)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_position|f_pragmas|f_prefix|f_prelude|f_private_part)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_public_part|f_quantifier|f_r_expr|f_range)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_record_def|f_record_extension|f_renamed_object)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_renames|f_renaming_clause|f_return_expr)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_return_type_expr|f_right|f_right_param)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_spec|f_state_decl|f_stmt|f_stmts|f_string_tok)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_subp_decl|f_subp_kind|f_subp_name|f_subp_params)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_subp_returns|f_subp_spec|f_subpool|f_subtype)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_subtype_indication|f_subtype_name|f_suffix)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_task_type|f_then_abort_part|f_then_expr)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_then_kw|f_then_stmts|f_trailing_expr|f_type_decl)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_type_def|f_type_expr|f_type_name|f_type_or_expr)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(f_types|f_values|f_var_decl|f_variant|f_variant_part)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_abstract_formal_params|p_accept_stmts)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_accessed_type|p_aggregate_params|p_all_config_pragmas)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_all_env_elements|p_all_parts|p_as_bool)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_as_symbol_array|p_assoc_expr|p_associated_entities)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_attribute_subprogram|p_base_subp_declarations)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_base_subtype|p_base_type|p_base_types)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_basic_decl|p_body_part|p_body_part_for_decl)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_body_root|p_bool_type|p_call_params)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_called_subp_spec|p_canonical_fully_qualified_name)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_canonical_part|p_canonical_text|p_canonical_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_choice_match|p_classwide_type|p_comp_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_complete|p_config_pragmas|p_corresponding_entry)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_corresponding_neq_subprogram|p_decl)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_decl_part|p_declarative_scope|p_defining_name)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_defining_names|p_denoted_value|p_dependent_exprs)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_designated_generic_decl|p_designated_type_decl)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_designated_type_decl_from|p_discrete_range)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_discrete_static_values|p_discriminant_constraints)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_discriminant_params|p_discriminants_list)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_doc|p_doc_annotations|p_enclosing_compilation_unit)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_enclosing_defining_name|p_enum_rep)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_enum_type|p_eval_as_int|p_eval_as_int_in_env)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_eval_as_string|p_eval_as_string_in_env)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_expected_expression_type|p_expr|p_expression_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_failsafe_referenced_decl|p_filter_is_imported_by)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_final_renamed_package|p_find_all_calls)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_find_all_derived_types|p_find_all_overrides)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_find_all_references|p_find_derived_types)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_find_refs|p_first_corresponding_decl)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_formal_params|p_formal_type|p_full_view)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_fully_qualified_name|p_fully_qualified_name_array)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_generic_instantiations|p_get_allocated_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_get_annotations|p_get_aspect|p_get_aspect_assoc)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_get_aspect_spec_expr|p_get_at_clause)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_get_enum_representation_clause|p_get_formal)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_get_params|p_get_pragma|p_get_primitives)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_get_record_representation_clause|p_get_representation_clause)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_get_type|p_get_uninstantiated_node)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_gnat_xref|p_has_aspect|p_has_restriction)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_has_spark_mode_on|p_image_subprogram)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_imported_units|p_index_type|p_inst_params)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_int_type|p_is_abstract_type|p_is_access_call)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_access_type|p_is_array_slice|p_is_array_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_call|p_is_char_type|p_is_classwide)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_compilation_unit_root|p_is_constant)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_constant_object|p_is_defining|p_is_definite_subtype)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_derived_type|p_is_direct_call|p_is_discrete_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_discriminant_constraint|p_is_dispatching_call)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_dot_call|p_is_dynamically_tagged)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_enum_type|p_is_fixed_point|p_is_float_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_formal|p_is_ghost_code|p_is_imported)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_index_constraint|p_is_inherited_primitive)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_int_type|p_is_interface_type|p_is_keyword)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_limited_type|p_is_nameres_ambiguous)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_numeric_type|p_is_operator_name)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_predefined_operator|p_is_preelaborable)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_prefix_call|p_is_private|p_is_real_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_record_type|p_is_scalar_type|p_is_static_call)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_static_decl|p_is_static_expr|p_is_static_subtype)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_statically_constrained|p_is_statically_predicated)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_subaggregate|p_is_subject_to_proof)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_subprogram|p_is_tagged_type|p_is_visible)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_is_write_reference|p_kind|p_matching_nodes)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_matching_type|p_matching_with_use_clause)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_most_visible_part|p_name|p_name_designated_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_name_is|p_name_matches|p_nameres_diagnostics)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_nb_max_params|p_nb_min_params|p_next_part)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_next_part_for_decl|p_operands|p_other_part)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_param_types|p_params|p_parent_basic_decl)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_previous_part|p_previous_part_for_decl)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_primitive_subp_first_type|p_primitive_subp_tagged_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_primitive_subp_types|p_private_completion)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_private_part_decl|p_public_part_decl)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_referenced_decl|p_referenced_defining_name)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_relative_name|p_relative_name_text)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_renamed_package|p_resolve_names|p_return_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_returns|p_root_subp_declarations|p_root_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_semantic_parent|p_shapes|p_spark_mode_aspect)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_specific_type|p_standard_unit|p_std_char_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_std_entity|p_std_string_type|p_std_wide_char_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_std_wide_string_type|p_std_wide_wide_char_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_std_wide_wide_string_type|p_subaggregate_array_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_subaggregate_dimension|p_subp_decl_spec)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_subp_spec_or_null|p_subtype_constraint)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_subunit_root|p_syntactic_fully_qualified_name)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_top_level_decl|p_type_expression|p_type_name)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_unique_identifying_name|p_unit_dependencies)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_unit_kind|p_universal_int_type|p_universal_real_type)\b"
+                 attribute="Attribute"/>
+        <RegExpr String="\b(p_valid_keywords|p_withed_units|p_xref_entry_point)\b"
+                 attribute="Attribute"/>
+
+        <!-- Nonterminals (fallback) -->
+        <RegExpr String="[A-Za-z_][A-Za-z0-9_]*" attribute="Nonterminal"/>
+      </context>
+
+      <context name="Comment" attribute="Comment" lineEndContext="#stay">
+        <Detect2Chars char="*" char1=")" context="#pop" attribute="Comment"/>
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Comment" defStyleNum="dsComment"/>
+      <itemData name="String" defStyleNum="dsString"/>
+      <itemData name="Operator" defStyleNum="dsSpecialChar"/>
+      <itemData name="Group" defStyleNum="dsOperator"/>
+      <itemData name="Nonterminal" defStyleNum="dsDataType"/>
+      <itemData name="RuleHead" defStyleNum="dsFunction"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword"/>
+      <itemData name="Constant" defStyleNum="dsConstant"/>
+      <itemData name="Attribute" defStyleNum="dsAttribute"/>
+      <itemData name="Control Flow" defStyleNum="dsControlFlow"/>
+      <itemData name="Documentation" defStyleNum="dsDocumentation"/>
+    </itemDatas>
+  </highlighting>
+</language>
+

@@ -459,7 +459,12 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
     if os.path.isfile(filter):
         filter = " --filter " + filter
 
-    syntax = "--syntax-definition=" + os.path.join(os.path.dirname(__file__), "bnf.xml")
+    bnf_syntax = "--syntax-definition=" + os.path.join(
+        os.path.dirname(__file__), "bnf.xml"
+    )
+    lkql_syntax = "--syntax-definition=" + os.path.join(
+        os.path.dirname(__file__), "lkql.xml"
+    )
 
     if output_format(extension) == "beamer":
         preamble = "--include-in-header=" + os.path.join(
@@ -480,7 +485,8 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
         "--resource-path",
         texinputs,
         filter,
-        syntax,
+        bnf_syntax,
+        lkql_syntax,
         theme,
         color,
         preamble,
