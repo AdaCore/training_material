@@ -94,13 +94,13 @@ Declarations
 
   * Simple function (no local variables)
 
-    .. code:: graphql
+    .. code:: lkql
 
       fun add(x, y) = x + y
 
   * Function with block expression
 
-    .. code:: graphql
+    .. code:: lkql
 
       fun add(x, y) = {
           |" Add two integers
@@ -110,7 +110,7 @@ Declarations
 
 * Value declarations are used for named values
 
-  .. code:: graphql
+  .. code:: lkql
 
     val a = 12 + 15
 
@@ -118,7 +118,7 @@ Declarations
 
 * Docstrings are used for comments
 
-  .. code:: graphql
+  .. code:: lkql
 
     |" Function that will add 12 to its first argument
     val adder = make_closure(12)
@@ -131,7 +131,7 @@ Literals and Operators
 
 * Simple literals for booleans, integers, strings, unit, and null
 
-  .. code:: graphql
+  .. code:: lkql
 
     val a = true     # Boolean
     val b = 12       # Integer
@@ -143,27 +143,27 @@ Literals and Operators
 
   * Integer arithmetic
 
-    .. code:: graphql
+    .. code:: lkql
 
       val calc = a + 2 * 3 / 4
       val smaller_or_eq = a <= b
 
   * Boolean relational operators
 
-    .. code:: graphql
+    .. code:: lkql
 
       true and false or (a == b) and (not c)
 
   * Concatenation
 
-    .. code:: graphql
+    .. code:: lkql
 
       "Hello " & name  # Strings concatenation
       [1, 2] & [5, 6]  # Lists concatenation
 
 * Multi-line string literals
 
-  .. code:: graphql
+  .. code:: lkql
 
     val a = |" Hello
             |" This is a multi line string
@@ -179,7 +179,7 @@ Expressions
 
 * *Block expressions* used to declare temporary values
 
-  .. code:: graphql
+  .. code:: lkql
 
     {
         val x = 40;
@@ -190,7 +190,7 @@ Expressions
 
 * *Field access* returns contents of a field
 
-  .. code:: graphql
+  .. code:: lkql
 
     object_decl.f_type_expr
 
@@ -198,7 +198,7 @@ Expressions
 
 * *Call expressions* allow functions to call other functions
 
-  .. code:: graphql
+  .. code:: lkql
 
     fun add(a, b) = a + b
 
@@ -209,7 +209,7 @@ Expressions
 
 * *Indexing expressions* allow access to elements of composite data types
 
-  .. code:: graphql
+  .. code:: lkql
 
     (1, 2, 3)[1] # Indexing a tuple
     list[1]      # Indexing a list
@@ -224,7 +224,7 @@ Comparison Expressions
 
 * Typical comparison operators are available
 
-  .. code:: graphql
+  .. code:: lkql
 
     12 < 15
     a == b
@@ -237,13 +237,13 @@ Comparison Expressions
 
   * Works with ``List`` and ``Stream``
 
-  .. code:: graphql
+  .. code:: lkql
 
     12 in list
 
 * *Is expressions* verify value matches a pattern
 
-  .. code:: graphql
+  .. code:: lkql
 
     val a = select AdaNode
     val b = a[1] is ObjectDecl
