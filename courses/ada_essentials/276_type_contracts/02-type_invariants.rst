@@ -8,7 +8,7 @@ Complicated Type Restrictions
 
 * Pre/postconditions add restrictions to **subprograms**
 
-  * What about types (and therefore objects)?
+  * What about **types** (and, by extension, objects)?
 
 * Sometimes low-level facilities can express it
 
@@ -16,11 +16,11 @@ Complicated Type Restrictions
 
     type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
     subtype Weekdays is Days range Mon .. Fri;
-    -- Restricts "Weekdays" to only part of "Days"
+    -- Restricts Weekdays to only part of Days
 
     type Bit_Array_T is array (Integer range <>) of Bit;
     type Flags_T is new Bit_Array_T (1 .. 8);
-    -- Restricts "Flags_T" to always be 8 elements
+    -- Restricts Flags_T to always be 8 elements
 
 * What about more complicated requirements?
 
@@ -30,7 +30,7 @@ Complicated Type Restrictions
        Start_Time : Ada.Calendar.Time;
        End_Time   : Ada.Calendar.Time;
     end record;
-    -- How do we enforce "End_Time" > "Start_Time"?
+    -- How do we enforce End_Time > Start_Time?
 
     type Account is record
       Balance     : Currency;
