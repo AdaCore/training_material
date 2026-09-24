@@ -166,21 +166,27 @@ Ceiling Locking
 
 * Example of priority inversion
 
-.. code::
-  :font-size: scriptsize
+  .. code:: Ada
+    :font-size: scriptsize
 
-   The_Lock : Lock;
+    The_Lock : Lock;
 
-   T1 : Task (Priority => 1);
-   T2 : Task (Priority => 2);
-   T3 : Task (Priority => 3);
+    T1 : Task (Priority => 1);
+    T2 : Task (Priority => 2);
+    T3 : Task (Priority => 3);
 
-   T1 locks The_Lock
-   T3 starts, get scheduled (T3 > T1)
-   T3 tries to get The_Lock, blocks
-   T2 starts, get scheduled (T2 > T1)
+  * :ada:`Task_1` locks :ada:`Lock`
+  * :ada:`Task_3` starts, gets scheduled (:ada:`Task_3` > :ada:`Task_1`)
+  * :ada:`Task_3` tries to get :ada:`Lock`, blocks
+  * :ada:`Task_2` starts, gets scheduled (:ada:`Task_2` > :ada:`Task_1`)
 
-   Result: T2 running, T1 blocked, T3 blocked through The_Lock (but T3 > T2!)
+  **Result**
+
+    :ada:`Task_2` running
+
+    :ada:`Task_1` blocked
+
+    :ada:`Task_3` blocked through :ada:`Lock`
 
 * Solved with ceiling locking
 
