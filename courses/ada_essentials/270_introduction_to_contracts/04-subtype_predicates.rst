@@ -2,12 +2,6 @@
 Subtype Predicates
 ====================
 
-----------
-Examples
-----------
-
-.. include:: ../examples/adv_275_type_contracts/subtype_predicates.rst
-
 ------------
 Predicates
 ------------

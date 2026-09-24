@@ -343,10 +343,11 @@ Why Allow Types with Static Predicates?
 * Efficient code can be generated for usage
 
   .. code:: Ada
-    :font-size: tiny
+    :font-size: small
 
      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
-     subtype Weekend is Days with Static_Predicate => Weekend in Sat | Sun;
+     subtype Weekend is Days
+        with Static_Predicate => Weekend in Sat | Sun;
      ...
      for A_Day in Weekend loop
        GNAT.IO.Put_Line (A_Day'Image);

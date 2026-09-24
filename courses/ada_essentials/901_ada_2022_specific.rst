@@ -147,23 +147,15 @@ Generalized 'Image
 
 * Non-exhaustive example
 
-.. container:: columns
-
- .. container:: column
-
-  * Code
+* Code
 
   .. include:: examples/ada2022/generalized_image_attribute/extracts/put_line.adb
     :code: Ada
 
- .. container:: column
-
-  * Output
+* Output
 
   .. include:: examples/ada2022/generalized_image_attribute/out.txt
-    :code:
-
-.
+    :code: output
 
 ----------------------
 User-Defined "Image"
