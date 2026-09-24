@@ -6,7 +6,7 @@ Type Invariants
 Complicated Type Restrictions
 -------------------------------
 
-* Pre/postconditions add restrictions to subprogram calls/behavior
+* Pre/postconditions add restrictions to **subprograms**
 
   * What about types (and therefore objects)?
 
@@ -30,14 +30,14 @@ Complicated Type Restrictions
        Start_Time : Ada.Calendar.Time;
        End_Time   : Ada.Calendar.Time;
     end record;
-    --  How do we enforce "End_Time" > "Start_Time"?
+    -- How do we enforce "End_Time" > "Start_Time"?
 
     type Account is record
       Balance     : Currency;
       Deposits    : Currency_List;
       Withdrawals : Currency_List;
     end record;
-    --  How do we ensure Balance is always accurate?
+    -- How do we ensure Balance is always accurate?
     
 -----------------
 Type Invariants
@@ -47,7 +47,7 @@ Type Invariants
 
   * But does not have to hold for the supplier
 
-* Therefore it's only useful (and allowed for) private types
+* Therefore it's only useful (and allowed) for private types
 
   .. code:: Ada
 
