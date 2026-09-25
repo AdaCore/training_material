@@ -189,9 +189,13 @@ of the call :ada:`Set_And_Move ('X', Index)`?
       :width: 80%
 
 -------------------------------------
-Stack Example (Spec with Contracts)
+Stack Example Spec (with Contracts)
 -------------------------------------
 
 .. include:: ../examples/adv_270_subprogram_contracts/special_attributes_spec.rst
+
+-------------------------------------
+Stack Example Body (Implementation)
+-------------------------------------
 
 .. include:: ../examples/adv_270_subprogram_contracts/special_attributes_body.rst
