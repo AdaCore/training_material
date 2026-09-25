@@ -35,8 +35,9 @@ Introduction to LKQL
 .. role:: lkql(code)
     :language: lkql
 
-.. include:: check_040_introduction_to_lkql/01-introduction.rst
-.. include:: check_040_introduction_to_lkql/02-general_purpose_subset.rst
-.. include:: check_040_introduction_to_lkql/03-query_language_subset.rst
-.. include:: check_040_introduction_to_lkql/04-building_a_simple_rule.rst
-
+.. include:: check_040_introduction_to_lkql/01_introduction.rst
+.. include:: check_040_introduction_to_lkql/02-overview.rst
+.. include:: check_040_introduction_to_lkql/03-general_purpose_subset.rst
+.. include:: check_040_introduction_to_lkql/04-query_language_subset.rst
+.. include:: check_040_introduction_to_lkql/05-building_a_simple_rule.rst
+.. include:: check_040_introduction_to_lkql/99_summary.rst
