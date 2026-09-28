@@ -6,13 +6,11 @@
 What Is "Box<T>"
 ------------------
 
-- Allocates data on the heap (via :rust:`Box::new`)
+- :rust:`Box<T>` provides unique ownership of a value stored on the heap
+  - The :rust:`Box<T>` value itself has a known, fixed size
+  - Moving the box transfers ownership without moving the heap allocation
 
-  - Stores a fixed-size pointer on the stack
-
-  - Retains single ownership of heap data
-
-- Deallocates memory automatically when object goes out of scope
+- The heap allocation is released automatically when the box is dropped
 
 - Defined in **prelude**
 
@@ -21,7 +19,6 @@ What Is "Box<T>"
   // 'Box::new()' is used to allocate data
   let my_box = Box::new(5);
 
-  // Implicit dereference
   println!("Box value is {}", my_box);
 
 .. code:: output
@@ -32,9 +29,9 @@ What Is "Box<T>"
 Using "Box<T>" for Recursive Types
 ------------------------------------
 
-- Types must have a known size at compile time
+- A type cannot contain itself directly
 
-  - Recursive types don't have a known size
+  - Direct recursion would give the type an infinite size
 
     .. code:: rust
 
@@ -49,13 +46,13 @@ Using "Box<T>" for Recursive Types
 
       error[E0072]: recursive type 'Doll' has infinite size
 
-- :rust:`Box<T>` provides a pointer with known size
+- :rust:`Box<T>` has a known, fixed size
 
-  - Breaks direct recursion loop in memory
+  - The recursive value itself is stored behind the box
 
     .. code:: rust
 
-      // WORKS: The 'Box' is just a pointer to the next doll
+      // WORKS: 'Box<Doll>' gives this recursive field a known size
       enum Doll {
         Inside(Box<Doll>),
         Empty,
@@ -67,13 +64,16 @@ Using "Box<T>" for Recursive Types
 Handling Large Data
 ---------------------
 
-- :rust:`Box::new(large_value)` can still require a large stack temporary
+- :rust:`Box<T>` gives unique ownership of heap data
+  - Moving the box keeps the heap allocation in place
 
-  - Do not rely on compiler optimizations to avoid stack overflow
+- Avoid :rust:`Box::new([0; LARGE_SIZE])` for large arrays
+  - Creating it can still require a large stack temporary
+  - Do not rely on optimization to remove it
 
-- Initialize the elements on the heap with :rust:`vec!`
-
-  - Convert the vector into an owned slice with :rust:`into_boxed_slice()`
+- Use :rust:`vec!` for large buffers
+  - Keep :rust:`Vec<T>` if the buffer must resize
+  - Convert to :rust:`Box<[T]>` for a fixed-length buffer
 
 .. code:: rust
 
@@ -81,78 +81,52 @@ Handling Large Data
     vec![0_u64; 1_000_000].into_boxed_slice()
   }
 
-- Returning the box transfers ownership; the elements stay in place
-
 .. note::
 
-  This avoids a large stack temporary, but heap allocation can still fail
-
-----------------------------------
-Choosing a Heap-Allocated Buffer
-----------------------------------
-
-- :rust:`Vec<u64>` already owns its heap buffer and is cheap to move
-
-  - Keep the vector if the buffer needs to grow or shrink
-
-- :rust:`Box<[u64]>` owns a heap-allocated slice with a fixed length
-
-  - The length is stored at runtime, unlike :rust:`Box<[u64; 1_000_000]>`
-
-  - A fixed length does not make the elements immutable
-
-- Moving either container does not relocate its heap-allocated elements
-
-  - Moving a large inline value may still relocate its bytes
-
-.. note::
-
-  :rust:`into_boxed_slice()` may reallocate to discard excess capacity, this conversion is different from moving an existing box
+  :rust:`into_boxed_slice()` may reallocate to discard excess capacity
 
 ------------------------------------
 Borrowing or Transferring Ownership
 ------------------------------------
 
-- Borrow with :rust:`&[u64]` when temporary access is enough
-
-  - The caller retains ownership; the buffer is not copied
-
-- Move :rust:`Box<[u64]>` when another value must own the buffer
-
-  - Ownership is transferred without copying the buffer
+- Borrow the boxed slice when temporary access is enough
+  - The caller retains ownership
+  - The buffer is not copied
+- Move the :rust:`Box<[u64]>` when another value must own it
+  - Ownership is transferred
+  - The heap allocation stays in place
 
 .. code:: rust
 
-  fn inspect_data(samples: &[u64]) {
-    println!("{} samples", samples.len());
-  }
   struct DataProcessor {
     samples: Box<[u64]>,
   }
 
   let samples = create_data();
-  inspect_data(&samples); // Borrow; 'samples' is still usable
 
   let processor = DataProcessor { samples }; // Move the box
-  // 'samples' is no longer usable; 'processor' owns the buffer
+  // 'samples' is no longer usable
   println!("{} samples", processor.samples.len());
 
 .. note::
 
-  Dropping :rust:`processor` drops its boxed slice and frees the buffer, :rust:`&samples` coerces to :rust:`&[u64]`
+  Ownership transfer is not a copy operation
 
 ---------------------
 Resource Management
 ---------------------
 
-- :rust:`Box<T>` implements :rust:`Drop` to ensure memory safety
+- :rust:`Box<T>` releases its heap allocation automatically when dropped
+  - Usually when the owning value goes out of scope
+  - No manual deallocation is required
 
-  - Invokes :rust:`Drop` method automatically at end of scope
+.. code:: rust
 
-    - No need for manual intervention
+  {
+    let samples = vec![0_u64; 1_000_000]
+        .into_boxed_slice();
+    // Use 'samples'...
+  } // 'samples' is dropped here
 
-  - Prevents memory leaks by ensuring deallocation
-
-- Transferring ownership is an *O(1)* operation
-
-  - Regardless of what it points to
+- Moving a :rust:`Box<T>` is an *O(1)* operation
+  - The heap allocation stays in place

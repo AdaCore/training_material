@@ -34,9 +34,9 @@ Dereferencing
 Coercing Types With "Deref"
 -----------------------------
 
-- Coercion allows conversion of a referenced type to a different type
+- Deref coercion converts :rust:`&T` to :rust:`&U`
 
-  - If :rust:`Deref` is implemented between the types
+  - When :rust:`T: Deref<Target = U>`
 
 - Performs multiple "steps" of coercion at compile time
 
@@ -83,47 +83,34 @@ Coercing Types With "Deref"
 -------------------------
 Mutability and Coercion
 -------------------------
-    
-- From :rust:`&T` to &U 
-  - Trait required :rust:`T: Deref<Target = U>`
 
 .. code:: rust
 
-  fn hello(name: &str) { println!("Hello, {name}!"); } 
-  
-  fn edit(name: &mut str) { println!("Hello, {name}!"); }
+  fn say(name: &str) { println!("Hello, {name}!"); }
+  fn yell(name: &mut str) { name.make_ascii_uppercase(); }
 
-  let my_box = Box::new(String::from("Rust"));
-  hello(&my_box);
+  let aya = Box::new(String::from("Aya"));
+  let mut zoe = Box::new(String::from("Zoé"));
 
-- From :rust:`&T` to :rust:`&mut U`
-  - Not allowed
+.. list-table::
+   :header-rows: 1
+   :widths: 24 32 44
 
-.. code:: rust
-
-  edit(&my_box); // Error
-  
-.. code:: error
-
-  error[E0308]: mismatched types
-
-.. code:: rust  
-  
-  let mut my_box2 = Box::new(String::from("Rust"));
-  
-- From :rust:`&mut T` to :rust:`&mut U` 
-  - Trait required :rust:`T: DerefMut<Target = U>`
-
-.. code:: rust  
-  
-  edit(&mut my_box2);
-  
-- From :rust:`&mut T` to :rust:`&U` 
-  - Trait required :rust:`T: Deref<Target = U>`
-
-.. code:: rust  
-  
-  hello(&mut my_box2);  
+   * - **Call**
+     - **Coercion**
+     - **Trait / Result**
+   * - :rust:`say(&aya)`
+     - :rust:`&T` to :rust:`&U`
+     - :rust:`Deref`
+   * - :rust:`yell(&aya)`
+     - :rust:`&T` to :rust:`&mut U`
+     - :error:`E0308: mismatched types`
+   * - :rust:`yell(&mut zoe)`
+     - :rust:`&mut T` to :rust:`&mut U`
+     - :rust:`DerefMut`
+   * - :rust:`say(&mut zoe)`
+     - :rust:`&mut T` to :rust:`&U`
+     - :rust:`Deref`
 
 
 
