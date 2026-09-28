@@ -36,13 +36,14 @@ Type Predicates (1/2)
 
 .. container:: animate 2-
 
-   :color-red:`basics.adb:5:8: medium: predicate check might fail`
+  .. code:: error
 
-   :color-red:`basics.adb:12:8: medium: predicate check might fail`
+    basics.adb:5:8: medium: predicate check might fail
+    basics.adb:12:8: medium: predicate check might fail
+    basics.ads:10:1: possible fix: subprogram at basics.ads:10
+        should mention P in a precondition
 
-   :color-red:`basics.ads:10:1: possible fix: subprogram at basics.ads:10 should mention P in a precondition`
-
-   *(Ignore remaining messages for now)*
+  *(Ignore remaining messages for now)*
 
 -----------------------
 Type Predicates (2/2)
@@ -111,15 +112,14 @@ Type Invariants (1/4)
 
 .. container:: animate 2-
 
-   :color-red:`basics.adb:39:8: medium: invariant check might fail`
+  .. code:: error
+    :font-size: tiny
 
-   :color-red:`basics.ads:21:1: medium: for T before the call at basics.ads:21`
-
-   :color-red:`basics.ads:21:14: medium: invariant check might fail`
-
-   :color-red:`basics.ads:21:1: medium: for T at the end of Swap_Triplet at basics.ads:21`
-
-   :color-red:`basics.ads:41:9: medium: invariant check might fail on default value`
+    basics.adb:39:8: medium: invariant check might fail
+    basics.ads:21:1: medium: for T before the call at basics.ads:21
+    basics.ads:21:14: medium: invariant check might fail
+    basics.ads:21:1: medium: for T at the end of Swap_Triplet at basics.ads:21
+    basics.ads:41:9: medium: invariant check might fail on default value
 
 -----------------------
 Type Invariants (2/4)
