@@ -211,7 +211,7 @@ GNATprove Output for Programmers
 
 ---------------------------------------
 Analysis Summary File "gnatprove.out"
-----------------------------------------
+---------------------------------------
 
 * Located in :filename:`gnatprove/` under project object dir
 * An overview of results for all checks in project
