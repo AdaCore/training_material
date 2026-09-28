@@ -49,9 +49,7 @@ Working With Custom Smart Pointers
   }
   println!("Hello, 00{}!", *name );
   
-- :rust:`Drop` should be implemented too
-
-  - To behave like other *smart pointers* 
+- Implement :rust:`Drop` when custom cleanup is required
 
 --------------
 "Drop" Trait
@@ -59,7 +57,7 @@ Working With Custom Smart Pointers
 
 - Most standard *smart pointers* implement :rust:`Drop`
 
-- Allows :rust:`drop` method to define custom cleanup logic 
+- :rust:`Drop::drop` defines custom cleanup logic
 
 .. code:: rust
 

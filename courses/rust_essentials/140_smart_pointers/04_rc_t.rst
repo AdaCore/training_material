@@ -8,27 +8,24 @@ Multiple Ownership With "Rc<T>"
 
 - Useful when *single* value is owned by *multiple* parts of a program
   
-  - Only provides *immutable access* to the data
+  - Does not provide mutable access to its target through :rust:`Rc<T>` itself
 
-  - Tracks number of active references
+  - Tracks the number of owners
 
   - Prevents data cleanup until last owner finishes
   
-- Called :dfn:`Reference Counted (Smart) Pointer`
+- Single-threaded reference-counted smart pointer
 
   - included with :rust:`use std::rc::Rc`
   
----------------------------
-"Rc<T>" Counts References
----------------------------
+---------------------------------
+Reference Counting With "Rc<T>"
+---------------------------------
 
-**Shares ownership of value on the heap using** :rust:`Clone`
-    
-- Creates a *shallow* copy not a deep copy
+**Shares ownership of the same heap allocation**
 
-  - Only the *pointer* is copied
-	
-- Increments the internal counter 
+- :rust:`Rc::clone` creates another owner
+- Increments the internal counter
  
 .. code:: rust 
 
@@ -44,12 +41,12 @@ Multiple Ownership With "Rc<T>"
   Count: 1
   Count: 2
 
-------------------
-Immutable Access
-------------------
+---------------
+Shared Access
+---------------
 
   
-:rust:`Rc<T>` **allows multiple ownership but no mutable access**
+:rust:`Rc<T>` **does not implement** :rust:`DerefMut`
 
 .. code:: rust 
 
