@@ -47,7 +47,7 @@ Tool Assumptions
 
 * All assumptions should be reviewed and validated
 
-  - Complete list in SPARK Programmer's Guide section 7.3.7
+  - Complete list in SPARK User's Guide section 7.3.7
 
 * Common assumptions whether or not complete program in SPARK
 

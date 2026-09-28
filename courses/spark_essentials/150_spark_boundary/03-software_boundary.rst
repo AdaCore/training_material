@@ -320,7 +320,7 @@ Integrating With Main Procedure Not in Ada
 Modeling an API
 -----------------
 
-* API may be modelled in SPARK
+* API may be modeled in SPARK
 
   - Implementation may be in Ada, C, Rust...
   - Implementation may be in the Operating System
