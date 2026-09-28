@@ -9,6 +9,7 @@ Multiple Dispatching Operands
 * Primitives with multiple dispatching operands are allowed if all operands are of the same type
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Animal is tagged null record;
      procedure Interact (Left : Animal; Right : Animal);
@@ -18,6 +19,7 @@ Multiple Dispatching Operands
 * At call time, all actual parameters' tags have to match, either statically or dynamically
 
   .. code:: Ada
+    :font-size: scriptsize
 
      Animal_1, Animal_2   : Animal;
      Dog_1, Dog_2 : Dog;
@@ -41,6 +43,7 @@ Special Case for Equality
 * If dynamic types differ, equality returns false instead of raising exception
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Animal is tagged null record;
    function "=" (Left : Animal; Right : Animal) return Boolean;
@@ -65,6 +68,7 @@ Controlling Result (1/2)
    - This is known as the constructor pattern
 
      .. code:: Ada
+       :font-size: tiny
 
         type Animal is tagged null record;
         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
@@ -72,6 +76,7 @@ Controlling Result (1/2)
 * If the child adds components, all such subprograms have to be overridden
 
   .. code:: Ada
+    :font-size: scriptsize
 
         type Animal is tagged null record;
         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
@@ -87,6 +92,7 @@ Controlling Result (1/2)
 * Primitives returning abstract types have to be abstract
 
   .. code:: Ada
+    :font-size: tiny
 
         type Animal is abstract tagged null record;
         function Feed_Treats (Number_Of_Treats : Integer) return Animal is abstract;
@@ -108,6 +114,7 @@ Controlling Result (2/2)
 * In a dynamic context, the type has to be known to correctly dispatch
 
   .. code:: Ada
+    :font-size: tiny
      
     Fed_Animal : Animal'Class := 
                           Animal'(Feed);    -- Static call to Animal primitive

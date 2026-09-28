@@ -66,31 +66,29 @@ Private Tagged Types
 
 * So we can define our base type as private
 
-  .. container:: latex_environment tiny
+  .. code:: Ada
+    :font-size: scriptsize
 
-    .. code:: Ada
-
-      package Animals is
-        type Animal_T is tagged private;
-        function Get_Age (P : Animal_T) return Natural;
-        procedure Set_Age (P : in out Animal_T; A : Natural);
-      private
-        type Animal_T is tagged record
-           Age : Natural;
-        end record;
-      end Animals;
+    package Animals is
+      type Animal_T is tagged private;
+      function Get_Age (P : Animal_T) return Natural;
+      procedure Set_Age (P : in out Animal_T; A : Natural);
+    private
+      type Animal_T is tagged record
+         Age : Natural;
+      end record;
+    end Animals;
 
 * And still allow derivation
 
-  .. container:: latex_environment tiny
+  .. code:: Ada
+    :font-size: scriptsize
 
-    .. code:: Ada
-
-      with Animals;
-      package Mammals is
-        type Mammal_T is new Animals.Animal_T with record
-          Number_Of_Legs : Natural;
-        end record;
+    with Animals;
+    package Mammals is
+      type Mammal_T is new Animals.Animal_T with record
+        Number_Of_Legs : Natural;
+      end record;
 
 * But now the only way to get access to :ada:`Age` is with accessor subprograms
 
@@ -103,6 +101,7 @@ Private Extensions
 * Better would be to make the extension itself private
 
   .. code:: Ada
+    :font-size: small
 
     package Mammals is
       type Mammal_T is new Animals.Animal_T with private;
@@ -123,6 +122,7 @@ Aggregates with Private Tagged Types
 * So we need to use the "seed" method:
 
   .. code:: Ada
+    :font-size: small
 
     procedure Inside_Mammals_Pkg is
       Animal : Animal_T := Animals.Create;
@@ -135,6 +135,7 @@ Aggregates with Private Tagged Types
 * Note that we cannot use :ada:`others => <>` for components that are not visible to us
 
   .. code:: Ada
+    :font-size: small
 
     Mammal := (Number_Of_Legs => 4,
                others         => <>);  -- Compile Error

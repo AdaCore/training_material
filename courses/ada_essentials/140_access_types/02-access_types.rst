@@ -19,13 +19,14 @@ Access Type
 * Conversion is **not** possible between this kind of access type
 
   .. code:: Ada
+    :font-size: small
     :number-lines: 5
 
     type Rec_Access_2 is access Rec_T;
     Rec_Ptr_2 : Rec_Access_2 := Rec_Access_2 (Rec_Ptr);
 
   .. code:: error
-    :font-size: footnotesize
+    :font-size: scriptsize
 
     example.adb:6:32: error: target type must be general access type
 
@@ -50,6 +51,7 @@ Allocations
   * The constraint is given during the allocation
 
   .. code:: Ada
+    :font-size: small
 
      type String_Access_T is access String;
      String_Ptr_1 : String_Access_T := new String (1..10);
@@ -59,6 +61,7 @@ Allocations
   * Using a type qualifier
 
   .. code:: Ada
+    :font-size: small
 
      String_Ptr_2 : String_Access_T  := new String'("abc");
      Integer_Ptr  : Integer_Access_T := new Integer'(123);

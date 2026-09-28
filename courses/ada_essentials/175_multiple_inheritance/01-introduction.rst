@@ -11,6 +11,7 @@ Multiple Inheritance Is Forbidden in Ada
 * Ada forbids it to improve integration
 
 .. code:: Ada
+  :font-size: small
 
     type Graphic is tagged record
        X, Y : Float;
@@ -31,6 +32,7 @@ Multiple Inheritance - Safe Case
 * If only one type has concrete operations and components, this is fine
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Graphic is abstract tagged null record;
      function Get_X (V : Graphic) return Float is abstract;
@@ -45,6 +47,7 @@ Multiple Inheritance - Safe Case
 * This is the definition of an interface (as in Java)
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Graphic is interface;
      function Get_X (V : Graphic) return Float is abstract;

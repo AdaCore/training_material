@@ -59,6 +59,7 @@ Manually Disambiguating Calls
    - Unless name is ambiguous
 
 .. code:: Ada
+  :font-size: small
 
    type Stop_Light is (Red, Yellow, Green);
    type Colors is (Red, Blue, Green);
@@ -75,6 +76,7 @@ Overloading Example
 ---------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    function "+" (Left : Position; Right : Offset)
      return Position is
@@ -109,6 +111,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Vertical_T is (Top, Middle, Bottom);
    type Horizontal_T is (Left, Middle, Right);

@@ -30,6 +30,7 @@ Wrapper Interface
     - Implements smart pointer logic
 
 .. code:: Ada
+  :font-size: footnotesize
 
        procedure Initialize_Id (Object : in out GL_Object);
 
@@ -40,6 +41,7 @@ Wrapper Interface
 * Derived by the **actual** object types
 
 .. code:: Ada
+  :font-size: small
 
        procedure Internal_Create_Id
          (Object : GL_Object; Id : out UInt) is abstract;
@@ -50,6 +52,7 @@ Wrapper Interface
 * Example usage
 
 .. code:: Ada
+  :font-size: scriptsize
 
     type Shader (Kind : Shader_Type) is new GL_Object with null record;
 
@@ -62,6 +65,7 @@ Wrapper Implementation: Private Section
     - All derived types have a handle to this
 
 .. code:: Ada
+  :font-size: scriptsize
 
    type GL_Object_Reference;
    type GL_Object_Reference_Access is access all GL_Object_Reference;
@@ -74,6 +78,7 @@ Wrapper Implementation: Private Section
 * Controlled type implementing **ref-counting**
 
 .. code:: Ada
+  :font-size: small
 
    overriding procedure Adjust (Object : in out GL_Object);
    -- Increases reference count.
@@ -104,6 +109,7 @@ Wrapper Implementation: Full Picture
 * Increments the ref-counter
 
 .. code:: Ada
+  :font-size: footnotesize
 
     overriding procedure Adjust (Object : in out GL_Object) is
     begin
@@ -124,6 +130,7 @@ Wrapper Implementation: Full Picture
         - In particular when **exceptions** occur
 
 .. code:: Ada
+  :font-size: footnotesize
 
     overriding procedure Finalize (Object : in out GL_Object) is
        Ref : GL_Object_Reference_Access
@@ -138,6 +145,7 @@ Wrapper Implementation: Full Picture
     * A given object will own **only one** reference
 
 .. code:: Ada
+  :font-size: scriptsize
 
        --  Idempotence: the next call to Finalize will have no effect
        Ref := null;

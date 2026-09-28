@@ -23,6 +23,7 @@ Extended Return Statements Example
 ------------------------------------
 
 .. code:: Ada
+  :font-size: small
 
        --  Implicitly limited array
        type Spin_Lock_Array (Positive range <>) of Spin_Lock;

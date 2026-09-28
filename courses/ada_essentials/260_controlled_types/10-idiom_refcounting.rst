@@ -28,7 +28,8 @@ Global Overview
        type Refcounted_Access is access all Refcounted'Class;
        type Ref is tagged private;
 
-       procedure Set (Self : in out Ref; Data : Refcounted'Class);
+       procedure Set (Self : in out Ref;
+                      Data : Refcounted'Class);
        function Get (Self : Ref) return Refcounted_Access;
        procedure Finalize (P : in out Ref);
        procedure Adjust   (P : in out Ref);

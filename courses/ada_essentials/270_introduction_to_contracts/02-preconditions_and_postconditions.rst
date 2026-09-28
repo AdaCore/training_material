@@ -63,12 +63,6 @@ Requirements / Guarantees: Quiz
      - :animate:`Guarantee`
      - :animate:`Requirement`
 
-----------
-Examples
-----------
-
-.. include:: ../examples/adv_270_subprogram_contracts/preconditions_and_postconditions.rst
-
 ---------------
 Preconditions
 ---------------
@@ -88,6 +82,7 @@ Preconditions
    - :ada:`Assertion_Error` raised if false
 
 .. code:: Ada
+  :font-size: small
 
    procedure Push (This : in out Stack;  Value : Content)
      with Pre => not Full (This);
@@ -110,6 +105,7 @@ Postconditions
    - :ada:`Assertion_Error` raised if false
 
 .. code:: Ada
+  :font-size: small
 
    procedure Push (This : in out Stack;  Value : Content)
      with Pre  => not Full (This),
@@ -146,6 +142,7 @@ Function Postcondition 'Result Attribute
 Function result can be referenced by :ada:`'Result` on the function name
 
 .. code:: Ada
+  :font-size: footnotesize
 
       function Greatest_Common_Denominator (Num1, Num2 : Integer)
         return Integer with
@@ -160,6 +157,7 @@ Preconditions and Postconditions Example
 * Multiple aspects separated by commas
 
 .. code:: Ada
+  :font-size: small
 
      procedure Push (This : in out Stack;
                      Value : Content)
@@ -171,6 +169,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    function Area (Length : Positive; Height : Positive) return Positive is
       (Length * Height)
@@ -203,6 +202,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Index_T is range 1 .. 100;
    -- Database initialized such that value for component at I = I
@@ -241,6 +241,7 @@ Separations of Concerns
 * :ada:`Pre` and :ada:`Post` fit together
 
 .. code:: Ada
+  :font-size: footnotesize
 
    function Validated_Value (Raw_Value : Integer) return Integer
     with Post => Validated_Value'Result /= 0
@@ -292,6 +293,7 @@ Postconditions Are Good Documentation
 ---------------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    procedure Reset
        (Unit : in out DMA_Controller;
@@ -322,6 +324,7 @@ Contracts Code Reuse
    - Allows for **code reuse**
 
    .. code:: Ada
+     :font-size: scriptsize
 
       procedure Withdraw (This   : in out Account;
                           Amount :        Currency) with
@@ -357,15 +360,15 @@ Assertion Policy
 
 * Certain advantage over explicit checks which are **harder** to disable
 
-   - Conditional compilation via global :ada:`constant Boolean`
+  - Conditional compilation via global :ada:`constant Boolean`
 
-   .. code:: Ada
+  .. code:: Ada
+    :font-size: scriptsize
 
-      procedure Push (This : in out Stack;  Value : Content) is
-      begin
-        if Debugging then
-          if Full (This) then
-            raise Overflow;
-          end if;
+    procedure Push (This : in out Stack;  Value : Content) is
+    begin
+      if Debugging then
+        if Full (This) then
+          raise Overflow;
         end if;
-
+      end if;

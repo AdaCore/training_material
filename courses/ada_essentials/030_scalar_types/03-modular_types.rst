@@ -153,6 +153,7 @@ Shift/Rotate for User-Defined Types
    - See GNAT UG 8.11
 
    .. code:: Ada
+     :font-size: scriptsize
 
       function Shift_Left
         (Value  : T;

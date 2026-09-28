@@ -20,6 +20,7 @@ Composition Vs Non-Composition
 --------------------------------
 
 .. code:: Ada
+   :font-size: scriptsize
    :number-lines: 1
 
    with Ada.Text_IO; use Ada.Text_IO;

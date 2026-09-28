@@ -44,6 +44,7 @@ Overloadable Entities in Ada
 * Language-defined operators for functions
 
 .. code:: Ada
+  :font-size: small
 
    procedure Put (Str : in String);
    procedure Put (C : in Complex);

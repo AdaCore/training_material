@@ -198,12 +198,14 @@ Execute
 
 * We can now execute the test program as we would normally
 
-   ::
+  ::
 
      obj\test_driver.exe
 
 
-   :command:`Before: 4 After: 5`
+  .. code:: output
+
+    Before: 4 After: 5
 
 * This generates a source trace file in the working directory that looks like :filename:`test-driver.exe-<stamp>.srctrace`
 

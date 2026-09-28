@@ -6,7 +6,10 @@ Ada.Characters.Latin_1
 Package Contents (Partial)
 ----------------------------
 
-.. code::
+* Contains usable names for entire character set
+
+.. code:: Ada
+  :font-size: footnotesize
 
   package Ada.Characters.Latin_1 is
     NUL          : constant Character := Character'Val (0);

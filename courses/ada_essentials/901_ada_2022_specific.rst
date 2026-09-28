@@ -147,23 +147,15 @@ Generalized 'Image
 
 * Non-exhaustive example
 
-.. container:: columns
-
- .. container:: column
-
-  * Code
+* Code
 
   .. include:: examples/ada2022/generalized_image_attribute/extracts/put_line.adb
     :code: Ada
 
- .. container:: column
-
-  * Output
+* Output
 
   .. include:: examples/ada2022/generalized_image_attribute/out.txt
-    :code:
-
-.
+    :code: output
 
 ----------------------
 User-Defined "Image"
@@ -180,6 +172,7 @@ User-Defined "Image"
      with Put_Image => My_Put_Image;
 
 .. code:: Ada
+  :font-size: footnotesize
 
    procedure My_Put_Image
      (Buffer : in out
@@ -309,6 +302,7 @@ Standard Lib
 * :ada:`Big_Integers`, :ada:`Big_Reals` child packages
 
 .. code:: Ada
+  :font-size: scriptsize
 
     type Big_Integer is private
       with Integer_Literal => From_Universal_Image,
@@ -322,6 +316,7 @@ Standard Lib
 * Comparison operators
 
 .. code:: Ada
+  :font-size: small
 
     function "=" (L, R : Valid_Big_Integer) return Boolean;
     function "<" (L, R : Valid_Big_Integer) return Boolean;
@@ -330,6 +325,7 @@ Standard Lib
 * Arithmetic operators
 
 .. code:: Ada
+  :font-size: scriptsize
 
     function "abs" (L : Valid_Big_Integer) return Valid_Big_Integer;
     function "+" (L, R : Valid_Big_Integer) return Valid_Big_Integer;
@@ -346,6 +342,7 @@ Standard Lib
     - Abstract object
 
 .. code:: Ada
+  :font-size: small
 
     type Root_Buffer_Type is abstract tagged private [...];
 

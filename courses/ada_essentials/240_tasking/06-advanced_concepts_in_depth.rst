@@ -152,14 +152,14 @@ Select on Protected Objects Entries
 
    - With a :ada:`delay` part
 
-   .. code:: Ada
+     .. code:: Ada
 
-      select
-         O.Push (5);
-      or
-         delay 10.0;
-         Put_Line ("Delayed overflow");
-      end select;
+        select
+           O.Push (5);
+        or
+           delay 10.0;
+           Put_Line ("Delayed overflow");
+        end select;
 
   - or with an :ada:`else` part
 

@@ -40,6 +40,7 @@ Defining a Discriminated Record
 .. container:: latex_environment small
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Employee_T (Kind : Category_T) is record ...
      type Mutable_T (Kind : Category_T := Employee) is record ...

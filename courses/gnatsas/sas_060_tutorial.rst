@@ -200,7 +200,7 @@ Understanding a Check Message
      * - ``requires (Input.Next_Word'First) <= (Input.Next_Word'Last)``
        - Explanation / possible remediation
 
-* :toolname:`GNATsas` is warning that line 26 indexes into array* :ada:`Word` without ever checking if the array is not empty, possibly raising a :ada:`Constraint_Error`
+* :toolname:`GNATsas` is warning that line 26 indexes into array :ada:`Word` without ever checking if the array is not empty, possibly raising a :ada:`Constraint_Error`
 
   * So we need to investigate how :ada:`Word` is initialized, so we will look at :ada:`Input.Next_Word`
 
@@ -220,6 +220,7 @@ Determining Cause of Message
      ---------------
 
   .. code:: Ada
+    :font-size: scriptsize
 
      --
      --  Subprogram: input.next_word
@@ -286,11 +287,14 @@ Potential Logic Errors
 
 * In the **Locations** window, click on the message for line 41 of :filename:`stack.adb`
 
-  .. container:: latex_environment tiny
+  .. code:: error
+    :font-size: scriptsize
 
-    ``stack.adb:41:4: medium warning: suspicious precondition (Inspector): precondition for Last does not have a contiguous range of values``
+    stack.adb:41:4: medium warning: suspicious precondition (Inspector):
+      precondition for Last does not have a contiguous range of values
 
   .. code:: Ada
+    :font-size: footnotesize
     :number-lines: 1
 
     --  Subprogram: stack.push
@@ -320,6 +324,7 @@ Determining Cause of Message
   * What happens in the code when Last is 199, 200, or 201?
 
 .. code:: Ada
+  :font-size: scriptsize
   :number-lines: 41
 
    procedure Push (V : Value) is

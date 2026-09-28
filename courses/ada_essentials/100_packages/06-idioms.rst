@@ -15,6 +15,7 @@ Named Collection of Declarations
 * Does not export operations
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Physical_Constants is
      Polar_Radius_in_feet	: constant := 20_856_010.51;

@@ -28,6 +28,7 @@ What Tasks Look Like in Ravenscar
 * Time-triggered task
 
   .. code:: Ada
+    :font-size: small
 
      task body Cyclic is
        Period : constant Time_Span : Milliseconds (10);
@@ -163,32 +164,29 @@ Scheduling
 Ceiling Locking
 -----------------
 
-.. container:: columns
+* Example of priority inversion
 
-  .. container:: column
+  .. code:: Ada
+    :font-size: scriptsize
 
-    .. container:: latex_environment scriptsize
+    The_Lock : Lock;
 
-      * Example of priority inversion
+    T1 : Task (Priority => 1);
+    T2 : Task (Priority => 2);
+    T3 : Task (Priority => 3);
 
-        .. code::
+  * :ada:`Task_1` locks :ada:`Lock`
+  * :ada:`Task_3` starts, gets scheduled (:ada:`Task_3` > :ada:`Task_1`)
+  * :ada:`Task_3` tries to get :ada:`Lock`, blocks
+  * :ada:`Task_2` starts, gets scheduled (:ada:`Task_2` > :ada:`Task_1`)
 
-          Lock : Lock_T;
+  **Result**
 
-          Task_1 : Task (Priority => 1);
-          Task_2 : Task (Priority => 2);
-          Task_3 : Task (Priority => 3);
+    :ada:`Task_2` running
 
-  .. container:: column
+    :ada:`Task_1` blocked
 
-    .. container:: latex_environment scriptsize
-
-      * Task_1 locks Lock
-      * Task_3 starts, gets scheduled (Task_3 > Task_1)
-      * Task_3 tries to get Lock, blocks
-      * Task_2 starts, gets scheduled (Task_2 > Task_1)
-
-      Result: Task_2 running, Task_1 blocked, Task_3 blocked through Lock (but Task_3 > Task_2!)
+    :ada:`Task_3` blocked through :ada:`Lock`
 
 * Solved with ceiling locking
 

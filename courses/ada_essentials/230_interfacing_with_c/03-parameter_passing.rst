@@ -134,6 +134,7 @@ Parameter Modes for Composite Types (1/2)
 * Ada View
 
   .. code:: Ada
+    :font-size: small
 
    type Reference_T is record
       Sensor_ID : Interfaces.C.int;
@@ -168,6 +169,7 @@ Parameter Modes for Composite Types (2/2)
 * C View
 
   .. code:: C
+    :font-size: scriptsize
 
     //  This type matches both Ada types!
     //  (Identical format, just different passing mechanisms)

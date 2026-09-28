@@ -47,23 +47,25 @@ Initialization
 
 .. container:: animate 3-
 
-   ::
+  ::
 
      cd obj/my_test
      gprbuild -P test_driver
      test_runner
 
-   For each subprogram in :ada:`Stack`, you should get a line like
+  For each subprogram in :ada:`Stack`, you should get a line like
 
-   .. container:: latex_environment tiny
+  .. code:: output
+    :font-size: scriptsize
 
-      ``simple_stack.ads:3:4: error: corresponding test FAILED: Test not implemented. (simple_stack-test_data-tests.adb:44)``
+    simple_stack.ads:3:4: error: corresponding test FAILED:
+      Test not implemented. (simple_stack-test_data-tests.adb:44)
 
-   With a summary line like
+  With a summary line like
+
+  .. code:: output
    
-   .. container:: latex_environment tiny
-
-      ``7 tests run: 0 passed; 7 failed; 0 crashed.``
+    7 tests run: 0 passed; 7 failed; 0 crashed.
 
 -----------------------
 Build Your First Test

@@ -62,6 +62,7 @@ Setting the Default "SPARK_Mode" Value
 * Set the :code:`Global_Configuration_Pragmas` attribute in the project file
 
   .. code:: Ada
+    :font-size: small
 
      project Proj is
         package Builder is
@@ -91,7 +92,7 @@ Adapting the Project File for Analysis
 * Run :toolname:`GNATprove` with appropriate value of :code:`MODE` defined in
   the environment or on the command-line
 
-  .. code:: Ada
+  .. code:: output
 
      gnatprove -P my_project -XMODE=Analyze
 

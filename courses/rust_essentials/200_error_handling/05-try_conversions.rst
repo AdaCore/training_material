@@ -61,9 +61,10 @@ Automatic Error Type Conversion
           Err(e) => eprintln!("Problem: {e}"),
       }
 
-:error:`Problem: Too Young`
+.. code:: error
 
-:error:`Problem: Too Old`
+  Problem: Too Young
+  Problem: Too Old
 
 .. note::
 

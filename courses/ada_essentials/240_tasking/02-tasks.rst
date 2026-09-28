@@ -75,26 +75,25 @@ Rendezvous
   * **Server** must perform entry processing
   * **Client** is waiting for **Server** to finish
 
-.. container:: latex_environment small
+.. code:: Ada
+  :font-size: footnotesize
 
-  .. code:: Ada
+  task Server_Task is
+    entry Receive_Message (S : in String);
+  end Server_Task;
 
-    task Server_Task is
-      entry Receive_Message (S : in String);
-    end Server_Task;
+  task body Server_Task is
+  begin
+    accept Receive_Message (S : in String) do -- waiting for client
+      Put_Line ("Received: " & S);
+    end Receive_Message; -- release to client
+  end Server_Task;
 
-    task body Server_Task is
-    begin
-      accept Receive_Message (S : in String) do -- waiting for client
-        Put_Line ("Received: " & S);
-      end Receive_Message; -- release to client
-    end Server_Task;
-
-    procedure Client is
-    begin
-      -- The client calls the entry and waits
-      Server_Task.Receive_Message ("Hello!");
-    end Client;
+  procedure Client is
+  begin
+    -- The client calls the entry and waits
+    Server_Task.Receive_Message ("Hello!");
+  end Client;
 
 -----------------------
 Sequential Rendezvous
@@ -104,6 +103,7 @@ Sequential Rendezvous
 * Each entry call is blocking
 
 .. code:: Ada
+  :font-size: footnotesize
 
   task body Worker is
     Job_Data : Some_Data_Type;
@@ -153,6 +153,7 @@ Select Example in Code
 * **Server** task waits for either a message to process or a signal to stop
 
   .. code:: Ada
+    :font-size: footnotesize
 
     task body Controller is
     begin

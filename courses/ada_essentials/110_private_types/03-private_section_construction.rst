@@ -23,6 +23,7 @@ Declarative Regions
    - Thus anything declared in specification is visible in body
 
 .. code:: Ada
+  :font-size: small
 
    package Foo is
       type Private_T is private;
@@ -69,7 +70,7 @@ Full Type Declaration
           type Item_T is private;
           ...
         private
-          type Vector is array (1.. 10)
+          type Vector is array (1..10)
              of Integer;
           function Initial
              return Vector;
@@ -111,6 +112,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: small
 
    package Example is
       type Private_T is private;

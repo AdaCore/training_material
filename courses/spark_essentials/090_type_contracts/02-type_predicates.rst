@@ -263,7 +263,8 @@ Beware Recursion in Predicates
        with Predicate => Above_Zero (Nat);
      function Above_Zero (X : Nat) return Boolean is (X >= 0);
 
-  .. code:: console
+  .. code:: error
+    :font-size: footnotesize
 
      warning: predicate check includes a call to "Above_Zero"
        that requires a predicate check

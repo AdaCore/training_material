@@ -18,6 +18,7 @@ Generic and Freezing Points
   end Generic_Package;
 
 .. code:: Ada
+  :font-size: small
   :number-lines: 1
 
   with Generic_Package;
@@ -29,6 +30,7 @@ Generic and Freezing Points
   end Example;
 
 .. code:: error
+  :font-size: small
 
   example.ads:4:45: error: premature use of private type
 
@@ -41,6 +43,7 @@ Generic Incomplete Parameters
 * Restricts the possible usages (only :ada:`access`)
 
 .. code:: Ada
+  :font-size: small
 
    generic
       type Formal_T; -- incomplete

@@ -11,11 +11,8 @@ Protected Objects
 * **No** concurrent modifications
 * :ada:`limited` types (No copies allowed)
 
-.. container:: columns
-
- .. container:: column
-
-   .. code:: Ada
+.. code:: Ada
+  :font-size: small
 
     protected type
       Protected_Value is
@@ -25,9 +22,8 @@ Protected Objects
        Value : Integer;
     end Protected_Value;
 
- .. container:: column
-
-   .. code:: Ada
+.. code:: Ada
+  :font-size: small
 
     protected body Protected_Value is
        procedure Set (V : Integer) is
@@ -41,8 +37,6 @@ Protected Objects
        end Get;
     end Protected_Value;
 
-.
-
 --------------------------
 Misc: Single Declaration
 --------------------------
@@ -50,20 +44,20 @@ Misc: Single Declaration
  * Instantiate an **anonymous** task (or protected) type
  * Declares an object of that type
 
-    - Body declaration is then using the **object** name
+   .. code:: Ada
 
-      .. code:: Ada
+     task Printer;
 
-        task Printer;
+ * Body declaration is then using the **object** name
 
-.. code:: Ada
+   .. code:: Ada
 
-        task body Printer is
-        begin
-           loop
-             Put_Line ("loops");
-           end loop;
-        end Printer;
+     task body Printer is
+     begin
+        loop
+          Put_Line ("loops");
+        end loop;
+     end Printer;
 
 -------------------------------------
 Protected: Functions and Procedures

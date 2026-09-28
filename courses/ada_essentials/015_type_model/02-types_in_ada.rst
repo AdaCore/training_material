@@ -28,6 +28,7 @@ Strongly-Typed Vs Weakly-Typed Languages
     - Type errors are easy
 
 .. code:: C++
+  :font-size: small
 
    typedef enum {north, south, east, west} direction;
    typedef enum {sun, mon, tue, wed, thu, fri, sat} days;
@@ -110,6 +111,7 @@ Type Model Run-Time Costs
    **C**
 
    .. code:: C++
+     :font-size: small
 
       int X;
       int Y; // range 1 .. 10
@@ -124,6 +126,7 @@ Type Model Run-Time Costs
    **Ada**
 
    .. code:: Ada
+     :font-size: small
 
       X : Integer;
       Y, Z : Integer range 1 .. 10;

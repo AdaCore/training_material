@@ -9,6 +9,7 @@ The Notion of a Pattern
 * Sometimes algorithms can be abstracted from types and subprograms
 
   .. code:: Ada
+    :font-size: small
 
      procedure Swap_Int (Left, Right : in out Integer) is
        V : Integer := Left;
@@ -27,6 +28,7 @@ The Notion of a Pattern
 * It would be nice to extract these properties in some common pattern, and then just replace the parts that need to be replaced
 
   .. code:: Ada
+    :font-size: footnotesize
 
      procedure Swap (Left, Right : in out (Integer | Float)) is
        V : (Integer | Float) := Left;
@@ -57,13 +59,12 @@ Ada Generic Compared to C++ Template
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-  Ada Generic
-
-  .. container:: latex_environment scriptsize
+    Ada Generic
 
     .. code:: Ada
+      :font-size: scriptsize
 
       -- specification
       generic
@@ -81,13 +82,12 @@ Ada Generic Compared to C++ Template
       -- instance
       procedure Swap_F is new Swap (Float);
 
- .. container:: column
+  .. container:: column
 
-  C++ Template
-
-  .. container:: latex_environment scriptsize
+    C++ Template
 
     .. code:: C++
+      :font-size: scriptsize
 
       // prototype
       template <class T>

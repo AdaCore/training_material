@@ -43,6 +43,7 @@ Record Aggregate Examples
    end record;
 
 .. code:: Ada
+  :font-size: small
 
    declare
       Car   : Car_T     := (Red, "ABC123", Year => 2_022);
@@ -128,6 +129,7 @@ Nested Aggregates
 -------------------
 
 .. code:: Ada
+  :font-size: small
 
   type Months_T is (January, February, ..., December);
   type Date is record
@@ -235,6 +237,7 @@ Delta Aggregates
 * A Record can use a :dfn:`delta aggregate` just like an array
 
   .. code:: Ada
+    :font-size: small
 
      type Coordinate_T is record
         X, Y, Z : Float;
@@ -256,6 +259,7 @@ Delta Aggregates
 * Now in Ada 2022, can just specify the change during the copy
 
   .. code:: Ada
+    :font-size: scriptsize
 
      New_Location : Coordinate_T := (Location with delta Z => 0.0);
 

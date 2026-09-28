@@ -72,6 +72,7 @@ Generic Types Parameters (3/3)
        procedure Generic_Procedure (V : Any_T);
 
     .. code:: Ada
+       :font-size: tiny
        :number-lines: 1
 
        procedure Generic_Procedure (V : Any_T) is
@@ -80,13 +81,15 @@ Generic Types Parameters (3/3)
        begin
 
     .. code:: error
-      :font-size: tiny
+      :font-size: scriptsize
 
-      generic_procedure.adb:3:11: error: unconstrained subtype not allowed (need initialization)
+      generic_procedure.adb:3:11: error: unconstrained subtype not
+        allowed (need initialization)
 
   * Instantiations
 
     .. code:: Ada
+       :font-size: scriptsize
        :number-lines: 4
 
        type Limited_T is limited null record;

@@ -75,6 +75,7 @@ Import / Export with Pragmas
 * Can also use :ada:`pragma` to import/export entities
 
   .. code:: Ada
+    :font-size: footnotesize
 
      procedure C_Some_Procedure;
      pragma Import (C, C_Some_Procedure, "SomeProcedure");

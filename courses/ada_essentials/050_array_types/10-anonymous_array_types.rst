@@ -23,9 +23,8 @@ Anonymous Array Types
 
  .. container:: column
 
-  .. container:: latex_environment small
-
-   .. code:: Ada
+  .. code:: Ada
+    :font-size: footnotesize
 
       declare
       -- These are not same type!
@@ -36,4 +35,3 @@ Anonymous Array Types
         -- legal assignment of values
         A(J) := B(K);
       end;
-

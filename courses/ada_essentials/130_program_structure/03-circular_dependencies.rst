@@ -139,6 +139,7 @@ Legal Package Declaration Dependency
 --------------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    with Department;
    package Personnel is

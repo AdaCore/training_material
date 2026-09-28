@@ -53,6 +53,7 @@ Parameters for Overloaded Operators
    - Definition
 
      .. code:: Ada
+       :font-size: footnotesize
 
         function "*" (Left, Right : Integer) return Integer;
 

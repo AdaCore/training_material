@@ -23,6 +23,7 @@ But Can Be Treated As Objects
 * Standard Library
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Ada.Exceptions is
      type Exception_Id is private;
@@ -92,6 +93,7 @@ Exception ID
 * For an exception identifier, the :dfn:`identity` of the exception is :ada:`<name>'Identity`
 
 .. code:: Ada
+  :font-size: small
 
    Mine : exception
    use Ada.Exceptions;

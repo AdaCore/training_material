@@ -11,6 +11,7 @@ Public Interface
 * :ada:`procedure Put_Line` for logging
 
 .. code:: Ada
+  :font-size: small
 
    type Logger (Filename : not null access constant String)
      is tagged limited private;
@@ -23,6 +24,7 @@ Implementation: Private Section
 ---------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    type Logger (Filename : not null access constant  String)
       is new Ada.Finalization.Limited_Controlled with
@@ -54,6 +56,7 @@ Implementation: Body
    Once the hard part of designing the interface is done, implementation is trivial.
 
 .. code:: Ada
+  :font-size: small
 
     with Ada.Text_IO; use Ada.Text_IO;
 

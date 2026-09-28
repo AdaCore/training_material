@@ -34,6 +34,7 @@ Real Type (Floating and Fixed) Literals
 * No silent promotion
 
 .. code:: Ada
+  :font-size: small
 
    -- floating point
    type Phase is digits 8;
