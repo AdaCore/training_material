@@ -183,9 +183,8 @@ Quiz
 
   .. container:: column
 
-    .. container:: latex_environment tiny
-
-      .. code:: Ada
+    .. code:: Ada
+      :font-size: tiny
 
        package Example is
          type Lim1_T is limited private;

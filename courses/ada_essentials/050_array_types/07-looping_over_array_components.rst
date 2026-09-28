@@ -106,10 +106,8 @@ Quiz
 
   .. container:: column
 
-   .. container:: latex_environment tiny 
-
-     .. code:: Ada
-       :font-size: scriptsize
+    .. code:: Ada
+      :font-size: scriptsize
 
         type Arr_T is array (1..5) of Integer
            with Default_Component_Value => 1;

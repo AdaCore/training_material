@@ -41,7 +41,7 @@ Procedure Calls (Overview)
 
 * Procedure calls are statements
 
-    .. code:: Ada
+  .. code:: Ada
 
       Activate (Idle, True);
 
