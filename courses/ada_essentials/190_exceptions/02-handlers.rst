@@ -97,45 +97,35 @@ Handlers Don't "Fall Through"
 When an Exception Is Raised
 -----------------------------
 
-.. container:: columns
+* Normal processing is abandoned
+* Handler for active exception is executed, if any
+* Control then goes to the caller
+* If handled, caller continues normally, otherwise repeats the above
 
-  .. container:: column
+**Caller**
 
-    * Normal processing is abandoned
-    * Handler for active exception is executed, if any
-    * Control then goes to the caller
-    * If handled, caller continues normally, otherwise repeats the above
+  .. code:: Ada
+    :font-size: scriptsize
 
-  .. container:: column
+    ...
+    Joy_Ride;
+    Do_Something_At_Home;
+    ...
 
-    * Caller
+**Callee**
 
-    .. code:: Ada
-      :font-size: small
+  .. code:: Ada
+    :font-size: small
 
-       ...
-       Joy_Ride;
-       Do_Something_At_Home;
-       ...
-
-    * Callee
-
-    .. code:: Ada
-      :font-size: small
-
-       procedure Joy_Ride is
-         ...
-       begin
-         ...
-         Drive_Home;
-       exception
-         when Fuel_Exhausted =>
-           Push_Home;
-       end Joy_Ride;
-
-.. raw:: latex
-
-  \vspace{5mm}
+    procedure Joy_Ride is
+      ...
+    begin
+      ...
+      Drive_Home;
+    exception
+      when Fuel_Exhausted =>
+        Push_Home;
+    end Joy_Ride;
 
 .. container:: speakernote
 
