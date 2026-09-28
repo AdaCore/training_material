@@ -10,7 +10,7 @@ Topics Covered
 
   - Flexible sizing
   
-  - Bypassing Sized constraints
+  - Working with dynamically sized types
 
 - **Dereferencing**
 
@@ -20,21 +20,18 @@ Topics Covered
   
 - **Shared Ownership**
   
-  - Tracking references
+  - Reference counting
 
 ---------------------
 Why Smart Pointers?
 ---------------------
 
+- Store data on the heap
+  - Useful when values should not live inline
+
 - Allow recursive types
-
-  - Provide a fixed-size pointer on the stack
-
-- Prevent stack overflows
-
-  - Allocate data on the heap
+  - Give recursive fields a known size
 
 - Allow multiple owners
-
   - Share ownership of data for complex architectures
 

@@ -2,60 +2,54 @@
 Summary
 =========
 
---------------------------------
-Comparing "Rc<T>" and "Box<T>"
---------------------------------
+----------------------
+"Box<T>" vs. "Rc<T>"
+----------------------
 
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
-   
-   * - **Properties**
+
+   * - **Property**
      - :rust:`Box<T>`
-	 - :rust:`Rc<T>`
+     - :rust:`Rc<T>`
 
    * - *Ownership*
      - Single
-	 - Multiple
+     - Multiple
 
-   * - *Access*
-     - Mutable
-	 - Immutable
-
-   * - *Memory location*
+   * - *Allocation*
      - Heap
-	 - Heap
-   
-   * - *Cloning*
-     - Deep copy
-	 - Shallow copy
+     - Heap
 
-   * - *Main Use Case*
-     - Big data/recursive types
-	 - Complex architecture
-	
+   * - *If cloned*
+     - Clones value
+     - Shares allocation
+
+   * - *Use case*
+     - Unique / recursive
+     - Shared ownership
+
 -----------------
 What We Covered
 -----------------
 
 - :rust:`Box<T>`
 
-  - Allocates data on the heap
-  
+  - Provides unique ownership of heap-allocated data
+
   - Enables recursive data structures
 
 - :rust:`Deref`
 
   - Treats smart pointers like references
-  
-  - Uses coercion to access inner values 
-   
+
+  - Uses coercion to access inner values
+
     - With no runtime cost
 
 - :rust:`Rc<T>`
 
   - Allows multiple owners for the same data
-  
-  - Avoids expensive cloning by reusing the same heap allocation
 
-
+  - Shares one heap allocation without cloning the data
