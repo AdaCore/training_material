@@ -212,7 +212,7 @@ Quiz
      end case;
   end record;
 
-  A_Circle : Shape_T       := (Circle, (1.0, 2.0), (3.0, 4.0));
+  A_Circle : Shape_T        := (Circle, (1.0, 2.0), (3.0, 4.0));
   A_Line   : Shape_T (Line) := (Circle, (1.0, 2.0), (3.0, 4.0));
 
 .. container:: latex_environment small
@@ -228,12 +228,12 @@ Quiz
 
   .. container:: latex_environment footnotesize
 
-   * If you fix the compilation error (by changing the name of one of the :ada:`End_Point` components), then
+    * Fixing compilation error (rename an :ada:`End_Point` component), then
 
-      * You would get a warning on line 20 (because :ada:`A_Line` is constrained to be a :ada:`Line`
+      * Get a warning on line 20 (because :ada:`A_Line` is constrained to be a :ada:`Line`)
 
          ``incorrect value for discriminant "Kind"``
 
-      * If you then ran the executable, you would get an exception 
+      * When running the executable, exception is raised
 
          ``CONSTRAINT_ERROR : test.adb:20 discriminant check failed``
