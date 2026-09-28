@@ -186,11 +186,11 @@ Hierarchical Visibility
 .. code:: Ada
   :font-size: tiny
 
-     package OS is
-       -- Some code
-     private
-       type OS_Private_T is null record;
-     end OS;
+   package OS is
+     -- Some code
+   private
+     type OS_Private_T is null record;
+   end OS;
 
 .. container:: columns
 
