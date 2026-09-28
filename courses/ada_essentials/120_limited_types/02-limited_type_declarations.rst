@@ -82,6 +82,7 @@ Composites with Limited Types
    * Prevents assignment and equality loop-holes
 
 .. code:: Ada
+  :font-size: small
 
    declare
      -- if we can't copy component S, we can't copy User_Type

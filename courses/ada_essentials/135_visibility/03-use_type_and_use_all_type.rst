@@ -8,19 +8,19 @@
 
 * :ada:`use type` makes **primitive operators** directly visible for specified type
 
-   - Implicit and explicit operator function declarations
+  - Implicit and explicit operator function declarations
 
-   .. code:: Ada
+  .. code:: Ada
 
-      use type subtype_mark {, subtype_mark};
+    use type subtype_mark {, subtype_mark};
 
 * :ada:`use all type` makes primitive operators **and all other operations** directly visible for specified type
 
-   - All **enumerated type values** will also be directly visible
+  - All **enumerated type values** will also be directly visible
 
-   .. code:: Ada
+  .. code:: Ada
 
-      use all type subtype_mark {, subtype_mark};
+    use all type subtype_mark {, subtype_mark};
 
 * More specific alternatives to :ada:`use` clauses
 
@@ -31,6 +31,7 @@ Example Code
 --------------
 
 .. code:: Ada
+  :font-size: small
 
    package Types is
      type Distance_T is range 0 .. Integer'Last;
@@ -65,6 +66,7 @@ Multiple "use type" Clauses
 * Only those that mention the type in their profile are made visible
 
 .. code:: Ada
+  :font-size: small
 
    package Types_Pkg is
      type T1 is range 1 .. 10;

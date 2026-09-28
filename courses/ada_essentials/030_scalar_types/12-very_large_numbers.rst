@@ -52,6 +52,7 @@ Big_Real: Real Precision
 .. container:: latex_environment small
 
   .. code:: ada
+    :font-size: small
 
       with Ada.Numerics.Big_Numbers.Big_Reals;
       use Ada.Numerics.Big_Numbers.Big_Reals;

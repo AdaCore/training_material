@@ -57,6 +57,7 @@ Primitive Operations for the Set
 * Create a set
 
   .. code:: Ada
+    :font-size: footnotesize
 
      function Make (Colors : Group_Of_Colors_T) return Set_T;
 
@@ -91,6 +92,7 @@ Implementation of the Primitive Operations
    * We could do operations directly on :ada:`Set_T`, but that's not flexible
 
 .. code:: Ada
+  :font-size: small
 
    function Make (Colors : Group_Of_Colors_T) return Set_T is
       Set : Set_T := (others => False);

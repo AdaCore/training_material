@@ -145,6 +145,7 @@ Private Primitives
     - Abstract, constructor...
 
 .. code:: Ada
+  :font-size: small
 
     package P is
         type T is private;

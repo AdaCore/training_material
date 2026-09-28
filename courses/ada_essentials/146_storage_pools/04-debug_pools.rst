@@ -25,6 +25,7 @@ Memory Debugging
 * :ada:`Integer_List` package doesn't need to change!
 
   .. code:: Ada
+    :font-size: scriptsize
 
     type Linked_List_T;
     type Linked_List_Ptr_T is access all Linked_List_T;
@@ -35,6 +36,7 @@ Useful GNAT.Debug_Pools APIs
 ------------------------------
 
 .. code:: Ada
+  :font-size: footnotesize
 
   generic
      with procedure Put_Line (S : String) is <>;

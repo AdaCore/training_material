@@ -47,6 +47,7 @@ Address Clauses
 * Useful to read a value anywhere
 
   .. code:: Ada
+    :font-size: footnotesize
 
       function Get_Byte (Addr : Address) return Unsigned_8 is
         V : Unsigned_8 with Address => Addr, Volatile;
@@ -54,8 +55,8 @@ Address Clauses
         return V;
       end;
 
-   - In particular the address doesn't need to be constant
-   - But must match alignment
+  - In particular the address doesn't need to be constant
+  - But must match alignment
 
 ----------------
 Address Values
@@ -68,22 +69,23 @@ Address Values
 
 * Ada standard way to set constant addresses:
 
-   - Use :ada:`System.Storage_Elements` which allows arithmetic on address
+  - Use :ada:`System.Storage_Elements` which allows arithmetic on address
 
-   .. code:: Ada
+  .. code:: Ada
+    :font-size: footnotesize
 
-      V : Unsigned_32 with
-          Address =>
-              System.Storage_Elements.To_Address (16#120#);
+    V : Unsigned_32 with
+        Address =>
+            System.Storage_Elements.To_Address (16#120#);
 
 * GNAT specific attribute :ada:`'To_Address`
 
-   - Handy but not portable
+  - Handy but not portable
 
-   .. code:: Ada
+  .. code:: Ada
 
-      V : Unsigned_32 with
-          Address => System'To_Address (16#120#);
+    V : Unsigned_32 with
+        Address => System'To_Address (16#120#);
 
 ----------
 Volatile
@@ -109,6 +111,7 @@ Ada Address Example
 ---------------------
 
 .. code:: Ada
+  :font-size: small
 
    type Bit_Array_T is array (Integer range <>) of Boolean
       with Component_Size => 1;
@@ -150,6 +153,7 @@ Unchecked Conversion
 * Needs to be explicitly instantiated
 
   .. code:: Ada
+    :font-size: small
 
      type Bitfield is array (1 .. Integer'Size) of Boolean;
      function To_Bitfield is new

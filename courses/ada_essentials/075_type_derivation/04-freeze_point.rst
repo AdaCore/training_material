@@ -20,6 +20,7 @@ What is the "Freeze Point"?
 * Subprograms past this "freeze point" are not primitive operations
 
 .. code:: Ada
+  :font-size: small
 
    type Parent is new Integer;
    procedure Prim (V : Parent);
@@ -74,23 +75,22 @@ Debugging Type Freeze
 Quiz
 ------
 
-.. container:: latex_environment tiny
+.. code:: Ada
+  :font-size: scriptsize
 
-  .. code:: Ada
+   type Parent is range 1 .. 100;
+   procedure Proc_A (X : in out Parent);
 
-     type Parent is range 1 .. 100;
-     procedure Proc_A (X : in out Parent);
+   type Child is new Parent range 2 .. 99;
+   procedure Proc_B (X : in out Parent);
+   procedure Proc_B (X : in out Child);
 
-     type Child is new Parent range 2 .. 99;
-     procedure Proc_B (X : in out Parent);
-     procedure Proc_B (X : in out Child);
+   -- Other scope
+   procedure Proc_C (X : in out Child);
 
-     -- Other scope
-     procedure Proc_C (X : in out Child);
+   type Grandchild is new Child range 3 .. 98;
 
-     type Grandchild is new Child range 3 .. 98;
-
-     procedure Proc_C (X : in out Grandchild);
+   procedure Proc_C (X : in out Grandchild);
 
 .. container:: columns
 

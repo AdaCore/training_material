@@ -48,6 +48,7 @@ Ada.Characters.Latin_1 Sample Content
 ---------------------------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    package Ada.Characters.Latin_1 is
      NUL : constant Character := Character'Val (0);
@@ -73,6 +74,7 @@ Ada.Characters.Handling Sample Content
 ----------------------------------------
 
 .. code:: Ada
+  :font-size: tiny
 
    package Ada.Characters.Handling is
      function Is_Control           (Item : Character) return Boolean;
@@ -100,6 +102,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: small
 
     type Char_T is (NUL, A, B, 'C');
     for Char_T use (NUL => 0, A => 1, B => 2, 'C' => 3);

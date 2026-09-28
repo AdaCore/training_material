@@ -15,8 +15,6 @@ Access Protected
 ------------------
 
 * Access to :ada:`protected` objects' subprograms
-* :ada:`type P is access protected procedure (args...)`
-* :ada:`type F is access protected function (args...) return ...`
 
 .. code:: Ada
 
@@ -32,6 +30,7 @@ Synchronized Interface
 * :ada:`synchronized interface` can be inherited by :ada:`task`/:ada:`protected` types
 
 .. code:: Ada
+  :font-size: footnotesize
 
    type Counter_I is synchronized interface;
    procedure Increment (Counter : in out Counter_I) is abstract;
@@ -66,6 +65,7 @@ Standard Library Queues Interface
     Provides a portable interface
 
 .. code:: Ada
+  :font-size: small
 
     generic
        type Element_Type is private;
@@ -103,6 +103,7 @@ Example: Scheduler Interface
 ------------------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    type Scheduler_I;
    type Maybe_Work_Item_I is access protected procedure;
@@ -129,6 +130,7 @@ Example: Scheduler (Body)
 ---------------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    protected body Scheduler_T is
       procedure Queue (Work : Work_Item_I) is

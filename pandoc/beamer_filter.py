@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 Python filter for generating 'beamer' output from Pandoc
 
@@ -74,6 +75,7 @@ ADMONITION_FORMAT = {
     "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
 }
 
+COURSE_FOLDER = None
 
 # SUPPORTED_CLASSES names all of the RST constructs
 # we have added to the default class names
@@ -90,6 +92,13 @@ SUPPORTED_CLASSES = [
 COLORBOX = "tcolorbox"
 ERROR_COLORS = "fg=error_fg bg=error_bg"
 OUTPUT_COLORS = "fg=output_fg bg=output_bg"
+
+# If a code block uses a language from NEED_BACKGROUND
+# but no colors were already set, use CODEBLOCK_COLORS
+
+NEED_BACKGROUND = ["ada", "c", "c++", "rust", "bnf"]
+CODEBLOCK_COLORS = "bg=codeblock_background"
+
 
 ##
 ## END CONFIGURATION INFORMATION
@@ -307,17 +316,25 @@ def modify_header(value):
 
 """
 BlockQuote forces bullet lists to appear one bullet at a time.
-Returning 'value' effectively strips BlockQuote from the AST
+Returning 'value' effectively strips BlockQuote from the AST.
+In addition, if indentation is incorrect, a CodeBlock will
+not be processed correctly.
+We will return a list of the items in a blockquote (because
+we don't actually use blockquotes) and build the
+correct wrapper to get colored backgrounds for code blocks.
 """
 
 
-def bullet_point_fix(value):
-    global bullet_point_animation
+def process_blockquote(value):
+    new_inner_content = []
+    for item in value:
+        if isinstance(item, dict) and item.get("t") == "CodeBlock":
+            new_inner_content.extend(process_codeblock(item["c"]))
+        else:
+            new_inner_content.append(item)
 
-    if not bullet_point_animation:
-        return value
-    else:
-        return None
+    # Returning this ALWAYS unwraps every BlockQuote in the document
+    return new_inner_content
 
 
 """
@@ -459,6 +476,38 @@ def is_source_include(classes):
     return ("container" in classes) and ("source_include" in classes)
 
 
+"""
+   The 'contents' part of a filter 'value' AST can be a list of
+   nodes. Each node is a dictionary with a type key ('t') and
+   a content key ('c'). When we want to wrap those contents in 
+   some raw LaTeX constructs, our default behavior would be to
+   just add a node to start the LaTeX wrapper at the front of
+   the list and a node to end the LaTeX wrapper at the end.
+   However, this will "hide" anything inside that list from
+   any of our internal processing. So, we need to check each
+   node if we want to process it, which will return a list of
+   new nodes.
+   This routine will be used by our wrapping functions (like
+   'overlay' or 'animate' to centralize the processing we
+   need done.
+"""
+
+
+def build_wrapped_list(first_node, last_node, original_contents):
+
+    value = []
+    value.append(first_node)
+    for c in original_contents:
+        item = c
+        if c.get("t") == "CodeBlock" and c.get("c") != None:
+            item = process_codeblock(c.get("c"))
+            value.extend(item)
+        else:
+            value.append(c)
+    value.append(last_node)
+    return value
+
+
 ###############
 ## ANIMATION ##
 ###############
@@ -511,13 +560,7 @@ def animate(classes, contents):
     }
     last = {"t": "RawBlock", "c": ["latex", "\\end{visibleenv}"]}
 
-    value = []
-    value.append(first)
-    for c in contents:
-        value.append(c)
-    value.append(last)
-
-    return value
+    return build_wrapped_list(first, last, contents)
 
 
 ##############
@@ -564,13 +607,7 @@ def overlay(classes, contents):
     }
     last = {"t": "RawBlock", "c": ["latex", "\\end{onlyenv}"]}
 
-    value = []
-    value.append(first)
-    for c in contents:
-        value.append(c)
-    value.append(last)
-
-    return value
+    return build_wrapped_list(first, last, contents)
 
 
 ########################
@@ -608,12 +645,7 @@ def latex_environment(classes, contents):
         first = {"t": "RawBlock", "c": ["latex", begin]}
         last = {"t": "RawBlock", "c": ["latex", "\\end{" + environment + "}"]}
 
-        value = []
-        value.append(first)
-        for c in contents:
-            value.append(c)
-        value.append(last)
-        return value
+        return build_wrapped_list(first, last, contents)
 
     else:
         return contents
@@ -1017,7 +1049,7 @@ def expand_keys(pair):
     return key, val
 
 
-def process_codeblock(key, value):
+def process_codeblock(value):
     """
     This routine will look for our own attributes added to the ".. code::"
     command to implement things like background color and font sizing
@@ -1032,7 +1064,7 @@ def process_codeblock(key, value):
 
     try:
         keys = {}
-        keys["language"] = classes[0]
+        keys["language"] = classes[0].lower()
 
         if "error" in classes:
             keys[COLORBOX] = build_colorbox(ERROR_COLORS)
@@ -1042,6 +1074,14 @@ def process_codeblock(key, value):
             if len(pair) > 0:
                 key, val = expand_keys(pair)
                 keys[key] = val
+
+        # if COLORBOX not set, but a language we want is, set appropriate color
+        if COURSE_FOLDER == "ada_essentials" and keys["language"] in NEED_BACKGROUND:
+            if COLORBOX in keys.keys():
+                pass
+            else:
+                keys[COLORBOX] = build_colorbox(CODEBLOCK_COLORS)
+
     except:
         pass
 
@@ -1050,12 +1090,41 @@ def process_codeblock(key, value):
     return new_value
 
 
+"""
+This routine will save the metadata passed into Pandoc.
+For now, we are looking for the "folder" key so we can
+do course-specific processing within the filter.
+We use "@once" so this routine is only ever called
+once per invocation.
+"""
+
+
+def process_metadata(meta):
+    global COURSE_FOLDER
+    global process_metadata
+
+    # if the folder containing the RST file was passed in as metadata
+    folder_info = meta.get("folder")
+    if folder_info != None:
+        # get the value from the "content" field for this key
+        COURSE_FOLDER = folder_info.get("c")
+
+    # replace this routine with an empty routine
+    process_metadata = do_nothing
+
+
+def do_nothing(meta):
+    pass
+
+
 #####################
 ## MAIN SUBPROGRAM ##
 #####################
 
 
 def perform_filter(key, value, format, meta):
+    process_metadata(meta)
+
     # For an inserted image, 'value' is a triplet whose 3rd element is
     # a doublet, the first element of which is the path to the file.
     if key == "Image":
@@ -1068,10 +1137,10 @@ def perform_filter(key, value, format, meta):
     ## Beamer-specific manipulations
     elif format == "beamer":
         if key == "BlockQuote":
-            return bullet_point_fix(value)
+            return process_blockquote(value)
 
         elif key == "CodeBlock":
-            return process_codeblock(key, value)
+            return process_codeblock(value)
 
         elif key == "Header":
             modify_header(value)

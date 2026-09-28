@@ -33,6 +33,7 @@ Files
       * `Append_File` :math:`\rightarrow` Position file at end and open for writing
 
 .. code:: Ada
+  :font-size: footnotesize
 
    declare
       File : File_Type;

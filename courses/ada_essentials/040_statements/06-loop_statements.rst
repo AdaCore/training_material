@@ -63,6 +63,7 @@ Exit Statement Examples
 * Nested named loops and exit
 
   .. code:: Ada
+    :font-size: footnotesize
 
      Outer : loop
        Do_Something;
@@ -152,6 +153,7 @@ Variable and Sequence of Values
 * Syntactic sugar: several forms allowed
 
 .. code:: Ada
+  :font-size: footnotesize
 
    -- All values of a type or subtype
    for Day in Days_T loop
@@ -198,6 +200,7 @@ Low-Level For-loop Parameter Type
 * Type is :ada:`Integer` unless otherwise specified
 
   .. code:: Ada
+    :font-size: small
 
      for Idx in 1 .. 3 loop -- Idx is Integer
 
@@ -241,6 +244,7 @@ For-Loop Parameter Visibility
 * Inner objects can hide outer objects
 
   .. code:: Ada
+    :font-size: small
 
      Block: declare
        Counter : Float := 0.0;
@@ -259,6 +263,7 @@ Referencing Hidden Names
 * Use dot notation with outer scope name when hiding occurs
 
 .. code:: Ada
+  :font-size: small
 
    Foo:
    declare

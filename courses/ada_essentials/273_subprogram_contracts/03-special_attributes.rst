@@ -9,6 +9,7 @@ Evaluate an Expression on Subprogram Entry
 * Postconditions may require knowledge of a subprogram's **entry context**
 
   .. code:: Ada
+    :font-size: scriptsize
 
       procedure Increment (This : in out Integer)
        with Post => ??? -- how to assert incrementation of 'This'?
@@ -130,6 +131,7 @@ Postcondition Usage of Function Results
 * :ada:`function` result can be read with :ada:`'Result`
 
 .. code:: Ada
+  :font-size: small
 
   function Greatest_Common_Denominator (A, B : Positive)
     return Positive with
@@ -141,6 +143,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: small
 
    Database : String (1 .. 10) := "ABCDEFGHIJ";
    Index    : Integer := 4;
@@ -186,21 +189,13 @@ of the call :ada:`Set_And_Move ('X', Index)`?
       :width: 80%
 
 -------------------------------------
-Stack Example (Spec with Contracts)
+Stack Example Spec (with Contracts)
 -------------------------------------
 
-.. container:: columns
+.. include:: ../examples/adv_270_subprogram_contracts/special_attributes_spec.rst
 
-  .. container:: column
+-------------------------------------
+Stack Example Body (Implementation)
+-------------------------------------
 
-    .. container:: latex_environment tiny
-
-      .. include:: ../examples/adv_270_subprogram_contracts/special_attributes_spec.rst
-
-  .. container:: column
-
-    .. container:: latex_environment tiny
-
-      .. include:: ../examples/adv_270_subprogram_contracts/special_attributes_body.rst
-
-
+.. include:: ../examples/adv_270_subprogram_contracts/special_attributes_body.rst

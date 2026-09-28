@@ -13,7 +13,7 @@ Parts of a Check Message
 
 * Typical check message consists in multiple parts
 
-  .. code:: console
+  .. code:: error
 
      file:line:col: severity: check "might fail"
        "cannot prove" this-part
@@ -37,7 +37,7 @@ What is the problem with this code?
 
 .. container:: animate
 
-  .. code:: console
+  .. code:: error
 
       incr.adb:3:11: high: overflow check might fail
         cannot prove upper bound for X + 1
@@ -95,7 +95,8 @@ Possible Fix
 
   - Because some variable in check is not constrained at all
 
-  .. code:: console
+  .. code:: error
+    :font-size: scriptsize
 
      possible fix: precondition of subprogram should mention Var
      possible fix: precondition of subprogram should mention Var'Initialized
@@ -104,7 +105,8 @@ Possible Fix
 
 * Also suggests missing postcondition
 
-  .. code:: console
+  .. code:: error
+    :font-size: scriptsize
 
      possible fix: call should mention Var in a postcondition
      possible fix: you should consider adding a postcondition to function
@@ -112,7 +114,8 @@ Possible Fix
 
 * Other suggestions for arithmetic and representation
 
-  .. code:: console
+  .. code:: error
+    :font-size: scriptsize
 
      possible fix: use pragma Overflow_Mode or switch -gnato13
        or unit SPARK.Big_Integers
@@ -127,19 +130,19 @@ Continuation Messages
 
 * Specific instantiation for code in generics
 
-  .. code:: console
+  .. code:: error
 
      in instantiation at...
 
 * Specific call for code in inlined subprogram
 
-  .. code:: console
+  .. code:: error
 
      in call inlined at...
 
 * Specific contract when inherited
 
-  .. code:: console
+  .. code:: error
 
      for inherited predicate at...
      for inherited default initial condition at...
@@ -147,7 +150,7 @@ Continuation Messages
 
 * Original contract when inlined
 
-  .. code:: console
+  .. code:: error
 
      in inlined expression function body at...
      in inlined predicate at...
@@ -162,7 +165,7 @@ Information Messages
   - With switch :command:`--report=all/provers/statistics`
   - Checks justified with pragma :ada:`Annotate`
 
-  .. code:: ada
+  .. code:: error
 
      file:line:col: check proved
      file:line:col: check justified

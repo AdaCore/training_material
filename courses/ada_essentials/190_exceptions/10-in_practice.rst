@@ -10,6 +10,7 @@ Fulfill Interface Promises to Clients
 * Hence caller expectations must be satisfied
 
 .. code:: Ada
+  :font-size: small
 
    procedure Get (Reading : out Sensor_Reading) is
    begin

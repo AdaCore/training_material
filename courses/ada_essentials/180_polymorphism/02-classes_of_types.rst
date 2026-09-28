@@ -11,6 +11,7 @@ Classes
 * Type :ada:`Root'Class` can designate any object typed after type of class of `Root`
 
   .. code:: Ada
+    :font-size: small
 
      type Root is tagged null record;
      type Child1 is new Root with null record;
@@ -40,6 +41,7 @@ Indefinite Type
    - Can be used for variable declaration with initialization
 
 .. code:: Ada
+  :font-size: scriptsize
 
    procedure Main is
       type Animal is tagged null record;
@@ -67,6 +69,7 @@ Testing the Type of an Object
 * Membership operator is available to check the type against a hierarchy
 
 .. code:: Ada
+  :font-size: small
 
    type Parent is tagged null record;
    type Child is new Parent with null record;
@@ -102,6 +105,7 @@ Abstract Types Ada Vs C++
 * Ada
 
   .. code:: Ada
+    :font-size: small
 
      type Animal is abstract tagged record
         Number_Of_Eyes : Integer;
@@ -142,6 +146,7 @@ Relation to Primitives
 Warning: Subprograms with parameter of type `Root'Class` are not primitives of `Root`
 
 .. code:: Ada
+  :font-size: footnotesize
 
          type Root is tagged null record;
          procedure Not_A_Primitive (Param : Root'Class);
@@ -156,6 +161,7 @@ Warning: Subprograms with parameter of type `Root'Class` are not primitives of `
 Prefix notation rules apply when the first parameter is of a class-wide type
 
 .. code:: Ada
+  :font-size: footnotesize
 
          type Animal is tagged null record;
          procedure Handle_Animal (Some_Animal : Animal'Class);

@@ -8,21 +8,21 @@ Subprogram Parameter Terminology
 
 * :dfn:`Actual parameters` are values passed to a call
 
-   - Variables, constants, expressions
+  - Variables, constants, expressions
 
 * :dfn:`Formal parameters` are defined by specification
 
-   - Receive the values passed from the actual parameters
-   - Specify the types required of the actual parameters
-   - Type **cannot** be anonymous
+  - Receive the values passed from the actual parameters
+  - Specify the types required of the actual parameters
+  - Type **cannot** be anonymous
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Something (Formal1 : in Integer);
+    procedure Something (Formal1 : in Integer);
 
-      ActualX : Integer;
-      ...
-      Something (ActualX);
+    ActualX : Integer;
+    ...
+    Something (ActualX);
 
 ---------------------------------
 Parameter Associations in Calls
@@ -49,17 +49,18 @@ Parameter Modes
 
 * Mode :ada:`in`
 
-   - Formal parameter is :ada:`constant`
+  - Formal parameter is :ada:`constant`
 
-     * So actual is not modified either
+    * So actual is not modified either
 
-   - Can have **default**, used when **no value** is provided
+  - Can have **default**, used when **no value** is provided
 
-   .. code:: Ada
+    .. code:: Ada
+      :font-size: footnotesize
 
-       procedure P (N : in Integer := 1; M : in Positive);
-       [...]
-       P (M => 2);
+      procedure P (N : in Integer := 1; M : in Positive);
+      [...]
+      P (M => 2);
 
 * Mode :ada:`out`
 
@@ -83,6 +84,7 @@ Function Return
   * Type does not have to be constrained
 
 .. code:: Ada
+  :font-size: small
 
    function From_String (Value : String) return Integer;
    function To_String (Value : Integer) return String;
@@ -96,6 +98,7 @@ Why Read Mode "out" Parameters?
 * Warning: initial value is **not defined**
 
 .. code:: Ada
+  :font-size: small
 
    procedure Compute (Value : out Integer) is
    begin
@@ -155,6 +158,7 @@ Unconstrained Return Type
   to be able to handle it
 
   .. code:: Ada
+    :font-size: small
 
      function Pad (Length : Natural) return String is
         Padding : String(1..Length) := (others => ' ');
@@ -166,6 +170,7 @@ Unconstrained Return Type
   to an object of the expected size, or pass to another unconstrained parameter
 
   .. code:: Ada
+    :font-size: scriptsize
 
      declare
         This_Is_OK      : String := Pad (3);
@@ -183,6 +188,7 @@ Unconstrained Parameters Surprise
 * Assumptions about formal bounds may be **wrong**
 
 .. code:: Ada
+  :font-size: small
 
   type Vector is array (Positive range <>) of Float;
   function Subtract (Left, Right : Vector) return Vector;
@@ -222,6 +228,7 @@ Correct Implementation
 * :ada:`return` indexed by :ada:`Left'Range`
 
 .. code:: Ada
+  :font-size: footnotesize
 
    function Subtract (Left, Right : Vector) return Vector is
       pragma Assert (Left'Length = Right'Length);

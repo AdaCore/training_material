@@ -48,6 +48,7 @@ Similarity to Case Statements
 * Exception handler
 
   .. code:: Ada
+    :font-size: footnotesize
 
      ...
      exception
@@ -60,6 +61,7 @@ Similarity to Case Statements
 * Case statement
 
   .. code:: Ada
+    :font-size: footnotesize
 
      case exception_name is
        when Constraint_Error | Storage_Error | Program_Error =>
@@ -97,39 +99,43 @@ When an Exception Is Raised
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
     * Normal processing is abandoned
     * Handler for active exception is executed, if any
     * Control then goes to the caller
     * If handled, caller continues normally, otherwise repeats the above
 
- .. container:: column
-
-  .. container:: latex_environment footnotesize
+  .. container:: column
 
     * Caller
 
-      .. code:: Ada
+    .. code:: Ada
+      :font-size: small
 
+       ...
+       Joy_Ride;
+       Do_Something_At_Home;
+       ...
+
+    * Callee
+
+    .. code:: Ada
+      :font-size: small
+
+       procedure Joy_Ride is
          ...
-         Joy_Ride;
-         Do_Something_At_Home;
+       begin
          ...
+         Drive_Home;
+       exception
+         when Fuel_Exhausted =>
+           Push_Home;
+       end Joy_Ride;
 
-   * Callee
+.. raw:: latex
 
-      .. code:: Ada
-
-         procedure Joy_Ride is
-           ...
-         begin
-           ...
-           Drive_Home;
-         exception
-           when Fuel_Exhausted =>
-             Push_Home;
-         end Joy_Ride;
+  \vspace{5mm}
 
 .. container:: speakernote
 

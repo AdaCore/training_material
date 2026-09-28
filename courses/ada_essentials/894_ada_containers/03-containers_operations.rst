@@ -27,6 +27,7 @@ Insertion
 * May :ada:`Replace` an existing component
 
 .. code:: Ada
+  :font-size: small
 
    Student_Per_Day.Append (10);
    Student_Per_Day.Append (8);
@@ -70,6 +71,7 @@ Comparison
 ------------
 
 .. code:: Ada
+  :font-size: small
 
    -- xxx2 are objects with the exact same content
    pragma Assert (Student_Per_Day = Student_Per_Day2);
@@ -99,6 +101,7 @@ Sort
    - `Ada.Containers.Generic_Sort`
 
 .. code:: Ada
+  :font-size: small
 
    procedure Sort
      (V    : in out Pkg_Vectors.Vector; First : Index_Type;
@@ -158,6 +161,7 @@ Aggregates
 * Maps required named notation, all other containers use positional notation
 
 .. code:: Ada
+  :font-size: small
 
    package Int_Vectors is new Ada.Containers.Vectors
      (Positive, Integer);

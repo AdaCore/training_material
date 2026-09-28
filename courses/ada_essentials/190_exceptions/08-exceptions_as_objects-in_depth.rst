@@ -62,6 +62,7 @@ Mechanism to Treat Exceptions As Objects
 * Standard Library
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package Ada.Exceptions is
      type Exception_Id is private;
@@ -129,6 +130,7 @@ User Subprogram Parameter Example
 -----------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    with Ada.Exceptions; use Ada.Exceptions;
    procedure Display_Exception
@@ -157,6 +159,7 @@ Exception Identity
 * Attribute 'Identity converts exceptions to the type
 
   .. code:: Ada
+    :font-size: footnotesize
 
      package Ada.Exceptions is
        ...
@@ -170,6 +173,7 @@ Exception Identity
 * Primary use is raising exceptions procedurally
 
   .. code:: Ada
+    :font-size: small
 
      Foo : exception;
      ...
@@ -214,6 +218,7 @@ Copying "Exception_Occurrence" Objects
    - No assignment operation since is a :ada:`limited` type
 
 .. code:: Ada
+  :font-size: small
 
    Error : Exception_Occurrence;
 

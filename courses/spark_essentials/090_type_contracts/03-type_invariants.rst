@@ -96,7 +96,8 @@ Beware Recursion in Type Invariants
         type Account is ... with
           Type_Invariant => Consistent_Balance (Account);
 
-  .. code:: console
+  .. code:: error
+    :font-size: scriptsize
 
      high: cannot call boundary subprogram for type in its own invariant
 

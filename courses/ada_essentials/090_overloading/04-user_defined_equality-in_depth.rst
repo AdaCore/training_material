@@ -67,6 +67,7 @@ User-Defined Equality Example
 * Given the following types:
 
   .. code:: Ada
+    :font-size: footnotesize
 
       Max : constant := 100;
       type Index is range 0 .. Max;
@@ -79,6 +80,7 @@ User-Defined Equality Example
 * Equality function might look like:
 
   .. code:: Ada
+    :font-size: small
 
       function "=" (Left, Right : Stack) return Boolean is
       begin

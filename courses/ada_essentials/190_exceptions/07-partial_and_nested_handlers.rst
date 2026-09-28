@@ -41,6 +41,7 @@ Typical Partial Handling Example
    - Same exception or another one
 
 .. code:: Ada
+  :font-size: small
 
    procedure Get (Item : out Integer;   From : in File) is
    begin
@@ -71,6 +72,7 @@ Exceptions Raised During Elaboration
    - Could reference declarations that failed to elaborate!
 
 .. code:: Ada
+  :font-size: small
 
    procedure P (Output : out BigType) is
      -- storage error handled by caller
@@ -90,6 +92,7 @@ Handling Elaboration Exceptions
 ---------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    procedure Test is
      procedure P is
@@ -111,35 +114,34 @@ Handling Elaboration Exceptions
 Quiz
 ------
 
-.. container:: latex_environment footnotesize
+.. code:: Ada
+  :font-size: scriptsize
 
-  .. code:: Ada
-
-     with Ada.Text_IO; use Ada.Text_IO;
-     procedure Exception_Test (Input_Value : Integer) is
-        Known_Problem : exception;
-        function F (P : Integer) return Integer is
-        begin
-           if P > 0 then
-              return P * P;
-           end if;
-        exception
-           when others => raise Known_Problem;
-        end F;
-        procedure P (X : Integer) is
-           A : array (1 .. F (X)) of Float;
-        begin
-           A := (others => 0.0);
-        exception
-           when others => raise Known_Problem;
-        end P;
+  with Ada.Text_IO; use Ada.Text_IO;
+  procedure Exception_Test (Input_Value : Integer) is
+     Known_Problem : exception;
+     function F (P : Integer) return Integer is
      begin
-        P (Input_Value);
-        Put_Line ("Success");
+        if P > 0 then
+           return P * P;
+        end if;
      exception
-        when Known_Problem => Put_Line ("Known problem");
-        when others => Put_Line ("Unknown problem");
-     end Exception_Test;
+        when others => raise Known_Problem;
+     end F;
+     procedure P (X : Integer) is
+        A : array (1 .. F (X)) of Float;
+     begin
+        A := (others => 0.0);
+     exception
+        when others => raise Known_Problem;
+     end P;
+  begin
+     P (Input_Value);
+     Put_Line ("Success");
+  exception
+     when Known_Problem => Put_Line ("Known problem");
+     when others => Put_Line ("Unknown problem");
+  end Exception_Test;
 
 What will get printed for these values of Input_Value?
 
@@ -181,14 +183,15 @@ Exceptions Raised in Exception Handlers
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
     * Go immediately to caller unless also handled
     * Goes to caller in any case, as usual
 
- .. container:: column
+  .. container:: column
 
-   .. code:: Ada
+    .. code:: Ada
+      :font-size: small
 
       begin
         ...

@@ -79,22 +79,22 @@ Fixed Lower Bound for Array Types (1/3)
 
 * Ada arrays carry 3 pieces of information
 
-   - Lower bound
-   - Upper bound
-   - Actual data
+  - Lower bound
+  - Upper bound
+  - Actual data
 
 * Dealing with lower / upper bound instead of size has consequences
 
-   - Usage is more flexible
-   - Access to data requires more arithmetic
-   - Potential errors, e.g. when addressing slices
+  - Usage is more flexible
+  - Access to data requires more arithmetic
+  - Potential errors, e.g. when addressing slices
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function P (S : String) return Character is
-      begin
-         return S (1); -- May be out of bounds
-      end P;
+    function P (S : String) return Character is
+    begin
+       return S (1); -- May be out of bounds
+    end P;
 
 -----------------------------------------
 Fixed Lower Bound for Array Types (2/3)
@@ -103,6 +103,7 @@ Fixed Lower Bound for Array Types (2/3)
 * Ada arrays can have fixed lower bound (FLB)
 
   .. code:: Ada
+    :font-size: small
 
      type Arr is array (Integer range 0 .. <>) of Integer;
 
@@ -128,6 +129,7 @@ Fixed Lower Bound for Array Types (3/3)
 * FLB can be used for matrixes
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Matrix is array (Natural range 0 .. <>,
                            Natural range 0 .. <>) of Integer;
@@ -162,46 +164,47 @@ Storage Models (2/2)
 
   * Allows definition of copy primitives
 
-.. container:: latex_environment tiny
+.. container:: columns
 
-  .. container:: columns
+  .. container:: column
 
-    .. container:: column
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
+      type CUDA_Storage_Model is null record
+         with Storage_Model_Type => (
+            Allocate     => CUDA_Allocate,
+            Deallocate   => CUDA_Deallocate,
+            Copy_To      => CUDA_Copy_To,
+            Copy_From    => CUDA_Copy_From);
 
-         type CUDA_Storage_Model is null record
-            with Storage_Model_Type => (
-               Allocate     => CUDA_Allocate,
-               Deallocate   => CUDA_Deallocate,
-               Copy_To      => CUDA_Copy_To,
-               Copy_From    => CUDA_Copy_From);
+       CUDA_Memory : CUDA_Storage_Model;
 
-          CUDA_Memory : CUDA_Storage_Model;
+  .. container:: column
 
-    .. container:: column
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
+      type Host_Array_Access is access Integer_Array;
+      type Device_Array_Access is access Integer_Array
+         with Designated_Storage_Model => CUDA_Memory;
 
-        type Host_Array_Access is access Integer_Array;
-        type Device_Array_Access is access Integer_Array
-           with Designated_Storage_Model => CUDA_Memory;
+      Host_Array : Host_Array_Access
+                 := new Integer_Array (1 .. 10);
+      Device_Array : Device_Array_Access
+                 := new Host_Array (1 .. 10);
 
-        Host_Array : Host_Array_Access
-                   := new Integer_Array (1 .. 10);
-        Device_Array : Device_Array_Access
-                   := new Host_Array (1 .. 10);
+    .. code:: Ada
+      :font-size: tiny
 
-     .. code:: Ada
+      Host_Array.all := (others => 0);
+      --  CUDA_Storage_Model.Copy_To will perform copy
+      Device_Array.all := Host_Array.all;
 
-        Host_Array.all := (others => 0);
-        --  CUDA_Storage_Model.Copy_To will perform copy
-        Device_Array.all := Host_Array.all;
+      -- ...
 
-        -- ...
-
-        --  CUDA_Storage_Model.Copy_From will perform copy
-        Host_Array.all := Device_Array.all;
+      --  CUDA_Storage_Model.Copy_From will perform copy
+      Host_Array.all := Device_Array.all;
 
 ------------------------------------------
 Constant Size for Variable Objects (1/3)
@@ -242,6 +245,7 @@ Constant Size for Variable Objects (2/3)
 * `'Size'Class` will allow specifing fixed size for a whole hierarchy
 
 .. code:: Ada
+  :font-size: small
 
    type Foo is tagged abstract null record
       with Size'Class => 16 * 8; -- Size is in bits
@@ -306,6 +310,7 @@ Embed Data From Binary File
 * Avoid either painful encoding of data as aggregates, or impractical (or even impossible in embedded contexts) loading of assets at run-time
 
 .. code:: Ada
+  :font-size: footnotesize
 
    package body Some_Package is
       type Byte is mod 256;
@@ -357,6 +362,7 @@ Creation of Ada Array From Memory
 * There's no way to "build the bounds" manually
 
 .. code:: Ada
+  :font-size: small
 
    type X is array (Integer range <>) of Integer;
    type A is access all X:
@@ -470,6 +476,7 @@ String Interpolation
 * Simlar to other languages, Strings can now be interpolated
 
   .. code:: Ada
+    :font-size: small
 
       Put_Line (f"Name is {Name} and Sum is {X + Y}.");
 
@@ -579,6 +586,7 @@ Case Pattern Matching (1/3)
 * Present in most languages nowadays
 
   .. code:: Ada
+    :font-size: scriptsize
 
      type Rec is record
         F1, F2 : Integer;
@@ -605,6 +613,7 @@ Case Pattern Matching (2/3)
    In discussion
 
 .. code:: Ada
+  :font-size: scriptsize
 
    type Shape is tagged record
       X, Y : Integer;
@@ -638,6 +647,7 @@ Case Pattern Matching (3/3)
 Pattern matching allows to bind specific values and use them
 
 .. code:: Ada
+  :font-size: small
 
    type Opt (Has_Value : Boolean) is record
       case Has_Value is
@@ -691,6 +701,7 @@ Generic Instantiation Inference (2/2)
 * We could implicitly instantiate stateless generics
 
   .. code:: Ada
+    :font-size: small
 
    V : Float :=
        Reduce (Integer, Float, Float_Array) (Some_Array);
@@ -705,6 +716,7 @@ Generic Instantiation Inference (2/2)
 * The two above could be combined
 
   .. code:: Ada
+    :font-size: small
 
     V : Float :=
         Reduce (Array_Type => Float_Array) (Some_Array);
@@ -744,7 +756,8 @@ Redesign of Object Orientation (2/2)
 
    Under discussion
 
- .. code:: Ada
+.. code:: Ada
+   :font-size: tiny
 
     package P is
        type Root is class record

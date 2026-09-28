@@ -20,6 +20,7 @@ Directories Solution
 * Project File
 
    .. code:: Ada
+     :font-size: small
 
       project Lab is
          for Source_Dirs use ("source/030_project_properties");
@@ -30,7 +31,8 @@ Directories Solution
 
 * Executable Output
 
-  ::
+  .. code:: output
+    :font-size: scriptsize
 
          ...
          41    267914296
@@ -83,7 +85,8 @@ Switches Solution
 
 * Executable Output
 
-  ::
+  .. code:: output
+     :font-size: small
 
          ...
          43    701408733
@@ -121,6 +124,7 @@ Naming Solution
 * Project File
 
    .. code:: Ada
+     :font-size: small
 
       project Lab is
          for Source_Dirs use ("source/030_project_properties/naming");
@@ -138,7 +142,8 @@ Naming Solution
 
 * Executable Output
 
-  ::
+  .. code:: output
+     :font-size: scriptsize
 
          ...
          88   1779979416004714189
@@ -176,6 +181,7 @@ Conditional Solution
 * Project File
 
    .. code:: Ada
+     :font-size: small
 
       project Lab is
 
@@ -202,7 +208,8 @@ Conditional Solution
 
 * Executable Output
 
-  ::
+  .. code:: output
+     :font-size: scriptsize
 
          1   1.00000000000000E+00
          2   2.00000000000000E+00

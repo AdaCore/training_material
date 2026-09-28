@@ -70,19 +70,20 @@ Building a Test Harness
 
    * Executable is called :command:`test_runner`
 
-.. container:: latex_environment tiny
+::
 
-  ::
+  cd obj/driver
+  gprbuild -P test_driver
+  test_runner
 
-    cd obj/driver
-    gprbuild -P test_driver
-    test_runner
+*Gives the result*
 
-  *Gives the result* ::
+  .. code:: output
+    :font-size: tiny
 
-     simple.ads:3:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:44)
-     simple.ads:7:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:65)
-     2 tests run: 0 passed; 2 failed; 0 crashed.
+    simple.ads:3:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:44)
+    simple.ads:7:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:65)
+    2 tests run: 0 passed; 2 failed; 0 crashed.
 
 * Note that the tests fail!
 
@@ -164,18 +165,19 @@ Test Implementation
 
 * Then we rerun the test
 
-.. container:: latex_environment tiny
+::
 
-  ::
+  gprbuild -P test_driver
+  test_runner
 
-    gprbuild -P test_driver
-    test_runner
+Giving the result
 
-  Giving the result::
+  .. code:: output
 
-     simple.ads:3:4: info: corresponding test PASSED
-     simple.ads:7:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:66)
-     2 tests run: 1 passed; 1 failed; 0 crashed.
+    simple.ads:3:4: info: corresponding test PASSED
+    simple.ads:7:4: error: corresponding test FAILED:
+      Test not implemented. (simple-test_data-tests.adb:66)
+    2 tests run: 1 passed; 1 failed; 0 crashed.
 
 =====
 Lab

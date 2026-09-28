@@ -33,6 +33,7 @@ Simple Vector of Varying Length
 * Not unconstrained - we have to define a maximum length to make it a :dfn:`definite type`
 
 .. code:: Ada
+  :font-size: small
 
    type Simple_Vstring is
       record
@@ -50,12 +51,14 @@ Simple Vector of Varying Length
    * Can redefine :ada:`=` to be something like
 
      .. code:: Ada
+       :font-size: scriptsize
 
          if Obj1.Data (1 .. Obj1.Last) = Obj2.Data (1 .. Obj2.Last)
 
    * Same thing with concatentation
 
      .. code:: Ada
+       :font-size: scriptsize
 
          Obj3.Last := Obj1.Last + Obj2.Last;
          Obj3.Data (1 .. Obj3.Last) := Obj1.Data (1 .. Obj1.Last) &
@@ -72,6 +75,7 @@ Vector of Varying Length via Discriminated Records
 * Discriminant can serve as bound of array component
 
   .. code:: Ada
+    :font-size: small
 
      type Vstring (Last : Natural := 0) is
        record
@@ -92,6 +96,7 @@ Object Creation
    + So this example is a problem
 
      .. code:: Ada
+       :font-size: footnotesize
 
         type Vstring (Last : Natural := 0) is record
            Data   : String (1 .. Last) := (others => ' ');
@@ -111,6 +116,7 @@ Object Creation
 * Better implementation
 
   .. code:: Ada
+    :font-size: small
 
      subtype Length_T is natural range 0 .. 1_000;
      type Vstring (Last : Length_T := 0) is record

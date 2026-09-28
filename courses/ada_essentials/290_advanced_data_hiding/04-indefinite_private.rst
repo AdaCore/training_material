@@ -109,6 +109,7 @@ Example: A String Holder (1/2)
 * Implementation not discussed here
 
 .. code:: Ada
+  :font-size: footnotesize
 
     package String_Holders is
        type Info is limited private;
@@ -123,6 +124,7 @@ Example: A String Holder (1/2)
     These are only used for contracts, hence the :ada:`Ghost` aspect
 
 .. code:: Ada
+  :font-size: footnotesize
 
        function To_Info (Str : String) return Info
           with Post => Contains (To_Info'Result, S);
@@ -146,6 +148,7 @@ Example: A String Holder (2/2)
 --------------------------------
 
 .. code:: Ada
+  :font-size: small
 
     private
        type Info is access String;
@@ -157,6 +160,7 @@ Example: A String Holder (2/2)
     This can be used by contracts implementation below, and child packages
 
 .. code:: Ada
+  :font-size: footnotesize
 
        function Contains (Obj : Info; Str : String) return Boolean
           is (Obj /= null and then Obj.all = Str);

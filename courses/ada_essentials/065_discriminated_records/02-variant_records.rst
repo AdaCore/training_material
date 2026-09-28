@@ -98,6 +98,7 @@ Mutable Variant Record
 * To add flexibility, we can make the type :dfn:`mutable` by specifying a default value for the discriminant
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Mutable_T (Kind : Category_T := Employee) is record
         Name : String_T;
@@ -153,36 +154,28 @@ Mutable Variant Record Example
 Quiz
 ------
 
-.. container:: columns
+.. code:: Ada
+  :number-lines: 2
+  :font-size: footnotesize
 
-  .. container:: column
+  type Variant_T (Valid : Integer) is record
+      case Valid is
+      when Integer'First .. -1 =>
+          Value : Integer;
+          State : Boolean;
+      when others =>
+          Number : Natural;
+      end case;
+  end record;
 
-    .. container:: latex_environment tiny
+  Variant_Object : Variant_T (1);
 
-      .. code:: Ada
-        :number-lines: 2
+Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
 
-        type Variant_T (Valid : Integer) is record
-            case Valid is
-            when Integer'First .. -1 =>
-                Value : Integer;
-                State : Boolean;
-            when others =>
-                Number : Natural;
-            end case;
-        end record;
-
-        Variant_Object : Variant_T (1);
-
-  .. container:: column
-
-    Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
-
-    A. :ada:`Variant_Object.Value,`
-       :ada:`Variant_Object.State`
-    B. :answermono:`Variant_Object.Number`
-    C. None: Compilation error
-    D. None: Run-time error
+  A. :ada:`Variant_Object.Value,` :ada:`Variant_Object.State`
+  B. :answermono:`Variant_Object.Number`
+  C. None: Compilation error
+  D. None: Run-time error
 
 .. container:: animate
 
@@ -200,45 +193,36 @@ Quiz
 Quiz
 ------
 
-.. container:: columns
+.. code:: Ada
+  :font-size: footnotesize
+  :number-lines: 2
 
-  .. container:: column
+  type Coord_T is record
+     X, Y : Float;
+  end record;
 
-    .. container:: latex_environment tiny
+  type Kind_T is (Circle, Line);
+  type Shape_T (Kind : Kind_T := Line) is record
+     Origin : Coord_T;
+     case Kind is
+        when Line =>
+           End_Point : Coord_T;
+        when Circle =>
+           End_Point : Coord_T;
+     end case;
+  end record;
 
-      .. code:: Ada
-         :number-lines: 2
+  A_Circle : Shape_T       := (Circle, (1.0, 2.0), (3.0, 4.0));
+  A_Line   : Shape_T (Line) := (Circle, (1.0, 2.0), (3.0, 4.0));
 
-         type Coord_T is record
-            X, Y : Float;
-         end record;
+.. container:: latex_environment small
 
-         type Kind_T is (Circle, Line);
-         type Shape_T (Kind : Kind_T := Line) is record
-            Origin : Coord_T;
-            case Kind is
-               when Line =>
-                  End_Point : Coord_T;
-               when Circle =>
-                  End_Point : Coord_T;
-            end case;
-         end record;
+  What happens when you try to build and run this code?
 
-         A_Circle : Shape_T       :=
-           (Circle, (1.0, 2.0), (3.0, 4.0));
-         A_Line   : Shape_T (Line) :=
-           (Circle, (1.0, 2.0), (3.0, 4.0));
-
-  .. container:: column
-
-    .. container:: latex_environment small
-
-      What happens when you try to build and run this code?
-
-      A. Run-time error
-      B. Compilation error on an object
-      C. :answer:`Compilation error on a type`
-      D. No problems
+  A. Run-time error
+  B. Compilation error on an object
+  C. :answer:`Compilation error on a type`
+  D. No problems
 
 .. container:: animate
 

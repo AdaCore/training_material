@@ -9,6 +9,7 @@ Strong Typing
 * We know Ada supports strong typing
 
   .. code:: Ada
+    :font-size: footnotesize
 
      type Small_Integer_T is range -1_000 .. 1_000;
      type Enumerated_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);

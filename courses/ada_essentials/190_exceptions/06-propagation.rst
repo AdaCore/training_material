@@ -74,6 +74,7 @@ Termination Model
 * When control goes to handler, it continues from here
 
 .. code:: Ada
+  :font-size: footnotesize
 
    procedure Joy_Ride is
    begin
@@ -94,6 +95,7 @@ Quiz
 ------
 
 .. code:: Ada
+  :font-size: small
   :number-lines: 2
 
     Main_Problem : exception;

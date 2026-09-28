@@ -16,6 +16,7 @@ Task Activation
    - **Immediately** at instantiation
 
 .. code:: Ada
+  :font-size: small
 
    task type Some_Task_T is ...
    type Some_Task_Ptr_T is access Some_Task_T;

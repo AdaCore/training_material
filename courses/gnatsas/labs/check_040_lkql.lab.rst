@@ -34,6 +34,7 @@ Source Code Specification
 ---------------------------
 
 .. code:: Ada
+  :font-size: tiny
 
    with Ada.Text_IO;
    package Test_Pkg is
@@ -68,6 +69,7 @@ Source Code Body
 ------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    package body Test_Pkg is
 
@@ -102,18 +104,21 @@ Step 1 - Flag All Integers
 
 2. Flag all integers
 
-   a. Look for **p_is_int_type** LAL property using a *node kind* pattern
+  a. Look for **p_is_int_type** LAL property using a *node kind* pattern
 
-      .. code:: lkql
+  .. code:: output
+    :font-size: tiny
 
-         @check
-         fun enum_for_integer(node) = node is TypeDecl(p_is_int_type() is true)
+      @check
+      fun enum_for_integer(node) = node is TypeDecl(p_is_int_type() is true)
 
-3. Test it out - see what happens when you run the rule::
+3. Test it out - see what happens when you run the rule
 
-      gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
+  ``gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer``
 
-   * This gives us the output::
+  * This gives us the output
+
+    .. code:: output
 
       test_pkg.ads:4:09: enum_for_integer
       test_pkg.ads:9:09: enum_for_integer
@@ -125,33 +130,38 @@ Step 1 - Flag All Integers
 
 * All integer types are reported - we need to add filters
 
-
 --------------------------
 Step 2 - Improve Message
 --------------------------
 
-* Default message for boolean rules is just the name of the rule::
+* Default message for boolean rules is just the name of the rule
+
+  .. code:: output
 
       test_pkg.ads:4:09: enum_for_integer
 
 * To improve message, add **message** attribute to :lkql:`@check` token
 
-  .. code:: lkql
+  .. code:: output
+    :font-size: scriptsize
 
       @check(message="Integer type could be replaced by an enumeration")
       fun enum_for_integer(node) =
          node is TypeDecl(p_is_int_type() is true)
 
-* Gives much more information::
+* Gives much more information
 
-   test_pkg.ads:4:09: Integer type could be replaced by an enumeration
-   test_pkg.ads:9:09: Integer type could be replaced by an enumeration
-   test_pkg.ads:14:09: Integer type could be replaced by an enumeration
-   test_pkg.ads:19:09: Integer type could be replaced by an enumeration
-   test_pkg.ads:24:09: Integer type could be replaced by an enumeration
-   test_pkg.ads:30:09: Integer type could be replaced by an enumeration
-   test_pkg.ads:31:09: Integer type could be replaced by an enumeration
-   test_pkg.ads:36:09: Integer type could be replaced by an enumeration
+  .. code:: output
+    :font-size: scriptsize
+
+    test_pkg.ads:4:09: Integer type could be replaced by an enumeration
+    test_pkg.ads:9:09: Integer type could be replaced by an enumeration
+    test_pkg.ads:14:09: Integer type could be replaced by an enumeration
+    test_pkg.ads:19:09: Integer type could be replaced by an enumeration
+    test_pkg.ads:24:09: Integer type could be replaced by an enumeration
+    test_pkg.ads:30:09: Integer type could be replaced by an enumeration
+    test_pkg.ads:31:09: Integer type could be replaced by an enumeration
+    test_pkg.ads:36:09: Integer type could be replaced by an enumeration
 
 -----------------------------------
 Step 3 - Implement First Criteria
@@ -161,7 +171,8 @@ Step 3 - Implement First Criteria
 
    a. Need to fetch all operators - use global :lkql:`select` with :lkql:`BinOp` and :lkql:`UnOp` node kind patterns. (Component :lkql:`f_op` contains the kind of the operator.)
 
-      .. code:: lkql
+      .. code:: output
+        :font-size: tiny
 
          select BinOp(f_op is OpDiv or OpMinus or OpMod or OpMult or OpPlus or
                               OpPow or OpRem or OpXor or OpAnd or OpOr) or
@@ -173,7 +184,8 @@ Step 3 - Implement First Criteria
 
 2. Implement function named :lkql:`arithmetic_ops` to return the list of **TypeDecl** used in arithmetic and logical operations
 
-        .. code:: lkql
+        .. code:: output
+          :font-size: tiny
 
            fun arithmetic_ops() =
               [op.p_expression_type()
@@ -188,18 +200,22 @@ Step 4 - Use First Criteria in Rule
 
 1. Update :lkql:`enum_for_integer` function to filter integer type declarations by excluding all **TypeDecl** used in operators
 
-   .. code:: lkql
+   .. code:: output
+     :font-size: footnotesize
 
       @check
       fun enum_for_integer(node) =
          node is TypeDecl(p_is_int_type() is true)
          when not [t for t in arithmetic_ops() if t == node]
 
-2. Test it out - see what happens when you run the rule::
+2. Test it out - see what happens when you run the rule
 
-      gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
+  * :command:`gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer`
 
-   * This gives us the output::
+  * This gives us the output
+
+  .. code:: output
+    :font-size: scriptsize
 
       test_pkg.ads:4:09: Integer type could be replaced by an enumeration
       test_pkg.ads:14:09: Integer type could be replaced by an enumeration
@@ -221,7 +237,8 @@ Step 5 - Implement Second Criteria
 
 1. Implement new function :lkql:`types` to return list of **TypeDecl** used as target type in a conversion
 
-   .. code:: lkql
+   .. code:: output
+     :font-size: tiny
 
       fun types() =
           [c.p_referenced_decl()
@@ -231,7 +248,8 @@ Step 5 - Implement Second Criteria
 
 2. Add our new filtering function in the rule body.
 
-   .. code:: lkql
+   .. code:: output
+     :font-size: scriptsize
 
       @check
       fun enum_for_integer(node) =
@@ -252,7 +270,8 @@ Step 6 - Improve Types Filter
       * Returns **ParamAssocList** with a single component - source expression
       * Use on type conversion nodes to get source of conversions
 
-        .. code:: lkql
+        .. code:: output
+          :font-size: tiny
 
            fun types() =
               concat ([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
@@ -260,11 +279,14 @@ Step 6 - Improve Types Filter
 
    * :lkql:`concat` function takes a list of lists and returns the one-dimensional result of concatenation of all lists.
 
-2. Test it out - see what happens when you run the rule::
+2. Test it out - see what happens when you run the rule
 
-           gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
+  * :command:`gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer`
 
-   * This gives us the output::
+  * This gives us the output
+
+    .. code:: output
+      :font-size: scriptsize
 
            test_pkg.ads:4:09: Integer type could be replaced by an enumeration
            test_pkg.ads:24:09: Integer type could be replaced by an enumeration
@@ -282,13 +304,15 @@ Step 7 - Implement Third Criteria
 
 1. We can use global :lkql:`select` with list comprehension filtering
 
-  .. code:: lkql
+  .. code:: output
+    :font-size: tiny
 
       [s.f_subtype.f_name.p_referenced_decl() for s in select SubtypeDecl]
 
   * Expression gives list of subtype **TypeDecl**. We can now add it to the result of the :lkql:`types` function.
 
-  .. code:: lkql
+  .. code:: output
+    :font-size: tiny
 
       fun types() =
          concat ([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
@@ -297,16 +321,19 @@ Step 7 - Implement Third Criteria
 
 2. And once again test it out
 
-      gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
+  * :command:`gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer`
 
-   * This gives us the output::
+  * This gives us the output
+
+    .. code:: output
+      :font-size: scriptsize
 
       test_pkg.ads:4:09: Integer type could be replaced by an enumeration
       test_pkg.ads:30:09: Integer type could be replaced by an enumeration
       test_pkg.ads:31:09: Integer type could be replaced by an enumeration
       test_pkg.ads:36:09: Integer type could be replaced by an enumeration
 
-   * Even fewer integers meet our criteria
+  * Even fewer integers meet our criteria
 
 ------------------------------------
 Step 8 - Implement Fourth Criteria
@@ -316,23 +343,23 @@ Step 8 - Implement Fourth Criteria
 
 1. We can implement this similar to the subtype check using
 
-.. code:: lkql
-  :font-size: scriptsize
+  .. code:: output
+    :font-size: scriptsize
 
-  [c.f_type_def.f_subtype_indication.f_name.p_referenced_decl()
-   for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
+      [c.f_type_def.f_subtype_indication.f_name.p_referenced_decl()
+       for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
 
 2. Add this expression to the :lkql:`types` function
 
-.. code:: lkql
-  :font-size: scriptsize
+  .. code:: output
+    :font-size: tiny
 
-  fun types() =
-     concat([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
-             for c in select CallExpr(p_referenced_decl() is TypeDecl)].to_list) &
-     [s.f_subtype.f_name.p_referenced_decl() for s in select SubtypeDecl] &
-     [c.f_type_def.f_subtype_indication.f_name.p_referenced_decl()
-      for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
+      fun types() =
+         concat([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
+                 for c in select CallExpr(p_referenced_decl() is TypeDecl)].to_list) &
+         [s.f_subtype.f_name.p_referenced_decl() for s in select SubtypeDecl] &
+         [c.f_type_def.f_subtype_indication.f_name.p_referenced_decl()
+          for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
 
 -----------------------------------
 Step 9 - Implement Final Criteria
@@ -342,7 +369,8 @@ Step 9 - Implement Final Criteria
 
 1. Look in every each generic instantiation for identifiers referring to the type
 
-  .. code:: lkql
+  .. code:: output
+    :font-size: small
 
       from (select GenericInstantiation) select Identifier
 
@@ -351,7 +379,8 @@ Step 9 - Implement Final Criteria
 
 2. Express our query as a function
 
-   .. code:: lkql
+   .. code:: output
+     :font-size: tiny
 
       fun instantiations() =
           [id.p_referenced_decl()
@@ -359,7 +388,8 @@ Step 9 - Implement Final Criteria
 
 3. Add to :lkql:`enum_for_integer` function to finalize filtering
 
-   .. code:: lkql
+   .. code:: output
+     :font-size: scriptsize
 
       @check
       fun enum_for_integer(node) =
@@ -374,7 +404,8 @@ Complete Rules File
 
 Here is the final view of our :filename:`enum_for_integer.lkql` file.
 
-.. code:: lkql
+.. code:: output
+  :font-size: tiny
 
    fun arithmetic_ops() =
       [op.p_expression_type()
@@ -411,12 +442,11 @@ Final Result
 
 * This gives us the output
 
-.. container:: latex_environment scriptsize
-
-   ::
-
-      test_pkg.ads:4:09: Integer type could be replaced by an enumeration
-      test_pkg.ads:31:09: Integer type could be replaced by an enumeration
+  .. code:: output
+    :font-size: scriptsize
+  
+    test_pkg.ads:4:09: Integer type could be replaced by an enumeration
+    test_pkg.ads:31:09: Integer type could be replaced by an enumeration
 
 -------------------------------
 Improving the Behavior Part 1
@@ -428,18 +458,18 @@ Improving the Behavior Part 1
 
 * Query functions can be instructed to cached their results
 
-   * Use :lqkl:`@memoized` attribute
+  * Use :lqkl:`@memoized` attribute
 
-.. code:: lkql
-  :font-size: scriptsize
+  .. code:: output
+    :font-size: tiny
 
-  @memoized
-  fun arithmetic_ops() =
-     [op.p_expression_type()
-      for op in select
-         BinOp(f_op is OpDiv or OpMinus or OpMod or OpMult or OpPlus or
-                       OpPow or OpRem or OpXor or OpAnd or OpOr) or
-         UnOp(f_op is OpAbs or OpMinus or OpPlus or OpNot)].to_list
+      @memoized
+      fun arithmetic_ops() =
+         [op.p_expression_type()
+          for op in select
+             BinOp(f_op is OpDiv or OpMinus or OpMod or OpMult or OpPlus or
+                           OpPow or OpRem or OpXor or OpAnd or OpOr) or
+             UnOp(f_op is OpAbs or OpMinus or OpPlus or OpNot)].to_list
 
 -------------------------------
 Improving the Behavior Part 2
@@ -450,12 +480,12 @@ Improving the Behavior Part 2
    * Typically more arithmentic/logical operations than conversions, subtypes, instantiations
    * Swap filtering order to check for those last
 
-.. code:: lkql
-  :font-size: small
+  .. code:: output
+    :font-size: scriptsize
 
-  @check(message="integer type may be replaced by an enumeration")
-  fun enum_for_integer(node) =
-     node is TypeDecl(p_is_int_type() is true)
-     when not [t for t in types() if t == node] and
-          not [t for t in instantiations() if t == node] and
-          not [t for t in arithmetic_ops() if t == node]
+      @check(message="integer type may be replaced by an enumeration")
+      fun enum_for_integer(node) =
+         node is TypeDecl(p_is_int_type() is true)
+         when not [t for t in types() if t == node] and
+              not [t for t in instantiations() if t == node] and
+              not [t for t in arithmetic_ops() if t == node]

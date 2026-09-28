@@ -164,6 +164,7 @@ Reading a Machine Register (ppc)
 ----------------------------------
 
 .. code:: Ada
+  :font-size: small
 
    function Get_MSR return MSR_Type is
       Res : MSR_Type;

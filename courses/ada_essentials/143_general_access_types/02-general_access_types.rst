@@ -27,7 +27,7 @@ Using General Access Types
     Acc2 : Acc_2 := Acc_2 (Acc1);
 
   .. code:: error
-    :font-size: footnotesize
+    :font-size: scriptsize
 
     main.adb:5:24: error: target type must be general access type
     main.adb:5:24: error: add "all" to type "Acc_2" defined at line 3
@@ -63,6 +63,7 @@ Referencing the Stack
 --------------------------
 
 .. code:: Ada
+  :font-size: small
 
   with Ada.Text_IO; use Ada.Text_IO;
   procedure Example is
@@ -127,6 +128,7 @@ Deallocating General Access Types
 -----------------------------------
 
 .. code:: Ada
+  :font-size: scriptsize
 
    type Access_T is access all Integer;
    procedure Free is new Ada.Unchecked_Deallocation (Integer, Access_T);

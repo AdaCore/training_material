@@ -16,6 +16,7 @@ Task Activation
    - **Immediately** at instantiation
 
 .. code:: Ada
+  :font-size: small
 
    task type First_T is ...
    type First_T_A is access First_T;
@@ -150,6 +151,7 @@ Protected Object Entries
     - Only **one** may be re-activated when the barrier is **relieved**
 
 .. code:: Ada
+  :font-size: small
 
    protected body Stack is
       entry Push (V : Integer) when Size < Buffer'Length is
@@ -170,6 +172,7 @@ Discriminated Protected or Task types
 * Example: counter shared between tasks
 
 .. code:: Ada
+  :font-size: footnotesize
 
    protected type Counter_T is
       procedure Increment;
@@ -186,13 +189,12 @@ Discriminated Protected or Task types
 Using discriminant for Real-Time aspects
 ------------------------------------------
 
-.. container:: latex_environment small
+.. code:: Ada
+  :font-size: small
 
-  .. code:: Ada
-
-    protected type Protected_With_Priority (Prio : System.Priority)
-       with Priority => Prio
-    is
+  protected type Protected_With_Priority (Prio : System.Priority)
+     with Priority => Prio
+  is
 
 ------------------------------------------
 Example: Protected Objects - Declaration

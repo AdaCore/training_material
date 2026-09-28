@@ -12,6 +12,7 @@ Characteristics of Components
 * **No** anonymous types (e.g., arrays) allowed
 
   .. code:: Ada
+    :font-size: small
 
      type Record_1 is record
         This_Is_Not_Legal : array (1 .. 3) of Integer;
