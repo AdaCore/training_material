@@ -140,15 +140,13 @@ No Indefinite Component Types
     - No unconstrained types
     - Constrained subtypes allowed
 
-.. container:: latex_environment small
+.. code:: Ada
+   :font-size: small
+   :number-lines: 2
 
-  .. code:: Ada
-     :font-size: footnotesize
-     :number-lines: 2
-
-     type Component_T is array (Integer range <>) of Boolean;
-     type Good is array (1 .. 10) of Component_T (1 .. 20); -- OK
-     type Bad is array (1 .. 10) of Component_T; -- compile error
+   type Component_T is array (Integer range <>) of Boolean;
+   type Good is array (1 .. 10) of Component_T (1 .. 20); -- OK
+   type Bad is array (1 .. 10) of Component_T; -- compile error
 
 .. code:: error
   :font-size: scriptsize

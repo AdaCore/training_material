@@ -116,6 +116,7 @@ Quiz
 
 .. code:: Ada
   :font-size: scriptsize
+  :number-lines: 1
 
   with Ada.Text_IO; use Ada.Text_IO;
   procedure Exception_Test (Input_Value : Integer) is
