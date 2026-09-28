@@ -116,7 +116,7 @@ Comparing Techniques on Simple Code
    end;
 
 * :ada:`T(Idx)` is safe |equivalent| :ada:`Idx in T'Range`
-* As a result of calling :ada:`Reset`:
+* As a result of calling :ada:`Reset`
 
   - Array :ada:`T` is initialized between indexes :ada:`A` and :ada:`B`
   - Array :ada:`T` has value zero between indexes :ada:`A` and :ada:`B`

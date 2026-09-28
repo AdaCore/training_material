@@ -37,10 +37,10 @@ Hoare Triples
    - ``P`` is the **precondition**
    - ``Q`` is the **postcondition**
 
-* Meaning of ``{P} S {Q}`` triple:
+* Meaning of ``{P} S {Q}`` triple
 
    - If we start in a state where ``P`` is true and execute ``S``, then ``S``
-     will terminate in a state where ``Q`` is true.
+     will terminate in a state where ``Q`` is true
 
 ----------------------
 Quiz - Hoare Triples
@@ -70,7 +70,7 @@ VC Generation - Strongest Postcondition
 
 * VC are generated using a *Strongest Postcondition Calculus*
 * The strongest postcondition ``Q`` for a program ``S`` and a precondition
-  ``P`` is such that:
+  ``P`` is such that
 
   - ``{P} S {Q}`` is a valid Hoare triple
   - For every valid Hoare triple ``{P} S {Q'}``, ``Q`` is **stronger** than ``Q'``,

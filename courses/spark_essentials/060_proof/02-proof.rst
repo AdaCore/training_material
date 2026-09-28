@@ -125,7 +125,7 @@ Categories of Run-Time Errors
 Quiz - Special Cases of Run-Time Errors
 -----------------------------------------
 
-Consider the following declarations:
+Consider the following declarations
 
 .. code:: ada
 
@@ -135,7 +135,7 @@ Consider the following declarations:
    R : Rec := ...;
    X : Integer;
 
-Which of the following *cannot* cause a run-time error:
+Which of the following *cannot* cause a run-time error
 
    A. ``X := T (T'First)``
    B. ``X := X / (-1);``

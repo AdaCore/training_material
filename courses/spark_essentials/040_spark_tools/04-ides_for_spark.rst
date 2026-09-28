@@ -46,7 +46,7 @@ Source Code Contextual Menu
 
 .. container:: speakernote
 
-   Prove Line - The current line **under the cursor** when the contextual menu was invoked.
+   Prove Line - The current line **under the cursor** when the contextual menu was invoked
 
 ----------------------------
 "Basic" Proof Dialog Panel
@@ -77,7 +77,7 @@ Preference for Selecting Profile
 
        - Prover timeout (seconds)
        - Prover steps (effort)
-       - Etc.
+       - Etc
 
  .. container:: column
 

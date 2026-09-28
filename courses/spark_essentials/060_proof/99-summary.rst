@@ -8,7 +8,7 @@ Proof
 
 * Proof uses Strongest Postcondition Calculus to generate formulas
 * Formulas aka Verification Conditions (VC) are sent to provers
-* Proof detects:
+* Proof detects
 
   - Possible run-time errors
   - Possible failure of assertions

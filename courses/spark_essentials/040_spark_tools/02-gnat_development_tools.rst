@@ -22,7 +22,7 @@ Enabling Assertions at Run-Time
 * Assertions can be enabled/disabled locally with pragma
   :ada:`Assertion_Policy`
 
-  For example to enable preconditions and disable postconditions:
+  For example to enable preconditions and disable postconditions
 
   .. code:: ada
 

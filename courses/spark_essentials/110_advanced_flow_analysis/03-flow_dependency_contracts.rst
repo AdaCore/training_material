@@ -31,7 +31,7 @@ Basic Data Dependency Contracts
 Some Outputs May Appear as Inputs
 -----------------------------------
 
-* Parts of outputs are in fact inputs:
+* Parts of outputs are in fact inputs
 
   - Bounds of arrays
 

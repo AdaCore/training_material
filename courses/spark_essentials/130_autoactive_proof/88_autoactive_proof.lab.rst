@@ -110,7 +110,7 @@ Intermission - Permutations
 - This code is correct - an array is sorted if all elements are less than or
   equal to the next element
 
-   - So the function will return True for all of these arrays:
+   - So the function will return True for all of these arrays
      ``[1, 2, 3]``, ``[1, 1, 1]``, ``[1, 1, 3]``, ``[123, 231, 312]``
 
 - For **proof**, when we sort an array, we need to know the contents of the array

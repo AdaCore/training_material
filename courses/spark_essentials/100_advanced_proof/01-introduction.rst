@@ -31,8 +31,8 @@ Proof So Far
 
 .. container:: speakernote
 
-   :ada:`T` is progressively initialized in a loop.
-   The techniques we saw so far can't deal with this program.
+   :ada:`T` is progressively initialized in a loop
+   The techniques we saw so far can't deal with this program
 
 --------------------------
 Going Beyond Basic Proof

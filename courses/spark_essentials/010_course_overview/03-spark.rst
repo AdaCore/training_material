@@ -18,6 +18,6 @@ What Is SPARK?
 What Is SPARK?
 ----------------
 
-* Programming language - relationship with Ada:
+* Programming language - relationship with Ada
 
 .. image:: spark_essentials/ada_vs_spark_venn.svg

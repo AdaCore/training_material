@@ -26,13 +26,13 @@ Main Language Restrictions
 .. container:: speakernote
 
    There are more minor restrictions on the user of specific features, like
-   some expressions which cannot mention variables.
+   some expressions which cannot mention variables
 
 --------------------------------
 Functions Without Side-Effects
 --------------------------------
 
-* :dfn:`Side-effects` of a function are:
+* :dfn:`Side-effects` of a function are
 
   - Writing to a global variable
   - Writing to an :ada:`out` or :ada:`in out` parameter
@@ -101,7 +101,7 @@ Benefits of Functions Without Side-Effects
 Absence of Interferences
 --------------------------
 
-* :dfn:`Interferences` between names :ada:`A` and :ada:`B` when:
+* :dfn:`Interferences` between names :ada:`A` and :ada:`B` when
 
   - :ada:`A` and :ada:`B` designate the **same object** (:dfn:`aliasing`)
   - and the code writes to :ada:`A`, then reads :ada:`B`

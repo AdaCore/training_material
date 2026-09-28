@@ -7,7 +7,7 @@ Flow Analysis
 ---------------
 
 * Flow analysis builds a Program Dependence Graph
-* Flow analysis detects:
+* Flow analysis detects
 
   - Interferences between parameters and global variables
   - Read of uninitialized variable

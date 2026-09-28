@@ -10,7 +10,7 @@ Advanced Flow Analysis
 
   - This can be important for security
 
-* Flow analysis detects:
+* Flow analysis detects
 
   - Violation of flow dependency contracts (:ada:`Depends`)
   - Inconsistency between data and flow dependency contracts

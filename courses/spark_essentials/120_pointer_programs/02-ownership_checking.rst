@@ -33,7 +33,7 @@ Access Types in Ada
      type G_Acc is access all Integer;
 
   - Type :ada:`PS_Acc` can only point to the heap, :ada:`GS_Acc` can point to
-    the heap and stack.
+    the heap and stack
 
 * Accessibility levels prevent escaping pointers to the stack
 
@@ -105,7 +105,7 @@ Model of Pointers in SPARK
      type Int_Acc is access Integer;
      X : Int_Acc := new Integer'(42);
 
-  is treated like:
+  is treated like
 
   .. code:: ada
 

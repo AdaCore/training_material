@@ -48,7 +48,7 @@ Demonstrating What You Have Learned
 
   *  You can reformulate the code to make it easier to prove
 
-* To prove :ada:`Insert`, :ada:`Overwrite`, and :ada:`Head`:
+* To prove :ada:`Insert`, :ada:`Overwrite`, and :ada:`Head`
 
   * Assume that :ada:`Source` and :ada:`New_Item` start at 1
 

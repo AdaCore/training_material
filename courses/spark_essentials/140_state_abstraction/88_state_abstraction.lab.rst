@@ -94,7 +94,7 @@ Using the Abstract State
 
 .. container:: animate 1-
 
-  - Now to address the ignored errors:
+  - Now to address the ignored errors
 
     .. code:: error
       :font-size: scriptsize

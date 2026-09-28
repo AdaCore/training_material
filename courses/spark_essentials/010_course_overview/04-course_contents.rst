@@ -48,7 +48,7 @@ Course Goals
 
 * What will you do after the course?
 
-  - Be comfortable with the fundamentals of SPARK.
-  - Know where to find out more.
+  - Be comfortable with the fundamentals of SPARK
+  - Know where to find out more
   - Let SPARK work for you on your next project?
   - What else?

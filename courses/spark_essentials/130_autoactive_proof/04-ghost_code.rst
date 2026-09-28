@@ -62,7 +62,7 @@ Ghost Code
 
   - But also ghost types, procedures, packages
 
-* Ghost statements are:
+* Ghost statements are
 
   - Calls to ghost procedures
   - Assignments to ghost variables
@@ -202,7 +202,7 @@ SPARK Lemma Library
 SPARK Higher Order Library
 ----------------------------
 
-* Higher order functions and lemmas to express:
+* Higher order functions and lemmas to express
 
   - mapping a function over a collection
 
