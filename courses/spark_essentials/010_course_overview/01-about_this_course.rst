@@ -66,7 +66,7 @@ Styles
 --------
 
 * :dfn:`This` is a definition
-* :ada:`procedure Ada_Code (True, Is_Highlighted, 1234);`
+* :ada:`procedure Highlighted_Code (Size : in out Integer);`
 * :filename:`this/is/a.path`
 * :command:`commands are emphasized --like-this`
 * :error:`This is an error message`

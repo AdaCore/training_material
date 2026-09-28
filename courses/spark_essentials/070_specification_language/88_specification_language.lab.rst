@@ -90,7 +90,7 @@ Demonstrating Richer Expressions (3/3)
         Pre  => I in T'Range and then J in T'Range,
         Post => T (I) = T (J)'Old and then T (J) = T (I)'Old
           and then (for all K in T'Range =>
-                      (if K not in I | J then T (K) = T'Old (K)));
+                     (if K not in I | J then T (K) = T'Old (K)));
 
 ----------------------------------
 Using Expression Functions (1/3)
@@ -216,7 +216,9 @@ If You Have Time (1/2)
   * Precondition verifies that
 
     * :ada:`Start` and :ada:`Stop` are valid indexes into the array **OR**
-    * :ada:`Start > Stop` indicating a zero-length array
+    * :ada:`Start > Stop` indicates empty range
+
+      * Therefore a zero-length array
 
 ------------------------
 If You Have Time (2/2)
