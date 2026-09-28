@@ -36,7 +36,7 @@ What Is a Type Predicate?
 * Like a type constraint, part of membership test :ada:`X in T`
 
 -----------------------------
-Static vs Dynamic Predicate
+Static vs. Dynamic Predicate
 -----------------------------
 
 * **Static** predicates are **more restricted**

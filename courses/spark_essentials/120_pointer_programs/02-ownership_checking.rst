@@ -6,7 +6,7 @@ Ownership Checking
 Access Types in Ada
 ---------------------
 
-* Access-to-variable vs access-to-constant types
+* Access-to-variable vs. access-to-constant types
 
   .. code:: Ada
 
@@ -15,7 +15,7 @@ Access Types in Ada
 
   - :ada:`AV` can be used to modify the integer, :ada:`AC` cannot
 
-* Named vs anonymous access types
+* Named vs. anonymous access types
 
   .. code:: Ada
 
@@ -25,7 +25,7 @@ Access Types in Ada
 
   - Convenience in Ada to save the introduction of a type name
 
-* Pool-specific vs general access types
+* Pool-specific vs. general access types
 
   .. code:: Ada
 

@@ -9,8 +9,8 @@ Formal Methods
 * Mathematical techniques applied to the development or verification of
   software
 
-  - :dfn:`Heavyweight formal methods` expose the maths to users
-  - :dfn:`Lightweight formal methods` hide the maths from users
+  - :dfn:`Heavyweight formal methods` expose the maths to programmers
+  - :dfn:`Lightweight formal methods` hide the maths from programmers
 
 * Industrially usable formal methods
 
@@ -171,12 +171,12 @@ Deductive Verification
 
 * :ada:`Reset` is analyzed in the context of a :dfn:`precondition`
 
-  - Predicate defined by the user which restricts the calling context
+  - Predicate defined by the programmer which restricts the calling context
   - Proof checks if the precondition entails :ada:`Idx in T'Range`
   - Otherwise, an **alarm** is emitted
 
 * Initialization and value of individual array cells is tracked
-* Analysis of loops is based on user-provided :dfn:`loop invariants`
+* Analysis of loops is based on programmer-provided :dfn:`loop invariants`
 
   :ada:`T(A .. Idx)'Initialized and T(A .. Idx) = (A .. Idx => 0)`
 

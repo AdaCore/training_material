@@ -25,7 +25,7 @@ Main Language Restrictions
 
 .. container:: speakernote
 
-   There are more minor restrictions on the user of specific features, like
+   There are more minor restrictions on the programmer of specific features, like
    some expressions which cannot mention variables
 
 --------------------------------
@@ -186,7 +186,7 @@ Benefits of Absence of Interferences
 
 |
 
-* No need for users to add specifications about separation
+* No need for programmers to add specifications about separation
 
   - Between parameters and global variables
   - Between parameters themselves

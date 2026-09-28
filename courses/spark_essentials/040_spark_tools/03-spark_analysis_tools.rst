@@ -106,7 +106,7 @@ Structure of **GNATprove**
 
 .. container:: speakernote
 
-   Image comes from Appendix of SPARK User's Guide on "SPARK Architecture,
+   Image comes from Appendix of SPARK Programmer's Guide on "SPARK Architecture,
    Quality Assurance and Maturity"
 
 -------------------
@@ -204,7 +204,7 @@ Categories of Messages
   - Report information about analysis with switch :command:`--info`
 
 --------------------------------
-**GNATprove** Output for Users
+**GNATprove** Output for Programmers
 --------------------------------
 
 .. image:: gnatprove-output-options.png
@@ -216,7 +216,7 @@ Analysis Summary File **gnatprove.out**
 * Located in :filename:`gnatprove/` under project object dir
 * An overview of results for all checks in project
 * Especially useful when results must be documented
-* Details in SPARK User's Guide
+* Details in SPARK Programmer's Guide
 
 .. code:: output
   :font-size: tiny

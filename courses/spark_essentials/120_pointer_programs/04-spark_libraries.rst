@@ -18,7 +18,7 @@ Pointers With Aliasing (1/2)
 
   - Type :ada:`Pointer` is private
 
-    + User code can copy such pointers freely
+    + Programmer code can copy such pointers freely
     + Ownership policy does not apply
 
   - All accesses through API check validity of pointer

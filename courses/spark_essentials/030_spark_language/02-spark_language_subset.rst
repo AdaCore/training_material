@@ -80,7 +80,7 @@ Support for Generics
     + To name objects manipulated through calls to formal parameters
     + To add dependency contracts to formal subprogram parameters
 
-  - More efforts from users to annotate programs
+  - More efforts from programmers to annotate programs
 
 |
 

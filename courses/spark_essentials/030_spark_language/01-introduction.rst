@@ -8,10 +8,10 @@ Design Goals for SPARK
 
 * Same goals as any formal verification process: deep, sound, precise, fast, modular, constructive
 
-* Combine tool automation and user interaction
+* Combine tool automation and programmer interaction
 
   - Automate as much as possible
-  - Rely on the user to provide essential code annotations
+  - Rely on the programmer to provide essential code annotations
 
 * Combine execution and proof of specifications
 * Support the largest possible subset of Ada 2022

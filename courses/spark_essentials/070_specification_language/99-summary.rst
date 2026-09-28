@@ -21,5 +21,5 @@ Specification Language
 
   - Function spec declared in the visible section
   - Expression function given in the private section
-  - Preserves abstraction for user
+  - Preserves abstraction for programmer
   - Gives enough details for proof

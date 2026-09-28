@@ -68,7 +68,7 @@ Preference for Selecting Profile
 
  .. container:: column
 
-    * Controlled by SPARK preference "User profile"
+    * Controlled by SPARK preference "Programmer profile"
 
        - Basic
        - Advanced

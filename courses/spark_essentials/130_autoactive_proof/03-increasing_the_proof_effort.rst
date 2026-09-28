@@ -20,7 +20,7 @@ Control of the Proof Effort
 
 * Default proof effort is minimal (one prover, 100 steps)
 
-* Timeout vs steps
+* Timeout vs. steps
 
   - Timeout is best to bound the running time
   - Steps are useful for reproducible results across machines

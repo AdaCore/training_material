@@ -71,7 +71,7 @@ Dealing With Equality
 
 * Equality in SPARK on type :ada:`T` is
 
-  - The user-defined primitive equality if present
+  - The programmer-defined primitive equality if present
 
   - The predefined equality otherwise, based on the equality of components
 

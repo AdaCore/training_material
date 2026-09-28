@@ -36,7 +36,7 @@ Integrating SPARK Code
 
 |
 
-* User needs to specify the boundary of SPARK code
+* Programmer needs to specify the boundary of SPARK code
 
 |
 
