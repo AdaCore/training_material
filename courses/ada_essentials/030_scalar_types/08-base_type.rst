@@ -24,7 +24,6 @@ Base Ranges
 * Can be accessed with :ada:`'Base` attribute
 
   .. code:: Ada
-    :font-size: small
 
      type Foo is range -30_000 .. 30_000;
      function "+" (Left, Right : Foo'Base) return Foo'Base;
@@ -107,13 +106,11 @@ Floating Point Division by Zero
 
 * User-defined types always raise :ada:`Constraint_Error`
 
-  .. container:: latex_environment small
-
-    .. code:: Ada
-      :font-size: scriptsize
+  .. code:: Ada
+    :font-size: scriptsize
     
-      type My_Float is new Float range Float'First .. Float'Last;
-      subtype Sub_Float is Float range Float'First .. Float'Last;
+    type My_Float is new Float range Float'First .. Float'Last;
+    subtype Sub_Float is Float range Float'First .. Float'Last;
 
 -----------------------------------------
 Using Equality for Floating Point Types
@@ -128,4 +125,3 @@ Using Equality for Floating Point Types
 * Perhaps define a new function
 
    - Comparison within tolerance (:math:`+\varepsilon` / :math:`-\varepsilon`)
-

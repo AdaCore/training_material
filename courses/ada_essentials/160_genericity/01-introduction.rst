@@ -104,4 +104,3 @@ Ada Generic Compared to C++ Template
       // instance
       int x, y;
       Swap<int>(x,y);
-

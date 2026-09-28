@@ -67,4 +67,3 @@ Quiz
 ------
 
 .. include:: ../quiz/genericity_limited_type/quiz.rst
-

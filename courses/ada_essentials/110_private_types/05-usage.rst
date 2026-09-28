@@ -58,4 +58,3 @@ When to Avoid Private Types
        V : Vector (1 .. 3);
        ...
        V (1) := Alpha; -- Illegal since Vector is private
-
