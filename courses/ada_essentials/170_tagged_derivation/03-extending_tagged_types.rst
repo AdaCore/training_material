@@ -66,10 +66,8 @@ Private Tagged Types
 
 * So we can define our base type as private
 
-  .. container:: latex_environment tiny
-
-    .. code:: Ada
-      :font-size: footnotesize
+  .. code:: Ada
+    :font-size: tiny
 
       package Animals is
         type Animal_T is tagged private;
@@ -83,10 +81,8 @@ Private Tagged Types
 
 * And still allow derivation
 
-  .. container:: latex_environment tiny
-
-    .. code:: Ada
-      :font-size: footnotesize
+  .. code:: Ada
+    :font-size: tiny
 
       with Animals;
       package Mammals is
