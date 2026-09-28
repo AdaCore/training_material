@@ -166,6 +166,7 @@ User-Defined "Image"
     - Need to specify the :ada:`Put_Image` aspect
 
 .. code:: Ada
+  :font-size: small
 
    type My_Type
    [...]
