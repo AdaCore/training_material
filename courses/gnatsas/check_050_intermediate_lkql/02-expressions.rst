@@ -106,19 +106,25 @@ List Comprehension
 
   * List comprehension allows list construction by embedding the :ada:`for`
 
+  .. code::
+
+    [<expression> for <identifier> in <query>]
+
+  * Build a list of *expression* elements such that
+
+    * *Query* returns results named *identifier*
+    * *Identifier* can be used to build *expression*
+
   .. code:: lkql
     :font-size: scriptsize
 
-    val items = [item for item in subprograms if name == item.to_lower_case]
+    [item for item in subprograms if name == item.to_lower_case]
 
-  * Build a list where, for each element in :lkql:`subprograms`
-
-    * Name the element :lkql:`item`
-    * Add :lkql:`item` to the list if :lkql:`name` equals :lkql:`item.to_lower_case`
+  * Build a list of subprogram nodes where the name matches some parameter
 
 .. note::
 
-  :lkql:`items` is a :lkql:`Stream`, not a list
+  List comprehension actually builds a :lkql:`Stream`, not a list
 
   Elements of a :lkql:`Stream` are not computed until referenced
 

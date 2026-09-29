@@ -39,5 +39,7 @@ Intermediate LKQL
 .. include:: check_050_intermediate_lkql/02-expressions.rst
 .. include:: check_050_intermediate_lkql/03-functions.rst
 .. include:: check_050_intermediate_lkql/04-patterns.rst
+.. include:: check_050_intermediate_lkql/05-unit_rules.rst
+.. include:: check_050_intermediate_lkql/06-building_a_unit_rule.rst
 .. include:: check_050_intermediate_lkql/99-summary.rst
 
