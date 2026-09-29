@@ -6,43 +6,32 @@ Safe vs. Unsafe
 Safe Rust and Unsafe Rust
 ---------------------------
 
-**Rust has a safe subset and an unsafe subset**
+**Unsafe Rust permits specific operations that Safe Rust forbids**
 
-.. list-table::
-  :header-rows: 1
-  :stub-columns: 1
+* Safe Rust does not allow unsafe operations
+* An unsafe context permits those operations
+* The programmer must uphold safety requirements Rust cannot verify
+* Other Rust language rules still apply
 
-  * - **Feature**
-    - **Safe Rust**
-    - **Unsafe Rust**
+.. note::
 
-  * - **Memory Safety**
-    - Enforced by compiler
-    - Upheld by programmer
-
-  * - **Usage**
-    - Default
-    - Entered with :rust:`unsafe`
-
-  * - **Capabilities**
-    - Standard operations
-    - Five core unsafe operations
+  :rust:`unsafe` does not mean unchecked code
 
 ------------------
 Five Superpowers
 ------------------
 
-**Unsafe Rust has five core "superpowers"**
+**This module focuses on five classic unsafe operations**
 
 #. Dereference a raw pointer
 #. Call an unsafe function or method
-#. Access or modify a mutable static item (:rust:`static mut`)
+#. Access or modify a mutable static item
 #. Implement an unsafe trait
 #. Read a field of a union
 
 .. note::
 
-  These operations require safety guarantees that Rust cannot verify
+  Rust has other unsafe features beyond these five
 
 ---------------------------
 What "unsafe" Does Not Do
@@ -58,29 +47,21 @@ What "unsafe" Does Not Do
 
   * Some safety requirements cannot be verified mechanically
 
-.. note::
-
-  Unsafe Rust remains subject to normal language checks
-
 --------------------
 The "unsafe" Block
 --------------------
 
-**Place unsafe operations inside an unsafe block**
+**An unsafe block marks where unsafe operations are permitted**
 
 .. code:: rust
 
-  fn main() {
-      let target_year = 1985;
-      let flux_capacitor = &target_year as *const i32;
-
-      // SAFETY: 'flux_capacitor' points to the live,
-      // aligned local 'target_year'
-      unsafe {
-          println!("Target year is: {}", *flux_capacitor);
-      }
+  unsafe {
+      // Unsafe operations go here
   }
+
+* :rust:`unsafe` does not make an operation safe by itself
+* The programmer must uphold the operation's safety requirements
 
 .. note::
 
-  Raw-pointer creation is safe, but dereferencing requires an unsafe block
+  The next sections introduce the unsafe operations used inside these blocks

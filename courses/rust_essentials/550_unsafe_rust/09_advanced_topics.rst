@@ -2,11 +2,9 @@
 What We Didn't Cover
 ======================
 
----------------------------------------
-Advanced Tools and Low-Level Features
----------------------------------------
-
-**Topics for deeper study include**
+-------------------------
+Topics for Deeper Study
+-------------------------
 
 * **Miri (tool/interpreter)**
 
@@ -21,7 +19,7 @@ Advanced Tools and Low-Level Features
 
   * Aliasing rules
   * Uninitialized memory with :rust:`MaybeUninit<T>`
-  * Layout guarantees such as :rust:`#[repr(C)]` and :rust:`#[repr(packed)]`
+  * Further layout guarantees such as :rust:`#[repr(C)]` and :rust:`#[repr(packed)]`
 
 -----------------------------
 Concurrency and Unsafe Rust
@@ -37,7 +35,7 @@ Concurrency and Unsafe Rust
 
 .. warning::
 
-  Incorrect concurrency invariants can make otherwise Safe Rust unsound
+  Bad concurrency guarantees can let Safe Rust trigger undefined behavior
 
 --------------------------------------
 Manual Memory and Pointer Operations
@@ -57,4 +55,4 @@ Manual Memory and Pointer Operations
 
 .. warning::
 
-  Unsafe code may require precise knowledge of memory layout, optimization, and the target architecture
+  Unsafe code may depend on exact layout, target, and optimization details

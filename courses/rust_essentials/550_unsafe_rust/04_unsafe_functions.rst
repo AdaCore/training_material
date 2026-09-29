@@ -2,15 +2,28 @@
 Unsafe Functions
 ==================
 
------------------------
-Declaring and Calling
------------------------
+------------------
+Safety Contracts
+------------------
+
+**An unsafe function transfers a safety obligation to its caller**
+
+* The function documents requirements callers must uphold
+* :rust:`# Safety` is the conventional Rustdoc section for those requirements
+* Each call site should explain why the requirements hold
+
+.. note::
+
+  :rust:`unsafe fn` defines a contract; calls require an unsafe context
+
+------------------------------
+Declaring an Unsafe Function
+------------------------------
 
 **Use an unsafe function when safety depends on caller guarantees**
 
 * Declared with :rust:`unsafe fn`
 * Caller must satisfy the documented safety contract
-* Calls require an unsafe context
 
 .. code:: rust
 
@@ -21,6 +34,14 @@ Declaring and Calling
       // Implementation goes here
   }
 
+----------------------------
+Calling an Unsafe Function
+----------------------------
+
+**Calling an unsafe function requires an unsafe context**
+
+.. code:: rust
+
   fn main() {
       // dangerous(); // Error: requires an unsafe block
 
@@ -30,25 +51,13 @@ Declaring and Calling
       }
   }
 
-------------------
-Safety Contracts
-------------------
-
-**An unsafe function transfers a proof obligation to its caller**
-
-* :rust:`# Safety` documents the requirements callers must uphold
-* Each call site should explain why they hold
-* Unsafe operations in the function body remain unsafe
-
-  * Rust 2024 expects explicit unsafe blocks around them
-
 .. note::
 
-  :rust:`unsafe fn` defines a boundary contract; :rust:`unsafe { ... }` marks the operations that rely on it
+  Rust 2024 warns on unsafe operations in :rust:`unsafe fn` without blocks
 
-----------------------------------
-Foreign Function Interface (FFI)
-----------------------------------
+--------------------------------
+Declaring an External Function
+--------------------------------
 
 **FFI calls code written in another language, commonly C**
 
@@ -63,6 +72,14 @@ Foreign Function Interface (FFI)
   unsafe extern "C" {
       fn abs(input: c_int) -> c_int;
   }
+
+------------------------------
+Calling an External Function
+------------------------------
+
+**Calling an external function requires an unsafe context**
+
+.. code:: rust
 
   fn main() {
       let meaning_of_life: c_int = -42;

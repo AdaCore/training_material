@@ -2,15 +2,15 @@
 Summary
 =========
 
---------------------------
+-------------------------
 Recap: Five Superpowers
---------------------------
+-------------------------
 
-- Dereference raw pointers
-- Call unsafe functions or methods
-- Access or modify mutable statics
-- Implement unsafe traits
-- Access union fields
+#. Dereference raw pointers
+#. Call unsafe functions or methods
+#. Access or modify mutable statics
+#. Implement unsafe traits
+#. Read union fields
 
 -----------------
 What We Covered
@@ -29,7 +29,7 @@ What We Covered
 * **Unsafe Functions and Traits**
 
   - Callers uphold documented safety contracts
-  - An :rust:`unsafe impl` promises required invariants
+  - An :rust:`unsafe impl` promises that required safety conditions are met
 
 * **Unions**
 
@@ -39,5 +39,5 @@ What We Covered
 * **Safe Abstractions**
 
   - Keep unsafe operations small and auditable
-  - Check invariants before exposing a safe API
+  - Check safety conditions before exposing a safe API
   - Prefer Safe Rust when it can express the behavior
