@@ -166,7 +166,6 @@ What will get printed for these values of Input_Value?
 
   :ada:`F` finishes with no :ada:`return`, raising :ada:`Program_Error` which will be handled at line 24
 
-=======
 .. container:: animate 5-
 
   * **10000**
