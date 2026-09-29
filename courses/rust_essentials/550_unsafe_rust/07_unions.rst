@@ -6,81 +6,61 @@ Unions
 What Is a "union"?
 --------------------
 
-* A :rust:`union` stores different fields in shared storage
-  * Declared similarly to a :rust:`struct`, using the :rust:`union` keyword
-  * The fields share common storage
-  * The union is large enough to hold its largest field
-  * Initialization specifies exactly one field
-  * Rust does not track an active field
+**A union stores different fields in shared storage**
+
+* Fields share the same storage
+* The union is large enough for its largest field
+* Initialization writes exactly one field
+* Rust does not track an active field
 
 .. code:: rust
 
+   #[repr(C)]
    union Avenger {
        banner: i8,
        hulk: u8,
    }
 
-   let avenger = Avenger { banner: -1 };
-
-.. note::
-
-   Union fields cannot require automatic destruction; values such as :rust:`String` require :rust:`ManuallyDrop<T>`
+* :rust:`#[repr(C)]` guarantees that every field starts at byte offset zero
+* Fields that need destruction use :rust:`ManuallyDrop<T>`
 
 ----------------------
 Writing Union Fields
 ----------------------
 
-**Writing a union field is safe**
+**Writing to a union field is safe**
 
 .. code:: rust
-
-   union Avenger {
-       banner: i8,
-       hulk: u8,
-   }
 
    let mut avenger = Avenger { banner: -1 };
 
    // No unsafe block required
    avenger.hulk = 255;
 
-* Initialization writes the selected field
-* Assigning to another field overwrites the same shared storage
+* Writing another field overwrites the shared storage
 * Writing does not read or interpret the previous field value
-* No :rust:`unsafe` block is required for a field write
 
-.. note::
-
-   A union may be written through any of its fields without reading the previous contents
-
---------------------
+----------------------
 Reading Union Fields
---------------------
+----------------------
 
-**Reading a union field is an unsafe operation**
+**Reading from a union field is an unsafe operation**
 
 .. code:: rust
 
-   union Avenger {
-       banner: i8,
-       hulk: u8,
-   }
-
    let avenger = Avenger { banner: -1 };
 
-   // SAFETY: Every bit pattern is valid for `u8`
+   // SAFETY: Both fields start at offset 0
+   // Every bit pattern is valid for u8
    let hulk = unsafe { avenger.hulk };
+
    println!("Hulk: {hulk}");
 
 .. code:: output
 
    Hulk: 255
 
-* A read interprets the stored bits as the selected field type
-* Rust does not check which field was written previously
-* Pattern matching on a union field is also an unsafe read
-* Stored bits must form a valid value for the field being read
-
-.. warning::
-
-   :rust:`banner: -1` and :rust:`hulk: 255` are two interpretations of the same eight bits
+* Rust does not track the last written field
+* Union reads, including pattern matching, are unsafe
+* Stored bits must be valid for the selected field
+* :rust:`-1_i8` and :rust:`255_u8` are the same eight bits

@@ -26,17 +26,36 @@ Creating Raw Pointers
 
   let mut treasure = 5;
 
-  // Raw pointers created from references
-  let clue = &treasure as *const i32;
-  let key = &mut treasure as *mut i32;
+  let clue = &raw const treasure;
+  let key = &raw mut treasure;
 
-  // Raw pointer created from an arbitrary address
-  let mystery_address = 0xdeadbeef_usize;
-  let mystery_pointer = mystery_address as *const i32;
+* :rust:`&raw const` creates a :rust:`*const T`
+* :rust:`&raw mut` creates a :rust:`*mut T`
 
 .. warning::
 
   Safe pointer creation does not make the pointer safe to dereference
+
+-----------------------------------
+Other Ways to Create Raw Pointers
+-----------------------------------
+
+**Raw pointers can also be created through conversions**
+
+.. code:: rust
+
+  let treasure = 5;
+
+  // Cast from a reference
+  let reference = &treasure;
+  let clue = reference as *const i32;
+
+  // Convert an arbitrary address
+  let mystery_address = 0xdeadbeef_usize;
+  let mystery_pointer = mystery_address as *const i32;
+
+* Creating a raw pointer does not access the pointed-to value
+* Whether a pointer is valid to dereference is a separate question
 
 ----------------------------
 Dereferencing Raw Pointers
@@ -58,7 +77,7 @@ Dereferencing Raw Pointers
 
 .. note::
 
-  A :rust:`// SAFETY:` comment is idiomatic documentation, not a requirement
+  :rust:`// SAFETY:` documents the justification for programmers, not the compiler
 
 ---------------------------------
 Aliasing and Safety Obligations
@@ -82,7 +101,3 @@ Aliasing and Safety Obligations
 * Raw-pointer aliasing is not checked
 * Every access must remain valid and compatible
 * Invalid pointers or aliasing may cause undefined behavior
-
-.. warning::
-
-  Rust permits these pointer operations, but their safety must be justified

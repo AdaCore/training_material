@@ -6,24 +6,22 @@ Unsafe Traits
 When a Trait Is Unsafe
 ------------------------
 
-**Unsafe traits define invariants that the compiler cannot verify**
+**Unsafe traits define requirements the compiler cannot verify**
 
 * Declared with :rust:`unsafe trait`
 * Defines a safety contract for every implementation
-* An incorrect implementation can make Safe Rust unsound
+* Violating the contract can cause undefined behavior in Safe Rust
 
 .. code:: rust
 
   /// # Safety
   ///
-  /// Implementors must uphold this trait's invariants
+  /// Implementors must uphold this trait's safety requirements
   unsafe trait Foo {
       // Trait items go here
   }
 
-.. note::
-
-  An unsafe trait defines an implementation contract; its methods need not be unsafe
+* Trait methods need not themselves be unsafe
 
 ------------------------------
 Implementing an Unsafe Trait
@@ -32,7 +30,7 @@ Implementing an Unsafe Trait
 **Implementing an unsafe trait requires an explicit promise**
 
 * Use :rust:`unsafe impl`
-* Verify every required invariant
+* Verify that every safety requirement is satisfied
 * Document why the implementation satisfies the contract
 * Normal type and syntax checks still apply
 
@@ -40,9 +38,9 @@ Implementing an Unsafe Trait
 
   struct Bar;
 
-  // SAFETY: 'Bar' upholds every invariant required by 'Foo'
+  // SAFETY: 'Bar' satisfies 'Foo' safety requirements
   unsafe impl Foo for Bar {}
 
 .. warning::
 
-  :rust:`unsafe impl` records responsibility for safety requirements; it does not prove correctness
+  :rust:`unsafe impl` promises the contract; it does not prove correctness
