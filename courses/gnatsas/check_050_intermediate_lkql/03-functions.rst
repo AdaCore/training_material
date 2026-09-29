@@ -32,9 +32,9 @@ Decorators (1/2)
   * Operates on nodes within the source code
   * Checks if node breaks the rule
 
-* :lkql:`@unit_check` indicates rule returning list of objects
+* :lkql:`@unit_check` indicates rule returning list of messages
 
-  * Each return object is a message and a location
+  * Each element of the list is a message and a location
   * Message and location indicate code that breaks the rule
 
 .. note::

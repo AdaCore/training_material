@@ -1,6 +1,6 @@
-========================
-Building a Simple Rule
-========================
+=========================
+Building a Boolean Rule
+=========================
 
 -------------------------------
 Example of a Very Simple Rule
@@ -142,3 +142,24 @@ Cleaning Up the Rule
 .. note::
 
   An *if expression* would be cleaner - we'll see that later
+
+----------
+Messages
+----------
+
+* By default, rule violation message contains the name of the rule
+
+  .. code:: error
+
+    main.adb:6:04: rule violation: integer_objects
+
+* To supply a more descriptive explanation, use the :lkql:`parameter` in :lkql:`@check`
+
+  .. code:: lkql 
+
+    @check(message="Integer object found")
+    fun integer_objects(node) =
+
+  .. code:: error
+
+    main.adb:6:04: rule violation: Integer object found
