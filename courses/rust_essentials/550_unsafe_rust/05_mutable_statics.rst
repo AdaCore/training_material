@@ -20,11 +20,13 @@ Immutable and Mutable Statics
 
 .. warning::
 
-  Global mutable state weakens local reasoning; better to use ownership or a small access-control abstraction
+  Prefer ownership or controlled access over global mutable state
 
-----------------------------
-Accessing a Mutable Static
-----------------------------
+---------------------------
+Updating a Mutable Static
+---------------------------
+
+**The function's safety contract requires exclusive access**
 
 .. code:: rust
 
@@ -33,19 +35,27 @@ Accessing a Mutable Static
   /// # Safety
   /// Access to `RAPTORS_LOOSE` must be exclusive
   unsafe fn release_raptor() {
-    // SAFETY: Required by this function's contract
-    unsafe {
-      RAPTORS_LOOSE += 1;
-    }
+      // SAFETY: Required by this function's contract
+      unsafe {
+          RAPTORS_LOOSE += 1;
+      }
   }
 
+--------------------------------
+Calling the Mutable-Static API
+--------------------------------
+
+**The caller must uphold the safety contract**
+
+.. code:: rust
+
   fn main() {
-    // SAFETY: Single-threaded exclusive access
-    unsafe {
-        release_raptor();
-        let raptors = RAPTORS_LOOSE;
-        println!("Raptors loose: {}", raptors);
-    }
+      // SAFETY: Single-threaded exclusive access
+      unsafe {
+          release_raptor();
+          let raptors = RAPTORS_LOOSE;
+          println!("Raptors loose: {raptors}");
+      }
   }
 
 .. note::

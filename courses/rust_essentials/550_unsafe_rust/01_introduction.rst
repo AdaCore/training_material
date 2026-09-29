@@ -8,7 +8,7 @@ Topics Covered
 
 * **Safe vs. Unsafe**
 
-  - What :rust:`unsafe` allows and what remains checked
+  - What Safe Rust guarantees and what Unsafe Rust requires
 
 * **Five Superpowers**
 
@@ -25,7 +25,7 @@ Topics Covered
 
 * **Mutable Statics**
 
-  - Modifying global mutable state (:rust:`static mut`)
+  - Modifying global mutable state
 
 * **Unsafe Traits**
 
