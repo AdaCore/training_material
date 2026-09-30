@@ -10,7 +10,6 @@
         <RegExpr attribute="Documentation" String="\|['&quot;].*" />
 
         <!-- Comments -->
-        <Detect2Chars char="(" char1="*" context="Comment" attribute="Comment"/>
         <RegExpr String="#.*$" attribute="Comment"/>
 
         <!-- Strings -->
