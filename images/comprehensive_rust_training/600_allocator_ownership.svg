@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1010" height="640" viewBox="0 0 1010 640" role="img" aria-labelledby="title desc">
+  <title id="title">Allocator ownership across an FFI boundary</title>
+  <desc id="desc">A bad contract allocates with Rust and frees with C. Better contracts use a matching Rust destructor or a caller-owned buffer that Rust only fills.</desc>
+  <defs>
+    <marker id="arrow-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#17345F"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#18A9C7"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5E9F68"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B54835"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <text x="50" y="55" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="700" fill="#B54835">Bad contract</text>
+  <rect x="50" y="82" width="255" height="82" rx="14" fill="#F8E8E4" stroke="#B54835" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="177.5" y="132" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#B54835">Rust allocates</text>
+  <rect x="705" y="82" width="255" height="82" rx="14" fill="#F8E8E4" stroke="#B54835" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="832.5" y="132" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#B54835">C calls free()</text>
+  <line x1="305" y1="123" x2="705" y2="123" stroke="#B54835" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-red)"/>
+  <text x="505" y="110" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="600" fill="#B54835">allocator mismatch</text>
+  <path d="M 480 88 L 530 158 M 530 88 L 480 158" stroke="#B54835" stroke-width="8" stroke-linecap="round"/>
+  <text x="50" y="245" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="700" fill="#5E9F68">Better contract: matching destructor</text>
+  <rect x="50" y="272" width="255" height="82" rx="14" fill="#E8F4EA" stroke="#5E9F68" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="177.5" y="322" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#5E9F68">Rust allocates</text>
+  <rect x="675" y="272" width="285" height="82" rx="14" fill="#E8F4EA" stroke="#5E9F68" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="817.5" y="322" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="600" fill="#5E9F68">rust_value_free()</text>
+  <line x1="305" y1="313" x2="675" y2="313" stroke="#5E9F68" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+  <rect x="415" y="284" width="150" height="44" rx="22.0" fill="#FFFFFF" stroke="#5E9F68" stroke-width="2"/><text x="490.0" y="312.12" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="600" fill="#5E9F68">Rust-owned</text>
+  <text x="50" y="435" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="700" fill="#5E9F68">Better contract: caller-owned buffer</text>
+  <rect x="50" y="462" width="250" height="82" rx="14" fill="#D7E8F2" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="175" y="512" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="600" fill="#1C3553">C supplies buffer</text>
+  <rect x="410" y="462" width="220" height="82" rx="14" fill="#E8F4EA" stroke="#5E9F68" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="520" y="512" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="600" fill="#5E9F68">Rust fills buffer</text>
+  <rect x="720" y="462" width="240" height="82" rx="14" fill="#D7E8F2" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="840" y="512" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="600" fill="#1C3553">C retains ownership</text>
+  <line x1="300" y1="503" x2="410" y2="503" stroke="#18A9C7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
+  <line x1="630" y1="503" x2="720" y2="503" stroke="#18A9C7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
+  <text x="505" y="598" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="600" fill="#1C3553">Allocation and destruction form one contract</text>
+</svg>
