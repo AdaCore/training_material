@@ -28,6 +28,16 @@ if __name__ == "__main__":
 
         courses_str = [str(c.relative_to(args.dir)) for c in courses]
 
+        # We want to remove courses we no longer care about
+        REMOVE = [
+            "misc_tools",
+            "static_analysis_via_compiler",
+            "advanced_exception_analysis",
+        ]
+        courses_str = [
+            item for item in courses_str if not any(sub in item for sub in REMOVE)
+        ]
+
         if args.json:
             print(json.dumps(courses_str))
         else:
