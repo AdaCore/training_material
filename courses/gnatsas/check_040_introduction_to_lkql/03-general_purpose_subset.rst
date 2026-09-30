@@ -86,6 +86,33 @@ Composite Data Types
 
   ``Tuple``, ``List``, and ``Stream`` start index at 1 (like Ada) rather than 0 (like C)
 
+-------------------
+Block Expressions
+-------------------
+
+* LKQL is a functional language
+
+  * Everything is an expression
+  * Need a way to create local objects
+
+* Block expression creates a "local scope"
+
+  .. code:: lkql
+
+  fun maximum_lines(unit, n: int = 10000) =
+      {
+          val tokens = unit.tokens.to_list;
+          val tok    = tokens[tokens.length];
+
+          if tok.end_line > n
+          then [{message: "too many lines: " & img(tok.end_line), loc: tok}]
+          else []
+      }
+
+* Value of the "block expression" comes from the :lkql:`if` branches
+
+  * But :lkql:`tokens` and :lkql:`tok` can hold temporary values
+
 --------------
 Declarations
 --------------

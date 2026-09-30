@@ -21,47 +21,63 @@ Review: Simple Expressions
 
   * Refer to the *LKQL Language Reference* section of the **GNATcheck Reference Manual** for more
 
-----------
-Literals
-----------
+-----------------
+Simple Literals
+-----------------
 
-* Common literals are as expected
+* LKQL supports the following basic "types"
+
+  * Boolean
+  * Integer
+  * String
+  * Unit
+  * Null
+
+* Literals for these types are (mostly) as expected
 
   .. code:: lkql
 
-    val number = 123
-    val string = "Hello, World"
-    val flag = true
+    val flag = true   # Boolean
+    val count = 3     # Integer
+    val name = "Fred" # String
+    val empty = ()    # Unit
+    val absent = null # Null
 
-* Can also define other types of literals
+.. note::
 
-  * Object literal
+  *Unit* is an **empty** result, while *null* indicates absence
 
-    * Defines an object and it's fields
+------------------
+Complex Literals
+------------------
 
-    .. code:: lkql
+* Object literal
 
-      val object = {lower: "Hello", UPPER: "World"}
-      print (object.lower & " " & object.upper}
+  * Defines an object and it's fields
 
-    * Field values always treated as lowercase
+  .. code:: lkql
 
-  * List literal
+    val object = {lower: "Hello", UPPER: "World"}
+    print (object.lower & " " & object.upper}
 
-    * Simple representation of a list of objects
+  * Field names always treated as lowercase
 
-    .. code:: lkql
+* List literal
 
-      val list = [1, 2, 3, 4]
+  * Simple representation of a list of objects
 
-  * Tuple literal
+  .. code:: lkql
 
-    * Collection of values
+    val list = [1, 2, 3, 4]
 
-    .. code:: lkql
+* Tuple literal
 
-      val tuple = (1, "Hello", true)
-    
+  * Collection of values
+
+  .. code:: lkql
+
+    val tuple = (1, "Hello", true)
+
 ------------------
 "if" and "match"
 ------------------
@@ -75,6 +91,7 @@ Literals
     val expr_index = if is_return then 1 else 2;
 
   * :lkql:`if` expressions that return a boolean value do not need an :lkql:`else`
+
     * :lkql:`true` will be returned for the implied :lkql:`else`
 
 * :lkql:`match` expression allows pattern-matching to determine the path
@@ -151,3 +168,7 @@ List Comprehension
     * :lkql:`node` is not null
     * :lkql:`node` is a subprogram specification
     * :lkql:`node` list of parameters is not null
+
+.. note::
+
+  This is also referred to as an **unwrap** expression
