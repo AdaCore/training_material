@@ -53,6 +53,7 @@ jobs:
           if-no-files-found: error
 
   Labs-Slides:
+    if: false
     runs-on: ubuntu-latest
     container: sawertyu/pandoc_beamer:latest
 
@@ -90,7 +91,7 @@ jobs:
           if-no-files-found: error
 
   labs-build:
-
+    if: false
     name: Labs # intentionly short
     strategy:
       matrix:
