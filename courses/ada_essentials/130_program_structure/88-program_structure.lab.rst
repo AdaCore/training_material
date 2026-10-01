@@ -22,8 +22,6 @@ Program Structure Lab
       + Modify part of the message
       + Print the new contents of the message
 
-* **Note: There is no prompt for this lab - you need to learn how to build the program structure**
-
 -------------------------------------------
 Program Structure Lab Solution - Messages
 -------------------------------------------

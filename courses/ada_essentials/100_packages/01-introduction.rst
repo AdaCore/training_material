@@ -12,7 +12,7 @@ Packages
    - For data
    - For type representation, when combined with :ada:`private` types
 
-      + Abstract Data Types
+      + Abstract Data Types (ADT's)
 
 * Provide basic namespace control
 * Directly support software engineering principles

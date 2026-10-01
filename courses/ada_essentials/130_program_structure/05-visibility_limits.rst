@@ -107,16 +107,19 @@ Children Can Break Abstraction
 .. code:: Ada
 
    package Stack is
+      type Stack_T is private;
       ...
    private
-      Values : array (1 .. N) of Foo;
-      Top : Natural range 0 .. N := 0;
+      type Array_T is array (1 .. N) of Foo;
+      type Stack_T is record
+         Values : Array_T;
+          Top   : Natural range 0 .. Array_T'last := 0;
    end Stack;
 
    package body Stack.Reset is
-      procedure Reset is
+      procedure Reset (S : in out Stack);
       begin
-        Top := 0;
+        S.Top := 0;
       end Reset;
    end Stack.Reset;
 
