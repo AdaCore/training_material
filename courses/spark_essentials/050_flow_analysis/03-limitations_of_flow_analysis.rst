@@ -101,7 +101,9 @@ Dealing with False Alarms
 
 * Can generate an analysis message
 
-  :error:`medium: "List" might not be initialized in "Initialize"`
+  .. code:: error
+
+    medium: "List" might not be initialized in "Initialize"
 
 * Use :ada:`pragma Annotate` to justify the behavior
 

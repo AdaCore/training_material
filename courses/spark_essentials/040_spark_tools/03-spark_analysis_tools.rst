@@ -119,24 +119,31 @@ Legality Checking
 
   - Need to fix to go beyond this step
 
-  - Ex: :command:`<expr> cannot depend on variable input <var>`
+* Example
 
-  - May include fix:
+  .. code:: Ada
+    :number-lines: 5
 
-    .. code:: error
-      :font-size: tiny
+    Global : Integer := 123;
 
-      use instead a constant initialized to the expression with variable input
+    type Buffer is record
+       Maximum : Integer := Global;
+    end record;
 
-    *apply the suggested fix*
+  .. code:: error
+    :font-size: tiny
+    :number-lines: 1
 
-  - May include *explain code*:
+     error: default initialization cannot depend on variable input "Global" [E0007]
+    --> basics.ads:5:29
+     5 |           Maximum : Integer := Global;
+       |                                ^~~~~~
+       + use instead a constant initialized to the expression with variable input
+       + launch "gnatprove --explain=E0007" for more information
 
-    .. code:: error
-
-      [E0007]
-
-    *run* :command:`gnatprove --explain=E0007` *for more information*
+  * Failure described on line 1
+  * Possible solution described on line 5
+  * Command to get full explanation on line 6
 
 * Includes ownership checking, detailed in course on Pointer Programs
 
