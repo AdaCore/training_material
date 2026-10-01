@@ -15,6 +15,10 @@ If-then-else Statements
 
     - :ada:`null` for explicit no-op
 
+.. note::
+
+  Note that ``condition`` does not require parentheses
+
 --------------------------
 If-then-elsif Statements
 --------------------------
