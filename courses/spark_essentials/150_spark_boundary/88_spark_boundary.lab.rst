@@ -38,7 +38,7 @@ System Boundary (1/2)
   *Lots of errors, including:*
 
   .. code:: error
-    :font-size: small
+    :font-size: footnotesize
 
     alarm.ads:6:13: error: function "Get_Temperature" with volatile input
         global "Temperature" with effective reads is not allowed in SPARK
@@ -82,7 +82,7 @@ System Boundary (2/2)
 .. container:: animate 2-
 
   .. code:: error
-    :font-size: small
+    :font-size: scriptsize
 
     alarm.ads:6:13: error: nonvolatile function "Get_Temperature" with volatile
         input global "Temperature" is not allowed in SPARK [E0006]
@@ -104,7 +104,7 @@ System Boundary (2/2)
 .. container:: animate 4-
 
   .. code:: error
-    :font-size: small
+    :font-size: footnotesize
 
     alarm.adb:15:10: error: call to a volatile function in interfering
         context is not allowed in SPARK
@@ -220,10 +220,10 @@ Software Boundary
 .. container:: animate 2-
 
   .. code:: error
-    :font-size: small
+    :font-size: footnotesize
 
     random_numbers.adb:5:4: error: "Generator" is not allowed in SPARK
-        (due to entity declared with SPARK_Mode Off)
+       (due to entity declared with SPARK_Mode Off)
 
   :ada:`GNAT.Random` *is not in SPARK mode; we cannot call non-SPARK from SPARK*
 
@@ -253,6 +253,7 @@ Integration with C
 .. container:: animate 2-
 
   .. code:: error
+    :font-size: scriptsize
 
     main.adb:12:4: warning: no Global contract available for "Swap"
     main.adb:12:4: warning: assuming "Swap" has no effect on global items

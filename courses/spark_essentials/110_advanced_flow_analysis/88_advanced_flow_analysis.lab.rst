@@ -62,9 +62,9 @@ Flow Dependencies (2/2)
              Depends => (T => null);
 
   .. code:: error
-    :font-size: tiny
 
-    basics.ads:39:23: medium: missing self-dependency "T => T" (array bounds are preserved)
+    basics.ads:39:23: medium: missing self-dependency "T => T"
+       (array bounds are preserved)
 
   *Correct dependency*
 
@@ -86,9 +86,12 @@ Imprecise Flow Dependencies (1/2)
 .. container:: animate 2-
 
   .. code:: error
+    :font-size: small
 
-    basics.ads:51:11: error: parameter "Cond" is missing from input dependence list
-    basics.ads:51:11: error: add "null => Cond" dependency to ignore this input
+    basics.ads:51:11: error: parameter "Cond" is missing from
+       input dependence list
+    basics.ads:51:11: error: add "null => Cond" dependency to
+       ignore this input
 
   **Cond** *is a parameter, so it must be added to the dependency contract*
 
@@ -97,6 +100,7 @@ Imprecise Flow Dependencies (1/2)
 .. container:: animate 3-
 
   .. code:: error
+    :font-size: small
 
     basics.ads:51:18: medium: missing dependency "R => Cond"
     basics.ads:52:26: medium: incorrect dependency "null => Cond"
@@ -135,6 +139,7 @@ Imprecise Flow Dependencies (2/2)
 .. container:: animate 3-
 
   .. code:: error
+    :font-size: small
 
     basics.ads:55:18: medium: missing dependency "T => Val"
     basics.ads:56:25: medium: incorrect dependency "null => Val"

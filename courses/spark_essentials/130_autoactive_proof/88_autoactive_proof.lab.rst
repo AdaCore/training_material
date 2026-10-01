@@ -111,7 +111,7 @@ Intermission - Permutations
   equal to the next element
 
    - So the function will return True for all of these arrays:
-     ``[1, 2, 3]``, ``[1, 1, 1]``, ``[1, 1, 3]``, ``[123, 231, 312]``
+     ``[1,2,3]``, ``[1,1,1]``, ``[1,1,3]``, ``[123,231,312]``
 
 - For **proof**, when we sort an array, we need to know the contents of the array
   are the same but reordered
@@ -227,12 +227,14 @@ Selection Sort (3/3)
 .. container:: animate 2-
 
   .. code:: error
-    :font-size: scriptsize
+    :font-size: small
 
     sort.ads:27:17: medium: postcondition might fail
     sort.ads:27:17: cannot prove Is_Permutation_Array (Permutation)
-    sort.adb:71:1: possible fix: loop invariant at sort.adb:71 should mention Permutation
-    sort.ads:18:1: medium: in inlined expression function body at sort.ads:18
+    sort.adb:71:1: possible fix: loop invariant at sort.adb:71
+       should mention Permutation
+    sort.ads:18:1: medium: in inlined expression function
+       body at sort.ads:18
 
   * Add a loop invariant to verify the permutation
 

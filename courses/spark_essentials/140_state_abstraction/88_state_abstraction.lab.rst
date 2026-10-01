@@ -45,10 +45,12 @@ Creating an Abstract State
 .. container:: animate 3-
 
   .. code:: error
-    :font-size: tiny
+    :font-size: footnotesize
 
-    basics.adb:2:36: error: cannot use "The_Rec" in refinement, constituent is not a hidden state of package "Basics"
-    basics.adb:2:45: error: cannot use "The_Table" in refinement, constituent is not a hidden state of package "Basics"
+    basics.adb:2:36: error: cannot use "The_Rec" in refinement,
+       constituent is not a hidden state of package "Basics"
+    basics.adb:2:45: error: cannot use "The_Table" in refinement,
+       constituent is not a hidden state of package "Basics"
 
   - :ada:`Abstract_State` is only for hidden data
 
@@ -69,17 +71,21 @@ Defining an Abstract State
   .. code:: error
     :font-size: scriptsize
 
-    basics.ads:69:4: error: indicator Part_Of is required in this context [E0009]
-    basics.ads:69:4: error: "The_Rec" is declared in the private section of package "Basics"
-    basics.ads:70:4: error: indicator Part_Of is required in this context [E0009]
-    basics.ads:70:4: error: "The_Table" is declared in the private section of package "Basics"
+    basics.ads:69:4: error: indicator Part_Of is required in
+       this context [E0009]
+    basics.ads:69:4: error: "The_Rec" is declared in the
+       private section of package "Basics"
+    basics.ads:70:4: error: indicator Part_Of is required in
+       this context [E0009]
+    basics.ads:70:4: error: "The_Table" is declared in the
+       private section of package "Basics"
 
   *(other errors ignored for now)*
 
   - Global data needs to be part of the state
 
       - But you cannot refine it in the spec
-      - So you need to indicate that :ada:`The_Rec` and :ada:`The_Table` are part of the state
+      - So you need to indicate :ada:`The_Rec` and :ada:`The_Table` are part of the state
 
 .. container:: animate 3-
 
@@ -135,9 +141,9 @@ Initializing the State
 .. container:: animate 2-
 
   .. code:: error
-    :font-size: tiny
 
-    basics.ads:2:26: warning: no subprogram exists that can initialize abstract state "Basics.State"
+    basics.ads:2:26: warning: no subprogram exists that can
+       initialize abstract state "Basics.State"
 
   - We are not guaranteeing that the global data is initialized
 

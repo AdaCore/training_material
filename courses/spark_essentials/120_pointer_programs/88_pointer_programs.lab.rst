@@ -39,6 +39,7 @@ Swapping Pointers (1/2)
 .. container:: animate 2-
 
   .. code:: error
+    :font-size: scriptsize
 
     pointers.ads:11:14: error: return from "Swap_Ptr" with moved value for "X"
     pointers.adb:16:1: error: object was moved at pointers.adb:16 [E0010]
@@ -83,10 +84,10 @@ Swapping Pointers (2/2)
     :font-size: footnotesize
 
       procedure Swap (X, Y : not null Int_Acc)
-        with Post => X.all = Y.all'Old and then Y.all = X.all'Old;
+        with Post => X.all = Y.all'Old and Y.all = X.all'Old;
 
       procedure Swap_Ptr (X, Y : in out not null Int_Acc)
-        with Post => X.all = Y.all'Old and then Y.all = X.all'Old;
+        with Post => X.all = Y.all'Old and Y.all = X.all'Old;
 
 -----------------------------
 Allocation and Deallocation
@@ -114,10 +115,10 @@ Allocation and Deallocation
 
   *Note the message verifying no memory leak*
 
-  .. code:: output
-    :font-size: small
+  .. code:: error
 
-    pointers.adb:29:9: info: absence of resource or memory leak proved
+    pointers.adb:29:9: info: absence of resource or
+       memory leak proved
 
 ---------------------
 Recursion and Loops
