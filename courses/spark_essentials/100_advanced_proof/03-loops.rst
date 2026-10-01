@@ -83,7 +83,7 @@ Loop Invariants in Proof
 Placement of Loop Invariants
 ------------------------------
 
-* Proof reasons around the *virtual loop*
+**Proof reasons around the** *virtual loop*
 
   - Starting from the loop invariant
   - Ending at the loop invariant
