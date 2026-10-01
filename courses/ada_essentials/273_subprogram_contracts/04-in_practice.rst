@@ -240,9 +240,11 @@ Raising Specific Exceptions
                      Value : Content) with
        Pre  => not Full (This) or else raise Overflow_Error;
 
-* *Note: Postcondition failure only ever makes sense as an Assertion_Error*
+.. note::
 
-  * It's the supplier's fault, not the client's
+  Postcondition failure only ever makes sense as an Assertion_Error
+
+    It's the supplier's fault, not the client's
 
 ------------------
 Assertion Policy
