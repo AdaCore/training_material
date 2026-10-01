@@ -6,7 +6,7 @@ Dependency Contracts
 Data Dependencies
 -------------------
 
-* Abstract states are used in :ada:`Global` contracts
+**Abstract states are used in** :ada:`Global` **contracts**
 
   - Abstract state represents all its constituents
   - Mode is the aggregate of all modes of constituents
@@ -32,7 +32,7 @@ Data Dependencies
 Flow Dependencies
 -------------------
 
-* Abstract states are used in :ada:`Depends` contracts
+**Abstract states are used in** :ada:`Depends` **contracts**
 
 .. code:: Ada
 

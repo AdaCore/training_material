@@ -26,7 +26,7 @@ Parts of a Check Message
 Check Message Example
 -----------------------
 
-What is the problem with this code?
+**What is the problem with this code?**
 
 .. code:: ada
 

@@ -10,7 +10,7 @@ Declare Expressions
 
    Ada 2022
 
-* Convenient shorthand for **repeated** subexpression
+**Convenient shorthand for** *repeated* **subexpression**
 
   - Only constants and renamings allowed
   - Typically used in **postconditions**
@@ -62,7 +62,7 @@ Expression Functions
 Expression Functions Without Postconditions
 ---------------------------------------------
 
-Expression function without a specified postcondition uses the expression as the postcondition
+**Expression function without a specified postcondition uses the expression as the postcondition**
 
   .. code:: Ada
 

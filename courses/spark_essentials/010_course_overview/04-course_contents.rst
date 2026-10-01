@@ -46,7 +46,7 @@ Course Outline
 Course Goals
 --------------
 
-* What will you do after the course?
+**What will you do after the course?**
 
   - Be comfortable with the fundamentals of SPARK
   - Know where to find out more

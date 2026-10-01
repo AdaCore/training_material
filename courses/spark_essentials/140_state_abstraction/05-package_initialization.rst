@@ -35,7 +35,7 @@ Data Dependencies of a Package
 Flow Dependencies of a Package
 --------------------------------
 
-* Initialization of package state can depend on other packages
+**Initialization of package state can depend on other packages**
 
   - This dependency needs to be specified in aspect :ada:`Initializes`
   - If no such aspect, :toolname:`GNATprove` also generates these dependencies

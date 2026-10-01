@@ -30,7 +30,7 @@ SPARK Analysis Tools
 **GNATprove** - Project File Usage
 ------------------------------------
 
-* Tool package :code:`Prove` corresponds to :toolname:`GNATprove`
+**Tool package** :code:`Prove` **corresponds to** :toolname:`GNATprove`
 
   - Use attribute :code:`Proof_Switches` to apply tool-defined switches
 

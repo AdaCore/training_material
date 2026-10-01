@@ -346,7 +346,7 @@ Modeling an API
 Modeling an API - Example
 ---------------------------
 
-* Standard unit :ada:`Ada.Text_IO` is modelled in SPARK
+**Standard unit** :ada:`Ada.Text_IO` **is modelled in SPARK**
 
   - Subprograms can be called in SPARK code
   - File system is not precisely modelled
