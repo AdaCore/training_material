@@ -37,9 +37,11 @@ Declarations
 
 * In a :dfn:`declarative part`
 
-* Example: :ada:`Something : Typemark := Value;`
+  .. code:: Ada
 
-    - ``Something`` is an :dfn:`identifier`
+    Something : Integer := 123;
+
+  * ``Something`` is an :dfn:`identifier`
 
 * **Some** implicit declarations
 
