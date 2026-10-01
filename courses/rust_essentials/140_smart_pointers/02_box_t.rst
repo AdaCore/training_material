@@ -2,17 +2,17 @@
 "Box<T>"
 ==========
 
-------------------
-What Is "Box<T>"
-------------------
+-------------------
+What Is "Box<T>"?
+-------------------
 
-- :rust:`Box<T>` provides unique ownership of a value stored on the heap
-  - The :rust:`Box<T>` value itself has a known, fixed size
-  - Moving the box transfers ownership without moving the heap allocation
+- Stores its owned value on the heap
 
-- The heap allocation is released automatically when the box is dropped
+- Provides unique ownership of that value
 
-- Defined in **prelude**
+- :rust:`Box<T>` itself has a known, fixed size
+
+- Available through the standard **prelude**
 
 .. code:: rust
 
@@ -48,7 +48,7 @@ Using "Box<T>" for Recursive Types
 
 - :rust:`Box<T>` has a known, fixed size
 
-  - The recursive value itself is stored behind the box
+  - Recursive value itself is stored behind the box
 
     .. code:: rust
 
@@ -64,14 +64,12 @@ Using "Box<T>" for Recursive Types
 Handling Large Data
 ---------------------
 
-- :rust:`Box<T>` gives unique ownership of heap data
-  - Moving the box keeps the heap allocation in place
+- :rust:`Box::new([0; LARGE_SIZE])` may require a large stack temporary
+  - Heap allocation does not guarantee construction directly on the heap
+  - Do not rely on optimization to remove the temporary
 
-- Avoid :rust:`Box::new([0; LARGE_SIZE])` for large arrays
-  - Creating it can still require a large stack temporary
-  - Do not rely on optimization to remove it
-
-- Use :rust:`vec!` for large buffers
+- :rust:`vec!` creates large buffers with heap-allocated storage
+  - Avoids constructing the large array value on the stack
   - Keep :rust:`Vec<T>` if the buffer must resize
   - Convert to :rust:`Box<[T]>` for a fixed-length buffer
 
@@ -85,16 +83,17 @@ Handling Large Data
 
   :rust:`into_boxed_slice()` may reallocate to discard excess capacity
 
-------------------------------------
+-------------------------------------
 Borrowing or Transferring Ownership
-------------------------------------
+-------------------------------------
 
 - Borrow the boxed slice when temporary access is enough
-  - The caller retains ownership
-  - The buffer is not copied
+  - Caller retains ownership
+  - Buffer is not copied
+
 - Move the :rust:`Box<[u64]>` when another value must own it
   - Ownership is transferred
-  - The heap allocation stays in place
+  - Heap allocation stays in place
 
 .. code:: rust
 
@@ -129,4 +128,4 @@ Resource Management
   } // 'samples' is dropped here
 
 - Moving a :rust:`Box<T>` is an *O(1)* operation
-  - The heap allocation stays in place
+  - Heap allocation stays in place
