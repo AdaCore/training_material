@@ -112,9 +112,7 @@ Why Read Mode "out" Parameters?
 
 .. warning::
 
-  An :ada:`out` parameter is uninitialized **unless** the type auto-initializes
-
-  (Auto-initialization will be discussed later)
+  An :ada:`out` parameter is uninitialized except for certain cases (described later)
 
 ------------------------------
 Parameter Passing Mechanisms

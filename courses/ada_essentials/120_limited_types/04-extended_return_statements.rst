@@ -108,7 +108,7 @@ Quiz
 
   O : T := F;
 
-Which declarations of :ada:`F` are legal? (Select all that apply)
+Which of the following are legal? (Select all that apply)
 
 A. ``return Return : T := (I => 1);``
 B. :answermono:`return Result : T;`
