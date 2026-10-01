@@ -108,8 +108,6 @@ Null Index Range
     main.adb:7:36: error: value not in range of type "Index_T" defined at line 2
     main.adb:7:36: error: static expression fails Constraint_Check
 
-* When the index type is a single-valued enumerated type, no empty array is possible
-
 ------------------
 Indefinite Types
 ------------------
@@ -192,10 +190,6 @@ Quiz
    type Bit_T is range 0 .. 1;
    type Bit_Array_T is array (Positive range <>) of Bit_T;
 
-.. container:: columns
-
- .. container:: column
-
    Which of the following declarations are legal? (Select all that apply)
 
    A. ``AAA : Bit_Array_T (0..99);``
@@ -203,9 +197,7 @@ Quiz
    C. :answermono:`CCC : Bit_Array_T (17..16);`
    D. ``DDD : Bit_Array_T;``
 
- .. container:: column
-
-  .. container:: animate
+.. container:: animate
 
    Explanation
 
