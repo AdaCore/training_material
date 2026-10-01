@@ -31,6 +31,7 @@ Creating an Abstract State
 .. container:: animate 2-
 
   .. code:: Ada
+    :font-size: footnotesize
 
       package Basics
         with Abstract_State => State
@@ -90,6 +91,7 @@ Defining an Abstract State
 .. container:: animate 3-
 
   .. code:: Ada
+    :font-size: small
 
       The_Rec : Rec with Part_Of => State;
       The_Table : Table (1 .. 10) with Part_Of => State;

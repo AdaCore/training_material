@@ -26,7 +26,7 @@ Type Predicates (1/2)
 
 .. container:: animate 2-
 
-   From inside :filename:`basic.ads` right-click and select
+   From inside :filename:`basics.ads` right-click and select
    :menu:`SPARK` |rightarrow| :menu:`Prove File`
 
 .. container:: animate 1-
