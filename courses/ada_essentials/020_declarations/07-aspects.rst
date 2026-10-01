@@ -104,4 +104,4 @@ In the Olden Days ...
 * These are still available in Ada 2012 and beyond
 
   * But they are separating the entity from the property
-  * (Which may be desired behavior!)
+  * ... which may be desired behavior!
