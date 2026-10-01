@@ -41,7 +41,7 @@ Declarations
 
     Something : Integer := 123;
 
-  * ``Something`` is an :dfn:`identifier`
+  * ``Something`` is an *identifier*
 
 * **Some** implicit declarations
 
