@@ -33,8 +33,6 @@ Character Transformation
     :font-size: footnotesize
 
     function To_Lower (Item : in Character) return Character;
-
-    function To_Lower (Item : in Character) return Character;
     function To_Upper (Item : in Character) return Character;
 
 * Functions to force case (string version)
