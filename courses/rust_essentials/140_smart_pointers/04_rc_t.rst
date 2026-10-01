@@ -8,8 +8,6 @@ Multiple Ownership With "Rc<T>"
 
 - Useful when *single* value is owned by *multiple* parts of a program
   
-  - Does not provide mutable access to its target through :rust:`Rc<T>` itself
-
   - Tracks the number of owners
 
   - Prevents data cleanup until last owner finishes

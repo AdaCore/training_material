@@ -20,14 +20,13 @@ Topics Covered
   
 - **Shared Ownership**
   
-  - Reference counting
+  - Reference-counted ownership
 
 ---------------------
 Why Smart Pointers?
 ---------------------
 
 - Store data on the heap
-  - Useful when values should not live inline
 
 - Allow recursive types
   - Give recursive fields a known size
