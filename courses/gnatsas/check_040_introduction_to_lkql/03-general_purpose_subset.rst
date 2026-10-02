@@ -188,17 +188,36 @@ Literals and Operators
       "Hello " & name  # Strings concatenation
       [1, 2] & [5, 6]  # Lists concatenation
 
-* Multi-line string literals
+----------------------
+A Word About Strings
+----------------------
+
+* Simple strings look just like strings in most languages
 
   .. code:: lkql
 
-    val a = |" Hello
-            |" This is a multi line string
-            |" Bue
+    val simple = "Hello"
 
-  * First character after ``"`` should be whitespace
+* Multiline strings are formatted differently
 
-    * Not a parse error but will fail at run-time
+  * Requiring :lkql:`|"` before the string on each line
+
+  .. code:: lkql
+
+    val multi = |" Hello
+                |" This is a multi line string
+                |" Goodbye!
+
+
+* Multiline string delimiters look just like *docstrings*
+
+  * But are differentiated by context
+
+.. warning::
+
+  In multiline strings and docstrings, first character after ``"`` must be whitespace
+
+  Otherwise a runtime error occurs, **not** a parse error
     
 -------------
 Expressions
