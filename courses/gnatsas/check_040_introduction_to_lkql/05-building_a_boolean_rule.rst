@@ -153,7 +153,7 @@ Messages
 
     main.adb:6:04: rule violation: integer_objects
 
-* To supply a more descriptive explanation, use the :lkql:`parameter` in :lkql:`@check`
+* To supply more descriptive explanation, use :lkql:`parameter` in :lkql:`@check`
 
   .. code:: lkql 
 

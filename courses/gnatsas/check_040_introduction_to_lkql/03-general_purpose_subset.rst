@@ -84,7 +84,7 @@ Composite Data Types
 
 .. note::
 
-  ``Tuple``, ``List``, and ``Stream`` start index at 1 (like Ada) rather than 0 (like C)
+  ``Tuple``, ``List``, and ``Stream`` start index at 1 (like Ada)
 
 -------------------
 Block Expressions
