@@ -106,7 +106,7 @@ Imprecise Flow Dependencies (1/2)
     basics.ads:52:26: medium: incorrect dependency "null => Cond"
 
   *Initialization of parameter* :ada:`R` *is path-dependent, and that path is*
-  *controlled by* :ada:`Cond` *- so it must be listed as a dependency of* :ada:`R`
+  *controlled by* :ada:`Cond` *so it must be listed as a dependency of* :ada:`R`
 
   - Fix the dependency contract and rerun flow analysis
 
