@@ -108,7 +108,7 @@ Quiz
 
   O : T := F;
 
-Which of the following are legal? (Select all that apply)
+Which of the following F bodies are legal? (Select all that apply)
 
 A. ``return Return : T := (I => 1);``
 B. :answermono:`return Result : T;`
@@ -119,7 +119,7 @@ D. | :answermono:`return R : T do`
 
 .. container:: animate
 
-  A. Using :ada:`return` reserved keyword
+  A. Using :ada:`return` reserved keyword as an identifier
   B. OK, default value
   C. Extended return must specify type
   D. Assign a value to a component of the extended return object
