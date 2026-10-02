@@ -6,7 +6,7 @@ Simple Unit Test
 Creating a Testable Framework
 -------------------------------
 
-* :command:`cargo new`creates a new package with a binary target by default
+* :command:`cargo new` creates a new package with a binary target by default
 
   * Which has its own :rust:`main` program
 
@@ -38,6 +38,10 @@ Creating a Testable Framework
       }
   }
 
+.. note::
+
+  :filename:`adder` is the folder created to contain the package
+
 ----------------
 Test Semantics
 ----------------
@@ -62,10 +66,13 @@ Test Semantics
 * Line 7: Add items from enclosing module into scope
 * Line 9: Following function is a test
 
-  * Typically no parameters or return values
+  * Test function takes no parameters
+  * Usually returns :rust:`()`
 
-* Line 10: Call to function being tested
-* Line 11: Verify results of function call
+    * Can also return :rust:`Result` (shown later)
+
+* Line 11: Call to function being tested
+* Line 12: Verify results of function call
 
 ----------------
 Test Execution
@@ -114,7 +121,7 @@ Validating Test Results
   * Explicitly calling :rust:`panic!`
   * Assertion macros where assertion is false
 
-    * :rust:`asserteq!` (and :rust:`assert_ne!`)
+    * :rust:`assert_eq!` (and :rust:`assert_ne!`)
     * :rust:`assert!`
 
 ----------------

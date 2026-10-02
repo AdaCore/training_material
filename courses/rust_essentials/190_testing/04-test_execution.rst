@@ -144,9 +144,9 @@ Capturing Output (1/2)
 Capturing Output (2/2)
 ------------------------
 
-* To capture **all** output, use switch :command:`--show-output`
+* To also show output from successful tests, use switch :command:`--show-output`
 
-  * This shows stdandard output/error for each test
+  * This shows standard output/error for each test
 
 * :command:`cargo test -- --show-output`
 
@@ -231,7 +231,7 @@ Preventing Problematic Tests From Running
     fn really_long_test() {
         let result = divide(14.0, 0.0);
         std::thread::sleep(std::time::Duration::from_millis(500));
-        assert!(result > 0.0);
+        assert!(result == 0.0);
     }
 
 * :rust:`really_long_test` will **not** be run via :command:`cargo test`
