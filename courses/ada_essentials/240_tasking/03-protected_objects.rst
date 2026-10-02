@@ -65,7 +65,7 @@ Example: Protected Objects - Declaration
 
 .. note::
 
-  Data components of a protected object **must** appear in the :ada:`private` section
+  Global data of a protected object **must** appear in the :ada:`private` section
 
 -----------------------------------
 Example: Protected Objects - Body
