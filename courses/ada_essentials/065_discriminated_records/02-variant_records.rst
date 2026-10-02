@@ -230,4 +230,4 @@ Quiz
 
   * Compile error on line 14 for duplicate :ada:`End_Point` components
   * **If** that is fixed, compile warning on line 19 because discriminants do not match
-  * Then  run-time error on line 19
+  * Then run-time error on line 19
