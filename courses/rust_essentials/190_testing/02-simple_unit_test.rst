@@ -6,11 +6,11 @@ Simple Unit Test
 Creating a Testable Framework
 -------------------------------
 
-* :command:`cargo new` by default creates an application crate
+* :command:`cargo new`creates a new package with a binary target by default
 
   * Which has its own :rust:`main` program
 
-* Adding :command:`--lib` creates a "library" crate template
+* Adding :command:`--lib` creates a package with a library target
 
   * No main program
   * :rust:`tests` module automatically inserted
@@ -159,8 +159,8 @@ Explicit Panic
 
 * :rust:`assert_eq!` and :rust:`assert_ne!` simplify the equality check
 
-  * Two parameters passed in
-  * Successful if parameters are equal (or not equal)
+  * Two arguments supplied
+  * Successful if arguments are equal (or not equal)
 
 .. code:: rust
   :font-size: footnotesize
@@ -199,7 +199,7 @@ Explicit Panic
 
 * More complicated comparisons use :rust:`assert!`
 
-  * One parameter - a boolean expression
+  * One required argument - a boolean expression
 
 .. code:: rust
   :font-size: footnotesize

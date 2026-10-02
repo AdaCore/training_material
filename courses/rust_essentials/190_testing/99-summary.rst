@@ -19,7 +19,7 @@ What We Covered
 
   - Assertion failures can include descriptions
   - Expected panics can be caught and verified
-  - :rust:`Result` error variants can be checked
+  - Tests can return :rust:`Result` and propagate errors with :rust:`?`
 
 * **Running unit tests**
 
@@ -29,7 +29,7 @@ What We Covered
 
     * Both standard output and standard error
 
-  - Use pattern matching to find tests to run
+  - Filter tests by a substring of their full name
   - Special attributes to prevent certain tests from running
 
     - Unless specifically requested

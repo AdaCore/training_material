@@ -34,7 +34,7 @@ What Is Unit Test?
 
   * In Rust, typically a single subprogram
 
-* Given a known set of inputs, output is predicatable
+* Given a known set of inputs, output is predictable
 
   * If outputs do not match expectations then either ...
 

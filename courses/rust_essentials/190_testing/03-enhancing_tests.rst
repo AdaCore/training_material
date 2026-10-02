@@ -12,7 +12,7 @@ Assertion Failure Messages
       format!("Hello {name}!")
   }
 
-* Assertions with a single parameter just echo the assertion
+* Assertions with a single argument just echo the assertion
 
   .. code:: rust
     :number-lines: 5
@@ -26,10 +26,10 @@ Assertion Failure Messages
 
   .. code:: error
 
-    thread 'tests::test2' (54) panicked at src/lib.rs:20:9:
+    thread 'tests::test1' (54) panicked at src/lib.rs:20:9:
     assertion failed: result.contains(expected)
 
-* But the macros can take multiple parameters
+* But these macros can take multiple arguments
 
   .. code:: rust
 
@@ -39,7 +39,7 @@ Assertion Failure Messages
 Custom Failure Messages
 -------------------------
 
-* After the condition, parameters are treated as inputs to :rust:`format!` macro
+* After the condition, arguments are treated as inputs to :rust:`format!` macro
 
   * Named format
 
@@ -101,7 +101,7 @@ Dealing with Panic
 * Successful test is easy
 
   .. code:: rust
-
+    #[test]
     fn test1() {
         let values: [i32; 6] = [2, 3, 5, 8, 13, 21];
         let result = find_index(&values, 5);
