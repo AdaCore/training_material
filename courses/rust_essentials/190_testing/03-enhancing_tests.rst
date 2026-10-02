@@ -154,6 +154,49 @@ Expecting a Panic
 
     test tests::test3 - should panic ... ok
 
+---------------------------
+Expecting the Right Panic
+---------------------------
+
+* What happens to our test if :rust:`find_index` doesn't work correctly
+
+  * For example, it returns a 0 on failure rather than panic
+
+* Test will pass (because it expects a panic)
+
+  * Even though the code is wrong, assertion will panic
+
+* Need to specify expected text in panic message
+
+  .. code:: rust
+    :font-size: footnotesize
+
+    #[test]
+    #[should_panic (expected = "value not found")]
+    fn test3() {
+        let values: [i32; 6] = [2, 3, 5, 8, 13, 21];
+        let result = find_index(&values, 6);
+        assert_eq!(result, 2);
+    }
+
+  .. code:: output
+    :font-size: tiny
+
+    test tests::test3 - should panic ... FAILED
+
+    failures:
+
+    ---- tests::test3 stdout ----
+
+    thread 'tests::test3' panicked at src\lib.rs:23:9:
+    assertion `left == right` failed
+      left: 0
+     right: 2
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+    note: panic did not contain expected string
+          panic message: `"assertion `left == right` failed\n  left: 0\n right: 2"`,
+     expected substring: `"value not found"`
+
 -------------------------
 Using "Result" in Tests
 -------------------------
