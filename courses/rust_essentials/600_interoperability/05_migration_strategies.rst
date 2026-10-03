@@ -1,22 +1,22 @@
-======================
-Migration Strategies
-======================
+===================================
+Adoption and Migration Strategies
+===================================
 
 
-------------------------
-Four Common Strategies
-------------------------
+----------------------------
+Four Common Adoption Paths
+----------------------------
 
-**Migration strategy depends on system constraints and boundary cost**
+**Rust adoption path depends on system constraints and boundary cost**
 
-* **Incremental adoption**
-  * Replace one stable component
-* **Long-term mixed-language**
-  * Retain valuable components
-* **Replace over time**
-  * Keep interfaces stable while internals change
-* **Greenfield Rust**
-  * No legacy compatibility boundary
+* Incremental adoption
+  * Replace one stable component at a time
+* Long-term mixed-language
+  * Keep selected existing components behind explicit boundaries
+* Replace over time
+  * Keep interfaces stable while implementations move to Rust
+* Greenfield Rust
+  * Start in Rust and use FFI for required native dependencies
 
 
 ----------------------
@@ -25,15 +25,15 @@ Incremental Adoption
 
 **Incremental adoption works best around a narrow boundary**
 
-#. Select a leaf component with a narrow interface
-#. Record current behavior with tests
+#. Select a component with few dependencies and a narrow interface
+#. Capture current behavior with tests
 #. Define a C-compatible boundary
 #. Implement the replacement in Rust
 #. Run old and new implementations against the same tests
 #. Deploy behind a feature or configuration switch
 #. Remove the old implementation only after evidence is sufficient
 
-* **Good early candidates**
+* Good early candidates
   * Clear inputs and outputs
   * Limited shared mutable state
   * Few callbacks
@@ -41,12 +41,14 @@ Incremental Adoption
 
 
 -----------------------
-The Strangler Pattern
+Branch by Abstraction
 -----------------------
 
-**Keep the boundary stable while implementation moves gradually**
+**Keep a stable abstraction while implementation moves gradually**
 
-.. image:: comprehensive_rust_training/600_strangler_pattern.svg
+.. image:: rust_essentials/600_strangler_pattern.svg
+   :width: 100%
+   :align: center
 
 .. note::
 
@@ -59,11 +61,16 @@ Signs the Boundary Is Too Expensive
 
 **Boundary cost often appears as a combination of warning signs**
 
-* **Chatty calls** - many tiny calls or frequent callbacks
-* **Heavy data movement** - large amounts of data copied repeatedly
-* **Coupled data models** - shared ownership or unstable layouts
-* **Runtime mismatch** - different threading, allocator, or failure models
-* **Boundary shape** - often the real problem, not FFI itself
+* Chatty calls
+  * Many tiny calls or frequent callbacks
+* Heavy data movement
+  * Large amounts of data copied repeatedly
+* Coupled data models
+  * Shared ownership or unstable layouts
+* Runtime mismatch
+  * Different threading, allocator, or failure models
+* Boundary shape
+  * Often the real problem, not FFI itself
 
 
 -------------------------------
@@ -77,7 +84,10 @@ Move or Redesign the Boundary
 * Transfer serialized messages
 * Replace a larger component
 * Keep the component in its original language
-* Aim for fewer, coarser, and more explicit cross-language interactions
+
+.. tip::
+
+  Prefer fewer, coarser, and more explicit cross-language interactions
 
 
 -----------------
@@ -86,14 +96,14 @@ Greenfield Rust
 
 **Greenfield Rust can still need FFI dependencies**
 
-* **Common reasons**
+* Common reasons
   * Operating-system APIs
   * Device drivers
   * Vendor SDKs
   * Cryptographic libraries
   * Graphics or media libraries
   * Existing C/C++ platform services
-* **Questions before choosing FFI**
+* Questions before choosing FFI
   * Is a maintained safe Rust crate already available?
   * Is the native dependency part of the product strategy?
   * Can its build and ABI be reproduced on every supported platform?
@@ -109,13 +119,14 @@ Review the ABI and Data Contract
 * ABI and symbol names
 * Exact boundary types
 * Struct layout and alignment
-* Nullability and pointer length
-* Read/write permissions
+* Pointer relationships
+  * Nullability and pointer/length relationships
+  * Read/write permissions
 * String encoding
 
 
 ---------------------------------
-Review Lifetime and Integration
+Review Behavior and Integration
 ---------------------------------
 
 **Verify the behavioral and integration contract**
@@ -123,7 +134,10 @@ Review Lifetime and Integration
 * Ownership and destruction
 * Error mapping
 * Panic and exception policy
-* Callback lifetime and threads
+* Callback contract
+  * Registration duration
+  * Calling threads, concurrency, and reentrancy
 * Static/dynamic linking requirements
 * Compatibility and regression tests
-* **Cross-check** - review both language declarations side by side
+* Cross-check
+  * Review both language declarations side by side
