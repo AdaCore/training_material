@@ -8,16 +8,10 @@ Topics Covered
 ----------------
 
 
-* **Why Interoperability Matters**
-
-
-  * Add Rust without rewriting an entire system
-
-
 * **C Foreign Function Interface**
 
 
-  * ABI, :rust:`extern "C"`, linking, and C-compatible data
+  * Mechanisms for connecting Rust to other languages
 
 
 * **Safe Boundary Design**
@@ -47,7 +41,7 @@ Topics Covered
 * **Adoption and Migration Strategies**
 
 
-  * Incremental, mixed-language, replacement, and greenfield
+  * Different ways to adopt or migrate to Rust
 
 
 ------------------------------
@@ -63,10 +57,6 @@ Why Interoperability Matters
 * Vendor libraries
 * Years of operational knowledge
 * Interoperability lets Rust be added without discarding those assets
-
-.. note::
-
-  Migration can be incremental rather than all-or-nothing
 
 
 --------------------------------
