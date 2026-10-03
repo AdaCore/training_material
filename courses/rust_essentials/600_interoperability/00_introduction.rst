@@ -44,7 +44,7 @@ Topics Covered
   * Recommended bridge strategies and current limitations
 
 
-* **Migration Strategies**
+* **Adoption and Migration Strategies**
 
 
   * Incremental, mixed-language, replacement, and greenfield
@@ -88,12 +88,12 @@ Interoperability Is a Contract
 From Source Code to a Call
 ----------------------------
 
-**A foreign call crosses several layers**
+**A foreign call spans build-time and runtime steps**
 
-.. image:: comprehensive_rust_training/600_ffi_source_to_call.svg
+.. image:: rust_essentials/600_ffi_source_to_call.svg
 
-* Rust can check the Rust declaration
-* Rust cannot prove that the foreign implementation matches it
+* Rust compiler checks the Rust declaration
+* It cannot prove that the foreign implementation matches it
 
 
 --------------------------

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Build time and runtime of a foreign call</title>
+  <desc id="desc">At build time, Rust source is compiled to object code and linked with native-library information into a linked program. At runtime, the running program calls a foreign implementation whose symbol name, ABI, and boundary types must match the Rust declaration.</desc>
+  <defs>
+    <marker id="arrow-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#17345F"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#18A9C7"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5E9F68"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <text x="250" y="45" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="700" fill="#1C3553">Build time</text>
+  <text x="855" y="45" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="700" fill="#1C3553">Runtime</text>
+  <line x1="590" y1="35" x2="590" y2="575" stroke="#B8D5E6" stroke-width="2"/>
+
+  <rect x="145" y="70" width="210" height="72" rx="14" fill="#D7E8F2" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="250" y="114" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="600" fill="#1C3553">Rust source</text>
+
+  <rect x="145" y="185" width="210" height="72" rx="14" fill="#D7E8F2" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="250" y="229" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="600" fill="#1C3553">Object code</text>
+
+  <rect x="170" y="300" width="160" height="72" rx="14" fill="#D7E8F2" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="250" y="344" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="600" fill="#1C3553">Linker</text>
+
+  <rect x="120" y="415" width="260" height="72" rx="14" fill="#D7E8F2" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="250" y="459" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#1C3553">Linked program</text>
+
+  <line x1="250" y1="142" x2="250" y2="185" stroke="#18A9C7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
+  <line x1="250" y1="257" x2="250" y2="300" stroke="#18A9C7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
+  <line x1="250" y1="372" x2="250" y2="415" stroke="#18A9C7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
+
+  <rect x="365" y="300" width="190" height="72" rx="14" fill="#E9F2F8" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="460" y="344" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="600" fill="#1C3553">Native library</text>
+  <line x1="365" y1="336" x2="330" y2="336" stroke="#17345F" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-navy)"/>
+
+  <rect x="725" y="110" width="260" height="76" rx="14" fill="#D7E8F2" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="855" y="157" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#1C3553">Running program</text>
+
+  <rect x="695" y="315" width="320" height="76" rx="14" fill="#E9F2F8" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="855" y="362" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="600" fill="#1C3553">Foreign implementation</text>
+
+  <rect x="775" y="500" width="160" height="72" rx="14" fill="#E8F4EA" stroke="#5E9F68" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="855" y="544" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="600" fill="#356943">Result</text>
+
+  <line x1="855" y1="186" x2="855" y2="315" stroke="#17345F" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-navy)"/>
+  <rect x="695" y="219" width="320" height="44" rx="22" fill="#FFFFFF" stroke="#17345F" stroke-width="2"/>
+  <text x="855" y="247" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="600" fill="#1C3553">symbol name + ABI + types</text>
+
+  <line x1="855" y1="391" x2="855" y2="500" stroke="#5E9F68" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
+
+  <path d="M 380 451 L 640 451 L 640 148 L 725 148" fill="none" stroke="#17345F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 7" marker-end="url(#arrow-navy)"/>
+</svg>

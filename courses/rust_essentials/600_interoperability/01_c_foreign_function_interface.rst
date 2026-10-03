@@ -7,35 +7,37 @@ C Foreign Function Interface
 What Is an ABI?
 -----------------
 
-**ABI means Application Binary Interface**
+**API and ABI describe contracts at different levels**
 
-* Calling convention
-* Register and stack use
-* Argument and return representation
-* Data alignment
-* Symbol naming
-* Unwinding behavior
-* An API is a source-level contract
-* An ABI is a compiled-code contract
+* API - Application Programming Interface
+  * Source-level contract
+* ABI - Application Binary Interface
+  * Compiled-code contract
+  * Calling convention
+  * Register and stack use
+  * Argument and return representation
+  * Data alignment
+  * Symbol naming
+  * Unwinding behavior
 
 
 ------------
 extern "C"
 ------------
 
-:rust:`extern "C"` **selects the platform's C calling convention**
+:rust:`extern "C"` **selects the platform's C ABI**
 
 .. code:: rust
 
   unsafe extern "C" {
-      fn foreign_function(value: i32) -> i32;
+      fn foreign_function();
   }
 
-* The implementation need not be written in C
-* The declaration may still be wrong
+* Implementation need not be written in C
+* Declaration may still be wrong
 * Pointer validity is not checked
 * Memory safety is not guaranteed
-* The library may still be missing at runtime
+* A required dynamic library may still be missing at runtime
 
 .. note::
 
@@ -48,21 +50,24 @@ C-Compatible Scalar Types
 
 **Match the foreign declaration exactly**
 
-* **Fixed-width integers**
-  * :C:`int32_t` / :C:`uint32_t` - :rust:`i32` / :rust:`u32`
-  * :C:`int64_t` / :C:`uint64_t` - :rust:`i64` / :rust:`u64`
-* **Platform C types**
-  * :C:`int` / :C:`unsigned int` - :rust:`c_int` / :rust:`c_uint`
-  * :C:`char` - :rust:`c_char`
-  * :C:`void *` / :C:`const void *` - :rust:`*mut c_void` / :rust:`*const c_void`
-* C :C:`int` is not guaranteed to be Rust :rust:`i32` on every platform
+* Fixed-width integers
+  * :C:`int32_t` / :C:`uint32_t` |rightarrow| :rust:`i32` / :rust:`u32`
+  * :C:`int64_t` / :C:`uint64_t` |rightarrow| :rust:`i64` / :rust:`u64`
+* Platform C types
+  * :C:`int` / :C:`unsigned int` |rightarrow| :rust:`c_int` / :rust:`c_uint`
+  * :C:`char` |rightarrow| :rust:`c_char`
+  * :C:`void *` / :C:`const void *` |rightarrow| :rust:`*mut c_void` / :rust:`*const c_void`
+
+.. note::
+
+  C :C:`int` is not guaranteed to match Rust :rust:`i32` on every platform
 
 
 --------------------
 A Small C Function
 --------------------
 
-**The C header defines the source-level boundary contract**
+**C header defines the source-level function declaration**
 
 .. code:: c
 
@@ -87,11 +92,11 @@ A Small C Function
   }
 
 
--------------------------------------
-Declaring the Function in Rust 2024
--------------------------------------
+------------------------
+Declaring the Function
+------------------------
 
-**Rust 2024 requires** :rust:`unsafe extern` **blocks**
+**In the 2024 edition, external blocks must be unsafe**
 
 .. code:: rust
 
@@ -102,17 +107,17 @@ Declaring the Function in Rust 2024
       ) -> i64;
   }
 
-* The symbol name is :rust:`calculate_jump_cost`
-* The calling convention is C
-* The inputs are two 32-bit signed integers
-* The result is one 64-bit signed integer
+* Symbol name: :rust:`calculate_jump_cost`
+* C calling convention
+* Two 32-bit signed integer inputs
+* One 64-bit signed integer result
 
 
 ----------------------
 Calling the Function
 ----------------------
 
-**Calling the foreign function requires an unsafe context**
+**This foreign function is unsafe to call**
 
 .. code:: rust
 
@@ -126,9 +131,13 @@ Calling the Function
       println!("Jump cost: {cost}");
   }
 
-:command:`Jump cost: 160`
+.. code:: output
 
-* A useful :rust:`// SAFETY:` comment explains
+  Jump cost: 160
+
+* Functions declared in an external block are unsafe by default
+* A declaration may be marked :rust:`safe` when every valid call is safe
+* An idiomatic :rust:`// SAFETY:` comment explains
   * Why the declaration matches
   * Why the arguments are valid
   * Which lifetime or ownership rules apply
@@ -140,12 +149,12 @@ Linking Is a Separate Step
 
 **Linking is separate from declaring the function**
 
-* **Common approaches**
+* Common approaches
   * Build bundled C source with the Rust package
   * Link a system-installed static library
   * Link a system-installed dynamic library
   * Let a larger build system link Rust and native objects together
-* **Typical failures**
+* Typical failures
   * Symbol not found
   * Wrong library search path
   * Debug/release library mismatch
@@ -169,8 +178,10 @@ Configuring the Native Build
   [build-dependencies]
   cc = "1"
 
-* Add :rust:`cc` under :filename:`[build-dependencies]`
-* :filename:`build.rs` can then use it to compile bundled C source
+* :rust:`cc` is a build dependency
+  * Invokes the available C compiler
+* :filename:`build.rs` is the package build script
+  * Can use :rust:`cc` to compile bundled C source
 
 .. note::
 
@@ -199,9 +210,11 @@ Compiling the C Source
           .compile("rebel_math");
   }
 
+* :command:`cargo::rerun-if-changed` controls build-script reruns
+
 .. note::
 
-  :rust:`cc` compiles the bundled C source as part of the build
+  :rust:`cc` builds a static library and emits Cargo metadata to link it
 
 
 --------------------------
@@ -210,21 +223,9 @@ Raw Layer and Safe Layer
 
 **Keep raw declarations separate from the safe Rust interface**
 
-.. container:: columns
-
-  .. container:: column
-      :width: 64%
-
-    .. image:: comprehensive_rust_training/600_raw_safe_layers.svg
-       :width: 100%
-
-  .. container:: column
-      :width: 36%
-
-    * **Safe layer**
-      * Enforces Rust invariants
-    * **Raw layer**
-      * Mirrors the foreign header
+.. image:: rust_essentials/600_raw_safe_layers.svg
+   :width: 100%
+   :align: center
 
 
 ----------------
@@ -250,24 +251,26 @@ A Safe Wrapper
   }
 
 * Callers use :rust:`jump_cost(120, 4)` without an unsafe block
-* The wrapper owns the responsibility for the foreign preconditions
+* Wrapper must establish every precondition required by the foreign call
 
 
 -------------------
 Pointer Contracts
 -------------------
 
-**A pointer parameter needs a complete safety contract**
+* A pointer parameter needs a complete safety contract
+  * May it be null?
+  * Is it readable, writable, or both?
+  * How many elements are valid?
+  * What alignment is required?
+  * How long does the memory remain valid?
+  * May the foreign function retain the pointer?
+  * May another thread access the same memory?
+  * Who owns and frees the memory?
 
-* May it be null?
-* Is it readable, writable, or both?
-* How many elements are valid?
-* What alignment is required?
-* How long does the memory remain valid?
-* May the foreign function retain the pointer?
-* May another thread access the same memory?
-* Who owns and frees the memory?
-* :rust:`*const T` and :rust:`*mut T` encode none of these guarantees
+.. note::
+
+  :rust:`*const T` and :rust:`*mut T` encode none of these guarantees
 
 
 ---------------------
@@ -279,6 +282,9 @@ Pointer Plus Length
 .. code:: c
 
   // C declaration
+  #include <stddef.h>
+  #include <stdint.h>
+
   int32_t crew_total(const int32_t *values, size_t length);
 
 .. code:: rust
@@ -291,8 +297,12 @@ Pointer Plus Length
       ) -> i32;
   }
 
-* The raw boundary preserves pointer and length as separate values
+* Raw boundary preserves pointer and length as separate values
 * Validity still depends on the pair being interpreted together
+
+.. note::
+
+  This example maps C :C:`size_t` to Rust :rust:`usize` for the supported target ABI
 
 
 ------------------------------
@@ -304,18 +314,16 @@ Wrapping Pointer Plus Length
 .. code:: rust
 
   pub fn total(values: &[i32]) -> i32 {
-      // SAFETY: Both arguments come from
-      // the same live slice
-      // C only reads during the call
+      // SAFETY:
+      // - `values` is readable for `values.len()` elements
+      // - C reads only during the call
+      // - C does not retain the pointer
       unsafe { crew_total(values.as_ptr(), values.len()) }
   }
 
-* The slice keeps pointer and length consistent
-* The wrapper avoids mismatched raw arguments
-
-.. note::
-
-  Validate that C :C:`size_t` is ABI-compatible with Rust :rust:`usize`
+* Slice keeps pointer and length consistent
+* Wrapper avoids mismatched raw arguments
+* For an empty slice, C must not dereference :C:`values`
 
 
 --------------------------------
@@ -325,17 +333,13 @@ C Strings Are Not Rust Strings
 **C strings and Rust strings have different representations**
 
 * **C string**
-
-  * Pointer to bytes
-  * Terminated by a zero byte (:dfn:`NUL`)
+  * NUL-terminated sequence of bytes, usually accessed through a pointer
   * Not automatically UTF-8
   * Valid only while its backing storage exists
-
-* **Rust owned string**
-
-  * :rust:`String` is owned and growable
+* :rust:`String`
+  * Owned and growable
   * UTF-8
-  * Uses Rust-specific internal fields
+  * Rust-specific internal representation
 
 .. warning::
 
@@ -348,24 +352,39 @@ Receiving a Borrowed C String
 
 **Borrowed C strings still need an explicit pointer contract**
 
-* Non-null pointers refer to readable bytes in one allocation
-* A NUL terminator appears within :rust:`isize::MAX` bytes
-* The bytes remain unmodified for the duration of the call
+* Non-null pointer names a readable NUL-terminated range
+* Range stays within one allocation and below :rust:`isize::MAX` bytes
+* Range remains unmodified during the call
 
 .. code:: rust
 
   use std::ffi::{c_char, CStr};
+  use std::str::Utf8Error;
 
-  unsafe fn copy_callsign(ptr: *const c_char) -> Option<String> {
-      if ptr.is_null() { return None; }
+  unsafe fn copy_callsign(
+      ptr: *const c_char,
+  ) -> Result<Option<String>, Utf8Error> {
+      if ptr.is_null() {
+          return Ok(None);
+      }
 
       // SAFETY: Required by the caller contract
       let callsign = unsafe { CStr::from_ptr(ptr) };
-      callsign.to_str().ok().map(str::to_owned)
+      callsign
+          .to_str()
+          .map(|text| Some(text.to_owned()))
   }
 
+----------------------------
+Borrowed C String Outcomes
+----------------------------
+
+**Wrapper distinguishes null, invalid UTF-8, and valid text**
+
 * :rust:`CStr::from_ptr` interprets the NUL-terminated byte sequence
-* :rust:`to_str` checks that those bytes are valid UTF-8
+* Null pointer maps to :rust:`Ok(None)`
+* Invalid UTF-8 maps to :rust:`Err(Utf8Error)`
+* Valid UTF-8 is copied into an owned :rust:`String`
 
 
 ------------------------
@@ -382,26 +401,39 @@ Passing a CString to C
       fn log_pilot(name: *const c_char);
   }
 
-  let pilot = CString::new("Maverick")
-      .expect("literal contains no NUL");
+  fn main() {
+      let pilot = CString::new("Maverick")
+          .expect("literal contains no NUL");
 
-  // SAFETY: `pilot` lives through the call and C only reads
-  unsafe { log_pilot(pilot.as_ptr()) }
-
-* **Ownership** - :rust:`as_ptr()` borrows from :rust:`pilot`
-* **Validity** - read-only while :rust:`pilot` remains alive
-* **Retention** - foreign code must not retain the pointer
+      // SAFETY: `pilot` lives through the call
+      // and C reads without retaining the pointer
+      unsafe { log_pilot(pilot.as_ptr()) };
+  }
 
 .. warning::
 
   :rust:`CString::new` rejects interior NUL bytes
 
 
+----------------------------
+CString Borrowing Contract
+----------------------------
+
+**Borrowed pointer remains valid while the** :rust:`CString` **is alive**
+
+* Ownership
+  * :rust:`as_ptr()` borrows from :rust:`pilot`
+* Validity
+  * Pointer remains valid and read-only while :rust:`pilot` is alive
+* Retention
+  * Foreign code must not retain the pointer
+
+
 -------------------------------
 Struct Layout With #[repr(C)]
 -------------------------------
 
-**Use** :rust:`#[repr(C)]` **for structs that cross a C boundary**
+**Use** :rust:`#[repr(C)]` **when a struct's layout is part of the C ABI**
 
 .. code:: rust
 
@@ -414,8 +446,10 @@ Struct Layout With #[repr(C)]
       pub reserved: [u8; 2],
   }
 
-* Rust's default struct layout is not a stable C ABI contract
-* :rust:`#[repr(C)]` defines C-compatible field ordering and layout rules
+* Default struct layout is not a stable C ABI contract
+* :rust:`repr` means representation
+  * :rust:`#[repr(C)]` defines C-compatible field ordering and layout rules
+* Each field must also have an FFI-compatible representation
 * :rust:`#[repr(C)]` does not validate field values or ownership
 
 
@@ -453,9 +487,10 @@ Match the C Definition
 Checking Layout Assumptions
 -----------------------------
 
-**Verify layout on every supported platform**
+**Verify Rust and C layout agreement on every supported platform**
 
 * :rust:`size_of::<DroidStatus>()` and :rust:`align_of::<DroidStatus>()`
+* :rust:`std::mem::offset_of!(DroidStatus, field)` for field offsets
 * C :C:`_Static_assert` checks
 * Generated layout tests in the build or test pipeline
 
@@ -466,9 +501,14 @@ Types to Keep Behind the Wrapper
 
 **Keep Rust-specific representations behind the wrapper**
 
-* **Rust-managed storage** - :rust:`String`, :rust:`Vec<T>`, slices, and references
-* **Dynamic behavior** - trait objects and closures
-* **Rust-specific composition** - tuples, enum variants with fields, and generics
+* **Rust-owned containers**
+  * :rust:`String` and :rust:`Vec<T>`
+* **Borrowed Rust views**
+  * Slices and references
+* **Dynamic behavior**
+  * Trait objects and closures
+* **Rust-specific composition**
+  * Tuples, enum variants with fields, and generics
 * **Common boundary representations**
   * Scalars and integer status codes
   * Raw pointers and pointer-plus-length pairs
@@ -476,14 +516,21 @@ Types to Keep Behind the Wrapper
   * Opaque handles
 
 
-----------------------------------
-Foreign Enums and Unknown Values
-----------------------------------
+---------------------------------------
+Foreign Enum-Like Values and Unknowns
+---------------------------------------
 
-**Keep the raw boundary integer-based**
+**Use the integer type defined by the C API**
 
-* C APIs may pass integer values added by a newer library
-* A Rust enum cannot safely represent an unknown discriminant
+.. code:: c
+
+  #include <stdint.h>
+
+  typedef uint32_t DroidModeRaw;
+
+  #define DROID_IDLE    ((DroidModeRaw)0)
+  #define DROID_ACTIVE  ((DroidModeRaw)1)
+  #define DROID_DAMAGED ((DroidModeRaw)2)
 
 .. code:: rust
 
@@ -491,8 +538,8 @@ Foreign Enums and Unknown Values
   pub const DROID_ACTIVE: u32 = 1;
   pub const DROID_DAMAGED: u32 = 2;
 
+* C API explicitly defines these values as 32-bit unsigned integers
 * Unknown integers remain valid raw values
-* The safe layer can map them to :rust:`Unknown(...)`
 
 
 ---------------------------
@@ -522,7 +569,7 @@ Convert in the Safe Layer
 
 .. note::
 
-  :rust:`Unknown` preserves forward compatibility
+  :rust:`Unknown` preserves raw values that the safe layer does not yet recognize
 
 
 -----------------
@@ -539,8 +586,7 @@ C Callback Type
       void *context
   );
 
-* The context pointer carries state associated with the callback
-* The function pointer omits lifetime and threading rules
+* Context pointer carries state associated with the callback
 
 
 --------------------
@@ -559,6 +605,7 @@ Rust Callback Type
       context: *mut c_void,
   );
 
+* :rust:`unsafe` means callers must uphold the callback's pointer contracts
 * A nullable callback can be represented as :rust:`Option<LogFn>`
 * For FFI-compatible function pointers, :rust:`None` represents a null pointer
 
@@ -569,14 +616,16 @@ Callback Contracts
 
 **Callback types do not encode the full callback contract**
 
-* **Lifetime**
-  * :rust:`message` / :rust:`context` validity and callback storage
+* **Pointer validity**
+  * Define nullability and access rules for :rust:`message` and :rust:`context`
+* **Validity duration**
+  * Define how long :rust:`message` and :rust:`context` remain valid
 * **State and ownership**
-  * State behind :rust:`context` and its owner
+  * Define who owns state behind :rust:`context`
 * **Release point**
-  * When callback state may be destroyed
+  * Define when callback state may be destroyed
 * **Execution model**
-  * Calling threads, overlap, and reentrancy
+  * Define calling threads, concurrency, and reentrancy
 
 
 ---------------------------------
@@ -585,12 +634,16 @@ Ownership Must Cross Explicitly
 
 **Every pointer contract must define ownership and when it changes**
 
-* **Borrowed** - valid for the call or until explicit unregister
-* **Transferred to the callee** - the callee owns and destroys it
+* **Borrowed**
+  * Valid for the call or until explicit unregister
+* **Transferred to the callee**
+  * Callee owns and destroys it
 * **Returned to the caller**
-  * The caller owns it and uses the matching destructor
-* **Shared** - define reference-count and synchronization rules
-* **Borrow end** - every borrow needs an explicit end
+  * Caller owns it and uses the matching destructor
+* **Shared**
+  * Define validity duration, ownership, and synchronization rules
+* **Borrow end**
+  * Define when the borrow ends
 
 .. warning::
 
@@ -606,7 +659,7 @@ Opaque Handles
 .. code:: c
 
   // C
-  typedef void *HolocronHandle;
+  typedef struct Holocron *HolocronHandle;
 
   HolocronHandle holocron_open(void);
   void holocron_close(HolocronHandle handle);
@@ -623,8 +676,9 @@ Opaque Handles
       }
   }
 
-* Rust does not need to know the foreign instance's internal layout
-* Open and close functions define the lifetime boundary explicitly
+* C callers see a distinct handle type without the struct definition
+* Rust represents the opaque pointee as :rust:`c_void` in this raw layer
+* Open and close functions define the resource lifetime explicitly
 
 
 --------------------
@@ -668,7 +722,7 @@ Releasing a Handle
       }
   }
 
-* The wrapper owns each successfully acquired handle
+* Wrapper owns each successfully acquired handle
 * Moving :rust:`Holocron` transfers ownership without duplicating the handle
 
 
@@ -676,21 +730,46 @@ Releasing a Handle
 C Status Codes
 ----------------
 
-**C APIs often combine a status code with an output pointer**
+**C APIs often return status and write results through output pointers**
 
 .. code:: c
 
-  int portal_distance(
-      const Portal *a,
-      const Portal *b,
+  #include <stdint.h>
+
+  int holocron_distance(
+      HolocronHandle a,
+      HolocronHandle b,
       uint32_t *out_distance
   );
 
 * :C:`0` means success
-* :C:`1` means a null argument was rejected
+* :C:`1` means no route is available
 * :C:`2` means the result overflowed
-* Other values may appear if the library evolves
-* The raw layer preserves both the integer status and the output value
+* Other status values may appear if the library evolves
+
+
+--------------------------------
+Mirroring Status Codes in Rust
+--------------------------------
+
+**Raw layer preserves the foreign status-code contract**
+
+.. code:: rust
+
+  mod raw {
+      use std::ffi::{c_int, c_void};
+
+      unsafe extern "C" {
+          pub fn holocron_distance(
+              a: *mut c_void,
+              b: *mut c_void,
+              out_distance: *mut u32,
+          ) -> c_int;
+      }
+  }
+
+* Raw layer preserves the status code and output pointer
+* Safe layer interprets them after the call
 
 
 -------------------
@@ -703,44 +782,49 @@ Calling the C API
 
   let mut distance = 0;
 
-  // SAFETY: `Portal` keeps both handles valid
-  // and `distance` is writable output storage
+  // SAFETY:
+  // - `a` and `b` contain live `Holocron` handles
+  // - `distance` is writable for one `u32`
+  // - C does not retain the handles or output pointer
   let status = unsafe {
-      raw::portal_distance(
-          a.as_ptr(),
-          b.as_ptr(),
+      raw::holocron_distance(
+          a.0.as_ptr(),
+          b.0.as_ptr(),
           &mut distance,
       )
   };
 
-* The call produces a status code and an output value
+* :rust:`a` and :rust:`b` are borrowed :rust:`Holocron` values
 * Rust retains ownership of the output storage
+* :rust:`distance` is used only when the status reports success
 
 
 ------------------------------
 Mapping the Status to Result
 ------------------------------
 
-**Translate every foreign status code into a valid Rust result**
+**Map known status codes and preserve unknown values**
 
 .. code:: rust
 
+  use std::ffi::c_int;
+
   #[derive(Debug, PartialEq, Eq)]
-  pub enum PortalError {
-      NullArgument,
+  pub enum HolocronError {
+      NoRoute,
       Overflow,
-      Unknown(i32),
+      Unknown(c_int),
   }
 
   match status {
       0 => Ok(distance),
-      1 => Err(PortalError::NullArgument),
-      2 => Err(PortalError::Overflow),
-      other => Err(PortalError::Unknown(other)),
+      1 => Err(HolocronError::NoRoute),
+      2 => Err(HolocronError::Overflow),
+      other => Err(HolocronError::Unknown(other)),
   }
 
-* The public API exposes :rust:`Result`, not foreign status-code conventions
-* The wrapper uses the output value only on successful status
+* Public API exposes :rust:`Result`, not foreign status-code conventions
+* Wrapper uses the output value only on successful status
 
 
 ---------------------------------
@@ -749,15 +833,18 @@ Do Not Unwind Across extern "C"
 
 **A normal** :rust:`extern "C"` **boundary is non-unwinding**
 
-* **Rust panic** - reaching the boundary aborts the process
+* **Rust panic**
+  * Attempting to unwind through the boundary aborts the process
 * **Foreign exception**
   * Unwinding into Rust through this ABI is undefined behavior
-* **Expected failure** - cross the boundary as explicit data
-* **Containment rule** - contain failures on their originating side
+* **Expected failure**
+  * Cross the boundary as explicit data
+* **Containment rule**
+  * Contain failures on their originating side
 
 .. warning::
 
-  Panic and exception policy is part of the ABI contract
+  Panic and exception policy is part of the boundary contract
 
 
 ------------------------
@@ -766,9 +853,12 @@ Threads and Reentrancy
 
 **Callback execution may not be single-threaded or one-at-a-time**
 
-* **From another thread** - enforce the library's thread-affinity rules
-* **Concurrently** - synchronize shared callback state
-* **Reentrantly** - do not assume only one callback is active
+* **From another thread**
+  * Ensure callback state is valid to access from that thread
+* **Concurrently**
+  * Synchronize shared callback state
+* **Reentrantly**
+  * Do not assume only one callback is active
 
 .. note::
 
