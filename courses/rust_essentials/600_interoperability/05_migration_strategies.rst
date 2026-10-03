@@ -23,7 +23,7 @@ Four Common Adoption Paths
 Incremental Adoption
 ----------------------
 
-**Incremental adoption works best around a narrow boundary**
+* Incremental adoption works best around a narrow boundary
 
 #. Select a component with few dependencies and a narrow interface
 #. Capture current behavior with tests
@@ -139,5 +139,4 @@ Review Behavior and Integration
   * Calling threads, concurrency, and reentrancy
 * Static/dynamic linking requirements
 * Compatibility and regression tests
-* Cross-check
-  * Review both language declarations side by side
+* Review both language declarations side by side
