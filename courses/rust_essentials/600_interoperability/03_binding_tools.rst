@@ -3,9 +3,9 @@ Binding Tools
 ===============
 
 
--------------------
-What bindgen Does
--------------------
+---------------------
+What "bindgen" Does
+---------------------
 
 :rust:`bindgen` **generates Rust declarations from C or C++ headers**
 
@@ -48,9 +48,9 @@ Managing Generated Bindings
 * Keep generated code out of the ergonomic public API
 
 
---------------------------
-What bindgen Does Not Do
---------------------------
+----------------------------
+What "bindgen" Does Not Do
+----------------------------
 
 :rust:`bindgen` **generates declarations, not higher-level guarantees**
 

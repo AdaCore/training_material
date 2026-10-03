@@ -67,7 +67,7 @@ C-Compatible Scalar Types
 A Small C Function
 --------------------
 
-**C header defines the source-level function declaration**
+**C header defines the source-level boundary contract**
 
 .. code:: c
 
@@ -96,7 +96,7 @@ A Small C Function
 Declaring the Function
 ------------------------
 
-**In the 2024 edition, external blocks must be unsafe**
+**Declare foreign functions in an unsafe external block**
 
 .. code:: rust
 
@@ -267,10 +267,7 @@ Pointer Contracts
   * May the foreign function retain the pointer?
   * May another thread access the same memory?
   * Who owns and frees the memory?
-
-.. note::
-
-  :rust:`*const T` and :rust:`*mut T` encode none of these guarantees
+* :rust:`*const T` and :rust:`*mut T` encode none of these guarantees
 
 
 ---------------------
