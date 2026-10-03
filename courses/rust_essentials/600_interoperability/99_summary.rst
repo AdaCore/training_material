@@ -10,9 +10,9 @@ Recap: The Boundary Contract
 
 * Calling convention and symbol names
 * Data representation, layout, and validity
-* Pointer lifetime, access, and ownership
+* Pointer validity, access, and ownership
 * Error, panic, and exception behavior
-* Callback thread, concurrency, and reentrancy rules
+* Callback registration, threads, concurrency, and reentrancy rules
 * Linking, runtime, and compatibility requirements
 
 
@@ -23,19 +23,20 @@ What We Covered
 * **C Foreign Function Interface**
 
   * :rust:`extern "C"`, exact boundary types, linking, and raw versus safe layers
-
-* **Strings, Handles, and Errors**
-
-  * Explicit ownership, matching destructors, and typed :rust:`Result`
+  * Strings, opaque handles, status codes, ownership, and callbacks
 
 * **Exporting Rust**
 
   * C ABI exports, caller contracts, allocator pairing, and ABI evolution
 
-* **Binding and C++**
+* **Binding Tools**
 
-  * :rust:`bindgen` for raw declarations and a C facade for portable C++ interop
+  * :rust:`bindgen` for raw declarations behind a reviewed safe wrapper
 
-* **Migration Strategies**
+* **C++ Interoperability**
+
+  * C-compatible facades and when to consider C++ bridge tools
+
+* **Adoption and Migration Strategies**
 
   * Narrow boundaries, incremental adoption, and boundary redesign

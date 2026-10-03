@@ -33,7 +33,7 @@
   <rect x="675" y="272" width="285" height="82" rx="14" fill="#E8F4EA" stroke="#5E9F68" stroke-width="2.5" filter="url(#shadow)"/>
   <text x="817.5" y="322" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="600" fill="#5E9F68">rust_value_free()</text>
   <line x1="305" y1="313" x2="675" y2="313" stroke="#5E9F68" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-green)"/>
-  <rect x="415" y="284" width="150" height="44" rx="22.0" fill="#FFFFFF" stroke="#5E9F68" stroke-width="2"/><text x="490.0" y="312.12" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="600" fill="#5E9F68">Rust-owned</text>
+  <rect x="415" y="284" width="150" height="44" rx="22.0" fill="#FFFFFF" stroke="#5E9F68" stroke-width="2"/><text x="490.0" y="312.12" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="600" fill="#5E9F68">Rust-allocated</text>
   <text x="50" y="435" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="700" fill="#5E9F68">Better contract: caller-owned buffer</text>
   <rect x="50" y="462" width="250" height="82" rx="14" fill="#D7E8F2" stroke="#17345F" stroke-width="2.5" filter="url(#shadow)"/>
   <text x="175" y="512" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="600" fill="#1C3553">C supplies buffer</text>
@@ -43,5 +43,4 @@
   <text x="840" y="512" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="600" fill="#1C3553">C retains ownership</text>
   <line x1="300" y1="503" x2="410" y2="503" stroke="#18A9C7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
   <line x1="630" y1="503" x2="720" y2="503" stroke="#18A9C7" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
-  <text x="505" y="598" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="600" fill="#1C3553">Allocation and destruction form one contract</text>
-</svg>
+  </svg>
