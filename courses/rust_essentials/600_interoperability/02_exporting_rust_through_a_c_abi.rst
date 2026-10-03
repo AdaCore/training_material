@@ -30,7 +30,7 @@ Library Crate Types
 Exporting a Simple Function
 -----------------------------
 
-**In Rust 2024,** :rust:`no_mangle` **is an unsafe attribute**
+**Use** :rust:`#[unsafe(no_mangle)]` **for exported symbol names**
 
 .. code:: rust
 
