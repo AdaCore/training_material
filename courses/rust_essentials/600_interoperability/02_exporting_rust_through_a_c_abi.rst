@@ -12,37 +12,32 @@ Library Crate Types
 .. code:: toml
 
   [lib]
-  crate-type = ["staticlib"]
+  crate-type = ["staticlib"]  # or "cdylib"
 
-* **Static system library**
-
-  * :rust:`staticlib` for a non-Rust executable
-
-* **Dynamic system library**
-
-  * :rust:`cdylib` loaded by another language
-
-* **Rust compiler library**
-
+* Static system library
+  * :rust:`staticlib` for linking into a non-Rust program
+* Dynamic system library
+  * :rust:`cdylib` for dynamic linking from non-Rust code
+* Rust library
   * :rust:`rlib` is not a general foreign-language boundary
 
 .. note::
 
-  The foreign linker may also need Rust platform libraries
+  A :rust:`staticlib` may require additional platform libraries at final link time
 
 
 -----------------------------
 Exporting a Simple Function
 -----------------------------
 
-**Rust 2024 writes** :rust:`no_mangle` **as an unsafe attribute**
+**In Rust 2024,** :rust:`no_mangle` **is an unsafe attribute**
 
 .. code:: rust
 
   use std::ffi::c_int;
 
-  // SAFETY: This crate defines the only exported symbol named
-  // `hyperdrive_check` in the final linked program
+  // SAFETY: `hyperdrive_check` does not collide
+  // with any other linked symbol
   #[unsafe(no_mangle)]
   pub extern "C" fn hyperdrive_check(
       fuel: c_int,
@@ -55,8 +50,8 @@ Exporting a Simple Function
       if jumps <= fuel / 10 { 1 } else { 0 }
   }
 
-* Scalar arguments have no caller safety preconditions
-* Invalid values are returned explicitly
+* Calling this function has no safety preconditions on the scalar values
+* Invalid inputs are reported with an explicit return value
 
 
 -------------------------
@@ -70,16 +65,27 @@ C Header for the Export
   #ifndef HYPERDRIVE_H
   #define HYPERDRIVE_H
 
+  #ifdef __cplusplus
+  extern "C" {
+  #endif
+
   int hyperdrive_check(int fuel, int jumps);
 
+  #ifdef __cplusplus
+  }
   #endif
+
+  #endif
+
+* Rust :rust:`c_int` matches C :C:`int`
+* C++ guards preserve C linkage when the header is included from C++
 
 
 --------------------------------------
 Calling the Exported Function from C
 --------------------------------------
 
-**The C caller uses the generated or reviewed header**
+**The C caller includes the matching header**
 
 .. code:: c
 
@@ -92,47 +98,58 @@ Calling the Exported Function from C
       return 0;
   }
 
-:command:`Hyperdrive ready: 1`
+.. code:: output
+
+  Hyperdrive ready: 1
 
 
 --------------------------
 Buffer Boundary Contract
 --------------------------
 
-**Unsafe exported buffers need an explicit caller contract**
+**The exported buffer function needs an explicit caller contract**
 
-* **Readable input** - :rust:`values` has :rust:`length` readable :rust:`i32` values
-  * Required only when :rust:`length > 0`
-* **Valid range** - aligned, one allocation, and non-wrapping
-* **Range bound** - at most :rust:`isize::MAX` bytes and unmodified
-* **Output** - :rust:`out_total` is aligned, writable, and non-overlapping
-* **Runtime checks** - only null pointers are rejected
+.. code:: c
+
+  #include <stddef.h>
+  #include <stdint.h>
+
+  int32_t crew_total_checked(
+      const int32_t *values,
+      size_t length,
+      int32_t *out_total
+  );
+
+* Readable input
+  * :rust:`values` provides :rust:`length` readable :rust:`i32` values when :rust:`length > 0`
+* Valid range
+  * Input range is aligned, within one allocation, and non-wrapping
+* Range bound
+  * At most :rust:`isize::MAX` bytes and unmodified during the call
+* Output
+  * :rust:`out_total` points to aligned writable :rust:`i32` storage
+  * Does not overlap the input range
+  * Written only on success
+* Pointer checks
+  * Only null-pointer cases are rejected at runtime
 
 
-----------------------------
-Validating Buffer Pointers
-----------------------------
+------------------------
+Checking Null Pointers
+------------------------
 
-**Reject invalid null-pointer cases before creating Rust references**
+**Rust export is unsafe because callers must uphold the buffer contract**
 
 .. code:: rust
 
-  #[unsafe(no_mangle)]
-  pub unsafe extern "C" fn crew_total(
-      values: *const i32,
-      length: usize,
-      out_total: *mut i32,
-  ) -> i32 {
-      if out_total.is_null()
-          || (length > 0 && values.is_null())
-      {
-          return 1;
-      }
-
-      // Continue with the validated pointers
-      todo!()
+  // Inside `crew_total_checked`
+  if out_total.is_null()
+      || (length > 0 && values.is_null())
+  {
+      return 1;
   }
 
+* :rust:`unsafe` makes the documented pointer contract a caller obligation
 * :rust:`out_total` must always be non-null
 * :rust:`values` may be null only when :rust:`length == 0`
 
@@ -141,34 +158,37 @@ Validating Buffer Pointers
 Creating the Rust Slice
 -------------------------
 
-**After validation, the raw input can be viewed as a Rust slice**
+**Continue inside** :rust:`crew_total_checked` **after the null checks**
 
 .. code:: rust
-
-  use std::slice;
 
   let crew: &[i32] = if length == 0 {
       &[]
   } else {
       // SAFETY: Required by the documented buffer contract
-      unsafe { slice::from_raw_parts(values, length) }
+      unsafe { std::slice::from_raw_parts(values, length) }
   };
 
-  let total = crew.iter().copied().try_fold(0_i32, i32::checked_add);
-  let Some(total) = total else { return 2; };
+  let mut total = 0_i32;
+  for value in crew {
+      let Some(next) = total.checked_add(*value) else {
+          return 2;
+      };
+      total = next;
+  }
 
   // SAFETY: Output is writable and does not overlap the input
   unsafe { *out_total = total };
   0
 
 
---------------------------------
-Use the Same Allocator to Free
---------------------------------
+----------------------------------
+Pair Allocation and Deallocation
+----------------------------------
 
-**Memory should be released by the runtime that allocated it**
+**Allocation and deallocation must follow one ownership contract**
 
-.. image:: comprehensive_rust_training/600_allocator_ownership.svg
+.. image:: rust_essentials/600_allocator_ownership.svg
 
 .. note::
 
@@ -185,8 +205,8 @@ Returning an Owned C String
 
   use std::ffi::{c_char, CString};
 
-  // SAFETY: This crate defines the only exported symbol named
-  // `droid_name_new` in the final linked program
+  // SAFETY: `droid_name_new` does not collide
+  // with any other linked symbol
   #[unsafe(no_mangle)]
   pub extern "C" fn droid_name_new() -> *mut c_char {
       CString::new("R2-D2")
@@ -194,12 +214,14 @@ Returning an Owned C String
           .into_raw()
   }
 
-* **Caller ownership** - the returned pointer belongs to foreign code
-* **Release path** - return it through :rust:`droid_name_free`
+* Caller ownership
+  * Returned pointer belongs to foreign code
+* Release path
+  * Return it through :rust:`droid_name_free`
 
 .. warning::
 
-  Do not call C :C:`free` on a pointer returned by :rust:`CString::into_raw`
+  Release the pointer only through :rust:`droid_name_free`
 
 
 ------------------------------
@@ -208,13 +230,15 @@ Freeing an Exported C String
 
 :rust:`CString::from_raw` **retakes ownership from the caller**
 
-* **Caller contract**
+* Caller contract
   * :rust:`ptr` is null or a live pointer returned by :rust:`droid_name_new`
   * Foreign code has not changed the string length
   * No other pointer accesses the allocation during this call
 
 .. code:: rust
 
+  // SAFETY: `droid_name_free` does not collide
+  // with any other linked symbol
   #[unsafe(no_mangle)]
   pub unsafe extern "C" fn droid_name_free(ptr: *mut c_char) {
       if ptr.is_null() { return; }
@@ -225,14 +249,14 @@ Freeing an Exported C String
 
 * :rust:`from_raw` reconstructs the original Rust-owned :rust:`CString`
 * Dropping it uses the matching Rust allocator
-* **Ownership rule** - never reuse or free the pointer twice
+* A non-null :rust:`ptr` is no longer valid after the call
 
 
-------------------------------
-What Becomes Part of the ABI
-------------------------------
+-----------------------------------
+What Becomes an External Contract
+-----------------------------------
 
-**Shipped ABI details become external contracts**
+**Shipped boundary details become compatibility contracts**
 
 * Exported symbol names
 * Function signatures
@@ -243,7 +267,7 @@ What Becomes Part of the ABI
 
 .. note::
 
-  ABI changes can break foreign callers even when Rust still builds
+  Changing them can break foreign callers without any Rust compiler error
 
 
 ------------------
@@ -252,9 +276,13 @@ Evolving a C ABI
 
 **Evolve a C ABI deliberately**
 
-* Version exported function names when signatures change
+* Add a new exported symbol when a function signature changes
 * Include :rust:`abi_version` and :rust:`struct_size` fields
-* Reserve fields and define their required initialization
+* Reserve fields for future expansion
+  * Define the values callers must use to initialize them
 * Add capability-query functions for optional behavior
 * Test compatibility against old headers and libraries
-* Cargo semantic versioning alone does not protect non-Cargo callers
+
+.. note::
+
+  Cargo semantic versioning alone does not protect non-Cargo callers
