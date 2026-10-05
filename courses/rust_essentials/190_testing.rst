@@ -37,5 +37,6 @@ Testing
 .. include:: 190_testing/03-enhancing_tests.rst
 .. include:: 190_testing/04-test_execution.rst
 .. include:: 190_testing/05-integration_tests.rst
+.. include:: 190_testing/06-documentation_tests.rst
 .. include:: 190_testing/88-testing.lab.rst
 .. include:: 190_testing/99-summary.rst

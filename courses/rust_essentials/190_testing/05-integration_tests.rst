@@ -100,3 +100,43 @@ Running Integration Tests
 .. note:: 
 
   *Doctests* covered later
+
+---------------------------------
+Submodules in Integration Tests
+---------------------------------
+
+* What about common functions for multiple tests?
+
+  * Things like setting up global data or releaseing a resource
+
+* Test helpers need to be hidden from testing mechanism
+
+  * :command:`cargo test` tests all Rust files in :filename:`tests` folder
+
+* Solution is to create a subfolder in :filename:`tests` 
+
+  * Using old style naming conventions
+  * e.g. :filename:`common/mod.rs`
+
+    * Creates module :rust:`common`
+    * Tests can import :rust:`common` and call its functions
+
+-----------------------
+Testing Binary Crates
+-----------------------
+
+* :command:`cargo test` cannot test :filename:`main.rs`
+
+  * It's already an application
+
+* Solution is to have main functionality in a library crate
+
+  * "Main" crate is now testable
+  * :rust:`main` imports this "main" crate
+
+    * :rust:`main` now is just a simple call
+
+.. tip::
+
+  This concept of splitting main application from functionality
+  works well for other languages too!
