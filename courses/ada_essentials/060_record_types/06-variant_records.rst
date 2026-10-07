@@ -8,11 +8,12 @@ Discriminated Record Types
 
 * A :dfn:`discriminated record` uses a special field (:dfn:`discriminant`) to specify information about the record
 
-.. code:: ada
-
-  type Discriminated_Record (Discriminant : Natural) is record
-     Text : String (1..Discriminant);
-  end record;
+  .. code:: ada
+    :font-size: footnotesize
+	
+    type Discriminated_Record (Discriminant : Natural) is record
+       Text : String (1..Discriminant);
+    end record;
 
   * All objects of :ada:`Discriminated_Record` are of the same type, regardless
     of the value of :ada:`Discriminant`
@@ -122,7 +123,7 @@ Constrained Record Example
 
       raised CONSTRAINT_ERROR : discriminant check failed
 
-* :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
+  * :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
 
 ----------------------
 Unconstrained Record
