@@ -11,9 +11,9 @@ Discriminated Record Types
   .. code:: ada
     :font-size: footnotesize
 
-     type Discriminated_Record (Discriminant : Natural) is record
-        Text : String (1..Discriminant);
-     end record;
+  type Discriminated_Record (Discriminant : Natural) is record
+     Text : String (1..Discriminant);
+  end record;
 
   * All objects of :ada:`Discriminated_Record` are of the same type, regardless
     of the value of :ada:`Discriminant`
@@ -21,7 +21,7 @@ Discriminated Record Types
 * Discriminant is treated as any other component
 
   * But is constant in a *constrained* variant record
-  * Discriminant is a discrete type
+  * Discriminant is a *discrete* or :ada:`access` type
 
 * Aggregate assignment is allowed
 
@@ -32,13 +32,16 @@ Variant Record Types
 * A :dfn:`variant record` is a special case of discriminated record
 
   * Used in a :ada:`case` block to control visibility of components
+  
   * Discriminant can be used to specify the :dfn:`variant part`
+  
     * A discriminant controlling a variant part must have a discrete type
+	
   * Components listed will only be visible if choice matches discriminant
+  
   * Component names need to be unique (even across discriminants)
 
 .. code:: Ada
-   :number-lines: 2
 
   type Person_Group is (Student, Faculty);
   type Person (Group : Person_Group) is
@@ -57,12 +60,6 @@ Variant Record Types
 .. note::
 
    :ada:`case` block must be **last** part of definition - so only **one** per record
-
-* Kind of :dfn:`storage overlay`
-
-   + Similar to :C:`union` in C
-   + But preserves **type checking**
-   + And object size **is related to** discriminant
 
 ----------------------------
 Constrained Variant Record
@@ -183,7 +180,15 @@ Unconstrained Variant Record Example
         Sam := Pat;
       end if;
 
+--------------------------
+Union vs. Variant Record
+--------------------------
 
+* Kind of :dfn:`storage overlay`
+
+   + Similar to :C:`union` in C
+   + But preserves **type checking**
+   + And object size **is related to** discriminant
 
 ------
 Quiz
