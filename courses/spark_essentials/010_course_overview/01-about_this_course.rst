@@ -8,8 +8,8 @@ Your Trainer
 
 * Experience in software development
 
-    - Languages
-    - Methodology
+  - Languages
+  - Methodology
 
 * Experience teaching this class
 
