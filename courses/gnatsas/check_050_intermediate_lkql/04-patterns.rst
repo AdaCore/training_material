@@ -78,7 +78,7 @@ Node Patterns
 
   .. code:: lkql
 
-    select Identifier(p_name_matches(id): true))
+    select Identifier(p_name_matches(id): true)
 
   *Select identifiers whose name match* :lkql:`id`
 

@@ -92,5 +92,6 @@ Function "Pointers"
 
     fun safe_div(a, b) = {
         # fn is null if b == 0, otherwise references "div"
-        val fn = if b == 0 then null else div
+        val fn = if b == 0 then null else div;
         fn? (a, b) # Return () if b = 0, else a/b
+    }

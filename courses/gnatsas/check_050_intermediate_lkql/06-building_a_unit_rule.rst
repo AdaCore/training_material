@@ -34,7 +34,7 @@ Example of a Simple Unit Rule
 
 .. note::
 
-  This rule already exists in :toolname:`GNATcheck` as :lkql:`maximum_subprogram_lines`
+  This rule already exists in :toolname:`GNATcheck` as :lkql:`maximum_expression_complexity`
 
 ----------------------------
 Actual Rule Implementation
@@ -116,7 +116,7 @@ Examining the Rule - Decorator
 .. code:: lkql
   :font-size: small
 
-  @unit_check(help="maximum number of lines in a subprogram",
+  @unit_check(help="maximum complexity of an expression",
               category="Style", subcategory="Program Structure")
 
 * **help** - text used for getting help on a rule

@@ -58,7 +58,7 @@ Complex Literals
   .. code:: lkql
 
     val object = {lower: "Hello", UPPER: "World"}
-    print (object.lower & " " & object.upper}
+    print (object.lower & " " & object.upper)
 
   * Field names always treated as lowercase
 
@@ -171,4 +171,24 @@ List Comprehension
 
 .. note::
 
-  This is also referred to as an **unwrap** expression
+  :lkql:`?` is also called *safe field access*
+
+-------------------
+Unwrap Expression
+-------------------
+
+* Safe field access returns a pointer
+
+  * :lkql:`null` or pointing to an object
+
+* To dereferce the pointer, use the *unwrap operator* :lkql:`!!`
+
+  * Typically used at the end of a chain of safe field accesses
+
+  .. code:: lkql
+
+    object_decl?.p_type_expr()?.p_designated_type_decl()!!
+
+.. warning::
+
+  If the chain returns a null pointer, :lkql:`!!` will raise an error

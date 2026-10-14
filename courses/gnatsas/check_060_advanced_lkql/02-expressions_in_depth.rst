@@ -13,7 +13,7 @@ Fields and Properties
   .. code:: lkql
 
     val status = {msg: "Hello", flag: true}
-    print (stauts.msg)
+    print (status.msg)
 
 * Objects returned from the LKQL API have both fields and properties
 
