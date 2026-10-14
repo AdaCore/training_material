@@ -17,11 +17,12 @@ Discriminated Record Types
 
   * All objects of :ada:`Discriminated_Record` are of the same type, regardless
     of the value of :ada:`Discriminant`
-
-* Discriminant is treated as any other component
-
-  * But is constant in a *constrained* variant record
-  * Discriminant is a *discrete* or :ada:`access` type
+  
+* Discriminant is used syntactically like a component .. 
+  
+  *  .. semantically has special rules and not *just* another component
+  
+* Discriminant must be either a discrete type or :ada:`access`
 
 * Aggregate assignment is allowed
 
@@ -30,14 +31,14 @@ Variant Record Types
 ----------------------
 
 * A :dfn:`variant record` is a special case of discriminated record
+  
+* Discriminant can be used to specify the :dfn:`variant part`
 
-  * Used in a :ada:`case` block to control visibility of components
+  * Uses in a :ada:`case` block to control visibility of components
   
-  * Discriminant can be used to specify the :dfn:`variant part`
-  
-    * A discriminant controlling a variant part must have a discrete type
+  * A discriminant controlling a variant part must have a discrete type
 	
-  * Components listed will only be visible if choice matches discriminant
+* Components listed will only be visible if choice matches discriminant
   
   * Component names need to be unique (even across discriminants)
 
@@ -46,10 +47,10 @@ Variant Record Types
   type Person_Group is (Student, Faculty);
   type Person (Group : Person_Group) is
   record
-     --  Components common across all discriminants
-     --  (must appear before variant part)
+     -- Components common across all discriminants
+     -- (must appear before variant part)
      Age : Positive;
-     case Group is --  Variant part of record
+     case Group is -- Variant part of record
         when Student => -- 1st variant
            Gpa  : Float range 0.0 .. 4.0;
         when Faculty => -- 2nd variant
@@ -59,57 +60,61 @@ Variant Record Types
 
 .. note::
 
-   :ada:`case` block must be **last** part of definition - so only **one** per record
+  :ada:`case` block must be **last** part of definition - so only **one** per record
 
 ----------------------------
 Constrained Variant Record
 ----------------------------
 
-* A :dfn:`constrained` record object has fixed discriminant values
+.. code:: Ada
 
-  * :ada:`Pat` is explicitly constrained by :ada:`Person (Student)`
-  * :ada:`Sam` is constrained by its initial value because
-    :ada:`Person` has no discriminant default
+  type Person_Group is (Student, Faculty);
+  type Person (Group : Person_Group) is
+  record
+    -- Components common across all discriminants
+    -- (must appear before variant part)
+    Age : Positive;
+    case Group is -- Variant part of record
+      when Student => -- 1st variant
+        Gpa  : Float range 0.0 .. 4.0;
+      when Faculty => -- 2nd variant
+        Pubs : Positive;
+    end case;
+  end record;
 
-  .. code:: Ada
+  Pat : Person (Student);
+  Sam : Person := (Faculty, 33, 5);
 
-    type Person_Group is (Student, Faculty);
-    type Person (Group : Person_Group) is
-    record
-      --  Components common across all discriminants
-      --  (must appear before variant part)
-      Age : Positive;
-      case Group is --  Variant part of record
-          when Student => -- 1st variant
-            Gpa  : Float range 0.0 .. 4.0;
-          when Faculty => -- 2nd variant
-            Pubs : Positive;
-      end case;
-    end record;
 
-    Pat : Person (Student);
-    Sam : Person := (Faculty, 33, 5);
+* A :dfn:`constrained` record object has *fixed* discriminant values
+
+  * :ada:`Pat` is constrained by the declaration :ada:`Person (Student)`
+  * :ada:`Sam` is constrained by its initialization :ada:`(faculty, 33, 5)`
+
+
 
 * Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
 
   * :ada:`Pat` has :ada:`Group`, :ada:`Age`, and :ada:`Gpa`
   * :ada:`Sam` has :ada:`Group`, :ada:`Age`, and :ada:`Pubs`
 
-* Aggregate specifies all components, including the discriminant
+* Aggregate specifies all components, *including* the discriminant
 
-----------------------------
-Constrained Record Example
-----------------------------
+-----------------------------
+Constrained Record Use Case
+-----------------------------
 
-* Compiler can detect some problems, but more often clashes are run-time errors
+* Compiler can detect some problems
 
-  .. code:: Ada
+.. code:: Ada
 
-    procedure Do_Something (Param : in out Person) is
-    begin
-      Param.Age := Param.Age + 1;
-      Param.Pubs := Param.Pubs + 1;
-    end Do_Something;
+  procedure Do_Something (Param : in out Person) is
+  begin
+    Param.Age := Param.Age + 1;
+    Param.Pubs := Param.Pubs + 1;
+  end Do_Something;
+	
+* More often clashes are run-time errors
 
   * :ada:`Pat.Pubs := 3;` would generate a compiler warning because compiler knows :ada:`Pat` is a :ada:`Student`
 
@@ -127,14 +132,9 @@ Constrained Record Example
 
   * :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
 
-----------------------
-Unconstrained Record
-----------------------
-
-* A record *object* is :dfn:`unconstrained` if **both**
-
-  * Discriminant has a *default value*
-  * Object declaration does not specify a discriminant constraint
+------------------------------------------
+Variant record with default discriminant
+------------------------------------------
 
 .. code:: Ada
    :font-size: footnotesize
@@ -152,11 +152,20 @@ Unconstrained Record
      end case;
   end record;
 
-* :ada:`Pat : Person;` is **Unconstrained**
+* A record *object* is :dfn:`unconstrained` if **both**
+
+  * Discriminant has a *default value*
+  * Object declaration does not specify a discriminant constraint
 
 --------------------------------------
 Unconstrained Variant Record Example
 --------------------------------------
+
+.. code:: Ada
+
+  Pat : Person := (Student, 19, 3.9);
+  Sam : Person;
+
 
 * Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
 
@@ -165,20 +174,15 @@ Unconstrained Variant Record Example
   * ...but only via a whole record assignment
   * Direct assignment will still result in an error
 
-  .. code:: Ada
+.. code:: Ada
 
-    Pat : Person := (Student, 19, 3.9);
-    Sam : Person;
-
-    begin
-
-      Sam := (Faculty, 28, 20);
-      if Pat.Group = Student then
-        -- Pat.Group := Faculty; -- ILLEGAL
-        Pat := (Faculty, Pat.Age, 1);
-      else
-        Sam := Pat;
-      end if;
+  Sam := (Faculty, 28, 20);
+  if Pat.Group = Student then
+    -- Pat.Group := Faculty; -- ILLEGAL
+    Pat := (Faculty, Pat.Age, 1);
+  else
+    Sam := Pat;
+  end if;
 
 --------------------------
 Union vs. Variant Record
@@ -187,8 +191,8 @@ Union vs. Variant Record
 * Kind of :dfn:`storage overlay`
 
    + Similar to :C:`union` in C
-   + But preserves **type checking**
-   + And object size **is related to** discriminant
+   + Preserves **type checking**
+   + Object size **is related to** discriminant
 
 ------
 Quiz
