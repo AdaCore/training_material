@@ -52,4 +52,4 @@ What We Covered
 
   - Allows multiple owners for the same data
 
-  - Shares one heap allocation without cloning the data
+  - Shares one heap allocation without cloning data
