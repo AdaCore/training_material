@@ -13,23 +13,23 @@ Dereferencing
 - :rust:`Deref` returns a reference to the inner data
 
   - Data is accessed with dereference operator :rust:`*`
-  
+
   - Avoids moving ownership
 
-.. code:: rust 
+.. code:: rust
 
   fn say_hello(name: i32) {
     println!("Hello, 00{name}!");
   }
 
   let agent = Box::new(7_i32);
-    
-  say_hello(*agent); 
-  
+
+  say_hello(*agent);
+
 .. code:: output
 
   Hello, 007!
-  
+
 -----------------------------
 Coercing Types With "Deref"
 -----------------------------
@@ -44,7 +44,7 @@ Coercing Types With "Deref"
 
 - Accesses inner value of smart pointers transparently
 
-.. code:: rust 
+.. code:: rust
 
   fn hello(name: &str) {
     println!("Hello, {name}!");
@@ -52,18 +52,18 @@ Coercing Types With "Deref"
 
   let my_box = Box::new(String::from("Rust"));
 
-  hello(&my_box); 
-  
+  hello(&my_box);
+
 .. code:: output
 
   Hello, Rust!
-  
+
 .. note::
-  
+
   - :rust:`&my_box` is :rust:`&Box<String>`
-  
-  - Compiler coerces: :rust:`&Box<String>` -> :rust:`&String` -> :rust:`&str` 
-  
+
+  - Compiler coerces: :rust:`&Box<String>` -> :rust:`&String` -> :rust:`&str`
+
 ------------
 "DerefMut"
 ------------
@@ -71,10 +71,10 @@ Coercing Types With "Deref"
 - *Subtrait* of :rust:`Deref`
 
   - :rust:`Deref` must be implemented first
-  
+
 - Allows *mutable reference*
 
-.. code:: rust 
+.. code:: rust
 
   // 'my_box' is mutable and 'Box' implements 'DerefMut'
   let mut my_box = Box::new(0);
@@ -89,8 +89,8 @@ Mutability and Coercion
   fn say(name: &str) { println!("Hello, {name}!"); }
   fn yell(name: &mut str) { name.make_ascii_uppercase(); }
 
-  let aya = Box::new(String::from("Aya"));
-  let mut zoe = Box::new(String::from("Zoé"));
+  let ned = Box::new(String::from("Ned"));
+  let mut jon = Box::new(String::from("Jon"));
 
 .. list-table::
    :header-rows: 1
@@ -99,18 +99,15 @@ Mutability and Coercion
    * - **Call**
      - **Coercion**
      - **Trait / Result**
-   * - :rust:`say(&aya)`
+   * - :rust:`say(&ned)`
      - :rust:`&T` to :rust:`&U`
      - :rust:`Deref`
-   * - :rust:`yell(&aya)`
+   * - :rust:`yell(&ned)`
      - :rust:`&T` to :rust:`&mut U`
      - :error:`E0308: mismatched types`
-   * - :rust:`yell(&mut zoe)`
+   * - :rust:`yell(&mut jon)`
      - :rust:`&mut T` to :rust:`&mut U`
      - :rust:`DerefMut`
-   * - :rust:`say(&mut zoe)`
+   * - :rust:`say(&mut jon)`
      - :rust:`&mut T` to :rust:`&U`
      - :rust:`Deref`
-
-
-
