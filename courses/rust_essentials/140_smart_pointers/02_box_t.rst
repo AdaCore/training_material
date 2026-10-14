@@ -6,7 +6,7 @@
 What Is "Box<T>"?
 -------------------
 
-- Stores its owned value on the heap
+- Stores its value on the heap
 
 - Provides unique ownership of that value
 
@@ -64,14 +64,14 @@ Using "Box<T>" for Recursive Types
 Handling Large Data
 ---------------------
 
-- :rust:`Box::new([0; LARGE_SIZE])` requires a stack temporary value
-  - Heap allocation does not guarantee construction directly on the heap
+- :rust:`Box::new([0; LARGE_SIZE])` requires temporary stack value
+  - Heap allocation does not guarantee construction directly on heap
   - Do not rely on optimization to remove the temporary value
 
 - :rust:`vec!` creates large buffers with heap-allocated storage
-  - Avoids constructing the large array value on the stack
-  - Keeps :rust:`Vec<T>` if the buffer must resize
-  - Converts to :rust:`Box<[T]>` for a fixed-length buffer
+  - Avoids constructing large array on the stack
+  - Keeps :rust:`Vec<T>` if buffer must resize
+  - Converts to :rust:`Box<[T]>` for fixed-length buffer
 
 .. code:: rust
 
@@ -81,19 +81,20 @@ Handling Large Data
 
 .. note::
 
-  :rust:`into_boxed_slice()` may reallocate to discard excess capacity
+  - :rust:`into_boxed_slice()` locks the vector into a fixed-length slice
+    - drops excess capacity
 
 -------------------------------------
 Borrowing or Transferring Ownership
 -------------------------------------
 
-- Borrow the boxed slice when temporary access is enough
+- *Borrow* the boxed slice when temporary access is enough
   - Caller retains ownership
   - Buffer is not copied
 
-- Move the :rust:`Box<[u64]>` when another value must own it
+- *Move* the :rust:`Box<[u64]>` when another value must own it
   - Ownership is transferred
-  - Heap allocation stays in place
+  - Allocated value stays in place
 
 .. code:: rust
 
@@ -101,11 +102,15 @@ Borrowing or Transferring Ownership
     samples: Box<[u64]>,
   }
 
-  let samples = create_data();
+  let data = create_data();
 
-  let processor = DataProcessor { samples }; // Move the box
-  // 'samples' is no longer usable
-  println!("{} samples", processor.samples.len());
+  let processor = DataProcessor { samples: data }; // Move the box
+  // 'data' is no longer usable
+  println!("Samples: {}", processor.samples.len());
+
+.. code:: output
+
+  Samples: 1000000
 
 .. note::
 
@@ -127,5 +132,7 @@ Resource Management
     // Use 'samples'...
   } // 'samples' is dropped here
 
-- Moving a :rust:`Box<T>` is an *O(1)* operation
-  - Heap allocation stays in place
+.. note::
+
+  - Moving a :rust:`Box<T>` is an *O(1)* operation
+    - Heap allocation stays in place
