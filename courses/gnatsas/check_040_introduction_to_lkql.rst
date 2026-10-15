@@ -40,4 +40,5 @@ Introduction to LKQL
 .. include:: check_040_introduction_to_lkql/03-general_purpose_subset.rst
 .. include:: check_040_introduction_to_lkql/04-query_language_subset.rst
 .. include:: check_040_introduction_to_lkql/05-building_a_boolean_rule.rst
+.. include:: check_040_introduction_to_lkql/88-introduction_to_lkql.lab.rst
 .. include:: check_040_introduction_to_lkql/99_summary.rst
