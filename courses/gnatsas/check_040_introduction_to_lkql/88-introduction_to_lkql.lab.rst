@@ -36,7 +36,9 @@ Step 1 - Create Rule File
     * In file :filename:`flag_abstract_types.lkql`
     * Use :lkql:`@check` annotation
 
-  *For now, just return* :lkqk:`true`
+  * For now, just return :lkqk:`true`
+
+    * This should flag **every** node as a violation
 
 .. container:: animate 2-
 
@@ -59,11 +61,11 @@ Step 1 - Create Rule File
 
   .. code:: error
 
-    actors.ads:42:05: rule violation: flag_abstract_types
-    actors.ads:42:12: rule violation: flag_abstract_types
-    controls.ads:23:01: rule violation: flag_abstract_types
-    controls.ads:23:06: rule violation: flag_abstract_types
-    controls.ads:23:12: rule violation: flag_abstract_types
+    loggers.adb:1:01: rule violation: flag_abstract_types
+    loggers.adb:1:08: rule violation: flag_abstract_types
+    loggers.adb:1:16: rule violation: flag_abstract_types
+    loggers.adb:1:17: rule violation: flag_abstract_types
+    ...
 
 ---------------------------
 Step 2 - Filter For Types
@@ -91,10 +93,10 @@ Step 2 - Filter For Types
 
   .. code:: error
 
-    actors.ads:29:09: rule violation: flag_abstract_types
-    actors.ads:39:09: rule violation: flag_abstract_types
-    controls.ads:29:09: rule violation: flag_abstract_types
-    controls.ads:36:09: rule violation: flag_abstract_types
+    loggers.ads:3:09: rule violation: flag_abstract_types
+    loggers.ads:4:09: rule violation: flag_abstract_types
+    loggers.ads:11:09: rule violation: flag_abstract_types
+    loggers.ads:18:09: rule violation: flag_abstract_types
 
 ------------------------------
 Step 3 - Find Abstract Types
@@ -122,13 +124,15 @@ Step 3 - Find Abstract Types
 .. container:: animate 3-
 
   .. code:: error
-    :font-size: small
 
-    actors.ads:28:09: rule violation: flag_abstract_types
-    actors.ads:39:09: rule violation: flag_abstract_types
-    robots_devices.ads:37:09: rule violation: flag_abstract_types
-    robots_devices.ads:49:09: rule violation: flag_abstract_types
-    robots_devices.ads:55:09: rule violation: flag_abstract_types
+    loggers.ads:3:09: rule violation: flag_abstract_types
+    loggers.ads:11:09: rule violation: flag_abstract_types
+    loggers.ads:18:09: rule violation: flag_abstract_types
+    loggers.ads:22:09: rule violation: flag_abstract_types
+    loggers.ads:57:09: rule violation: flag_abstract_types
+    loggers.ads:58:09: rule violation: flag_abstract_types
+    loggers.ads:60:09: rule violation: flag_abstract_types
+    loggers.ads:62:09: rule violation: flag_abstract_types
 
 -------------------------
 Step 4 - Better Message
@@ -143,7 +147,6 @@ Step 4 - Better Message
 .. container:: animate 2-
 
   .. code:: lkql
-    :font-size: small
 
     @check(message="Abstract type found")
     fun flag_abstract_types(node) =
@@ -155,13 +158,15 @@ Step 4 - Better Message
 .. container:: animate 3-
 
   .. code:: error
-    :font-size: small
 
-    actors.ads:28:09: rule violation: Abstract type found
-    actors.ads:39:09: rule violation: Abstract type found
-    robots_devices.ads:37:09: rule violation: Abstract type found
-    robots_devices.ads:49:09: rule violation: Abstract type found
-    robots_devices.ads:55:09: rule violation: Abstract type found
+    loggers.ads:3:09: rule violation: Abstract type found
+    loggers.ads:11:09: rule violation: Abstract type found
+    loggers.ads:18:09: rule violation: Abstract type found
+    loggers.ads:22:09: rule violation: Abstract type found
+    loggers.ads:57:09: rule violation: Abstract type found
+    loggers.ads:58:09: rule violation: Abstract type found
+    loggers.ads:60:09: rule violation: Abstract type found
+    loggers.ads:62:09: rule violation: Abstract type found
 
 -------------------------------------
 Extra Credit - Removing Duplication
@@ -206,9 +211,8 @@ Extra Credit - Removing Duplication
 .. container:: animate 3-
 
   .. code:: error
-    :font-size: small
 
-    actors.ads:39:09: rule violation: Abstract type found
-    robots_devices.ads:37:09: rule violation: Abstract type found
-    robots_devices.ads:49:09: rule violation: Abstract type found
-    robots_devices.ads:55:09: rule violation: Abstract type found
+    loggers.ads:57:09: rule violation: Abstract type found
+    loggers.ads:58:09: rule violation: Abstract type found
+    loggers.ads:60:09: rule violation: Abstract type found
+    loggers.ads:62:09: rule violation: Abstract type found
