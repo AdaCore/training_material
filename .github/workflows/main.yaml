@@ -4,6 +4,17 @@ name: CI
 # events but only for the master branch
 on: push
 
+# ===== Slides build configuration ============================================
+# 1 = one Docker runner / image pull; courses are built sequentially.
+# Increase to 2, 4, ... to build several groups in parallel (one pull per group).
+# Course filters are case-insensitive fragments matched against course paths.
+# Uncomment the appropriate line to restrict the builds (comma-separated OK).
+env:
+  SLIDES_BUILD_JOBS: "1"
+  SLIDES_ONLY: "rust"       # Build only Rust-related courses
+  # SLIDES_EXCLUDE: "spark"   # Build everything except SPARK courses
+# ============================================================================
+
 jobs:
   List-Courses:
     runs-on: ubuntu-latest
@@ -11,19 +22,46 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      # Black magic to generate the list of courses from the python script to JSON
-      -
-        id: set-courses
+      # Discover courses, optionally filter them, and create N Docker batches.
+      - id: set-courses
         run: |
           courses="$(python3 contrib/ci/course.py find courses/ --json)"
-          echo "courses=$courses" >> $GITHUB_OUTPUT
+          COURSES_JSON="$courses" python3 - <<'PYCOURSES'
+          import json
+          import os
+
+          def patterns(key):
+              return [s.strip().casefold() for s in os.getenv(key, "").split(",") if s.strip()]
+
+          include = patterns("SLIDES_ONLY")
+          exclude = patterns("SLIDES_EXCLUDE")
+          courses = json.loads(os.environ["COURSES_JSON"])
+          selected = [
+              name for name in courses
+              if (not include or any(s in name.casefold() for s in include))
+              and not any(s in name.casefold() for s in exclude)
+          ]
+          if not selected:
+              raise SystemExit("No matching slides courses (check SLIDES_ONLY / SLIDES_EXCLUDE)")
+
+          batch_limit = int(os.environ["SLIDES_BUILD_JOBS"])
+          if not 1 <= batch_limit <= 256:
+              raise SystemExit("SLIDES_BUILD_JOBS must be between 1 and 256")
+          batches = list(range(min(batch_limit, len(selected))))
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              print("courses=" + json.dumps(selected), file=output)
+              print("batches=" + json.dumps(batches), file=output)
+          print(f"Building {len(selected)} course(s) on {len(batches)} Docker runner(s):")
+          for name in selected:
+              print("  " + name)
+          PYCOURSES
 
     outputs:
-        matrix: ${{steps.set-courses.outputs.courses}}
+      matrix: ${{steps.set-courses.outputs.courses}}
+      batches: ${{steps.set-courses.outputs.batches}}
 
   Slides:
     needs: List-Courses
-
     runs-on: ubuntu-latest
     permissions:
       packages: read
@@ -34,10 +72,9 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     strategy:
-        fail-fast: false
-        matrix:
-            # Import list of courses from the List-Courses job
-            source: ${{fromJson(needs.List-Courses.outputs.matrix)}}
+      fail-fast: false
+      matrix:
+        batch: ${{fromJson(needs.List-Courses.outputs.batches)}}
 
     steps:
       - uses: actions/checkout@v6
@@ -45,17 +82,150 @@ jobs:
       - name: Check source is updated with prelude
         run: python3 contrib/ci/fix_prelude.py
 
-      - name: Prepare slides environment
-        run: python3 contrib/ci/slides.py ${{ format('{0}/{1}', 'courses', matrix.source) }} printenv >> $GITHUB_ENV
+      - name: Build courses in this batch
+        env:
+          COURSES_JSON: ${{needs.List-Courses.outputs.matrix}}
+          BATCHES_JSON: ${{needs.List-Courses.outputs.batches}}
+          BATCH_INDEX: ${{matrix.batch}}
+        run: |
+          python3 - <<'PYBUILD'
+          import json
+          import os
+          import shutil
+          import subprocess
+          import sys
+          from pathlib import Path
 
-      - name: ${{ env.PRETTY_NAME }} - Build
-        run: python3 pandoc/pandoc_fe.py --output-dir ${{ env.OUTPUT_DIR }} --hush --extension pdf --source ${{ env.SOURCES }}
+          def parse_environment(output):
+              # Parse exactly the key/value and multiline syntax from slides.py printenv.
+              values = {}
+              lines = iter(output.splitlines())
+              for line in lines:
+                  if "<<" in line:
+                      key, delimiter = line.split("<<", 1)
+                      content = []
+                      for value in lines:
+                          if value == delimiter:
+                              break
+                          content.append(value)
+                      else:
+                          raise ValueError(f"Unterminated environment variable: {key}")
+                      values[key] = "\n".join(content)
+                  else:
+                      key, value = line.split("=", 1)
+                      values[key] = value
+              return values
 
-      - name: ${{ env.PRETTY_NAME }} - Package and upload
+          courses = json.loads(os.environ["COURSES_JSON"])
+          batch_count = len(json.loads(os.environ["BATCHES_JSON"]))
+          batch_index = int(os.environ["BATCH_INDEX"])
+          staging = Path("ci-slides")
+          staging.mkdir(exist_ok=True)
+          manifest = {}
+          failures = []
+
+          for index, source in enumerate(courses):
+              if index % batch_count != batch_index:
+                  continue
+              print(f"::group::Building {source}", flush=True)
+              try:
+                  command = [sys.executable, "contrib/ci/slides.py", str(Path("courses") / source)]
+                  metadata = parse_environment(
+                      subprocess.check_output([*command, "printenv"], text=True)
+                  )
+                  paths = [Path(p) for p in metadata["ARTIFACTS"].splitlines()]
+                  if not paths:
+                      raise ValueError(f"No PDFs declared for {source}")
+                  # Another course variant may share the same output directory.
+                  # Remove its old PDFs before building to avoid stale artifacts.
+                  for path in paths:
+                      path.unlink(missing_ok=True)
+                  subprocess.run([*command, "build"], check=True)
+                  if not all(p.is_file() for p in paths):
+                      raise FileNotFoundError(f"Missing PDFs for {source}: {paths}")
+                  destination = staging / str(index)
+                  destination.mkdir()
+                  for path in paths:
+                      shutil.copy2(path, destination / path.name)
+                  manifest[str(index)] = {"name": metadata["PRETTY_NAME"]}
+              except Exception as exc:
+                  print(f"Failed to build {source}: {exc}", file=sys.stderr)
+                  failures.append(source)
+              finally:
+                  print("::endgroup::", flush=True)
+
+          (staging / "manifest.json").write_text(json.dumps(manifest))
+          if failures:
+              sys.exit(f"Build failed for: {', '.join(failures)}")
+          PYBUILD
+
+      # Short-lived handoff; the final artifacts retain their original names/retention.
+      - name: Transfer PDFs to upload jobs
+        if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.PRETTY_NAME }}
-          path: ${{ env.ARTIFACTS }}
+          name: slides-build-${{matrix.batch}}
+          path: ci-slides/
+          if-no-files-found: ignore
+          retention-days: 1
+          compression-level: 0
+
+  Slides-Artifacts:
+    needs: [List-Courses, Slides]
+    if: ${{always() && needs.List-Courses.result == 'success'}}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        source: ${{fromJson(needs.List-Courses.outputs.matrix)}}
+
+    steps:
+      - name: Locate this course's batch
+        env:
+          COURSES_JSON: ${{needs.List-Courses.outputs.matrix}}
+          BATCHES_JSON: ${{needs.List-Courses.outputs.batches}}
+          SOURCE: ${{matrix.source}}
+        run: |
+          python3 - <<'PYBATCH'
+          import json
+          import os
+          courses = json.loads(os.environ["COURSES_JSON"])
+          index = courses.index(os.environ["SOURCE"])
+          batch_count = len(json.loads(os.environ["BATCHES_JSON"]))
+          with open(os.environ["GITHUB_ENV"], "a") as env:
+              env.write(f"COURSE_INDEX={index}\n")
+              env.write(f"BATCH_INDEX={index % batch_count}\n")
+          PYBATCH
+
+      - name: Download built PDFs
+        uses: actions/download-artifact@v7
+        with:
+          name: slides-build-${{env.BATCH_INDEX}}
+          path: ci-slides/
+
+      - name: Prepare individual artifact
+        run: |
+          python3 - <<'PYUPLOAD'
+          import json
+          import os
+          from pathlib import Path
+          index = os.environ["COURSE_INDEX"]
+          manifest = json.loads(Path("ci-slides/manifest.json").read_text())
+          name = manifest[index]["name"]
+          path = Path("ci-slides") / index
+          if not path.is_dir() or not any(path.iterdir()):
+              raise FileNotFoundError(f"Missing PDFs for {name}")
+          with open(os.environ["GITHUB_ENV"], "a") as env:
+              env.write(f"PRETTY_NAME={name}\n")
+              env.write(f"ARTIFACTS={path}\n")
+          PYUPLOAD
+
+      - name: ${{env.PRETTY_NAME}} - Package and upload
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{env.PRETTY_NAME}}
+          path: ${{env.ARTIFACTS}}
           if-no-files-found: error
 
   Labs-Slides:
