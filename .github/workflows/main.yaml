@@ -25,11 +25,10 @@ jobs:
     needs: List-Courses
 
     runs-on: ubuntu-latest
-    container: public.ecr.aws/w0s6m4g9/pandoc-beamer:latest
+    container: ghcr.io/adacore/training_material/pandoc-beamer:latest
 
     strategy:
         fail-fast: false
-        max-parallel: 2
         matrix:
             # Import list of courses from the List-Courses job
             source: ${{fromJson(needs.List-Courses.outputs.matrix)}}
