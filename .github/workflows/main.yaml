@@ -25,7 +25,13 @@ jobs:
     needs: List-Courses
 
     runs-on: ubuntu-latest
-    container: public.ecr.aws/w0s6m4g9/pandoc-beamer:latest
+    permissions:
+      packages: read
+    container:
+      image: ghcr.io/adacore/training_material/pandoc-beamer:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     strategy:
         fail-fast: false
