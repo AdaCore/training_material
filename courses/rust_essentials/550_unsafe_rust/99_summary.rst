@@ -2,16 +2,6 @@
 Summary
 =========
 
--------------------------
-Recap: Five Superpowers
--------------------------
-
-#. Dereference raw pointers
-#. Call unsafe functions or methods
-#. Access or modify mutable statics
-#. Implement unsafe traits
-#. Read union fields
-
 -----------------
 What We Covered
 -----------------
@@ -23,21 +13,25 @@ What We Covered
 
 * **Raw Pointers**
 
-  - May be null, dangling, misaligned, or invalid
-  - Creation is safe; dereferencing is an unsafe operation
+  - Creation is safe
+  - Dereferencing requires :rust:`unsafe`
 
-* **Unsafe Functions and Traits**
+* **Unsafe Functions**
 
-  - Callers uphold documented safety contracts
-  - An :rust:`unsafe impl` promises that required safety conditions are met
+  - Callers are responsible for satisfying safety contracts
+
+* **Mutable Statics**
+
+  - Reading or writing :rust:`static mut` requires :rust:`unsafe`
+
+* **Unsafe Traits**
+
+  - Implementors are responsible for satisfying safety contracts
 
 * **Unions**
 
-  - Fields share storage
-  - Reading a union field is an unsafe operation
+  - Reading a union field requires :rust:`unsafe`
 
 * **Safe Abstractions**
 
-  - Keep unsafe operations small and auditable
-  - Check safety conditions before exposing a safe API
-  - Prefer Safe Rust when it can express the behavior
+  - Encapsulate unsafe operations behind a sound, safe API

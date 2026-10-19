@@ -6,72 +6,93 @@ Safe Abstractions
 Encapsulating Unsafe Operations
 ---------------------------------
 
-**Safe abstractions can encapsulate unsafe operations**
+**Safe abstractions provide a safe interface to unsafe operations**
 
-* Keep unsafe operations small and easy to audit
-* Check the required safety conditions at the API boundary
-* Expose a safe API when callers cannot violate those conditions
-
-  * Callers need no :rust:`unsafe` block
-
+* Callers use a safe interface
+* Implementation does the unsafe work
+  * Keep unsafe operations small and easy to audit
 * Otherwise, expose an unsafe API and document its :rust:`# Safety` contract
-
 * Examples: :rust:`Vec<T>`, :rust:`String`, and many standard-library types
-
--------------------------------------------
-Example: Safely Splitting a Mutable Slice
--------------------------------------------
-
-:rust:`split_at_mut` **creates two disjoint mutable slices from one slice**
-
-* Caller supplies the split index
-* We must verify :rust:`mid <= len`
-* The original slice provides valid, aligned storage
-* The two returned ranges must stay in-bounds and must not overlap
-* Raw pointers express a split the borrow checker cannot prove
-
-------------------------------------
-Establishing the Safety Conditions
-------------------------------------
-
-.. code:: rust
-
-  use std::slice;
-
-  fn split_at_mut(
-      values: &mut [i32],
-      mid: usize,
-  ) -> (&mut [i32], &mut [i32]) {
-      let len = values.len();
-
-      // Start from valid slice storage
-      let ptr = values.as_mut_ptr();
-
-      // Keep both ranges in-bounds
-      assert!(mid <= len);
-
-      // Continue on the next slide
-      todo!()
-  }
-
----------------------------------
-Creating the Two Mutable Slices
----------------------------------
-
-**Now the checked raw pointer can be used to build two disjoint slices**
-
-.. code:: rust
-
-  // SAFETY:
-  // - both ranges stay within the original slice
-  // - the two ranges are disjoint
-  unsafe {
-      (
-          slice::from_raw_parts_mut(ptr, mid),
-          slice::from_raw_parts_mut(ptr.add(mid), len - mid),
-      )
-  }
 
 .. note::
 
-  This completes the :rust:`split_at_mut` implementation from the previous slide
+  Callers need no :rust:`unsafe` block!
+
+---------------------------------
+Example: Safe Access to a Union
+---------------------------------
+
+**Unsafe operations can be encapsulated in a safe API**
+
+* Caller uses ordinary safe Rust
+* Implementation handles the unsafe operation
+* Safety must be guaranteed for every valid call
+
+-------------------------------
+Encapsulating the Unsafe Read
+-------------------------------
+
+**A safe method can perform an unsafe operation internally**
+
+.. code:: rust
+
+   #[repr(C)]
+   union Avenger {
+       banner: i8,
+       hulk: u8,
+   }
+
+* Both fields share the same byte
+* Both :rust:`i8` and :rust:`u8` accept every bit pattern
+
+.. code:: rust
+
+  impl Avenger {
+       fn as_unsigned(&self) -> u8 {
+            // SAFETY: Either field initializes the shared byte,
+            // and every bit pattern is valid for 'u8'
+            unsafe { self.hulk }
+       }
+  }
+
+-------------------------
+Calling the Safe Method
+-------------------------
+
+**Caller does not need an** :rust:`unsafe` **block**
+
+.. code:: rust
+
+  let avenger = Avenger { banner: -1 };
+  println!("Avenger: {}", avenger.as_unsigned());
+
+.. code:: output
+
+  Avenger: 255
+
+* Caller invokes a safe method
+* Implementation guarantees the safety of the operation
+
+.. warning::
+
+   This works for :rust:`i8` and :rust:`u8`, but not necessarily for other types
+
+------------------
+Unsound Safe API
+------------------
+
+**An unsound safe API can cause undefined behavior**
+
+.. code:: rust
+
+    // Safe callers can pass 'None'!
+    fn unwrap_option(value: Option<i32>) -> i32 {
+        unsafe { value.unwrap_unchecked() }
+    }
+
+* :rust:`unwrap_unchecked` requires :rust:`Some`
+* Safe callers can pass :rust:`None`
+
+.. note::
+
+  **Unsound** means safe callers can trigger undefined behavior

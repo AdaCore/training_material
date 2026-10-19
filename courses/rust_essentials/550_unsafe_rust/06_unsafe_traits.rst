@@ -3,44 +3,67 @@ Unsafe Traits
 ===============
 
 ------------------------
-When a Trait Is Unsafe
+What Are Unsafe Traits
 ------------------------
 
 **Unsafe traits define requirements the compiler cannot verify**
 
 * Declared with :rust:`unsafe trait`
-* Defines a safety contract for every implementation
-* Violating the contract can cause undefined behavior in Safe Rust
+* Implementors must satisfy the safety contract
+* Violating the contract can cause undefined behavior
 
 .. code:: rust
 
   /// # Safety
-  ///
-  /// Implementors must uphold this trait's safety requirements
-  unsafe trait Foo {
-      // Trait items go here
-  }
+  /// All-zero bits must represent a valid value
+  unsafe trait Zeroable {}
 
-* Trait methods need not themselves be unsafe
+* Trait methods *don't need* to be unsafe
 
 ------------------------------
 Implementing an Unsafe Trait
 ------------------------------
 
-**Implementing an unsafe trait requires an explicit promise**
+**Implementing an unsafe trait **
 
-* Use :rust:`unsafe impl`
-* Verify that every safety requirement is satisfied
-* Document why the implementation satisfies the contract
+* Requires an explicit promise
+  * Use :rust:`unsafe impl`
+  * Verify that every safety requirement is satisfied
+  * Document why the implementation satisfies the contract
 * Normal type and syntax checks still apply
 
 .. code:: rust
 
-  struct Bar;
-
-  // SAFETY: 'Bar' satisfies 'Foo' safety requirements
-  unsafe impl Foo for Bar {}
+  // SAFETY: All-zero bits represent a valid u32
+  unsafe impl Zeroable for u32 {}
 
 .. warning::
 
-  :rust:`unsafe impl` promises the contract; it does not prove correctness
+  :rust:`unsafe impl` promises the contract; compiler doesn't verify correctness
+
+-------------------------------
+  Violating a Safety Contract
+-------------------------------
+
+**An unsafe implementation can violate its safety contract**
+
+.. code:: rust
+
+  // SAFETY: All-zero bits represent a valid &u32
+  unsafe impl Zeroable for &u32 {}
+
+* This compiles, but the **safety claim is false**
+  * References cannot be null
+* Code relying on this false guarantee may cause undefined behavior
+
+.. warning::
+
+  .. raw:: latex
+
+    {\footnotesize
+
+  :rust:`unsafe impl` does not guarantee correctness; the implementor is responsible
+
+  .. raw:: latex
+
+    }
