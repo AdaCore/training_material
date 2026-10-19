@@ -435,21 +435,39 @@ Subtype Predicates Aren't Bullet-Proof
 
 * For composite types, predicate checks apply to whole object values, not individual components
 
-.. code:: Ada
-  :font-size: scriptsize
+  .. code:: Ada
+    :font-size: scriptsize
 
-   procedure Demo is
-     type Table is array (1 .. 5) of Integer
-       -- array should always be sorted
+    type Record_T is record
+       First : Integer;
+       Last  : Integer;
+    end record
        with Dynamic_Predicate =>
-         (for all Idx in Table'Range =>
-           (Idx = Table'First or else Table (Idx-1) <= Table (Idx)));
-     Values : Table := (1, 3, 5, 7, 9);
-   begin
-     Values (3) := 0;           -- Predicate not checked
-     Call_Something (Values);   -- Predicate is checked
-     Values := (1, 3, 0, 7, 9); -- Predicate is checked
-   end Demo;
+          (Record_T.First <= Record_T.Last);
+
+    One : Record_T := (1, 2);
+    Two : Record_T := (2, 3);
+
+* Modifying a field does not trigger a predicate check
+
+  .. code:: Ada
+    :font-size: scriptsize
+
+    One.First := Integer'Last;  -- legal but problematic
+
+* Aggregate assignment **does** trigger a check
+
+  .. code:: Ada
+    :font-size: scriptsize
+
+    Two := (0, 0);  -- legal and passes the check
+
+* But an assignment will trigger the check
+  
+  .. code:: Ada
+    :font-size: scriptsize
+
+    Two := One;  -- "One" does not satisfy the predicate
 
 ------------------------------------------
 Beware Accidental Recursion in Predicate

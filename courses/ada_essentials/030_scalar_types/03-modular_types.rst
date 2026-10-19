@@ -74,7 +74,7 @@ Package "Interfaces"
     type Unsigned_16 is mod 2 ** 16;
     for Unsigned_16'Size use 16;
 
-   -- and so on for 16, 32, 64 bit types...
+    -- and so on for 16, 32, 64 bit types...
 
 * Dealing with hardware registers
 

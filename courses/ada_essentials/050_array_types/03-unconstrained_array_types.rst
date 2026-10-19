@@ -190,7 +190,7 @@ Quiz
    type Bit_T is range 0 .. 1;
    type Bit_Array_T is array (Positive range <>) of Bit_T;
 
-   Which of the following declarations are legal? (Select all that apply)
+Which of the following declarations are legal? (Select all that apply)
 
    A. ``AAA : Bit_Array_T (0..99);``
    B. :answermono:`BBB : Bit_Array_T (1..32);`
