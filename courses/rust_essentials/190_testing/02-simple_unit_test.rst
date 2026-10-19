@@ -63,7 +63,11 @@ Test Semantics
 
 * Line 5: Module only compiled when running :command:`cargo test`
 * Line 6: Test module (:rust:`tests` is idiomatic but other names allowed)
-* Line 7: Add items from enclosing module into scope
+* Line 7: :rust:`tests` is a **child** of :rust:`adder`
+
+  * It has full visibility into its parent's functionality
+  * :rust:`use super::*;` removes need for path into parent data
+
 * Line 9: Following function is a test
 
   * Test function takes no parameters
