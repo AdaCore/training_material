@@ -53,14 +53,6 @@ Calling the Mutable-Static API
   }
 
 
-.. note::
+.. warning::
 
-  .. raw:: latex
-
-    {\footnotesize
-
-  Creating :rust:`static mut` references is rejected by default, even in :rust:`unsafe` blocks
-
-  .. raw:: latex
-
-    }
+  Avoid creating references to :rust:`static mut`, even inside :rust:`unsafe` blocks
