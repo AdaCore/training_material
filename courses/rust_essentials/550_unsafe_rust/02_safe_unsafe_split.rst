@@ -2,26 +2,23 @@
 Safe vs. Unsafe
 =================
 
----------------------------
-Safe Rust and Unsafe Rust
----------------------------
+------------------
+Why Unsafe Rust?
+------------------
 
 **Unsafe Rust permits specific operations that Safe Rust forbids**
 
-* Safe Rust does not allow unsafe operations
-* An unsafe context permits those operations
-* The programmer must uphold safety requirements Rust cannot verify
-* Other Rust language rules still apply
+* An unsafe *context* permits those operations
+* *Programmer* must uphold safety requirements compiler cannot verify
+* Other language rules still apply
 
 .. note::
 
-  :rust:`unsafe` does not mean unchecked code
+ Typical uses are interoperability and hardware access
 
 ------------------
 Five Superpowers
 ------------------
-
-**This module focuses on five classic unsafe operations**
 
 #. Dereference a raw pointer
 #. Call an unsafe function or method
@@ -43,15 +40,15 @@ What "unsafe" Does Not Do
   * Reference lifetimes are still checked
 
 * Does **not** disable checks in surrounding Safe Rust
-* Does **not** mean the code is necessarily incorrect
+* Does **not** mean the code is dangerous
 
-  * Some safety requirements cannot be verified mechanically
+  * Compiler cannot verify safety requirements
 
 --------------------
 The "unsafe" Block
 --------------------
 
-**An unsafe block marks where unsafe operations are permitted**
+**Permits operations whose safety the compiler cannot verify**
 
 .. code:: rust
 
@@ -59,9 +56,10 @@ The "unsafe" Block
       // Unsafe operations go here
   }
 
-* :rust:`unsafe` does not make an operation safe by itself
-* The programmer must uphold the operation's safety requirements
+* Programmer must ensure safety requirements are satisfied
+* Violating these requirements can cause **undefined behavior**
+* :rust:`unsafe` does not make undefined behavior acceptable
 
 .. note::
 
-  The next sections introduce the unsafe operations used inside these blocks
+    Unlike a panic, undefined behavior has no defined outcome

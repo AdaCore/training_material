@@ -6,12 +6,11 @@ Unions
 What Is a "union"?
 --------------------
 
-**A union stores different fields in shared storage**
-
-* Fields share the same storage
-* The union is large enough for its largest field
-* Initialization writes exactly one field
-* Rust does not track an active field
+* Holds alternative representations of data in overlapping memory
+  * Initialization writes exactly one field
+  * Rust does not track an active field
+    * Unlike :rust:`enum` that tracks which variant is active
+* Storage fits the largest field, plus any padding
 
 .. code:: rust
 
@@ -21,8 +20,9 @@ What Is a "union"?
        hulk: u8,
    }
 
-* :rust:`#[repr(C)]` guarantees that every field starts at byte offset zero
-* Fields that need destruction use :rust:`ManuallyDrop<T>`
+.. note::
+
+  :rust:`#[repr(C)]` ensures all fields start at offset 0
 
 ----------------------
 Writing Union Fields
@@ -37,21 +37,21 @@ Writing Union Fields
    // No unsafe block required
    avenger.hulk = 255;
 
-* Writing another field overwrites the shared storage
-* Writing does not read or interpret the previous field value
+* Writing another field overwrites shared storage
+* Writing does not read or interpret previous field value
 
 ----------------------
 Reading Union Fields
 ----------------------
 
-**Reading from a union field is an unsafe operation**
+**Reading is an unsafe operation**
 
 .. code:: rust
 
    let avenger = Avenger { banner: -1 };
 
-   // SAFETY: Both fields start at offset 0
-   // Every bit pattern is valid for u8
+   // SAFETY: Both fields share an initialized byte,
+   // and every bit pattern is valid for 'u8'
    let hulk = unsafe { avenger.hulk };
 
    println!("Hulk: {hulk}");
@@ -60,7 +60,27 @@ Reading Union Fields
 
    Hulk: 255
 
-* Rust does not track the last written field
-* Union reads, including pattern matching, are unsafe
 * Stored bits must be valid for the selected field
 * :rust:`-1_i8` and :rust:`255_u8` are the same eight bits
+
+.. note::
+
+  Destructuring a union through pattern matching also requires :rust:`unsafe`
+
+------------------------
+Reading Without Unsafe
+------------------------
+
+**Reading a union field without** :rust:`unsafe` **causes a compilation error**
+
+.. code:: rust
+
+    let avenger = Avenger { banner: -1 };
+    let hulk = avenger.hulk; // This won't compile
+    println!("Hulk: {hulk}");
+
+.. container:: latex_environment footnotesize
+
+  .. code:: error
+
+    error[E0133]: access to union field is unsafe and requires unsafe block

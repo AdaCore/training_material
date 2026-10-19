@@ -6,19 +6,24 @@ Raw Pointers
 Raw Pointer Types
 -------------------
 
-* Raw pointers provide low-level access without reference guarantees
-  * :rust:`*const T` - raw pointer used to read a :rust:`T`
-  * :rust:`*mut T` - raw pointer that may write a :rust:`T`
-* Characteristics of Raw Pointers
+* Raw pointers provide low-level access *without* reference guarantees
+  * :rust:`*const T` - raw pointer for reading
+  * :rust:`*mut T` - raw pointer for reading and writing
+* Characteristics of a raw pointer
   * May alias other raw pointers
   * May be null, dangling, or misaligned
   * May point to uninitialized or invalid memory
-  * Do not own the pointed-to value
-    * No reference-lifetime guarantees or automatic cleanup management
+  * Does not own the pointed-to value
+    * Keeping the pointer does not keep the value alive
+    * Dropping the pointer does not destroy the value
 
------------------------
-Creating Raw Pointers
------------------------
+.. warning::
+
+  Pointer types do not guarantee valid memory accesses
+
+----------------------
+Raw Pointer Creation
+----------------------
 
 **Creating a raw pointer is safe and needs no unsafe block**
 
@@ -34,34 +39,40 @@ Creating Raw Pointers
 
 .. warning::
 
-  Safe pointer creation does not make the pointer safe to dereference
+  Just because it's safe to create doesn't make it safe to dereference!
 
------------------------------------
-Other Ways to Create Raw Pointers
------------------------------------
+--------------------------------------
+Creating raw pointers via conversion
+--------------------------------------
 
-**Raw pointers can also be created through conversions**
 
 .. code:: rust
 
   let treasure = 5;
 
-  // Cast from a reference
+- Cast from a reference
+
+.. code:: rust
+
   let reference = &treasure;
   let clue = reference as *const i32;
 
-  // Convert an arbitrary address
+- Convert an arbitrary address
+
+.. code:: rust
+
   let mystery_address = 0xdeadbeef_usize;
   let mystery_pointer = mystery_address as *const i32;
 
-* Creating a raw pointer does not access the pointed-to value
-* Whether a pointer is valid to dereference is a separate question
+.. warning::
+
+  Creating this pointer is safe; accessing memory through it may not be
 
 ----------------------------
 Dereferencing Raw Pointers
 ----------------------------
 
-**Dereferencing a raw pointer requires an unsafe block**
+**Dereferencing requires an unsafe block**
 
 .. code:: rust
 
@@ -77,13 +88,13 @@ Dereferencing Raw Pointers
 
 .. note::
 
-  :rust:`// SAFETY:` documents the justification for programmers, not the compiler
+    :rust:`// SAFETY:` explains the reasoning to readers; recommended, not required
 
 ---------------------------------
 Aliasing and Safety Obligations
 ---------------------------------
 
-**Raw pointers may alias the same memory without a compilation error**
+**Raw pointers may alias the same memory without compile error**
 
 .. code:: rust
 
@@ -100,4 +111,4 @@ Aliasing and Safety Obligations
 
 * Raw-pointer aliasing is not checked
 * Every access must remain valid and compatible
-* Invalid pointers or aliasing may cause undefined behavior
+* Invalid or incompatible memory accesses may cause undefined behavior

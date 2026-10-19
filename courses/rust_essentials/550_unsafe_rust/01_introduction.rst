@@ -9,9 +9,6 @@ Topics Covered
 * **Safe vs. Unsafe**
 
   - What Safe Rust guarantees and what Unsafe Rust requires
-
-* **Five Superpowers**
-
   - Operations Rust cannot verify
 
 * **Raw Pointers**
@@ -21,7 +18,6 @@ Topics Covered
 * **Unsafe Functions**
 
   - Calling unsafe functions with caller safety obligations
-  - Foreign Function Interface (FFI)
 
 * **Mutable Statics**
 
