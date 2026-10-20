@@ -20,9 +20,12 @@ Libadalang and LKQL
 * *Origin* parameter
 
   * Many Libadalang properties accept optional :lkql:`origin` parameter
-  * Allows passing the starting node for the property
+  * Specifies from where property is evaluated
 
     * Default is the current node
+    
+  * For example, :lkql:`p_most_visible_part` returns different data for a
+    private type depending on the location of the node
 
 ------------------
 Standard Library

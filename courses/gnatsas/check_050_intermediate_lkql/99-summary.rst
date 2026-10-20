@@ -32,5 +32,5 @@ What We Covered
 
 * **Unit Rules**
 
-  * Rules that apply to units rather than tokens
+  * Rules that apply to units rather than AST nodes
   * Required when the rule requires context

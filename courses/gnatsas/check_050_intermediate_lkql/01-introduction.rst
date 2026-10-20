@@ -20,4 +20,4 @@ Topics Covered
 
 * **Unit Rules**
 
-  * Rules that apply to units rather than tokens
+  * Rules that apply to units rather than AST nodes

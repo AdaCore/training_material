@@ -137,7 +137,10 @@ List Comprehension
 
     [item for item in subprograms if name == item.to_lower_case]
 
-  * Build a list of subprogram nodes where the name matches some parameter
+  * For every :lkql:`item** in the list of subprograms
+
+    * If :lkql:`name` matches the item (the subprogram name)
+    * Then add :lkql:`item` to the list being returned
 
 .. note::
 
@@ -177,11 +180,11 @@ List Comprehension
 Unwrap Expression
 -------------------
 
-* Safe field access returns a pointer
+* Safe field access returns a *nullable value*
 
-  * :lkql:`null` or pointing to an object
+  * Either :lkql:`null` or an object
 
-* To dereferce the pointer, use the *unwrap operator* :lkql:`!!`
+* To refer to the object, use the *unwrap operator* :lkql:`!!`
 
   * Typically used at the end of a chain of safe field accesses
 
@@ -191,4 +194,4 @@ Unwrap Expression
 
 .. warning::
 
-  If the chain returns a null pointer, :lkql:`!!` will raise an error
+  If the chain returns :lkql:`null`, the unwrap will raise an error

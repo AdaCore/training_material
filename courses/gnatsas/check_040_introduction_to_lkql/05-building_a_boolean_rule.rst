@@ -31,12 +31,12 @@ Checking Object Type
   * Returns :lkql:`TypeExpr`
   * We want to know the base type of the object
 
-* Type expression has field :lkql:`p_designated_type_decl()`
+* Type expression has property :lkql:`p_designated_type_decl()`
 
   * Returns :lkql:`BaseTypeDecl`
   * This is just the type declaration - we need the base type
 
-* Type declaration has field :lkql:`p_base_type()`
+* Type declaration has property :lkql:`p_base_type()`
 
   * Returns :lkql:`BaseTypeDecl`
   * This will be the base type of the object
@@ -46,7 +46,7 @@ Checking Object Type
   * Returns :lkql:`DefiningName`
   * We want the name as a string
 
-* Defining Name has field :lkql:`p_fully_qualified_name()`
+* Defining Name has property :lkql:`p_fully_qualified_name()`
 
   * Returns :lkql:`str`
   * We want to see if this is :ada:`Integer`
@@ -151,7 +151,7 @@ Messages
 
   .. code:: error
 
-    main.adb:6:04: rule violation: integer_objects
+    main.adb:5:04: rule violation: integer_objects
 
 * To supply more descriptive explanation, use :lkql:`parameter` in :lkql:`@check`
 
@@ -162,4 +162,4 @@ Messages
 
   .. code:: error
 
-    main.adb:6:04: rule violation: Integer object found
+    main.adb:5:04: rule violation: Integer object found

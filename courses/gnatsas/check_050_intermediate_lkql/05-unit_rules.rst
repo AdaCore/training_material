@@ -35,7 +35,7 @@ Basic Unit Rule
 
 * Major differences between unit rules and boolean rules
 
-  * Unit Rules operate on analysis units instead of token nodes
+  * Unit Rules operate on analysis units instead of AST nodes
   * Unit Rules return a message list rather than a boolean value
 
     * List can flag multiple issues in a single unit
@@ -136,7 +136,7 @@ Rules That Trigger Multiple Times
                stdlib.previous_non_blank_token_line(tok) == tok.start_line
         ]
 
-* Build a list of messages such by looping through the unit tokens
+* Build a list of messages such by looping through the unit AST nodes
 
   * If a token is a comment and there is code on the same line
 
