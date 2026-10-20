@@ -37,11 +37,11 @@ Basic Data Types
 
 * ``Node``
 
-  * Correspond to syntax nodes of queried source files
+  * Corresponds to syntax nodes of queried source files
 
 * ``Token``
 
-  * Correspond to lexical units of queried source files
+  * Corresponds to lexical units of queried source files
 
 * ``Pattern``
 
@@ -99,15 +99,15 @@ Block Expressions
 
   .. code:: lkql
 
-  fun maximum_lines(unit, n: int = 10000) =
-      {
-          val tokens = unit.tokens.to_list;
-          val tok    = tokens[tokens.length];
+    fun maximum_lines(unit, n: int = 10000) =
+        {
+            val tokens = unit.tokens.to_list;
+            val tok    = tokens[tokens.length];
 
-          if tok.end_line > n
-          then [{message: "too many lines: " & img(tok.end_line), loc: tok}]
-          else []
-      }
+            if tok.end_line > n
+            then [{message: "too many lines: " & img(tok.end_line), loc: tok}]
+            else []
+        }
 
 * Value of the "block expression" comes from the :lkql:`if` branches
 
@@ -287,17 +287,15 @@ Comparison Expressions
 
     12 in list
 
-* *Is expressions* verify value matches a pattern
+* *Is expressions* verify value matches a **pattern**
 
   .. code:: lkql
 
     val a = select AdaNode
     val b = a[1] is ObjectDecl
 
+  * :dfn:`Pattern` can be *any value*
 
-
-
-
-
-    
-
+    * Basic or composite types
+    * Literals (numeric, string, :lkql:`null`)
+    * Values (variables, parameters)

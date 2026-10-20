@@ -29,27 +29,32 @@ Checking Object Type
 * Object declaration has field :lkql:`f_type_expr`
 
   * Returns :lkql:`TypeExpr`
-  * We want to know the base type of the object
+
+  *We want to know the base type of the object*
 
 * Type expression has property :lkql:`p_designated_type_decl()`
 
   * Returns :lkql:`BaseTypeDecl`
-  * This is just the type declaration - we need the base type
+
+  *This is just the type declaration - we need the base type*
 
 * Type declaration has property :lkql:`p_base_type()`
 
   * Returns :lkql:`BaseTypeDecl`
-  * This will be the base type of the object
+
+  *This will be the base type of the object*
 
 * Base type declaration has field :lkql:`f_name`
 
   * Returns :lkql:`DefiningName`
-  * We want the name as a string
+
+  *We want the name as a string*
 
 * Defining Name has property :lkql:`p_fully_qualified_name()`
 
   * Returns :lkql:`str`
-  * We want to see if this is :ada:`Integer`
+
+  *We want to see if this is* :ada:`Integer`
 
 -------------------------
 Putting It All Together
