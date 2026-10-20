@@ -101,6 +101,7 @@ Dealing with Panic
 * Successful test is easy
 
   .. code:: rust
+
     #[test]
     fn test1() {
         let values: [i32; 6] = [2, 3, 5, 8, 13, 21];

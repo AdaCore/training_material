@@ -19,7 +19,7 @@ What is a "doctest"?
   /// ```
   /// # use adder::add;
   /// assert_eq!(add(3, 4), 7);
-  /// assert_ne!(add(-3, -4), 7);
+  /// assert_ne!(add(2, 5), 7);
   /// ```
 
 --------------------
@@ -46,7 +46,7 @@ Why Use "doctest"?
   /// ```
   /// # use adder::add;
   /// assert_eq!(add(3, 4), 7);
-  /// assert_ne!(add(-3, -4), 7);
+  /// assert_ne!(add(2, 6), 7);
   /// ```
 
 * "///" indicates a doctest

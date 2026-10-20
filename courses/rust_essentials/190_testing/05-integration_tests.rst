@@ -118,8 +118,8 @@ Submodules in Integration Tests
   * Using old style naming conventions
   * e.g. :filename:`common/mod.rs`
 
-    * Creates module :rust:`common`
-    * Tests can import :rust:`common` and call its functions
+    * Declare the module with :rust:`mod common;`
+    * Call its functions, e.g. :rust:`common::setup()`
 
 -----------------------
 Testing Binary Crates
