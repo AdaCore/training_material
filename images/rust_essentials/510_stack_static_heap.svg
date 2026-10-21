@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="390" viewBox="0 0 1000 390" role="img" aria-labelledby="title desc">
+  <title id="title">Stack, static storage, and heap</title>
+  <desc id="desc">A stack frame contains a local value and a Vec header with a pointer, length, and capacity. The pointer leads to a separate heap allocation. A static item lives in static storage.</desc>
+  <rect x="40" y="24" width="468" height="243" rx="22" fill="#D7E8F2" stroke="#17345F" stroke-width="3" />
+  <rect x="692" y="68" width="265" height="195" rx="22" fill="#E8F4EA" stroke="#5E9F68" stroke-width="3" />
+  <rect x="40" y="288" width="468" height="79" rx="18" fill="#E9F2F8" stroke="#18A9C7" stroke-width="3" />
+  <text x="76" y="77" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="39" fill="#1C3553">Stack frame</text>
+  <rect x="76" y="99" width="166" height="66" rx="12" fill="#F7FBFF" stroke="#B8D5E6" stroke-width="2" />
+  <text x="92" y="143" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="32" fill="#1C3553">x = 42</text>
+  <rect x="264" y="99" width="206" height="142" rx="14" fill="#FFFFFF" stroke="#9CB3CA" stroke-width="2" />
+  <text x="292" y="136" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="34" fill="#1C3553">Vec</text>
+  <text x="292" y="174" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="29" fill="#1C3553">ptr</text>
+  <text x="292" y="211" font-family="DejaVu Sans, sans-serif" font-weight="500" font-size="26" fill="#1C3553">len 4</text>
+  <text x="384" y="211" font-family="DejaVu Sans, sans-serif" font-weight="500" font-size="26" fill="#1C3553">cap 8</text>
+  <path d="M 469 174 H 677" fill="none" stroke="#526B82" stroke-width="4" stroke-linecap="round" />
+  <path d="M 676 165 L 690 174 L 676 183 Z" fill="#526B82" />
+  <text x="719" y="116" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="39" fill="#1C3553">Heap</text>
+  <rect x="713" y="139" width="52" height="54" rx="9" fill="#FFFFFF" stroke="#9DCDA7" stroke-width="2" />
+  <text x="739" y="176" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="26" fill="#1C3553" text-anchor="middle">10</text>
+  <rect x="772" y="139" width="52" height="54" rx="9" fill="#FFFFFF" stroke="#9DCDA7" stroke-width="2" />
+  <text x="798" y="176" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="26" fill="#1C3553" text-anchor="middle">42</text>
+  <rect x="831" y="139" width="52" height="54" rx="9" fill="#FFFFFF" stroke="#9DCDA7" stroke-width="2" />
+  <text x="857" y="176" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="26" fill="#1C3553" text-anchor="middle">7</text>
+  <rect x="890" y="139" width="52" height="54" rx="9" fill="#FFFFFF" stroke="#9DCDA7" stroke-width="2" />
+  <text x="916" y="176" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="26" fill="#1C3553" text-anchor="middle">99</text>
+  <text x="722" y="230" font-family="DejaVu Sans, sans-serif" font-weight="500" font-size="26" fill="#1C3553">Vec elements</text>
+  <text x="76" y="324" font-family="DejaVu Sans, sans-serif" font-weight="700" font-size="33" fill="#1C3553">Static storage</text>
+  <text x="76" y="353" font-family="DejaVu Sans, sans-serif" font-weight="500" font-size="23" fill="#1C3553">LIMIT = 100</text>
+</svg>
