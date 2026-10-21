@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 620" width="1600" height="620" role="img" aria-labelledby="title desc">
+  <title id="title">Rust library layers</title>
+  <desc id="desc">Three equal-width rounded rectangles for std, alloc, and core with aligned labels and descriptions.</desc>
+  <defs>
+    <style>
+      .name { font: 700 64px 'DejaVu Sans', Arial, sans-serif; fill: #173a6a; }
+      .text { font: 400 54px 'DejaVu Sans', Arial, sans-serif; fill: #173a6a; }
+      .outline-blue { stroke: #1f467c; }
+      .outline-green { stroke: #5ca064; }
+      .outline-gold { stroke: #d1a03a; }
+    </style>
+  </defs>
+
+  <!-- Transparent background on purpose -->
+
+  <!-- Shared geometry -->
+  <rect x="170" y="70"  width="1110" height="120" rx="26" fill="#efe4bb" class="outline-gold" stroke-width="4"/>
+  <rect x="170" y="250" width="1110" height="120" rx="26" fill="#d6dfd7" class="outline-green" stroke-width="4"/>
+  <rect x="170" y="430" width="1110" height="120" rx="26" fill="#d1e0ea" class="outline-blue" stroke-width="4"/>
+
+  <!-- Left column aligned -->
+  <text x="335" y="149" text-anchor="middle" dominant-baseline="middle" class="name">std</text>
+  <text x="335" y="329" text-anchor="middle" dominant-baseline="middle" class="name">alloc</text>
+  <text x="335" y="509" text-anchor="middle" dominant-baseline="middle" class="name">core</text>
+
+  <!-- Right column aligned -->
+  <text x="610" y="149" dominant-baseline="middle" class="text">platform APIs</text>
+  <text x="610" y="329" dominant-baseline="middle" class="text">heap-backed types</text>
+  <text x="610" y="509" dominant-baseline="middle" class="text">portable foundations</text>
+</svg>
