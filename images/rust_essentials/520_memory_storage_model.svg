@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="278" viewBox="0 0 1000 278" role="img" aria-labelledby="title desc">
+  <title id="title">Memory storage model</title>
+  <desc id="desc">Conceptual storage regions: local arrays and FixedVec containers store their elements inline, a static item has program-duration storage, and a local Vec handle refers to a distinct heap-allocated element buffer. The precise machine placement of local values and the internal Vec field ordering are not specified by this drawing.</desc>
+  <rect x="14" y="8" width="310" height="27.2" rx="10" fill="#12284C" stroke="#12284C" stroke-width="1" />
+  <text x="169.0" y="27.2" fill="#FFFFFF" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="700" text-anchor="middle">Local values</text>
+  <rect x="14" y="44" width="310" height="224" rx="14" fill="none" stroke="#A8BCD2" stroke-width="2" />
+  <rect x="345" y="8" width="310" height="27.2" rx="10" fill="#12284C" stroke="#12284C" stroke-width="1" />
+  <text x="500.0" y="27.2" fill="#FFFFFF" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="700" text-anchor="middle">Static storage</text>
+  <rect x="345" y="44" width="310" height="224" rx="14" fill="none" stroke="#A8BCD2" stroke-width="2" />
+  <rect x="686" y="8" width="300" height="27.2" rx="10" fill="#12284C" stroke="#12284C" stroke-width="1" />
+  <text x="836.0" y="27.2" fill="#FFFFFF" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="700" text-anchor="middle">Heap storage</text>
+  <rect x="686" y="44" width="300" height="224" rx="14" fill="none" stroke="#A8BCD2" stroke-width="2" />
+  <rect x="31" y="57.37" width="276" height="60.18" rx="10" fill="#EAF2F8" stroke="#466181" stroke-width="2" />
+  <text x="48" y="79.94" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="20" font-weight="400" text-anchor="start">[u16; 4]</text>
+  <rect x="83" y="87.46" width="44" height="22.57" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="105.0" y="103.58" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">10</text>
+  <rect x="130" y="87.46" width="44" height="22.57" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="152.0" y="103.58" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">42</text>
+  <rect x="177" y="87.46" width="44" height="22.57" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="199.0" y="103.58" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">7</text>
+  <rect x="224" y="87.46" width="44" height="22.57" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="246.0" y="103.58" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">18</text>
+  <rect x="31" y="124.24" width="276" height="60.18" rx="10" fill="#EAF2F8" stroke="#466181" stroke-width="2" />
+  <text x="48" y="147.64" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="18" font-weight="400" text-anchor="start">FixedVec&lt;u16, 4&gt;</text>
+  <rect x="83" y="154.33" width="44" height="22.57" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="105.0" y="170.44" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">7</text>
+  <rect x="130" y="154.33" width="44" height="22.57" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="152.0" y="170.44" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">18</text>
+  <rect x="177" y="154.33" width="44" height="22.57" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <rect x="224" y="154.33" width="44" height="22.57" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <rect x="31" y="191.1" width="276" height="60.18" rx="10" fill="#D7E8F2" stroke="#466181" stroke-width="2" />
+  <text x="48" y="214.51" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400" text-anchor="start">Vec&lt;u16&gt;</text>
+  <text x="48" y="235.4" fill="#086E79" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" text-anchor="start">handle</text>
+  <rect x="154" y="205.31" width="134" height="30.93" rx="7" fill="#FFFFFF" stroke="#466181" stroke-width="1.7" />
+  <text x="176.33333333333334" y="227.04" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="400" text-anchor="middle">ptr</text>
+  <line x1="198.66666666666666" y1="205.31" x2="198.66666666666666" y2="236.24" stroke="#A8BCD2" stroke-width="1.5" stroke-linecap="round" />
+  <text x="221.0" y="227.04" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="400" text-anchor="middle">len</text>
+  <line x1="243.33333333333331" y1="205.31" x2="243.33333333333331" y2="236.24" stroke="#A8BCD2" stroke-width="1.5" stroke-linecap="round" />
+  <text x="265.66666666666663" y="227.04" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="400" text-anchor="middle">cap</text>
+  <rect x="365" y="86.63" width="270" height="81.91" rx="10" fill="#EAF2F8" stroke="#466181" stroke-width="2" />
+  <text x="383" y="112.54" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="20" font-weight="400" text-anchor="start">static TABLE</text>
+  <rect x="402" y="130.09" width="44" height="23.4" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="424.0" y="146.62" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">1</text>
+  <rect x="449" y="130.09" width="44" height="23.4" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="471.0" y="146.62" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">2</text>
+  <rect x="496" y="130.09" width="44" height="23.4" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="518.0" y="146.62" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">3</text>
+  <rect x="543" y="130.09" width="44" height="23.4" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="565.0" y="146.62" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">4</text>
+  <text x="500" y="191.94" fill="#086E79" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" text-anchor="middle">Program duration</text>
+  <rect x="705" y="86.63" width="262" height="81.91" rx="10" fill="#EAF2F8" stroke="#466181" stroke-width="2" />
+  <text x="723" y="112.54" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400" text-anchor="start">Vec&lt;u16&gt; buffer</text>
+  <rect x="743" y="130.09" width="44" height="23.4" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="765.0" y="146.62" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">7</text>
+  <rect x="790" y="130.09" width="44" height="23.4" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="812.0" y="146.62" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">10</text>
+  <rect x="837" y="130.09" width="44" height="23.4" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="859.0" y="146.62" fill="#193654" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle">42</text>
+  <rect x="884" y="130.09" width="44" height="23.4" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />
+  <text x="836" y="191.94" fill="#086E79" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" text-anchor="middle">Separate allocation</text>
+  <polyline points="289,221.19 330,221.19 330,235.4 673,235.4 673,160.18 705,160.18" fill="none" stroke="#168EAF" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" />
+  <polygon points="705,160.18 695.0,156 695.0,164.36" fill="#168EAF" />
+</svg>
