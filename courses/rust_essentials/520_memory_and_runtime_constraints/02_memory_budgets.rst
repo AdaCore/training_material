@@ -1,0 +1,59 @@
+================
+Memory Budgets
+================
+
+---------------------------------------------
+Storage Location and Capacity Are Different
+---------------------------------------------
+
+**Compare where a value lives with how it stores its elements**
+
+.. image:: rust_essentials/520_memory_storage_model.svg
+   :width: 100%
+   :align: center
+
+* Arrays and :rust:`FixedVec` store elements inline in the value
+
+* A :rust:`Vec` stores a small handle separately from its heap-backed buffer
+
+* A fixed-size array is not automatically a :rust:`static` item
+
+-------------------------------------------
+Measure the Value and Its Backing Storage
+-------------------------------------------
+
+* Independent illustration inside a function
+
+.. code:: rust
+
+  use core::mem::size_of;
+
+  assert_eq!(size_of::<[u16; 64]>(), 128);
+
+* :rust:`size_of::<T>()` includes inline fields and padding
+
+* For :rust:`Vec<T>` or :rust:`String`, it does not include the heap buffer
+
+* A full budget also includes simultaneous buffers and temporary storage
+
+* Element types may own further allocations of their own
+
+.. note::
+
+  Fixed capacity does not bound allocations owned by the elements
+
+---------------------------
+The Stack Also Has Limits
+---------------------------
+
+* Large local buffers can increase peak stack usage
+
+* Nested calls and recursion can add to that peak
+
+* Moving data to the stack does not make its storage free
+
+* Reusing a caller-owned buffer can avoid repeated working buffers
+
+.. warning::
+
+  Avoiding heap allocation does not prove that a program cannot exhaust memory
