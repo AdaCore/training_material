@@ -6,11 +6,26 @@ Summary
 What We Covered
 -----------------
 
-* Topic 1
+* **Memory Budgets**
 
-  - Subtopic 1a
+  - Count storage, capacity, and simultaneously live data
 
-* Topic 2
+* **Dynamic Allocation**
 
-  - Subtopic 2a
+  - Make allocation points visible and handle reported failures explicitly
 
+* **Caller-Provided and Static Storage**
+
+  - Separate storage duration from ownership and access policy
+
+* **Fixed-Capacity Collections**
+
+  - Avoid growing allocations while handling capacity exhaustion
+
+* **Runtime Constraints**
+
+  - Bound the workload and check the complete execution path
+
+.. tip::
+
+  Choose storage and failure policies that match resource limits
