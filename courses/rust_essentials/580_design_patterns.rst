@@ -1,6 +1,7 @@
-*****************
-Design Patterns
-*****************
+************************************
+Typestate and Peripheral Ownership
+************************************
+
 .. container:: PRELUDE BEGIN
 
 .. container:: PRELUDE ROLES
@@ -32,4 +33,9 @@ Design Patterns
 .. container:: PRELUDE END
 
 .. include:: 580_design_patterns/01_introduction.rst
+.. include:: 580_design_patterns/02_embedded_challenge.rst
+.. include:: 580_design_patterns/03_peripheral_ownership.rst
+.. include:: 580_design_patterns/04_typestate_pattern.rst
+.. include:: 580_design_patterns/05_building_gpio_api.rst
+.. include:: 580_design_patterns/06_typestate_in_practice.rst
 .. include:: 580_design_patterns/99_summary.rst
