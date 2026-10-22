@@ -35,11 +35,11 @@ Intermediate LKQL
 .. role:: lkql(code)
     :language: lkql
 
-.. include:: check_050_intermediate_lkql/01-introduction.rst
-.. include:: check_050_intermediate_lkql/02-expressions.rst
-.. include:: check_050_intermediate_lkql/03-functions.rst
-.. include:: check_050_intermediate_lkql/04-patterns.rst
-.. include:: check_050_intermediate_lkql/05-unit_rules.rst
-.. include:: check_050_intermediate_lkql/06-building_a_unit_rule.rst
-.. include:: check_050_intermediate_lkql/88-intermediate_lkql.lab.rst
-.. include:: check_050_intermediate_lkql/99-summary.rst
+   include:: check_050_intermediate_lkql/01-introduction.rst
+   include:: check_050_intermediate_lkql/02-expressions.rst
+   include:: check_050_intermediate_lkql/03-functions.rst
+   include:: check_050_intermediate_lkql/04-patterns.rst
+   include:: check_050_intermediate_lkql/05-unit_rules.rst
+   include:: check_050_intermediate_lkql/06-building_a_unit_rule.rst
+   include:: check_050_intermediate_lkql/88-intermediate_lkql.lab.rst
+   include:: check_050_intermediate_lkql/99-summary.rst
