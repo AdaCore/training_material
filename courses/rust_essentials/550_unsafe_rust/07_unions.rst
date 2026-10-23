@@ -60,18 +60,18 @@ Reading Union Fields
 
    Hulk: 255
 
-* Stored bits must be valid for the selected field
+* Stored bits must be valid for selected field
 * :rust:`-1_i8` and :rust:`255_u8` are the same eight bits
 
 .. note::
 
   Destructuring a union through pattern matching also requires :rust:`unsafe`
 
-------------------------
-Reading Without Unsafe
-------------------------
+--------------------------
+Reading Without "unsafe"
+--------------------------
 
-**Reading a union field without** :rust:`unsafe` **causes a compilation error**
+**Reading a union field without** :rust:`unsafe` **causes compilation error**
 
 .. code:: rust
 

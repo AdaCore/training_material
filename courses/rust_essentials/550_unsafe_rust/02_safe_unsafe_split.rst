@@ -28,7 +28,7 @@ Five Superpowers
 
 .. note::
 
-  Rust has other unsafe features beyond these five
+  Rust has other unsafe features beyond these
 
 ---------------------------
 What "unsafe" Does Not Do
@@ -40,7 +40,7 @@ What "unsafe" Does Not Do
   * Reference lifetimes are still checked
 
 * Does **not** disable checks in surrounding Safe Rust
-* Does **not** mean the code is dangerous
+* Does **not** mean code is dangerous
 
   * Compiler cannot verify safety requirements
 
