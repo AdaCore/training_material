@@ -6,7 +6,7 @@ Functions
 Review: Functions
 -------------------
 
-* Previous chapter covered basic functions
+* The previous module introduced basic functions
 
   * Building block of LKQL
 
@@ -16,8 +16,8 @@ Review: Functions
 
     fun add(left, right) = left + right
 
-  * Name of function: :lkql:`add`
-  * Parameters: :lkql:`left` and :lkql:`right`
+  * **Function name:** :lkql:`add`
+  * **Parameters:** :lkql:`left`, :lkql:`right`
 
     * As there is no global data, most functions will have parameters
 
@@ -29,38 +29,47 @@ Decorators (1/2)
 
 * :lkql:`@check` indicates rule returning a boolean value
 
-  * Operates on nodes within the source code
-  * Checks if node breaks the rule
+  * Operates on every syntax tree node within the source code
+  * Returns true if node violates the rule
 
-* :lkql:`@unit_check` indicates rule returning list of messages
+* :lkql:`@unit_check` indicates a unit rule
 
-  * Each element of the list is a message and a location
-  * Message and location indicate code that breaks the rule
+  * Operates on every library unit within the source code
+  * Returns a *list* of failures within the unit
+
+    * Each element of the list is a message and a location
+    * Message and location indicate code that violates the rule
 
 .. note::
 
   Files can have **either** :lkql:`@check` **or** :lkql:`@unit_check` but not both
 
-  *Files containing support functions could have neither*
+  *Files containing support functions might have neither*
 
 ------------------
 Decorators (2/2)
 ------------------
 
-* :lkql:`@memoized` is a function that 'remembers' its result
+* :lkql:`@memoized` is a function that caches its result
 
-  * Results are cached
   * Calls with same arguments return cached value
 
     * Functions cannot have side effects
     * So result must be the same
 
-* Decorators can have annotations (for documentation purposes)
+* Decorators can have annotations
+
+  * **message** - violation message to be displayed
+  * **help** - text displayed in a help message
+  * Others beyond the scope of this course
 
   .. code:: lkql
 
-    @check(message="Return true if node is a renaming")
-    fun is_renaming(node) = node is RenamingClause
+    @check(message="renaming declaration")
+    fun renamings(node) = ...
+
+    @unit_check(help="usage of specified aspects")
+    fun forbidden_aspects(unit) = ...
 
 ---------
 Nesting
@@ -84,7 +93,9 @@ Nesting
 Function "Pointers"
 ---------------------
 
-**Objects can be function calls**
+* Local values can be used to store a function call
+
+  * Can be set conditionally based on other values
 
   .. code:: lkql
 
@@ -95,3 +106,8 @@ Function "Pointers"
         val fn = if b == 0 then null else div;
         fn? (a, b) # Return () if b = 0, else a/b
     }
+
+* Use "safe access" to call function (:lkql:`fn?`)
+
+  * If value is null, return value is :lkql:`()`
+  * Otherwise, returns function result

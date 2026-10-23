@@ -13,27 +13,22 @@ Review: Simple Expressions
 * This chapter covers the "next level" of expressions
 
   * Non-numeric literals
-  * Conditionals (:lkql:`if` and :lkql:`match`)
+  * Control flow (:lkql:`if` and :lkql:`match`)
   * List comprehension
   * Dealing with null/empty values
-
-* This chapter will **not** cover everything!
-
-  * Refer to the *LKQL Language Reference* section of the **GNATcheck Reference Manual** for more
 
 -----------------
 Simple Literals
 -----------------
 
-* LKQL supports the following basic "types"
+* LKQL supports the following basic *types*
 
   * Boolean
   * Integer
   * String
   * Unit
-  * Null
 
-* Literals for these types are (mostly) as expected
+* Literals are available for these types
 
   .. code:: lkql
 
@@ -41,30 +36,29 @@ Simple Literals
     val count = 3     # Integer
     val name = "Fred" # String
     val empty = ()    # Unit
-    val absent = null # Null
 
 .. note::
 
-  *Unit* is an **empty** result, while *null* indicates absence
+  *Unit* is an **empty** result - use :lkql:`null` to value doesn't exist
 
-------------------
-Complex Literals
-------------------
+--------------------
+Composite Literals
+--------------------
 
 * Object literal
 
-  * Defines an object and its fields
+  * Creates an object and its fields
 
   .. code:: lkql
 
     val object = {lower: "Hello", UPPER: "World"}
     print (object.lower & " " & object.upper)
 
-  * Field names always treated as lowercase
+  * Field names are case-insensitive
 
 * List literal
 
-  * List of values
+  * Contiguous list of values
 
   .. code:: lkql
 
@@ -72,7 +66,7 @@ Complex Literals
 
 * Tuple literal
 
-  * Collection of values
+  * Heterogeneous group of values
 
   .. code:: lkql
 
@@ -90,9 +84,9 @@ Complex Literals
 
     val expr_index = if is_return then 1 else 2;
 
-  * :lkql:`if` expressions that return a boolean value do not need an :lkql:`else`
+  * Boolean :lkql:`if` expressions do not require an :lkql:`else`
 
-    * :lkql:`true` will be returned for the implied :lkql:`else`
+    * If condition is false and no :lkql:`else` expression, :lkql:`true` is the value
 
 * :lkql:`match` expression allows pattern-matching to determine the path
 
@@ -106,8 +100,8 @@ Complex Literals
   .. code:: lkql
 
     match node
-    | ParenExpr => strip(node.f_expr)
-    | QualExpr  => strip(node.f_suffix)
+    | ParenExpr => node.f_expr
+    | QualExpr  => node.f_suffix
 
   * Arms are evaluated in order
 
@@ -121,16 +115,16 @@ List Comprehension
 
 * LKQL is functional, so no :ada:`for` loops
 
-  * List comprehension allows list construction by embedding the :ada:`for`
+* List comprehension allows construction by embedding the :ada:`for`
 
   .. code::
 
-    [<expression> for <identifier> in <query>]
+    [<element_expression> for <identifier> in <query_expression>]
 
-  * Build a list of *expression* elements such that
+  * Build a sequence of *element_expression* elements such that
 
-    * *Query* returns results named *identifier*
-    * *Identifier* can be used to build *expression*
+    * *Query_expression* returns results named *identifier*
+    * *Identifier* can be used to build *element_expression*
 
   .. code:: lkql
     :font-size: scriptsize
@@ -144,9 +138,8 @@ List Comprehension
 
 .. note::
 
-  List comprehension actually builds a :lkql:`Stream`, not a list
-
-  Elements of a :lkql:`Stream` are not computed until referenced
+  * List comprehension actually builds a :lkql:`Stream`, not a list
+  * Elements of a :lkql:`Stream` are not computed until referenced
 
 ----------------
 "Safe" Variant
@@ -154,10 +147,10 @@ List Comprehension
 
 * Many queries in LKQL can return :lkql:`null` or :lkql:`()` (called :dfn:`Unit`)
 
-  * Items not found, empty lists, etc.
-  * Similar to returning a pointer
+  * **()** - empty list
+  * **null** - value does not exist
 
-* :lkql:`?` is used to simplify downstream dereferencing
+* :lkql:`?.` is used to simplify accessing past a :lkql:`null` value
 
   * Allows chaining of empty values
 
@@ -174,7 +167,7 @@ List Comprehension
 
 .. note::
 
-  :lkql:`?` is also called *safe field access*
+  :lkql:`?.` is also called *safe field access*
 
 -------------------
 Unwrap Expression
@@ -184,13 +177,14 @@ Unwrap Expression
 
   * Either :lkql:`null` or an object
 
-* To refer to the object, use the *unwrap operator* :lkql:`!!`
+* To refer to the object, use the *unwrap expression* :lkql:`!!`
 
   * Typically used at the end of a chain of safe field accesses
 
   .. code:: lkql
+    :font-size: small
 
-    object_decl?.p_type_expr()?.p_designated_type_decl()!!
+    object_decl?.p_type_expression()?.p_designated_type_decl()!!
 
 .. warning::
 

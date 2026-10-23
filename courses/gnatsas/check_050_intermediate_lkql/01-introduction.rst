@@ -8,16 +8,16 @@ Topics Covered
 
 * **Expressions**
 
-  * Building more complicated expressions
+  * Expanding expressions with values, selectors, filters, and more
 
 * **Functions**
 
-  * Different types of functions allowed
+  * More function categories, parameters, and annotations
 
 * **Patterns**
 
-  * Refining queries via pattern matching
+  * Filtering query results through pattern matching
 
-* **Unit Rules**
+* **Building a Unit Rule**
 
-  * Apply to units rather than AST nodes
+  * Apply to units rather than syntax tree nodes

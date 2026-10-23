@@ -23,14 +23,14 @@ Example of a Simple Unit Rule
   :font-size: scriptsize
 
   main.adb:5:14: rule violation: expression has too many sub-expressions (3)
-  main.adb:7:05: rule violation: expression has too many sub-expressions (6)
+  main.adb:7:05: rule violation: expression has too many sub-expressions (7)
   main.adb:7:25: rule violation: expression has too many sub-expressions (3)
 
-* Line 5 has 3 subexpressions (:ada:`1`, :ada:`2`, :ada:`3`)
-* Line 6 has 2 subexpressions (:ada:`Value`, :ada:`4`)
-* Line 7 has 3 subexpressions (:ada:`5 + 6`, :ada:`7`, :ada:`Value * 8 / 9`)
+* Line 5 has 3 subexpressions (**1**, **2**, **3**)
+* Line 6 has 2 subexpressions (**Value**, **4**)
+* Line 7 has 7 subexpressions (**Do_Something**, **5**, **6**, **7**, **Value**, **8**, **9**)
 
-  * And one subexpression also has 3 subexpressions (:ada:`Value`, :ada:`8`, :ada:`9`)
+  * Line 7 also flags the third parameter with 3 sub-expressions (**Value**, **8**, **9**)
 
 .. note::
 
@@ -69,21 +69,17 @@ Examining the Rule - Query
 .. code:: lkql
 
   for node in from unit.root select
-
-*Loop over all nodes in the unit*
-
-.. code:: lkql
+  # Loop over all nodes in the unit*
 
   expr@Expr(parent: not Expr)
-
-*Find expressions who are not part of another expression and name it* :lkql:`expr`
-
-.. code:: lkql
+  # Match expressions whose immediate parent
+  # is not an expression and
+  # bind each to "expr"
 
   when expr is not (Identifier | DefiningName | EndName)
             and num_expr(expr) > n
-
-*Trigger the rule when* :lkql:`expr` *is not a name and number of expressions is greater than* **N**
+  # Trigger the rule when "expr" is not a name and number
+  # of expressions is > n
 
 ---------------------------------------
 Examining the Rule - Support Function
@@ -101,13 +97,13 @@ Examining the Rule - Support Function
 
 * Build a list of nodes such that each element is one of
 
-  * Single token (unless the token is an operator)
+  * Single token, excluding operators
   * Conditional expression
   * Quantified expression
   * Aggregate
   * :ada:`@` (Ada 2022 "target" symbol)
 
-* Return the length of the list
+* Return the number of matching nodes
 
 --------------------------------
 Examining the Rule - Decorator
@@ -119,7 +115,7 @@ Examining the Rule - Decorator
   @unit_check(help="maximum complexity of an expression",
               category="Style", subcategory="Program Structure")
 
-* **help** - text used for getting help on a rule
-* **category** - text used to distinguish what the rule is used for
-* **subcategory** - text used to further classify the rule usage
+* **help** - sets help text for rule
+* **category** - text used to describe broad classification of rule
+* **subcategory** - text used to further describe rule usage
 

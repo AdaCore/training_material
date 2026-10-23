@@ -21,9 +21,9 @@ What Is a Unit Rule?
   * Check if number of lines in file exceeds some maximum
   * Flag any file containing end-of-line comments
 
-* Both of these rules could be done as simple rules
+* Both of these rules could be written as simple rules
 
-  * But would generate messages for **every** line that matches
+  * But would generate messages for **every** node that matches
 
 * We need rules to check if the **unit** fails, not the **node**
   
@@ -31,14 +31,15 @@ What Is a Unit Rule?
 Basic Unit Rule
 -----------------
 
-* Unit rules start with :lkql:`@unit_check` rather than :lkql:`@check`
+* Starts with :lkql:`@unit_check` rather than :lkql:`@check`
 
-* Major differences between unit rules and boolean rules
+* Major differences from boolean rules
 
-  * Unit Rules operate on analysis units instead of AST nodes
-  * Unit Rules return a message list rather than a boolean value
+  * Operate on analysis units instead of syntax tree nodes
+  * Return a message list rather than a boolean value
 
-    * List can flag multiple issues in a single unit
+    * List can flag multiple violations in a single unit
+    * List can be empty if no violations found
 
 * Simple rules trigger once per unit
 
@@ -59,7 +60,7 @@ Expanded Messages for Unit Rules
   .. code:: lkql
 
     @check(message="Integer object found")
-    fun integer_object(node) =
+    fun integer_object(node) = ...
 
 * In a unit rule, messages must be in a list
 
@@ -74,7 +75,7 @@ Expanded Messages for Unit Rules
 
     * Can use concatenation to add specific information to the message
 
-  * **loc** is the token that triggered the rule
+  * **loc** is the node (or token) that triggered the rule
 
     * Used to display where in the code that rule was triggered
 
@@ -92,7 +93,7 @@ Simple Unit Rule
 
   * E.g. unit length rule
 
-    * The violation should appear for the unit
+    * Violation should appear for the unit
     * Not for every node past the end of the line
 
 * The rule still needs to return a **list** of messages
@@ -118,11 +119,9 @@ Simple Unit Rule
 Rules That Trigger Multiple Times
 -----------------------------------
 
-* LKQL does not have *for* loops
-
 * Rules can trigger multiple times (e.g. subprogram length exceeded)
 
-  * **List comprehension** allows rule to build list of multiple messages
+  * **List comprehension** allows rule to build stream of multiple messages
 
   .. code:: lkql
 
@@ -136,7 +135,7 @@ Rules That Trigger Multiple Times
                stdlib.previous_non_blank_token_line(tok) == tok.start_line
         ]
 
-* Build a list of messages such by looping through the unit AST nodes
+* Build a list of messages such by looping through the unit tokens
 
   * If a token is a comment and there is code on the same line
 
@@ -160,15 +159,9 @@ Rules That Trigger Multiple Times
 Support Functions
 -------------------
 
-* Good coding practice means using "helper" functions
+* Support functions can return anything (boolean, integer, list, etc.)
 
-  * Simplify complex expressions
-  * Replace duplicated code
-
-* LKQL allows support functions
-
-  * Can return anything (boolean, integer, list, etc.)
-  * No decorators needed
+  * No decorators required
 
 .. code:: lkql
 
@@ -181,7 +174,7 @@ Support Functions
       [
           {message: "too many lines in subprogram body: " & img(count_lines(n)),
            loc: n.token_start().previous(exclude_trivia=true)}
-          for n in from unit.root
+          for loop_node in from unit.root
           select node@HandledStmts(parent: SubpBody) when count_lines(node) > n
       ]
 
@@ -211,7 +204,7 @@ Support Functions
             {message: "tagged type has too many primitives (" &
                       img(num_primitives(n)) & ")",
              loc: n.p_defining_name()}
-            for n in from unit.root through follow_generics
+            for loop_node in from unit.root through follow_generics
             select node@TypeDecl
             when node.p_is_tagged_type() and node.parent.parent is PublicPart
              and num_primitives(node) > n
@@ -230,4 +223,4 @@ Support Functions
 
 * :lkql:`@memoized` tells analyzer to cache the result
 
-  * And return the value from the cache when called after the first time
+  * And return the value from the cache when called with the same value

@@ -6,7 +6,7 @@ Patterns
 Review: Patterns
 ------------------
 
-* Previous chapter covered basic patterns
+* Previous module covered basic patterns
 
 * Node patterns
 
@@ -58,12 +58,12 @@ Node Patterns
 
   *Select all bodies where any child has a* :ada:`for` *statement*
 
-  * :lkql:`any` matches if any child matches the condition
-  * :lkql:`all` matches if all children matches the condition
+  * :lkql:`any` - at least one child matches
+  * :lkql:`all` - all children match
 
 * **Field Predicate**
 
-  * Matches if the specified field has the correct value
+  * Matches if the specified field has the specified pattern
 
   .. code:: lkql
 
@@ -74,13 +74,13 @@ Node Patterns
 * **Property Call Predicate**
 
   * Similar to field predicate
-  * Matches if the specified property has the correct value
+  * Matches a property call's result against a pattern
 
   .. code:: lkql
 
-    select Identifier(p_name_matches(looking_for): true)
+    select Identifier(p_name_matches("some_string"): true)
 
-  *Select identifiers whose name match the identifier* :lkql:`looking_for`
+  *Select identifiers whose name match the identifier* :lkql:`"some_string"`
 
 ------------------------
 Regular Value Patterns
@@ -107,10 +107,10 @@ Regular Value Patterns
 
     match lst
     # match exactly 1, 2, 3
-    | [1, 2, 3]   => "[1, 2, 3]"
+    | [1, 2, 3]   => { print ("[1, 2, 3]") }
     # match where first element is 1, third element is 3
     #   then print the second element
-    | [1, a@*, 3] => "[1, a@*, 3], with a = " & img(a)
+    | [1, a@*, 3] => { print ("[1, a@*, 3], with a = " & img(a)) }
 
 * **Object Pattern**
 
@@ -124,7 +124,7 @@ Regular Value Patterns
 Special Case Patterns
 -----------------------
 
-**Null Pattern**
+* **Null Pattern**
 
   * Match all null nodes with this pattern
 
@@ -134,32 +134,8 @@ Special Case Patterns
     | BasicDecl => "A BasicDecl node"
     | null      => "Node is null!"
 
-**Wildcard Pattern**
 
-  * Match all values with this pattern
-
-    * Will always return true
-
-  .. code:: lkql
-
-    match any_val
-    | BasicDecl => "A BasicDecl node"
-    | *         => "Any other value"
-
-**Splat Pattern**
-
-  * Used inside *List Pattern* and *Object Pattern*
-
-    * Match all remaining values
-    * Collect into collection of the same type as it is used in
-
-  .. code:: lkql
-
-    match v
-    | [1, rem@...]    => "A list with 1 as first element followed by " & img(rem)
-    | {a: 1, rem@...} => "An object with a=1 and " & img(rem)
-
-**Not Pattern**
+* **Not Pattern**
 
   * Use this pattern to negate another one
 
@@ -169,9 +145,9 @@ Special Case Patterns
     | not BasicDecl => "Everything except a BasicDecl node"
     | *             => "A BasicDecl node"
 
-**Or Pattern**
+* **Or Pattern**
 
-  * Use this pattern to combine any number of other patterns
+  * Use this pattern to match one of a set of patterns
 
     * Match any value matching one of those
 
@@ -180,6 +156,37 @@ Special Case Patterns
     match v
     | (BasicDecl | 1) => "A BasicDecl node or 1"
     | *               => "Any other value"
+
+---------------------------
+Flexible Pattern Matching
+---------------------------
+
+* **Wildcard Pattern**
+
+  * Match all values with this pattern
+
+    * Will always return true
+
+  .. code:: lkql
+    :font-size: footnotesize
+
+    match any_val
+    | BasicDecl => "A BasicDecl node"
+    | *         => "Any other value"
+
+* **Splat Pattern**
+
+  * Used inside *List Pattern* and *Object Pattern*
+
+    * Match all remaining values
+    * Collect into list or object as appropriate
+
+  .. code:: lkql
+    :font-size: footnotesize
+
+    match v
+    | [1, rem@...]    => "A list with 1 as first element followed by " & img(rem)
+    | {a: 1, rem@...} => "An object with a=1 and " & img(rem)
 
 -------------------
 Filtered Patterns
