@@ -8,7 +8,7 @@ Topics Covered
 
 - **What is LKQL?**
 
-  - How to write our own rules for :toolname:`gnatcheck`
+  - How to write custom rules for :toolname:`gnatcheck`
 
 - **General Purpose Programming Language**
 
@@ -18,4 +18,4 @@ Topics Covered
 
    - Language used to interrogate source being examined
 
-- **Building Our First Rule**
+- **Building A Rule**

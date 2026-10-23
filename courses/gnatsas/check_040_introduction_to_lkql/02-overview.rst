@@ -2,36 +2,34 @@
 Overview
 ==========
 
-------------
-Libadalang
-------------
+------------------
+Libadalang (LAL)
+------------------
 
-* Libadalang (LAL) - for parsing and semantic analysis of Ada code
+* For parsing and semantic analysis of Ada code
 
-  * Building block for integration into other tools
+* Building block for integration into other tools
 
-    * IDE, static analyzers, etc.
+  * IDEs, static analyzers, etc.
 
-* Provides
+* Complete syntactic analysis with error recovery
 
-  * Complete syntactic analysis with error recovery
+  * When source is syntactically valid: precise syntax tree
+  * When syntax errors are present: best-effort tree
 
-    * Precise syntax tree when source is correct, OR
-    * Best effort tree when source is incorrect
+* Semantic queries on the syntactic tree such as
 
-  * Semantic queries on top of syntactic tree such as
-
-    * Resolution of references (what a reference corresponds to)
-    * Resolution of types (what is the type of an expression)
-    * General cross references queries (find all references to this entity)
+  * Resolution of references (what a reference corresponds to)
+  * Resolution of types (what is the type of an expression)
+  * General cross reference queries (find all references to this entity)
 
 -------------------------------
 LangKit Query Language (LKQL)
 -------------------------------
 
-* LKQL is a functional language enabling source code queries
+* LKQL is a functional language for querying source code
 
-  * Based on `langkit <https://github.com/AdaCore/langkit>`_ technology
+  * Based on langkit technology `(link) <https://github.com/AdaCore/langkit>`_
   * Currently hardwired for Ada (and LAL)
 
 * Purely functional, high level, dynamically typed language 
@@ -39,7 +37,7 @@ LangKit Query Language (LKQL)
   * General purpose and tree query subsets
 
 * Designed to be simple and concise
-* Has a `reference manual <https://docs.adacore.com/live/wave/lkql/html/gnatcheck_rm/gnatcheck_rm/lkql_language_reference.html>`_
+* Has a reference manual `(link) <https://docs.adacore.com/live/wave/lkql/html/gnatcheck_rm/gnatcheck_rm/lkql_language_reference.html>`_
 
 -----------
 Why LKQL?
@@ -72,13 +70,13 @@ Why LKQL?
 LKQL Construction
 -------------------
 
-* LKQL made up of two language subsets
+* Consits of two language subsets
 
 * General Purpose Subset
 
   * Dynamically typed
   * Functional
-  * Made up of
+  * Includes
 
     * Function definitions
     * Common expressions
@@ -87,4 +85,4 @@ LKQL Construction
 * Tree Query Language
 
   * Allows expression of concise predicates over tree nodes and their relatives
-  * Contains tree traversal logistics
+  * Includes tree traversal logistics

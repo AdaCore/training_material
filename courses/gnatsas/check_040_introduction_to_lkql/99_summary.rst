@@ -8,27 +8,26 @@ What We Covered
 
 - **What is LKQL?**
 
-  - Libadalang used to parse Ada code
-  - LKQL used to analyzing parsed code and make queries
+  - Analyzes libadalang-parsed code and makes queries
 
 - **General Purpose Programming Language**
 
-  - Simple programming language for performing queries
+  - Simple language for performing queries
   - Declarations and expressions
 
 - **Query Language**
 
-  - Queries into parsed source code
+  - Queries parsed source code
   - Pattern-matching mechanisms
 
-    - :lkql:`if`, :lkql:`match`, etc.
+    - :lkql:`is`, :lkql:`select`, :lkql:`when`
 
   - Selectors
 
     - Select nodes within parsed code
     - Automatic traversal
 
-- **Building Our First Rule**
+- **Building A Rule**
 
-  - LKQL is not very complicated language
+  - LKQL is not a very complicated language
   - Limitations can be overcome!

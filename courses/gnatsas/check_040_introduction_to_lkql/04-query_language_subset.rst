@@ -15,7 +15,7 @@ Query Language
 
 * **Queries**
 
-  * Select object declarations based on certain criteria
+  * Select syntax tree nodes based on certain criteria
 
 * **Selectors**
 
@@ -28,15 +28,11 @@ Query Language
 
     * E.g. go from a reference to its declaration
 
-    * Traverse tree
-
 ------------------
 Query Expression
 ------------------
 
 * Simplest part of the query subset
-
-  * Complexity is added via *patterns* and *selectors*
 
 * Simple query
 
@@ -67,13 +63,13 @@ Query Expression
 Pattern
 ---------
 
-* Simply a construction to match against a value
+* A construct to match against a value
 
-  * But can complicated very quickly!
+  * But can get complicated very quickly!
 
 * LKQL checks that value matches the pattern
 
-  * In a query, matches get added to result of query
+  * Matches get added to result of query
 
 --------------------
 Pattern Categories
@@ -85,14 +81,14 @@ Pattern Categories
 
     * Node kind name - match all nodes of this kind
     * Pattern - match multiple node kinds
-    * Wildcard pattern - matchin all node kinds
+    * Wildcard pattern - match all node kinds
 
   .. code:: lkql
     :font-size: small
 
-    select *                           # Will select every node
-    select BasicDecl                   # Will select every basic declaration
-    select (ObjectDecl | BaseTypeDecl) # Will select every object and type declaration
+    select *                           # Selects every node
+    select BasicDecl                   # Selects every basic declaration
+    select (ObjectDecl | BaseTypeDecl) # Selects every object and type declaration
 
 * Regular values patterns
 
@@ -111,9 +107,9 @@ Pattern Categories
 
       select BasicDecl when some_condition
 
-----------------------
-Selector Declaration
-----------------------
+-----------
+Selectors
+-----------
 
 * A :dfn:`selector` is a function that returns a ``Stream`` of values
 

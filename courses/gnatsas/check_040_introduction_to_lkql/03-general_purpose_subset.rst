@@ -18,12 +18,12 @@ Basic Data Types
 
 * ``Unit``
 
-  * Used to represents empty values
+  * Used to represent empty values
 
 * ``Int``
 
   * Basic integer type
-  * Supports arbitrary sized values
+  * Supports arbitrary-sized values
 
 * ``Str``
 
@@ -46,7 +46,7 @@ Basic Data Types
 * ``Pattern``
 
   * Compiled regular expressions
-  * Can be used to match a string against
+  * Can be used for string matching
 
 * ``Function``
 
@@ -65,18 +65,19 @@ Composite Data Types
 * ``List``
 
   * Contiguous immutable sequences of items
-  * Can be indexed; also support concatenation
+  * Can be indexed
+  * Supports concatenation
 
 * ``Object``
 
   * Heterogeneous records
-  * Contain any number of key-to-value mappings
+  * Contains any number of key-to-value mappings
 
 * ``Stream``
 
   * "Lazy" sequences of items
 
-    * Element is not computed until it is observed
+    * Accessing element forces computation up to that element
 
   * Can be indexed
 
@@ -84,18 +85,17 @@ Composite Data Types
 
 .. note::
 
-  ``Tuple``, ``List``, and ``Stream`` start index at 1 (like Ada)
+  ``Tuple``, ``List``, and ``Stream`` index starts at 1 (like Ada)
 
 -------------------
 Block Expressions
 -------------------
 
-* LKQL is a functional language
+* Group local declarations and expressions
 
-  * Everything is an expression
-  * Need a way to create local objects
+  * Local values available within the block
 
-* Block expression creates a "local scope"
+* Create a *local scope*
 
   .. code:: lkql
 
@@ -105,11 +105,12 @@ Block Expressions
             val tok    = tokens[tokens.length];
 
             if tok.end_line > n
-            then [{message: "too many lines: " & img(tok.end_line), loc: tok}]
+            then [{message: "too many lines: " & img(tok.end_line),
+                   loc: tok}]
             else []
         }
 
-* Value of the "block expression" comes from the :lkql:`if` branches
+* Value of the *block expression* comes from the :lkql:`if` branches
 
   * But :lkql:`tokens` and :lkql:`tok` can hold temporary values
 
@@ -117,9 +118,9 @@ Block Expressions
 Declarations
 --------------
 
-* Functions are callable expressions
+* Functions are callable values
 
-  * Simple function (no local variables)
+  * Function with a single expression
 
     .. code:: lkql
 
@@ -150,7 +151,7 @@ Declarations
     |" Function that will add 12 to its first argument
     val adder = make_closure(12)
 
-  * Part of the AST and are attached to the declaration
+  * Part of the syntax tree and are attached to the declaration
 
 ------------------------
 Literals and Operators
@@ -166,27 +167,25 @@ Literals and Operators
     val d = ()       # Unit
     val e = null     # Null
 
-* Built-in operators
+* Integer arithmetic
 
-  * Integer arithmetic
+  .. code:: lkql
 
-    .. code:: lkql
+    val area = height * width
+    val smaller_or_eq = perimter <= 100
 
-      val calc = a + 2 * 3 / 4
-      val smaller_or_eq = a <= b
+* Boolean and relational operators
 
-  * Boolean relational operators
+  .. code:: lkql
 
-    .. code:: lkql
+    power_on and (level > 3 or power <= limit)
 
-      true and false or (a == b) and (not c)
+* Concatenation
 
-  * Concatenation
+  .. code:: lkql
 
-    .. code:: lkql
-
-      "Hello " & name  # Strings concatenation
-      [1, 2] & [5, 6]  # Lists concatenation
+    "Hello " & name  # String concatenation
+    [1, 2] & [5, 6]  # List concatenation
 
 ----------------------
 A Word About Strings
@@ -198,9 +197,9 @@ A Word About Strings
 
     val simple = "Hello"
 
-* Multiline strings are formatted differently
+* Multi-line strings are formatted differently
 
-  * Requiring :lkql:`|"` before the string on each line
+  * Require :lkql:`|"` and whitespace before text on each line
 
   .. code:: lkql
 
@@ -209,21 +208,22 @@ A Word About Strings
                 |" Goodbye!
 
 
-* Multiline string delimiters look just like *docstrings*
+* Multi-line string delimiters look just like *docstrings*
 
-  * But are differentiated by context
+  * Differentiated by context
 
 .. warning::
 
-  In multiline strings and docstrings, first character after ``"`` must be whitespace
-
-  Otherwise a runtime error occurs, **not** a parse error
+  Omitting the whitespace after :lkql:`|"` is
+  a runtime error, **not** a parse error
     
 -------------
 Expressions
 -------------
 
-* *Block expressions* used to declare temporary values
+* *Block expressions* can declare temporary values
+
+  * Allowing simpler intermediate operations
 
   .. code:: lkql
 
@@ -281,7 +281,7 @@ Comparison Expressions
 
 * *Membership expressions* verify value is in the collection
 
-  * Works with ``List`` and ``Stream``
+  * Work with ``List`` and ``Stream``
 
   .. code:: lkql
 
