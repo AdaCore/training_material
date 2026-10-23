@@ -10,7 +10,7 @@ Encapsulating Unsafe Operations
 
 * Callers use a safe interface
 * Implementation does the unsafe work
-  * Keep unsafe operations small and easy to audit
+  * Keeps unsafe operations small and easy to audit
 * Otherwise, expose an unsafe API and document its :rust:`# Safety` contract
 * Examples: :rust:`Vec<T>`, :rust:`String`, and many standard-library types
 
@@ -71,7 +71,7 @@ Calling the Safe Method
   Avenger: 255
 
 * Caller invokes a safe method
-* Implementation guarantees the safety of the operation
+* Implementation guarantees safety of the operation
 
 .. warning::
 

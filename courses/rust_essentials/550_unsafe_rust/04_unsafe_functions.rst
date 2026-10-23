@@ -25,7 +25,7 @@ Declaring an Unsafe Function
 **Use an unsafe function when safety depends on caller guarantees**
 
 * Declared with :rust:`unsafe fn`
-* Caller must satisfy the documented *safety contract*
+* Caller must satisfy documented *safety contract*
 
 .. code:: rust
 
@@ -37,9 +37,9 @@ Declaring an Unsafe Function
       unsafe { value.unwrap_unchecked() }
   }
 
-.. note::
+.. tip::
 
-  Use explicit :rust:`unsafe` blocks, even inside :rust:`unsafe` functions
+  Always use explicit :rust:`unsafe` blocks, even inside :rust:`unsafe` functions
 
 ----------------------------
 Calling an Unsafe Function

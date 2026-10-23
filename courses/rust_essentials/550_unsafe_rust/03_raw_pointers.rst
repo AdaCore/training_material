@@ -13,7 +13,7 @@ Raw Pointer Types
   * May alias other raw pointers
   * May be null, dangling, or misaligned
   * May point to uninitialized or invalid memory
-  * Does not own the pointed-to value
+  * Does not own pointed-to value
     * Keeping the pointer does not keep the value alive
     * Dropping the pointer does not destroy the value
 
@@ -25,7 +25,7 @@ Raw Pointer Types
 Raw Pointer Creation
 ----------------------
 
-**Creating a raw pointer is safe and needs no unsafe block**
+**Creating a raw pointer is safe and needs no** :rust:`unsafe` **block**
 
 .. code:: rust
 
@@ -42,7 +42,7 @@ Raw Pointer Creation
   Just because it's safe to create doesn't make it safe to dereference!
 
 --------------------------------------
-Creating raw pointers via conversion
+Creating Raw Pointers via Conversion
 --------------------------------------
 
 
