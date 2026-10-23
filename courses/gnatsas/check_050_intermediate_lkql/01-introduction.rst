@@ -16,8 +16,8 @@ Topics Covered
 
 * **Patterns**
 
-  * Refining the query via pattern matching
+  * Refining queries via pattern matching
 
 * **Unit Rules**
 
-  * Rules that apply to units rather than AST nodes
+  * Apply to units rather than AST nodes

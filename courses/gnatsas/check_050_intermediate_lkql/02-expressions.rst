@@ -6,9 +6,9 @@ Expressions
 Review: Simple Expressions
 ----------------------------
 
-* Previous chapter covered some simple LKQL expressions
+* Previous module covered some simple LKQL expressions
 
-  * Typical programming techniques like blocks, comparisons, etc.
+  * Including blocks, comparisons, etc.
 
 * This chapter covers the "next level" of expressions
 
@@ -53,7 +53,7 @@ Complex Literals
 
 * Object literal
 
-  * Defines an object and it's fields
+  * Defines an object and its fields
 
   .. code:: lkql
 
@@ -64,7 +64,7 @@ Complex Literals
 
 * List literal
 
-  * Simple representation of a list of objects
+  * List of values
 
   .. code:: lkql
 
@@ -113,7 +113,7 @@ Complex Literals
 
     * First matching arm is taken
     * If no matching arm, run-time exception is raised
-    * :lkql:`*` will match anything
+    * :lkql:`*` matches anything
 
 --------------------
 List Comprehension
@@ -137,7 +137,7 @@ List Comprehension
 
     [item for item in subprograms if name == item.to_lower_case]
 
-  * For every :lkql:`item** in the list of subprograms
+  * For every :lkql:`item` in the list of subprograms
 
     * If :lkql:`name` matches the item (the subprogram name)
     * Then add :lkql:`item` to the list being returned
@@ -164,7 +164,7 @@ List Comprehension
   .. code:: lkql
     :font-size: small
 
-    val params = node?.f_subp_spec?.f_subp_params?.f_params;
+    val params = node?.f_subp_params?.f_params;
 
   * :lkql:`params` will contain a list of parameters for :lkql:`node` if
 

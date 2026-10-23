@@ -25,7 +25,7 @@ Review: Functions
 Decorators (1/2)
 ------------------
 
-* Functions can be prefaced with :dfn:`decorators` describing their behavior
+* Preface functions with :dfn:`decorators` to describe their behavior
 
 * :lkql:`@check` indicates rule returning a boolean value
 
@@ -49,8 +49,8 @@ Decorators (2/2)
 
 * :lkql:`@memoized` is a function that 'remembers' its result
 
-  * Function result is cached
-  * Function called with same arguments returns cached value
+  * Results are cached
+  * Calls with same arguments return cached value
 
     * Functions cannot have side effects
     * So result must be the same
@@ -68,7 +68,7 @@ Nesting
 
 * LKQL allows nested functions
 
-  * Closures (returning reference to local environment) allowed
+  * Closures allowed (return reference to local environment)
 
 .. code:: lkql
 
