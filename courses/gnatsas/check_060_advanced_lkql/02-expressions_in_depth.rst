@@ -58,31 +58,6 @@ Call Expressions
 
   * Notice that :lkql:`fn` is basically a function pointer
 
-------------------
-Constructor Call
-------------------
-
-* Sometimes it is necessary to build a node
-
-  * Typically to pass some construct to a function requiring a node
-
-* Use the :lkql:`new` operator
-
-  .. code:: lkql
-    :font-size: small
-
-    fun reduce_op(bin_op) =
-        match bin_op.f_op
-        | OpDiv                     => new IntLiteral("1")
-        | (OpMinus | OpMod | OpRem) => new IntLiteral("0")
-        | (OpEq | OpGte | OpLte)    => new Identifier("True")
-        | (OpNeq | OpGt | OpLt)     => new Identifier("False")
-
-  * Returns either an integer literal or an identifier
-
-    * Different paths can return different node types
-    * As long as caller expects it
-
 -------------------
 Importing Modules
 -------------------

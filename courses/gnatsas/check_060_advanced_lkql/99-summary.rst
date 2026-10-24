@@ -9,7 +9,7 @@ What We Covered
 * **Expressions In-Depth**
 
   * Fields and properties
-  * Using *unwrap* in function calls
+  * Safe function calls
   * Creating new nodes
   * Importing from other modules
 

@@ -31,7 +31,7 @@ Libadalang and LKQL
 Standard Library
 ------------------
 
-* Builtin functions used throught LKQL functions
+* Builtin functions used throughout LKQL functions
 
 * Builtin methods for tree nodes
 

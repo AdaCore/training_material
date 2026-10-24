@@ -29,11 +29,11 @@ Review: What Is a Selector?
 
   # Calling a selectors directly
   val descendants = children(node, depth=3)
-  # descendants has all children at dept of 3
+  # descendants has all children at depth of 3
 
   # Calling a selector in a nested sub-pattern
   select AdaNode(any children(min_depth=3): BasicDecl)
-  # find all BasicDecl nodes at depth lower than 3
+  # find all BasicDecl nodes at a depth of 3 or deeper
 
 ---------------------
 Defining a Selector
