@@ -58,6 +58,37 @@ Call Expressions
 
   * Notice that :lkql:`fn` is basically a function pointer
 
+----------------------------
+Traversing the Syntax Tree
+----------------------------
+
+* Default behavior for traversal is going through children
+
+  .. code:: lkql
+
+    for body in unit.root select subp@BaseSubpBody
+    # traverse all children of "unit.root"
+
+* But we can actually use :lkql:`through` to indicate other traversals
+
+  * Most common is :lkql:`parent`
+
+    .. code:: lkql
+
+      from node through parent select first TypeDecl 
+      # traverse all ancestors of "node"; stop at first TypeDecl
+
+  * Also can use
+
+    * :lkql:`prev_siblings` - sibling nodes before current node
+    * :lkql:`next_siblings` - sibling nodes after current node
+    * :lkql:`super_types` - if current node is a type, then all parent types
+
+.. note::
+
+  :lkql:`follow_generics` is a special case indicating traversal should
+  follow instantiated generic trees
+
 -------------------
 Importing Modules
 -------------------
