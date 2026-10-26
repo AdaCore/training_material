@@ -12,17 +12,15 @@ Storage Location and Capacity Are Different
    :width: 100%
    :align: center
 
-* Arrays and :rust:`FixedVec` store elements inline in the value
+* Arrays and :rust:`FixedVec` store elements inline, with capacity fixed by their type
 
-* A :rust:`Vec` stores a small handle separately from its heap-backed buffer
+* A :rust:`Vec` stores a fixed-size handle to a separate, growable heap buffer
 
 * A fixed-size array is not automatically a :rust:`static` item
 
 -------------------------------------------
 Measure the Value and Its Backing Storage
 -------------------------------------------
-
-* Independent illustration inside a function
 
 .. code:: rust
 
@@ -34,9 +32,11 @@ Measure the Value and Its Backing Storage
 
 * For :rust:`Vec<T>` or :rust:`String`, it does not include the heap buffer
 
+  * The value stores a pointer, length, and capacity, not its elements
+
 * A full budget also includes simultaneous buffers and temporary storage
 
-* Element types may own further allocations of their own
+* Elements may own additional heap allocations
 
 .. note::
 
