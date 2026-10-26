@@ -6,7 +6,7 @@ Memory Budgets
 Storage Location and Capacity Are Different
 ---------------------------------------------
 
-**Compare where a value lives with how it stores its elements**
+**Compare where value lives with how it stores its elements**
 
 .. image:: rust_essentials/520_memory_storage_model.svg
    :width: 100%
@@ -16,7 +16,7 @@ Storage Location and Capacity Are Different
 
 * A :rust:`Vec` stores a fixed-size handle to a separate, growable heap buffer
 
-* A fixed-size array is not automatically a :rust:`static` item
+* Fixed-size arrays do not automatically have static storage
 
 -------------------------------------------
 Measure the Value and Its Backing Storage
@@ -52,7 +52,7 @@ The Stack Also Has Limits
 
 * Moving data to the stack does not make its storage free
 
-* Reusing a caller-owned buffer can avoid repeated working buffers
+* Reusing a caller-owned buffer can avoid creating a separate working buffer for each call
 
 .. warning::
 
