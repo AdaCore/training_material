@@ -10,7 +10,7 @@ What is a "doctest"?
 
   * Gets its test criteria from special comments
 
-* Use :rust:`///` at the beginning of each test line
+* Put code blocks in :rust:`///` documentation comments
 
 .. code:: rust
 
@@ -19,7 +19,7 @@ What is a "doctest"?
   /// ```
   /// # use adder::add;
   /// assert_eq!(add(3, 4), 7);
-  /// assert_ne!(add(2, 5), 7);
+  /// assert_ne!(add(2, 5), 8);
   /// ```
 
 --------------------

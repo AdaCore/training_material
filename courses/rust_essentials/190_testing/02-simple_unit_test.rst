@@ -66,7 +66,7 @@ Test Semantics
 * Line 7: :rust:`tests` is a **child** of :rust:`adder`
 
   * It has full visibility into its parent's functionality
-  * :rust:`use super::*;` removes need for path into parent data
+  * :rust:`use super::*;` avoids qualified paths to parent-module items
 
 * Line 9: Following function is a test
 

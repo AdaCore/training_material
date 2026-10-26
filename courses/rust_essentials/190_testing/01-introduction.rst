@@ -27,7 +27,7 @@ Topics Covered
   - Selecting which tests **not** to run
 
 --------------------
-What Is Unit Test?
+What Is a Unit Test?
 --------------------
 
 * Verification of "smallest testable unit" of an application

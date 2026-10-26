@@ -33,7 +33,7 @@ The "tests" Folder
 * Test file content similar to :rust:`tests` module in library unit
 
   * No :rust:`mod tests` required
-  * No implicit import, so :rust:`use` clause necessary
+  * Import items with :rust:`use` or use qualified paths
 
 -------------------------------
 Example Source and Test Files
@@ -107,11 +107,11 @@ Submodules in Integration Tests
 
 * What about common functions for multiple tests?
 
-  * Things like setting up global data or releaseing a resource
+  * Things like setting up global data or releasing a resource
 
 * Test helpers need to be hidden from testing mechanism
 
-  * :command:`cargo test` tests all Rust files in :filename:`tests` folder
+  * Cargo treats top-level :filename:`tests/*.rs` files as integration test crates
 
 * Solution is to create a subfolder in :filename:`tests` 
 
