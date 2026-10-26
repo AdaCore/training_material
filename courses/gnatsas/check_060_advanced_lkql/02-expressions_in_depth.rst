@@ -6,19 +6,20 @@ Expressions In-Depth
 Fields and Properties
 -----------------------
 
-* Objects created by users have fields
+* User-created objects have fields
 
-  * Referencing fields uses "dot-notation"
+  * Access fields using "dot-notation"
 
   .. code:: lkql
 
     val status = {msg: "Hello", flag: true}
     print (status.msg)
 
-* Objects returned from the LKQL API have both fields and properties
+* LKQL API exposes fields and properties of syntax tree nodes
 
   * Still referenced via "dot-notation"
-  * Fields are prefaced with :lkql:`f_` and properties with :lkql:`p_`
+  * Fields are prefaced with :lkql:`f_`
+  * Properties are prefaced with :lkql:`p_`
 
     * Properties are **function calls** which may or may not take parameters
 
@@ -48,15 +49,14 @@ Call Expressions
 
 * "Safe" variant
 
-  * Returns :lkql:`()` (Unit) if what is being called is null
-
   .. code:: lkql
 
     fun add(a, b) = a + b
     val fn = if true then null else add
     fn?(1, 2) # Returns ()
 
-  * Notice that :lkql:`fn` is basically a function pointer
+  * Returns :lkql:`()` (Unit) if :lkql:`fn` is :lkql:`null`
+  * Notice that :lkql:`fn` is just a nullable value
 
 ----------------------------
 Traversing the Syntax Tree
@@ -66,10 +66,10 @@ Traversing the Syntax Tree
 
   .. code:: lkql
 
-    for body in unit.root select subp@BaseSubpBody
-    # traverse all children of "unit.root"
+    for body in from unit.root select subp@BaseSubpBody
+    # Return all children of root that are subprogram bodies
 
-* But we can actually use :lkql:`through` to indicate other traversals
+* Can use :lkql:`through` to indicate other traversals
 
   * Most common is :lkql:`parent`
 
@@ -95,14 +95,14 @@ Importing Modules
 
 * Every rules file is considered a :dfn:`module`
 
-* Importing modules allows programmer to keep files of common routines
+* Import modules to use functions and values defined in other rules
 
-  * Following modules are part of :toolname:`GNATcheck`
+* Modules that are part of :toolname:`GNATcheck`
 
-    * **control_flow** - perform control flow analysis
-    * **metrics** - code complexity metrics
-    * **parameters_aliasing** - determine parameter aliasing
-    * **stdlib** - commonly used processing
+  * **control_flow** - perform control flow analysis
+  * **metrics** - code complexity metrics
+  * **parameters_aliasing** - determine parameter aliasing
+  * **stdlib** - commonly used processing
 
 * To import a module, include :lkql:`import <module>` at the top of the file
 

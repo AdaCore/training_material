@@ -16,4 +16,4 @@ Topics Covered
 
 * **LKQL API**
 
-  * Capabilities of the LKQL API
+  * Core capabilities

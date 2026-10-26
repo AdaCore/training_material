@@ -46,6 +46,7 @@ Defining a Selector
     * :dfn:`Recursion list` is a list of items to be traversed next
     * :dfn:`Return list` is a list of items to be returned to the user
     * Can add an item or a list of items (prefixed by :lkql:`*`) to a list
+    * Either list can be empty (:lkql:`()`)
 
   * Selector returns a :lkql:`Stream`
 
@@ -56,7 +57,7 @@ Defining a Selector
 
     * If not specified, first parameter is added to both lists
 
-* Return all defining names of a :lkql:`DefiningName`
+* Return all defining names of a :lkql:`BasicDecl`
 
   .. code:: lkql
 
@@ -69,4 +70,4 @@ Defining a Selector
     * Build a list of all defining names for :lkql:`list` that are not null
     * Add each item in that list to the recursion and return lists
 
-  * Otherwise, stop recursing (return an empty Unit)
+  * Otherwise, stop recursing (return Unit)

@@ -13,9 +13,9 @@ Libadalang and LKQL
 * Broken down by category
 
   * **Node types** - syntactic and semantic constructs
-  * **Symbol types** - identifiers and lexical tokens
+  * **Symbol types** - named values representing categories or kinds
   * **List types** - strongly-typed sequences of nodes
-  * **Object types** - core session and lifecycle structures
+  * **Object types** - structured data (such as query results)
 
 * *Origin* parameter
 
@@ -31,22 +31,22 @@ Libadalang and LKQL
 Standard Library
 ------------------
 
-* Builtin functions used throughout LKQL functions
+* Built-in functions used throughout LKQL functions
 
-* Builtin methods for tree nodes
+* Built-in methods for tree nodes
 
 * :lkql:`stdlib` module defines supplied support functions
 
-  * Not builtin so they need to be imported
+  * Not built-in so they need to be imported
 
 ----------------------------------
 Accumulation Across a Collection
 ----------------------------------
 
-* Somtimes we need a way to gather information about a collection
+* Sometimes we need a way to gather information about a collection
 
   * Count number of items
-  * Total value of items
+  * Sum of integer items
 
 * :lkql:`reduce` function provides that capability
 
@@ -77,7 +77,7 @@ Accumulation Across a Collection
 
   .. code:: lkql
 
-    fn add(x, y) = x + y
+    fun add(x, y) = x + y
     reduce(
         [1 for child in node.children],
         add,
@@ -94,6 +94,6 @@ Accumulation Across a Collection
     val total = reduce([1, 2, 3], (acc, x) => acc + x, 0)
 
   * Initialize accumulator :lkql:`acc` to 0
-  * For each item in the list, add it's value to :lkql:`acc`
+  * For each item in the list, add its value to :lkql:`acc`
 
     * :lkql:`total` = 6
