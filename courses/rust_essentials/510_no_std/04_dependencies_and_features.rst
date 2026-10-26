@@ -6,13 +6,13 @@ Dependencies and Features
 "no_std" Is Not Transitive
 ----------------------------
 
-* The attribute applies to the crate where it is written
+* Attribute *only* applies to crate where it is written
 
-* Dependencies used by the library must support the intended configuration
+* Dependencies used by the library must support intended configuration
 
 * A dependency's default features may enable :rust:`std` or allocation
 
-* Check the dependency's documented features, not just its description
+* Check dependency's documented features, not just its description
 
 .. note::
 
@@ -87,11 +87,11 @@ Apply the Features to the Crate
   #[cfg(feature = "alloc")]
   extern crate alloc;
 
-* Without the :rust:`std` feature, :rust:`cfg_attr` applies :rust:`#![no_std]`
+* Without :rust:`std` feature, :rust:`cfg_attr` applies :rust:`#![no_std]`
 
 * :rust:`#[cfg]` includes an item only when its condition is true
 
-* Keep the :rust:`core` imports and non-allocating functions unchanged
+* Keep :rust:`core` imports and non-allocating functions unchanged
 
 .. warning::
 
@@ -115,7 +115,7 @@ Gate the Allocation-Requiring API
       sorted
   }
 
-* The function is absent when :rust:`alloc` is disabled
+* Function is absent when :rust:`alloc` is disabled
 
 * :rust:`maximum`, :rust:`parse_pair`, and :rust:`write_maximum` remain available
 
@@ -136,7 +136,7 @@ Keep "std"-Only Adapters Separate
 
 * Only this adapter relies on standard output
 
-* The calculation remains usable without the adapter
+* Calculation remains usable without the adapter
 
 .. tip::
 
@@ -155,9 +155,9 @@ Select Features in a Dependent Project
   default-features = false
   # features = ["alloc"]
 
-* This requests the library without its default :rust:`std` feature
+* Requests library without its default :rust:`std` feature
 
-* Uncomment the last line to request its allocating APIs as well
+* Uncomment last line to request its allocating APIs as well
 
 * Select features for each dependency according to its documentation
 

@@ -8,11 +8,11 @@ Optional Allocation
 
 * The :rust:`alloc` crate supplies heap-backed types without requiring :rust:`std`
 
-* :rust:`alloc` ships with the toolchain; it is not a crates.io dependency
+* :rust:`alloc` ships with the toolchain; it is not a :filename:`crates.io` dependency
 
-* A reusable library can use those types without selecting an allocator
+* A reusable library can use those *types* without selecting an allocator
 
-* The final program must supply suitable allocation support
+* Final program must supply suitable allocation support
 
   * A normal :rust:`std` application already supplies a default global allocator
 
