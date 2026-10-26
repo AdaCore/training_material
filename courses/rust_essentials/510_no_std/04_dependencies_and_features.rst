@@ -10,13 +10,9 @@ Dependencies and Features
 
 * Dependencies used by the library must support intended configuration
 
-* A dependency's default features may enable :rust:`std` or allocation
+* A dependency's default features may require :rust:`std` or heap allocation
 
 * Check dependency's documented features, not just its description
-
-.. note::
-
-  Build scripts and procedural macros run on the development machine. Their use of :rust:`std` is a separate matter
 
 --------------------------------
 Offering Optional Capabilities
@@ -31,9 +27,11 @@ Offering Optional Capabilities
   alloc = []
   std = ["alloc"]
 
-* The :rust:`std` feature is enabled by default
+* ``default = ["std"]`` enables the :rust:`std` feature by default
 
-* Enabling :rust:`std` also enables :rust:`alloc`
+* ``alloc = []`` defines a feature without enabling other features
+
+* ``std = ["alloc"]`` makes the :rust:`std` feature also enable :rust:`alloc`
 
 .. note::
 
@@ -87,11 +85,15 @@ Apply the Features to the Crate
   #[cfg(feature = "alloc")]
   extern crate alloc;
 
-* Without :rust:`std` feature, :rust:`cfg_attr` applies :rust:`#![no_std]`
+* :rust:`cfg_attr` applies :rust:`#![no_std]`
 
-* :rust:`#[cfg]` includes an item only when its condition is true
+  * Only when the :rust:`std` feature is disabled
 
-* Keep :rust:`core` imports and non-allocating functions unchanged
+* :rust:`#[cfg(feature = "alloc")]` includes :rust:`extern crate alloc`
+
+  * Only when the :rust:`alloc` feature is enabled
+
+* Keep the :rust:`core` imports and non-allocating functions unchanged
 
 .. warning::
 
@@ -140,13 +142,13 @@ Keep "std"-Only Adapters Separate
 
 .. tip::
 
-  A :rust:`std` feature is not needed merely to call a :rust:`no_std` library from a desktop application
+  A :rust:`std` application can use this library without enabling its :rust:`std` feature
 
 ----------------------------------------
 Select Features in a Dependent Project
 ----------------------------------------
 
-**Configure another package with** :filename:`sample_tools` **in a sibling directory**
+**Add to the dependent package's** :filename:`Cargo.toml`
 
 .. code:: toml
 
@@ -154,6 +156,8 @@ Select Features in a Dependent Project
   path = "../sample_tools"
   default-features = false
   # features = ["alloc"]
+
+* :filename:`../sample_tools` points to the library in a sibling directory
 
 * Requests library without its default :rust:`std` feature
 
@@ -175,12 +179,12 @@ Features Add Up
 
 * ``default-features = false`` is not a global ban on that feature
 
-**Compare the running example's enabled features**
+**Run from the dependent package's directory**
 
 .. code:: sh
 
   cargo tree -f "{p}: {f}"
-  cargo tree -f "{p}: {f}" --no-default-features
+  cargo tree -e features -i sample_tools
 
 .. tip::
 
