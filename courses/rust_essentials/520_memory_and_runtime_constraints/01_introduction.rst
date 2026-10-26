@@ -96,6 +96,6 @@ Example Library: Source Files
 
   pub mod memory;
 
-* :filename:`src/memory.rs` starts empty
+* Create an empty :filename:`src/memory.rs`
 
   * Later slides add its implementations

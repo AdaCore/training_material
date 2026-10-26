@@ -14,9 +14,9 @@ Storage Location and Capacity Are Different
 
 * Arrays and :rust:`FixedVec` store elements inline, with capacity fixed by their type
 
-* A :rust:`Vec` stores a fixed-size handle to a separate, growable heap buffer
+* A :rust:`Vec` stores a fixed-size handle to a separate heap-allocated buffer
 
-* A fixed-size array is not automatically a :rust:`static` item
+* Fixed-size arrays do not automatically have static storage
 
 -------------------------------------------
 Measure the Value and Its Backing Storage
@@ -52,7 +52,7 @@ The Stack Also Has Limits
 
 * Moving data to the stack does not make its storage free
 
-* Reusing a caller-owned buffer can avoid repeated working buffers
+* Reusing a caller-owned buffer can avoid creating a separate working buffer for each call
 
 .. warning::
 
