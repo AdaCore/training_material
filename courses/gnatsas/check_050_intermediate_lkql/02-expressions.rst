@@ -39,7 +39,7 @@ Simple Literals
 
 .. note::
 
-  *Unit* is an **empty** result - use :lkql:`null` to value doesn't exist
+  *Unit* is an **empty** result - use :lkql:`null` when value doesn't exist
 
 --------------------
 Composite Literals

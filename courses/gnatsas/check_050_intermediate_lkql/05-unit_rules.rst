@@ -172,10 +172,12 @@ Support Functions
               category="Style", subcategory="Program Structure")
   fun maximum_subprogram_lines(unit, n: int = 1000) =
       [
-          {message: "too many lines in subprogram body: " & img(count_lines(n)),
-           loc: n.token_start().previous(exclude_trivia=true)}
+          {message: "too many lines in subprogram body: " &
+                    img(count_lines(loop_node)),
+           loc: loop_node.token_start().previous(exclude_trivia=true)}
           for loop_node in from unit.root
-          select node@HandledStmts(parent: SubpBody) when count_lines(node) > n
+          select node@HandledStmts(parent: SubpBody)
+              when count_lines(node) > n
       ]
 
 * Could rewrite the query as

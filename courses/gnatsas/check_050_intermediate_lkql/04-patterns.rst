@@ -179,13 +179,13 @@ Flexible Pattern Matching
   * Used inside *List Pattern* and *Object Pattern*
 
     * Match all remaining values
-    * Collect into list or object as appropriate
 
   .. code:: lkql
     :font-size: footnotesize
 
     match v
-    | [1, rem@...]    => "A list with 1 as first element followed by " & img(rem)
+    | [1, rem@...]    => "List with first element '1' followed by " &
+                         img(rem)
     | {a: 1, rem@...} => "An object with a=1 and " & img(rem)
 
 -------------------

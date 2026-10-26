@@ -62,6 +62,40 @@ Actual Rule Implementation
 
   The actual rule file contains **docstrings** for describing the functions
 
+---------------------
+Parameterized Rules
+---------------------
+
+* Many rules use some kind of limit to flag violations
+
+  * Nesting depth
+  * Number of lines in a subprogram
+  * Etc.
+
+* This is called a :dfn:`parameterized` rule
+
+  .. code:: lkql
+
+    fun maximum_expression_complexity(unit, n: int = 10) =
+
+  * Default behavior is to flag expressions with complexity > 10
+
+    :command:`gnatcheck -P default.gpr -r maximum_expression_complexity`
+    
+* Cannot change default from command line
+
+  * Must use a "rules file"
+
+  :filename:`rules_file.lkql`
+
+    .. code:: lkql
+
+      val rules = @{
+        maximum_expression_complexity: {N: 2}
+      }
+
+    :command:`gnatcheck -P default.gpr --rule-file=rules_file.lkql`
+
 ----------------------------
 Examining the Rule - Query
 ----------------------------
@@ -69,17 +103,16 @@ Examining the Rule - Query
 .. code:: lkql
 
   for node in from unit.root select
-  # Loop over all nodes in the unit*
+  # Loop over all nodes in the unit
 
   expr@Expr(parent: not Expr)
   # Match expressions whose immediate parent
-  # is not an expression and
-  # bind each to "expr"
+  # is not an expression and bind each to "expr"
 
   when expr is not (Identifier | DefiningName | EndName)
             and num_expr(expr) > n
-  # Trigger the rule when "expr" is not a name and number
-  # of expressions is > n
+  # Trigger the rule when "expr" is not a name
+  # and number of expressions is > n
 
 ---------------------------------------
 Examining the Rule - Support Function

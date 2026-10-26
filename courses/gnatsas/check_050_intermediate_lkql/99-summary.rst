@@ -30,7 +30,7 @@ What We Covered
   * Matching tuples, lists, and objects
   * Using bindings to give a name to a selection result
 
-* **Building a Unit Rule**
+* **Unit Rules**
 
   * Rules that apply to units rather than syntax tree nodes
   * Required when the rule requires context

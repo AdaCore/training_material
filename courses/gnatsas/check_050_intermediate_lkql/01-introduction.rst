@@ -18,6 +18,6 @@ Topics Covered
 
   * Filtering query results through pattern matching
 
-* **Building a Unit Rule**
+* **Unit Rules**
 
-  * Apply to units rather than syntax tree nodes
+  * Rules that apply to unit as a whole

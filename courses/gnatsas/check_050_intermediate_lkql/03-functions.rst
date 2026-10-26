@@ -93,21 +93,27 @@ Nesting
 Function "Pointers"
 ---------------------
 
-* Local values can be used to store a function call
+* Functions are first-class values
 
-  * Can be set conditionally based on other values
+  * Nullable object can store a function name
+
+    * For choosing different functions based on a condition check
+    * Can also be set to :lkql:`null` to indicate no call
+    
+  * Rule then calls function via "safe access" to object
 
   .. code:: lkql
 
     fun div(a, b) = a / b
 
     fun safe_div(a, b) = {
-        # fn is null if b == 0, otherwise references "div"
         val fn = if b == 0 then null else div;
         fn? (a, b) # Return () if b = 0, else a/b
     }
 
-* Use "safe access" to call function (:lkql:`fn?`)
+* If :lkql:`b == 0`, :lkql:`fn` will be null, otherwise it points to :lkql:`div`
 
-  * If value is null, return value is :lkql:`()`
-  * Otherwise, returns function result
+* When treating :lkql:`fn` as a function call
+
+  * If :lkql:`fn` is null, return :lkql:`()`
+  * Else use the return from calling :lkql:`div`
