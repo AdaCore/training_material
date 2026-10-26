@@ -72,7 +72,7 @@ Parameterized Rules
   * Number of lines in a subprogram
   * Etc.
 
-* This is called a :dfn:`parameterized` rule
+* Making the limit configurable gives us a :dfn:`parameterized` rule
 
   .. code:: lkql
 
@@ -82,9 +82,9 @@ Parameterized Rules
 
     :command:`gnatcheck -P default.gpr -r maximum_expression_complexity`
     
-* Cannot change default from command line
+* :command:`-r` enables the rule but does not allow parameter values
 
-  * Must use a "rules file"
+  * Use a *rules file* to specify a value
 
   :filename:`rules_file.lkql`
 
@@ -93,6 +93,8 @@ Parameterized Rules
       val rules = @{
         maximum_expression_complexity: {N: 2}
       }
+
+    *Flag expressions whose complexity > 2*
 
     :command:`gnatcheck -P default.gpr --rule-file=rules_file.lkql`
 

@@ -95,10 +95,10 @@ Function "Pointers"
 
 * Functions are first-class values
 
-  * Nullable object can store a function name
+  * Named value can store a function name
 
-    * For choosing different functions based on a condition check
-    * Can also be set to :lkql:`null` to indicate no call
+    * Assigned different values based on a condition
+    * Setting to :lkql:`null` would indicate no call
     
   * Rule then calls function via "safe access" to object
 

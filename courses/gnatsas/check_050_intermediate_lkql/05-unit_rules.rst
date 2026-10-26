@@ -170,14 +170,14 @@ Support Functions
 
   @unit_check(help="maximum number of lines in a subprogram",
               category="Style", subcategory="Program Structure")
-  fun maximum_subprogram_lines(unit, n: int = 1000) =
+  fun maximum_subprogram_lines(unit, max_lines: int = 1000) =
       [
           {message: "too many lines in subprogram body: " &
                     img(count_lines(loop_node)),
            loc: loop_node.token_start().previous(exclude_trivia=true)}
           for loop_node in from unit.root
           select node@HandledStmts(parent: SubpBody)
-              when count_lines(node) > n
+              when count_lines(node) > max_lines
       ]
 
 * Could rewrite the query as
@@ -201,15 +201,15 @@ Support Functions
     fun num_primitives(t) = t.p_get_primitives().length
 
     @unit_check
-    fun too_many_primitives(unit, n : int = 5) =
+    fun too_many_primitives(unit, max_count : int = 5) =
         [
             {message: "tagged type has too many primitives (" &
                       img(num_primitives(n)) & ")",
-             loc: n.p_defining_name()}
+             loc: node.p_defining_name()}
             for loop_node in from unit.root through follow_generics
             select node@TypeDecl
             when node.p_is_tagged_type() and node.parent.parent is PublicPart
-             and num_primitives(node) > n
+             and num_primitives(node) > max_count
         ]
 
 * :lkql:`num_primitives` is called multiple times
