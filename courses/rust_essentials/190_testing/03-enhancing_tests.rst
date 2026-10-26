@@ -198,25 +198,32 @@ Expecting the Right Panic
           panic message: `"assertion `left == right` failed\n  left: 0\n right: 2"`,
      expected substring: `"value not found"`
 
--------------------------
-Using "Result" in Tests
--------------------------
+-------------------------------
+Functions Returning "Result"
+-------------------------------
 
-* Tests can return :rust:`Result` rather than just panicking
+* Code that returns :rust:`Result` can also be tested
 
-  * Allows use of :rust:`?` when tested function returns :rust:`Result`
+  .. code:: rust
+    :font-size: small
 
-.. code:: rust
+    pub fn divide(top: f64, bottom: f64) -> Result<f64, String> {
+        if bottom == 0.0 {
+            Err("Cannot divide by zero!".to_string())
+        } else {
+            Ok(top / bottom)
+        }
+    }
 
-  pub fn divide(top: f64, bottom: f64) -> Result<f64, String> {
-      if bottom == 0.0 {
-          Err("Cannot divide by zero!".to_string())
-      } else {
-          Ok(top / bottom)
-      }
-  }
+* Tests should detect :rust:`Result` rather than panicking
 
-.. code:: rust
+--------------------------
+Testing "Result" Returns
+--------------------------
+
+* Use :rust:`?` when tested function returns :rust:`Result`
+
+  .. code:: rust
 
     #[test]
     fn test1() -> Result<(), String> {
@@ -232,7 +239,12 @@ Using "Result" in Tests
         Ok(())
     }
 
+* Tests return :rust:`Ok` on success
+
+  * But propagate :rust:`Err` on failure
+
 .. code:: output
+  :font-size: footnotesize
 
   test tests::test1 ... ok
   test tests::test2 ... FAILED

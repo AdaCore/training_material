@@ -14,7 +14,7 @@ What is a "doctest"?
 
 .. code:: rust
 
-  /// Test positive/negative add
+  /// Test unsigned add
   ///
   /// ```
   /// # use adder::add;
@@ -49,21 +49,22 @@ Why Use "doctest"?
   /// assert_ne!(add(2, 6), 7);
   /// ```
 
-* "///" indicates a doctest
-* Lines 3 and 7 delineate the actual test code
-* Line 4 indicates test code not included in documentation
+* :lkql:`///` indicates a document comment
 
-  * But does get compiled into code
+  * Code blocks in document comments become doctests
 
-* Remaining code is executed as part of test
+    * Executed as part of test
 
-  * And included in documentation
+  * Lines 3 and 7 delineate the actual test code
+  * Line 4 indicates test code not included in documentation
 
----------------------
-Running a "doctest"
----------------------
+* Document comments are included in documentation
 
-* Just running "doctest" - :command:`cargo test --doc`
+------------------------------
+Running "doctest" Standalone
+------------------------------
+
+:command:`cargo test --doc`
 
 .. code:: output
   :font-size: tiny
@@ -77,7 +78,11 @@ Running a "doctest"
   
   all doctests ran in 1.05s; merged doctests compilation took 0.53s
 
-* As part of full test run - :command:`cargo test`
+--------------------------------
+"doctest" as Part of Full Test
+--------------------------------
+
+:command:`cargo test`
 
 .. code:: output
   :font-size: tiny

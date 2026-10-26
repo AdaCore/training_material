@@ -96,9 +96,15 @@ Running Multiple Tests
   Specify value higher than 1 to run tests in parallel
   but reduce system load
 
-------------------------
-Capturing Output (1/2)
-------------------------
+-----------------------------
+Dealing with Console Output
+-----------------------------
+
+* Unit tests for three paths
+
+  * Normal path - no output
+  * Warning path - output to standard output
+  * Error path - output to standard error
 
 .. code:: Rust
 
@@ -122,6 +128,10 @@ Capturing Output (1/2)
       }
   }
 
+---------------------------------------
+Default Behavior for Capturing Output
+---------------------------------------
+
 * By default, output only shows for failing tests
 
   .. code:: output
@@ -140,11 +150,19 @@ Capturing Output (1/2)
     thread 'tests::warning_output' panicked at src\lib.rs:26:9:
     assertion failed: result == 0.0
 
-------------------------
-Capturing Output (2/2)
-------------------------
+* :lkql:`normal` and :lkql:`error_output` passed
 
-* To also show output from successful tests, use switch :command:`--show-output`
+  * No output displayed
+
+* :lkql:`warning_output` failed
+
+  * Console output is part of test results
+
+----------------------
+Capturing All Output
+----------------------
+
+* To show output from successful tests, use switch :command:`--show-output`
 
   * This shows standard output/error for each test
 
@@ -152,11 +170,7 @@ Capturing Output (2/2)
 
 .. code:: output
 
-  running 3 tests
-  test tests::normal ... ok
-  test tests::error_output ... ok
-  test tests::warning_output ... FAILED
-
+  ...
   successes:
 
   ---- tests::error_output stdout ----

@@ -33,3 +33,18 @@ What We Covered
   - Special attributes to prevent certain tests from running
 
     - Unless specifically requested
+
+* **Integration tests**
+
+  * Test application that combines units, modules, and/or subsystems
+  * Verify
+
+    * Interfaces and contracts for subprogram calls
+    * Data persistence
+    * Interactions between outside sources
+    * Shared resource contention
+
+* **Documentation tests**
+
+  * Special comments that are included as part of the test process
+  * Included in documentation via :toolname:`rustdoc`

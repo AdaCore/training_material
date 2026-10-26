@@ -58,7 +58,7 @@ Example Source and Test Files
       }
   }
 
-:filename:`tests/integration_tests.rs`
+:filename:`tests/integration_test.rs`
 
 .. code:: rust
 
@@ -125,16 +125,12 @@ Submodules in Integration Tests
 Testing Binary Crates
 -----------------------
 
-* :command:`cargo test` cannot test :filename:`main.rs`
+* Integration tests cannot import binary crates (:filename:`main.rs`)
 
-  * It's already an application
+* Instead, move reusable logic to a library crate
 
-* Solution is to have main functionality in a library crate
-
-  * "Main" crate is now testable
-  * :rust:`main` imports this "main" crate
-
-    * :rust:`main` now is just a simple call
+  * Test logic in library crate
+  * :rust:`main` imports this library  crate
 
 .. tip::
 
