@@ -16,9 +16,11 @@ Optional Allocation
 
   * A normal :rust:`std` application already supplies a default global allocator
 
+  * A bare-metal application using heap-backed types must provide a global allocator
+
 .. warning::
 
-  :rust:`extern crate alloc` makes the crate available. It does not create a heap or install an allocator
+  :rust:`extern crate alloc` makes the crate available; it does not create a heap or install an allocator
 
 -----------------------------------
 Stack, Static Storage, and Heap
@@ -56,7 +58,7 @@ An Allocation-Requiring Convenience API
 
 * The function returns an owned, sorted copy of the input
 
-* The feature section will make this API optional
+* This API can be made optional using :rust:`#[cfg(feature = "alloc")]`
 
 -----------------------------------------
 Types and Macros Need Their Own Imports

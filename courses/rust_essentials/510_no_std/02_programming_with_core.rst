@@ -53,18 +53,18 @@ A Small Portable Library
 
 .. code:: sh
 
-  cargo new --lib --edition 2024 sample_tools
+  cargo new --lib sample_tools
   cd sample_tools
 
 * Replace :filename:`src/lib.rs` with
 
-.. code:: rust
+  .. code:: rust
 
-  #![no_std]
+    #![no_std]
 
-  pub fn maximum(samples: &[u16]) -> Option<u16> {
-      samples.iter().copied().max()
-  }
+    pub fn maximum(samples: &[u16]) -> Option<u16> {
+        samples.iter().copied().max()
+    }
 
 * Function borrows its input and returns
 
@@ -87,14 +87,16 @@ Borrowed Text and Recoverable Errors
       left: &str,
       right: &str,
   ) -> Result<[u16; 2], ParseIntError> {
-      Ok([left.trim().parse()?, right.trim().parse()?])
+      let first: u16 = left.trim().parse()?;
+      let second: u16 = right.trim().parse()?;
+      Ok([first, second])
   }
+
+* This function returns two numbers or propagates a parsing error
 
 * :rust:`&str` and methods such as :rust:`trim` do not require an owned :rust:`String`
 
 * :rust:`Result` and :rust:`?` work without :rust:`std`
-
-* This function returns two numbers or propagates a parsing error
 
 --------------------------------------------
 Using the Library from a "std" Application
@@ -151,7 +153,9 @@ Formatting Is Not Standard Output
 
 * :rust:`write!` and :rust:`writeln!` format into a supplied destination
 
-* :rust:`println!` additionally assumes access to standard output
+* :rust:`format_args!`, :rust:`write!`, and :rust:`writeln!` work without :rust:`std`
+
+* :rust:`println!` requires :rust:`std` to write to standard output
 
 .. tip::
 
