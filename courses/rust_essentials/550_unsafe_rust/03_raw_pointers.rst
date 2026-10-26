@@ -72,7 +72,7 @@ Creating Raw Pointers via Conversion
 Dereferencing Raw Pointers
 ----------------------------
 
-**Dereferencing requires an unsafe block**
+**Dereferencing a raw pointer is an unsafe operation**
 
 .. code:: rust
 

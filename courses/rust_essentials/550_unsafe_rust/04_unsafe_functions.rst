@@ -52,11 +52,30 @@ Calling an Unsafe Function
   // SAFETY: The argument is 'Some', as required
   unsafe { get_some(Some(42)) };
 
-  // get_some(Some(32));         // Error
-
-  // unsafe { get_some(None) };  // Undefined behavior
-
 .. note::
 
   * :rust:`# Safety` states what must be true
   * :rust:`// SAFETY:` explains why it is true here
+
+-------------------------------
+Unsafe Function Call Failures
+-------------------------------
+
+**An unsafe context does not guarantee a safe call**
+
+  * Without an unsafe context, the compiler rejects the call
+
+.. code:: rust
+
+  get_some(Some(32)); // Missing unsafe context
+
+.. code:: error
+
+  error[E0133]: call to unsafe function `get_some` is unsafe
+  and requires unsafe block
+
+* An unsafe context does not verify the safety contract
+
+.. code:: rust
+
+  unsafe { get_some(None) }; // Undefined behavior

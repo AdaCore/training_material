@@ -61,7 +61,7 @@ Reading Union Fields
    Hulk: 255
 
 * Stored bits must be valid for selected field
-* :rust:`-1_i8` and :rust:`255_u8` are the same eight bits
+* :rust:`-1_i8` and :rust:`255_u8` have the same bit pattern
 
 .. note::
 
