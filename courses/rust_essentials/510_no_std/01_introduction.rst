@@ -6,9 +6,9 @@ Introduction
 Topics Covered
 ----------------
 
-* **Why** :rust:`no_std`?
+* **Understanding** :rust:`no_std`
 
-  - Understand why :rust:`std` is not available in every environment
+  - See what it changes and why it is useful on some targets
 
 
 * **Programming with** :rust:`core`
@@ -34,7 +34,7 @@ Topics Covered
 Why Not Always Use "std"?
 ---------------------------
 
-* :rust:`std` needs an implementation for the compilation target
+* :rust:`std` needs an implementation for the target platform
 
 * Many of its services depend on platform support
 
@@ -120,7 +120,3 @@ A Library Is Not an Executable
 * Final program supplies the required runtime support
 
   * This includes panic handling and, when used, allocation support
-
-.. note::
-
-  A reusable library does not need its own :rust:`main`, :rust:`#![no_main]`, or :rust:`#[panic_handler]` just because it uses :rust:`no_std`

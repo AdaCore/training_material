@@ -42,15 +42,15 @@
   <line x1="1040" y1="565" x2="1135" y2="565" class="arrow" marker-end="url(#arrowhead)"/>
 
   <!-- text -->
-  <text x="280" y="145" text-anchor="middle" dominant-baseline="middle" class="boxtext">Default</text>
-  <text x="280" y="355" text-anchor="middle" dominant-baseline="middle" class="boxtext">Alloc only</text>
-  <text x="280" y="565" text-anchor="middle" dominant-baseline="middle" class="boxtext">Core only</text>
+  <text x="280" y="163" text-anchor="middle" class="boxtext">Default</text>
+  <text x="280" y="373" text-anchor="middle" class="boxtext">Alloc only</text>
+  <text x="280" y="583" text-anchor="middle" class="boxtext">Core only</text>
 
-  <text x="820" y="145" text-anchor="middle" dominant-baseline="middle" class="boxtext">std + alloc</text>
-  <text x="820" y="355" text-anchor="middle" dominant-baseline="middle" class="boxtext">alloc</text>
-  <text x="820" y="565" text-anchor="middle" dominant-baseline="middle" class="boxtext">none</text>
+  <text x="820" y="163" text-anchor="middle" class="boxtext">std + alloc</text>
+  <text x="820" y="373" text-anchor="middle" class="boxtext">alloc</text>
+  <text x="820" y="583" text-anchor="middle" class="boxtext">none</text>
 
-  <text x="1360" y="145" text-anchor="middle" dominant-baseline="middle" class="boxtext">All APIs</text>
-  <text x="1360" y="355" text-anchor="middle" dominant-baseline="middle" class="boxtext">Core + alloc</text>
-  <text x="1360" y="565" text-anchor="middle" dominant-baseline="middle" class="boxtext">Core only</text>
+  <text x="1360" y="163" text-anchor="middle" class="boxtext">All APIs</text>
+  <text x="1360" y="373" text-anchor="middle" class="boxtext">Core + alloc</text>
+  <text x="1360" y="583" text-anchor="middle" class="boxtext">Core only</text>
 </svg>
