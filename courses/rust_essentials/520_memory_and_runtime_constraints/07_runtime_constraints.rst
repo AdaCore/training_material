@@ -24,20 +24,22 @@ Bound Memory, Then Bound the Work
 
 * Reuse storage when repeated allocation is not acceptable
 
-* Include comparisons, copying, cleanup, and synchronization in the budget
+* Include copying, sorting, and cleanup in the execution budget
 
 * Use measurements and analysis for the deployment environment
 
 .. warning::
 
-  No heap allocation does not mean constant-time execution. Sorting still depends on
-  how many elements are processed
+  The cost of :rust:`sort_unstable` depends on the slice's length, not the
+  collection's capacity; avoiding heap allocation does not make it constant-time
 
------------------------------
-Choose an Exhaustion Policy
------------------------------
+-----------------------------------
+Handle Memory and Capacity Limits
+-----------------------------------
 
 * **Reject:** return an error without returning a partial result
+
+  * :rust:`unwrap()` panics on :rust:`Err` instead of returning the error
 
 * **Degrade:** perform a smaller, explicitly supported operation
 
@@ -45,125 +47,57 @@ Choose an Exhaustion Policy
 
 * **Retry:** only when there is a reason the resource may become available
 
-.. note::
+-----------------------------------
+Capacity Limits: Observed Results
+-----------------------------------
 
-  Replacing :rust:`Result` handling with unconditional :rust:`unwrap()` changes the
-  policy to panicking on that error
-
-----------------------------------------
-Check Both Sides of the Capacity Limit
-----------------------------------------
-
-* Create :filename:`tests/memory.rs`
+* Host-side example using the default :rust:`std` feature
 
 .. code:: rust
 
-  use sample_tools::memory::{
-      bounded_sorted, maximum_report,
-      sort_into, BufferTooSmall,
-  };
+  let mut scratch = [0_u16; 2];
+  println!("{:?}", sort_into(&[42, 7], &mut scratch));
+  println!("{:?}", sort_into(&[1, 2, 3], &mut scratch));
+  println!("{scratch:?}");
 
-* Exact capacity succeeds; one extra element is rejected
+* Output
 
-* A rejected caller-buffer request leaves its existing contents unchanged
+.. code:: text
+
+  Ok([7, 42])
+  Err(BufferTooSmall)
+  [7, 42]
+
+* Rejection leaves the previous buffer contents unchanged
+
+---------------------------
+Other Capacity Boundaries
+---------------------------
+
+.. code:: rust
+
+  let sorted = bounded_sorted::<2>(&[42, 7]).unwrap();
+  println!("{:?}", sorted.as_slice());
+  println!("{}", bounded_sorted::<2>(&[1, 2, 3]).is_err());
+  println!("{}", maximum_report::<16>(42).unwrap());
+  println!("{}", maximum_report::<4>(42).is_err());
+
+* Output
+
+.. code:: text
+
+  [7, 42]
+  true
+  Maximum: 42
+  true
+
+* Capacity errors can be observed without exhausting system memory
 
 ----------------------------------
-Check the Caller-Provided Buffer
+Compare the Library Configurations
 ----------------------------------
 
-* Add to :filename:`tests/memory.rs`
-
-.. code:: rust
-
-  #[test]
-  fn checks_output_capacity() {
-      let mut scratch = [0_u16; 2];
-      assert_eq!(sort_into(&[42, 7], &mut scratch),
-          Ok(&[7, 42][..]));
-      assert_eq!(sort_into(&[1, 2, 3], &mut scratch),
-          Err(BufferTooSmall));
-      assert_eq!(scratch, [7, 42]);
-  }
-
----------------------------------
-Check the Fixed-Capacity Result
----------------------------------
-
-* Add to :filename:`tests/memory.rs`
-
-.. code:: rust
-
-  #[test]
-  fn checks_fixed_capacity() {
-      let values = bounded_sorted::<2>(&[42, 7]).unwrap();
-      assert_eq!(values.as_slice(), &[7, 42]);
-      assert_eq!(bounded_sorted::<2>(&[1, 2, 3]),
-          Err(BufferTooSmall));
-  }
-
---------------------
-Check Empty Inputs
---------------------
-
-* Add to :filename:`tests/memory.rs`
-
-.. code:: rust
-
-  #[test]
-  fn checks_empty_input() {
-      assert!(bounded_sorted::<0>(&[]).unwrap().is_empty());
-      assert!(bounded_sorted::<0>(&[1]).is_err());
-
-      let mut scratch = [];
-      assert_eq!(sort_into(&[], &mut scratch), Ok(&[][..]));
-  }
-
-* Zero capacity is still a meaningful boundary case
-
-* Test failure without exhausting the machine's memory
-
---------------------------------
-Check the Text Buffer Capacity
---------------------------------
-
-* Add to :filename:`tests/memory.rs`
-
-.. code:: rust
-
-  #[test]
-  fn checks_text_capacity() {
-      let report = maximum_report::<16>(42).unwrap();
-      assert_eq!(report.as_str(), "Maximum: 42");
-      assert!(maximum_report::<4>(42).is_err());
-  }
-
----------------------------------------
-Check the Allocating API When Enabled
----------------------------------------
-
-* Add to :filename:`tests/memory.rs`
-
-.. code:: rust
-
-  #[cfg(feature = "alloc")]
-  #[test]
-  fn checks_heap_backed_result() {
-      use sample_tools::memory::try_sorted_samples;
-
-      let sorted = try_sorted_samples(&[42, 7]).unwrap();
-      assert_eq!(sorted.as_slice(), &[7, 42]);
-      assert!(try_sorted_samples(&[]).unwrap().is_empty());
-  }
-
-* Exercises the :rust:`alloc`-gated API when that feature is enabled
-
-* A successful call does not test allocator exhaustion
-
-----------------------------------
-Check the Library Configurations
-----------------------------------
-
-* Run from :rust:`sample_tools`, after applying the additions
+* Three supported crate configurations
 
 .. code:: sh
 
@@ -171,50 +105,13 @@ Check the Library Configurations
   cargo check --lib --no-default-features --features alloc
   cargo check --lib
 
-* Bounded APIs work with all three configurations
+* Bounded APIs are available in all three configurations
 
-* :rust:`try_sorted_samples` needs :rust:`alloc`; shared :rust:`Mutex` needs :rust:`std`
+* :rust:`try_sorted_samples` requires :rust:`alloc`
 
-----------------------------------
-Test Every Library Configuration
-----------------------------------
-
-* Run from :rust:`sample_tools`
-
-.. code:: sh
-
-  cargo test --test memory --no-default-features
-  cargo test --test memory --no-default-features \
-    --features alloc
-  cargo test --test memory
-
-* Capacity tests run in every configuration; allocating API tests need :rust:`alloc`
+  * Enabled by default through :rust:`std`
+  * A :rust:`no_std` application also needs an allocator
 
 .. note::
 
-  Compilation and host tests do not prove memory or timing bounds
-
------------------------
-What We Did Not Cover
------------------------
-
-* **Allocator Implementation**
-
-  * Custom allocators, memory pools, and allocator internals
-
-* **Whole-Program Analysis**
-
-  * Exact stack usage and worst-case execution-time analysis
-
-* **Runtime and Platform Setup**
-
-  * Startup code, linker placement, and panic-handler implementation
-
-* **Advanced Shared State**
-
-  * Interrupt-safe storage, synchronization design, and DMA buffers
-
-.. note::
-
-  A bounded data structure is one part of a resource-aware design, not a complete
-  system guarantee
+  Successful compilation does not establish memory or timing bounds

@@ -24,11 +24,11 @@
   <text x="38" y="167.64" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400" text-anchor="start">Owned Vec&lt;u16&gt;</text>
   <text x="38" y="188.57" fill="#086E79" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="start">heap-backed elements</text>
   <rect x="39" y="200.4" width="99" height="40.04" rx="8" fill="#D7E8F2" stroke="#466181" stroke-width="1.8" />
-  <text x="55.5" y="224.97" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="14" font-weight="400" text-anchor="middle">ptr</text>
+  <text x="55.5" y="224.97" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="14" font-weight="400" text-anchor="middle">len</text>
   <line x1="72" y1="200.4" x2="72" y2="240.44" stroke="#A8BCD2" stroke-width="1.3" stroke-linecap="round" />
-  <text x="88.5" y="224.97" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="14" font-weight="400" text-anchor="middle">len</text>
+  <text x="88.5" y="224.97" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="14" font-weight="400" text-anchor="middle">cap</text>
   <line x1="105" y1="200.4" x2="105" y2="240.44" stroke="#A8BCD2" stroke-width="1.3" stroke-linecap="round" />
-  <text x="121.5" y="224.97" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="14" font-weight="400" text-anchor="middle">cap</text>
+  <text x="121.5" y="224.97" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="14" font-weight="400" text-anchor="middle">ptr</text>
   <line x1="140" y1="220.42" x2="174" y2="220.42" stroke="#168EAF" stroke-width="2.8" stroke-linecap="round" />
   <polygon points="174,220.42 164.0,215.87 164.0,224.97" fill="#168EAF" />
   <rect x="176" y="200.4" width="121" height="40.04" rx="8" fill="#FFFFFF" stroke="#466181" stroke-width="1.8" />

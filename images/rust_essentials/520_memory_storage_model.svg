@@ -32,11 +32,11 @@
   <text x="48" y="214.51" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400" text-anchor="start">Vec&lt;u16&gt;</text>
   <text x="48" y="235.4" fill="#086E79" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" text-anchor="start">handle</text>
   <rect x="154" y="205.31" width="134" height="30.93" rx="7" fill="#FFFFFF" stroke="#466181" stroke-width="1.7" />
-  <text x="176.33333333333334" y="227.04" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="400" text-anchor="middle">ptr</text>
+  <text x="176.33333333333334" y="227.04" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="400" text-anchor="middle">len</text>
   <line x1="198.66666666666666" y1="205.31" x2="198.66666666666666" y2="236.24" stroke="#A8BCD2" stroke-width="1.5" stroke-linecap="round" />
-  <text x="221.0" y="227.04" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="400" text-anchor="middle">len</text>
+  <text x="221.0" y="227.04" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="400" text-anchor="middle">cap</text>
   <line x1="243.33333333333331" y1="205.31" x2="243.33333333333331" y2="236.24" stroke="#A8BCD2" stroke-width="1.5" stroke-linecap="round" />
-  <text x="265.66666666666663" y="227.04" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="400" text-anchor="middle">cap</text>
+  <text x="265.66666666666663" y="227.04" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="400" text-anchor="middle">ptr</text>
   <rect x="365" y="86.63" width="270" height="81.91" rx="10" fill="#EAF2F8" stroke="#466181" stroke-width="2" />
   <text x="383" y="112.54" fill="#193654" font-family="DejaVu Sans Mono, monospace" font-size="20" font-weight="400" text-anchor="start">static TABLE</text>
   <rect x="402" y="130.09" width="44" height="23.4" rx="6" fill="#FFFFFF" stroke="#466181" stroke-width="1.6" />

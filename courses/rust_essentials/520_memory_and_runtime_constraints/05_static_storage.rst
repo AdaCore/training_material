@@ -8,7 +8,7 @@ Why Static Storage Matters
 
 * Some data must remain available across many calls
 
-* Immutable tables can be shared without recreating their contents
+  * Immutable tables can be shared without recreating their contents
 
 * Static storage makes that data independent of a call's local lifetime
 
@@ -68,40 +68,3 @@ Persistent Does Not Mean Freely Mutable
 .. warning::
 
   :rust:`static mut` is not a shortcut to a safe reusable buffer
-
--------------------------------------
-Shared Static Data: A "std" Example
--------------------------------------
-
-* Optional addition to :filename:`src/memory.rs`
-
-.. code:: rust
-
-  #[cfg(feature = "std")]
-  pub mod shared {
-      use std::sync::Mutex;
-
-      static LAST_BATCH: Mutex<[u16; 4]> =
-          Mutex::new([0; 4]);
-  }
-
-* The static binding stays immutable; mutation occurs through the lock
-
-* Acquiring a lock can wait and affect runtime predictability
-
------------------------------
-Accessing the Shared Static
------------------------------
-
-* Add this function inside the :rust:`shared` module
-
-.. code:: rust
-
-  pub fn store(
-      samples: [u16; 4],
-  ) -> Result<(), &'static str> {
-      let mut batch = LAST_BATCH.lock()
-          .map_err(|_| "shared buffer poisoned")?;
-      *batch = samples;
-      Ok(())
-  }
