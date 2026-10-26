@@ -8,7 +8,7 @@ What We Covered
 
 * **Why** :rust:`no_std`?
 
-  - Removes the automatic dependency on :rust:`std` for a crate
+  - Removes automatic dependency on :rust:`std` for a crate
 
 
 * **Programming with** :rust:`core`
@@ -20,7 +20,7 @@ What We Covered
 
 * **Optional Allocation**
 
-  - Adds heap-backed types when the final program supports allocation
+  - Adds heap-backed types when final program supports allocation
 
 
 * **Dependencies and Features**

@@ -6,9 +6,9 @@ Checking and Testing
 Testing a "no_std" Library
 ----------------------------
 
-* The standard test harness uses :rust:`std` on the development machine
+* Standard test harness uses :rust:`std` on development machine
 
-* The library keeps the selected feature configuration
+* Library keeps selected feature configuration
 
 * Test the core API in each supported configuration
 
@@ -39,7 +39,7 @@ Ordinary Tests on the Development Machine
 Check Each Supported Configuration
 ------------------------------------
 
-**Run from the** :filename:`sample_tools` **directory**
+**Run from** :filename:`sample_tools` **directory**
 
 .. code:: sh
 
@@ -47,7 +47,7 @@ Check Each Supported Configuration
   cargo check --lib --no-default-features --features alloc
   cargo check --lib
 
-* Run tests for the same three configurations
+* Run tests for same three configurations
 
 .. code:: sh
 
@@ -63,9 +63,9 @@ Check Each Supported Configuration
 What Host Checks Do Not Prove
 -------------------------------
 
-* A host build may succeed even if a dependency still uses :rust:`std`
+* Host build may succeed even if a dependency still uses :rust:`std`
 
-* The standard test harness itself links :rust:`std`
+* Standard test harness itself links :rust:`std`
 
 * :command:`cargo check` checks code but does not produce a final linked program
 
