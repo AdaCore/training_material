@@ -28,7 +28,7 @@ Topics Covered
 
 * **Checking and Testing**
 
-  - Validate the supported configurations on the development machine
+  - Validate supported configurations on the development machine
 
 ---------------------------
 Why Not Always Use "std"?
@@ -40,13 +40,13 @@ Why Not Always Use "std"?
 
   * Files, sockets, and OS threads need more than language support
 
-* Many embedded and other restricted environments lack that integration
+* Many embedded and similar environments lack those services
 
-* A library may also avoid :rust:`std` to reduce its platform requirements
+* A library may also avoid :rust:`std` to reduce platform requirements
 
 .. note::
 
-  An embedded target can support :rust:`std`. A bare-metal program can have an allocator. These are separate capabilities
+  An embedded target can support :rust:`std`. A bare-metal program can have an allocator. These are *separate* capabilities
 
 ----------------------
 Three Library Layers
@@ -99,15 +99,15 @@ What "#![no_std]" Does
 
 * :rust:`std` is no longer linked automatically for this crate
 
-* The :rust:`core` prelude replaces the :rust:`std` prelude
+* :rust:`core` prelude replaces :rust:`std` prelude
 
   * :rust:`Option`, :rust:`Result`, and :rust:`Iterator` remain in scope
 
-* Normal Rust type checking and borrowing rules still apply
+* Normal type checking and borrowing rules still apply
 
 .. warning::
 
-  This attribute does not forbid explicitly linking :rust:`std`, or prevent dependencies from using it
+  Attribute does not forbid explicitly linking :rust:`std` or prevent dependencies from using it
 
 --------------------------------
 A Library Is Not an Executable
@@ -117,7 +117,7 @@ A Library Is Not an Executable
 
 * A normal :rust:`std` application can depend on a :rust:`no_std` library
 
-* The final program supplies the required runtime support
+* Final program supplies the required runtime support
 
   * This includes panic handling and, when used, allocation support
 

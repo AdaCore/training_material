@@ -66,7 +66,10 @@ A Small Portable Library
       samples.iter().copied().max()
   }
 
-* The function borrows its input and returns :rust:`None` for an empty slice
+* Function borrows its input and returns
+
+  * :rust:`None` for an empty slice
+  * :rust:`Some` with largest element otherwise
 
 * No heap allocation or platform service is needed
 
@@ -154,9 +157,9 @@ Formatting Is Not Standard Output
 
   Describing text and choosing where to send it are separate responsibilities
 
----------------------------------------
-Let the Caller Choose the Destination
----------------------------------------
+-------------------------------
+Let Caller Choose Destination
+-------------------------------
 
 **Add to** :filename:`src/lib.rs`
 
@@ -175,7 +178,9 @@ Let the Caller Choose the Destination
 
 * Write failures are returned through :rust:`fmt::Result`
 
-* No intermediate :rust:`String`; the writer may allocate
+* No intermediate :rust:`String`
+
+  * Writer may allocate
 
 -----------------------------------
 The Caller Can Still Use "String"
@@ -194,7 +199,7 @@ The Caller Can Still Use "String"
       println!("{text}");
   }
 
-* The application chooses an allocating destination
+* Application chooses an allocating destination
 
 * The library does not need to name or depend on :rust:`String`
 
