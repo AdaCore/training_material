@@ -10,8 +10,8 @@ Where Allocation Can Happen
   :widths: 46 54
   :header-rows: 1
 
-  * - Operation
-    - Allocation behavior to consider
+  * - **Operation**
+    - **Allocation behavior to consider**
   * - :rust:`Vec::new()`, :rust:`String::new()`
     - Start empty without allocating a buffer
   * - Growing a :rust:`Vec` or :rust:`String`
@@ -78,7 +78,7 @@ Growth Is a Runtime Event
 
 * Fragmentation may matter, depending on the allocator and workload
 
-* Reuse reserved storage when repeated work should not allocate
+* Reuse reserved storage to prevent unnecessary allocation
 
 .. note::
 
@@ -123,7 +123,7 @@ Build an Owned Result Fallibly
 
 * Reserve before copying; propagate a reported failure with :rust:`?`
 
-* The reserved slots suffice for every :rust:`u16` pushed here
+* Reserved slots suffice for every :rust:`u16` pushed here
 
 -----------------------------------
 Implementing "try_sorted_samples"
@@ -148,7 +148,7 @@ Implementing "try_sorted_samples"
 A "Result" Does Not Catch Every Failure
 -----------------------------------------
 
-* :rust:`try_reserve` handles failures the allocator reports to it
+* :rust:`try_reserve` can report capacity overflow or allocation failure
 
 * Other allocating operations can still follow a non-returning failure path
 

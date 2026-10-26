@@ -20,13 +20,13 @@ One Operation, Three Memory Contracts
 Bound Memory, Then Bound the Work
 -----------------------------------
 
-* Reject inputs larger than the supported workload
+* Reject inputs that exceed the supported size limit
 
 * Reuse storage when repeated allocation is not acceptable
 
-* Include comparisons, copying, cleanup, and synchronization in the budget
+* Budget for comparisons, copying, cleanup, and synchronization
 
-* Use measurements and analysis for the deployment environment
+* Use measurements and analysis for deployment environment
 
 .. warning::
 

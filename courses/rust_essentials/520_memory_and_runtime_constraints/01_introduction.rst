@@ -34,7 +34,7 @@ Available Does Not Mean Appropriate
 
 * An allocator makes heap-backed types usable, not unlimited
 
-* A design must also answer three questions:
+* Design must also answer three questions:
 
   * How much memory can be used at once?
 
@@ -64,7 +64,9 @@ Running Example: Sorting Sample Batches
 
   pub mod memory;
 
-* Create :filename:`src/memory.rs`; later slides add its contents
+* Create :filename:`src/memory.rs`
+
+  * Later slides add its contents
 
 .. note::
 
