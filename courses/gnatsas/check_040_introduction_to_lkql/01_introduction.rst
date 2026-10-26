@@ -18,4 +18,4 @@ Topics Covered
 
    - Language used to interrogate source being examined
 
-- **Building A Rule**
+- **Building a Rule**

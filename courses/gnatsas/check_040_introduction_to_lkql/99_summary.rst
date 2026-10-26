@@ -27,7 +27,7 @@ What We Covered
     - Select nodes within parsed code
     - Automatic traversal
 
-- **Building A Rule**
+- **Building a Rule**
 
   - LKQL is not a very complicated language
   - Limitations can be overcome!

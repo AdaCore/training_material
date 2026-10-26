@@ -596,7 +596,8 @@
       <itemData name="Constant" defStyleNum="dsConstant"/>
       <itemData name="Attribute" defStyleNum="dsAttribute"/>
       <itemData name="Control Flow" defStyleNum="dsControlFlow"/>
-      <itemData name="Documentation" defStyleNum="dsDocumentation"/>
+      <!-- Docstrings look bad in italics, so switching from dsDocumentation to dsString-->
+      <itemData name="Documentation" defStyleNum="dsString"/>
     </itemDatas>
   </highlighting>
 </language>

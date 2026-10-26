@@ -75,11 +75,8 @@ Composite Data Types
 
 * ``Stream``
 
+  * Supports access by index
   * "Lazy" sequences of items
-
-    * Accessing element forces computation up to that element
-
-  * Can be indexed
 
     * Forces computation until indexed item
 
@@ -172,7 +169,7 @@ Literals and Operators
   .. code:: lkql
 
     val area = height * width
-    val smaller_or_eq = perimter <= 100
+    val smaller_or_eq = perimeter <= 100
 
 * Boolean and relational operators
 
@@ -204,7 +201,7 @@ A Word About Strings
   .. code:: lkql
 
     val multi = |" Hello
-                |" This is a multi line string
+                |" This is a multi-line string
                 |" Goodbye!
 
 
@@ -221,9 +218,10 @@ A Word About Strings
 Expressions
 -------------
 
-* *Block expressions* can declare temporary values
+* *Block expressions* group computations into a single expression
 
-  * Allowing simpler intermediate operations
+  * May include local declarations
+  * Final expression determines block's value
 
   .. code:: lkql
 
