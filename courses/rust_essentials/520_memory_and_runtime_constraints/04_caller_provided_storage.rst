@@ -6,20 +6,24 @@ Caller-Provided Storage
 Borrow the Output Buffer
 --------------------------
 
-* Add to :filename:`src/memory.rs`
+**The caller supplies the output buffer**
+
+.. code:: rust
+
+  let mut scratch = [0_u16; 4];
+  let sorted = sort_into(&[42, 7, 10], &mut scratch)
+      .expect("buffer fits");
+
+* The returned slice borrows :rust:`scratch`
+
+* No allocation is needed; insufficient space is rejected before modification
+
+* Error type in :filename:`src/memory.rs`
 
 .. code:: rust
 
   #[derive(Debug, Clone, Copy, PartialEq, Eq)]
   pub struct BufferTooSmall;
-
-* The caller supplies storage; this operation does not allocate
-
-* A buffer that is too short is rejected before it is changed
-
-* The returned slice borrows :rust:`scratch`
-
-* The caller can reuse the buffer after the slice's last use
 
 --------------------------
 Implementing "sort_into"
@@ -49,7 +53,7 @@ Reuse the Same Buffer
 
 .. code:: rust
 
-  use sample_tools::memory::sort_into;
+  use memory_tools::memory::sort_into;
 
   fn main() {
       let mut scratch = [0_u16; 4];

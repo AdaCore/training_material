@@ -12,7 +12,7 @@ Topics Covered
 
 * **Dynamic Allocation**
 
-  - Identify allocation costs and handle reported allocation failures
+  - Identify allocation costs and handle errors from fallible allocations
 
 * **Caller-Provided and Static Storage**
 
@@ -40,17 +40,17 @@ Available Does Not Mean Appropriate
 
   * When can allocation or other costly work occur?
 
-  * What should happen when a resource limit is reached?
+  * What should happen when memory limit is reached?
 
-.. tip::
+.. warning::
 
-  Memory safety is not a memory budget or a timing guarantee
+  Memory safety does not bound memory use or execution time
 
 -----------------------------------------
 Running Example: Sorting Sample Batches
 -----------------------------------------
 
-**Extend** :rust:`sample_tools` **with three ways to sort** :rust:`u16` **samples**
+**Compare three ways to sort** :rust:`u16` **samples**
 
 * Return a heap-backed collection, handling reservation failure
 
@@ -58,14 +58,44 @@ Running Example: Sorting Sample Batches
 
 * Return an owned, fixed-capacity collection
 
-* Add to :filename:`src/lib.rs`, below its existing crate declarations
+------------------------------
+Example Library: Cargo Setup
+------------------------------
+
+**A standalone library hosts the examples**
+
+* Creation of the :filename:`memory_tools` library
+
+.. code:: sh
+
+  cargo new --lib memory_tools
+
+* Feature configuration in :filename:`Cargo.toml`
+
+.. code:: toml
+
+  [features]
+  default = ["std"]
+  std = ["alloc"]
+  alloc = []
+
+-------------------------------
+Example Library: Source Files
+-------------------------------
+
+**The library declares a separate module for the examples**
+
+* Library root in :filename:`src/lib.rs`
 
 .. code:: rust
 
+  #![cfg_attr(not(feature = "std"), no_std)]
+
+  #[cfg(feature = "alloc")]
+  extern crate alloc;
+
   pub mod memory;
 
-* Create :filename:`src/memory.rs`; later slides add its contents
+* :filename:`src/memory.rs` starts empty
 
-.. note::
-
-  Keep the previous module's functions and features unchanged
+  * Later slides add its implementations

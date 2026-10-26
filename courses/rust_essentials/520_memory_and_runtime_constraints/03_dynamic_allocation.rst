@@ -29,17 +29,17 @@ Where Allocation Can Happen
 
   Cloning may allocate, depending on the type
 
-------------------------
-Length Is Not Capacity
-------------------------
-
-* Independent illustration inside a host :rust:`main`
+--------------------------
+  Length Is Not Capacity
+--------------------------
 
 .. code:: rust
 
-  let samples = Vec::<u16>::with_capacity(4);
-  assert_eq!(samples.len(), 0);
-  assert!(samples.capacity() >= 4);
+  fn main() {
+      let samples = Vec::<u16>::with_capacity(4);
+      println!("length: {}", samples.len());
+      println!("capacity: {}", samples.capacity());
+ }
 
 * **Length:** initialized elements currently stored
 
@@ -49,24 +49,48 @@ Length Is Not Capacity
 
   :rust:`with_capacity(4)` does not impose a maximum length
 
--------------------------------
-Clearing and Reusing Capacity
--------------------------------
-
-* Independent illustration inside a host :rust:`main`
+---------------------------------
+  Clearing and Reusing Capacity
+---------------------------------
 
 .. code:: rust
 
-  let mut samples = Vec::<u16>::with_capacity(4);
-  samples.push(42);
-  assert_eq!(samples.len(), 1);
+  fn main() {
+    let mut buf = Vec::<u16>::with_capacity(4);
+    buf.push(42);
+    println!("before: {:?}", (buf.len(), buf.capacity()));
 
-  let capacity = samples.capacity();
-  samples.clear();
-  assert_eq!(samples.len(), 0);
-  assert_eq!(samples.capacity(), capacity);
+    buf.clear();
+    println!("after: {:?}", (buf.len(), buf.capacity()));
+  }
+
+* Each printed pair shows :rust:`(length, capacity)`
 
 * :rust:`clear()` removes elements but retains the buffer for reuse
+
+-------------------------
+Observe Capacity Growth
+-------------------------
+
+.. code:: rust
+
+  fn main() {
+      let mut samples = Vec::<u16>::new();
+
+      for value in 0..16 {
+          let before = samples.capacity();
+          samples.push(value);
+          let after = samples.capacity();
+
+          if after != before {
+              println!("capacity: {before} -> {after}");
+          }
+      }
+  }
+
+* :rust:`push` may increase capacity when the buffer is full
+
+* The growth strategy is not guaranteed
 
 ---------------------------
 Growth Is a Runtime Event
@@ -76,17 +100,17 @@ Growth Is a Runtime Event
 
 * Allocator behavior can affect latency and memory overhead
 
-* Fragmentation may matter, depending on the allocator and workload
+* Heap fragmentation can make large contiguous allocations harder
 
 * Reuse reserved storage when repeated work should not allocate
 
 .. note::
 
-  Amortized constant-time :rust:`push` is an average-cost bound over operations, not a
-  maximum duration for every call
+  A :rust:`push` that fits within the current capacity is usually quick;
+  one that must grow the buffer may take much longer
 
 ----------------------------------------
-Fallible Allocation Uses Explicit APIs
+  Fallible Allocation Uses Explicit APIs
 ----------------------------------------
 
 .. list-table::
@@ -94,36 +118,44 @@ Fallible Allocation Uses Explicit APIs
   :header-rows: 1
 
   * - API
-    - What the caller receives
+    - Failure behavior
   * - :rust:`Vec::new()`
-    - An empty :rust:`Vec`; no allocation to fail
+    - No allocation
   * - :rust:`Vec::with_capacity(n)`
-    - A :rust:`Vec`, not a :rust:`Result`
+    - Panics on overflow; may abort on allocation failure
   * - :rust:`values.try_reserve(n)`
-    - :rust:`Result<(), TryReserveError>`
+    - Returns :rust:`Err(TryReserveError)` on failure
 
-* :rust:`n` is additional capacity relative to the current length
+* :rust:`with_capacity(n)` requests space for at least :rust:`n` elements
 
-* A failed reservation can report capacity overflow or allocator failure
+* :rust:`try_reserve(n)` ensures capacity for at least :rust:`len + n` elements
 
 .. tip::
 
-  Fallible APIs report allocation failure as an error value
+  :rust:`try_reserve` can report capacity overflow or allocator-reported failure
 
 --------------------------------
 Build an Owned Result Fallibly
 --------------------------------
 
-* Add to :filename:`src/memory.rs`
+* Use :rust:`alloc` for optional :rust:`no_std` support
 
 .. code:: rust
 
   #[cfg(feature = "alloc")]
   use alloc::{collections::TryReserveError, vec::Vec};
 
-* Reserve before copying; propagate a reported failure with :rust:`?`
+* Inside :rust:`try_sorted_samples`, reserve before copying
 
-* The reserved slots suffice for every :rust:`u16` pushed here
+.. code:: rust
+
+  let mut sorted = Vec::new();
+  sorted.try_reserve(samples.len())?;
+  for &sample in samples {
+      sorted.push(sample);
+  }
+
+* :rust:`?` propagates a reported allocation failure
 
 -----------------------------------
 Implementing "try_sorted_samples"
@@ -150,9 +182,9 @@ A "Result" Does Not Catch Every Failure
 
 * :rust:`try_reserve` handles failures the allocator reports to it
 
-* Other allocating operations can still follow a non-returning failure path
+  * Other allocating operations can still follow a non-returning failure path
 
-* The final program determines that path's behavior
+* Allocation failure behavior depends on allocator and runtime
 
 * Allocation recovery requires a policy beyond adding :rust:`?`
 

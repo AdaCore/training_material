@@ -18,7 +18,7 @@ An Owned Collection Without Buffer Growth
 
   use heapless::Vec as FixedVec;
 
-* :rust:`FixedVec<T, N>` owns space for at most :rust:`N` elements inline
+* :rust:`FixedVec<T, N>` contains space for :rust:`N` elements within the value
 
 * Its length changes; its capacity does not grow
 
@@ -32,7 +32,7 @@ An Owned Collection Without Buffer Growth
 Full Capacity Is an Ordinary Error
 ------------------------------------
 
-* Independent illustration inside a function, using the same dependency
+* Example: a :rust:`heapless::Vec` with capacity for two elements
 
 .. code:: rust
 
@@ -79,19 +79,21 @@ Return a Bounded, Owned Result
 A Bounded Destination for Formatting
 --------------------------------------
 
-* Add to :filename:`src/memory.rs`, reusing the previous module's writer
+* Add to :filename:`src/memory.rs`
 
 .. code:: rust
 
   pub fn maximum_report<const N: usize>(
       value: u16,
   ) -> Result<heapless::String<N>, core::fmt::Error> {
+      use core::fmt::Write as _;
+
       let mut text = heapless::String::new();
-      crate::write_maximum(&mut text, value)?;
+      write!(&mut text, "Maximum: {value}")?;
       Ok(text)
   }
 
-* :rust:`maximum_report::<16>(42)` produces :rust:`"Maximum: 42"`
+* :rust:`maximum_report::<16>(42)` returns :rust:`Ok` containing :rust:`"Maximum: 42"`
 
 * Capacity :rust:`N` counts UTF-8 bytes, not characters
 
