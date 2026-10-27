@@ -69,7 +69,7 @@ Putting It All Together
       node is ObjectDecl and
       node.f_type_expr
           .p_designated_type_decl()
-          .p_base_type()
+          .p_root_type()
           .f_name
           .p_fully_qualified_name() == "Standard.Integer"
 
@@ -111,7 +111,7 @@ Cleaning Up the Rule
 
   Null receiver in dot access [integer_objects]
 
-* Many of the fields downstream from :lkql:`ObjectDecl` can be null
+* Many fields and properties downstream from :lkql:`ObjectDecl` can be null
 
   * But our rule assumes we can always dereference a field
 

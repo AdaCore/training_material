@@ -91,8 +91,9 @@ Block Expressions
 
 * Group local declarations and expressions
 
-  * Local values available within the block
-  * Designated by keyword :lkql:`val`
+  * Local values can be declared in the block
+
+    * Designated by keyword :lkql:`val`
 
 * Create a *local scope*
 

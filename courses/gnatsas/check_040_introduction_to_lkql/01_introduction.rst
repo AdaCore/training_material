@@ -16,6 +16,6 @@ Topics Covered
 
 - **Query Language**
 
-   - Language used to interrogate source being examined
+  - Language used to interrogate source being examined
 
 - **Building a Rule**

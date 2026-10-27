@@ -49,7 +49,7 @@ Query Expression
 
   .. code:: lkql
 
-    # Select all non-null nodes starting from node theNode
+    # Select all non-null nodes starting from node "theNode"
     from theNode select AdaNode
 
 * Specifying a selector using ``through``
