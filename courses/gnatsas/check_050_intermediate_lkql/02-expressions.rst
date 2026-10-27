@@ -160,11 +160,11 @@ List Comprehension
 
     val params = node?.f_subp_params?.f_params;
 
-  * :lkql:`params` will contain a list of parameters for :lkql:`node` if
+  * :lkql:`params` will contain a :lkql:`ParamSpecList` if
 
     * :lkql:`node` is not null
     * :lkql:`node` is a subprogram specification
-    * :lkql:`node` list of parameters is not null
+    * :lkql:`node` has at least one parameter
 
 .. note::
 
