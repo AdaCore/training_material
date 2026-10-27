@@ -10,7 +10,7 @@ Raw Pointer Types
   * :rust:`*const T` - raw pointer for reading
   * :rust:`*mut T` - raw pointer for reading and writing
 * Characteristics of a raw pointer
-  * May alias other raw pointers
+  * May point to the same memory as another pointer (aliasing)
   * May be null, dangling, or misaligned
   * May point to uninitialized or invalid memory
   * Does not own pointed-to value
@@ -109,6 +109,6 @@ Aliasing and Safety Obligations
       *luigi = 120;
   }
 
-* Raw-pointer aliasing is not checked
+* The borrow checker does **not** verify these raw-pointer accesses
 * Every access must remain valid and compatible
 * Invalid or incompatible memory accesses may cause undefined behavior

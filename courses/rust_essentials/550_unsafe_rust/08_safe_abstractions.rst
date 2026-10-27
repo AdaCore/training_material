@@ -9,24 +9,20 @@ Encapsulating Unsafe Operations
 **Safe abstractions provide a safe interface to unsafe operations**
 
 * Callers use a safe interface
-* Implementation does the unsafe work
+* Implementation handles unsafe operations
+
   * Keeps unsafe operations small and easy to audit
-* Otherwise, expose an unsafe API and document its :rust:`# Safety` contract
+
+* If safety relies on caller guarantees
+
+    * Expose an unsafe API
+    * Document its :rust:`# Safety` contract
+
 * Examples: :rust:`Vec<T>`, :rust:`String`, and many standard-library types
 
 .. note::
 
   Callers need no :rust:`unsafe` block!
-
----------------------------------
-Example: Safe Access to a Union
----------------------------------
-
-**Unsafe operations can be encapsulated in a safe API**
-
-* Caller uses ordinary safe Rust
-* Implementation handles the unsafe operation
-* Safety must be guaranteed for every valid call
 
 -------------------------------
 Encapsulating the Unsafe Read

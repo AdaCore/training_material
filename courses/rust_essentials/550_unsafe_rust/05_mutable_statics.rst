@@ -8,10 +8,15 @@ Immutable and Mutable Statics
 
 **Static items provide data for the duration of the program**
 
-* :rust:`static mut` declares a global variable that can be modified
+* :rust:`static` declares an *immutable* static item
+
+  * Reading its value is safe
+
+* :rust:`static mut` declares a *mutable* static item
+
+  * Its value can be changed
+  * Reading or writing requires an unsafe context
   * The programmer must prevent conflicting accesses
-  * Each read or write requires an unsafe context
-* *Reading* an immutable static is safe
 
 .. code:: rust
 

@@ -6,10 +6,10 @@ Safe vs. Unsafe
 Why Unsafe Rust?
 ------------------
 
-**Unsafe Rust permits specific operations that Safe Rust forbids**
+**Some operations require capabilities that Safe Rust forbids**
 
 * An unsafe *context* permits those operations
-* *Programmer* must uphold safety requirements compiler cannot verify
+* *Programmer* must uphold safety requirements the compiler cannot verify
 * Other language rules still apply
 
 .. note::

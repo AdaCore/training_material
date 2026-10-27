@@ -2,9 +2,9 @@
 Unsafe Traits
 ===============
 
-------------------------
+-------------------------
 What Are Unsafe Traits?
-------------------------
+-------------------------
 
 **Unsafe traits define requirements the compiler cannot verify**
 
@@ -24,12 +24,11 @@ What Are Unsafe Traits?
 Implementing an Unsafe Trait
 ------------------------------
 
-**Implementing an unsafe trait **
+* :rust:`unsafe impl` is a safety promise
 
-* Requires an explicit promise
-  * Use :rust:`unsafe impl`
   * Verify that every safety requirement is satisfied
-  * Document why implementation satisfies the contract
+  * Document why the implementation satisfies the contract
+
 * Normal type and syntax checks still apply
 
 .. code:: rust
@@ -39,11 +38,11 @@ Implementing an Unsafe Trait
 
 .. warning::
 
-  :rust:`unsafe impl` promises the contract; compiler doesn't verify correctness
+  :rust:`unsafe impl` promises the contract; the compiler doesn't verify correctness
 
--------------------------------
-  Violating a Safety Contract
--------------------------------
+-----------------------------
+Violating a Safety Contract
+-----------------------------
 
 **An unsafe implementation can violate its safety contract**
 

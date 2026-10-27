@@ -9,7 +9,7 @@ Topics Covered
 * **Safe vs. Unsafe**
 
   - What Safe Rust guarantees and what Unsafe Rust requires
-  - Operations whose safety compiler cannot verify
+  - Operations whose safety the compiler cannot verify
 
 * **Raw Pointers**
 

@@ -10,13 +10,17 @@ Safety Contracts
 
 * :rust:`# Safety` is the conventional Rustdoc section for those requirements
 
+* Safety contracts document requirements callers must uphold
+
 .. code:: rust
 
   /// # Safety
   ///
   /// Callers must satisfy the documented requirements
 
-* Safety contracts document requirements callers must uphold
+.. warning::
+
+  The compiler does not verify these requirements!
 
 ------------------------------
 Declaring an Unsafe Function
