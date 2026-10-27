@@ -19,7 +19,7 @@ Raw Pointer Types
 
 .. warning::
 
-  Pointer types do not guarantee valid memory accesses
+  Raw pointer types do not guarantee valid memory accesses
 
 ----------------------
 Raw Pointer Creation
@@ -39,7 +39,7 @@ Raw Pointer Creation
 
 .. warning::
 
-  Just because it's safe to create doesn't make it safe to dereference!
+  Safe to create doesn't mean safe to dereference!
 
 --------------------------------------
 Creating Raw Pointers via Conversion
@@ -66,7 +66,7 @@ Creating Raw Pointers via Conversion
 
 .. warning::
 
-  Creating this pointer is safe; accessing memory through it may not be
+  Neither conversion guarantees the resulting pointer is safe to access
 
 ----------------------------
 Dereferencing Raw Pointers
@@ -94,7 +94,7 @@ Dereferencing Raw Pointers
 Aliasing and Safety Obligations
 ---------------------------------
 
-**Raw pointers may alias the same memory without compile error**
+**Raw pointers may alias the same memory without a compilation error**
 
 .. code:: rust
 

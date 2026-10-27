@@ -3,10 +3,10 @@ Unsafe Traits
 ===============
 
 ------------------------
-What Are Unsafe Traits
+What Are Unsafe Traits?
 ------------------------
 
-**Unsafe traits define requirements compiler cannot verify**
+**Unsafe traits define requirements the compiler cannot verify**
 
 * Declared with :rust:`unsafe trait`
 * Implementors must satisfy the safety contract
@@ -34,7 +34,7 @@ Implementing an Unsafe Trait
 
 .. code:: rust
 
-  // SAFETY: All-zero bits represent a valid u32
+  // SAFETY: All-zero bits represent a valid 'u32'
   unsafe impl Zeroable for u32 {}
 
 .. warning::

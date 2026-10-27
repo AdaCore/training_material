@@ -9,7 +9,7 @@ Immutable and Mutable Statics
 **Static items provide data for the duration of the program**
 
 * :rust:`static mut` declares a global variable that can be modified
-  * Access to `static mut` requires safety guarantees from the programmer
+  * The programmer must prevent conflicting accesses
   * Each read or write requires an unsafe context
 * *Reading* an immutable static is safe
 

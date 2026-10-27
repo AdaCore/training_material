@@ -71,7 +71,7 @@ Reading Union Fields
 Reading Without "unsafe"
 --------------------------
 
-**Reading a union field without** :rust:`unsafe` **causes compilation error**
+**Reading a union field without** :rust:`unsafe` **causes a compilation error**
 
 .. code:: rust
 
