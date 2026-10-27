@@ -181,7 +181,7 @@ Literals and Operators
 
 * Boolean operators (:lkql:`and`, :lkql:`or`, :lkql:`not`)
 
-  * These operators always short-circuit
+  * :lkql:`and` and :lkql:`or` use short-circuit evaluation
 
   .. code:: lkql
 

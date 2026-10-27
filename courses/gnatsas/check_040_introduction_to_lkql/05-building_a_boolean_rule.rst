@@ -38,11 +38,11 @@ Checking Object Type
 
   *This is just the type declaration - we need the base type*
 
-* Type declaration has property :lkql:`p_base_type()`
+* Type declaration has property :lkql:`p_root_type()`
 
   * Returns :lkql:`BaseTypeDecl`
 
-  *This will be the base type of the object*
+  *This is the root type of the derivation hierarchy*
 
 * Base type declaration has field :lkql:`f_name`
 
@@ -130,9 +130,9 @@ Cleaning Up the Rule
       val has_designated = has_type and
           node.f_type_expr.p_designated_type_decl() != null;
       val has_base = has_designated and
-          node.f_type_expr.p_designated_type_decl().p_base_type() != null;
+          node.f_type_expr.p_designated_type_decl().p_root_type() != null;
       val has_name = has_base and
-          node.f_type_expr.p_designated_type_decl().p_base_type().f_name != null;
+          node.f_type_expr.p_designated_type_decl().p_root_type().f_name != null;
       has_name and node.f_type_expr
                    .p_designated_type_decl()
                    .p_root_type()

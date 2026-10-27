@@ -119,9 +119,9 @@ Selectors
 
   * But can take optional arguments
 
-    * ``min_depth`` - traversal depth is lower than some value
-    * ``max_depth`` - traversal depth is higher than some value
-    * ``depth`` - traversal depth is exactly some value
+    * ``min_depth`` - return values at this depth or deeper
+    * ``max_depth`` - return values at this depth or shallower
+    * ``depth`` - return values at exactly this depth
 
   .. code:: lkql
 
