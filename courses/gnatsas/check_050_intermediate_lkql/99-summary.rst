@@ -33,4 +33,6 @@ What We Covered
 * **Unit Rules**
 
   * Rules that apply to units rather than syntax tree nodes
-  * Required when the rule requires context
+  * Can report multiple violations
+
+    * With messages and source locations

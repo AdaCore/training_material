@@ -185,7 +185,7 @@ Support Functions
   .. code:: lkql
 
     select node@HandledStmts(parent: SubpBody)
-      when n <
+      when max_lines <
            node.token_end().end_line - node.token_start().start_line + 1
 
   * But it would need to be repeated in the message
@@ -205,7 +205,7 @@ Support Functions
         [
             {message: "tagged type has too many primitives (" &
                       img(num_primitives(n)) & ")",
-             loc: node.p_defining_name()}
+             loc: loop_node.p_defining_name(loop_node)}
             for loop_node in from unit.root through follow_generics
             select node@TypeDecl
             when node.p_is_tagged_type() and node.parent.parent is PublicPart

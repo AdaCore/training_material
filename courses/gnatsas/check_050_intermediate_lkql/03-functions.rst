@@ -95,12 +95,12 @@ Function "Pointers"
 
 * Functions are first-class values
 
-  * Named value can store a function name
+  * Named value can store a function value
 
     * Assigned different values based on a condition
     * Setting to :lkql:`null` would indicate no call
     
-  * Rule then calls function via "safe access" to object
+  * So :lkql:`fn? (a, b)` is a safe function call
 
   .. code:: lkql
 

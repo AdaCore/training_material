@@ -145,10 +145,11 @@ List Comprehension
 "Safe" Variant
 ----------------
 
-* Many queries in LKQL can return :lkql:`null` or :lkql:`()` (called :dfn:`Unit`)
+* Queries in LKQL can return mutliple literals indicating no result
 
-  * **()** - empty list
-  * **null** - value does not exist
+  * **()** - no meaningful value ("Unit")
+  * **[]** - list that has no values (empty list)
+  * **null** - no node present
 
 * :lkql:`?.` is used to simplify accessing past a :lkql:`null` value
 
