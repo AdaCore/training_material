@@ -19,8 +19,8 @@ Libadalang and LKQL
 
 * *Origin* parameter
 
-  * Many Libadalang properties accept optional :lkql:`origin` parameter
-  * Specifies from where property is evaluated
+  * Some Libadalang properties accept optional :lkql:`origin` parameter
+  * Specifies the node from which visibility is evaluated
 
     * Default is the current node
     
@@ -89,7 +89,7 @@ Accumulation Across a Collection
 
 * Calculating a total
 
-  .. code:: lkql:
+  .. code:: lkql
 
     val total = reduce([1, 2, 3], (acc, x) => acc + x, 0)
 

@@ -10,7 +10,6 @@ What We Covered
 
   * Fields and properties
   * Safe function calls
-  * Creating new nodes
   * Importing from other modules
 
 * **Selectors In-Depth**

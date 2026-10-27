@@ -66,8 +66,8 @@ Traversing the Syntax Tree
 
   .. code:: lkql
 
-    for body in from unit.root select subp@BaseSubpBody
-    # Return all children of root that are subprogram bodies
+    [ for body in from unit.root select subp@BaseSubpBody ]
+    # Return all descendants of root that are subprogram bodies
 
 * Can use :lkql:`through` to indicate other traversals
 
@@ -75,7 +75,7 @@ Traversing the Syntax Tree
 
     .. code:: lkql
 
-      from node through parent select first TypeDecl 
+      [ from node through parent select first TypeDecl ]
       # traverse all ancestors of "node"; stop at first TypeDecl
 
   * Also can use
