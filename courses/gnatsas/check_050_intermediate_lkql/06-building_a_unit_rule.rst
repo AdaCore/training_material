@@ -114,7 +114,7 @@ Examining the Rule - Query
   when expr is not (Identifier | DefiningName | EndName)
             and num_expr(expr) > n
   # Trigger the rule when "expr" is not a name
-  # and number of expressions is > n
+  # and number of expressions is > "n"
 
 ---------------------------------------
 Examining the Rule - Support Function
