@@ -42,12 +42,12 @@ What Is a Unit Test?
 
   * In Rust, typically a single subprogram
 
-* Given a known set of inputs, output is predictable
+* Given a known set of inputs, resulting behavior is predictable
 
-  * If outputs do not match expectations then either ...
+  * If the test fails, then either...
 
     * Code is wrong
-    * Expectations are wrong
+    * Test is wrong
 
 -------------------------
 What Is in a Unit Test?
@@ -63,7 +63,7 @@ What Is in a Unit Test?
 
 * What to Test
 
-  * **Happy Path** - Standard, expected usage scenarios.
+  * **Happy Path** - Standard, expected usage scenarios
   * **Edge Cases** - Zero, empty collections, null/None, boundaries
   * **Failure Modes** -  Expected panics, invalid inputs, and validation errors
 

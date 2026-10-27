@@ -6,11 +6,11 @@ Simple Unit Test
 Creating a Testable Framework
 -------------------------------
 
-* :command:`cargo new` creates a new package with a binary target by default
+* :command:`cargo new` creates a new package with a *binary* target by default
 
-  * Which has its own :rust:`main` program
+  * Has its own :rust:`main` program
 
-* Adding :command:`--lib` creates a package with a library target
+* Adding :command:`--lib` creates a package with a *library* target
 
   * No main program
   * :rust:`tests` module automatically inserted
@@ -62,10 +62,10 @@ Test Semantics
   }
 
 * Line 5: Module only compiled when running :command:`cargo test`
-* Line 6: Test module (:rust:`tests` is idiomatic but other names allowed)
-* Line 7: :rust:`tests` is a **child** of :rust:`adder`
+* Line 6: Creates a module named :rust:`tests` 
+* Line 7: Brings names from parent module into scope
 
-  * It has full visibility into its parent's functionality
+  * Tests can call :rust:`add(...)` directly
   * :rust:`use super::*;` avoids qualified paths to parent-module items
 
 * Line 9: Following function is a test

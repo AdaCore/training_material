@@ -94,7 +94,7 @@ Dealing with Panic
               return index;
           }
       }
-      // panic if value not found
+      // panic if 'value' not found
       panic!("value not found");
   }
 
@@ -159,7 +159,7 @@ Expecting a Panic
 Expecting the Right Panic
 ---------------------------
 
-* What happens to our test if :rust:`find_index` doesn't work correctly
+* What happens to our test if :rust:`find_index` doesn't work correctly?
 
   * For example, it returns a 0 on failure rather than panic
 
@@ -173,7 +173,7 @@ Expecting the Right Panic
     :font-size: footnotesize
 
     #[test]
-    #[should_panic (expected = "value not found")]
+    #[should_panic(expected = "value not found")]
     fn test3() {
         let values: [i32; 6] = [2, 3, 5, 8, 13, 21];
         let result = find_index(&values, 6);
