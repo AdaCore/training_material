@@ -47,7 +47,7 @@ Composite Literals
 
 * Object literal
 
-  * Creates an object and its fields
+  * Object with named fields
 
   .. code:: lkql
 
@@ -107,7 +107,7 @@ Composite Literals
 
     * First matching arm is taken
     * If no matching arm, run-time exception is raised
-    * :lkql:`*` matches anything
+    * :lkql:`*` is an optional catch-all pattern; place it last
 
 --------------------
 List Comprehension
@@ -178,7 +178,7 @@ Unwrap Expression
 
   * Either :lkql:`null` or an object
 
-* To refer to the object, use the *unwrap expression* :lkql:`!!`
+* Use the *unwrap expression* :lkql:`!!` to require a non-null value
 
   * Typically used at the end of a chain of safe field accesses
 

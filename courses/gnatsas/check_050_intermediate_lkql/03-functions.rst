@@ -100,7 +100,7 @@ Function "Pointers"
     * Assigned different values based on a condition
     * Setting to :lkql:`null` would indicate no call
     
-  * So :lkql:`fn? (a, b)` is a safe function call
+  * :lkql:`fn? (a, b)` is the syntax for a safe function call
 
   .. code:: lkql
 
@@ -116,4 +116,4 @@ Function "Pointers"
 * When treating :lkql:`fn` as a function call
 
   * If :lkql:`fn` is null, return :lkql:`()`
-  * Else use the return from calling :lkql:`div`
+  * Else calls :rust:`div(a, b)` and returns its result

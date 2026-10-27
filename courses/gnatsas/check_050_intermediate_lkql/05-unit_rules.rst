@@ -204,8 +204,8 @@ Support Functions
     fun too_many_primitives(unit, max_count : int = 5) =
         [
             {message: "tagged type has too many primitives (" &
-                      img(num_primitives(n)) & ")",
-             loc: loop_node.p_defining_name(loop_node)}
+                      img(num_primitives(loop_node)) & ")",
+             loc: loop_node.p_defining_name()}
             for loop_node in from unit.root through follow_generics
             select node@TypeDecl
             when node.p_is_tagged_type() and node.parent.parent is PublicPart
