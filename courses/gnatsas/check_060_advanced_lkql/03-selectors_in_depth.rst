@@ -33,7 +33,7 @@ Review: What Is a Selector?
 
   # Calling a selector in a nested sub-pattern
   select AdaNode(any children(min_depth=3): BasicDecl)
-  # find all nodes with a BasicDecl descendant at depth 3 or deeper
+  # find all nodes with a "BasicDecl" descendant at depth 3 or deeper
 
 ---------------------
 Defining a Selector
