@@ -70,7 +70,7 @@ Why LKQL?
 LKQL Construction
 -------------------
 
-* Consits of two language subsets
+* Consists of two language subsets
 
 * General Purpose Subset
 

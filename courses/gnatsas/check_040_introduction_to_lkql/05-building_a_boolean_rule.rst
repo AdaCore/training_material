@@ -135,7 +135,7 @@ Cleaning Up the Rule
           node.f_type_expr.p_designated_type_decl().p_base_type().f_name != null;
       has_name and node.f_type_expr
                    .p_designated_type_decl()
-                   .p_base_type()
+                   .p_root_type()
                    .f_name
                    .p_fully_qualified_name() == "Standard.Integer"
   }

@@ -50,6 +50,7 @@ Basic Data Types
 
 * ``Function``
 
+  * Designated by keyword :lkql:`fun`
   * LKQL functions are first class citizens
   * Represents values that can be called with a call expression
 
@@ -91,6 +92,7 @@ Block Expressions
 * Group local declarations and expressions
 
   * Local values available within the block
+  * Designated by keyword :lkql:`val`
 
 * Create a *local scope*
 
@@ -171,11 +173,20 @@ Literals and Operators
     val area = height * width
     val smaller_or_eq = perimeter <= 100
 
-* Boolean and relational operators
+* Relational operators
 
   .. code:: lkql
 
-    power_on and (level > 3 or power <= limit)
+    val flag = level > limit
+
+* Boolean operators (:lkql:`and`, :lkql:`or`, :lkql:`not`)
+
+  * These operators always short-circuit
+
+  .. code:: lkql
+
+    val test = power_on and count(something)
+    # if "power_on" is false, "count" will not be called
 
 * Concatenation
 
@@ -292,8 +303,7 @@ Comparison Expressions
     val a = select AdaNode
     val b = a[1] is ObjectDecl
 
-  * :dfn:`Pattern` can be *any value*
+* :dfn:`Pattern` is a construct to match against a value
 
-    * Basic or composite types
-    * Literals (numeric, string, :lkql:`null`)
-    * Values (variables, parameters)
+  * Can match basic or composite values
+  * Can match literals (numeric, string, :lkql:`null`)
