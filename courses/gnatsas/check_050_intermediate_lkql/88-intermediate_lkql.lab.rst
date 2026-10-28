@@ -159,7 +159,7 @@ Step 4 - Finding the Subprogram Statements
 
   * We now need to get the statements in the subprogram
 
-  * Add a selector to iterate over all statements (:lkql:`HandledStmts`) whose parent is :lkql:`SubpBody`
+  * Update the query to select :lkql:`HandledStmts` nodes whose parent is a :lkql:`SubpBody`
 
   **Note**
 
@@ -198,15 +198,15 @@ Step 4 - Finding the Subprogram Statements
 
   * The line numbers are now tracking to the :ada:`begin` rather than subprogram declaration
 
---------------------------------------------
-Step 5 - Counting the Number of Statements
---------------------------------------------
+---------------------------------------
+Step 5 - Counting the Number of Lines
+---------------------------------------
 
 .. container:: animate 1-
 
   * We need a way to count how many lines are in the subprogram
 
-    * Given we have a list of statements
+    * We can measure the source span of the statement sequence
 
   * Simplest calculation
 
