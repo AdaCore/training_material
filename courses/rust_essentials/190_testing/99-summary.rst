@@ -39,7 +39,7 @@ What We Covered
   * Test application that combines units, modules, and/or subsystems
   * Verify
 
-    * Interfaces and contracts for subprogram calls
+    * Interfaces and contracts for function calls
     * Data persistence
     * Interactions between outside sources
     * Shared resource contention

@@ -11,7 +11,7 @@ What is an Integration Test?
   * Combines units, modules, and/or subsystems
   * Verifies
 
-    * Interfaces and contracts for subprogram calls
+    * Interfaces and contracts for function calls
     * Data persistence
     * Interactions between outside sources
     * Shared resource contention

@@ -12,7 +12,7 @@ Assertion Failure Messages
       format!("Hello {name}!")
   }
 
-* Assertions with a single argument just echo the assertion
+* By default, :rust:`assert!` displays failed condition
 
   .. code:: rust
     :number-lines: 5
@@ -29,7 +29,7 @@ Assertion Failure Messages
     thread 'tests::test1' (54) panicked at src/lib.rs:20:9:
     assertion failed: result.contains(expected)
 
-* But these macros can take multiple arguments
+* Assertion macros can take multiple arguments
 
   .. code:: rust
 
@@ -41,44 +41,44 @@ Custom Failure Messages
 
 * After the condition, arguments are treated as inputs to :rust:`format!` macro
 
-  * Named format
+* Named format
 
-    .. code:: rust
-      :number-lines: 16
+  .. code:: rust
+    :number-lines: 16
 
-      #[test]
-      fn test2() {
-          let expected = "Barney";
-          let result = greeting("Fred");
-          assert!(result.contains(expected), "FAILURE: received {result}");
-      }
+    #[test]
+    fn test2() {
+        let expected = "Barney";
+        let result = greeting("Fred");
+        assert!(result.contains(expected), "FAILURE: received {result}");
+    }
 
-    .. code:: error
+  .. code:: error
 
-      thread 'tests::test2' (54) panicked at src/lib.rs:20:9:
-      FAILURE: received Hello Fred!
+    thread 'tests::test2' (54) panicked at src/lib.rs:20:9:
+    FAILURE: received Hello Fred!
 
-  * Positional format
+* Positional format
 
-    .. code:: rust
-      :number-lines: 23
+  .. code:: rust
+    :number-lines: 23
 
-      #[test]
-      fn test3() {
-          let expected = "Barney";
-          let result = greeting("Fred");
-          assert!(
-              result.contains(expected),
-              "FAILURE: could not find {} in {}",
-              expected,
-              result
-          );
-      }
+    #[test]
+    fn test3() {
+        let expected = "Barney";
+        let result = greeting("Fred");
+        assert!(
+            result.contains(expected),
+            "FAILURE: could not find {} in {}",
+            expected,
+            result
+        );
+    }
 
-    .. code:: error
+  .. code:: error
 
-      thread 'tests::test3' (55) panicked at src/lib.rs:27:9:
-      FAILURE: could not find Barney in Hello Fred!
+    thread 'tests::test3' (55) panicked at src/lib.rs:27:9:
+    FAILURE: could not find Barney in Hello Fred!
 
 --------------------
 Dealing with Panic
@@ -98,43 +98,29 @@ Dealing with Panic
       panic!("value not found");
   }
 
-* Successful test is easy
-
-  .. code:: rust
-
-    #[test]
-    fn test1() {
-        let values: [i32; 6] = [2, 3, 5, 8, 13, 21];
-        let result = find_index(&values, 5);
-        assert_eq!(result, 2);
-    }
-
-  .. code:: output
-
-    test tests::test1 ... ok
-
 * What happens when the value is not found?
 
--------------------
-Expecting a Panic
--------------------
-
-* Problem
-
   .. code:: rust
 
     #[test]
-    fn test2() {
+    fn test_not_found() {
         let values: [i32; 6] = [2, 3, 5, 8, 13, 21];
         let result = find_index(&values, 6);
         assert_eq!(result, 2);
     }
 
+-----------------
+Expecting Panic
+-----------------
+
+* Running :rust:`test_not_found` causes test failure
+
   .. code:: error
+    :font-size: footnotesize
 
     test tests::test2 ... FAILED
 
-    thread 'tests::test2' (90) panicked at src/lib.rs:9:5:
+    thread 'tests::test_not_found' (90) panicked at src/lib.rs:9:5:
     value not found
 
   * But the code behaved correctly!
@@ -145,7 +131,7 @@ Expecting a Panic
 
     #[test]
     #[should_panic]
-    fn test3() {
+    fn test_panic() {
         let values: [i32; 6] = [2, 3, 5, 8, 13, 21];
         let result = find_index(&values, 6);
         assert_eq!(result, 2);
@@ -153,7 +139,7 @@ Expecting a Panic
 
   .. code:: output
 
-    test tests::test3 - should panic ... ok
+    test tests::test_panic - should panic ... ok
 
 ---------------------------
 Expecting the Right Panic

@@ -3,7 +3,7 @@ Simple Unit Test
 ==================
 
 -------------------------------
-Creating a Testable Framework
+Creating a Library With Tests
 -------------------------------
 
 * :command:`cargo new` creates a new package with a *binary* target by default
@@ -42,6 +42,39 @@ Creating a Testable Framework
 
   :filename:`adder` is the folder created to contain the package
 
+----------------------------------------
+Creating Tests for an Existing Library
+----------------------------------------
+
+* Tests can be created outside of the file being tested
+* Create :filename:`tests` folder at same level of unit being tested
+
+  * To test :filename:`parser.rs`, create :filename:`tests` in same directory
+
+* Modify :filename:`lib.rs` to reference test module
+
+  .. code:: rust
+
+    pub mod parser;
+
+    #[cfg(test)]
+    mod tests {
+        mod parser_tests;
+    }
+
+* Create :filename:`parser_tests.rs` in :filename:`tests` folder
+* :filename:`parser_tests.rs` contains a test submodule
+
+  .. code:: rust
+
+    use crate::parser;
+
+    #[test]
+    fn test_parser_internals() {
+        // You have access to crate internals here
+        assert!(parser::internal_helper());
+    }
+
 ----------------
 Test Semantics
 ----------------
@@ -61,8 +94,8 @@ Test Semantics
       }
   }
 
-* Line 5: Module only compiled when running :command:`cargo test`
-* Line 6: Creates a module named :rust:`tests` 
+* Line 5: Module only compiled when building tests
+* Line 6: Creates a child module named :rust:`tests` 
 * Line 7: Brings names from parent module into scope
 
   * Tests can call :rust:`add(...)` directly
@@ -82,7 +115,13 @@ Test Semantics
 Test Execution
 ----------------
 
+:command:`rustc --test src/lib.rs`
+
+  * Invokes compiler to build test executable
+
 :command:`cargo test`
+
+  * Build and run test executable
 
 .. code:: output
   :font-size: tiny
@@ -114,11 +153,12 @@ Validating Test Results
 
   * Output matches an expected value
   * Output is in a range of values
-  * Output scenario is consistent
+  * Executed behavior is consistent
 
 * Single test *fails* when the test function panics
 
-  * Panic stops at test boundary - multiple tests can fail
+  * Panic fails current test
+  * Remaining tests continue running
 
 * Panic is most commonly caused by
 
@@ -132,7 +172,7 @@ Validating Test Results
 Explicit Panic
 ----------------
 
-**It is easy to test results and cause a panic**
+**Use** :rust:`panic!` **to explicitly fail a test**
 
 .. code:: rust
   :font-size: footnotesize
@@ -208,9 +248,7 @@ Explicit Panic
 "assert!"
 -----------
 
-* More complicated comparisons use :rust:`assert!`
-
-  * One required argument - a boolean expression
+* Use :rust:`assert!` to verify a boolean expression
 
 .. code:: rust
   :font-size: footnotesize
@@ -237,9 +275,9 @@ Explicit Panic
 Multiple Assertions
 ---------------------
 
-* Tests with multiple assertions will panic on the first assertion failure
+* When an assertion fails, current test stops executing
 
-  * But will continue to run any other tests
+  * Remaining tests continue running
 
 .. code:: rust
   :font-size: footnotesize
@@ -254,7 +292,7 @@ Multiple Assertions
   #[test]
   fn another_test() {
       let result = add(2, 2);
-      assert!(add(1, 2) < add(3, 4));
+      assert!(add(1, 2) < result);
   }
 
 .. code:: output

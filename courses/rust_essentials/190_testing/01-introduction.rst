@@ -15,16 +15,13 @@ Topics Covered
 * **Improving unit tests**
 
   - Adding information to assertion failures
-  - Capturing expected panics
-  - Using :rust:`Result` to connect test conditions
+  - Dealing with expected errors
 
 * **Running unit tests**
 
   - Options for the test environment vs. test application
-  - Resolving conflicts when running multiple tests
   - Capturing standard output from the tests
   - Selecting which tests to run
-  - Selecting which tests **not** to run
 
 * **Integration tests**
 
@@ -38,10 +35,8 @@ Topics Covered
 What Is a Unit Test?
 --------------------
 
-* Validates that an individual piece of code ("unit") behaves as designed
-
-  * In Rust, typically a single subprogram
-
+* Validates that an individual piece of code ("unit") behaves as expected
+* Typically tests a single function
 * Given a known set of inputs, resulting behavior is predictable
 
   * If the test fails, then either...
@@ -49,9 +44,9 @@ What Is a Unit Test?
     * Code is wrong
     * Test is wrong
 
--------------------------
-What Is in a Unit Test?
--------------------------
+------------------------------
+Writing Effective Unit Tests
+------------------------------
 
 * The **FIRST** Principles
 
