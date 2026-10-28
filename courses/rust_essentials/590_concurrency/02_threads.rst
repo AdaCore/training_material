@@ -68,4 +68,3 @@ Moving Data Into Threads
   });
 
   // 'data' is no longer accessible here in main (caught at compile time!)
-  

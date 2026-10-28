@@ -67,4 +67,3 @@ Topics Covered
 - **State Sharing & Synchronization**
   - Interior mutability primitives (:rust:`Cell`, :rust:`RefCell`)
   - OS-level :rust:`Mutex<T>` vs. bare-metal :rust:`critical_section`
-  
