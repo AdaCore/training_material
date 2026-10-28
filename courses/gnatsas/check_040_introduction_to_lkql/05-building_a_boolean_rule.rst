@@ -158,7 +158,7 @@ Messages
 
     main.adb:5:04: rule violation: integer_objects
 
-* * Customize the diagnostic using the :lkql:`message` argument in :lkql:`@check`
+* Customize the diagnostic using the :lkql:`message` argument in :lkql:`@check`
 
   .. code:: lkql 
 
