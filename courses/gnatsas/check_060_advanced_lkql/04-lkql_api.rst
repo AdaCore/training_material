@@ -63,7 +63,7 @@ Accumulation Across a Collection
   * Takes two parameters
 
     * Accumulator
-    * Node
+    * Item from the collection
 
   * Can be either a function OR a parameter list and expression
 

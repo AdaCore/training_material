@@ -39,7 +39,7 @@ Review: What Is a Selector?
 Defining a Selector
 ---------------------
 
-* Each arm of a selector returns a :lkql:`RecExpr` (recursive expression)
+* Each selector arm returns a :lkql:`RecExpr` or :lkql:`()` to stop recursion
 
   * Builds two lists
 
