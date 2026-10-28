@@ -35,9 +35,9 @@ Advanced LKQL
 .. role:: lkql(code)
     :language: lkql
 
-   include:: check_060_advanced_lkql/01-introduction.rst
-   include:: check_060_advanced_lkql/02-expressions_in_depth.rst
-   include:: check_060_advanced_lkql/03-selectors_in_depth.rst
-   include:: check_060_advanced_lkql/04-lkql_api.rst
-   include:: check_060_advanced_lkql/88-advanced_lkql.lab.rst
-   include:: check_060_advanced_lkql/99-summary.rst
+.. include:: check_060_advanced_lkql/01-introduction.rst
+.. include:: check_060_advanced_lkql/02-expressions_in_depth.rst
+.. include:: check_060_advanced_lkql/03-selectors_in_depth.rst
+.. include:: check_060_advanced_lkql/04-lkql_api.rst
+.. include:: check_060_advanced_lkql/88-advanced_lkql.lab.rst
+.. include:: check_060_advanced_lkql/99-summary.rst
