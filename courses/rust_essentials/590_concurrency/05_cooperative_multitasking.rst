@@ -24,8 +24,8 @@ The "async" Keyword
 
 **Marking a function as** :rust:`async` **changes what it returns**
 
-  * It does not run immediately
-  * It returns a :rust:`Future` (a state machine waiting to be polled)
+  * Does not run immediately
+  * Returns a :rust:`Future` (a state machine waiting to be polled)
 
 .. code:: rust
 
@@ -48,10 +48,10 @@ The ".await" Operator
   * *If ready immediately:* 
   
     * Execution continues with zero pause or yield
-	
+    
   * *If not ready (waiting on hardware/timer):* 
   
-    * The function pauses and yields control back up to caller or executor
+    * Function pauses and yields control back up to caller or executor
 
 .. code:: rust
 
@@ -69,6 +69,8 @@ The ".await" Operator
 ---------------------
 Awaiting the future
 ---------------------
+
+.. code:: rust
   
   fn regular_meow() {
     println!("Meow 1!");
@@ -103,10 +105,11 @@ Waiting on Multiple Tasks: "join"
 
 **Running futures concurrently without spawning new background tasks**
 
-* :rust:`join` polls multiple futures cooperatively on the same execution context
-* If Future A pauses at :rust:`.await`, the caller switches to polling Future B
+  * :rust:`join` polls multiple futures cooperatively on same execution context
+  * If Future A pauses at :rust:`.await`, the caller switches to polling Future B
 
 .. code:: rust
+  :font-size: footnotesize
 
   use embassy_futures::join::join;
 
@@ -195,10 +198,12 @@ The Danger: Hogging the CPU
 Concurrency Models Compared
 ------------------------------
 
-.. list-table::
+.. list-table:: 
    :header-rows: 1
-   :stub-columns: 1
+   :widths: 22 24 24 30
+   :class: tight-table
 
+  
    * - **Model**
      - **Preemption By**
      - **Unit of Work**

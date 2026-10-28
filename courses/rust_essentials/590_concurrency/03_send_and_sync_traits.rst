@@ -10,11 +10,13 @@ Standard Traits
 
 * Compiler automatically implements :rust:`Send` and :rust:`Sync` for your type
 
-  * if all its constituent fields are :rust:`Send` and :rust:`Sync`
+  * If all its constituent fields are :rust:`Send` and :rust:`Sync`
 
-* :rust:`Send` allows transferring ownership of T to another execution boundary
+* :rust:`Send` allows moving ownership of :rust:`T` to another execution boundary
 
-* :rust:`Sync` allows sharing T across boundaries via shared immutable reference (&T)
+* :rust:`Sync` allows sharing :rust:`T` across boundaries 
+
+  * Via shared immutable reference (:rust:`&T`)
 
 * :rust:`T: Sync` if and only if :rust:`&T: Send`
 
@@ -36,13 +38,13 @@ Standard Traits
   fn main() {
     let data = MySendOnly { value: 10 };
 
-    // ALLOWED: Transferring ownership (moving) to a new thread
+    // ALLOWED: moving ownership to a new thread
     thread::spawn(move || {
         println!("Value moved to thread: {}", data.value);
     });
 
-    // NOT ALLOWED: Sharing a reference across threads (&MySendOnly)
-    // Attempting to pass '&data' to multiple threads would fail to compile!
+    // NOT ALLOWED: Sharing a reference across threads ('MySendOnly')
+    // Attempting to pass 'data' to multiple threads would fail to compile!
   }
 
 
@@ -64,7 +66,7 @@ Standard Traits
   fn main() {
     let data = MySyncOnly { value: 20 };
 
-    // ALLOWED: Multiple threads reading through a shared reference (&data)
+    // ALLOWED: Multiple threads reading through a shared reference ('data')
     thread::scope(|s| {
         s.spawn(|| {
             println!("Thread 1 sees: {}", data.value); // Borrowed &data
@@ -75,7 +77,7 @@ Standard Traits
     });
 
     // NOT ALLOWED: Moving ownership out of the thread!
-    // `thread::spawn(move || data)` would fail to compile because it's !Send.
+    // `thread::spawn(move || data)` would fail to compile!
   }
 
 -----------------

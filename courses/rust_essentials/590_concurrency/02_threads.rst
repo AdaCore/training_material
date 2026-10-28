@@ -54,7 +54,7 @@ Moving Data Into Threads
 
 **Threads can outlive the calling context**
 
-  * Use the move keyword to transfer ownership of local variables
+  * Use the :rust:`move` keyword to transfer ownership of local variables
 
 .. code:: rust
 
