@@ -62,7 +62,7 @@ Call Expressions
 Traversing the Syntax Tree
 ----------------------------
 
-* Default behavior for traversal is going through children
+* Default behavior for traversal is down through children
 
   .. code:: lkql
 
@@ -77,7 +77,7 @@ Traversing the Syntax Tree
 
 * Can use :lkql:`through` to indicate other traversals
 
-  * Most common is :lkql:`parent`
+  * Most common is :lkql:`parent` (traverse upward)
 
     .. code:: lkql
 
