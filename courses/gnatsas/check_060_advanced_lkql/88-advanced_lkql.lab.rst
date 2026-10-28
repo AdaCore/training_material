@@ -180,7 +180,7 @@ Step 3 - Count the Lines in a Subprogram
     advanced.adb:32:10: rule violation: subprogram name: "Advanced.Visible2.Nested1.Nestedb"
     ...
 
-  * Down to 11 'violoations'
+  * Down to 11 'violations'
   * Note that higher level subprograms are more likely to get flagged
 
     * Because their lines of code include those in the nested subprograms
