@@ -63,7 +63,7 @@ Step 1 - Create Rule File
 
       \vspace{2mm}
 
-    *This rule uses "list comprehension" to build a list of values to return.
+    *This rule returns a* **list literal** *to build the list of values to return.
     Right now, the list contains just one element (for the selected unit)*
 
 ----------------------------------
@@ -209,7 +209,7 @@ Step 5 - Counting the Number of Statements
   * Hints:
 
     * Need to give a name to the object returned by the :lkql:`select`
-    * :lqkl:`AdaNode` has properties :lkql:`token_start` and :ada:`token_end`
+    * :lkql:`AdaNode` has properties :lkql:`token_start` and :ada:`token_end`
     * :lkql:`Token` has fields :lkql:`end_line` and :lkql:`start_line`
 
 .. container:: animate 2-
@@ -267,7 +267,7 @@ Step 6 - Using Functions for Modularity
   * Run :toolname:`GNATcheck` and verify messages haven't changed
 
 --------------------------------------------
-Step 6 - Updating the Message for Clarity
+Step 7 - Updating the Message for Clarity
 --------------------------------------------
 
 .. container:: animate 1-
@@ -280,7 +280,7 @@ Step 6 - Updating the Message for Clarity
   * Hints
 
     * The name of the object in the message is the iterator (:lkql:`subp`)
-    * But the **type** of the operator is specified by :lkql:`select`
+    * But the **type** of the operator is specified by *iterator*
 
 .. container:: animate 2-
 
