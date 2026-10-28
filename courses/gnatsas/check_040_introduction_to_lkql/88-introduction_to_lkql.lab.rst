@@ -12,6 +12,12 @@ You can use any text editor to create this rule file.
 Our "imaginary" coding standard requires no abstract types in the code, so
 we just want to flag any abstract type when we find one.
 
+.. tip::
+
+  The lab is a step-by-step guide. Many of the steps have hints in 
+  addition to solutions. If the page has empty space, pressing
+  :menu:`Page Down` will usually get you that extra help!
+
 -----------------
 Example Project
 -----------------
@@ -97,6 +103,7 @@ Step 2 - Filter For Types
     loggers.ads:4:09: rule violation: flag_abstract_types
     loggers.ads:11:09: rule violation: flag_abstract_types
     loggers.ads:18:09: rule violation: flag_abstract_types
+    ...
 
 ------------------------------
 Step 3 - Find Abstract Types
@@ -106,11 +113,13 @@ Step 3 - Find Abstract Types
 
   * Now, only return :lkql:`true` if the type declaration has :ada:`abstract`
 
-  * Hint: :lkql:`TypeDef` is a child of :lkql:`BaseTypeDecl`
+  * Hint: :lkql:`TypeDef` is derived from :lkql:`BaseTypeDecl`
 
 .. container:: animate 2-
 
-  * :lkql:`BaseTypeDecl` has many fields and functions
+  * :lkql:`BaseTypeDecl` has many fields and properties
+
+    * So :lkql:`TypeDecl` inherits all of them
 
   .. code:: lkql
 
