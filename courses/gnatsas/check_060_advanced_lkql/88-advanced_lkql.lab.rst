@@ -286,4 +286,3 @@ Implement Different Values for Different Depths
         ( (count_depth(subp) == 4 and metrics.logical_slocs(subp) > 6) or
           (count_depth(subp) == 3 and metrics.logical_slocs(subp) > 8) or
           (count_depth(subp) == 2 and metrics.logical_slocs(subp) > 10))
->>>>>>> 4c8701de (Add advanced LKQL lab)
