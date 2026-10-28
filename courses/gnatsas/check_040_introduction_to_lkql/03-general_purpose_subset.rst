@@ -10,7 +10,7 @@ General Purpose Programming Language
 * Minimal (but Turing-complete)
 * Currently no side effects
 
-  * Because LKQL is designed to just express queries
+  * LKQL is designed primarily to express queries
 
 ------------------
 Basic Data Types
@@ -186,7 +186,7 @@ Literals and Operators
   .. code:: lkql
 
     val test = power_on and is_ready(something)
-    # if "power_on" is false, "count" will not be called
+    # if "power_on" is false, "is_ready" will not be called
 
 * Concatenation
 

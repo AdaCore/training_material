@@ -30,13 +30,13 @@ Checking Object Type
 
   * Returns :lkql:`TypeExpr`
 
-  *We want to know the base type of the object*
+  *We want to know the root type of the object*
 
 * Type expression has property :lkql:`p_designated_type_decl()`
 
   * Returns :lkql:`BaseTypeDecl`
 
-  *This is just the type declaration - we need the base type*
+  *This is just the type declaration - we need the root type*
 
 * Type declaration has property :lkql:`p_root_type()`
 
@@ -158,7 +158,7 @@ Messages
 
     main.adb:5:04: rule violation: integer_objects
 
-* To supply more descriptive explanation, use :lkql:`parameter` in :lkql:`@check`
+* * Customize the diagnostic using the :lkql:`message` argument in :lkql:`@check`
 
   .. code:: lkql 
 
