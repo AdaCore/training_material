@@ -215,7 +215,7 @@ Step 5 - Counting the Number of Lines
   * Hints:
 
     * Need to give a name to the object returned by the :lkql:`select`
-    * :lkql:`AdaNode` has properties :lkql:`token_start` and :ada:`token_end`
+    * :lkql:`AdaNode` has properties :lkql:`token_start` and :lkql:`token_end`
     * :lkql:`Token` has fields :lkql:`end_line` and :lkql:`start_line`
 
 .. container:: animate 2-
@@ -286,7 +286,6 @@ Step 7 - Updating the Message for Clarity
   * Hints
 
     * The name of the object in the message is the iterator (:lkql:`subp`)
-    * But the **type** of the operator is specified by *iterator*
 
 .. container:: animate 2-
 
