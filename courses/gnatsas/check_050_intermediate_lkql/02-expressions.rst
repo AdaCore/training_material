@@ -49,12 +49,13 @@ Composite Literals
 
   * Object with named fields
 
+    * Field names are case-insensitive
+
   .. code:: lkql
 
     val object = {lower: "Hello", UPPER: "World"}
     print (object.lower & " " & object.upper)
 
-  * Field names are case-insensitive
 
 * List literal
 
@@ -107,7 +108,7 @@ Composite Literals
 
     * First matching arm is taken
     * If no matching arm, run-time exception is raised
-    * :lkql:`*` is an optional catch-all pattern; place it last
+    * :lkql:`*` is an optional catch-all pattern
 
 --------------------
 List Comprehension
