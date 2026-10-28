@@ -12,6 +12,12 @@ are "relatively" small as part of our coding standard.
 Again, we are using a "unit rule" because we only need to examine
 subprograms - no need to run the rule for every node.
 
+.. tip::
+
+  The lab is a step-by-step guide. Many of the steps have hints in 
+  addition to solutions. If the page has empty space, pressing
+  :menu:`Page Down` will usually get you that extra help!
+
 -----------------
 Example Project
 -----------------
