@@ -6,7 +6,7 @@ Lab
 Advanced Rule Building
 ------------------------
 
-In this lab we, want a rule to check that nested subprograms
+In this lab, we want a rule to check that nested subprograms
 are "relatively" small as part of our coding standard.
 
 Again, we are using a "unit rule" because we only need to examine
@@ -130,7 +130,7 @@ Step 2 - Focus on Nested Subprograms
     advanced.adb:32:10: rule violation: subprogram name: "Advanced.Visible2.Nested1.Nestedb"
     ...
 
-  * Down to 24 'violoations'
+  * Down to 24 'violations'
   * None of the top-level subprograms are listed
 
 ------------------------------------------
@@ -147,7 +147,7 @@ Step 3 - Count the Lines in a Subprogram
 
   * Update our query to only include nested subprogram with more than 5 lines of code
 
-    * Don't forge to add the external reference to :lkql:`metrics`
+    * Don't forget to add the external reference to :lkql:`metrics`
 
 .. container:: animate 2-
 
