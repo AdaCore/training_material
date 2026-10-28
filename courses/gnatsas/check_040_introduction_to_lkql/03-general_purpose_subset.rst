@@ -172,7 +172,6 @@ Literals and Operators
   .. code:: lkql
 
     val area = height * width
-    val smaller_or_eq = perimeter <= 100
 
 * Relational operators
 
