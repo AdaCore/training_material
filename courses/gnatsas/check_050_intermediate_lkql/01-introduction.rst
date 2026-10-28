@@ -19,6 +19,3 @@ Topics Covered
   * Filtering query results through pattern matching
 
 * **Building a Unit Rule**
-
-  * Rules that apply to units, not nodes
-  * Dealing with multiple violations per rule

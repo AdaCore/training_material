@@ -108,7 +108,7 @@ Composite Literals
 
     * First matching arm is taken
     * If no matching arm, run-time exception is raised
-    * :lkql:`*` is an optional catch-all pattern
+    * Optional catch-all :lkql:`*` should come last
 
 --------------------
 List Comprehension
