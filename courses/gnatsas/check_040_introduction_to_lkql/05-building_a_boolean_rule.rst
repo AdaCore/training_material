@@ -115,7 +115,7 @@ Cleaning Up the Rule
 
   * But our rule assumes we can always dereference the results
 
-* We want to make sure we only dereference **non-null** fields
+* Check for null before accessing fields or calling properties
 
 :filename:`integer_objects.lkql`
 
