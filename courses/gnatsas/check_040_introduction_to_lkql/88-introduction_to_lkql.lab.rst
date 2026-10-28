@@ -39,7 +39,7 @@ Step 1 - Create Rule File
 
   * Create rule **flag_abstract_types**
 
-    * In file :filename:`flag_abstract_types.lkql`
+    * In file :filename:`flag_abstract_types.lkql` in current directory
     * Use :lkql:`@check` annotation
 
   * For now, just return :lkql:`true`
@@ -183,27 +183,29 @@ Extra Credit - Removing Duplication
 
 .. container:: animate 1-
 
-  * Note that :filename:`actors.ads` flags the same type twice
+  * Note that :filename:`loggers.ads` flags the same type twice
 
     * Public view
 
     .. code:: ada
-      :number-lines: 27
 
-      package Actors is
-         type Actor is abstract tagged private;
-         type Actor_Ref is access all Actor'Class;
+      package Loggers is
+
+         type Abstract_Logger is abstract tagged limited private;
 
     * Private declaration
 
     .. code:: ada
-      :number-lines: 38
 
       private
-         type Actor is abstract tagged record
-            Live : Boolean := True;
+
+         type Abstract_Logger is abstract tagged limited null record;
+
+    *These are just some of the doubly-flagged types*
 
   * Update the rule to skip the public view
+
+    * Hint: find a property that checks if a type is a private completion
 
 .. container:: animate 2-
 
@@ -215,7 +217,7 @@ Extra Credit - Removing Duplication
         node.p_is_abstract_type() and
         node.p_private_completion() == null
 
-  * Running the command now generates one less message
+  * Running the command now generates one less message per type skipped
 
 .. container:: animate 3-
 
