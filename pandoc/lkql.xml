@@ -280,23 +280,23 @@
                  attribute="Keyword"/>
 
         <!-- List -->
-        <RegExpr String="\b(List\[AcceptStmt\]|List\[AdaNode\]|List\[AnalysisUnit\])\b"
+        <RegExpr String="\bList\[(?:AcceptStmt|AdaNode|AnalysisUnit)\](?!\w)"
                  attribute="Keyword"/>
-        <RegExpr String="\b(List\[Aspect\]|List\[BaseFormalParamDecl\]|List\[BaseTypeDecl\])\b"
+        <RegExpr String="\bList\[(?:Aspect|BaseFormalParamDecl|BaseTypeDecl)\](?!\w)"
                  attribute="Keyword"/>
-        <RegExpr String="\b(List\[BasicDecl\]|List\[CompilationUnit\]|List\[DefiningName\])\b"
+        <RegExpr String="\bList\[(?:BasicDecl|CompilationUnit|DefiningName)\](?!\w)"
                  attribute="Keyword"/>
-        <RegExpr String="\b(List\[DiscriminantValues\]|List\[DocAnnotation\])\b"
+        <RegExpr String="\bList\[(?:DiscriminantValues|DocAnnotation)\](?!\w)"
                  attribute="Keyword"/>
-        <RegExpr String="\b(List\[EvalDiscreteRange\]|List\[Expr\]|List\[GenericInstantiation\])\b"
+        <RegExpr String="\bList\[(?:EvalDiscreteRange|Expr|GenericInstantiation)\](?!\w)"
                  attribute="Keyword"/>
-        <RegExpr String="\b(List\[LogicContext\]|List\[ParamActual\]|List\[ParamSpec\])\b"
+        <RegExpr String="\bList\[(?:LogicContext|ParamActual|ParamSpec)\](?!\w)"
                  attribute="Keyword"/>
-        <RegExpr String="\b(List\[PragmaNode\]|List\[RefResult\]|List\[Shape\])\b"
+        <RegExpr String="\bList\[(?:PragmaNode|RefResult|Shape)\](?!\w)"
                  attribute="Keyword"/>
-        <RegExpr String="\b(List\[SolverDiagnostic\]|List\[Substitution\])\b"
+        <RegExpr String="\bList\[(?:SolverDiagnostic|Substitution)\](?!\w)"
                  attribute="Keyword"/>
-        <RegExpr String="\b(List\[Symbol\]|List\[TypeDecl\])\b"
+        <RegExpr String="\bList\[(?:Symbol|TypeDecl)\](?!\w)"
                  attribute="Keyword"/>
 
         <!-- Object -->
