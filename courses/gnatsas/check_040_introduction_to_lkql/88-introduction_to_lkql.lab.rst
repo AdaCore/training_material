@@ -42,7 +42,7 @@ Step 1 - Create Rule File
     * In file :filename:`flag_abstract_types.lkql`
     * Use :lkql:`@check` annotation
 
-  * For now, just return :lkqk:`true`
+  * For now, just return :lkql:`true`
 
     * This should flag **every** node as a violation
 
