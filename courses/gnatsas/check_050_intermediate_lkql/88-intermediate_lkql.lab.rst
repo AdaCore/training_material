@@ -18,6 +18,12 @@ subprograms within a unit - no need to run the rule for every node.
   Because rule names cannot conflict, we're using a different name here as we
   learn how the delivered rule was created.
 
+.. tip::
+
+  The lab is a step-by-step guide. Many of the steps have hints in 
+  addition to solutions. If the page has empty space, pressing
+  :menu:`Page Down` will usually get you that extra help!
+
 -----------------
 Example Project
 -----------------
