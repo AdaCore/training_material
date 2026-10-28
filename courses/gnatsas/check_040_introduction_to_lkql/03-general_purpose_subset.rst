@@ -186,7 +186,7 @@ Literals and Operators
 
   .. code:: lkql
 
-    val test = power_on and count(something)
+    val test = power_on and is_ready(something)
     # if "power_on" is false, "count" will not be called
 
 * Concatenation

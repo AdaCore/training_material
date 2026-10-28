@@ -113,7 +113,7 @@ Cleaning Up the Rule
 
 * Many fields and properties downstream from :lkql:`ObjectDecl` can be null
 
-  * But our rule assumes we can always dereference a field
+  * But our rule assumes we can always dereference the results
 
 * We want to make sure we only dereference **non-null** fields
 
@@ -129,9 +129,9 @@ Cleaning Up the Rule
       val has_type = is_object and node.f_type_expr != null;
       val has_designated = has_type and
           node.f_type_expr.p_designated_type_decl() != null;
-      val has_base = has_designated and
+      val has_root = has_designated and
           node.f_type_expr.p_designated_type_decl().p_root_type() != null;
-      val has_name = has_base and
+      val has_name = has_root and
           node.f_type_expr.p_designated_type_decl().p_root_type().f_name != null;
       has_name and node.f_type_expr
                    .p_designated_type_decl()
