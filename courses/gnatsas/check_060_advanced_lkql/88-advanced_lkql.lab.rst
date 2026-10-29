@@ -174,10 +174,9 @@ Step 3 - Count the Lines in a Subprogram
     :font-size: tiny
 
     advanced.adb:4:07: rule violation: subprogram name: "Advanced.Visible1.Nested1"
-    advanced.adb:18:07: rule violation: subprogram name: "Advanced.Visible1.Nested2"
     advanced.adb:27:07: rule violation: subprogram name: "Advanced.Visible2.Nested1"
-    advanced.adb:28:10: rule violation: subprogram name: "Advanced.Visible2.Nested1.Nesteda"
     advanced.adb:32:10: rule violation: subprogram name: "Advanced.Visible2.Nested1.Nestedb"
+    advanced.adb:45:07: rule violation: subprogram name: "Advanced.Visible2.Nested2"
     ...
 
   * Down to 11 'violations'
