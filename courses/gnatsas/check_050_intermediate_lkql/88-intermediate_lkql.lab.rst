@@ -316,4 +316,3 @@ Step 7 - Updating the Message for Clarity
 
     loggers.adb:36:07: rule violation: too many lines in subprogram body: 51
     loggers.adb:162:07: rule violation: too many lines in subprogram body: 32
->>>>>>> 1761e6ce (First cut at intermediate LKQL lab)
