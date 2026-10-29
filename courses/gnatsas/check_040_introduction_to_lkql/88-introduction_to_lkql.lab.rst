@@ -227,4 +227,3 @@ Extra Credit - Removing Duplication
     loggers.ads:58:09: rule violation: Abstract type found
     loggers.ads:60:09: rule violation: Abstract type found
     loggers.ads:62:09: rule violation: Abstract type found
->>>>>>> master
