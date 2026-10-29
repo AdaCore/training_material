@@ -1,0 +1,8 @@
+-- Day 1
+check_010_overview.rst
+check_020_getting_started.rst
+check_030_predefined_rules.rst
+check_040_introduction_to_lkql.rst
+-- Day 2
+check_050_intermediate_lkql.rst
+check_060_advanced_lkql.rst
