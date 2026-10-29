@@ -113,7 +113,7 @@ Step 3 - Find Abstract Types
 
   * Now, only return :lkql:`true` if the type declaration has :ada:`abstract`
 
-  * Hint: :lkql:`TypeDef` is derived from :lkql:`BaseTypeDecl`
+  * Hint: :lkql:`TypeDecl` is derived from :lkql:`BaseTypeDecl`
 
 .. container:: animate 2-
 
@@ -205,7 +205,7 @@ Extra Credit - Removing Duplication
 
   * Update the rule to skip the public view
 
-    * Hint: find a property that checks if a type is a private completion
+    * Hint: find a property that returns a type's private completion, if any
 
 .. container:: animate 2-
 
