@@ -71,7 +71,7 @@ Interoperability Is a Contract
 * **Validity** - which bit patterns and pointer values are allowed
 * **Ownership** - who allocates, mutates, and frees
 * **Control flow** - how errors, panics, and exceptions behave
-* **Concurrency** - which threads may call or receive callbacks
+* **Concurrency** - which threads may invoke or receive callbacks
 
 
 ----------------------------
