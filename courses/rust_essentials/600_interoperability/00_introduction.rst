@@ -8,38 +8,27 @@ Topics Covered
 ----------------
 
 
-* **C Foreign Function Interface**
+* **Calling C from Rust**
 
-
-  * Mechanisms for connecting Rust to other languages
-
+  * C ABI, foreign declarations, calls, linking, and build scripts
 
 * **Safe Boundary Design**
 
-
-  * Raw declarations behind safe Rust interfaces
-
-
-* **Calling and Exporting**
-
-
-  * Rust calls C; C calls Rust
-
+  * Raw and safe layers, representations, ownership, callbacks, and errors
 
 * **Binding Tools**
 
-
   * Where :rust:`bindgen` helps and where it does not
 
+* **Exporting Rust**
+
+  * C ABI exports and their caller contracts
 
 * **C++ Interoperability**
 
-
   * Recommended bridge strategies and current limitations
 
-
 * **Adoption and Migration Strategies**
-
 
   * Different ways to adopt or migrate to Rust
 
@@ -90,14 +79,15 @@ From Source Code to a Call
 Choose a Narrow Boundary
 --------------------------
 
-**Good boundaries are narrow and explicit**
+* Good boundaries are narrow and explicit
 
-* Coarse-grained rather than one call per field access
-* Based on simple C-compatible data
-* Explicit about ownership
-* Small enough to review and test
-* Stable enough to version
-* Wrapped once rather than used directly throughout the crate
+  * Coarse-grained rather than one call per field access
+  * Based on simple C-compatible data
+  * Explicit about ownership
+  * Small enough to review and test
+  * Stable enough to version
+  * Wrapped once rather than used directly throughout the crate
+
 * Avoid mirroring an entire data model across the boundary
 
 .. tip::
