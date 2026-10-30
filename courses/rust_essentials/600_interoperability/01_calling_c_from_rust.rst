@@ -228,4 +228,3 @@ Compiling the C Source
 .. note::
 
   :rust:`cc` builds a static library and emits Cargo metadata to link it
-

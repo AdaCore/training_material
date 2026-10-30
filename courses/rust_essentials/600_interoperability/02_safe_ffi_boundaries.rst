@@ -386,4 +386,3 @@ Convert in the Safe Layer
           other => DroidMode::Unknown(other),
       }
   }
-
