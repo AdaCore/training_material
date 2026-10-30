@@ -2,23 +2,33 @@
 Test Execution
 ================
 
--------------------
-Execution Options
--------------------
-
-**Two categories of command-line options**
+-----------------------------------
+Controlling Execution Environment
+-----------------------------------
 
 :command:`cargo test [test_options]`
 
-  * Specify options for the test environment
-  * :command:`cargo test --help` to see a list
-  * Control compile vs. run, verbose mode, etc.
+* Some examples
+
+  * :command:`--no-run` |rightarrow| Compile without executing
+  * :command:`--package` |rightarrow| Package selection
+  * :command:`--all-features` |rightarrow| Activate all available features
+
+* Plus many others
+
+--------------------------------
+Controlling Execution Behavior
+--------------------------------
 
 :command:`cargo test -- [binary_options]`
 
-  * Specify options for the generated test executable
-  * :command:`cargo test -- --help` to see a list
-  * Control which test cases run, capturing output, etc.
+* Some examples
+
+  * :command:`--ignored` |rightarrow| Run only tests with :rust:`#[ignore]` attribute
+  * :command:`--skip <FILTER>` |rightarrow| Skip tests based on a filter
+  * :command:`--quiet` |rightarrow| Use short form for status
+
+* Plus many others
 
 -------------------
 Some Example Code
@@ -26,7 +36,7 @@ Some Example Code
 
 * A simple function under test
 
-  * Divide by zero prints a message to standard error and returns 0
+  * Divide by zero prints a message to standard error and returns 0.0
   * Otherwise return the result of the division
 
     * Print a warning to standard output when dividing by a small number
@@ -249,9 +259,8 @@ Preventing Problematic Tests From Running
     }
 
 * :rust:`really_long_test` will **not** be run via :command:`cargo test`
-
-  * Run *only* ignored tests: :command:`cargo test -- --ignored`
-  * Run *both* regular and ignored tests: :command:`cargo test -- --include-ignored`
+* :command:`cargo test -- --ignored` |rightarrow| Run *only* ignored tests
+* :command:`cargo test -- --include-ignored` |rightarrow| Run *both* regular and ignored tests
 
 -----------------------
 More on Ignored Tests
@@ -280,7 +289,7 @@ More on Ignored Tests
       test tests::normal ... ok
       test tests::warning_output ... FAILED
 
-* To find ignored tests, use :command:`cargo test -- --list --ignored`
+* :command:`cargo test -- --list --ignored` |rightarrow| Find ignored tests
 
   .. code:: output
     :font-size: scriptsize

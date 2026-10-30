@@ -16,10 +16,10 @@ What Is an Integration Test?
     * Interactions between outside sources
     * Shared resource contention
 
-* In Rust, integration tests are
+* Integration tests are compiled as separate crates
 
   * Conventionally located in their own :filename:`tests` folder
-  * Allowed to test public APIs only
+  * Can only access the library through its public API
   * Can be used to generate end-to-end workflows
 
 --------------------
@@ -33,7 +33,14 @@ The "tests" Folder
 * Test file content similar to :rust:`tests` module in library unit
 
   * No :rust:`mod tests` required
-  * Import items with :rust:`use` or use qualified paths
+  * Import items with either
+
+    * :rust:`use` declaration
+    * Fully qualified path
+
+.. note::
+
+  :command:`cargo` will automatically discover tests in the :filename:`tests` folder
 
 -------------------------------
 Example Source and Test Files

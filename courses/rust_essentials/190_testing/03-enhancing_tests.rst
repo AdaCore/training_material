@@ -35,50 +35,53 @@ Assertion Failure Messages
 
     assert!(condition, "optional format string", arg1, arg2, ...);
 
--------------------------
-Custom Failure Messages
--------------------------
+---------------------------------------
+Failure Messages with Named "format!"
+---------------------------------------
 
 * After the condition, arguments are treated as inputs to :rust:`format!` macro
 
-* Named format
+.. code:: rust
+  :number-lines: 16
 
-  .. code:: rust
-    :number-lines: 16
+  #[test]
+  fn test2() {
+      let expected = "Barney";
+      let result = greeting("Fred");
+      assert!(result.contains(expected),
+              // Named format - one argument
+              "FAILURE: received {result}");
+  }
 
-    #[test]
-    fn test2() {
-        let expected = "Barney";
-        let result = greeting("Fred");
-        assert!(result.contains(expected), "FAILURE: received {result}");
-    }
+.. code:: error
 
-  .. code:: error
+  thread 'tests::test2' (54) panicked at src/lib.rs:20:9:
+  FAILURE: received Hello Fred!
 
-    thread 'tests::test2' (54) panicked at src/lib.rs:20:9:
-    FAILURE: received Hello Fred!
+--------------------------------------------
+Failure Messages with Positional "format!"
+--------------------------------------------
 
-* Positional format
+.. code:: rust
+  :number-lines: 23
 
-  .. code:: rust
-    :number-lines: 23
+  #[test]
+  fn test3() {
+      let expected = "Barney";
+      let result = greeting("Fred");
+      assert!(
+          result.contains(expected),
+          // Positional format - multiple arguments
+          "FAILURE: could not find {} in {}",
+          expected,
+          result
+      );
+  }
 
-    #[test]
-    fn test3() {
-        let expected = "Barney";
-        let result = greeting("Fred");
-        assert!(
-            result.contains(expected),
-            "FAILURE: could not find {} in {}",
-            expected,
-            result
-        );
-    }
+.. code:: error
 
-  .. code:: error
-
-    thread 'tests::test3' (55) panicked at src/lib.rs:27:9:
-    FAILURE: could not find Barney in Hello Fred!
+  thread 'tests::test3' (55) panicked at src/lib.rs:27:9:
+  FAILURE: could not find Barney in Hello Fred!
 
 --------------------
 Dealing With Panic
@@ -118,7 +121,7 @@ Expecting Panic
   .. code:: error
     :font-size: footnotesize
 
-    test tests::test2 ... FAILED
+    test tests::test_not_found ... FAILED
 
     thread 'tests::test_not_found' (90) panicked at src/lib.rs:9:5:
     value not found
@@ -166,23 +169,29 @@ Expecting the Right Panic
         assert_eq!(result, 2);
     }
 
-  .. code:: output
-    :font-size: tiny
+--------------------------
+Catching the Right Panic
+--------------------------
 
-    test tests::test3 - should panic ... FAILED
+:command:`cargo test`
 
-    failures:
+.. code:: output
+  :font-size: tiny
 
-    ---- tests::test3 stdout ----
+  test tests::test3 - should panic ... FAILED
 
-    thread 'tests::test3' panicked at src\lib.rs:23:9:
-    assertion `left == right` failed
-      left: 0
-     right: 2
-    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-    note: panic did not contain expected string
-          panic message: `"assertion `left == right` failed\n  left: 0\n right: 2"`,
-     expected substring: `"value not found"`
+  failures:
+
+  ---- tests::test3 stdout ----
+
+  thread 'tests::test3' panicked at src\lib.rs:23:9:
+  assertion `left == right` failed
+    left: 0
+   right: 2
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+  note: panic did not contain expected string
+        panic message: `"assertion `left == right` failed\n  left: 0\n right: 2"`,
+   expected substring: `"value not found"`
 
 -------------------------------
 Functions Returning "Result"
@@ -191,7 +200,7 @@ Functions Returning "Result"
 * Code that returns :rust:`Result` can also be tested
 
   .. code:: rust
-    :font-size: small
+    :font-size: footnotesize
 
     pub fn divide(top: f64, bottom: f64) -> Result<f64, String> {
         if bottom == 0.0 {

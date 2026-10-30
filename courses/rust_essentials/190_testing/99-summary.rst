@@ -2,9 +2,9 @@
 Summary
 =========
 
------------------
-What We Covered
------------------
+----------------------------------
+What We Covered About Unit Tests
+----------------------------------
 
 * **Building unit tests**
 
@@ -33,6 +33,10 @@ What We Covered
   - Special attributes to prevent certain tests from running
 
     - Unless specifically requested
+
+-----------------------------------
+What We Covered About Other Tests
+-----------------------------------
 
 * **Integration tests**
 

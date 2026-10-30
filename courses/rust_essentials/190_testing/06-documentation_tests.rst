@@ -6,33 +6,57 @@ Documentation Tests
 What Is a "doctest"?
 ----------------------
 
-* :dfn:`doctest` is a documentation test
+* Executable code snippets embedded directly inside documentation comments
 
-  * Gets its test criteria from special comments
+  * Ensure code examples in documentation match actual code
 
-* Put code blocks in :rust:`///` documentation comments
+* Example
 
-.. code:: rust
+  .. code:: rust
 
-  /// Test unsigned add
-  ///
-  /// ```
-  /// # use adder::add;
-  /// assert_eq!(add(3, 4), 7);
-  /// assert_ne!(add(2, 5), 8);
-  /// ```
+    /// Adds two numbers together.
+    /// ```
+    /// use my_crate::add;
+    /// assert_eq!(add(2, 3), 5);
+    /// ```
+    pub fn add(a: i32, b: i32) -> i32 {
+        a + b
+    }
+
+* :rust:`///` or :rust:`//!` indicate doctest code
 
 --------------------
 Why Use "doctest"?
 --------------------
 
-* Comments describe actual behavior of code
+* **Dual Purpose**
 
-  * Help keep code examples consistent with the implementation
+  * Public API documentation (via ``cargo doc``)
+  * Automated integration tests
 
-* Doctests test external API
+* **Crate Type Restriction**
 
-  * Rather than test modules that can test internal API
+  * Doctests run **only on library crates**
+
+* **Isolation**
+
+  * Each code block compiles into its own standalone binary crate
+  * Uses the library as an external dependency
+
+* **Attributes**
+
+  * Code fences support adding execution attributes to doctest code
+
+  .. code:: rust
+
+    /// `no_run`: compiles to ensure syntax and types are valid, but does not execute.
+    /// Useful for code that requires network access, external hardware, or loops forever.
+    ///
+    /// ```no_run
+    /// loop {
+    ///     println!("Waiting for input...");
+    /// }
+    /// ```
 
 --------------------------
 "doctest" Implementation
@@ -114,11 +138,11 @@ Running "doctest" Standalone
 Generating Output
 -------------------
 
-* To generate documentation: :command:`rustdoc src/lib.rs`
+* To generate documentation: :command:`cargo doc`
 
   * Generates HTML in :filename:`doc/lib/index.html`
 
-**Lib module**
+**Adder module**
 
   .. image:: rust_essentials/doctest_index_html.png
 

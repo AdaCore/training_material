@@ -15,8 +15,6 @@ Creating a Library With Tests
   * No main program
   * :rust:`tests` module automatically inserted
 
-    * Contains an example test
-
 :command:`cargo new adder --lib`
 
 .. code:: rust
@@ -38,42 +36,38 @@ Creating a Library With Tests
       }
   }
 
-.. note::
+-----------------------------------
+Creating Tests for a Binary Crate
+-----------------------------------
 
-  :filename:`adder` is the folder created to contain the package
+* Tests can also be created in a binary crate
 
-----------------------------------------
-Creating Tests for an Existing Library
-----------------------------------------
+  * But :rust:`main` itself cannot be tested
 
-* Tests can be created outside of the file being tested
-* Create :filename:`tests` folder at same level of unit being tested
+* Use the same mechanism as above
 
-  * To test :filename:`parser.rs`, create :filename:`tests` in same directory
+  * Can go in :filename:`main.rs` or any other module
 
-* Modify :filename:`lib.rs` to reference test module
+.. code:: rust
 
-  .. code:: rust
+  fn helper(name: &str) -> String {
+      format!("Hello, {}!", name)
+  }
 
-    pub mod parser;
+  fn main() {
+      println!("Hello, world!");
+      println!("{}", helper("Mickey"));
+  }
 
-    #[cfg(test)]
-    mod tests {
-        mod parser_tests;
-    }
+  #[cfg(test)]
+  mod tests {
+      use super::*;
 
-* Create :filename:`parser_tests.rs` in :filename:`tests` folder
-* :filename:`parser_tests.rs` contains a test submodule
-
-  .. code:: rust
-
-    use crate::parser;
-
-    #[test]
-    fn test_parser_internals() {
-        // You have access to crate internals here
-        assert!(parser::internal_helper());
-    }
+      #[test]
+      fn test_helper() {
+          assert_eq!(helper("foo"), "Hello, Mickey!")
+      }
+  }
 
 ----------------
 Test Semantics
@@ -228,8 +222,14 @@ Explicit Panic
       assert_ne!(result, 4);
   }
 
+-------------------------------
+Running Tests With Assertions
+-------------------------------
+
+:command:`cargo test`
+
 .. code:: output
-  :font-size: tiny
+  :font-size: small
 
   running 2 tests
   test tests::passing_test ... ok
@@ -295,8 +295,14 @@ Multiple Assertions
       assert!(add(1, 2) < result);
   }
 
+----------------------------------------
+Running Tests With Multiple Assertions
+----------------------------------------
+
+:command:`cargo test`
+
 .. code:: output
-  :font-size: tiny
+  :font-size: footnotesize
 
   running 2 tests
   test tests::another_test ... ok

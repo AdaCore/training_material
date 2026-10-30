@@ -20,8 +20,6 @@ Topics Covered
 * **Running unit tests**
 
   - Options for the test environment vs. test application
-  - Capturing standard output from the tests
-  - Selecting which tests to run
 
 * **Integration tests**
 
