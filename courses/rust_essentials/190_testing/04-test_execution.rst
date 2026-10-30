@@ -97,7 +97,7 @@ Running Multiple Tests
   but reduce system load
 
 -----------------------------
-Dealing with Console Output
+Dealing With Console Output
 -----------------------------
 
 * Unit tests for three paths

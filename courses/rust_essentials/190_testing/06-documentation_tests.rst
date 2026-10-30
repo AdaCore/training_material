@@ -3,7 +3,7 @@ Documentation Tests
 =====================
 
 ----------------------
-What is a "doctest"?
+What Is a "doctest"?
 ----------------------
 
 * :dfn:`doctest` is a documentation test

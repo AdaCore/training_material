@@ -3,7 +3,7 @@ Integration Tests
 ===================
 
 ------------------------------
-What is an Integration Test?
+What Is an Integration Test?
 ------------------------------
 
 * An :dfn:`integration test` is a test application that

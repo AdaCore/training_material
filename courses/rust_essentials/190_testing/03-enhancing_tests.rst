@@ -81,7 +81,7 @@ Custom Failure Messages
     FAILURE: could not find Barney in Hello Fred!
 
 --------------------
-Dealing with Panic
+Dealing With Panic
 --------------------
 
 .. code:: rust
