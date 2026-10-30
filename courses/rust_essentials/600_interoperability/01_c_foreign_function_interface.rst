@@ -37,11 +37,11 @@ extern "C"
 * Declaration may still be wrong
 * Pointer validity is not checked
 * Memory safety is not guaranteed
-* A required dynamic library may still be missing at runtime
+* Required dynamic libraries may still be missing at runtime
 
 .. note::
 
-  :rust:`"C"` describes the ABI, not the implementation language
+  :rust:`"C"` describes the interface, not the implementation
 
 
 ---------------------------
@@ -67,7 +67,7 @@ C-Compatible Scalar Types
 A Small C Function
 --------------------
 
-**C header defines the source-level boundary contract**
+**C headers declare source-level interfaces**
 
 .. code:: c
 
@@ -179,7 +179,7 @@ Configuring the Native Build
   cc = "1"
 
 * :rust:`cc` is a build dependency
-  * Invokes the available C compiler
+  * Invokes an available C compiler
 * :filename:`build.rs` is the package build script
   * Can use :rust:`cc` to compile bundled C source
 
