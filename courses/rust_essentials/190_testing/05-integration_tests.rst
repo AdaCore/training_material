@@ -18,9 +18,9 @@ What is an Integration Test?
 
 * In Rust, integration tests are
 
-  * Located in their own :filename:`tests` folder
+  * Conventionally located in their own :filename:`tests` folder
   * Allowed to test public APIs only
-  * Used to generate end-to-end workflows
+  * Can be used to generate end-to-end workflows
 
 --------------------
 The "tests" Folder
@@ -116,7 +116,7 @@ Submodules in Integration Tests
 * Solution is to create a subfolder in :filename:`tests` 
 
   * Using old style naming conventions
-  * e.g. :filename:`common/mod.rs`
+  * E.g. :filename:`common/mod.rs`
 
     * Declare the module with :rust:`mod common;`
     * Call its functions, e.g. :rust:`common::setup()`

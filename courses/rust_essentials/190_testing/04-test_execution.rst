@@ -257,7 +257,7 @@ Preventing Problematic Tests From Running
 More on Ignored Tests
 -----------------------
 
-* :rust:`ignore` attribute takes an optional string assignment for a message
+* :rust:`#[ignore]` attribute takes an optional string assignment for a message
 
   .. code:: Rust
 

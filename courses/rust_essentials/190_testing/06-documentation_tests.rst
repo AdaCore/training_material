@@ -28,7 +28,7 @@ Why Use "doctest"?
 
 * Comments describe actual behavior of code
 
-  * Better / more recent than other documentation
+  * Help keep code examples consistent with the implementation
 
 * Doctests test external API
 
@@ -41,7 +41,7 @@ Why Use "doctest"?
 .. code:: rust
   :number-lines: 1
 
-  /// Test positive/negative add
+  /// Test unsigned add
   ///
   /// ```
   /// # use adder::add;
