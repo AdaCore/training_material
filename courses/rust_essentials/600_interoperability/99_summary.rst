@@ -20,18 +20,22 @@ Recap: The Boundary Contract
 What We Covered
 -----------------
 
-* **C Foreign Function Interface**
+* **Calling C from Rust**
 
-  * :rust:`extern "C"`, exact boundary types, linking, and raw versus safe layers
-  * Strings, opaque handles, status codes, ownership, and callbacks
+  * :rust:`extern "C"`, C ABI types, function calls, linking, and build scripts
 
-* **Exporting Rust**
+* **Safe Boundary Design**
 
-  * C ABI exports, caller contracts, allocator pairing, and ABI evolution
+  * Raw declarations behind safe wrappers, pointer and layout contracts
+  * Strings, callbacks, ownership, opaque handles, errors, and unwinding
 
 * **Binding Tools**
 
   * :rust:`bindgen` for raw declarations behind a reviewed safe wrapper
+
+* **Exporting Rust**
+
+  * C ABI exports, caller contracts, allocator pairing, and ABI evolution
 
 * **C++ Interoperability**
 

@@ -18,8 +18,6 @@ Library Crate Types
   * :rust:`staticlib` for linking into a non-Rust program
 * Dynamic system library
   * :rust:`cdylib` for dynamic linking from non-Rust code
-* Rust library
-  * :rust:`rlib` is not a general foreign-language boundary
 
 .. note::
 
@@ -30,28 +28,20 @@ Library Crate Types
 Exporting a Simple Function
 -----------------------------
 
-**Use** :rust:`#[unsafe(no_mangle)]` **to export a symbol without name mangling**
+**Export a C ABI symbol without name mangling**
 
 .. code:: rust
 
   use std::ffi::c_int;
 
-  // SAFETY: `hyperdrive_check` does not collide
-  // with any other linked symbol
+  // SAFETY: `hyperdrive_check` is a unique symbol
   #[unsafe(no_mangle)]
   pub extern "C" fn hyperdrive_check(
-      fuel: c_int,
-      jumps: c_int,
+      fuel: c_int, jumps: c_int,
   ) -> c_int {
-      if fuel < 0 || jumps < 0 {
-          return -1;
-      }
-
+      if fuel < 0 || jumps < 0 { return -1; }
       if jumps <= fuel / 10 { 1 } else { 0 }
   }
-
-* Calling this function has no safety preconditions on the scalar values
-* Invalid inputs are reported with an explicit return value
 
 
 -------------------------
@@ -65,20 +55,13 @@ C Header for the Export
   #ifndef HYPERDRIVE_H
   #define HYPERDRIVE_H
 
-  #ifdef __cplusplus
-  extern "C" {
-  #endif
-
   int hyperdrive_check(int fuel, int jumps);
-
-  #ifdef __cplusplus
-  }
-  #endif
 
   #endif
 
 * Rust :rust:`c_int` matches C :C:`int`
-* C++ guards preserve C linkage when the header is included from C++
+* All :rust:`c_int` arguments are valid without extra safety preconditions
+* Negative inputs return :rust:`-1`; other inputs return :rust:`0` or :rust:`1`
 
 
 --------------------------------------
@@ -103,35 +86,73 @@ Calling the Exported Function from C
   Hyperdrive ready: 1
 
 
---------------------------
-Buffer Boundary Contract
---------------------------
+---------------------------
+Buffer Function Signature
+---------------------------
 
-**The exported buffer function needs an explicit caller contract**
+**The C API passes an input pointer/length pair and an output pointer**
 
 .. code:: c
 
   #include <stddef.h>
   #include <stdint.h>
 
+  // C callers must meet both buffer contracts
   int32_t crew_total_checked(
       const int32_t *values,
       size_t length,
       int32_t *out_total
   );
 
-* Readable input
-  * :rust:`values` provides :rust:`length` readable :rust:`i32` values when :rust:`length > 0`
-* Valid range
-  * Input range is aligned, within one allocation, and non-wrapping
-* Range bound
-  * At most :rust:`isize::MAX` bytes and unmodified during the call
-* Output
-  * :rust:`out_total` points to aligned writable :rust:`i32` storage
-  * Does not overlap the input range
-  * Written only on success
-* Pointer checks
-  * Only null-pointer cases are rejected at runtime
+* Status :C:`0`: success; :C:`1`: invalid null pointer; :C:`2`: overflow
+
+
+--------------------------
+Buffer Boundary Contract
+--------------------------
+
+**Callers supply a valid input range, not just a non-null pointer**
+
+* When :rust:`length > 0`, :rust:`values` names that many initialized :rust:`i32` values
+* Input is readable, aligned, and within a single non-wrapping allocation
+* Input size is at most :rust:`isize::MAX` bytes
+* Foreign code cannot modify the input during the call
+* :rust:`values` may be null when :rust:`length == 0`
+
+
+------------------------
+Output Buffer Contract
+------------------------
+
+**The output pointer has a separate caller contract**
+
+* :rust:`out_total` points to one aligned, writable :rust:`i32`
+* Its storage must not overlap the input range
+* The function writes the output only on success
+* Runtime checks reject null pointers only
+  * They cannot establish alignment, allocation bounds, or ownership
+
+
+----------------------------------
+Declaring the Rust Buffer Export
+----------------------------------
+
+**Signature fragment; the implementation follows on the next slides**
+
+.. code:: rust
+
+  /// # Safety
+  /// The caller upholds the input and output buffer contracts
+  // SAFETY: `crew_total_checked` is unique
+  #[unsafe(no_mangle)]
+  pub unsafe extern "C" fn crew_total_checked(
+      values: *const i32,
+      length: usize,
+      out_total: *mut i32,
+  ) -> i32 {
+      // Body shown on the following slides
+      // ...
+  }
 
 
 ------------------------
@@ -149,7 +170,8 @@ Checking Null Pointers
       return 1;
   }
 
-* :rust:`unsafe` makes the documented pointer contract a caller obligation
+* Rust callers must uphold the :rust:`unsafe fn` safety contract
+* C callers must follow the documented C API contract
 * :rust:`out_total` must always be non-null
 * :rust:`values` may be null only when :rust:`length == 0`
 
@@ -158,17 +180,33 @@ Checking Null Pointers
 Creating the Rust Slice
 -------------------------
 
-**Continue inside** :rust:`crew_total_checked` **after the null checks**
+**Construct a borrowed slice only after checking null pointers**
 
 .. code:: rust
 
+  // Continue inside `crew_total_checked`
   let crew: &[i32] = if length == 0 {
       &[]
   } else {
-      // SAFETY: Required by the documented buffer contract
-      unsafe { std::slice::from_raw_parts(values, length) }
+      // SAFETY: The caller guarantees one valid allocation
+      // of `length` aligned, initialized, stable values
+      unsafe {
+          core::slice::from_raw_parts(values, length)
+      }
   };
 
+* The empty case avoids constructing a slice from a null pointer
+
+
+--------------------------
+Summing Without Overflow
+--------------------------
+
+**Check each addition before using its result**
+
+.. code:: rust
+
+  // Continue inside `crew_total_checked`
   let mut total = 0_i32;
   for value in crew {
       let Some(next) = total.checked_add(*value) else {
@@ -177,9 +215,24 @@ Creating the Rust Slice
       total = next;
   }
 
-  // SAFETY: Output is writable and does not overlap the input
+* Overflow returns status :rust:`2` without writing the output
+
+
+--------------------
+Writing the Output
+--------------------
+
+**Write the result only after every addition succeeds**
+
+.. code:: rust
+
+  // Final statements inside `crew_total_checked`
+  // SAFETY: The caller provides writable storage
+  // that does not overlap the input range
   unsafe { *out_total = total };
   0
+
+* The return value :rust:`0` reports success
 
 
 ----------------------------------
@@ -199,14 +252,13 @@ Pair Allocation and Deallocation
 Returning an Owned C String
 -----------------------------
 
-:rust:`CString::into_raw` **transfers ownership to the caller**
+:rust:`CString::into_raw` **transfers ownership across the C ABI**
 
 .. code:: rust
 
   use std::ffi::{c_char, CString};
 
-  // SAFETY: `droid_name_new` does not collide
-  // with any other linked symbol
+  // SAFETY: `droid_name_new` is unique
   #[unsafe(no_mangle)]
   pub extern "C" fn droid_name_new() -> *mut c_char {
       CString::new("R2-D2")
@@ -214,42 +266,46 @@ Returning an Owned C String
           .into_raw()
   }
 
-* Caller ownership
-  * Returned pointer belongs to foreign code
-* Release path
-  * Return it through :rust:`droid_name_free`
+
+----------------------------
+Returned CString Ownership
+----------------------------
+
+**The caller owns the allocation but must use the matching destructor**
+
+* Pass the pointer back to :rust:`droid_name_free` for deallocation
+* Do not call C :C:`free()` on the Rust-allocated string
+* Do not change the string length or its NUL terminator
+* Do not access the allocation while the destructor runs
+* Stop using the pointer after returning it to Rust
 
 .. warning::
 
-  Release the pointer only through :rust:`droid_name_free`
+  Release the returned pointer only once
 
 
 ------------------------------
 Freeing an Exported C String
 ------------------------------
 
-:rust:`CString::from_raw` **retakes ownership from the caller**
-
-* Caller contract
-  * :rust:`ptr` is null or a live pointer returned by :rust:`droid_name_new`
-  * Foreign code has not changed the string length
-  * No other pointer accesses the allocation during this call
+:rust:`CString::from_raw` **reconstructs the original allocation**
 
 .. code:: rust
 
-  // SAFETY: `droid_name_free` does not collide
-  // with any other linked symbol
+  /// # Safety
+  /// `ptr` is null or uniquely owned, from `droid_name_new`,
+  /// and still has its original string length
+  // SAFETY: `droid_name_free` is unique
   #[unsafe(no_mangle)]
-  pub unsafe extern "C" fn droid_name_free(ptr: *mut c_char) {
+  pub unsafe extern "C" fn droid_name_free(
+      ptr: *mut c_char,
+  ) {
       if ptr.is_null() { return; }
-
-      // SAFETY: Required by the caller contract
+      // SAFETY: The caller upholds the ownership contract
       drop(unsafe { CString::from_raw(ptr) });
   }
 
-* :rust:`from_raw` reconstructs the original Rust-owned :rust:`CString`
 * Dropping it uses the matching Rust allocator
-* A non-null :rust:`ptr` is no longer valid after the call
 
 
 -----------------------------------
