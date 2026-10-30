@@ -46,7 +46,7 @@ Branch by Abstraction
 
 **Keep a stable abstraction while implementation moves gradually**
 
-.. image:: rust_essentials/600_strangler_pattern.svg
+.. image:: rust_essentials/601_branch_by_abstraction.svg
    :width: 100%
    :align: center
 

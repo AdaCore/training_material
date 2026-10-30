@@ -36,11 +36,3 @@ What We Covered
 * **Exporting Rust**
 
   * C ABI exports, caller contracts, allocator pairing, and ABI evolution
-
-* **C++ Interoperability**
-
-  * C-compatible facades and when to consider C++ bridge tools
-
-* **Adoption and Migration Strategies**
-
-  * Narrow boundaries, incremental adoption, and boundary redesign

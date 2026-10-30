@@ -37,6 +37,4 @@ Interoperability
 .. include:: 600_interoperability/03_callbacks_ownership_and_errors.rst
 .. include:: 600_interoperability/04_binding_tools.rst
 .. include:: 600_interoperability/05_exporting_rust_through_a_c_abi.rst
-.. include:: 600_interoperability/06_cpp_interoperability.rst
-.. include:: 600_interoperability/07_migration_strategies.rst
 .. include:: 600_interoperability/99_summary.rst
