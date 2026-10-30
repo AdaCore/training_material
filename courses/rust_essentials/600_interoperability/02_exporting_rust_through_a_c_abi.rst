@@ -30,7 +30,7 @@ Library Crate Types
 Exporting a Simple Function
 -----------------------------
 
-**Use** :rust:`#[unsafe(no_mangle)]` **for exported symbol names**
+**Use** :rust:`#[unsafe(no_mangle)]` **to export a symbol without name mangling**
 
 .. code:: rust
 
