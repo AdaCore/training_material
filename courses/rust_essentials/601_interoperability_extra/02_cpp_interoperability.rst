@@ -9,7 +9,7 @@ Default C++ Strategy: A C Facade
 
 **Use a C-compatible facade as the portable default**
 
-.. image:: rust_essentials/600_cpp_c_facade.svg
+.. image:: rust_essentials/601_cpp_c_facade.svg
 
 
 -----------------------------------

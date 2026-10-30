@@ -24,14 +24,6 @@ Topics Covered
 
   * C ABI exports and their caller contracts
 
-* **C++ Interoperability**
-
-  * Recommended bridge strategies and current limitations
-
-* **Adoption and Migration Strategies**
-
-  * Different ways to adopt or migrate to Rust
-
 
 ------------------------------
 Why Interoperability Matters
