@@ -49,7 +49,7 @@ Why Use "doctest"?
   /// assert_ne!(add(2, 6), 7);
   /// ```
 
-* :lkql:`///` indicates a document comment
+* :rust:`///` indicates a document comment
 
   * Code blocks in document comments become doctests
 

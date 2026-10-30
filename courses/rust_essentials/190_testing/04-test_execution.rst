@@ -150,11 +150,11 @@ Default Behavior for Capturing Output
     thread 'tests::warning_output' panicked at src\lib.rs:26:9:
     assertion failed: result == 0.0
 
-* :lkql:`normal` and :lkql:`error_output` passed
+* :rust:`normal` and :rust:`error_output` passed
 
   * No output displayed
 
-* :lkql:`warning_output` failed
+* :rust:`warning_output` failed
 
   * Console output is part of test results
 
