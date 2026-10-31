@@ -1,0 +1,37 @@
+************
+Exceptions
+************
+
+.. container:: PRELUDE BEGIN
+
+.. container:: PRELUDE ROLES
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+.. role:: rust(code)
+    :language: Rust
+
+.. container:: PRELUDE SYMBOLS
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+.. |le| replace:: :math:`\le`
+.. |ge| replace:: :math:`\ge`
+.. |lt| replace:: :math:`<`
+.. |gt| replace:: :math:`>`
+.. |checkmark| replace:: :math:`\checkmark`
+
+.. container:: PRELUDE END
+
+.. include:: 190_exceptions/02-handlers.rst
+.. include:: 190_exceptions/03-implicit_vs_explicit_exceptions.rst
+.. include:: 190_exceptions/05-user_defined_exceptions.rst
