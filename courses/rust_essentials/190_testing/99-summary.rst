@@ -50,5 +50,5 @@ What We Covered About Other Tests
 
 * **Documentation tests**
 
-  * Special comments that are included as part of the test process
+  * Rust code blocks in documentation comments can become doctests
   * Included in documentation via :toolname:`rustdoc`

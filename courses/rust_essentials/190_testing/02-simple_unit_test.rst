@@ -42,7 +42,7 @@ Creating Tests for a Binary Crate
 
 * Tests can also be created in a binary crate
 
-  * But :rust:`main` itself cannot be tested
+  * But :rust:`main` is not executed automatically when running unit tests
 
 * Use the same mechanism as above
 
@@ -65,7 +65,7 @@ Creating Tests for a Binary Crate
 
       #[test]
       fn test_helper() {
-          assert_eq!(helper("foo"), "Hello, Mickey!")
+          assert_eq!(helper("foo"), "Hello, foo!")
       }
   }
 

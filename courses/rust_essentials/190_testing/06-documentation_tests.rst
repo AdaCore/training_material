@@ -23,7 +23,7 @@ What Is a "doctest"?
         a + b
     }
 
-* :rust:`///` or :rust:`//!` indicate doctest code
+* Rust code blocks in :rust:`///` or :rust:`//!` comments are doctests by default
 
 --------------------
 Why Use "doctest"?
@@ -140,7 +140,7 @@ Generating Output
 
 * To generate documentation: :command:`cargo doc`
 
-  * Generates HTML in :filename:`doc/lib/index.html`
+  * Generates HTML in :filename:`target/doc/adder/index.html`
 
 **Adder module**
 
