@@ -10,7 +10,7 @@ Topics Covered
 
 * **Calling C from Rust**
 
-  * C ABI, foreign declarations, calls, linking, and build scripts
+  * C ABI, foreign declarations, calls, and linking
 
 * **Safe Boundary Design**
 
