@@ -2,37 +2,26 @@
 Summary
 =========
 
-------------------------------
-Recap: The Boundary Contract
-------------------------------
-
-**Every FFI boundary must make its agreements explicit**
-
-* Calling convention and symbol names
-* Data representation, layout, and validity
-* Pointer validity, access, and ownership
-* Error, panic, and exception behavior
-* Callback lifetimes, threading, concurrency, and reentrancy rules
-* Linking, runtime, and compatibility requirements
-
-
 -----------------
 What We Covered
 -----------------
 
+**FFI requires explicit ABI, data, and behavior contracts**
+
 * **Calling C from Rust**
 
-  * :rust:`extern "C"`, C ABI types, function calls, and linking
+  - :rust:`extern "C"`, C types, symbol names, linking, and runtime compatibility
 
 * **Safe Boundary Design**
 
-  * Raw declarations behind safe wrappers, pointer and layout contracts
-  * Strings, callback contracts, ownership, opaque handles, errors, and unwinding
+  - Review data layout; enforce pointer validity, access, and ownership rules
+  - Specify string and handle lifetimes, callback threading and reentrancy
+  - Map errors to values; contain panics and foreign exceptions
 
 * **Binding Tools**
 
-  * :rust:`bindgen` for raw declarations behind a reviewed safe wrapper
+  - :rust:`bindgen` produces raw declarations needing reviewed safe wrappers
 
 * **Exporting Rust**
 
-  * C ABI exports, caller contracts, and allocator pairing
+  - Document caller contracts and pair allocations with matching destructors
