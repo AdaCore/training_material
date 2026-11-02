@@ -18,9 +18,9 @@ Discriminated Record Types
   * All objects of :ada:`Discriminated_Record` are of the same type, regardless
     of the value of :ada:`Discriminant`
   
-* Discriminant is used syntactically like a component .. 
+* Discriminant is used syntactically like a component 
   
-  *  .. semantically has special rules and not *just* another component
+  *  ...semantically has special rules and not *just* another component
   
 * Discriminant must be either a discrete type or :ada:`access`
 
@@ -166,8 +166,9 @@ Unconstrained Variant Record Example
   Pat : Person := (Student, 19, 3.9);
   Sam : Person;
 
+* Both :ada:`Pat` and :ada:`Sam` are unconstrained 
 
-* Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
+  * Even though :ada:`Pat` is initialized
 
 * Can change the discriminant of :ada:`Pat` and :ada:`Sam`
 
@@ -198,9 +199,14 @@ Union vs. Variant Record
 Quiz
 ------
 
-.. code:: Ada
-  :font-size: footnotesize
-  :number-lines: 2
+.. container:: columns
+
+  .. container:: column
+
+    .. container:: latex_environment tiny
+
+      .. code:: Ada
+        :number-lines: 2
 
         type Variant_T (Valid : Integer) is record
             case Valid is
@@ -216,7 +222,7 @@ Quiz
 
   .. container:: column
 
-    Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
+    Which component(s) does :ada:`Variant_Object` contain?
 
     A. :ada:`Variant_Object.Value,`
        :ada:`Variant_Object.State`
@@ -226,15 +232,15 @@ Quiz
 
 .. container:: animate
 
-  Explanation
+  **Explanation**
 
   * Variant block covers all possible values of :ada:`Valid`, so no
     compilation error
 
   * Discriminant has a value (1) which is in range, so no run-time error
 
-  * :ada:`Valid` is 1, so it enters the :ada:`when others` block on line 7
-    The block only contains component :ada:`Number`
+  * :ada:`Valid` is 1, so it enters the :ada:`when others` block on line 7.
+    The block only contains component :ada:`Number`.
 
 ------
 Quiz
