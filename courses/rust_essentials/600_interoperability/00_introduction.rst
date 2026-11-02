@@ -14,7 +14,7 @@ Topics Covered
 
 * **Safe Boundary Design**
 
-  * Raw and safe layers, representations, ownership, callbacks, and errors
+  * Raw and safe layers, representations, ownership, callback contracts, and errors
 
 * **Binding Tools**
 
