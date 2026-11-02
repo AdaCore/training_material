@@ -18,7 +18,7 @@ Summary
 
 * Variant records allow flexible records that maintain strong typing
 
-  * Immutable records always use the same discriminant value
-  * Mutable records can change their discriminant
+  * Constrained record objects have fixed discriminant values
+  * Unconstrained record variables can change their discriminants
 
-    * But only when entire object is being assigned
+    * Only through whole-object assignment
