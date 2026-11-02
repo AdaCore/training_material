@@ -22,7 +22,7 @@ What We Covered
 
 * **Calling C from Rust**
 
-  * :rust:`extern "C"`, C ABI types, function calls, linking, and build scripts
+  * :rust:`extern "C"`, C ABI types, function calls, and linking
 
 * **Safe Boundary Design**
 
@@ -35,4 +35,4 @@ What We Covered
 
 * **Exporting Rust**
 
-  * C ABI exports, caller contracts, allocator pairing, and ABI evolution
+  * C ABI exports, caller contracts, and allocator pairing

@@ -34,20 +34,6 @@ Recommended bindgen Workflow
 .. image:: rust_essentials/600_bindgen_workflow.svg
 
 
------------------------------
-Managing Generated Bindings
------------------------------
-
-**Treat generated bindings as reviewed generated code**
-
-* Allowlist only the needed API
-* Pin :rust:`bindgen`, Clang/libclang, and header versions
-* Generate deliberately rather than during every consumer build
-* Review generated diffs
-* Test layout and symbols on each supported platform
-* Keep generated code out of the ergonomic public API
-
-
 ----------------------------
 What "bindgen" Does Not Do
 ----------------------------

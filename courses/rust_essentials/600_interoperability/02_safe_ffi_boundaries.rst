@@ -256,7 +256,7 @@ Struct Layout With #[repr(C)]
 * Default struct layout is not a stable C ABI contract
 * :rust:`repr` means representation
   * :rust:`#[repr(C)]` defines C-compatible field ordering and layout rules
-* Each field must also have an FFI-compatible representation
+* Ensure field types are FFI-compatible; verify layout on each target
 * :rust:`#[repr(C)]` does not validate field values or ownership
 
 
@@ -288,20 +288,6 @@ Match the C Definition
       pub active: u8,
       pub reserved: [u8; 2],
   }
-
-
------------------------------
-Checking Layout Assumptions
------------------------------
-
-**Verify C and Rust layout compatibility at build or test time**
-
-* Compare size, alignment, and field offsets
-  * Rust: :rust:`size_of`, :rust:`align_of`, :rust:`offset_of!`
-  * C: :C:`sizeof`, :C:`_Alignof`, :C:`offsetof`
-* Check against the same expected layout
-  * Compile-time assertions or automated layout tests
-* Run checks in CI for every supported target and toolchain configuration
 
 
 ----------------------------------
