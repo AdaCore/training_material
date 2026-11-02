@@ -82,7 +82,7 @@ Handling Large Data
 .. note::
 
   - :rust:`into_boxed_slice()` locks the vector into a fixed-length slice
-    - drops excess capacity
+    - Drops excess capacity
 
 -------------------------------------
 Borrowing or Transferring Ownership
@@ -114,7 +114,7 @@ Borrowing or Transferring Ownership
 
 .. note::
 
-  Ownership transfer is not a copy operation
+  Ownership transfer is **not** a copy operation
 
 ---------------------
 Resource Management
