@@ -82,6 +82,7 @@ Handling Large Data
 .. note::
 
   - :rust:`into_boxed_slice()` locks the vector into a fixed-length slice
+
     - Drops excess capacity
 
 -------------------------------------
