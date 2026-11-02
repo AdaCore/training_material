@@ -13,6 +13,10 @@ Topics Covered
 
   - Cargo build scripts, layout checks, and generated bindings
 
+* **Callbacks in Practice**
+
+  - C and Rust callback types, registration, implementation, and reentrancy
+
 * **C++ Interoperability**
 
   - C-compatible facades and when C++ bridge tools are appropriate

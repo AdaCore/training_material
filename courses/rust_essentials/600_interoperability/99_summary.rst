@@ -12,7 +12,7 @@ Recap: The Boundary Contract
 * Data representation, layout, and validity
 * Pointer validity, access, and ownership
 * Error, panic, and exception behavior
-* Callback registration, threads, concurrency, and reentrancy rules
+* Callback lifetimes, threading, concurrency, and reentrancy rules
 * Linking, runtime, and compatibility requirements
 
 
@@ -27,7 +27,7 @@ What We Covered
 * **Safe Boundary Design**
 
   * Raw declarations behind safe wrappers, pointer and layout contracts
-  * Strings, callbacks, ownership, opaque handles, errors, and unwinding
+  * Strings, callback contracts, ownership, opaque handles, errors, and unwinding
 
 * **Binding Tools**
 

@@ -33,7 +33,8 @@ Interoperability Extra
 
 .. include:: 601_interoperability_extra/01_introduction.rst
 .. include:: 601_interoperability_extra/02_native_builds_and_validation.rst
-.. include:: 601_interoperability_extra/03_cpp_interoperability.rst
-.. include:: 601_interoperability_extra/04_abi_compatibility_and_evolution.rst
-.. include:: 601_interoperability_extra/05_migration_strategies.rst
+.. include:: 601_interoperability_extra/03_callbacks_in_practice.rst
+.. include:: 601_interoperability_extra/04_cpp_interoperability.rst
+.. include:: 601_interoperability_extra/05_abi_compatibility_and_evolution.rst
+.. include:: 601_interoperability_extra/06_migration_strategies.rst
 .. include:: 601_interoperability_extra/99_summary.rst
