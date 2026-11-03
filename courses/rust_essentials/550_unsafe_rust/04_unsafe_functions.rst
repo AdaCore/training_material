@@ -65,7 +65,7 @@ Calling an Unsafe Function
 Unsafe Function Call Failures
 -------------------------------
 
-**An unsafe context does not guarantee a safe call**
+* An unsafe context does not guarantee a safe call
 
   * Without an unsafe context, the compiler rejects the call
 
