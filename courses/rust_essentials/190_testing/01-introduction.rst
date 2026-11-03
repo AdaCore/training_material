@@ -6,28 +6,29 @@ Introduction
 Topics Covered
 ----------------
 
-* **Building unit tests**
+* **Simple Unit Tests**
 
   - Creating a test framework
   - Specifying and running tests
   - Verifying test results
 
-* **Improving unit tests**
+* **Enhancing Unit Tests**
 
-  - Adding information to assertion failures
-  - Dealing with expected errors
+  - Improving test messages
+  - Testing code that panics
 
-* **Running unit tests**
+* **Test Execution**
 
   - Options for the test environment vs. test application
 
-* **Integration tests**
+* **Integration Tests**
 
   - Testing more than one unit at a time
+  - Adding test helper code to your environment
 
-* **Documentation tests**
+* **Documentation Tests**
 
-  * Tests built into code documentation
+  * Using comments to define and document tests
 
 --------------------
 What Is a Unit Test?
@@ -60,6 +61,6 @@ Writing Effective Unit Tests
   * **Edge Cases** - Zero, empty collections, null/None, boundaries
   * **Failure Modes** -  Expected panics, invalid inputs, and validation errors
 
-.. note::
+.. tip::
 
    Test **behavior and contracts**, not internal implementation details
