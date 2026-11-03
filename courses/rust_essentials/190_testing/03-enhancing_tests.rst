@@ -36,7 +36,7 @@ Assertion Failure Messages
     assert!(condition, "optional format string", arg1, arg2, ...);
 
 ---------------------------------------
-Failure Messages with Named "format!"
+Failure Messages With Named "format!"
 ---------------------------------------
 
 * After the condition, arguments are treated as inputs to :rust:`format!` macro
@@ -59,7 +59,7 @@ Failure Messages with Named "format!"
   FAILURE: received Hello Fred!
 
 --------------------------------------------
-Failure Messages with Positional "format!"
+Failure Messages With Positional "format!"
 --------------------------------------------
 
 .. code:: rust
@@ -89,7 +89,7 @@ Dealing With Panic
 
 .. code:: rust
   :number-lines: 2
- 
+
   // Return the index of 'value' in 'list'
   pub fn find_index(list: &[i32], value: i32) -> usize {
       for (index, item) in list.iter().enumerate() {
@@ -128,7 +128,7 @@ Expecting Panic
 
   * But the code behaved correctly!
 
-* Need to set the expectation of panic 
+* Need to set the expectation of panic
 
   .. code:: rust
 

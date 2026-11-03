@@ -100,7 +100,7 @@ Running "doctest" Standalone
   test src\lib.rs - add (line 3) ... ok
 
   test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
-  
+
   all doctests ran in 1.05s; merged doctests compilation took 0.53s
 
 --------------------------------
@@ -118,7 +118,7 @@ Running "doctest" Standalone
   test tests::it_works ... ok
 
   test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-  
+
      Running tests\integration_test.rs (target\debug\deps\integration_test-4ee73614a3903bd6.exe)
 
   running 1 test
@@ -132,7 +132,7 @@ Running "doctest" Standalone
   test src\lib.rs - add (line 3) ... ok
 
   test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
-  
+
   all doctests ran in 1.04s; merged doctests compilation took 0.58s
 
 -------------------

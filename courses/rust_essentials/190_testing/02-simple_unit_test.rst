@@ -92,7 +92,7 @@ Test Semantics
   }
 
 * Line 5: Module only compiled when building tests
-* Line 6: Creates a child module named :rust:`tests` 
+* Line 6: Creates a child module named :rust:`tests`
 * Line 7: Brings names from parent module into scope
 
   * Tests can call :rust:`add(...)` directly

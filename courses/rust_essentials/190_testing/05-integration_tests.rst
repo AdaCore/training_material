@@ -104,7 +104,7 @@ Running Integration Tests
 
   test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-.. note:: 
+.. note::
 
   *Doctests* covered later
 
@@ -120,7 +120,7 @@ Submodules in Integration Tests
 
   * Cargo treats top-level :filename:`tests/*.rs` files as integration test crates
 
-* Solution is to create a subfolder in :filename:`tests` 
+* Solution is to create a subfolder in :filename:`tests`
 
   * Using old style naming conventions
   * E.g. :filename:`common/mod.rs`
