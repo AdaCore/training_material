@@ -6,21 +6,23 @@ Optional Allocation
 "no_std" Does Not Mean No Heap
 --------------------------------
 
-* The :rust:`alloc` crate supplies heap-backed types without requiring :rust:`std`
+* :rust:`alloc` supplies heap-backed types without requiring :rust:`std`
 
-* :rust:`alloc` ships with the toolchain; it is not a :filename:`crates.io` dependency
+* :rust:`alloc` is provided by the Rust toolchain
 
-* A reusable library can use those *types* without selecting an allocator
+* No crates.io dependency on :rust:`alloc` is needed in :filename:`Cargo.toml`
+
+* Reusable libraries can use those types *without* selecting an allocator
 
 * Final program must supply suitable allocation support
 
-  * A normal :rust:`std` application already supplies a default global allocator
+  * :rust:`std` applications normally provide a default global allocator
 
-  * A bare-metal application using heap-backed types must provide a global allocator
+  * Bare-metal applications using heap-backed types must provide a global allocator
 
 .. warning::
 
-  :rust:`extern crate alloc` makes the crate available; it does not create a heap or install an allocator
+  :rust:`extern crate alloc` makes the crate available; it does *not* create a heap or install an allocator
 
 -----------------------------------
 Stack, Static Storage, and Heap
@@ -31,18 +33,15 @@ Stack, Static Storage, and Heap
    :align: center
 
 * Local variables usually live in a stack frame
-
-* :rust:`static` items live for the whole program
-
-* A :rust:`Vec` header stores a pointer, a length, and a capacity
-
-* The elements of a :rust:`Vec` live in heap-backed storage
+* Static variables have storage for the whole program
+* A :rust:`Vec` header stores a pointer, length, and capacity
+* The *elements* of a :rust:`Vec` live in heap-backed storage
 
 -----------------------------------------
 An Allocation-Requiring Convenience API
 -----------------------------------------
 
-**Add these items, keeping** :rust:`#![no_std]` **at the top**
+**Additional declarations in** :filename:`src/lib.rs` **below** :rust:`#![no_std]`
 
 .. code:: rust
 
@@ -56,20 +55,17 @@ An Allocation-Requiring Convenience API
       sorted
   }
 
-* The function returns an owned, sorted copy of the input
-
-* This API can be made optional using :rust:`#[cfg(feature = "alloc")]`
+* :rust:`sorted_samples` returns an owned, sorted copy of the input
 
 -----------------------------------------
 Types and Macros Need Their Own Imports
 -----------------------------------------
 
-**With** :rust:`alloc` **available, an independent example can use these imports**
+**Additional function in** :filename:`src/lib.rs` **reusing the earlier** :rust:`Vec` **import**
 
 .. code:: rust
 
   use alloc::string::String;
-  use alloc::vec::Vec;
   use alloc::{format, vec};
 
   pub fn make_message() -> (Vec<u16>, String) {
@@ -80,4 +76,6 @@ Types and Macros Need Their Own Imports
 
 * Importing the :rust:`Vec` type does not import the :rust:`vec!` macro
 
-* :rust:`format!` creates an owned :rust:`String`; :rust:`format_args!` does not
+* :rust:`format!` creates an owned :rust:`String`
+
+  * :rust:`format_args!` does not

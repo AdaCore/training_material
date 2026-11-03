@@ -39,7 +39,7 @@ What "core" Provides
   * - Memory utilities
     - :rust:`core::mem`, :rust:`Cell`, :rust:`RefCell`
 
-* :rust:`panic!` and assertion macros also remain available
+* Macros such as :rust:`panic!`, :rust:`assert!`, and :rust:`assert_eq!` remain available
 
 .. note::
 
@@ -49,22 +49,15 @@ What "core" Provides
 A Small Portable Library
 --------------------------
 
-**Create a library package named** :rust:`sample_tools`
+**Example library:** :filename:`sample_tools/src/lib.rs`
 
-.. code:: sh
+.. code:: rust
 
-  cargo new --lib sample_tools
-  cd sample_tools
+  #![no_std]
 
-* Replace :filename:`src/lib.rs` with
-
-  .. code:: rust
-
-    #![no_std]
-
-    pub fn maximum(samples: &[u16]) -> Option<u16> {
-        samples.iter().copied().max()
-    }
+  pub fn maximum(samples: &[u16]) -> Option<u16> {
+      samples.iter().copied().max()
+  }
 
 * Function borrows its input and returns
 
@@ -77,7 +70,7 @@ A Small Portable Library
 Borrowed Text and Recoverable Errors
 --------------------------------------
 
-**Add to** :filename:`src/lib.rs`
+**Additional function in** :filename:`src/lib.rs`
 
 .. code:: rust
 
@@ -94,15 +87,15 @@ Borrowed Text and Recoverable Errors
 
 * This function returns two numbers or propagates a parsing error
 
-* :rust:`&str` and methods such as :rust:`trim` do not require an owned :rust:`String`
+* :rust:`&str` is borrowed text; :rust:`trim()` returns a subslice without allocating
 
 * :rust:`Result` and :rust:`?` work without :rust:`std`
 
 --------------------------------------------
-Using the Library from a "std" Application
+Using the Library From a "std" Application
 --------------------------------------------
 
-**Create** :filename:`examples/inspect.rs` **inside** :filename:`sample_tools`
+**Host-side example in** :filename:`sample_tools/examples/inspect.rs`
 
 .. code:: rust
 
@@ -116,13 +109,13 @@ Using the Library from a "std" Application
       }
   }
 
-* Run :command:`cargo run --example inspect` to print ``Maximum: 42``
+* :command:`cargo run --example inspect` prints ``Maximum: 42``
 
-* The example uses :rust:`std`; the library still uses :rust:`no_std`
+* Example application uses :rust:`std`; the library remains :rust:`no_std`
 
--------------------------------
-What "std" No Longer Provides
--------------------------------
+------------------------------
+What "core" Does Not Provide
+------------------------------
 
 .. list-table::
   :header-rows: 1
@@ -134,10 +127,10 @@ What "std" No Longer Provides
     - Use :rust:`alloc`, or avoid heap-backed storage
   * - :rust:`println!`, :rust:`eprintln!`
     - Let the caller choose how to produce output
-  * - :rust:`std::fs`, socket APIs
-    - Require another implementation or a caller-supplied interface
   * - :rust:`std::thread`
     - No standard OS-thread API is provided
+  * - :rust:`std::fs`, socket APIs
+    - Require another implementation or a caller-supplied interface
 
 .. note::
 
@@ -165,7 +158,7 @@ Formatting Is Not Standard Output
 Let Caller Choose Destination
 -------------------------------
 
-**Add to** :filename:`src/lib.rs`
+**Function** :rust:`write_maximum` **defined in** :filename:`src/lib.rs`
 
 .. code:: rust
 
@@ -178,7 +171,7 @@ Let Caller Choose Destination
       write!(output, "Maximum: {value}")
   }
 
-* The writer's type implements :rust:`core::fmt::Write`
+* :rust:`output: &mut impl Write` accepts a caller-supplied writer implementing :rust:`core::fmt::Write`
 
 * Write failures are returned through :rust:`fmt::Result`
 
@@ -190,7 +183,7 @@ Let Caller Choose Destination
 The Caller Can Still Use "String"
 -----------------------------------
 
-**Create a separate host example in** :filename:`examples/report.rs`
+**Second host-side example in** :filename:`examples/report.rs`
 
 .. code:: rust
 
@@ -205,6 +198,6 @@ The Caller Can Still Use "String"
 
 * Application chooses an allocating destination
 
-* The library does not need to name or depend on :rust:`String`
+* Library code does not need to name or depend on :rust:`String`
 
 * Another caller can provide a different writer

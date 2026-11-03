@@ -1,45 +1,12 @@
-======================
-Checking and Testing
-======================
-
-----------------------------
-Testing a "no_std" Library
-----------------------------
-
-* Standard test harness uses :rust:`std` on development machine
-
-* Library keeps selected feature configuration
-
-* Test the core API in each supported configuration
-
-.. note::
-
-  The host harness does not enable the library's :rust:`std` feature
-
--------------------------------------------
-Ordinary Tests on the Development Machine
--------------------------------------------
-
-**Add to** :filename:`src/lib.rs`
-
-.. code:: rust
-
-  #[cfg(test)]
-  mod tests {
-      use super::maximum;
-
-      #[test]
-      fn finds_the_maximum() {
-          assert_eq!(maximum(&[10, 42, 7]), Some(42));
-          assert_eq!(maximum(&[]), None);
-      }
-  }
+=======================
+Checking Configurations
+=======================
 
 ------------------------------------
 Check Each Supported Configuration
 ------------------------------------
 
-**Run from** :filename:`sample_tools` **directory**
+**Configuration checks run from** :filename:`sample_tools` **directory**
 
 .. code:: sh
 
@@ -47,17 +14,9 @@ Check Each Supported Configuration
   cargo check --lib --no-default-features --features alloc
   cargo check --lib
 
-* Run tests for same three configurations
+* These check the core-only, allocating, and default :rust:`std` configurations
 
-.. code:: sh
-
-  cargo test --lib --no-default-features
-  cargo test --lib --no-default-features --features alloc
-  cargo test --lib
-
-* These cover the core-only, allocating, and default :rust:`std` builds
-
-* :command:`--all-features` alone would miss the smallest configurations
+* :command:`--all-features` alone would miss the smaller configurations
 
 -------------------------------
 What Host Checks Do Not Prove
@@ -65,36 +24,26 @@ What Host Checks Do Not Prove
 
 * Host build may succeed even if a dependency still uses :rust:`std`
 
-* Standard test harness itself links :rust:`std`
-
 * :command:`cargo check` checks code but does not produce a final linked program
 
 * :rust:`no_std` alone does not prove portability to every platform
 
 .. tip::
 
-  Test behavior, review dependencies, and document the capabilities each library configuration requires
+  Dependency feature inspection and target checks address different portability risks
 
------------------------
-What We Did Not Cover
------------------------
+------------------------------
+Check a Target Without "std"
+------------------------------
 
-* **Memory and Runtime Constraints**
+**Target-specific checks complement host feature checks**
 
-  - Allocation costs and failure handling
+.. code:: sh
 
-  - Static storage and fixed-capacity collections
+  rustup target add thumbv7em-none-eabi
+  cargo check --lib --no-default-features \
+      --target thumbv7em-none-eabi
 
-* **Executable Runtime Setup**
+* Example target does not provide :rust:`std`
 
-  - Entry points, linker configuration, and panic-handler implementation
-
-  - Installing or implementing an allocator
-
-* **Platform Integration**
-
-  - Concrete I/O backends and target-specific services
-
-.. tip::
-
-  Knowing that :rust:`alloc` is available is different from deciding whether allocation fits an application's constraints
+* :command:`cargo check` verifies compilation, not linking or execution

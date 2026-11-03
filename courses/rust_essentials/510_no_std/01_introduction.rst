@@ -8,27 +8,27 @@ Topics Covered
 
 * **Understanding** :rust:`no_std`
 
-  - See what it changes and why it is useful on some targets
+  - Effects of :rust:`no_std` and its intended use cases
 
 
 * **Programming with** :rust:`core`
 
-  - Keep familiar Rust features, types, and algorithms
+  - Familiar language features and :rust:`core` APIs remain available
 
 
 * **Optional Allocation**
 
-  - Use :rust:`alloc` when heap-backed types are needed
+  - Optional heap-backed types through :rust:`alloc`
 
 
 * **Dependencies and Features**
 
-  - Support different library configurations
+  - Cargo features support multiple library configurations
 
 
-* **Checking and Testing**
+* **Checking Configurations**
 
-  - Validate supported configurations on the development machine
+  - Host configuration checks and target-specific compilation
 
 ---------------------------
 Why Not Always Use "std"?
@@ -42,7 +42,7 @@ Why Not Always Use "std"?
 
 * Many embedded and similar environments lack those services
 
-* A library may also avoid :rust:`std` to reduce platform requirements
+* Libraries may also avoid :rust:`std` to reduce platform requirements
 
 .. note::
 
@@ -65,11 +65,11 @@ Three Library Layers
   * - :rust:`std`
     - Re-exports from these libraries, plus platform services
 
-* A :rust:`no_std` library can use :rust:`core` alone or also use :rust:`alloc`
+* :rust:`no_std` libraries can use :rust:`core` alone or together with :rust:`alloc`
 
-* Using :rust:`alloc` does not restore files, sockets, or OS threads
+* Using :rust:`alloc` does not enable files, sockets, or OS threads
 
-.. tip::
+.. note::
 
   These are library capabilities, not different versions of the Rust language
 
@@ -91,11 +91,13 @@ Library Layers at a Glance
 What "#![no_std]" Does
 ------------------------
 
-**Place this crate-level attribute at the top of** :filename:`src/lib.rs`
+**Configure the crate with an inner attribute at the top of** :filename:`src/lib.rs`
 
 .. code:: rust
 
   #![no_std]
+
+* :rust:`#![...]` is an inner attribute, applying to the enclosing crate here
 
 * :rust:`std` is no longer linked automatically for this crate
 
@@ -113,9 +115,9 @@ What "#![no_std]" Does
 A Library Is Not an Executable
 --------------------------------
 
-* Our library provides functions; it does not start the program
+* Library crates provide functions without starting the program
 
-* A normal :rust:`std` application can depend on a :rust:`no_std` library
+* :rust:`std` applications can depend on :rust:`no_std` libraries
 
 * Final program supplies the required runtime support
 
