@@ -15,7 +15,7 @@ What We Covered
 
   - Provides types, traits, iterators, and formatting
 
-  - Use borrowed data, return values, and caller-supplied interfaces
+  - Borrowed data, return values, and caller-supplied interfaces work without :rust:`std`
 
 
 * **Optional Allocation**
@@ -25,9 +25,13 @@ What We Covered
 
 * **Dependencies and Features**
 
-  - Make optional capabilities explicit through features
+  - Cargo features control optional capabilities
+
+  - Reusable libraries can support core-only, allocating, and :rust:`std` configurations
 
 
-* **Checking and Testing**
+* **Checking Configurations**
 
-  - Check and test every supported configuration
+  - Feature configurations and intended targets require separate checks
+
+  - Host checks alone do not prove target portability

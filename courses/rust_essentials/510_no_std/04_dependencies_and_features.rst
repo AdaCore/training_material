@@ -6,19 +6,23 @@ Dependencies and Features
 "no_std" Is Not Transitive
 ----------------------------
 
-* Attribute *only* applies to crate where it is written
+* :rust:`#![no_std]` applies only to the crate where it is declared
 
 * Dependencies used by the library must support intended configuration
 
-* A dependency's default features may require :rust:`std` or heap allocation
+  * Dependencies requiring :rust:`std` can be used on targets supporting :rust:`std`
 
-* Check dependency's documented features, not just its description
+  * On a target without :rust:`std` support, such a dependency prevents the build
+
+* Default features of dependencies may require :rust:`std` or heap allocation
+
+* Dependency compatibility depends on documented features, not just crate descriptions
 
 --------------------------------
 Offering Optional Capabilities
 --------------------------------
 
-**Add this section to** :filename:`sample_tools/Cargo.toml`
+**Feature definitions in** :filename:`sample_tools/Cargo.toml`
 
 .. code:: toml
 
@@ -29,7 +33,7 @@ Offering Optional Capabilities
 
 * ``default = ["std"]`` enables the :rust:`std` feature by default
 
-* ``alloc = []`` defines a feature without enabling other features
+* ``alloc = []`` defines a feature without enabling others or providing an allocator
 
 * ``std = ["alloc"]`` makes the :rust:`std` feature also enable :rust:`alloc`
 
@@ -50,13 +54,13 @@ Supported Library Configurations
   * - None
     - :rust:`core` only
   * - :rust:`alloc`
-    - :rust:`no_std` with allocating APIs
+    - :rust:`no_std` adding allocating APIs
   * - :rust:`std`
     - All APIs, including :rust:`std` conveniences
 
 * Core APIs remain available in every configuration
 
-* An allocating convenience API need not force every caller to use allocation
+* Allocating convenience APIs can remain optional for callers
 
 ----------------------------------
 How Features Select Capabilities
@@ -70,13 +74,13 @@ How Features Select Capabilities
 
 * In this module, :rust:`std` implies :rust:`alloc`
 
-* :rust:`#[cfg(...)]` keeps only the items for the selected configuration
+* :rust:`#[cfg(condition)]` includes the following item only when the condition holds
 
 ---------------------------------
 Apply the Features to the Crate
 ---------------------------------
 
-**Replace the earlier** :rust:`#![no_std]` **and** :rust:`extern crate alloc` **declarations**
+**Updated crate declarations replacing earlier** :rust:`#![no_std]` **and** :rust:`extern crate alloc` **declarations**
 
 .. code:: rust
 
@@ -85,15 +89,15 @@ Apply the Features to the Crate
   #[cfg(feature = "alloc")]
   extern crate alloc;
 
-* :rust:`cfg_attr` applies :rust:`#![no_std]`
+* :rust:`cfg_attr(predicate, attribute)` conditionally applies an attribute
 
-  * Only when the :rust:`std` feature is disabled
+  * Here, :rust:`not(feature = "std")` controls whether :rust:`no_std` applies
 
-* :rust:`#[cfg(feature = "alloc")]` includes :rust:`extern crate alloc`
+* :rust:`#[...]` is an outer attribute applying to the following item
 
-  * Only when the :rust:`alloc` feature is enabled
+  * Here, :rust:`#[cfg(feature = "alloc")]` includes :rust:`extern crate alloc` only when the feature is enabled
 
-* Keep the :rust:`core` imports and non-allocating functions unchanged
+* :rust:`core` imports and non-allocating functions remain unchanged
 
 .. warning::
 
@@ -103,7 +107,7 @@ Apply the Features to the Crate
 Gate the Allocation-Requiring API
 -----------------------------------
 
-**Replace the earlier** :rust:`Vec` **import and** :rust:`sorted_samples` **implementation**
+**Feature-gated versions of** :rust:`Vec` **import and** :rust:`sorted_samples` **implementation**
 
 .. code:: rust
 
@@ -117,22 +121,49 @@ Gate the Allocation-Requiring API
       sorted
   }
 
-* Function is absent when :rust:`alloc` is disabled
+* :rust:`sorted_samples` is absent when :rust:`alloc` is disabled
 
 * :rust:`maximum`, :rust:`parse_pair`, and :rust:`write_maximum` remain available
+
+--------------------------------
+Gate the Second Allocating API
+--------------------------------
+
+**Feature-gated replacements for** :rust:`make_message` **and its imports**
+
+.. code:: rust
+
+  #[cfg(feature = "alloc")]
+  use alloc::string::String;
+
+  #[cfg(feature = "alloc")]
+  use alloc::{format, vec};
+
+  #[cfg(feature = "alloc")]
+  pub fn make_message() -> (Vec<u16>, String) {
+      let values = vec![10, 42, 7];
+      let text = format!("{} samples", values.len());
+      (values, text)
+  }
+
+* :rust:`Vec` import is already gated on the previous slide
+
+* :rust:`make_message` is absent when :rust:`alloc` is disabled
 
 -----------------------------------
 Keep "std"-Only Adapters Separate
 -----------------------------------
 
-**Isolate an optional adapter in its own module**
+**Optional adapter isolated in its own module**
 
 .. code:: rust
 
   #[cfg(feature = "std")]
   pub mod std_support {
       pub fn print_maximum(samples: &[u16]) {
-          println!("Maximum: {:?}", super::maximum(samples));
+          if let Some(value) = super::maximum(samples) {
+              println!("Maximum: {value}");
+          }
       }
   }
 
@@ -148,7 +179,7 @@ Keep "std"-Only Adapters Separate
 Select Features in a Dependent Project
 ----------------------------------------
 
-**Add to the dependent package's** :filename:`Cargo.toml`
+**Feature selection in dependent package's** :filename:`Cargo.toml`
 
 .. code:: toml
 
@@ -161,9 +192,9 @@ Select Features in a Dependent Project
 
 * Requests library without its default :rust:`std` feature
 
-* Uncomment last line to request its allocating APIs as well
+* Enabling the commented feature line also requests allocating APIs
 
-* Select features for each dependency according to its documentation
+* Dependency feature selection follows documented requirements
 
 .. note::
 
@@ -179,7 +210,7 @@ Features Add Up
 
 * ``default-features = false`` is not a global ban on that feature
 
-**Run from the dependent package's directory**
+**Feature inspection commands executed from dependent package's directory**
 
 .. code:: sh
 
@@ -188,4 +219,4 @@ Features Add Up
 
 .. tip::
 
-  Check the resolved features, including requests from dependencies
+  Resolved features reflect requests across the dependency graph
