@@ -17,24 +17,27 @@ Creating a Library With Tests
 
 :command:`cargo new adder --lib`
 
-.. code:: rust
-  :font-size: footnotesize
-  :number-lines: 1
+* Creates :filename:`adder` folder containing entire package
 
-  pub fn add(left: u64, right: u64) -> u64 {
-      left + right
-  }
+  * Including template source file :filename:`src/lib.rs`
 
-  #[cfg(test)]
-  mod tests {
-      use super::*;
+  .. code:: rust
+    :font-size: tiny
 
-      #[test]
-      fn it_works() {
-          let result = add(2, 2);
-          assert_eq!(result, 4);
-      }
-  }
+    pub fn add(left: u64, right: u64) -> u64 {
+        left + right
+    }
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn it_works() {
+            let result = add(2, 2);
+            assert_eq!(result, 4);
+        }
+    }
 
 -----------------------------------
 Creating Tests for a Binary Crate

@@ -55,6 +55,10 @@ Some Example Code
       }
   }
 
+--------------------
+Some Example Tests
+--------------------
+
 * Some empty (for now) tests
 
   .. code:: Rust

@@ -150,7 +150,17 @@ Expecting the Right Panic
 
 * What happens to our test if :rust:`find_index` doesn't work correctly?
 
-  * For example, it returns a 0 on failure rather than panic
+  * Replace
+
+    .. code:: rust
+
+      panic!("value not found");
+
+  * With
+
+    .. code:: rust
+
+      0 // not found
 
 * Test will pass (because it expects a panic)
 

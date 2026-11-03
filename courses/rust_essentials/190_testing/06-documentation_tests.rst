@@ -16,11 +16,11 @@ What Is a "doctest"?
 
     /// Adds two numbers together.
     /// ```
-    /// use my_crate::add;
+    /// use adder::add;
     /// assert_eq!(add(2, 3), 5);
     /// ```
-    pub fn add(a: i32, b: i32) -> i32 {
-        a + b
+    pub fn add(left: i32, right: i32) -> i32 {
+        left + right
     }
 
 * Rust code blocks in :rust:`///` or :rust:`//!` comments are doctests by default
@@ -36,11 +36,12 @@ Why Use "doctest"?
 
 * **Crate Type Restriction**
 
-  * Doctests run **only on library crates**
+  * Doctests generally run only on library crates
+
+    * :command:`rustdoc --test` has more flexibility than :command:`cargo test --doc`
 
 * **Isolation**
 
-  * Each code block compiles into its own standalone binary crate
   * Uses the library as an external dependency
 
 * **Attributes**
@@ -65,7 +66,7 @@ Why Use "doctest"?
 .. code:: rust
   :number-lines: 1
 
-  /// Test unsigned add
+  /// Test add
   ///
   /// ```
   /// # use adder::add;
@@ -73,7 +74,7 @@ Why Use "doctest"?
   /// assert_ne!(add(2, 6), 7);
   /// ```
 
-* :rust:`///` indicates a document comment
+* :rust:`///` indicates documentation comments
 
   * Code blocks in document comments become doctests
 
