@@ -6,13 +6,14 @@ Fixed-Capacity Collections
 An Owned Collection Without Buffer Growth
 -------------------------------------------
 
-* Add under the existing ``[dependencies]`` table in :filename:`Cargo.toml`
+* Example dependency in :filename:`Cargo.toml`
 
 .. code:: toml
 
+  [dependencies]
   heapless = { version = "=0.9.3", default-features = false }
 
-* Add this import to :filename:`src/memory.rs`
+* Alias used to distinguish the fixed-capacity type from the heap-backed :rust:`Vec`
 
 .. code:: rust
 
@@ -56,7 +57,7 @@ Full Capacity Is an Ordinary Error
 Return a Bounded, Owned Result
 --------------------------------
 
-* Add to :filename:`src/memory.rs`
+**A bounded result can report insufficient capacity**
 
 .. code:: rust
 
@@ -79,7 +80,7 @@ Return a Bounded, Owned Result
 A Bounded Destination for Formatting
 --------------------------------------
 
-* Add to :filename:`src/memory.rs`
+**Formatting can use a fixed-capacity string**
 
 .. code:: rust
 

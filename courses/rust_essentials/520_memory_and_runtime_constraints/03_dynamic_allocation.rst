@@ -29,9 +29,9 @@ Where Allocation Can Happen
 
   Cloning may allocate, depending on the type
 
---------------------------
-  Length Is Not Capacity
---------------------------
+------------------------
+Length Is Not Capacity
+------------------------
 
 .. code:: rust
 
@@ -39,7 +39,14 @@ Where Allocation Can Happen
       let samples = Vec::<u16>::with_capacity(4);
       println!("length: {}", samples.len());
       println!("capacity: {}", samples.capacity());
- }
+  }
+
+* Example output (capacity may be larger on some implementations)
+
+.. code:: text
+
+  length: 0
+  capacity: 4
 
 * **Length:** initialized elements currently stored
 
@@ -49,22 +56,26 @@ Where Allocation Can Happen
 
   :rust:`with_capacity(4)` does not impose a maximum length
 
----------------------------------
-  Clearing and Reusing Capacity
----------------------------------
+-------------------------------
+Clearing and Reusing Capacity
+-------------------------------
 
 .. code:: rust
 
   fn main() {
-    let mut buf = Vec::<u16>::with_capacity(4);
-    buf.push(42);
-    println!("before: {:?}", (buf.len(), buf.capacity()));
-
-    buf.clear();
-    println!("after: {:?}", (buf.len(), buf.capacity()));
+      let mut samples = Vec::<u16>::with_capacity(4);
+      samples.push(42);
+      println!("before: {:?}", (samples.len(), samples.capacity()));
+      samples.clear();
+      println!("after: {:?}", (samples.len(), samples.capacity()));
   }
 
-* Each printed pair shows :rust:`(length, capacity)`
+* Example output (capacity may be larger on some implementations)
+
+.. code:: text
+
+  before: (1, 4)
+  after: (0, 4)
 
 * :rust:`clear()` removes elements but retains the buffer for reuse
 
@@ -76,21 +87,24 @@ Observe Capacity Growth
 
   fn main() {
       let mut samples = Vec::<u16>::new();
-
-      for value in 0..16 {
+      for sample in 0..16 {
           let before = samples.capacity();
-          samples.push(value);
-          let after = samples.capacity();
-
-          if after != before {
-              println!("capacity: {before} -> {after}");
+          samples.push(sample);
+          if before != samples.capacity() {
+              println!("capacity: {before} -> {}", samples.capacity());
           }
       }
   }
 
-* :rust:`push` may increase capacity when the buffer is full
+* Example output (growth strategy is not guaranteed)
 
-* The growth strategy is not guaranteed
+.. code:: text
+
+  capacity: 0 -> 4
+  capacity: 4 -> 8
+  capacity: 8 -> 16
+
+* :rust:`push` may allocate when the buffer must grow
 
 ---------------------------
 Growth Is a Runtime Event
@@ -110,7 +124,7 @@ Growth Is a Runtime Event
   one that must grow the buffer may take much longer
 
 ----------------------------------------
-  Fallible Allocation Uses Explicit APIs
+Fallible Allocation Uses Explicit APIs
 ----------------------------------------
 
 .. list-table::
@@ -138,14 +152,7 @@ Growth Is a Runtime Event
 Build an Owned Result Fallibly
 --------------------------------
 
-* Use :rust:`alloc` for optional :rust:`no_std` support
-
-.. code:: rust
-
-  #[cfg(feature = "alloc")]
-  use alloc::{collections::TryReserveError, vec::Vec};
-
-* Inside :rust:`try_sorted_samples`, reserve before copying
+**The function reserves capacity before copying its input**
 
 .. code:: rust
 
@@ -155,17 +162,20 @@ Build an Owned Result Fallibly
       sorted.push(sample);
   }
 
+* A reported reservation failure occurs before any samples are copied
+
 * The reserved capacity covers every :rust:`u16` pushed into the vector
 
 * :rust:`?` propagates any error returned by :rust:`try_reserve`
 
 -----------------------------------
-Implementing "try_sorted_samples"
+Fallible Sorting Returns a Result
 -----------------------------------
 
 .. code:: rust
 
-  #[cfg(feature = "alloc")]
+  use std::collections::TryReserveError;
+
   pub fn try_sorted_samples(
       samples: &[u16],
   ) -> Result<Vec<u16>, TryReserveError> {
@@ -184,7 +194,7 @@ A "Result" Does Not Catch Every Failure
 
 * :rust:`try_reserve` can report capacity overflow or allocation failure
 
-* Other allocating operations can still follow a non-returning failure path
+  * Other allocating operations can still follow a non-returning failure path
 
 * Allocation failure behavior depends on allocator and runtime
 
