@@ -6,9 +6,9 @@ Dependencies and Features
 "no_std" Is Not Transitive
 ----------------------------
 
-* :rust:`#![no_std]` applies only to the crate where it is declared
+* The :rust:`#![no_std]` attribute applies *only* to the crate that declares it
 
-* Dependencies used by the library must support intended configuration
+* Dependencies must support the intended :rust:`no_std` configuration
 
   * Dependencies requiring :rust:`std` can be used on targets supporting :rust:`std`
 
@@ -18,11 +18,11 @@ Dependencies and Features
 
 * Dependency compatibility depends on documented features, not just crate descriptions
 
---------------------------------
-Offering Optional Capabilities
---------------------------------
+--------------------------
+Feature-Gated Capabilities
+--------------------------
 
-**Feature definitions in** :filename:`sample_tools/Cargo.toml`
+**Cargo features determine available library capabilities**
 
 .. code:: toml
 
@@ -49,8 +49,8 @@ Supported Library Configurations
   :header-rows: 1
   :widths: 32 68
 
-  * - Enabled features
-    - Intended library configuration
+  * - **Enabled features**
+    - **Intended library configuration**
   * - None
     - :rust:`core` only
   * - :rust:`alloc`
@@ -60,27 +60,13 @@ Supported Library Configurations
 
 * Core APIs remain available in every configuration
 
-* Allocating convenience APIs can remain optional for callers
-
-----------------------------------
-How Features Select Capabilities
-----------------------------------
-
-.. image:: rust_essentials/510_feature_configuration_flow.svg
-   :width: 100%
-   :align: center
-
-* Build flags choose the active feature set
-
-* In this module, :rust:`std` implies :rust:`alloc`
-
-* :rust:`#[cfg(condition)]` includes the following item only when the condition holds
+* Allocating APIs are compiled only when the :rust:`alloc` feature is enabled
 
 ---------------------------------
 Apply the Features to the Crate
 ---------------------------------
 
-**Updated crate declarations replacing earlier** :rust:`#![no_std]` **and** :rust:`extern crate alloc` **declarations**
+**Enabled features can select crate attributes and declarations**
 
 .. code:: rust
 
@@ -101,13 +87,13 @@ Apply the Features to the Crate
 
 .. warning::
 
-  Gate each optional API together with its imports
+  Feature-gated APIs and their imports must use the same condition
 
 -----------------------------------
 Gate the Allocation-Requiring API
 -----------------------------------
 
-**Feature-gated versions of** :rust:`Vec` **import and** :rust:`sorted_samples` **implementation**
+**Feature conditions control the availability of allocating APIs**
 
 .. code:: rust
 
@@ -129,7 +115,7 @@ Gate the Allocation-Requiring API
 Gate the Second Allocating API
 --------------------------------
 
-**Feature-gated replacements for** :rust:`make_message` **and its imports**
+**Imports and functions can share the same feature condition**
 
 .. code:: rust
 
@@ -154,7 +140,7 @@ Gate the Second Allocating API
 Keep "std"-Only Adapters Separate
 -----------------------------------
 
-**Optional adapter isolated in its own module**
+**Adapter compiled only with the** :rust:`std` **feature**
 
 .. code:: rust
 
@@ -171,7 +157,7 @@ Keep "std"-Only Adapters Separate
 
 * Calculation remains usable without the adapter
 
-.. tip::
+.. note::
 
   A :rust:`std` application can use this library without enabling its :rust:`std` feature
 
@@ -210,7 +196,7 @@ Features Add Up
 
 * ``default-features = false`` is not a global ban on that feature
 
-**Feature inspection commands executed from dependent package's directory**
+**Cargo can reveal features selected across the dependency graph**
 
 .. code:: sh
 

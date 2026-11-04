@@ -1,10 +1,10 @@
 =====================
-Optional Allocation
+Flexible Allocation
 =====================
 
---------------------------------
-"no_std" Does Not Mean No Heap
---------------------------------
+-------------------------------
+Heap Allocation With "no_std"
+-------------------------------
 
 * :rust:`alloc` supplies heap-backed types without requiring :rust:`std`
 
@@ -22,26 +22,13 @@ Optional Allocation
 
 .. warning::
 
-  :rust:`extern crate alloc` makes the crate available; it does *not* create a heap or install an allocator
+  :rust:`extern crate alloc` makes the crate available. It does not create a heap or install an allocator
 
------------------------------------
-Stack, Static Storage, and Heap
------------------------------------
+---------------------------
+Using "Vec" With "no_std"
+---------------------------
 
-.. image:: rust_essentials/510_stack_static_heap.svg
-   :width: 100%
-   :align: center
-
-* Local variables usually live in a stack frame
-* Static variables have storage for the whole program
-* A :rust:`Vec` header stores a pointer, length, and capacity
-* The *elements* of a :rust:`Vec` live in heap-backed storage
-
------------------------------------------
-An Allocation-Requiring Convenience API
------------------------------------------
-
-**Additional declarations in** :filename:`src/lib.rs` **below** :rust:`#![no_std]`
+**A** :rust:`no_std` **library can use** :rust:`Vec` **without choosing an allocator**
 
 .. code:: rust
 
@@ -55,18 +42,22 @@ An Allocation-Requiring Convenience API
       sorted
   }
 
-* :rust:`sorted_samples` returns an owned, sorted copy of the input
+* The imports make :rust:`Vec` available without :rust:`std`
 
------------------------------------------
-Types and Macros Need Their Own Imports
------------------------------------------
+* :rust:`Vec::from(samples)` creates an owned copy, using the
+  final program's allocator when allocation is needed
 
-**Additional function in** :filename:`src/lib.rs` **reusing the earlier** :rust:`Vec` **import**
+-----------------------------------
+Macros Can Allocate With "no_std"
+-----------------------------------
+
+**Macros can create heap-backed values even without** :rust:`std`
 
 .. code:: rust
 
-  use alloc::string::String;
-  use alloc::{format, vec};
+  extern crate alloc;
+
+  use alloc::{format, string::String, vec, vec::Vec};
 
   pub fn make_message() -> (Vec<u16>, String) {
       let values = vec![10, 42, 7];
@@ -74,8 +65,8 @@ Types and Macros Need Their Own Imports
       (values, text)
   }
 
-* Importing the :rust:`Vec` type does not import the :rust:`vec!` macro
+* :rust:`vec!` creates a heap-backed :rust:`Vec`
 
-* :rust:`format!` creates an owned :rust:`String`
+* :rust:`format!` creates a heap-backed :rust:`String`
 
-  * :rust:`format_args!` does not
+* Both require allocator support in the final program
