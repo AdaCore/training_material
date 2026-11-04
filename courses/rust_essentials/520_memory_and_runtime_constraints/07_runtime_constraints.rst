@@ -28,6 +28,8 @@ Bound Memory, Then Bound the Work
 
 * Use measurements and analysis for the deployment environment
 
+* Compilation alone does not establish memory or timing bounds
+
 .. warning::
 
   The cost of :rust:`sort_unstable` depends on the slice's length, not the
@@ -51,7 +53,7 @@ Handle Memory and Capacity Limits
 Capacity Limits: Observed Results
 -----------------------------------
 
-* Host-side example using the default :rust:`std` feature
+* Example using standard output on a host
 
 .. code:: rust
 
@@ -93,25 +95,3 @@ Other Capacity Boundaries
 
 * Capacity errors can be observed without exhausting system memory
 
-----------------------------------
-Compare the Library Configurations
-----------------------------------
-
-* Three supported crate configurations
-
-.. code:: sh
-
-  cargo check --lib --no-default-features
-  cargo check --lib --no-default-features --features alloc
-  cargo check --lib
-
-* Bounded APIs are available in all three configurations
-
-* :rust:`try_sorted_samples` requires :rust:`alloc`
-
-  * Enabled by default through :rust:`std`
-  * A :rust:`no_std` application also needs an allocator
-
-.. note::
-
-  Successful compilation does not establish memory or timing bounds
