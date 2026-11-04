@@ -1,5 +1,5 @@
 =========================
-Programming with "core"
+Programming With "core"
 =========================
 
 ---------------------------
@@ -14,7 +14,7 @@ Familiar Rust Still Works
 
 * Arrays, slices, and :rust:`str` remain part of the language
 
-.. tip::
+.. note::
 
   These are language features. :rust:`core` provides many of the library types, methods, and trait implementations used with them
 
@@ -26,8 +26,8 @@ What "core" Provides
   :header-rows: 1
   :widths: 44 56
 
-  * - Familiar functionality
-    - Examples
+  * - **Functionality**
+    - **Examples**
   * - Optional values and errors
     - :rust:`Option`, :rust:`Result`
   * - Iteration
@@ -41,15 +41,52 @@ What "core" Provides
 
 * Macros such as :rust:`panic!`, :rust:`assert!`, and :rust:`assert_eq!` remain available
 
+------------------------------
+What "core" Does Not Provide
+------------------------------
+
+.. list-table::
+  :header-rows: 1
+  :widths: 32 68
+
+  * - **Familiar API**
+    - **Without std**
+  * - :rust:`Vec`, :rust:`String`, :rust:`Box`
+    - Use :rust:`alloc`, or avoid heap-backed storage
+  * - :rust:`println!`, :rust:`eprintln!`
+    - Unavailable without :rust:`std`; use an alternative output mechanism
+  * - :rust:`std::thread`
+    - No standard OS-thread API is provided
+  * - :rust:`std::fs`, socket APIs
+    - File and network I/O require alternative APIs
+
 .. note::
 
-  The final program determines how panics are handled
+  I/O and concurrency remain possible without :rust:`std`, using other APIs or platform support
+
+---------------------------
+Designing Portable APIs
+---------------------------
+
+**Portable APIs can avoid heap allocation and platform services**
+
+* :rust:`&[T]` and :rust:`&str` allow functions to borrow
+  caller-owned data
+
+* :rust:`Option` and :rust:`Result` represent absent values
+  and recoverable errors
+
+* Iterators and error propagation with :rust:`?` work
+  without :rust:`std`
+
+* Callers decide how to handle output and other
+  platform services
 
 --------------------------
 A Small Portable Library
 --------------------------
 
-**Example library:** :filename:`sample_tools/src/lib.rs`
+**Library** :rust:`sample_tools` **uses slices and iterators without** :rust:`std`
 
 .. code:: rust
 
@@ -70,7 +107,7 @@ A Small Portable Library
 Borrowed Text and Recoverable Errors
 --------------------------------------
 
-**Additional function in** :filename:`src/lib.rs`
+**String slices and error propagation remain available without** :rust:`std`
 
 .. code:: rust
 
@@ -95,7 +132,7 @@ Borrowed Text and Recoverable Errors
 Using the Library From a "std" Application
 --------------------------------------------
 
-**Host-side example in** :filename:`sample_tools/examples/inspect.rs`
+**Host applications using** :rust:`std` **can call** :rust:`no_std` **libraries**
 
 .. code:: rust
 
@@ -109,48 +146,35 @@ Using the Library From a "std" Application
       }
   }
 
-* :command:`cargo run --example inspect` prints ``Maximum: 42``
+* Example application prints ``Maximum: 42``
 
 * Example application uses :rust:`std`; the library remains :rust:`no_std`
-
-------------------------------
-What "core" Does Not Provide
-------------------------------
-
-.. list-table::
-  :header-rows: 1
-  :widths: 32 68
-
-  * - Familiar API
-    - Without :rust:`std`
-  * - :rust:`Vec`, :rust:`String`, :rust:`Box`
-    - Use :rust:`alloc`, or avoid heap-backed storage
-  * - :rust:`println!`, :rust:`eprintln!`
-    - Let the caller choose how to produce output
-  * - :rust:`std::thread`
-    - No standard OS-thread API is provided
-  * - :rust:`std::fs`, socket APIs
-    - Require another implementation or a caller-supplied interface
-
-.. note::
-
-  Losing these :rust:`std` APIs does not make I/O or concurrency impossible. The required support must come from elsewhere
 
 -----------------------------------
 Formatting Is Not Standard Output
 -----------------------------------
 
-* :rust:`Debug` and :rust:`Display` are available through :rust:`core::fmt`
+**Formatting remains available without** :rust:`std`
 
-* :rust:`format_args!` prepares formatting arguments without creating a :rust:`String`
+A :rust:`no_std` library can format text without
+depending on standard output or a particular platform
 
-* :rust:`write!` and :rust:`writeln!` format into a supplied destination
+.. list-table::
+  :header-rows: 1
+  :widths: 34 66
 
-* :rust:`format_args!`, :rust:`write!`, and :rust:`writeln!` work without :rust:`std`
+  * - **API**
+    - **Role**
+  * - :rust:`Debug`, :rust:`Display`
+    - Formatting traits in :rust:`core::fmt`
+  * - :rust:`format_args!`
+    - Prepares formatting arguments without creating a :rust:`String`
+  * - :rust:`write!`, :rust:`writeln!`
+    - Format into a supplied destination
+  * - :rust:`println!`
+    - Writes to standard output; requires :rust:`std`
 
-* :rust:`println!` requires :rust:`std` to write to standard output
-
-.. tip::
+.. note::
 
   Describing text and choosing where to send it are separate responsibilities
 
@@ -158,7 +182,7 @@ Formatting Is Not Standard Output
 Let Caller Choose Destination
 -------------------------------
 
-**Function** :rust:`write_maximum` **defined in** :filename:`src/lib.rs`
+**Formatting can use a caller-supplied writer**
 
 .. code:: rust
 
@@ -183,7 +207,7 @@ Let Caller Choose Destination
 The Caller Can Still Use "String"
 -----------------------------------
 
-**Second host-side example in** :filename:`examples/report.rs`
+**Callers can choose an allocating output destination**
 
 .. code:: rust
 

@@ -6,7 +6,7 @@ Checking Configurations
 Check Each Supported Configuration
 ------------------------------------
 
-**Configuration checks run from** :filename:`sample_tools` **directory**
+**Each supported configuration needs a separate compilation check**
 
 .. code:: sh
 

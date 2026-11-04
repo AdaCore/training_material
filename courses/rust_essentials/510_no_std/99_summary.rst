@@ -6,26 +6,21 @@ Summary
 What We Covered
 -----------------
 
-* **Why** :rust:`no_std`?
-
-  - Removes automatic dependency on :rust:`std` for a crate
-
-
-* **Programming with** :rust:`core`
+* **Programming With** :rust:`core`
 
   - Provides types, traits, iterators, and formatting
 
   - Borrowed data, return values, and caller-supplied interfaces work without :rust:`std`
 
 
-* **Optional Allocation**
+* **Flexible Allocation**
 
   - Adds heap-backed types when final program supports allocation
 
 
 * **Dependencies and Features**
 
-  - Cargo features control optional capabilities
+  - Cargo features control which capabilities are compiled
 
   - Reusable libraries can support core-only, allocating, and :rust:`std` configurations
 
