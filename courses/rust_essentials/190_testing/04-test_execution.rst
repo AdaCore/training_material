@@ -11,7 +11,7 @@ Controlling Execution Environment
 * Some examples
 
   * :command:`--no-run` |rightarrow| Compile without executing
-  * :command:`--package` |rightarrow| Package selection
+  * :command:`--package <NAME>` |rightarrow| Test specified package
   * :command:`--all-features` |rightarrow| Activate all available features
 
 * Plus many others
@@ -30,16 +30,14 @@ Controlling Execution Behavior
 
 * Plus many others
 
--------------------
-Some Example Code
--------------------
+----------------------------
+Simple Function Under Test
+----------------------------
 
-* A simple function under test
+* Divide by zero prints a message to standard error and returns 0.0
+* Otherwise return the result of the division
 
-  * Divide by zero prints a message to standard error and returns 0.0
-  * Otherwise return the result of the division
-
-    * Print a warning to standard output when dividing by a small number
+  * Print a warning to standard output when dividing by a small number
 
 .. code:: Rust
 
@@ -55,25 +53,27 @@ Some Example Code
       }
   }
 
---------------------
-Some Example Tests
---------------------
+----------------------
+Writing Simple Tests
+----------------------
 
-* Some empty (for now) tests
+.. code:: Rust
 
-  .. code:: Rust
+  #[test]
+  fn error_output() {}
 
-    #[test]
-    fn error_output() {}
+  #[test]
+  fn warning_output() {}
 
-    #[test]
-    fn warning_output() {}
+  #[test]
+  fn normal() {}
 
-    #[test]
-    fn normal() {}
+  #[test]
+  fn really_long_test() {}
 
-    #[test]
-    fn really_long_test() {}
+.. note::
+
+  All these tests pass - nothing is being checked
 
 ------------------------
 Running Multiple Tests
@@ -94,7 +94,7 @@ Running Multiple Tests
 
 * If tests require system resources, parallel execution can cause conflicts
 
-  * Need to enforce execution of one test at a time
+  * Can enforce execution of one test at a time
   * :command:`cargo test -- --test-threads=1`
 
   .. code:: output
@@ -114,11 +114,19 @@ Running Multiple Tests
 Dealing With Console Output
 -----------------------------
 
-* Unit tests for three paths
+.. code:: Rust
 
-  * Normal path - no output
-  * Warning path - output to standard output
-  * Error path - output to standard error
+  pub fn divide(top: f64, bottom: f64) -> f64 {
+      if bottom == 0.0 { // print to standard error
+          eprintln!("Problem - divide by 0");
+          0.0_f64
+      } else if bottom.abs() < 1.0 { // print to standard output
+          println!("Warning - this might get large");
+          top / bottom
+      } else { // no printing
+          top / bottom
+      }
+  }
 
 .. code:: Rust
 
@@ -263,8 +271,14 @@ Preventing Problematic Tests From Running
     }
 
 * :rust:`really_long_test` will **not** be run via :command:`cargo test`
-* :command:`cargo test -- --ignored` |rightarrow| Run *only* ignored tests
-* :command:`cargo test -- --include-ignored` |rightarrow| Run *both* regular and ignored tests
+
+:command:`cargo test -- --ignored`
+
+  *Run* **only** *ignored tests*
+
+:command:`cargo test -- --include-ignored`
+
+  *Run* **both** *regular and ignored tests*
 
 -----------------------
 More on Ignored Tests

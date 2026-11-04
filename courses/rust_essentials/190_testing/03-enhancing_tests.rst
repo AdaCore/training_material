@@ -39,7 +39,7 @@ Assertion Failure Messages
 Failure Messages With Named "format!"
 ---------------------------------------
 
-* After the condition, arguments are treated as inputs to :rust:`format!` macro
+**After condition, arguments treated as inputs to** :rust:`format!` **macro**
 
 .. code:: rust
   :number-lines: 16
@@ -148,23 +148,26 @@ Expecting Panic
 Expecting the Right Panic
 ---------------------------
 
-* What happens to our test if :rust:`find_index` doesn't work correctly?
+* What happens to our test if :rust:`find_index` has a bug?
 
-  * Replace
+  .. code:: rust
+    :number-lines: 1
 
-    .. code:: rust
-
-      panic!("value not found");
-
-  * With
-
-    .. code:: rust
-
-      0 // not found
+    pub fn find_index(list: &[i32], value: i32) -> usize {
+        for (index, item) in list.iter().enumerate() {
+            if *item /= value { // should be "=="
+                return index;
+            }
+        }
+        // panic if 'value' not found
+        panic!("value not found");
+  }
 
 * Test will pass (because it expects a panic)
 
-  * Even though the code is wrong, assertion will panic
+  * Test expects line 8 to panic (:rust:`item` is not in :rust:`list`)
+  * :rust:`if` on line 3 is wrong, so code returns :rust:`index`
+  * Assertion causes panic (return value does not match)
 
 * Need to specify expected text in panic message
 
@@ -220,41 +223,44 @@ Functions Returning "Result"
         }
     }
 
-* Tests should detect :rust:`Result` rather than panicking
+* Tests should handle returned :rust:`Result`
+
+  * Could :rust:`.unwrap` result if :rust:`Ok` is expected
+
+    * Test will panic if :rust:`Err` is returned
+
+  * Could handle both variants with appropriate check/message
 
 --------------------------
 Testing "Result" Returns
 --------------------------
 
-* Use :rust:`?` when tested function returns :rust:`Result`
+* Test of function that returns :rust:`Result` can propagate return value
+
+  * Test continues if :rust:`Ok` variant is returned
+  * :rust:`Err` causes test executor to flag test as failed
 
   .. code:: rust
 
     #[test]
-    fn test1() -> Result<(), String> {
-        let result = divide(14.0, 3.0)?;
-        assert!(result > 4.6 && result < 4.7);
+    fn test_1() -> Result<(), String> {
+        // propagate `Err` if returned
+        let result = divide(14.0, 0.0)?;
+        // Unwrap value; panic if it doesn't match
+        assert!(result > 0.0);
+        // test passed; return `Ok`
         Ok(())
     }
+
+* Or test can handle :rust:`Result` directly
+
+  .. code:: rust
 
     #[test]
-    fn test2() -> Result<(), String> {
-        let result = divide(14.0, 0.0)?;
-        assert!(result > 0.0);
-        Ok(())
+    fn test_2() {
+      let result = divide(10.0, 0.0);
+      match result {
+          Ok(value) => assert!(value > 0.0);
+          Err(e)    => panic!("Error: {e});
+      }
     }
-
-* Tests return :rust:`Ok` on success
-
-  * But propagate :rust:`Err` on failure
-
-.. code:: output
-  :font-size: footnotesize
-
-  test tests::test1 ... ok
-  test tests::test2 ... FAILED
-
-  failures:
-
-  ---- tests::test2 stdout ----
-  Error: "Cannot divide by zero!"

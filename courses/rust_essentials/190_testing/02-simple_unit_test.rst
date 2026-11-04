@@ -45,11 +45,9 @@ Creating Tests for a Binary Crate
 
 * Tests can also be created in a binary crate
 
-  * But :rust:`main` is not executed automatically when running unit tests
+  * Require test engineer to add test code to file manually
 
-* Use the same mechanism as above
-
-  * Can go in :filename:`main.rs` or any other module
+* Unit tests in binary crate formatted same as in library crate
 
 .. code:: rust
 
@@ -71,6 +69,29 @@ Creating Tests for a Binary Crate
           assert_eq!(helper("foo"), "Hello, foo!")
       }
   }
+
+-----------------------------------------------
+Library Crate Testing vs Binary Crate Testing
+-----------------------------------------------
+
+* Creating crate :rust:`my_crate` always creates
+
+  * :filename:`my_crate` folder
+  * :filename:`my_crate/src` folder
+  * :filename:`Cargo.toml` file
+
+* Library crates will create :filename:`my_crate/src/lib.rs` containing
+
+  * Example function (:rust:`pub fn add`)
+  * Example test configuration and module
+
+* Binary crates will create :filename:`my_crate/src/main.rs` containing
+
+  * Template main program
+  * **No** test configuration module
+
+    * It can be added to :filename:`main.rs`
+    * But it can only test non-main functions
 
 ----------------
 Test Semantics
@@ -94,16 +115,11 @@ Test Semantics
 * Line 5: Module only compiled when building tests
 * Line 6: Creates a child module named :rust:`tests`
 * Line 7: Brings names from parent module into scope
-
-  * Tests can call :rust:`add(...)` directly
-  * :rust:`use super::*;` avoids qualified paths to parent-module items
-
 * Line 9: Following function is a test
+* Line 10: Test function takes no parameters
 
-  * Test function takes no parameters
   * Usually returns :rust:`()`
-
-    * Can also return :rust:`Result` (shown later)
+  * Can also return :rust:`Result` (shown later)
 
 * Line 11: Call to function being tested
 * Line 12: Verify results of function call
@@ -152,12 +168,11 @@ Validating Test Results
   * Output is in a range of values
   * Executed behavior is consistent
 
-* Single test *fails* when the test function panics
+* Individual test *fails* when function panics
 
-  * Panic fails current test
-  * Remaining tests continue running
+  * If multiple tests defined, remaining tests continue running
 
-* Panic is most commonly caused by
+* Panic is most commonly triggered by
 
   * Explicitly calling :rust:`panic!`
   * Assertion macros where assertion is false
@@ -200,7 +215,7 @@ Explicit Panic
 "assert_eq!" (and "assert_ne!")
 ---------------------------------
 
-* Most common form of validation is equality
+* Tests often compare results to expected values
 
   * :rust:`2 + 2 == 4`
   * :rust:`sqrt(144) == 12`
@@ -287,9 +302,9 @@ Multiple Assertions
 
   #[test]
   fn multiple_assertions() {
-      assert_eq!(add(1, 1), 3); // Should fail
-      assert_eq!(add(1, 1), 4); // Should fail
-      assert_eq!(add(1, 1), 2); // Should pass
+      assert_eq!(add(1, 1), 3); // Will fail
+      assert_eq!(add(1, 1), 4); // Not reached
+      assert_eq!(add(1, 1), 2); // Not reached
   }
 
   #[test]

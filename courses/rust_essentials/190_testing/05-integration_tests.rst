@@ -26,9 +26,10 @@ What Is an Integration Test?
 The "tests" Folder
 --------------------
 
-* :filename:`tests` folder created at same level as :filename:`src` folder
+* Test engineer can create :filename:`tests` folder at same level as :filename:`src` folder
 
-  * Test files stored in that folder (names are not specific)
+  * Test modules stored in that folder
+  * Module names are user-defined
 
 * Test file content similar to :rust:`tests` module in library unit
 
@@ -40,7 +41,7 @@ The "tests" Folder
 
 .. note::
 
-  :command:`cargo` will automatically discover tests in the :filename:`tests` folder
+  :command:`cargo test` will automatically discover tests in the :filename:`tests` folder
 
 -------------------------------
 Example Source and Test Files
@@ -122,9 +123,9 @@ Submodules in Integration Tests
 
 * Solution is to create a subfolder in :filename:`tests`
 
-  * Using old style naming conventions
-  * E.g. :filename:`common/mod.rs`
+  * Naming convention is :filename:`<module>/mod.rs`
 
+    * :filename:`common/mod.rs`
     * Declare the module with :rust:`mod common;`
     * Call its functions, e.g. :rust:`common::setup()`
 

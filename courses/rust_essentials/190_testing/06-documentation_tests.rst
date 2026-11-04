@@ -25,39 +25,20 @@ What Is a "doctest"?
 
 * Rust code blocks in :rust:`///` or :rust:`//!` comments are doctests by default
 
---------------------
-Why Use "doctest"?
---------------------
+------------------------
+Benefits of "doctest"?
+------------------------
 
-* **Dual Purpose**
+* Doctests serve two purposes
 
   * Public API documentation (via ``cargo doc``)
   * Automated integration tests
 
-* **Crate Type Restriction**
+* Doctests act on external API of module
 
-  * Doctests generally run only on library crates
+  * Tests focus on interaction with clients
 
-    * :command:`rustdoc --test` has more flexibility than :command:`cargo test --doc`
-
-* **Isolation**
-
-  * Uses the library as an external dependency
-
-* **Attributes**
-
-  * Code fences support adding execution attributes to doctest code
-
-  .. code:: rust
-
-    /// `no_run`: compiles to ensure syntax and types are valid, but does not execute.
-    /// Useful for code that requires network access, external hardware, or loops forever.
-    ///
-    /// ```no_run
-    /// loop {
-    ///     println!("Waiting for input...");
-    /// }
-    /// ```
+    * Not low-level support functions
 
 --------------------------
 "doctest" Implementation
@@ -135,9 +116,9 @@ Running "doctest" Standalone
 
   all doctests ran in 1.04s; merged doctests compilation took 0.58s
 
--------------------
-Generating Output
--------------------
+-------------------------------
+Generating HTML Documentation
+-------------------------------
 
 * To generate documentation: :command:`cargo doc`
 
