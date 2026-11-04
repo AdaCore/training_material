@@ -18,7 +18,7 @@ Borrow the Output Buffer
 
 * No allocation is needed; insufficient space is rejected before modification
 
-* Error type in :filename:`src/memory.rs`
+* Error type returned when the supplied buffer is too small
 
 .. code:: rust
 
@@ -29,7 +29,7 @@ Borrow the Output Buffer
 Implementing "sort_into"
 --------------------------
 
-* Add to :filename:`src/memory.rs`
+**The function rejects oversized inputs before copying**
 
 .. code:: rust
 
@@ -49,20 +49,16 @@ Implementing "sort_into"
 Reuse the Same Buffer
 -----------------------
 
-* Create :filename:`examples/reuse_buffer.rs`
+**The same caller-owned buffer can be used for successive calls**
 
 .. code:: rust
 
-  use memory_tools::memory::sort_into;
+  let mut scratch = [0_u16; 4];
 
-  fn main() {
-      let mut scratch = [0_u16; 4];
+  let first = sort_into(&[42, 7, 10], &mut scratch)
+      .expect("three samples fit");
+  assert_eq!(first, &[7, 10, 42]);
 
-      let first = sort_into(&[42, 7, 10], &mut scratch)
-          .expect("three samples fit");
-      assert_eq!(first, &[7, 10, 42]);
-
-      let second = sort_into(&[9, 2], &mut scratch)
-          .expect("two samples fit");
-      assert_eq!(second, &[2, 9]);
-  }
+  let second = sort_into(&[9, 2], &mut scratch)
+      .expect("two samples fit");
+  assert_eq!(second, &[2, 9]);

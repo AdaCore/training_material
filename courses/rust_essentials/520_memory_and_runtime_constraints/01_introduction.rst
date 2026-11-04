@@ -12,11 +12,13 @@ Topics Covered
 
 * **Dynamic Allocation**
 
-  - Identify allocation costs and handle errors from fallible allocations
+  - Identify allocation costs
+  - Handle errors from fallible allocations
 
 * **Caller-Provided and Static Storage**
 
-  - Reuse existing memory and control access to persistent data
+  - Reuse existing memory
+  - Control access to persistent data
 
 * **Fixed-Capacity Collections**
 
@@ -30,7 +32,7 @@ Topics Covered
 Available Does Not Mean Appropriate
 -------------------------------------
 
-* :rust:`no_std` does not set limits on memory use
+* Memory budgets apply to stack, static storage, and heap allocations
 
 * An allocator makes heap-backed types usable, not unlimited
 
@@ -46,9 +48,9 @@ Available Does Not Mean Appropriate
 
   Memory safety does not bound memory use or execution time
 
------------------------------------------
-Running Example: Sorting Sample Batches
------------------------------------------
+------------------------
+Sorting Sample Batches
+------------------------
 
 **Compare three ways to sort** :rust:`u16` **samples**
 
@@ -58,44 +60,3 @@ Running Example: Sorting Sample Batches
 
 * Return an owned, fixed-capacity collection
 
-------------------------------
-Example Library: Cargo Setup
-------------------------------
-
-**A standalone library hosts the examples**
-
-* Creation of the :filename:`memory_tools` library
-
-.. code:: sh
-
-  cargo new --lib memory_tools
-
-* Feature configuration in :filename:`Cargo.toml`
-
-.. code:: toml
-
-  [features]
-  default = ["std"]
-  std = ["alloc"]
-  alloc = []
-
--------------------------------
-Example Library: Source Files
--------------------------------
-
-**The library declares a separate module for the examples**
-
-* Library root in :filename:`src/lib.rs`
-
-.. code:: rust
-
-  #![cfg_attr(not(feature = "std"), no_std)]
-
-  #[cfg(feature = "alloc")]
-  extern crate alloc;
-
-  pub mod memory;
-
-* Create an empty :filename:`src/memory.rs`
-
-  * Later slides add its implementations

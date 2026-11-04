@@ -12,7 +12,7 @@ Why Static Storage Matters
 
 * Static storage makes that data independent of a call's local lifetime
 
-* Add this read-only dataset to :filename:`src/memory.rs`
+* Example of read-only data with program-duration storage
 
 .. code:: rust
 
