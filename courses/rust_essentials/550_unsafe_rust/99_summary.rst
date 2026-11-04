@@ -6,11 +6,32 @@ Summary
 What We Covered
 -----------------
 
-* Topic 1
+* **Safe vs. Unsafe**
 
-  - Subtopic 1a
+  - Unsafe Rust introduces explicit safety obligations
+  - Safety requirements the compiler cannot verify must be upheld
 
-* Topic 2
+* **Raw Pointers**
 
-  - Subtopic 2a
+  - Creation is safe
+  - Dereferencing requires :rust:`unsafe`
 
+* **Unsafe Functions**
+
+  - Callers are responsible for satisfying safety contracts
+
+* **Mutable Statics**
+
+  - Reading or writing :rust:`static mut` requires :rust:`unsafe`
+
+* **Unsafe Traits**
+
+  - Implementors are responsible for satisfying safety contracts
+
+* **Unions**
+
+  - Reading a union field requires :rust:`unsafe`
+
+* **Safe Abstractions**
+
+  - Encapsulate unsafe operations behind a sound, safe API
