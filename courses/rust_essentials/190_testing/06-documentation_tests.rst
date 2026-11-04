@@ -6,7 +6,7 @@ Documentation Tests
 What Is a "doctest"?
 ----------------------
 
-* Executable code snippets embedded directly inside documentation comments
+* Executable code embedded directly inside documentation comments
 
   * Ensure code examples in documentation match actual code
 

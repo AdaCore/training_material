@@ -6,13 +6,13 @@ Introduction
 Topics Covered
 ----------------
 
-* **Simple Unit Tests**
+* **Simple Unit Test**
 
   - Creating a test framework
   - Specifying and running tests
   - Verifying test results
 
-* **Enhancing Unit Tests**
+* **Enhancing Tests**
 
   - Improving test messages
   - Testing code that panics

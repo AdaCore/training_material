@@ -70,9 +70,9 @@ Creating Tests for a Binary Crate
       }
   }
 
------------------------------------------------
-Library Crate Testing vs Binary Crate Testing
------------------------------------------------
+------------------------------------------------
+Library Crate Testing vs. Binary Crate Testing
+------------------------------------------------
 
 * Creating crate :rust:`my_crate` always creates
 
@@ -80,12 +80,12 @@ Library Crate Testing vs Binary Crate Testing
   * :filename:`my_crate/src` folder
   * :filename:`Cargo.toml` file
 
-* Library crates will create :filename:`my_crate/src/lib.rs` containing
+* Library crates contain :filename:`my_crate/src/lib.rs`
 
   * Example function (:rust:`pub fn add`)
   * Example test configuration and module
 
-* Binary crates will create :filename:`my_crate/src/main.rs` containing
+* Binary crates contain :filename:`my_crate/src/main.rs`
 
   * Template main program
   * **No** test configuration module
