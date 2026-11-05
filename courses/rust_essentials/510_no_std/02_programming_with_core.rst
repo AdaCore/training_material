@@ -16,7 +16,7 @@ Familiar Rust Still Works
 
 .. note::
 
-  These are language features. :rust:`core` provides many of the library types, methods, and trait implementations used with them
+  These are language features; :rust:`core` provides many of the library types, methods, and trait implementations used with them
 
 ----------------------
 What "core" Provides
@@ -155,9 +155,6 @@ Formatting Is Not Standard Output
 -----------------------------------
 
 **Formatting remains available without** :rust:`std`
-
-A :rust:`no_std` library can format text without
-depending on standard output or a particular platform
 
 .. list-table::
   :header-rows: 1

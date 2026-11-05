@@ -48,7 +48,7 @@ Three Library Layers
 
 * :rust:`no_std` libraries can use :rust:`core` alone or with :rust:`alloc`
 
-* Using :rust:`alloc` does not provide files, sockets, or OS threads
+* :rust:`alloc` does not provide files, sockets, or OS threads
 
 -----------------------
 What "no_std" Changes

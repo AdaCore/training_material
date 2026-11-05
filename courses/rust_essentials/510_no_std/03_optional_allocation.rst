@@ -8,9 +8,9 @@ Heap Allocation With "no_std"
 
 * :rust:`alloc` supplies heap-backed types without requiring :rust:`std`
 
-* :rust:`alloc` is provided by the Rust toolchain
+  * Provided by the Rust toolchain
 
-* No crates.io dependency on :rust:`alloc` is needed in :filename:`Cargo.toml`
+  * No crates.io dependency is needed in :filename:`Cargo.toml`
 
 * Reusable libraries can use those types *without* selecting an allocator
 
@@ -22,7 +22,7 @@ Heap Allocation With "no_std"
 
 .. warning::
 
-  :rust:`extern crate alloc` makes the crate available. It does not create a heap or install an allocator
+  :rust:`extern crate alloc` makes the crate available; it does *not* create a heap or install an allocator
 
 ---------------------------
 Using "Vec" With "no_std"
