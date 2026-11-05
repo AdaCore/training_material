@@ -52,7 +52,7 @@ Benefits of "doctest"
   /// ```
   /// # use adder::add;
   /// assert_eq!(add(3, 4), 7);
-  /// assert_ne!(add(2, 6), 7);
+  /// assert_ne!(add(3, 3), 5);
   /// ```
 
 * :rust:`///` indicates documentation comments

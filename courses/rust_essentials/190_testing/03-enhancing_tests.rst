@@ -155,7 +155,7 @@ Expecting the Right Panic
 
     pub fn find_index(list: &[i32], value: i32) -> usize {
         for (index, item) in list.iter().enumerate() {
-            if *item /= value { // should be "=="
+            if *item != value { // should be "=="
                 return index;
             }
         }
