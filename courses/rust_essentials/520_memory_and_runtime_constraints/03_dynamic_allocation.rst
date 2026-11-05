@@ -43,7 +43,7 @@ Length Is Not Capacity
 
 * Example output (capacity may be larger on some implementations)
 
-.. code:: text
+.. code:: output
 
   length: 0
   capacity: 4
@@ -72,7 +72,7 @@ Clearing and Reusing Capacity
 
 * Example output (capacity may be larger on some implementations)
 
-.. code:: text
+.. code:: output
 
   before: (1, 4)
   after: (0, 4)
@@ -98,7 +98,7 @@ Observe Capacity Growth
 
 * Example output (growth strategy is not guaranteed)
 
-.. code:: text
+.. code:: output
 
   capacity: 0 -> 4
   capacity: 4 -> 8
