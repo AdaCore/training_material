@@ -260,7 +260,7 @@ Testing "Result" Returns
     fn test_2() {
       let result = divide(10.0, 0.0);
       match result {
-          Ok(value) => assert!(value > 0.0);
-          Err(e)    => panic!("Error: {e});
+          Ok(value) => assert!(value > 0.0),
+          Err(e)    => panic!("Error: {e}"),
       }
     }
