@@ -64,7 +64,7 @@ Capacity Limits: Observed Results
 
 * Output
 
-.. code:: text
+.. code:: output
 
   Ok([7, 42])
   Err(BufferTooSmall)
@@ -86,7 +86,7 @@ Other Capacity Boundaries
 
 * Output
 
-.. code:: text
+.. code:: output
 
   [7, 42]
   true
