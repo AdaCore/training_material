@@ -20,7 +20,7 @@ What We Covered
 
 - **Hardware Interrupts (ISRs)**
 
-  - Hardware-level preemption for sub-microsecond response
+  - Hardware-level preemption for fast response
 
   - Prevent data race via :rust:`core::sync::atomic` and memory ordering
 
@@ -30,7 +30,7 @@ What We Covered
 
   - Schedulers and executors like Embassy in :rust:`no_std` environments
 
-- **State Sharing & Interior Mutability**
+- **State Sharing and Interior Mutability**
 
   - Single-threaded mutation using :rust:`Cell` and :rust:`RefCell`
 

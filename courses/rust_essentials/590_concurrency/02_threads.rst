@@ -8,7 +8,7 @@ The "std" Solution
 
 :rust:`std::thread` **relies on operating system**
 
-  * OS handles scheduling, preempting, and context-switching across CPU
+  * OS handles scheduling, preempting, and context-switching
 
 .. code:: rust
 
@@ -20,7 +20,7 @@ The "std" Solution
   });
 
 ------------------
-Joining A Thread
+Joining a Thread
 ------------------
 
 **Pass a closure to** :rust:`std::thread::spawn` **to spawn a thread**

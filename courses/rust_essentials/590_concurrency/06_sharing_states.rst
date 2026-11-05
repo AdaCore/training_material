@@ -1,5 +1,5 @@
 ================
-Sharing states
+Sharing States
 ================
 
 ---------------------------------
@@ -14,7 +14,7 @@ The Interior Mutability Problem
   * Shared state across OS threads
   * Global peripheral buffers in embedded systems
 
-* Interior Mutability provides the escape hatch safely
+* *Interior Mutability* provides the escape hatch safely
 
   * Uses an internal :rust:`UnsafeCell<T>` to bypass compile-time aliasing rules
   * Moves borrow safety checks from compile time to runtime or hardware level

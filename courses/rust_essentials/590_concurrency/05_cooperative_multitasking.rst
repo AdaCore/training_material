@@ -19,7 +19,7 @@ Why Not Just OS Threads?
   * No OS scheduler needed—compiled into zero-cost state machines
 
 ---------------------
-The "async" Keyword
+"async" Keyword
 ---------------------
 
 **Marking a function as** :rust:`async` **changes what it returns**
@@ -40,7 +40,7 @@ The "async" Keyword
   }
 
 -----------------------
-The ".await" Operator
+".await" Operator
 -----------------------
 
 **.await evaluates a Future to completion**
@@ -67,7 +67,7 @@ The ".await" Operator
   }
   
 ---------------------
-Awaiting the future
+Awaiting the Future
 ---------------------
 
 .. code:: rust

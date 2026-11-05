@@ -15,7 +15,7 @@ Hardware-Level Preemption
 * Interrupts are triggered directly by hardware peripherals
 
   * CPU forcibly pauses the current execution
-  * Instantly jumps execution to an Interrupt Service Routine
+  * Instantly jumps execution to an Interrupt Service Routine (ISR)
   * Runs in a special hardware execution mode
 
     * Not within an OS thread or async task
