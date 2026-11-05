@@ -6,11 +6,11 @@ Static Storage
 Why Static Storage Matters
 ----------------------------
 
-* Some data must remain available across many calls
+* Some data must persist across many calls
 
   * Immutable tables can be shared without recreating their contents
 
-* Static storage makes that data independent of a call's local lifetime
+* Static storage exists independently of function calls
 
 * Example of read-only data with program-duration storage
 
