@@ -25,9 +25,9 @@ What Is a "doctest"?
 
 * Rust code blocks in :rust:`///` or :rust:`//!` comments are doctests by default
 
-------------------------
-Benefits of "doctest"?
-------------------------
+-----------------------
+Benefits of "doctest"
+-----------------------
 
 * Doctests serve two purposes
 
