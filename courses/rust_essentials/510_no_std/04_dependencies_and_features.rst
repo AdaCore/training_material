@@ -7,15 +7,12 @@ Dependencies and Features
 ----------------------------
 
 * The :rust:`#![no_std]` attribute applies *only* to the crate that declares it
-
 * Dependencies must support the intended :rust:`no_std` configuration
 
   * Dependencies requiring :rust:`std` can be used on targets supporting :rust:`std`
-
   * On a target without :rust:`std` support, such a dependency prevents the build
 
 * Default features of dependencies may require :rust:`std` or heap allocation
-
 * Dependency compatibility depends on documented features, not just crate descriptions
 
 --------------------------
@@ -32,9 +29,7 @@ Feature-Gated Capabilities
   std = ["alloc"]
 
 * ``default = ["std"]`` enables the :rust:`std` feature by default
-
 * ``alloc = []`` defines a feature without enabling others or providing an allocator
-
 * ``std = ["alloc"]`` makes the :rust:`std` feature also enable :rust:`alloc`
 
 .. note::
@@ -49,8 +44,8 @@ Supported Library Configurations
   :header-rows: 1
   :widths: 32 68
 
-  * - **Enabled features**
-    - **Intended library configuration**
+  * - **Enabled Features**
+    - **Intended Library Configuration**
   * - None
     - :rust:`core` only
   * - :rust:`alloc`
@@ -108,7 +103,6 @@ Gate the Allocation-Requiring API
   }
 
 * :rust:`sorted_samples` is absent when :rust:`alloc` is disabled
-
 * :rust:`maximum`, :rust:`parse_pair`, and :rust:`write_maximum` remain available
 
 --------------------------------
@@ -133,7 +127,6 @@ Gate the Second Allocating API
   }
 
 * :rust:`Vec` import is already gated on the previous slide
-
 * :rust:`make_message` is absent when :rust:`alloc` is disabled
 
 -----------------------------------
@@ -154,7 +147,6 @@ Keep "std"-Only Adapters Separate
   }
 
 * Only this adapter relies on standard output
-
 * Calculation remains usable without the adapter
 
 .. note::
@@ -175,11 +167,8 @@ Select Features in a Dependent Project
   # features = ["alloc"]
 
 * :filename:`../sample_tools` points to the library in a sibling directory
-
 * Requests library without its default :rust:`std` feature
-
 * Enabling the commented feature line also requests allocating APIs
-
 * Dependency feature selection follows documented requirements
 
 .. note::
@@ -191,11 +180,8 @@ Features Add Up
 -----------------
 
 * Feature requests for a dependency are generally combined
-
 * Another dependency may request its :rust:`std` feature
-
 * ``default-features = false`` is not a global ban on that feature
-
 **Cargo can reveal features selected across the dependency graph**
 
 .. code:: sh

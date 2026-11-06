@@ -7,11 +7,8 @@ Familiar Rust Still Works
 ---------------------------
 
 * Ownership, borrowing, and lifetimes still apply
-
 * Structs, enums, pattern matching, and methods still work
-
 * Generics, traits, and closures remain available
-
 * Arrays, slices, and :rust:`str` remain part of the language
 
 .. note::
@@ -28,15 +25,15 @@ What "core" Provides
 
   * - **Functionality**
     - **Examples**
-  * - Optional values and errors
+  * - *Optional values and errors*
     - :rust:`Option`, :rust:`Result`
-  * - Iteration
+  * - *Iteration*
     - :rust:`Iterator`, :rust:`map`, :rust:`filter`, :rust:`fold`
-  * - Common traits
+  * - *Common traits*
     - :rust:`Copy`, :rust:`Clone`, :rust:`Default`, :rust:`Drop`
-  * - Formatting and errors
+  * - *Formatting and errors*
     - :rust:`Debug`, :rust:`Display`, :rust:`core::error::Error`
-  * - Memory utilities
+  * - *Memory utilities*
     - :rust:`core::mem`, :rust:`Cell`, :rust:`RefCell`
 
 * Macros such as :rust:`panic!`, :rust:`assert!`, and :rust:`assert_eq!` remain available
@@ -70,17 +67,10 @@ Designing Portable APIs
 
 **Portable APIs can avoid heap allocation and platform services**
 
-* :rust:`&[T]` and :rust:`&str` allow functions to borrow
-  caller-owned data
-
-* :rust:`Option` and :rust:`Result` represent absent values
-  and recoverable errors
-
-* Iterators and error propagation with :rust:`?` work
-  without :rust:`std`
-
-* Callers decide how to handle output and other
-  platform services
+* :rust:`&[T]` and :rust:`&str` allow functions to borrow caller-owned data
+* :rust:`Option` and :rust:`Result` represent absent values and recoverable errors
+* Iterators and error propagation with :rust:`?` work without :rust:`std`
+* Callers decide how to handle output and other platform services
 
 --------------------------
 A Small Portable Library
@@ -123,9 +113,7 @@ Borrowed Text and Recoverable Errors
   }
 
 * This function returns two numbers or propagates a parsing error
-
 * :rust:`&str` is borrowed text; :rust:`trim()` returns a subslice without allocating
-
 * :rust:`Result` and :rust:`?` work without :rust:`std`
 
 --------------------------------------------
@@ -147,7 +135,6 @@ Using the Library From a "std" Application
   }
 
 * Example application prints ``Maximum: 42``
-
 * Example application uses :rust:`std`; the library remains :rust:`no_std`
 
 -----------------------------------
@@ -193,9 +180,7 @@ Let Caller Choose Destination
   }
 
 * :rust:`output: &mut impl Write` accepts a caller-supplied writer implementing :rust:`core::fmt::Write`
-
 * Write failures are returned through :rust:`fmt::Result`
-
 * No intermediate :rust:`String`
 
   * Writer may allocate
@@ -218,7 +203,5 @@ The Caller Can Still Use "String"
   }
 
 * Application chooses an allocating destination
-
 * Library code does not need to name or depend on :rust:`String`
-
 * Another caller can provide a different writer

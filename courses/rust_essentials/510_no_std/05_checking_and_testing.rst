@@ -23,9 +23,7 @@ What Host Checks Do Not Prove
 -------------------------------
 
 * Host build may succeed even if a dependency still uses :rust:`std`
-
 * :command:`cargo check` checks code but does not produce a final linked program
-
 * :rust:`no_std` alone does not prove portability to every platform
 
 .. tip::
@@ -45,5 +43,4 @@ Check a Target Without "std"
       --target thumbv7em-none-eabi
 
 * Example target does not provide :rust:`std`
-
 * :command:`cargo check` verifies compilation, not linking or execution
