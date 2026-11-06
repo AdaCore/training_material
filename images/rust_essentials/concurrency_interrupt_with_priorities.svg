@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="320" viewBox="0 0 860 320">
+
+  <defs>
+    <!-- Solid, high-contrast palette compliant with Inkscape and Cairo/rsvg renderers -->
+    <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 1 1 L 7 4 L 1 7 z" fill="#64748B" />
+    </marker>
+  </defs>
+
+  <!-- Clean dark card background -->
+  <rect width="860" height="320" rx="10" ry="10" fill="#0F172A" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Title -->
+  <text x="430" y="42" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="16" fill="#F8FAFC" letter-spacing="0.5">Hardware Interrupt Preemption Timeline</text>
+
+  <!-- Context Track Labels (Left Side) -->
+  <text x="50" y="115" font-family="monospace" font-weight="bold" font-size="14" fill="#38BDF8">FOREGROUND</text>
+  <text x="50" y="132" font-family="sans-serif" font-size="11" fill="#64748B">(main loop)</text>
+
+  <text x="50" y="205" font-family="monospace" font-weight="bold" font-size="14" fill="#F87171">INTERRUPT</text>
+  <text x="50" y="222" font-family="sans-serif" font-size="11" fill="#64748B">(ISR handler)</text>
+
+  <!-- Background Baseline Tracks -->
+  <line x1="180" y1="110" x2="800" y2="110" stroke="#1E293B" stroke-width="12" stroke-linecap="round" />
+  <line x1="180" y1="200" x2="800" y2="200" stroke="#1E293B" stroke-width="12" stroke-linecap="round" />
+
+  <!-- ================= TIMELINE TRACES ================= -->
+
+  <!-- 1. Foreground Running (t0 -> t1) -->
+  <line x1="180" y1="110" x2="350" y2="110" stroke="#0284C7" stroke-width="6" stroke-linecap="round" />
+
+  <!-- 2. Preemption Transition Down (t1) -->
+  <line x1="350" y1="110" x2="350" y2="200" stroke="#F87171" stroke-width="2.5" stroke-dasharray="4,4" />
+
+  <!-- 3. Foreground Suspended / Idle Window (t1 -> t2) -->
+  <line x1="350" y1="110" x2="600" y2="110" stroke="#475569" stroke-width="3" stroke-dasharray="6,5" />
+
+  <!-- 4. ISR Active Execution (t1 -> t2) -->
+  <line x1="350" y1="200" x2="600" y2="200" stroke="#EF4444" stroke-width="6" stroke-linecap="round" />
+
+  <!-- 5. Return from Interrupt Transition Up (t2) -->
+  <line x1="600" y1="200" x2="600" y2="110" stroke="#38BDF8" stroke-width="2.5" stroke-dasharray="4,4" />
+
+  <!-- 6. Foreground Resumed Execution (t2 -> t3) -->
+  <line x1="600" y1="110" x2="780" y2="110" stroke="#0284C7" stroke-width="6" stroke-linecap="round" />
+
+  <!-- Transition Nodes (Circles) -->
+  <circle cx="350" cy="110" r="5" fill="#EF4444" />
+  <circle cx="350" cy="200" r="5" fill="#EF4444" />
+  <circle cx="600" cy="200" r="5" fill="#38BDF8" />
+  <circle cx="600" cy="110" r="5" fill="#38BDF8" />
+
+  <!-- State Annotations -->
+  <text x="265" y="92" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#7DD3FC">Foreground Running</text>
+  <text x="475" y="92" text-anchor="middle" font-family="sans-serif" font-style="italic" font-size="12" fill="#94A3B8">Suspended (Preempted)</text>
+  <text x="475" y="230" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#FCA5A5">ISR Handler Active</text>
+  <text x="690" y="92" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#7DD3FC">Foreground Resumes</text>
+
+  <!-- Hardware Event Callout -->
+  <text x="350" y="155" text-anchor="end" dx="-8" font-family="sans-serif" font-weight="bold" font-size="10" fill="#F87171">HW INTERRUPT</text>
+  <text x="600" y="155" text-anchor="start" dx="8" font-family="sans-serif" font-weight="bold" font-size="10" fill="#38BDF8">ISR EXIT (RETI)</text>
+
+  <!-- Time Axis Bottom -->
+  <line x1="180" y1="270" x2="780" y2="270" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)" />
+  <text x="790" y="274" font-family="sans-serif" font-size="11" fill="#64748B">Time</text>
+
+  <!-- Time Ticks -->
+  <line x1="350" y1="265" x2="350" y2="275" stroke="#64748B" stroke-width="1.5" />
+  <text x="350" y="292" text-anchor="middle" font-family="monospace" font-size="11" fill="#94A3B8">t_trigger</text>
+
+  <line x1="600" y1="265" x2="600" y2="275" stroke="#64748B" stroke-width="1.5" />
+  <text x="600" y="292" text-anchor="middle" font-family="monospace" font-size="11" fill="#94A3B8">t_return</text>
+
+</svg>
