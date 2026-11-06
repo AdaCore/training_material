@@ -8,7 +8,7 @@ Need for Global Visibility
 
 * Interrupt handlers take zero arguments and return nothing
 
-  * Triggered asynchronously by hardware rather than called by program logic
+  * Triggered asynchronously by hardware not called by program logic
   * Handlers cannot receive local stack variables from foreground callers
 
 * Data shared across execution contexts must reside in static storage
@@ -24,7 +24,7 @@ Issue of "static mut" in Rust
 
   * Reading or writing a :rust:`static mut` requires an :rust:`unsafe` block
   * Produces a hard compiler error since Rust 2024
-  * Even raw pointer writes provide zero synchronization against interrupt preemption
+  * Raw pointer writes provide no synchronization against interrupt preemption
 
 .. code:: rust
 
@@ -82,18 +82,18 @@ Why Cell and RefCell Are Not Sync
   // ERROR
   // static BAD: Cell<u32> = Cell::new(0);
   
-.. error::
-
-  error[E0277]: `Cell<u32>` cannot be shared between threads safely
+.. container:: latex_environment footnotesize
+  
+  :error:`error[E0277]: `Cell<u32>` cannot be shared between threads safely`
 
 -----------------------------------
 "UnsafeCell": The Ultimate Escape
 -----------------------------------
 
-* :rust:`UnsafeCell<T>` is the core language primitive behind all interior mutability
+* :rust:`UnsafeCell<T>` is the core language primitive for interior mutability
 
   * Mutates memory behind a shared reference :rust:`&T`
-  * Informs the compiler optimizer not to assume data behind :rust:`&UnsafeCell<T>` is constant
+  * Compiler assume data behind :rust:`&UnsafeCell<T>` is not constant
 
 .. code:: rust
 
@@ -126,6 +126,6 @@ The Exclusive-Access Contract
   * Target-specific platform backend disables or masks interrupts
   * Safe embedded wrappers safely expose :rust:`&mut T` to user application code
 
-* The borrow must never escape the protected scope or survive interrupt unmasking
+* Borrow must never escape protected scope or survive interrupt unmasking
 
 
