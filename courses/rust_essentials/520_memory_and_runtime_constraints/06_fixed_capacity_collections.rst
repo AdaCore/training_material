@@ -2,32 +2,36 @@
 Fixed-Capacity Collections
 ============================
 
--------------------------------------------
-An Owned Collection Without Buffer Growth
--------------------------------------------
+-----------------------------------
+Fixed Capacity vs. Static Storage
+-----------------------------------
 
-* Example dependency in :filename:`Cargo.toml`
+* :rust:`static` specifies program-duration storage
+
+* Fixed capacity limits the maximum number of elements
+
+  * Collection can be local, static, or part of another value
+
+* :rust:`heapless::Vec<T, N>` contains storage for :rust:`N` elements inline
+
+  * Length can change up to :rust:`N`
+
+  * Capacity does not grow
+
+* No heap allocator is needed to manage its backing storage
 
 .. code:: toml
 
   [dependencies]
   heapless = { version = "=0.9.3", default-features = false }
 
-* Alias used to distinguish the fixed-capacity type from the heap-backed :rust:`Vec`
-
 .. code:: rust
 
   use heapless::Vec as FixedVec;
 
-* :rust:`FixedVec<T, N>` contains space for :rust:`N` elements within the value
-
-* Its length changes; its capacity does not grow
-
-* These operations do not require a heap allocator
-
 .. note::
 
-  :rust:`heapless` is an external crate; it is not part of :rust:`core`
+  :rust:`heapless` is an external crate, not part of :rust:`core`
 
 ------------------------------------
 Full Capacity Is an Ordinary Error
@@ -47,11 +51,11 @@ Full Capacity Is an Ordinary Error
 
 * A failed :rust:`push` returns the value that could not be inserted
 
-* The buffer stays the same size and its contents are preserved
+* Failed :rust:`push` leaves the collection's length and contents unchanged
 
 .. note::
 
-  A full collection has reached its limit, not necessarily the heap limit
+  At full capacity, :rust:`push` fails even with free heap memory
 
 --------------------------------
 Return a Bounded, Owned Result
@@ -72,7 +76,7 @@ Return a Bounded, Owned Result
       Ok(sorted)
   }
 
-* :rust:`bounded_sorted::<4>` owns up to four samples; no output borrow is needed
+* :rust:`bounded_sorted::<4>` returns up to four samples by value
 
 * Extra samples produce :rust:`Err(BufferTooSmall)`
 
@@ -90,6 +94,8 @@ A Bounded Destination for Formatting
       use core::fmt::Write as _;
 
       let mut text = heapless::String::new();
+
+      // Propagate an error if the formatted text does not fit
       write!(&mut text, "Maximum: {value}")?;
       Ok(text)
   }
@@ -100,35 +106,19 @@ A Bounded Destination for Formatting
 
 * Too little capacity returns a formatting error
 
-.. note::
-
-  No heap-backed :rust:`String` is needed
-
------------------------------------
-Heapless Does Not Mean Stack-Only
------------------------------------
-
-* Inline storage follows the value that contains it
-
-  * A local value, a :rust:`static` item, or a heap-allocated owner
-
-* A fixed-capacity container may still contain allocating element types
-
-.. note::
-
-  Heapless backing storage is not a whole-program allocation guarantee
-
 ---------------------------------
 What Does Fixed Capacity Bound?
 ---------------------------------
+
+* Fixed capacity bounds element count, not necessarily memory use
 
 * :rust:`heapless::Vec<u16, 4>`
 
   * Four inline :rust:`u16` elements
 
-* :rust:`heapless::Vec<alloc::string::String, 4>`
+* :rust:`heapless::Vec<std::string::String, 4>`
 
-  * Four string handles; text buffers may allocate (requires :rust:`alloc`)
+  * Four string handles; text buffers may allocate
 
 * :rust:`heapless::Vec<heapless::String<16>, 4>`
 
