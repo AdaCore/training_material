@@ -232,9 +232,9 @@ One-Time Publication Protocol
       }
   }
 
--------------------------------------
-Why Volatile Is Not Synchronization
--------------------------------------
+---------------------------------------
+Why "Volatile" Is Not Synchronization
+---------------------------------------
 
 * Developers frequently confuse volatile accesses with concurrency primitives
 

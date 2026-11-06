@@ -86,9 +86,9 @@ Why Cell and RefCell Are Not Sync
 
   error[E0277]: `Cell<u32>` cannot be shared between threads safely
 
----------------------------------
-UnsafeCell: The Ultimate Escape
----------------------------------
+-----------------------------------
+"UnsafeCell": The Ultimate Escape
+-----------------------------------
 
 * :rust:`UnsafeCell<T>` is the core language primitive behind all interior mutability
 
