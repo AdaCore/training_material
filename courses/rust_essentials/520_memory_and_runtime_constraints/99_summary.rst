@@ -14,7 +14,11 @@ What We Covered
 
   - Make allocation points visible and handle reported failures explicitly
 
-* **Caller-Provided and Static Storage**
+* **Caller-Provided Storage**
+
+  - Reuse caller-owned buffers without allocating separate outputs
+
+* **Static Storage**
 
   - Separate storage duration from ownership and access policy
 

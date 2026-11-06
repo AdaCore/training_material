@@ -2,58 +2,93 @@
 Memory Budgets
 ================
 
----------------------------------------------
-Storage Location and Capacity Are Different
----------------------------------------------
+-------------------------
+Inline and Heap Storage
+-------------------------
 
-**Compare where a value lives with how it stores its elements**
+**Two local values can store their elements differently**
 
-.. image:: rust_essentials/520_memory_storage_model.svg
-   :width: 100%
-   :align: center
+.. code:: rust
 
-* Arrays and :rust:`FixedVec` store elements inline, with capacity fixed by their type
+  let array = [10_u16, 42, 7, 18];
+  let vector = vec![10_u16, 42, 7, 18];
 
-* A :rust:`Vec` stores a fixed-size handle to a separate heap-allocated buffer
+* :rust:`array` stores its four elements directly in the value
 
-* Fixed-size arrays do not automatically have static storage
+  * Its length is fixed by its type, :rust:`[u16; 4]`
 
--------------------------------------------
-Measure the Value and Its Backing Storage
--------------------------------------------
+* :rust:`vector` stores a pointer, length, and capacity
+
+  * Its elements are in a separate heap allocation that may grow
+
+* Fixed-size arrays can also have static storage (covered later)
+
+---------------------------------
+Value Size vs. Memory Footprint
+---------------------------------
+
+**Vector size does not include its heap buffer**
 
 .. code:: rust
 
   use core::mem::size_of;
 
-  assert_eq!(size_of::<[u16; 64]>(), 128);
+  let array_bytes = size_of::<[u16; 4]>();
+  let vector_bytes = size_of::<Vec<u16>>();
 
-* :rust:`size_of::<T>()` includes inline fields and padding
+  println!("Array: {array_bytes} bytes");
+  println!("Vec value: {vector_bytes} bytes");
 
-* For :rust:`Vec<T>` or :rust:`String`, it does not include the heap buffer
+* Example output on a typical 64-bit target
 
-  * The value stores a pointer, length, and capacity, not its elements
+.. code:: output
 
-* A full budget also includes simultaneous buffers and temporary storage
+  Array: 8 bytes
+  Vec value: 24 bytes
 
-* Elements may own additional heap allocations
+* :rust:`size_of::<T>()` counts the value's storage, including padding
+
+--------------------
+Heap Buffer Memory
+--------------------
+
+**Heap buffer memory depends on capacity and element size**
+
+.. code:: rust
+
+  use core::mem::size_of;
+
+  let vector = vec![10_u16, 42, 7, 18];
+  let buffer_bytes = vector.capacity() * size_of::<u16>();
+
+  println!("Vec buffer: {buffer_bytes} bytes");
+
+* Example output
+
+.. code:: output
+
+  Vec buffer: 8 bytes
+
+* :rust:`capacity()` counts elements that fit before growth
 
 .. note::
 
-  Fixed capacity does not bound allocations owned by the elements
+  Other live buffers and allocator overhead add to memory use
 
----------------------------
-The Stack Also Has Limits
----------------------------
+---------------------
+Stack Memory Limits
+---------------------
 
-* Large local buffers can increase peak stack usage
+* Heap-free code can still exceed the available stack budget
 
-* Nested calls and recursion can add to that peak
+* Stack overflow can cause program failure
 
-* Moving data to the stack does not make its storage free
+* Peak stack usage can increase with:
 
-* Reusing a caller-owned buffer can avoid creating a separate working buffer for each call
+  * Large local arrays and working buffers
 
-.. warning::
+  * Nested function calls and recursion
 
-  Avoiding heap allocation does not prove that a program cannot exhaust memory
+* Caller-provided buffers can avoid an additional local working buffer
+
+* Estimate worst-case stack usage, not just individual value sizes
