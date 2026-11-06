@@ -9,15 +9,12 @@ Heap Allocation With "no_std"
 * :rust:`alloc` supplies heap-backed types without requiring :rust:`std`
 
   * Provided by the Rust toolchain
-
   * No crates.io dependency is needed in :filename:`Cargo.toml`
 
 * Reusable libraries can use those types *without* selecting an allocator
-
 * Final program must supply suitable allocation support
 
   * :rust:`std` applications normally provide a default global allocator
-
   * Bare-metal applications using heap-backed types must provide a global allocator
 
 .. warning::
@@ -43,9 +40,7 @@ Using "Vec" With "no_std"
   }
 
 * The imports make :rust:`Vec` available without :rust:`std`
-
-* :rust:`Vec::from(samples)` creates an owned copy, using the
-  final program's allocator when allocation is needed
+* :rust:`Vec::from(samples)` creates an owned copy, using the final program's allocator when allocation is needed
 
 -----------------------------------
 Macros Can Allocate With "no_std"
@@ -66,7 +61,5 @@ Macros Can Allocate With "no_std"
   }
 
 * :rust:`vec!` creates a heap-backed :rust:`Vec`
-
 * :rust:`format!` creates a heap-backed :rust:`String`
-
 * Both require allocator support in the final program
