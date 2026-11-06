@@ -8,63 +8,64 @@ Why Static Storage Matters
 
 * Some data must persist across many calls
 
-  * Immutable tables can be shared without recreating their contents
+  * Fixed lookup tables, shared counters, and status flags
 
-* Static storage exists independently of function calls
+* Static storage remains allocated for the program's duration
 
-* Example of read-only data with program-duration storage
+* Static items can hold read-only data or state with controlled updates
 
 .. code:: rust
 
-  pub static REFERENCE_SAMPLES: [u16; 4] = [10, 42, 7, 18];
-
-.. note::
-
-  Static storage lasts for the program's duration. Its placement in writable or
-  read-only memory depends on the data and platform
+  // Read-only temperature thresholds
+  pub static TEMPERATURE_THRESHOLDS: [i16; 3] = [0, 25, 80];
 
 ----------------------------
 Constants vs. Static Items
 ----------------------------
 
-**A constant value and a static item are not the same thing**
+* :rust:`const` names a value without guaranteeing one storage location
 
-* :rust:`const LIMIT: usize = 4;`
+* :rust:`static` defines one location that exists for the program's duration
 
-  * Defines a constant value, not a unique storage location
+* Choose :rust:`static` when shared storage or a stable address is required
 
-* :rust:`static TABLE: [u16; 4] = [0; 4];`
+.. code:: rust
 
-  * Defines an allocation with program-duration storage
+  const SAMPLE_COUNT: usize = 4;
+  static SAMPLES: [u16; SAMPLE_COUNT] = [10, 42, 7, 18];
 
-* A local :rust:`[u16; LIMIT]` is still a local value
+------------------------------
+Returning 'static References
+------------------------------
 
------------------------
-The 'static Lifetime
------------------------
+* :rust:`&'static T` can remain valid for the program's duration
 
-* :rust:`&'static [u16]` is a reference whose borrow can last for the program's duration
+* Useful when returning references to data with program-duration storage
 
-* A lifetime describes a borrow, not a physical storage region
+.. code:: rust
 
-* A :rust:`'static` annotation does not allocate memory
+  static TEMPERATURE_THRESHOLDS: [i16; 3] = [0, 25, 80];
 
-.. note::
+  fn temperature_thresholds() -> &'static [i16] {
+      &TEMPERATURE_THRESHOLDS
+  }
 
-  Fixed size, static storage, and :rust:`'static` are distinct concepts
+* Returned reference remains valid after the function returns
 
------------------------------------------
-Persistent Does Not Mean Freely Mutable
------------------------------------------
+* :rust:`'static` describes reference validity, not storage location
 
-* Reading an ordinary immutable static is safe
+--------------------------
+Controlling Static State
+--------------------------
 
-* Reading or writing :rust:`static mut` requires additional safety obligations
+* Reading a read-only :rust:`static` item is safe
 
-* Shared mutation needs controlled access, not just persistent storage
+* Mutation of shared state requires controlled access
 
-* Prefer owned state passed with :rust:`&mut` when global sharing is unnecessary
+* Reading or writing :rust:`static mut` requires :rust:`unsafe`
 
-.. warning::
+  * Unsafe operations alone do not prevent data races
 
-  :rust:`static mut` is not a shortcut to a safe reusable buffer
+.. tip::
+
+  Prefer passing owned state with :rust:`&mut` when global sharing is unnecessary

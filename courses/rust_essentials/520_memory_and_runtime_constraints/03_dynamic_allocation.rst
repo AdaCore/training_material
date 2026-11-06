@@ -2,36 +2,34 @@
 Dynamic Allocation
 ====================
 
------------------------------
-Where Allocation Can Happen
------------------------------
+---------------------
+Allocation Behavior
+---------------------
 
 .. list-table::
-  :widths: 46 54
+  :widths: 44 56
   :header-rows: 1
 
   * - **Operation**
-    - **Allocation behavior to consider**
+    - **Heap Allocation**
   * - :rust:`Vec::new()`, :rust:`String::new()`
-    - Start empty without allocating a buffer
-  * - Growing a :rust:`Vec` or :rust:`String`
-    - May allocate or reallocate
+    - No allocation
+  * - :rust:`Vec::push()`, :rust:`String::push_str()`
+    - May allocate when capacity is insufficient
   * - :rust:`Box::new(value)`
-    - Allocates for a non-zero-sized value
+    - Allocates for non-zero-sized values
   * - :rust:`format!`, :rust:`to_owned`, :rust:`clone`
-    - May create new owned storage
+    - May allocate, depending on the operation and type
 
-* An allocation may be inside a helper, not at the call site
+.. warning::
 
-* Inspect the actual type and operation, not just its name
-
-.. note::
-
-  Cloning may allocate, depending on the type
+  Heap allocations can occur inside helper functions
 
 ------------------------
 Length Is Not Capacity
 ------------------------
+
+* :rust:`Vec::with_capacity(4)` starts empty with capacity at least 4
 
 .. code:: rust
 
@@ -41,20 +39,20 @@ Length Is Not Capacity
       println!("capacity: {}", samples.capacity());
   }
 
-* Example output (capacity may be larger on some implementations)
+* Example output
 
 .. code:: output
 
   length: 0
   capacity: 4
 
-* **Length:** initialized elements currently stored
+* **Length:** number of initialized elements currently stored
 
-* **Capacity:** elements the buffer can hold before growing
+* **Capacity:** number of elements the buffer can hold before growing
 
-.. warning::
+.. note::
 
-  :rust:`with_capacity(4)` does not impose a maximum length
+  Requested capacity is a minimum, not a maximum
 
 -------------------------------
 Clearing and Reusing Capacity
@@ -65,12 +63,14 @@ Clearing and Reusing Capacity
   fn main() {
       let mut samples = Vec::<u16>::with_capacity(4);
       samples.push(42);
-      println!("before: {:?}", (samples.len(), samples.capacity()));
+      let before = (samples.len(), samples.capacity());
+      println!("before: {before:?}");
       samples.clear();
-      println!("after: {:?}", (samples.len(), samples.capacity()));
+      let after = (samples.len(), samples.capacity());
+      println!("after: {after:?}");
   }
 
-* Example output (capacity may be larger on some implementations)
+* Example output
 
 .. code:: output
 
@@ -79,9 +79,9 @@ Clearing and Reusing Capacity
 
 * :rust:`clear()` removes elements but retains the buffer for reuse
 
--------------------------
-Observe Capacity Growth
--------------------------
+---------------------
+When Capacity Grows
+---------------------
 
 .. code:: rust
 
@@ -90,38 +90,38 @@ Observe Capacity Growth
       for sample in 0..16 {
           let before = samples.capacity();
           samples.push(sample);
-          if before != samples.capacity() {
-              println!("capacity: {before} -> {}", samples.capacity());
+          let after = samples.capacity();
+          if before != after {
+              println!("sample {sample}: {before} -> {after}");
           }
       }
   }
 
-* Example output (growth strategy is not guaranteed)
+* Example output (growth strategy may vary)
 
 .. code:: output
 
-  capacity: 0 -> 4
-  capacity: 4 -> 8
-  capacity: 8 -> 16
+  sample 0: 0 -> 4
+  sample 4: 4 -> 8
+  sample 8: 8 -> 16
 
-* :rust:`push` may allocate when the buffer must grow
+* Capacity changes only on some pushes, not with every sample
 
----------------------------
-Growth Is a Runtime Event
----------------------------
+--------------------------
+Costs of Capacity Growth
+--------------------------
 
-* Growing a buffer may require obtaining and moving storage
+* **Trigger:** insufficient capacity for a new element
 
-* Allocator behavior can affect latency and memory overhead
+* **Possible work:** grow heap storage, possibly moving elements
 
-* Heap fragmentation can make large contiguous allocations harder
+* **Consequences:**
 
-* Reuse reserved storage to prevent unnecessary allocation
+  * Variable execution time and additional memory overhead
 
-.. note::
+  * Allocation failure and heap fragmentation risks
 
-  A :rust:`push` that fits within the current capacity is usually quick;
-  one that must grow the buffer may take much longer
+* **Mitigation:** reserve sufficient capacity before time-critical operations
 
 ----------------------------------------
 Fallible Allocation Uses Explicit APIs
@@ -131,8 +131,8 @@ Fallible Allocation Uses Explicit APIs
   :widths: 45 55
   :header-rows: 1
 
-  * - API
-    - Failure behavior
+  * - **API**
+    - **Failure Behavior**
   * - :rust:`Vec::new()`
     - No allocation
   * - :rust:`Vec::with_capacity(n)`
@@ -148,11 +148,11 @@ Fallible Allocation Uses Explicit APIs
 
   :rust:`try_reserve` can report capacity overflow or allocator-reported failure
 
---------------------------------
-Build an Owned Result Fallibly
---------------------------------
+------------------------
+Reserve Before Copying
+------------------------
 
-**The function reserves capacity before copying its input**
+* :rust:`try_reserve` requests enough capacity for all input samples
 
 .. code:: rust
 
@@ -162,11 +162,11 @@ Build an Owned Result Fallibly
       sorted.push(sample);
   }
 
-* A reported reservation failure occurs before any samples are copied
+* A reservation error occurs before any samples are copied
 
-* The reserved capacity covers every :rust:`u16` pushed into the vector
+* A successful reservation avoids capacity growth during the loop
 
-* :rust:`?` propagates any error returned by :rust:`try_reserve`
+* :rust:`?` propagates a reservation error to the caller
 
 -----------------------------------
 Fallible Sorting Returns a Result
@@ -188,19 +188,14 @@ Fallible Sorting Returns a Result
       Ok(sorted)
   }
 
------------------------------------------
-A "Result" Does Not Catch Every Failure
------------------------------------------
+-------------------------------
+Limits of Fallible Allocation
+-------------------------------
 
-* :rust:`try_reserve` can report capacity overflow or allocation failure
+* :rust:`try_reserve` reports capacity overflow or allocator-reported failure
 
-  * Other allocating operations can still follow a non-returning failure path
+* Fallible allocation APIs cannot guarantee recovery
 
-* Allocation failure behavior depends on allocator and runtime
+  * An allocator may abort instead of reporting failure
 
-* Allocation recovery requires a policy beyond adding :rust:`?`
-
-.. warning::
-
-  An allocator may abort rather than report failure. A fallible collection API cannot
-  override that behavior
+  * :rust:`Vec::with_capacity` may abort on allocation failure

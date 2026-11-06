@@ -6,7 +6,7 @@ Runtime Constraints
 One Operation, Three Memory Contracts
 ---------------------------------------
 
-**Choose the API contract before choosing the container**
+**Sorting can use different storage and ownership strategies**
 
 .. image:: rust_essentials/520_sorting_api_contracts.svg
    :width: 100%
@@ -20,20 +20,25 @@ One Operation, Three Memory Contracts
 Bound Memory, Then Bound the Work
 -----------------------------------
 
-* Reject inputs that exceed the supported size limit
+* **Memory bounds**
 
-* Reuse storage when repeated allocation is not acceptable
+  * Reject inputs exceeding supported size limits
 
-* Include comparisons, copying, sorting, cleanup, and any synchronization in the execution budget
+  * Reuse storage when repeated allocation is unacceptable
 
-* Use measurements and analysis for the deployment environment
+* **Execution-time bounds**
 
-* Compilation alone does not establish memory or timing bounds
+  * Budget for comparisons, copying, sorting, cleanup, and synchronization
+
+  * Measure and analyze costs on the deployment target
+
+* Compilation alone establishes neither bound
 
 .. warning::
 
-  The cost of :rust:`sort_unstable` depends on the slice's length, not the
-  collection's capacity; avoiding heap allocation does not make it constant-time
+  * :rust:`sort_unstable` time depends on slice length, not capacity
+
+  * Avoiding heap allocation does not make sorting constant-time
 
 -----------------------------------
 Handle Memory and Capacity Limits
@@ -47,7 +52,9 @@ Handle Memory and Capacity Limits
 
 * **Drop data:** discard according to a documented application policy
 
-* **Retry:** only when there is a reason the resource may become available
+* **Retry:** only for temporary resource shortages
+
+  * Fixed-capacity errors require a larger buffer or smaller input
 
 -----------------------------------
 Capacity Limits: Observed Results

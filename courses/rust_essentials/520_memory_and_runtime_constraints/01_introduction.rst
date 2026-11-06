@@ -15,9 +15,12 @@ Topics Covered
   - Identify allocation costs
   - Handle errors from fallible allocations
 
-* **Caller-Provided and Static Storage**
+* **Caller-Provided Storage**
 
   - Reuse existing memory
+
+* **Static Storage**
+
   - Control access to persistent data
 
 * **Fixed-Capacity Collections**
@@ -28,35 +31,20 @@ Topics Covered
 
   - Choose limits, failure policies, and checks that match requirements
 
--------------------------------------
-Available Does Not Mean Appropriate
--------------------------------------
+---------------------------
+Why Memory Budgets Matter
+---------------------------
 
-* Memory budgets apply to stack, static storage, and heap allocations
+**Embedded systems must meet memory and timing requirements**
 
-* An allocator makes heap-backed types usable, not unlimited
+* Available memory is often limited
 
-* A design must also answer three questions:
+* Allocation and buffer growth can affect response time
 
-  * How much memory can be used at once?
+* Designs must establish:
 
-  * When can allocation or other costly work occur?
+  * The maximum memory needed at once
 
-  * What should happen when memory limit is reached?
+  * When costly operations may occur
 
-.. warning::
-
-  Memory safety does not bound memory use or execution time
-
-------------------------
-Sorting Sample Batches
-------------------------
-
-**Compare three ways to sort** :rust:`u16` **samples**
-
-* Return a heap-backed collection, handling reservation failure
-
-* Write into a buffer supplied by the caller
-
-* Return an owned, fixed-capacity collection
-
+  * What happens when a memory limit is reached

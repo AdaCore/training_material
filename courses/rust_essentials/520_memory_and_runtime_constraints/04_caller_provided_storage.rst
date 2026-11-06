@@ -2,11 +2,27 @@
 Caller-Provided Storage
 =========================
 
---------------------------
-Borrow the Output Buffer
---------------------------
+------------------------------
+Why Caller-Provided Storage?
+------------------------------
 
-**The caller supplies the output buffer**
+* Previous examples create a new :rust:`Vec` to hold sorted samples
+
+* Caller provides a fixed-capacity buffer it owns
+
+* Borrowing the buffer allows the function to write the result into it
+
+* No separate output allocation is needed
+
+  * Buffer capacity limits the number of samples
+
+----------------------------
+Caller Supplies the Buffer
+----------------------------
+
+* :rust:`sort_into` sorts samples into a caller-provided buffer
+
+  * Its implementation follows on the next slide
 
 .. code:: rust
 
@@ -14,11 +30,15 @@ Borrow the Output Buffer
   let sorted = sort_into(&[42, 7, 10], &mut scratch)
       .expect("buffer fits");
 
-* The returned slice borrows :rust:`scratch`
+* Caller owns :rust:`scratch` and passes a mutable reference to :rust:`sort_into`
 
-* No allocation is needed; insufficient space is rejected before modification
+* Returned slice :rust:`sorted` borrows from :rust:`scratch`
 
-* Error type returned when the supplied buffer is too small
+* No heap allocation is needed
+
+  * Insufficient capacity is rejected before modifying the buffer
+
+* :rust:`BufferTooSmall` represents an insufficient-capacity error
 
 .. code:: rust
 
@@ -29,7 +49,7 @@ Borrow the Output Buffer
 Implementing "sort_into"
 --------------------------
 
-**The function rejects oversized inputs before copying**
+**Reject insufficient capacity before copying**
 
 .. code:: rust
 
@@ -37,19 +57,24 @@ Implementing "sort_into"
       samples: &[u16],
       scratch: &'a mut [u16],
   ) -> Result<&'a [u16], BufferTooSmall> {
+      // Select enough space or return an error
       let output = scratch
           .get_mut(..samples.len())
           .ok_or(BufferTooSmall)?;
+
+      // Copy into the caller-provided buffer
       output.copy_from_slice(samples);
+
+      // Sort the copied elements in place
       output.sort_unstable();
       Ok(output)
   }
 
------------------------
-Reuse the Same Buffer
------------------------
+---------------------------
+Buffer Reuse Across Calls
+---------------------------
 
-**The same caller-owned buffer can be used for successive calls**
+**Neither call needs to allocate a separate output buffer**
 
 .. code:: rust
 
