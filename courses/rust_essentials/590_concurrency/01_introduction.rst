@@ -6,11 +6,85 @@ Introduction
 Topics Covered
 ----------------
 
-* Topic 1
+- **Hardware Interrupts**
 
-  - Subtopic 1a
+  - Understand hardware preemption and interleaving risks
 
-* Topic 2
+- **Sharing States and Rust Rules**
 
-  - Subtopic 2a
+  - Enforce concurrency boundaries with :rust:`Send`, :rust:`Sync`, and :rust:`UnsafeCell`
+
+- **Atomic Operations and Critical Sections**
+
+  - Synchronize shared data with atomics and interrupt masking
+
+- **Cooperative Multitasking**
+
+  - Run concurrent tasks on a shared stack using :rust:`async` and :rust:`Future`
+
+--------------------------------------------------
+Concurrency - One Program, Many Things Happening
+--------------------------------------------------
+
+* Sequential programs
+
+  * One instruction at a time
+
+* Concurrent programs
+
+  * Multiple activities *conceptually* happening at once
+    * Even on one CPU
+  * Think many cooks in one kitchen
+
+* Why concurrency?
+
+  * Respond to external events (real-time systems)
+  * Improve performance or responsiveness
+
+---------------------
+Concurrency in Rust
+---------------------
+
+* Different mechanisms
+
+  * Threads
+
+    * Spawn OS-level threads
+
+  * Hardware Interrupts 
+
+    * Hardware events pause execution and jump to handler 
+
+  * Cooperative Multitasking
+
+    * Asynchronous control flow 
+
+* Built-in language constructs
+    
+  * Traits to allow moving/sharing across boundaries 
+  * Thread-safe non-blocking mutation types 
+
+
+--------------------
+The "std" Solution
+--------------------
+
+:rust:`std::thread` **relies on operating system**
+
+  * OS handles scheduling, preempting, and context-switching
+
+.. code:: rust
+
+  use std::thread;
+
+  fn worker() {
+    println!("Hello from worker thread!");
+  }
+
+  fn main() {
+    // Pass the function name directly
+    let handle = thread::spawn(worker);
+
+    handle.join().unwrap();
+  }
 
