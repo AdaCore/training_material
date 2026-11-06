@@ -28,12 +28,12 @@
 
   <!-- Step 1: Foreground loads 3 -->
   <rect x="50" y="125" width="350" height="48" rx="6" fill="#0F243A" stroke="#0284C7" stroke-width="1" />
-  <text x="65" y="145" font-family="monospace" font-size="12" fill="#E2E8F0">1. CPU Load: R0 <= COUNT</text>
+  <text x="65" y="145" font-family="monospace" font-size="12" fill="#E2E8F0">1. CPU Load: R0 &lt;= COUNT</text>
   <text x="65" y="162" font-family="sans-serif" font-size="11" fill="#94A3B8">Observed value: 3 (held in private CPU register R0)</text>
 
   <!-- Step 2: Foreground Increments Locally -->
   <rect x="50" y="185" width="350" height="48" rx="6" fill="#0F243A" stroke="#0284C7" stroke-width="1" />
-  <text x="65" y="205" font-family="monospace" font-size="12" fill="#E2E8F0">2. CPU Add:  R0 <= R0 + 1</text>
+  <text x="65" y="205" font-family="monospace" font-size="12" fill="#E2E8F0">2. CPU Add:  R0 &lt;= R0 + 1</text>
   <text x="65" y="222" font-family="sans-serif" font-size="11" fill="#94A3B8">Register R0 is now 4 (NOT written to RAM yet!)</text>
 
   <!-- PREEMPTION EVENT (Horizontal Indicator) -->
@@ -42,12 +42,12 @@
 
   <!-- Step 3: ISR Clears Count -->
   <rect x="520" y="260" width="350" height="52" rx="6" fill="#2A1215" stroke="#DC2626" stroke-width="1.5" />
-  <text x="535" y="282" font-family="monospace" font-size="12" fill="#FCA5A5">3. ISR Store: COUNT <= 0</text>
+  <text x="535" y="282" font-family="monospace" font-size="12" fill="#FCA5A5">3. ISR Store: COUNT &lt;= 0</text>
   <text x="535" y="300" font-family="sans-serif" font-size="11" fill="#FCA5A5">Reset applied: COUNT in RAM is now 0</text>
 
   <!-- Step 4: ISR Exits, Foreground Resumes and Overwrites -->
   <rect x="50" y="325" width="350" height="52" rx="6" fill="#3B1219" stroke="#EF4444" stroke-width="1.8" />
-  <text x="65" y="347" font-family="monospace" font-weight="bold" font-size="12" fill="#FCA5A5">4. CPU Store: COUNT <= R0</text>
+  <text x="65" y="347" font-family="monospace" font-weight="bold" font-size="12" fill="#FCA5A5">4. CPU Store: COUNT &lt;= R0</text>
   <text x="65" y="365" font-family="sans-serif" font-size="11" fill="#F87171">Writes stale R0 (4) to RAM: Reset is permanently lost!</text>
 
   <!-- Arrows connecting sequence -->
