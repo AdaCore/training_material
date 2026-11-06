@@ -57,26 +57,27 @@ Execution Timeline
   .. image:: rust_essentials/concurrency_interrupt.svg
 
   * Foreground loop has no idea it was paused
-  * Hardware handles switching automatically without runtime or OS intervention
+  * Hardware handles switching without runtime or OS intervention
 
 ----------------------------------
 Interrupt Priorities and Nesting
 ----------------------------------
 
-* Microcontrollers support multiple interrupt sources with configurable priorities
+* Microcontrollers support multiple interrupt sources 
+  
+  * With configurable priorities
 
 * Higher-priority interrupts preempt lower-priority ones
 
   .. image:: rust_essentials/concurrency_interrupt_with_priorities.svg
 
-* Interrupted foreground work only resumes once every pending handler exits
+* Foreground work only resumes once every pending handler exits
 
 ----------------------------
 Global Shared State Hazard
 ----------------------------
 
 * Interrupt can trigger at any CPU instruction
-
 * Sharing state between main and an ISR creates corruption
 
 
@@ -117,7 +118,9 @@ Anatomy of an Interleaving Failure
 
   .. image:: rust_essentials/concurrency_lost_update.svg
 
-* The behavior is defined assembly instructions, but the application outcome is wrong
+* The behavior is defined assembly instructions
+
+  * But the application outcome is wrong!
 
 ---------------------------------
 Data Races Versus Logical Races
@@ -127,14 +130,20 @@ Data Races Versus Logical Races
 
 * **Data Races**
 
-  * Multiple contexts access identical memory location without synchronization
+  * Multiple contexts access same memory location
+  
+    * Without synchronization  
+	
   * At least one access is a write and at least one is non-atomic
   * Violates Rust aliasing guarantees and causes undefined behavior
 
 * **Logical Races**
 
   * Every memory operation is atomic and defined
-  * Program flow interleaves unexpectedly and produces incorrect application results
+  * Program flow interleaves unexpectedly
+  
+    * Produces incorrect application results
+	
   * Eliminating data races does not eliminate logical sequencing errors
 
 --------------------------------
@@ -144,12 +153,12 @@ Separation of Responsibilities
 * Interrupt handlers must execute with minimal latency
 
   * Avoid long loops, delays, or complex payload computations
-  * Handler responsibility: record event, clear hardware flag, and return immediately
+  * Handler records event, clears hardware flag, and returns immediately
 
 * Foreground maintains computation ownership
 
-  * Foreground responsibility: inspect notifications and perform heavy data work
-  * Prevents high-priority hardware starvation and latency spikes across the system
+  * Foreground inspects notifications and perform heavy data work
+  * Prevents high-priority hardware starvation and latency spikes
 
 .. code:: rust
 

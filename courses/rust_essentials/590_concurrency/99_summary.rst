@@ -30,7 +30,7 @@ What We Covered
 * **Atomic Operations and Critical Sections**
   * Preventing lost updates with indivisible read-modify-write operations
   * Selecting appropriate memory ordering for single-word publication
-  * Disabling interrupts for multi-field structs and avoiding single-core deadlocks
+  * Disabling interrupts to avoid single-core deadlocks
 
 * **Cooperative Multitasking**
   * Converting asynchronous functions into zero-cost state machines

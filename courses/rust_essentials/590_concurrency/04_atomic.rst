@@ -9,7 +9,7 @@ Safe Shared State in Core
 * Atomic types resolve shared-state issues without locks or static mut
 
   * Part of the standard :rust:`core::sync::atomic` module
-  * Use interior mutability to mutate values via shared immutable references (:rust:`&self`)
+  * Mutate values via shared immutable references (:rust:`&self`)
   * Implement the :rust:`Sync` marker trait so they can live in a plain :rust:`static`
 
 * Safe for single-core bare-metal concurrency
@@ -23,8 +23,7 @@ Interior Mutability Landscape
 
 .. list-table::
    :header-rows: 1
-
-   :class: tight-table
+   :stub-columns: 1
 
    * - **Mechanism**
      - **Safety Guarantee**
@@ -49,7 +48,8 @@ Interior Mutability Landscape
 
 .. list-table::
    :header-rows: 1
-   :stub-columns: 1
+   :widths: 22 24 24 30
+   :class: tight-table
 
    * - **Type**
      - **Under the Hood**
@@ -91,28 +91,30 @@ Memory Ordering
 
 * Atomic operations take an :rust:`Ordering` parameter
 
-  * Instructs the compiler and CPU how to reorder surrounding memory accesses
+  * Instructs Compiler and CPU to reorder surrounding memory accesses
   * Select ordering based on what the atomic variable is communicating
 
 * **Relaxed**
 
   * Guarantees atomicity for that specific memory word only
-  * Establishes no synchronization or ordering guarantees across other variables
+  * No synchronization or ordering guarantees across other variables
   * Correct choice when the atomic variable itself is the entire message
 
 * **Release (Store)**
 
-  * Ensures preceding memory writes are committed before this store is visible
+  * Preceding memory writes are committed before this store is visible
   * Used by a producer to publish non-atomic or related data
 
 * **Acquire (Load)**
 
-  * Ensures subsequent memory reads observe changes made prior to matching release
+  * Memory reads observe changes made prior to matching release
   * Used by a consumer to acquire published data safely
 
 * **AcqRel**
 
-  * Combines Acquire and Release for read-modify-write operations (:rust:`.swap()`)
+  * Combines Acquire and Release
+  
+    * For read-modify-write operations (:rust:`.swap()`)
 
 * **SeqCst**
 
@@ -236,24 +238,27 @@ One-Time Publication Protocol
 Why "Volatile" Is Not Synchronization
 ---------------------------------------
 
-* Developers frequently confuse volatile accesses with concurrency primitives
+* Developers confuse volatile accesses with concurrency primitives
 
-* **Volatile Accesses (:rust:`read_volatile` / :rust:`write_volatile`)**
+* **Volatile Accesses (**:rust:`read_volatile` **/** :rust:`write_volatile`**)**
 
-  * Informs the compiler not to optimize out reads or writes to memory-mapped registers
-  * Guarantees an access occurs, but provides zero cross-context synchronization
-  * Does not prevent preemption or instruction reordering across execution contexts
+  * Compiler does not optimize reads/writes to memory-mapped registers
+  * Guarantees an access occurs
+  
+    * But provides zero cross-context synchronization
+	
+  * Does not prevent preemption or instruction reordering across contexts
 
 * **Atomic Operations**
 
   * Designed specifically for concurrency between execution contexts
-  * Guarantees indivisible updates and prevents memory corruption during preemption
+  * **Indivisible** updates and prevents memory corruption during preemption
   
 -----------------------------
 When Atomics Are Not Enough
 -----------------------------
 
-* Multiple atomic variables cannot form a single atomic transaction
+**Multiple atomic variables cannot form a single atomic transaction**
 
   * Every single access is atomic, but the sequence of accesses is not
   * Preemption between consecutive reads produces inconsistent snapshots
@@ -320,11 +325,11 @@ Single-Core Critical Sections
 
 * Solution for complex data: temporarily disable (mask) interrupts
 
-  * Hardware physically cannot preempt the foreground while interrupts are disabled
+  * Hardware cannot preempt the foreground while interrupts are disabled
   * Foreground gains exclusive access to memory without data races
   * Satisfies the aliasing contract required by :rust:`UnsafeCell` to create :rust:`&mut T`
 
-* Commonly implemented in embedded Rust via the :rust:`critical-section` crate
+* Commonly implemented in Rust via the :rust:`critical-section` 
 
   * Interrupts are automatically re-enabled on exit
   * Paired with :rust:`RefCell` to provide safe, multi-field interior mutability
@@ -335,9 +340,9 @@ Single-Core Deadlock Hazard
 
 * An interrupt handler must never spin waiting for the foreground loop
 
-  * The interrupt preempts the foreground on the exact same CPU core
-  * If the foreground holds a lock and the ISR spins waiting for it, system deadlocks
-  * Foreground code can never run to release the lock while the ISR keeps spinning
+  * interrupts preempt the foreground on the exact same CPU core
+  * If foreground holds a lock and ISR spins waiting, system deadlocks
+  * Foreground code can never release the lock while ISR keeps spinning
 
 .. code:: rust
 
