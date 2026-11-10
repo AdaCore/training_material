@@ -2,6 +2,29 @@
 Cooperative Multitasking
 ==========================
 
+--------------------
+The "std" Solution
+--------------------
+
+:rust:`std::thread` **relies on operating system**
+
+  * OS handles scheduling, preempting, and context-switching
+
+.. code:: rust
+
+  use std::thread;
+
+  fn worker() {
+    println!("Hello from worker thread!");
+  }
+
+  fn main() {
+    // Pass the function name directly
+    let handle = thread::spawn(worker);
+
+    handle.join().unwrap();
+  }
+
 --------------------------
 Why Not Just OS Threads?
 --------------------------
@@ -82,7 +105,6 @@ Awaiting the Future
 
   async fn cat() {
     // 1. Regular function: runs immediately
-    // Output: "Meow 1!"
     regular_meow();
 
     // 2. Async call WITHOUT '.await'
@@ -90,12 +112,10 @@ Awaiting the Future
     let future_obj = async_meow(); 
 	
 	// 3. Doing something else while awaiting
-    // Output: "Meow 1!"
     regular_meow();
 
     // 4. Awaiting the future:
     // NOW the future actually steps forward and runs!
-    // Output: "Meow 2!"
     future_obj.await; 
   }
 
@@ -109,34 +129,13 @@ Awaiting the Future
 
   If you don't .await 'future_obj', it simply gets dropped at the end
 
------------------------------------
-Waiting on Multiple Tasks: "join"
------------------------------------
-
-**Running futures concurrently**
-
-  * :rust:`join` polls multiple futures cooperatively on same execution context
-  * If *Future A* pauses at :rust:`.await`, the caller switches to polling *Future B*
-
-.. code:: rust
-  :font-size: footnotesize
-
-  use embassy_futures::join::join;
-
-  async fn cat_morning_routine() {
-      // Runs both cooperatively: when one yields, the other progresses!
-      let (snack, nap) = join(prepare_snack(), take_nap()).await;
-
-      println!("Both finished!");
-  }
-
 -----------------------------
 The Missing Piece: Executor
 -----------------------------
 
 * Rust provides the syntax (:rust:`async` / :rust:`.await`)
 
-  * But upstream language has **no** built-in scheduler
+  * But upstream Rust has **no** built-in scheduler
 
 * An **Executor** is the engine that drives tasks when they yield
 
@@ -180,7 +179,7 @@ Concurrency Models Compared
 
   
    * - **Model**
-     - **Preemption By**
+     - **Preemption**
      - **Unit of Work**
      - **Best Used For**
    * - :rust:`std::thread`
@@ -194,4 +193,4 @@ Concurrency Models Compared
    * - :rust:`async` / :rust:`.await`
      - None
      - State Machine Task
-     - High-volume I/O & bare-metal low RAM
+     - Heavy I/O & bare-metal low RAM

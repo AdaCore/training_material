@@ -9,12 +9,12 @@ Need for Global Visibility
 * Interrupt handlers take zero arguments and return nothing
 
   * Triggered asynchronously by hardware - not called by program logic
-  * Handlers cannot receive local stack variables from foreground callers
+  * Handlers cannot access local stack variables from the foreground
 
 * Data shared across execution contexts must reside in static storage
 
   * Static variables have a :rust:`'static` lifetime valid for entire runtime
-  * Plain statics are immutable by default
+  * :rust:`static` variables are immutable by default
 
 -------------------------------
 Issue of "static mut" in Rust
@@ -55,7 +55,7 @@ Standard Traits
 
 * :rust:`T: Sync` if and only if :rust:`&T: Send`
 * :rust:`Send` and :rust:`Sync` contain no function definitions or runtime overhead
-* Compiler automatically implements :rust:`Send` and :rust:`Sync` for your type
+* Compiler **automatically** implements :rust:`Send` and :rust:`Sync` for your type
 
   * If all its constituent fields are :rust:`Send` and :rust:`Sync`
 
@@ -79,10 +79,7 @@ Why Cell and RefCell Are Not Sync
   use core::cell::Cell;
 
   // The trait `Sync` is not implemented for `Cell<u32>`
-  // ERROR
-  // static BAD: Cell<u32> = Cell::new(0);
-  
-.. container:: latex_environment footnotesize
+  static BAD: Cell<u32> = Cell::new(0);
   
 .. code::
   :font-size: footnotesize
@@ -124,11 +121,14 @@ The Exclusive-Access Contract
   * Does not disable interrupts, mask peripherals, or block execution
   * Explicitly marked :rust:`!Sync` by the compiler
 
-* The abstraction bridge in bare-metal systems
+* Turning hardware guarantees into safe Rust
 
   * Target-specific platform backend disables or masks interrupts
-  * Safe embedded wrappers safely expose :rust:`&mut T` to user application code
+  * Safe wrappers expose :rust:`&mut T` to user application code
 
-* Borrow must never escape protected scope or survive interrupt unmasking
+* Borrow must never 
+
+  * Escape protected scope
+  * Continue to exist after interrupts are enabled again
 
 
