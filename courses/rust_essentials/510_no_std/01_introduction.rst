@@ -22,15 +22,6 @@ Topics Covered
 
   - Host configuration checks and target-specific compilation
 
----------------------------
-Why Not Always Use "std"?
----------------------------
-
-* Not every target platform supports :rust:`std`
-* Files, sockets, and OS threads depend on platform services
-  that many bare-metal targets lack
-* Libraries can avoid :rust:`std` to support a wider range of targets
-
 ----------------------
 Three Library Layers
 ----------------------
@@ -44,6 +35,18 @@ Three Library Layers
 * :rust:`no_std` libraries can use :rust:`core` alone or with :rust:`alloc`
 * :rust:`alloc` does not provide files, sockets, or OS threads
 
+---------------------------
+Why Not Always Use "std"?
+---------------------------
+
+* :rust:`std` provides file, socket, and OS-thread APIs
+
+  * Many bare-metal targets lack the required platform services
+
+* Libraries can avoid depending on :rust:`std`
+
+  * This broadens the targets they can support
+
 -----------------------
 What "no_std" Changes
 -----------------------
@@ -54,21 +57,10 @@ What "no_std" Changes
 
   #![no_std]
 
-* :rust:`#![...]` is an inner attribute, applying to the enclosing crate here
-* :rust:`std` is no longer linked automatically for this crate
 * :rust:`core` prelude replaces :rust:`std` prelude
 
   * :rust:`Option`, :rust:`Result`, and :rust:`Iterator` remain in scope
 
-* Normal type checking and borrowing rules still apply
+.. note::
 
-.. warning::
-
-  Attribute does not forbid explicitly linking :rust:`std` or prevent dependencies from using it
-
---------------------------------
-A Library Is Not an Executable
---------------------------------
-
-* Library crates provide functions without starting the program
-* :rust:`std` applications can depend on :rust:`no_std` libraries
+  :rust:`#![...]` is an inner attribute, applying to the enclosing crate here

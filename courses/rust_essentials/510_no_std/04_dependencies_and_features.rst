@@ -7,13 +7,14 @@ Dependencies and Features
 ----------------------------
 
 * The :rust:`#![no_std]` attribute applies *only* to the crate that declares it
-* Dependencies must support the intended :rust:`no_std` configuration
 
-  * Dependencies requiring :rust:`std` can be used on targets supporting :rust:`std`
-  * On a target without :rust:`std` support, such a dependency prevents the build
+* Dependencies must support the intended target
 
-* Default features of dependencies may require :rust:`std` or heap allocation
-* Dependency compatibility depends on documented features, not just crate descriptions
+  * Dependencies requiring :rust:`std` cannot build for targets without :rust:`std`
+
+* Dependency default features may require :rust:`std` or heap allocation
+
+  * Check documented feature options for compatibility
 
 --------------------------
 Feature-Gated Capabilities
@@ -29,7 +30,7 @@ Feature-Gated Capabilities
   std = ["alloc"]
 
 * ``default = ["std"]`` enables the :rust:`std` feature by default
-* ``alloc = []`` defines a feature without enabling others or providing an allocator
+* ``alloc = []`` enables no other features and provides no allocator
 * ``std = ["alloc"]`` makes the :rust:`std` feature also enable :rust:`alloc`
 
 .. note::
@@ -53,7 +54,7 @@ Supported Library Configurations
   * - :rust:`std`
     - All APIs, including :rust:`std` conveniences
 
-* Core APIs remain available in every configuration
+* :rust:`core` APIs remain available in every configuration
 
 * Allocating APIs are compiled only when the :rust:`alloc` feature is enabled
 
@@ -70,13 +71,8 @@ Apply the Features to the Crate
   #[cfg(feature = "alloc")]
   extern crate alloc;
 
-* :rust:`cfg_attr(predicate, attribute)` conditionally applies an attribute
-
-  * Here, :rust:`not(feature = "std")` controls whether :rust:`no_std` applies
-
-* :rust:`#[...]` is an outer attribute applying to the following item
-
-  * Here, :rust:`#[cfg(feature = "alloc")]` includes :rust:`extern crate alloc` only when the feature is enabled
+* :rust:`cfg_attr` applies :rust:`no_std` when the :rust:`std` feature is disabled
+* :rust:`#[cfg(...)]` includes :rust:`extern crate alloc` only with :rust:`alloc`
 
 * :rust:`core` imports and non-allocating functions remain unchanged
 
@@ -114,10 +110,7 @@ Gate the Second Allocating API
 .. code:: rust
 
   #[cfg(feature = "alloc")]
-  use alloc::string::String;
-
-  #[cfg(feature = "alloc")]
-  use alloc::{format, vec};
+  use alloc::{format, string::String, vec};
 
   #[cfg(feature = "alloc")]
   pub fn make_message() -> (Vec<u16>, String) {
@@ -146,7 +139,6 @@ Keep "std"-Only Adapters Separate
       }
   }
 
-* Only this adapter relies on standard output
 * Calculation remains usable without the adapter
 
 .. note::
@@ -173,16 +165,18 @@ Select Features in a Dependent Project
 
 .. note::
 
-  :command:`--no-default-features` applies to the selected package. It does not disable every dependency's default features
+  :command:`--no-default-features` does not disable dependencies' default features
 
 -----------------
 Features Add Up
 -----------------
 
-* Feature requests for a dependency are generally combined
+**Feature requests are combined across the dependency graph**
+
 * Another dependency may request its :rust:`std` feature
 * ``default-features = false`` is not a global ban on that feature
-**Cargo can reveal features selected across the dependency graph**
+
+**Inspect the resolved features with Cargo**
 
 .. code:: sh
 
