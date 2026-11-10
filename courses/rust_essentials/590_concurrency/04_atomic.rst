@@ -143,7 +143,7 @@ Atomic Read-Modify-Write
 
 * Separate loads and stores reintroduce interleaving hazards
 
-  * Loading an atomic and storing later is two distinct operations
+  * Loading an atomic and storing later are two distinct operations
   * An interrupt firing between them can erase notifications
 
 .. code:: rust
@@ -252,7 +252,7 @@ Why "Volatile" Is Not Synchronization
 * **Atomic Operations**
 
   * Designed specifically for concurrency between execution contexts
-  * **Indivisible** updates and prevents memory corruption during preemption
+  * **Indivisible** updates and prevention of memory corruption during preemption
   
 -----------------------------
 When Atomics Are Not Enough
@@ -329,7 +329,7 @@ Single-Core Critical Sections
   * Foreground gains exclusive access to memory without data races
   * Satisfies the aliasing contract required by :rust:`UnsafeCell` to create :rust:`&mut T`
 
-* Commonly implemented in Rust via the :rust:`critical-section` 
+* Commonly implemented via the :rust:`critical-section` 
 
   * Interrupts are automatically re-enabled on exit
   * Paired with :rust:`RefCell` to provide safe, multi-field interior mutability

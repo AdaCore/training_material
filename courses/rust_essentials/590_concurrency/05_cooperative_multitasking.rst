@@ -188,10 +188,10 @@ Concurrency Models Compared
      - OS Thread
      - Heavy CPU computation
    * - Hardware Interrupts
-     - Physical CPU Hardware
+     - CPU/Hardware
      - ISR Function
-     - Sub-microsecond hardware reaction
+     - Fast response
    * - :rust:`async` / :rust:`.await`
-     - None (Tasks yield)
+     - None
      - State Machine Task
      - High-volume I/O & bare-metal low RAM
