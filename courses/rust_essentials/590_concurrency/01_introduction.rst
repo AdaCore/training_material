@@ -10,7 +10,7 @@ Topics Covered
 
   - Understand hardware preemption and interleaving risks
 
-- **Sharing States and Rust Rules**
+- **Sharing States**
 
   - Enforce concurrency boundaries with :rust:`Send`, :rust:`Sync`, and :rust:`UnsafeCell`
 
@@ -47,10 +47,6 @@ Concurrency in Rust
 
 * Different mechanisms
 
-  * Threads
-
-    * Spawn OS-level threads
-
   * Hardware Interrupts 
 
     * Hardware events pause execution and jump to handler 
@@ -58,33 +54,14 @@ Concurrency in Rust
   * Cooperative Multitasking
 
     * Asynchronous control flow 
+	
+  * Threads
+
+    * Spawn OS-level threads
 
 * Built-in language constructs
     
   * Traits to allow moving/sharing across boundaries 
   * Thread-safe non-blocking mutation types 
 
-
---------------------
-The "std" Solution
---------------------
-
-:rust:`std::thread` **relies on operating system**
-
-  * OS handles scheduling, preempting, and context-switching
-
-.. code:: rust
-
-  use std::thread;
-
-  fn worker() {
-    println!("Hello from worker thread!");
-  }
-
-  fn main() {
-    // Pass the function name directly
-    let handle = thread::spawn(worker);
-
-    handle.join().unwrap();
-  }
 

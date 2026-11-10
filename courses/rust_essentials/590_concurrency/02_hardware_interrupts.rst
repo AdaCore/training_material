@@ -18,7 +18,7 @@ Hardware-Level Preemption
   * Instantly jumps execution to an Interrupt Service Routine (ISR)
   * Runs in a special hardware execution mode
 
-    * Not within an OS thread or async task
+    * Not within an OS thread or asynchronous task
 
 * Higher-priority interrupts preempt lower-priority ones
 
@@ -31,7 +31,7 @@ Usage
 **ISRs are written as top-level functions**
 
   * Allows hardware interrupt vector table to call them
-  * :rust:`#[no_mangle]` keeps the name intact for the linker
+  
 
 .. code:: rust
 
@@ -47,6 +47,10 @@ Usage
       write_safe_rust_code();
     }
   }
+  
+.. note::
+
+  :rust:`#[no_mangle]` keeps the name intact for the linker  
   
 --------------------
 Execution Timeline
@@ -118,7 +122,7 @@ Anatomy of an Interleaving Failure
 
   .. image:: rust_essentials/concurrency_lost_update.svg
 
-* The behavior is defined assembly instructions
+* Code executes valid assembly instructions
 
   * But the application outcome is wrong!
 
@@ -132,7 +136,7 @@ Data Races Versus Logical Races
 
   * Multiple contexts access same memory location
   
-    * Without synchronization  
+    * Without synchronization
 	
   * At least one access is a write and at least one is non-atomic
   * Violates aliasing guarantees and causes undefined behavior
@@ -146,6 +150,51 @@ Data Races Versus Logical Races
 	
   * Eliminating data races does not eliminate logical sequencing errors
 
+-------------------- 
+Logical Race Issue
+--------------------
+
+.. code:: rust
+
+  // Memory-mapped UART peripheral registers
+  const UART_STATUS: *const u32 = 0x4000_0000 as *const u32;
+  const UART_CR:     *mut u32   = 0x4000_0004 as *mut u32;
+  const RX_OVERRUN:  u32        = 1 << 3;
+  const CLEAR_FIFO:  u32        = 1 << 0;
+
+  // --- HARDWARE INTERRUPT (High-Priority Packet RX) ---
+  #[no_mangle]
+  pub fn on_uart_rx_interrupt() {
+    // A vital emergency packet just arrived! 
+    // Peripheral automatically placed it in the FIFO.
+    // ISR records that a packet is ready to process.
+    signal_packet_ready();
+  }
+
+  // --- FOREGROUND ERROR HANDLER ---
+  pub fn recover_uart_errors() {
+    unsafe {
+      // 1. Read hardware status register
+      let status = UART_STATUS.read_volatile();
+
+      if (status & RX_OVERRUN) != 0 {
+        // -------------------------------------------------------------
+        // PREEMPTION HAZARD:
+        // A brand new, valid packet arrives right here!
+        // Hardware puts it into the FIFO and triggers on_uart_rx_interrupt()
+        // -------------------------------------------------------------
+
+        // 2. Clear the FIFO because we thought it was only full of bad bytes:
+        UART_CR.write_volatile(CLEAR_FIFO);
+      }
+    }
+  }
+
+* Memory access is safe, result is still broken!
+* Interrupt changed context between the two steps 
+
+  * made foreground's decision outdated and destructive
+
 --------------------------------
 Separation of Responsibilities
 --------------------------------
@@ -158,7 +207,11 @@ Separation of Responsibilities
 * Foreground maintains computation ownership
 
   * Foreground inspects notifications and perform heavy data work
+
+* Combined pattern protects system responsiveness
+
   * Prevents high-priority hardware starvation and latency spikes
+  * Keeps real-time interrupt response times short and bounded
 
 .. code:: rust
 

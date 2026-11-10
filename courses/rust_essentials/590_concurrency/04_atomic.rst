@@ -6,13 +6,13 @@ Atomic
 Safe Shared State in Core
 ---------------------------
 
-* Atomic types resolve shared-state issues without locks or static mut
+* :rust:`atomic` types resolve shared-state issues without locks or static mut
 
   * Part of the standard :rust:`core::sync::atomic` module
   * Mutate values via shared immutable references (:rust:`&self`)
   * Implement the :rust:`Sync` marker trait so they can live in a plain :rust:`static`
 
-* Safe for single-core bare-metal concurrency
+* Provides hardware-level synchronization without locks or an OS
 
   * Hardware executes operations indivisibly at the CPU instruction level
   * Preemption by an interrupt cannot observe or cause a half-written state
@@ -23,12 +23,11 @@ Interior Mutability Landscape
 
 .. list-table::
    :header-rows: 1
-   :stub-columns: 1
 
    * - **Mechanism**
      - **Safety Guarantee**
      - **Execution Cost**
-     - **Sync Status**
+     - **Sync**
    * - :rust:`Cell<T>`
      - Value copies and moves
      - Zero overhead
@@ -46,30 +45,28 @@ Interior Mutability Landscape
 "atomic" Types and Operations
 -------------------------------
 
+* :rust:`AtomicBool`
+
+  * *Construction:* 1-byte hardware flag
+  * *Used for:* Hardware signaling, event pending flags
+  
+* :rust:`AtomicUsize` / :rust:`AtomicIsize`
+
+  * *Construction:* Pointer-sized integer
+  * *Used for:* Buffer indices, ring buffer pointers
+  
+* :rust:`AtomicU32` / :rust:`AtomicI32`
+
+  * *Construction:* 32-bit primitive
+  * *Used for:* Event counters, metrics, packed words
+  
+* :rust:`AtomicPtr<T>`
+
+  * *Construction:* Raw pointer (*:rust:`mut T`)
+  * *Used for:* Lock-free node links, buffer handoffs
+
 .. list-table::
    :header-rows: 1
-   :widths: 22 24 24 30
-   :class: tight-table
-
-   * - **Type**
-     - **Under the Hood**
-     - **Common Embedded Use Cases**
-   * - :rust:`AtomicBool`
-     - 1-byte hardware flag
-     - Hardware signaling, event pending flags
-   * - :rust:`AtomicUsize` / :rust:`AtomicIsize`
-     - Pointer-sized integer
-     - Buffer indices, ring buffer pointers
-   * - :rust:`AtomicU32` / :rust:`AtomicI32`
-     - 32-bit primitive
-     - Event counters, metrics, packed words
-   * - :rust:`AtomicPtr<T>`
-     - Raw pointer (:rust:`*mut T`)
-     - Lock-free node links, buffer handoffs
-
-.. list-table::
-   :header-rows: 1
-   :stub-columns: 1
 
    * - **Operation**
      - **Indivisible Action**
@@ -152,16 +149,16 @@ Atomic Read-Modify-Write
 
   static EVENT: AtomicBool = AtomicBool::new(false);
 
-  // WRONG: Interrupt can fire between load and store, losing the event!
-  fn take_wrong() -> bool {
-      let pending = EVENT.load(Relaxed);
-      EVENT.store(false, Relaxed);
-      pending
+  // WRONG: Split load and store can overwrite another context's update!
+  fn increment_wrong() {
+      let current = COUNTER.load(Relaxed);
+      // PREEMPTION HAZARD: An ISR could modify COUNTER right here!
+      COUNTER.store(current + 1, Relaxed);
   }
 
-  // CORRECT: Read and clear execute as a single indivisible instruction
-  fn take_correct() -> bool {
-      EVENT.swap(false, Relaxed)
+  // CORRECT: Indivisible read-modify-write hardware instruction
+  fn increment_correct() {
+      COUNTER.fetch_add(1, Relaxed);
   }
 
 -------------------------------
@@ -319,11 +316,11 @@ Coherent Pair in an Atomic Word
 
   Hard physical limit: cannot scale to large structs, arrays, or buffers
 
--------------------------------
-Single-Core Critical Sections
--------------------------------
+------------------------------------
+Critical Sections for Complex Data
+------------------------------------
 
-* Solution for complex data: temporarily disable (mask) interrupts
+* Temporarily disable (*mask*) interrupts
 
   * Hardware cannot preempt the foreground while interrupts are disabled
   * Foreground gains exclusive access to memory without data races
