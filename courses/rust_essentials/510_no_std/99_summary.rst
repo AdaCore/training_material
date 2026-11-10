@@ -9,7 +9,7 @@ What We Covered
 * **Programming With** :rust:`core`
 
   - Provides types, traits, iterators, and formatting
-  - Borrowed data, return values, and caller-supplied interfaces work without :rust:`std`
+  - Borrowed data and caller-supplied interfaces work without :rust:`std`
 
 * **Flexible Allocation**
 
@@ -18,7 +18,7 @@ What We Covered
 * **Dependencies and Features**
 
   - Cargo features control which capabilities are compiled
-  - Reusable libraries can support core-only, allocating, and :rust:`std` configurations
+  - Libraries can support :rust:`core`, :rust:`alloc`, and :rust:`std` configurations
 
 * **Checking Configurations**
 

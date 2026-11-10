@@ -26,5 +26,5 @@
   <!-- Right column aligned -->
   <text x="610" y="149" dominant-baseline="middle" class="text">platform APIs</text>
   <text x="610" y="329" dominant-baseline="middle" class="text">heap-backed types</text>
-  <text x="610" y="509" dominant-baseline="middle" class="text">portable foundations</text>
+  <text x="610" y="509" dominant-baseline="middle" class="text">types, traits, iterators</text>
 </svg>

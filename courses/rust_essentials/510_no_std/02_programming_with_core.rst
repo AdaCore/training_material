@@ -2,18 +2,18 @@
 Programming With "core"
 =========================
 
----------------------------
-Familiar Rust Still Works
----------------------------
+--------------------------------
+What Still Works With "no_std"?
+--------------------------------
 
-* Ownership, borrowing, and lifetimes still apply
-* Structs, enums, pattern matching, and methods still work
-* Generics, traits, and closures remain available
-* Arrays, slices, and :rust:`str` remain part of the language
+* Ownership, borrowing, and lifetimes
+* Structs, enums, pattern matching, and methods
+* Generics, traits, and closures
+* Arrays, slices, and :rust:`str`
 
 .. note::
 
-  These are language features; :rust:`core` provides many of the library types, methods, and trait implementations used with them
+  Language features stay the same; APIs depend on available crates
 
 ----------------------
 What "core" Provides
@@ -35,8 +35,8 @@ What "core" Provides
     - :rust:`Debug`, :rust:`Display`, :rust:`core::error::Error`
   * - *Memory utilities*
     - :rust:`core::mem`, :rust:`Cell`, :rust:`RefCell`
-
-* Macros such as :rust:`panic!`, :rust:`assert!`, and :rust:`assert_eq!` remain available
+  * - *Macros*
+    - :rust:`panic!`, :rust:`assert!`, :rust:`assert_eq!`
 
 ------------------------------
 What "core" Does Not Provide
@@ -59,7 +59,7 @@ What "core" Does Not Provide
 
 .. note::
 
-  I/O and concurrency remain possible without :rust:`std`, using other APIs or platform support
+  I/O and concurrency remain possible without :rust:`std` via other APIs
 
 ---------------------------
 Designing Portable APIs
@@ -103,18 +103,43 @@ Borrowed Text and Recoverable Errors
 
   use core::num::ParseIntError;
 
-  pub fn parse_pair(
-      left: &str,
-      right: &str,
-  ) -> Result<[u16; 2], ParseIntError> {
+  pub fn parse_pair(left: &str, right: &str)
+      -> Result<[u16; 2], ParseIntError> {
       let first: u16 = left.trim().parse()?;
       let second: u16 = right.trim().parse()?;
       Ok([first, second])
   }
 
-* This function returns two numbers or propagates a parsing error
-* :rust:`&str` is borrowed text; :rust:`trim()` returns a subslice without allocating
-* :rust:`Result` and :rust:`?` work without :rust:`std`
+* :rust:`trim()` returns a borrowed subslice without allocating
+
+.. note::
+
+  :rust:`Result` and :rust:`?` work without :rust:`std`
+
+-----------------------------------
+Formatting Is Not Standard Output
+-----------------------------------
+
+**Formatting is available through** :rust:`core` **without standard output**
+
+.. list-table::
+  :header-rows: 1
+  :widths: 34 66
+
+  * - **API**
+    - **Role**
+  * - :rust:`Debug`, :rust:`Display`
+    - Formatting traits in :rust:`core::fmt`
+  * - :rust:`format_args!`
+    - Prepares formatting arguments without creating a :rust:`String`
+  * - :rust:`write!`, :rust:`writeln!`
+    - Format into a supplied destination
+  * - :rust:`println!`
+    - Requires :rust:`std`; unlike the other entries, writes to standard output
+
+.. note::
+
+  Describing text and choosing where to send it are separate responsibilities
 
 --------------------------------------------
 Using the Library From a "std" Application
@@ -134,33 +159,8 @@ Using the Library From a "std" Application
       }
   }
 
-* Example application prints ``Maximum: 42``
-* Example application uses :rust:`std`; the library remains :rust:`no_std`
-
------------------------------------
-Formatting Is Not Standard Output
------------------------------------
-
-**Formatting remains available without** :rust:`std`
-
-.. list-table::
-  :header-rows: 1
-  :widths: 34 66
-
-  * - **API**
-    - **Role**
-  * - :rust:`Debug`, :rust:`Display`
-    - Formatting traits in :rust:`core::fmt`
-  * - :rust:`format_args!`
-    - Prepares formatting arguments without creating a :rust:`String`
-  * - :rust:`write!`, :rust:`writeln!`
-    - Format into a supplied destination
-  * - :rust:`println!`
-    - Writes to standard output; requires :rust:`std`
-
-.. note::
-
-  Describing text and choosing where to send it are separate responsibilities
+* Application provides :rust:`main` and prints ``Maximum: 42``
+* Library remains :rust:`no_std` when called from a :rust:`std` application
 
 -------------------------------
 Let Caller Choose Destination
@@ -179,11 +179,11 @@ Let Caller Choose Destination
       write!(output, "Maximum: {value}")
   }
 
-* :rust:`output: &mut impl Write` accepts a caller-supplied writer implementing :rust:`core::fmt::Write`
+* :rust:`output` accepts any writer implementing :rust:`core::fmt::Write`
 * Write failures are returned through :rust:`fmt::Result`
-* No intermediate :rust:`String`
+* Library code creates no intermediate :rust:`String`
 
-  * Writer may allocate
+  * The writer may still allocate
 
 -----------------------------------
 The Caller Can Still Use "String"

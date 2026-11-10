@@ -15,11 +15,11 @@ Heap Allocation With "no_std"
 * Final program must supply suitable allocation support
 
   * :rust:`std` applications normally provide a default global allocator
-  * Bare-metal applications using heap-backed types must provide a global allocator
+  * Bare-metal programs using heap-backed types need a global allocator
 
 .. warning::
 
-  :rust:`extern crate alloc` makes the crate available; it does *not* create a heap or install an allocator
+  :rust:`extern crate alloc` does not create a heap or install an allocator
 
 ---------------------------
 Using "Vec" With "no_std"
@@ -40,7 +40,7 @@ Using "Vec" With "no_std"
   }
 
 * The imports make :rust:`Vec` available without :rust:`std`
-* :rust:`Vec::from(samples)` creates an owned copy, using the final program's allocator when allocation is needed
+* :rust:`Vec::from(samples)` copies the data, allocating when needed
 
 -----------------------------------
 Macros Can Allocate With "no_std"
