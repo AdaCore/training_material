@@ -22,7 +22,7 @@ Hardware-Level Preemption
 
 * Higher-priority interrupts preempt lower-priority ones
 
-  * On architecture supporting nested interrupts
+  * If architecture supports nested interrupts
 
 -------
 Usage
@@ -30,7 +30,7 @@ Usage
 
 **ISRs are written as top-level functions**
 
-  * So the hardware interrupt vector table can call them
+  * Allows hardware interrupt vector table to call them
   * :rust:`#[no_mangle]` keeps the name intact for the linker
 
 .. code:: rust
@@ -56,7 +56,7 @@ Execution Timeline
 
   .. image:: rust_essentials/concurrency_interrupt.svg
 
-  * Foreground loop has no idea it was paused
+  * Foreground loop does not know it was paused
   * Hardware handles switching without runtime or OS intervention
 
 ----------------------------------
@@ -135,7 +135,7 @@ Data Races Versus Logical Races
     * Without synchronization  
 	
   * At least one access is a write and at least one is non-atomic
-  * Violates Rust aliasing guarantees and causes undefined behavior
+  * Violates aliasing guarantees and causes undefined behavior
 
 * **Logical Races**
 
@@ -153,7 +153,7 @@ Separation of Responsibilities
 * Interrupt handlers must execute with minimal latency
 
   * Avoid long loops, delays, or complex payload computations
-  * Handler records event, clears hardware flag, and returns immediately
+  * Example: Handler records event, clears hardware flag, and returns immediately
 
 * Foreground maintains computation ownership
 
