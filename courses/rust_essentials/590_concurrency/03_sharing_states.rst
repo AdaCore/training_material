@@ -81,7 +81,7 @@ Why Cell and RefCell Are Not Sync
   // The trait `Sync` is not implemented for `Cell<u32>`
   static BAD: Cell<u32> = Cell::new(0);
   
-.. code::
+.. code:: error
   :font-size: footnotesize
 
   error[E0277]: `Cell<u32>` cannot be shared between threads safely

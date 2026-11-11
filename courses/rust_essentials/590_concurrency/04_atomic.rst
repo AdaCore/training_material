@@ -6,11 +6,11 @@ Atomic
 Safe Shared State in Core
 ---------------------------
 
-* :rust:`atomic` types resolve shared-state issues without locks or static mut
+* :rust:`atomic` types resolve shared-state issues without locks or :rust:`static mut`
 
   * Part of the standard :rust:`core::sync::atomic` module
   * Mutate values via shared immutable references (:rust:`&self`)
-  * Implement the :rust:`Sync` marker trait so they can live in a plain :rust:`static`
+  * Implement the :rust:`Sync` marker trait so they can live in a :rust:`static`
 
 * Provides hardware-level synchronization without locks or an OS
 
