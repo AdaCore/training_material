@@ -14,7 +14,7 @@ Topics Covered
 
   - Enforce concurrency boundaries with :rust:`Send`, :rust:`Sync`, and :rust:`UnsafeCell`
 
-- **Atomic Operations and Critical Sections**
+- **Atomic**
 
   - Synchronize shared data with atomics and interrupt masking
 
@@ -61,7 +61,7 @@ Concurrency in Rust
 
 * Built-in language constructs
     
-  * Traits to allow moving/sharing across boundaries 
+  * Traits for moving/sharing across boundaries 
   * Thread-safe non-blocking mutation types 
 
 

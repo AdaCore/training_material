@@ -15,7 +15,7 @@ Hardware-Level Preemption
 * Interrupts are triggered directly by hardware peripherals
 
   * CPU forcibly pauses the current execution
-  * Instantly jumps execution to an Interrupt Service Routine (ISR)
+  * Transfers execution to an Interrupt Service Routine (ISR)
   * Runs in a special hardware execution mode
 
     * Not within an OS thread or asynchronous task
@@ -82,7 +82,7 @@ Global Shared State Hazard
 ----------------------------
 
 * Interrupt can trigger at any CPU instruction
-* Sharing state between main and an ISR creates corruption
+* Sharing state between :rust:`main` and an ISR creates corruption
 
 
 .. code:: rust
@@ -101,7 +101,7 @@ Global Shared State Hazard
   #[no_mangle]
   fn TIMER0() {
     unsafe {
-        // If main is interrupted mid-write above, COUNTER becomes corrupted!
+        // If 'main' is interrupted mid-write above, 'COUNTER' becomes corrupted!
         COUNTER = 0;
     }
   }
@@ -193,7 +193,7 @@ Logical Race Issue
 * Memory access is safe, result is still broken!
 * Interrupt changed context between the two steps 
 
-  * made foreground's decision outdated and destructive
+  * Made foreground's decision outdated and destructive
 
 --------------------------------
 Separation of Responsibilities
@@ -206,7 +206,7 @@ Separation of Responsibilities
 
 * Foreground maintains computation ownership
 
-  * Foreground inspects notifications and perform heavy data work
+  * Foreground inspects notifications and performs heavy data work
 
 * Combined pattern protects system responsiveness
 
