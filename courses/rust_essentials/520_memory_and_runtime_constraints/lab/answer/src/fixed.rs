@@ -1,20 +1,24 @@
+use crate::logger_trait::Logger;
+
 pub const MAX_SAMPLES: usize = 8;
 
-pub struct SensorLogger {
+pub struct Fixed {
     samples: [u16; MAX_SAMPLES],
     count: usize,
 }
 
-impl SensorLogger {
+impl Fixed {
     pub fn new() -> Self {
         Self {
             samples: [0; MAX_SAMPLES],
             count: 0,
         }
     }
+}
 
+impl Logger for Fixed {
     // Return false if the logger is full.
-    pub fn add_sample(&mut self, value: u16) -> bool {
+    fn add_sample(&mut self, value: u16) -> bool {
         if self.count >= MAX_SAMPLES {
             return false;
         }
@@ -25,31 +29,30 @@ impl SensorLogger {
     }
 
     // Return None if no samples have been collected.
-    pub fn average(&self) -> Option<u16> {
+    fn average(&self) -> Option<u16> {
         if self.count == 0 {
-            return None;
+            None
+        } else {
+            let mut total = 0;
+            for index in 0..self.count {
+                total = total + self.samples[index];
+            }
+            Some(total / self.count as u16)
         }
-
-        let sum: u32 = self.samples[..self.count]
-            .iter()
-            .map(|&value| value as u32)
-            .sum();
-
-        Some((sum / self.count as u32) as u16)
     }
 
     // Clear the logger so its storage can be reused.
-    pub fn clear(&mut self) {
+    fn clear(&mut self) {
         self.count = 0;
     }
 
     // Number of items in use
-    pub fn count(&self) -> usize {
+    fn count(&self) -> usize {
         self.count
     }
 
     // Total capacity
-    pub fn capacity(&self) -> usize {
+    fn capacity(&self) -> usize {
         self.samples.len()
     }
 }

@@ -1,23 +1,51 @@
-pub fn add_sample(samples: &mut [u16], count: &mut usize, value: u16) -> bool {
-    if *count >= samples.len() {
-        return false;
-    }
+use crate::logger_trait::Logger;
 
-    samples[*count] = value;
-    *count += 1;
-    true
+pub struct Caller<'a> {
+    samples: &'a mut [u16],
+    count: usize,
 }
 
-pub fn average(samples: &[u16], count: usize) -> Option<u16> {
-    if count == 0 {
-        return None;
+impl<'a> Caller<'a> {
+    pub fn new(buffer: &'a mut [u16]) -> Self {
+        Self {
+            samples: buffer,
+            count: 0,
+        }
     }
-
-    let sum: u32 = samples[..count].iter().map(|&value| value as u32).sum();
-
-    Some((sum / count as u32) as u16)
 }
 
-pub fn clear(count: &mut usize) {
-    *count = 0;
+impl Logger for Caller<'_> {
+    fn add_sample(&mut self, value: u16) -> bool {
+        if self.count >= self.samples.len() {
+            false
+        } else {
+            self.samples[self.count] = value;
+            self.count += 1;
+            true
+        }
+    }
+
+    fn average(&self) -> Option<u16> {
+        if self.count == 0 {
+            None
+        } else {
+            let mut total = 0;
+            for index in 0..self.count {
+                total = total + self.samples[index];
+            }
+            Some(total / self.count as u16)
+        }
+    }
+
+    fn clear(&mut self) {
+        self.count = 0;
+    }
+
+    fn count(&self) -> usize {
+        self.count
+    }
+
+    fn capacity(&self) -> usize {
+        self.samples.len()
+    }
 }
