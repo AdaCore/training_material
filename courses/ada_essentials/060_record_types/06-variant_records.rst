@@ -35,10 +35,10 @@ Variant Record Types
 
 * Discriminant can be used to specify the :dfn:`variant part`
 
-  * Uses in a :ada:`case` block to control visibility of components
-
-  * A discriminant controlling a variant part must have a discrete type
-
+  * Uses :ada:`case` block to control visibility of components
+  
+  * This discriminant must be a discrete type
+	
 * Components listed will only be visible if choice matches discriminant
 
   * Component names need to be unique (even across discriminants)
@@ -146,7 +146,7 @@ Constrained Record Use Case
   * :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
 
 ------------------------------------------
-Variant record with default discriminant
+Variant Record With Default Discriminant
 ------------------------------------------
 
 .. code:: Ada
