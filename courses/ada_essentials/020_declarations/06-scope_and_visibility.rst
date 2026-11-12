@@ -87,6 +87,7 @@ Visibility in Action
 
   .. code:: Ada
     :number-lines: 8
+    :font-size: footnotesize
 
     begin
       My_Obj := Green;    -- assigns to outer My_Obj (Color)
