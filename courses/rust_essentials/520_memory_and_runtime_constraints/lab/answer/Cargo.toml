@@ -1,5 +1,5 @@
 [package]
-name = "answer"
+name = "memory_and_runtime_constraints"
 version = "1.0.0"
 edition = "2024"
 
