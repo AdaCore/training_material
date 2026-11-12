@@ -2,29 +2,35 @@ mod caller;
 mod dynamic;
 mod fixed;
 mod logger_trait;
+mod static_data;
 
 use caller::Caller;
 use dynamic::Dynamic;
 use fixed::Fixed;
+use static_data::*;
 
 fn common_test<T: logger_trait::Logger>(logger: &mut T) {
-    for index in 0..9_u16 {
-        if !logger.add_sample(index) {
-            println!("Could not add sample {index}")
+    for value in VALUES {
+        if !logger.add_sample(value) {
+            println!("Should not get here")
         }
     }
+    if !logger.add_sample(1234) {
+        println!("Exceeded capacity")
+    }
 
-    let cnt = logger.count();
-    assert_eq!(cnt, 8);
+    let count = logger.count();
+    assert_eq!(count, MAX_SAMPLES);
 
-    let avg = logger.average().unwrap();
-    assert_eq!(avg, 3);
+    let average = logger.average().unwrap();
+    assert_eq!(average, AVERAGE, "Actual average: {average}");
+
+    println!("Average {average} over {count} values");
 
     logger.clear();
     assert_eq!(logger.count(), 0);
-    assert_eq!(logger.capacity(), 8);
-
-    println!("Average {avg} over {cnt} values");
+    let capacity = logger.capacity();
+    assert_eq!(capacity, MAX_SAMPLES, "Actual capacity: {capacity}");
 }
 
 fn main() {
@@ -33,13 +39,13 @@ fn main() {
     common_test(&mut fixed);
     println!("");
 
+    println!("Testing a caller-supplied buffer");
+    let mut buffer = [0usize; MAX_SAMPLES];
+    let mut caller = Caller::new(&mut buffer);
+    common_test(&mut caller);
+    println!("");
+
     println!("Testing a dynamic buffer");
     let mut dynamic = Dynamic::new();
     common_test(&mut dynamic);
-    println!("");
-
-    println!("Testing a caller-supplied buffer");
-    let mut buffer = [0u16; 8];
-    let mut caller = Caller::new(&mut buffer);
-    common_test(&mut caller);
 }

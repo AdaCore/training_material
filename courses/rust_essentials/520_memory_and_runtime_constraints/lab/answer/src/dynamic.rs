@@ -1,7 +1,8 @@
 use crate::logger_trait::Logger;
+use crate::static_data::MAX_SAMPLES;
 
 pub struct Dynamic {
-    samples: Vec<u16>,
+    samples: Vec<usize>,
 }
 
 impl Dynamic {
@@ -12,11 +13,9 @@ impl Dynamic {
     }
 }
 
-const MAX_SAMPLES: usize = 8;
-
 impl Logger for Dynamic {
     // Return false if the logger is full.
-    fn add_sample(&mut self, value: u16) -> bool {
+    fn add_sample(&mut self, value: usize) -> bool {
         if self.samples.len() >= MAX_SAMPLES {
             return false;
         }
@@ -26,14 +25,14 @@ impl Logger for Dynamic {
     }
 
     // Return None if no samples have been collected.
-    fn average(&self) -> Option<u16> {
+    fn average(&self) -> Option<usize> {
         if self.samples.is_empty() {
             return None;
         }
 
         let sum: u32 = self.samples.iter().map(|&value| value as u32).sum();
 
-        Some((sum / self.samples.len() as u32) as u16)
+        Some((sum / self.samples.len() as u32) as usize)
     }
 
     // Clear the logger so its storage can be reused.
