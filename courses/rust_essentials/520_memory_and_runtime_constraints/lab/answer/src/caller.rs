@@ -1,12 +1,12 @@
 use crate::logger_trait::Logger;
 
 pub struct Caller<'a> {
-    samples: &'a mut [u16],
+    samples: &'a mut [usize],
     count: usize,
 }
 
 impl<'a> Caller<'a> {
-    pub fn new(buffer: &'a mut [u16]) -> Self {
+    pub fn new(buffer: &'a mut [usize]) -> Self {
         Self {
             samples: buffer,
             count: 0,
@@ -15,7 +15,7 @@ impl<'a> Caller<'a> {
 }
 
 impl Logger for Caller<'_> {
-    fn add_sample(&mut self, value: u16) -> bool {
+    fn add_sample(&mut self, value: usize) -> bool {
         if self.count >= self.samples.len() {
             false
         } else {
@@ -25,7 +25,7 @@ impl Logger for Caller<'_> {
         }
     }
 
-    fn average(&self) -> Option<u16> {
+    fn average(&self) -> Option<usize> {
         if self.count == 0 {
             None
         } else {
@@ -33,7 +33,7 @@ impl Logger for Caller<'_> {
             for index in 0..self.count {
                 total = total + self.samples[index];
             }
-            Some(total / self.count as u16)
+            Some(total / self.count as usize)
         }
     }
 
