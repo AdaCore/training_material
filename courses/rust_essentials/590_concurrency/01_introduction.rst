@@ -8,19 +8,22 @@ Topics Covered
 
 - **Hardware Interrupts**
 
-  - Understand hardware preemption and interleaving risks
+  - Hardware preemption
+  - Interleaving risks
 
 - **Sharing States**
 
-  - Enforce concurrency boundaries with :rust:`Send`, :rust:`Sync`, and :rust:`UnsafeCell`
+  - Enforce concurrency boundaries with traits and types
 
 - **Atomic**
 
-  - Synchronize shared data with atomics and interrupt masking
+  - Atomic operations
+  - Protecting shared data
 
 - **Cooperative Multitasking**
 
-  - Run concurrent tasks on a shared stack using :rust:`async` and :rust:`Future`
+  - Asynchronous tasks
+  - Futures and executors
 
 --------------------------------------------------
 Concurrency - One Program, Many Things Happening
@@ -33,7 +36,9 @@ Concurrency - One Program, Many Things Happening
 * Concurrent programs
 
   * Multiple activities *conceptually* happening at once
+  
     * Even on one CPU
+	
   * Think many cooks in one kitchen
 
 * Why concurrency?
@@ -45,7 +50,7 @@ Concurrency - One Program, Many Things Happening
 Concurrency in Rust
 ---------------------
 
-* Different mechanisms
+* Concurrency models
 
   * Hardware Interrupts 
 
@@ -57,11 +62,9 @@ Concurrency in Rust
 	
   * Threads
 
-    * Spawn OS-level threads
-
 * Built-in language constructs
     
   * Traits for moving/sharing across boundaries 
-  * Thread-safe non-blocking mutation types 
+  * Atomic types for thread-safe operations on shared data
 
 

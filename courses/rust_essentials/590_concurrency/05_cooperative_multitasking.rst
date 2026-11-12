@@ -38,8 +38,8 @@ Why Not Just OS Threads?
 - **The Cooperative Alternative**
 
   * Tasks yield the CPU voluntarily when waiting for hardware or timers
-  * All tasks share the single main stack during execution
-  * No OS scheduler needed—compiled into zero-cost state machines
+  * Tasks do not require a dedicated stack each
+  * Tasks can be scheduled without an operating system
 
 -----------------
 "async" Keyword
@@ -66,7 +66,7 @@ Why Not Just OS Threads?
 ".await" Operator
 -------------------
 
-**.await evaluates a Future to completion**
+:rust:`.await` **evaluates a** :rust:`Future` **to completion**
 
   * *If ready immediately:* 
   
@@ -79,13 +79,13 @@ Why Not Just OS Threads?
 .. code:: rust
 
   async fn prepare_snack() {
-      // 1. Ready immediately: executes instantly without yielding
+      // Ready immediately: executes instantly without yielding
       let greeting = meow_async().await;
 
-      // 2. Not ready: pauses execution and yields CPU back to caller!
+      // Not ready: pauses execution and yields CPU back to caller!
       Timer::after_secs(5).await;
 
-      // 3. Resumes here once timer hardware wakes it up
+      // Resumes here once timer hardware wakes it up
       println!("Cat snack served: {}", greeting);
   }
   
@@ -104,18 +104,15 @@ Awaiting the Future
   }
 
   async fn cat() {
-    // 1. Regular function: runs immediately
+    // Regular function: runs immediately
     regular_meow();
 
-    // 2. Async call WITHOUT '.await'
-    // Prints NOTHING! It only creates the unexecuted Future
+    // Async call WITHOUT '.await': only creates unexecuted 'Future'
     let future_obj = async_meow(); 
 	
-	// 3. Doing something else while awaiting
     regular_meow();
 
-    // 4. Awaiting the future:
-    // NOW the future actually steps forward and runs!
+    // Awaiting the future: actually steps forward and runs!
     future_obj.await; 
   }
 
@@ -127,36 +124,38 @@ Awaiting the Future
   
 .. note::
 
-  If you don't .await 'future_obj', it simply gets dropped at the end
+  If you don't :rust:`.await future_obj`, it simply gets dropped at the end
 
 -----------------------------
 The Missing Piece: Executor
 -----------------------------
 
-* Rust provides the syntax (:rust:`async` / :rust:`.await`)
+* Rust provides the syntax (:rust:`async`/:rust:`.await`)
 
   * But upstream Rust has **no** built-in scheduler
 
 * An **Executor** is the engine that drives tasks when they yield
 
-  * In bare-metal :rust:`no_std` systems: :rust:`embassy`
-  * In :rust:`std` desktop/server systems: :rust:`tokio`
+  * Bare-metal systems (:rust:`no_std`): :rust:`embassy`
+  * Desktop/Server systems (:rust:`std`): :rust:`tokio`
   * Implement a lightweight polling driver using pure :rust:`core::task`
 
 -----------------------------
 The Danger: Hogging the CPU
 -----------------------------
 
-**Cooperative means tasks MUST cooperate**
+**Cooperative scheduling requires tasks to yield**
 
-  * Function without an :rust:`.await` blocks the executor
+  * Short functions without :rust:`.await` finish quickly and return control
+  * Tasks running continuously without yielding starves the executor
+  * Other tasks cannot make progress until active future yields or completes
 
 .. code:: rust
 
   // BAD: Refuses to yield, freezes the entire runtime!
   async fn selfish_cat() {
       loop {
-          // No .await here!
+          // No '.await' here!
           // The executor never regains control; all other tasks starve
       }
   }
