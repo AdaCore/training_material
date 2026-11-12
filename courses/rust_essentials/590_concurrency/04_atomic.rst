@@ -2,19 +2,19 @@
 Atomic
 ========
 
----------------------------
-Safe Shared State in Core
----------------------------
+--------------------------
+Atomics for Safe Sharing
+--------------------------
 
 * :rust:`atomic` types resolve shared-state issues without locks or :rust:`static mut`
 
   * Part of the standard :rust:`core::sync::atomic` module
-  * Mutate values via shared immutable references (:rust:`&self`)
+  * Modifies values via shared immutable references (:rust:`&self`)
   * Implement the :rust:`Sync` marker trait so they can live in a :rust:`static`
 
-* Provides hardware-level synchronization without locks or an OS
+* Guaranteed indivisible at the CPU instruction level
 
-  * Hardware executes operations indivisibly at the CPU instruction level
+  * Requires no operating system scheduler
   * Preemption by an interrupt cannot observe or cause a half-written state
 
 -------------------------------
@@ -25,7 +25,7 @@ Interior Mutability Landscape
    :header-rows: 1
 
    * - **Mechanism**
-     - **Safety Guarantee**
+     - **How it works**
      - **Execution Cost**
      - **Sync**
    * - :rust:`Cell<T>`
@@ -37,7 +37,7 @@ Interior Mutability Landscape
      - Minor branch checking
      - :rust:`!Sync`
    * - :rust:`Atomic`
-     - Hardware bus lock & CAS
+     - CPU atomic instructions
      - Lock-free assembly
      - :rust:`Sync`
   
@@ -47,7 +47,7 @@ Interior Mutability Landscape
 
 * :rust:`AtomicBool`
 
-  * *Construction:* 1-byte hardware flag
+  * *Construction:* 1-byte thread-safe boolean
   * *Used for:* Hardware signaling, event pending flags
   
 * :rust:`AtomicUsize` / :rust:`AtomicIsize`
@@ -88,7 +88,7 @@ Memory Ordering
 
 * Atomic operations take an :rust:`Ordering` parameter
 
-  * Instructs Compiler and CPU to reorder surrounding memory accesses
+  * Constrains compiler and CPU to reorder surrounding memory accesses
   * Select ordering based on what the atomic variable is communicating
 
 * **Relaxed**
@@ -97,14 +97,15 @@ Memory Ordering
   * No synchronization or ordering guarantees across other variables
   * Correct choice when the atomic variable itself is the entire message
 
-* **Release (Store)**
+- **Release (Store)**
 
-  * Preceding memory writes are committed before this store is visible
-  * Used by a producer to publish non-atomic or related data
+  * Prevents prior reads and writes from being reordered after this store
+  * Publishes prior changes to contexts doing a matching **Acquire** load
+
 
 * **Acquire (Load)**
 
-  * Memory reads observe changes made prior to matching release
+  * Memory reads observe changes made prior to matching **Release**
   * Used by a consumer to acquire published data safely
 
 * **AcqRel**
@@ -116,23 +117,27 @@ Memory Ordering
 * **SeqCst**
 
   * Enforces a globally consistent order across all cores
-  * Unneeded overhead for single-core
+  * Incurs extra memory barrier overhead on many architectures
   
 
-------------------------------
-Target Hardware Capabilities
-------------------------------
+-----------------------------
+Target Hardware Limitations
+-----------------------------
 
 * Not every embedded microcontroller supports all atomic types
 
-  * Architecture instruction set determines whether atomic operations exist
+  * Limited by architecture instruction set
   * Smaller microcontrollers may lack 32-bit atomic instructions
 
 * The compiler guards architecture capabilities via configuration flags
 
-  * :rust:`#[cfg(target_has_atomic = "8")]` for 8-bit support
-  * :rust:`#[cfg(target_has_atomic = "32")]` for 32-bit support
+  * 8-bit support
+  
+    * :rust:`#[cfg(target_has_atomic = "8")]`
+	
+  * 32-bit support
 
+    * :rust:`#[cfg(target_has_atomic = "32")]`
 
 --------------------------
 Atomic Read-Modify-Write
@@ -145,9 +150,9 @@ Atomic Read-Modify-Write
 
 .. code:: rust
 
-  use core::sync::atomic::{AtomicBool, Ordering::Relaxed};
+  use core::sync::atomic::{AtomicI32, Ordering::Relaxed};
 
-  static EVENT: AtomicBool = AtomicBool::new(false);
+  static COUNTER: AtomicI32 = AtomicI32::new(0);
 
   // WRONG: Split load and store can overwrite another context's update!
   fn increment_wrong() {
@@ -161,23 +166,27 @@ Atomic Read-Modify-Write
       COUNTER.fetch_add(1, Relaxed);
   }
 
--------------------------------
-Event Flags vs Event Counters
--------------------------------
+--------------------------------
+Event Flags vs. Event Counters
+--------------------------------
 
 * Choose the atomic primitive based on communication requirements
 
-* **Event Flags: AtomicBool**
+* **Event Flags:** :rust:`AtomicBool`
 
   * Answers: "Did at least one event happen?"
   * Multiple rapid interrupts coalesce into a single notification flag
   * Ideal for work-needed notifications and wake-up triggers
 
-* **Event Counters: AtomicU32**
+* **Event Counters:** :rust:`AtomicU32`
 
   * Answers: "How many events occurred?"
   * Uses :rust:`.fetch_add(1, Relaxed)` so no occurrences are lost
   * Foreground uses :rust:`.swap(0, Relaxed)` to consume total batch count
+
+------------------------
+Event Counters Example
+------------------------
 
 .. code:: rust
 
@@ -198,12 +207,11 @@ Event Flags vs Event Counters
       }
   }
 
-
 -------------------------------
 One-Time Publication Protocol
 -------------------------------
 
-* Using Acquire and Release to synchronize access to other state
+* Use Acquire and Release to synchronize access to other state
 
   * Value is written to shared memory first
   * Flag is published with Release to announce data readiness
@@ -237,19 +245,21 @@ Why "Volatile" Is Not Synchronization
 
 * Developers confuse volatile accesses with concurrency primitives
 
-* **Volatile Accesses (**:rust:`read_volatile` **/** :rust:`write_volatile`**)**
+* **:rust:`read_volatile` **And** :rust:`write_volatile`
 
-  * Compiler does not optimize reads/writes to memory-mapped registers
-  * Guarantees an access occurs
+  * Ensure compiler does not optimize away memory access operations
+  * Guarantee an access occurs
   
-    * But provides zero cross-context synchronization
+    * But provide zero cross-context synchronization
 	
-  * Does not prevent preemption or instruction reordering across contexts
+  * Do not prevent preemption or instruction reordering across contexts
 
 * **Atomic Operations**
 
-  * Designed specifically for concurrency between execution contexts
-  * **Indivisible** updates and prevention of memory corruption during preemption
+  * Specifically for sharing and mutating states safely across contexts
+  * **Indivisible** updates preventing data races
+  
+    * And torn values under preemption
   
 -----------------------------
 When Atomics Are Not Enough
@@ -270,12 +280,12 @@ When Atomics Are Not Enough
   static PRESSURE: AtomicU32 = AtomicU32::new(100);
 
   fn read_sample() -> (u32, u32) {
-      // 1. Reads 10 
+      // Reads 10 
       let t = TEMP.load(Relaxed);
 
       // --- Preemption: ISR writes a new 'sample' (TEMP=25, PRESSURE=1015) ---
 
-      // 2. Reads 1015 
+      // Reads 1015 
       let p = PRESSURE.load(Relaxed);
 
       // Inconsistent result: 10 degrees paired with 1015 hPa
@@ -316,14 +326,34 @@ Coherent Pair in an Atomic Word
 
   Hard physical limit: cannot scale to large structs, arrays, or buffers
 
+-------------------------------
+The Exclusive-Access Contract
+-------------------------------
+
+* :rust:`UnsafeCell<T>` does not provide any synchronization by itself
+
+  * Does not disable interrupts, mask peripherals, or block execution
+  * Explicitly marked :rust:`!Sync` by the compiler
+
+* Convert hardware guarantees into safe Rust
+
+  * Target-specific platform backend disables or masks interrupts
+  * Safe wrappers expose :rust:`&mut T` to user application code
+
+* Borrow must never 
+
+  * Escape protected scope
+  * Continue to exist after interrupts are enabled again
+
+
 ------------------------------------
 Critical Sections for Complex Data
 ------------------------------------
 
-* Temporarily disable (*mask*) interrupts
+* Critical sections protect shared data from concurrent access
 
-  * Hardware cannot preempt the foreground while interrupts are disabled
-  * Foreground gains exclusive access to memory without data races
+  * Temporarily disable relevant interrupts
+  * Allow foreground code to access the data without ISR interference
   * Satisfies the aliasing contract required by :rust:`UnsafeCell` to create :rust:`&mut T`
 
 * Commonly implemented via the :rust:`critical-section` 
@@ -335,9 +365,9 @@ Critical Sections for Complex Data
 Single-Core Deadlock Hazard
 -----------------------------
 
-* An interrupt handler must never spin waiting for the foreground loop
+* On a single-core system, foreground cannot resume until ISR returns
 
-  * interrupts preempt the foreground on the exact same CPU core
+  * Interrupts preempt the foreground on the exact same CPU core
   * If foreground holds a lock and ISR spins waiting, system deadlocks
   * Foreground code can never release the lock while ISR keeps spinning
 

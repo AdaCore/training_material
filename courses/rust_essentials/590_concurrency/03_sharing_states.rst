@@ -8,77 +8,62 @@ Need for Global Visibility
 
 * Interrupt handlers take zero arguments and return nothing
 
-  * Triggered asynchronously by hardware - not called by program logic
+  * Triggered asynchronously by hardware
+    
+	* Not called by program logic
+	
   * Handlers cannot access local stack variables from the foreground
 
-* Data shared across execution contexts must reside in static storage
+* :rust:`'static` items provide storage accessible to both execution contexts
 
-  * Static variables have a :rust:`'static` lifetime valid for entire runtime
+  * Exist for the program's lifetime
   * :rust:`static` variables are immutable by default
-
--------------------------------
-Issue of "static mut" in Rust
--------------------------------
-
-* Global mutable statics bypass ownership and create aliasing disasters
-
-  * Reading or writing a :rust:`static mut` requires an :rust:`unsafe` block
-  * Produces a hard compiler error
-  * Raw pointer writes provide no synchronization against interrupt preemption
-
-.. code:: rust
-
-  // DANGER: Conflicting access without synchronization
-  static mut COUNT: u32 = 0;
-
-  fn foreground_step() {
-      unsafe {
-          // COMPILE ERROR: references to mutable statics disallowed
-          COUNT += 1; 
-      }
-  }
-
-  fn on_interrupt() {
-      unsafe {
-          COUNT = 0;
-      }
-  }
+  * But ISR can interrupt a read/write
 
 -----------------
 Standard Traits
 -----------------
 
-* :rust:`Send` allows moving ownership of :rust:`T` to another execution boundary
-* :rust:`Sync` allows sharing :rust:`T` across boundaries 
+* :rust:`Send` permits moving ownership of :rust:`T` to another execution boundary
+* :rust:`Sync` permits sharing :rust:`T` across boundaries 
 
   * Via shared immutable reference (:rust:`&T`)
 
-* :rust:`T: Sync` if and only if :rust:`&T: Send`
+* Type T is safe to share across contexts (:rust:`Sync`) via an immutable reference (:rust:`&T`)
+
+  * Only if that reference is also safe to transfer (:rust:`Send`)
+  
 * :rust:`Send` and :rust:`Sync` contain no function definitions or runtime overhead
-* Compiler **automatically** implements :rust:`Send` and :rust:`Sync` for your type
+* Compiler **automatically** implements :rust:`Send` or :rust:`Sync` for your type
 
-  * If all its constituent fields are :rust:`Send` and :rust:`Sync`
+  * If all its constituent fields are :rust:`Send` or :rust:`Sync`
 
------------------------------------
-Why Cell and RefCell Are Not Sync
------------------------------------
+---------------------------------------
+Why "Cell" and "RefCell" Are Not Sync
+---------------------------------------
 
-* Single-threaded interior mutability moves borrow checks to runtime
+* Interior mutability without hardware synchronization
 
-  * :rust:`Cell<T>` allows mutating values by copying or moving data in place
+  * :rust:`Cell<T>` allows values to be replaced through shared references 
+    
+	* It does not perform runtime borrow checking
+	
   * :rust:`RefCell<T>` dynamically tracks active borrows using an internal counter
 
 * Both types are explicitly marked :rust:`!Sync`
 
-  * Borrow tracking counters are standard non-atomic integers
-  * Interleaved updates to borrow counters create immediate data races
+  * :rust:`RefCell` Borrow tracking counters are standard non-atomic integers
+  
+	* Interleaved updates create immediate data races
+	
+  * :rust:`Cell<T>`: Concurrent writes/reads cause unsynchronized memory mutation
   * Compiler refuses to place :rust:`Cell` or :rust:`RefCell` into a shared :rust:`static`
 
 .. code:: rust
 
   use core::cell::Cell;
 
-  // The trait `Sync` is not implemented for `Cell<u32>`
+  // The trait "Sync" is not implemented for "Cell<u32>"
   static BAD: Cell<u32> = Cell::new(0);
   
 .. code:: error
@@ -101,7 +86,7 @@ Why Cell and RefCell Are Not Sync
 
   // Caller must guarantee exclusive access across all competing contexts
   unsafe fn increment_exclusive(cell: &UnsafeCell<u32>) {
-      // Calling .get() is completely safe: returns *mut u32
+      // Calling ".get()" is completely safe: returns "*mut u32"
       let pointer = cell.get();
 
       // SAFETY: Caller upholds the contract that no ISR can interrupt this write
@@ -110,25 +95,9 @@ Why Cell and RefCell Are Not Sync
       }
   }
 
-* Calling :rust:`cell.get()` is safe, but dereferencing raw pointer requires :rust:`unsafe`
+* Calling :rust:`cell.get()` is safe
 
--------------------------------
-The Exclusive-Access Contract
--------------------------------
+  * Dereferencing raw pointer requires :rust:`unsafe`
 
-* :rust:`UnsafeCell<T>` does not provide any synchronization by itself
-
-  * Does not disable interrupts, mask peripherals, or block execution
-  * Explicitly marked :rust:`!Sync` by the compiler
-
-* Turning hardware guarantees into safe Rust
-
-  * Target-specific platform backend disables or masks interrupts
-  * Safe wrappers expose :rust:`&mut T` to user application code
-
-* Borrow must never 
-
-  * Escape protected scope
-  * Continue to exist after interrupts are enabled again
 
 
