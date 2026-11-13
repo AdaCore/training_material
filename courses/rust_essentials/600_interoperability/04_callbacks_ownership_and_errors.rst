@@ -18,36 +18,86 @@ Callback Contracts
 * **Release point**
   * Define when registration ends and state may be destroyed
 * **Execution model**
-  * Define calling threads, concurrency, and reentrancy
+  * Define whether callbacks run synchronously or may be invoked later
 
 
----------------------------------
-Ownership Must Cross Explicitly
----------------------------------
+--------------------------
+A Synchronous C Callback
+--------------------------
+
+**C receives and invokes a function pointer supplied by its caller**
+
+.. code:: c
+
+  #include <stdint.h>
+
+  typedef int32_t (*transform_fn)(int32_t);
+
+  int32_t apply_transform(
+      int32_t value,
+      transform_fn callback
+  ) {
+      return callback(value);
+  }
+
+* The caller supplies a valid callback with a matching signature
+* C invokes the callback once before returning
+* C does not retain the function pointer
+
+
+----------------------------
+Passing a Rust Callback to C
+----------------------------
+
+**A Rust callback uses the same C ABI and signature**
+
+.. code:: rust
+
+  unsafe extern "C" {
+      fn apply_transform(
+          value: i32,
+          callback: extern "C" fn(i32) -> i32,
+      ) -> i32;
+  }
+
+  extern "C" fn is_even(value: i32) -> i32 {
+      if value % 2 == 0 { 1 } else { 0 }
+  }
+
+  pub fn check_even(value: i32) -> i32 {
+      // SAFETY: The declaration matches the C implementation
+      // and C calls `is_even` once without retaining it
+      unsafe { apply_transform(value, is_even) }
+  }
+
+* The callback's ABI and parameter types match the C declaration
+* The callback accepts every possible :rust:`i32` argument
+
+-----------------------------------
+Ownership Across the FFI Boundary
+-----------------------------------
 
 **Every pointer contract must define ownership and when it changes**
 
 * **Borrowed**
   * Valid for the call or until a documented release point
-* **Transferred to the callee**
+* **Ownership transferred to the callee**
   * Callee owns and destroys it
-* **Returned to the caller**
-  * Caller owns it and uses the matching destructor
+* **Ownership transferred to the caller**
+  * Caller must destroy the returned resource with the matching destructor
 * **Shared**
   * Define validity duration, ownership, and synchronization rules
-* **Borrow end**
-  * Define when the borrow ends
 
 .. warning::
 
-  "The other side probably frees it" is not an ownership model
+  Never assume which side is responsible for releasing a resource
 
 
 ----------------
 Opaque Handles
 ----------------
 
-**Opaque handles hide foreign implementation details**
+**Opaque handles let code refer to resources without knowing their internal representation**
 
 .. code:: c
 
@@ -69,16 +119,29 @@ Opaque Handles
       }
   }
 
-* C callers see a distinct handle type without the struct definition
-* Rust represents the opaque pointee as :rust:`c_void` in this raw layer
-* Open and close functions define the resource lifetime explicitly
+* Rust represents the opaque pointer as :rust:`*mut c_void` in the raw layer
+* :rust:`*mut c_void` does not guarantee validity or establish ownership
+
+
+-------------------------
+Foreign Handle Contract
+-------------------------
+
+**For this example, the C API guarantees**
+
+* :C:`holocron_open()` has no caller-side safety preconditions
+  * Returns null on failure or a fresh, valid, uniquely owned handle
+* Every successful handle must be closed exactly once
+* :C:`holocron_close()` releases a live, owned handle
+* No other code invalidates a handle while the wrapper owns it
+* Other operations borrow handles without taking ownership
 
 
 --------------------
 Acquiring a Handle
 --------------------
 
-**Map a nullable foreign handle into a Rust invariant**
+**Use a Rust wrapper to manage the handle returned by the C API**
 
 .. code:: rust
 
@@ -89,14 +152,18 @@ Acquiring a Handle
 
   impl Holocron {
       pub fn open() -> Option<Self> {
-          // SAFETY: Declaration matches the header
+          // SAFETY: Declaration matches the C header
+          // and holocron_open has no caller-side preconditions
           let ptr = unsafe { raw::holocron_open() };
           NonNull::new(ptr).map(Self)
       }
   }
 
-* :rust:`NonNull::new` converts a possible null pointer into :rust:`Option`
-* Every constructed :rust:`Holocron` contains a non-null foreign handle
+* :rust:`NonNull::new` returns :rust:`None` for null and :rust:`Some` otherwise
+
+.. warning::
+
+  :rust:`NonNull` does not guarantee handle validity, resource lifetime, or ownership
 
 
 --------------------
@@ -109,21 +176,21 @@ Releasing a Handle
 
   impl Drop for Holocron {
       fn drop(&mut self) {
-          // SAFETY: Handle came from `holocron_open`
-          // and is still owned by this wrapper
+          // SAFETY: Handle came from holocron_open
+          // and is still live and exclusively owned
           unsafe { raw::holocron_close(self.0.as_ptr()) }
       }
   }
 
-* Wrapper owns each successfully acquired handle
-* Moving :rust:`Holocron` transfers ownership without duplicating the handle
+* :rust:`Drop` calls :rust:`holocron_close` when the wrapper is dropped
+* Moving :rust:`Holocron` transfers responsibility for closing the handle without closing it
 
 
 ----------------
 C Status Codes
 ----------------
 
-**C APIs often return status and write results through output pointers**
+**Rust wrappers must handle unknown status codes from evolving C APIs**
 
 .. code:: c
 
@@ -136,16 +203,18 @@ C Status Codes
   );
 
 * :C:`0` means success
+
+  * C writes a valid result through :C:`out_distance`
+
 * :C:`1` means no route is available
 * :C:`2` means the result overflowed
-* Other status values may appear if the library evolves
 
 
---------------------------------
-Mirroring Status Codes in Rust
---------------------------------
+-----------------------------------
+Matching the C Function Signature
+-----------------------------------
 
-**Raw layer preserves the foreign status-code contract**
+**Raw Rust declaration mirrors the C function's ABI-level signature**
 
 .. code:: rust
 
@@ -178,7 +247,7 @@ Calling the C API
   // SAFETY:
   // - `a` and `b` contain live `Holocron` handles
   // - `distance` is writable for one `u32`
-  // - C does not retain the handles or output pointer
+  // - Handles and the output pointer are not retained by the C API
   let status = unsafe {
       raw::holocron_distance(
           a.0.as_ptr(),
@@ -196,7 +265,7 @@ Calling the C API
 Mapping the Status to Result
 ------------------------------
 
-**Map known status codes and preserve unknown values**
+**Safe wrappers translate C status codes into** :rust:`Result` **values**
 
 .. code:: rust
 
@@ -217,14 +286,14 @@ Mapping the Status to Result
   }
 
 * Public API exposes :rust:`Result`, not foreign status-code conventions
-* Wrapper uses the output value only on successful status
+  * Wrapper uses the output value only on successful status
 
 
----------------------------------
-Do Not Unwind Across extern "C"
----------------------------------
+----------------------
+Unwinding Across FFI
+----------------------
 
-**A normal** :rust:`extern "C"` **boundary is non-unwinding**
+:rust:`extern "C"` **boundaries do not support unwinding**
 
 * **Rust panic**
   * Attempting to unwind through the boundary aborts the process
@@ -233,7 +302,7 @@ Do Not Unwind Across extern "C"
 * **Expected failure**
   * Cross the boundary as explicit data
 * **Containment rule**
-  * Contain failures on their originating side
+  * Keep Rust panics in Rust code and foreign exceptions in foreign code
 
 .. warning::
 

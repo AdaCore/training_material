@@ -38,4 +38,5 @@ Interoperability Extra
 .. include:: 601_interoperability_extra/05_cpp_interoperability.rst
 .. include:: 601_interoperability_extra/06_abi_compatibility_and_evolution.rst
 .. include:: 601_interoperability_extra/07_migration_strategies.rst
+.. include:: 601_interoperability_extra/08_binding_tools.rst
 .. include:: 601_interoperability_extra/99_summary.rst

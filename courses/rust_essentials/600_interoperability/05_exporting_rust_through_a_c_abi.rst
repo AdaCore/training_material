@@ -7,17 +7,15 @@ Exporting Rust Through a C ABI
 Library Crate Types
 ---------------------
 
-**Choose the crate type for the foreign link model**
+**Library crate types are specified in** :filename:`Cargo.toml`
 
 .. code:: toml
 
   [lib]
   crate-type = ["staticlib"]  # or "cdylib"
 
-* Static system library
-  * :rust:`staticlib` for linking into a non-Rust program
-* Dynamic system library
-  * :rust:`cdylib` for dynamic linking from non-Rust code
+* :rust:`staticlib` - Produces a static library for linking into a non-Rust program
+* :rust:`cdylib` - Produces a dynamic library for use by non-Rust code
 
 .. note::
 
@@ -28,7 +26,7 @@ Library Crate Types
 Exporting a Simple Function
 -----------------------------
 
-**Export a C ABI symbol without name mangling**
+**C callers need a predictable symbol name for the exported function**
 
 .. code:: rust
 
@@ -43,12 +41,16 @@ Exporting a Simple Function
       if jumps <= fuel / 10 { 1 } else { 0 }
   }
 
+* Rust normally mangles symbol names; :rust:`extern "C"` does not disable this
+* :rust:`#[unsafe(no_mangle)]` exports the exact symbol name :rust:`hyperdrive_check`
+* The attribute is unsafe because the name must not collide with another linked symbol
+
 
 -------------------------
 C Header for the Export
 -------------------------
 
-**The foreign declaration mirrors the exported Rust signature**
+**Foreign declarations must match the exported Rust signature**
 
 .. code:: c
 
@@ -61,15 +63,13 @@ C Header for the Export
 
 * Rust :rust:`c_int` matches C :C:`int`
 * All :rust:`c_int` arguments are valid without extra safety preconditions
-* Negative inputs return :rust:`-1`; other inputs return :rust:`0` or :rust:`1`
-* C callers must uphold buffer and ownership rules beyond null checks
+* Negative inputs return :rust:`-1`
+* Other inputs return :rust:`0` or :rust:`1`
 
 
 --------------------------------------
 Calling the Exported Function from C
 --------------------------------------
-
-**The C caller includes the matching header**
 
 .. code:: c
 
@@ -119,28 +119,27 @@ Returning an Owned C String
   }
 
 
-----------------------------
-Returned CString Ownership
-----------------------------
+-----------------------------
+Returned C String Ownership
+-----------------------------
 
-**The caller owns the allocation but must use the matching destructor**
+**The C caller is responsible for the returned string allocation**
 
-* Pass the pointer back to :rust:`droid_name_free` for deallocation
-* Do not call C :C:`free()` on the Rust-allocated string
-* Do not change the string length or its NUL terminator
-* Do not access the allocation while the destructor runs
-* Stop using the pointer after returning it to Rust
+* Preserve the string length and NUL terminator
+* Release the allocation using :rust:`droid_name_free`
+* Avoid accessing the allocation during deallocation
+* Treat the pointer as invalid after releasing it
 
 .. warning::
 
-  Release the returned pointer only once
+  Releasing the same pointer twice causes undefined behavior
 
 
 ------------------------------
 Freeing an Exported C String
 ------------------------------
 
-:rust:`CString::from_raw` **reconstructs the original allocation**
+:rust:`CString::from_raw` **reclaims ownership of the Rust-allocated string**
 
 .. code:: rust
 
@@ -157,4 +156,6 @@ Freeing an Exported C String
       drop(unsafe { CString::from_raw(ptr) });
   }
 
-* Dropping it uses the matching Rust allocator
+.. note::
+
+  Dropping :rust:`CString` frees its allocation through Rust's allocator

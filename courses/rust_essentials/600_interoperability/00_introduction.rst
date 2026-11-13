@@ -10,15 +10,21 @@ Topics Covered
 
 * **Calling C from Rust**
 
-  * C ABI, foreign declarations, calls, and linking
+  * C ABI (application binary interface), foreign declarations, calls, and linking
 
-* **Safe Boundary Design**
+* **Safe FFI Boundaries**
 
-  * Raw and safe layers, representations, ownership, callback contracts, and errors
+  * Raw and safe layers
+  * Pointer validity and contracts
+  * C-compatible data representations
 
-* **Binding Tools**
+* **C Strings Across the Boundary**
 
-  * Where :rust:`bindgen` helps and where it does not
+  * C string representations, validity, and borrowing
+
+* **Callbacks, Ownership, and Errors**
+
+  * Callback contracts, handles, ownership, status codes, and unwinding
 
 * **Exporting Rust**
 
@@ -29,15 +35,16 @@ Topics Covered
 Why Interoperability Matters
 ------------------------------
 
-**Existing systems contain more than source code**
+**Interoperability connects new code to existing systems**
 
-* Proven algorithms
-* Hardware and operating-system integrations
-* Certification evidence
-* Mature test suites
-* Vendor libraries
-* Years of operational knowledge
-* Interoperability lets Rust be added without discarding those assets
+* **For developers**
+  * Reuse proven algorithms and vendor libraries
+  * Integrate with hardware and OS interfaces
+  * Extend systems without rewriting existing components
+
+* **For organizations**
+  * Preserve mature test suites and operational knowledge
+  * Keep existing certification evidence available for review
 
 
 --------------------------------
@@ -46,42 +53,36 @@ Interoperability Is a Contract
 
 **Interoperability requires a complete boundary contract**
 
-* **Calling convention** - how arguments and return values are passed
-* **Symbol name** - what the linker searches for
-* **Data layout** - size, alignment, and field offsets
-* **Validity** - which bit patterns and pointer values are allowed
-* **Ownership** - who allocates, mutates, and frees
-* **Control flow** - how errors, panics, and exceptions behave
-* **Concurrency** - which threads may invoke or receive callbacks
+.. list-table::
+   :header-rows: 1
+   :widths: 32 68
+
+   * - **Contract Element**
+     - **Description**
+   * - *Calling Convention*
+     - How arguments and return values are passed
+   * - *Symbol Name*
+     - What the linker searches for
+   * - *Data Layout*
+     - Size, alignment, and field offsets
+   * - *Validity*
+     - Allowed bit patterns and pointer values
+   * - *Ownership*
+     - Who allocates, mutates, and frees
+   * - *Error Handling*
+     - How errors are represented and unwinding is contained
+   * - *Concurrency*
+     - Which threads may invoke or receive callbacks
 
 
 ----------------------------
 From Source Code to a Call
 ----------------------------
 
-**A foreign call spans build-time and runtime steps**
-
 .. image:: rust_essentials/600_ffi_source_to_call.svg
 
-* Rust compiler checks the Rust declaration
-* It cannot prove that the foreign implementation matches it
+* A Rust declaration describes the expected native function interface
 
+.. warning::
 
---------------------------
-Choose a Narrow Boundary
---------------------------
-
-* Good boundaries are narrow and explicit
-
-  * Coarse-grained rather than one call per field access
-  * Based on simple C-compatible data
-  * Explicit about ownership
-  * Small enough to review and test
-  * Stable enough to version
-  * Wrapped once rather than used directly throughout the crate
-
-* Avoid mirroring an entire data model across the boundary
-
-.. tip::
-
-  Move complete operations across the boundary, not chatty calls
+  Rust cannot prove that the implementation matches the declaration
