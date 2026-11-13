@@ -71,14 +71,14 @@
   <circle cx="760" cy="100" r="5" fill="#38BDF8" />
 
   <!-- Event Labels -->
-  <text x="320" y="145" text-anchor="end" dx="-8" font-family="sans-serif" font-size="10" font-weight="bold" fill="#FB923C">ISR A fires</text>
-  <text x="460" y="225" text-anchor="end" dx="-8" font-family="sans-serif" font-size="10" font-weight="bold" fill="#F87171">ISR B preempts A</text>
-  <text x="620" y="225" text-anchor="start" dx="8" font-family="sans-serif" font-size="10" font-weight="bold" fill="#FB923C">ISR B returns</text>
-  <text x="760" y="145" text-anchor="start" dx="8" font-family="sans-serif" font-size="10" font-weight="bold" fill="#38BDF8">All ISRs exit</text>
+  <text x="317" y="145" text-anchor="end" dx="-8" font-family="sans-serif" font-size="11" font-weight="bold" fill="#FB923C">ISR A fires</text>
+  <text x="460" y="225" text-anchor="end" dx="-8" font-family="sans-serif" font-size="11" font-weight="bold" fill="#F87171">ISR B preempts A</text>
+  <text x="620" y="222" text-anchor="start" dx="8" font-family="sans-serif" font-size="11" font-weight="bold" fill="#FB923C">ISR B returns</text>
+  <text x="760" y="145" text-anchor="start" dx="8" font-family="sans-serif" font-size="11" font-weight="bold" fill="#38BDF8">All ISRs exit</text>
 
   <!-- Execution Block Labels -->
   <text x="540" y="292" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#FCA5A5">Handler B executing</text>
-  <text x="690" y="210" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#FDBA74">Handler A resumes</text>
+  <text x="690" y="200" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#FDBA74">Handler A resumes</text>
 
   <!-- Time Axis Bottom -->
   <line x1="200" y1="330" x2="830" y2="330" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)" />

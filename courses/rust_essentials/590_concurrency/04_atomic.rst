@@ -41,9 +41,9 @@ Interior Mutability Landscape
      - Lock-free assembly
      - :rust:`Sync`
   
--------------------------------
-"atomic" Types and Operations
--------------------------------
+----------------
+"atomic" Types 
+----------------
 
 * :rust:`AtomicBool`
 
@@ -65,6 +65,10 @@ Interior Mutability Landscape
   * *Construction:* Raw pointer (*:rust:`mut T`)
   * *Used for:* Lock-free node links, buffer handoffs
 
+---------------------
+"atomic" Operations
+---------------------
+
 .. list-table::
    :header-rows: 1
 
@@ -81,7 +85,6 @@ Interior Mutability Landscape
    * - :rust:`.compare_exchange(...)`
      - Updates value only if it matches expected value
 	 
-
 -----------------
 Memory Ordering
 -----------------
@@ -100,17 +103,17 @@ Memory Ordering
 - **Release (Store)**
 
   * Prevents prior reads and writes from being reordered after this store
-  * Publishes prior changes to contexts doing a matching **Acquire** load
+  * Publishes prior changes to contexts doing a matching :rust:`Acquire` load
 
 
 * **Acquire (Load)**
 
-  * Memory reads observe changes made prior to matching **Release**
+  * Memory reads observe changes made prior to matching :rust:`Release`
   * Used by a consumer to acquire published data safely
 
 * **AcqRel**
 
-  * Combines Acquire and Release
+  * Combines :rust:`Acquire` and :rust:`Release`
   
     * For read-modify-write operations (:rust:`.swap()`)
 
@@ -184,34 +187,11 @@ Event Flags vs. Event Counters
   * Uses :rust:`.fetch_add(1, Relaxed)` so no occurrences are lost
   * Foreground uses :rust:`.swap(0, Relaxed)` to consume total batch count
 
-------------------------
-Event Counters Example
-------------------------
-
-.. code:: rust
-
-  use core::sync::atomic::{AtomicU32, Ordering::Relaxed};
-
-  static EVENT_COUNT: AtomicU32 = AtomicU32::new(0);
-
-  // Hardware interrupt handler records every arrival
-  fn on_uart_rx_interrupt() {
-      EVENT_COUNT.fetch_add(1, Relaxed);
-  }
-
-  // Foreground loop processes exact number of accumulated events
-  fn process_events() {
-      let count = EVENT_COUNT.swap(0, Relaxed);
-      for _ in 0..count {
-          handle_single_event();
-      }
-  }
-
 -------------------------------
 One-Time Publication Protocol
 -------------------------------
 
-* Use Acquire and Release to synchronize access to other state
+* Use :rust:`Acquire` and :rust:`Release` to synchronize access to other state
 
   * Value is written to shared memory first
   * Flag is published with Release to announce data readiness
@@ -243,9 +223,9 @@ One-Time Publication Protocol
 Why "Volatile" Is Not Synchronization
 ---------------------------------------
 
-* Developers confuse volatile accesses with concurrency primitives
+* Volatile flags external access such as hardwares sensors
 
-* **:rust:`read_volatile` **And** :rust:`write_volatile`
+* :rust:`read_volatile` **And** :rust:`write_volatile`
 
   * Ensure compiler does not optimize away memory access operations
   * Guarantee an access occurs
@@ -335,7 +315,7 @@ The Exclusive-Access Contract
   * Does not disable interrupts, mask peripherals, or block execution
   * Explicitly marked :rust:`!Sync` by the compiler
 
-* Convert hardware guarantees into safe Rust
+* Application converts hardware guarantees into safe Rust
 
   * Target-specific platform backend disables or masks interrupts
   * Safe wrappers expose :rust:`&mut T` to user application code
@@ -356,10 +336,14 @@ Critical Sections for Complex Data
   * Allow foreground code to access the data without ISR interference
   * Satisfies the aliasing contract required by :rust:`UnsafeCell` to create :rust:`&mut T`
 
-* Commonly implemented via the :rust:`critical-section` 
+* Commonly implemented via a :rust:`critical-section`
 
   * Interrupts are automatically re-enabled on exit
   * Paired with :rust:`RefCell` to provide safe, multi-field interior mutability
+  
+.. note:: 
+
+  :rust:`critical-section` is an external crate not part of :rust:`core`
 
 -----------------------------
 Single-Core Deadlock Hazard
@@ -375,17 +359,18 @@ Single-Core Deadlock Hazard
 
   use core::sync::atomic::{AtomicBool, Ordering::Relaxed};
 
-  static HELD: AtomicBool = AtomicBool::new(false);
+  static LOCK: AtomicBool = AtomicBool::new(false);
 
   fn foreground_task() {
-      HELD.store(true, Relaxed);
-      // Preemption happens right here!
-      HELD.store(false, Relaxed);
+      LOCK.store(true, Relaxed);
+      // Preemption 'on_interrupt()' is called 
+      LOCK.store(false, Relaxed);
   }
 
-  // FATAL BUG: Foreground cannot resume to clear 'HELD' while ISR spins
   fn on_interrupt() {
-      while HELD.load(Relaxed) {
-          // Deadlocks permanently on a single-core CPU
-      }
+    // DANGER: Cannot load because lock is held 
+    // Cannot be released because no more interrupts to clear the lock
+    while LOCK.load(Relaxed) {
+        // Deadlocks permanently on a single-core CPU
+    }
   }
