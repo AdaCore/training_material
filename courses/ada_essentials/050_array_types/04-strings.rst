@@ -89,6 +89,10 @@ String Literals
    Embedded_Double_Quotes : constant String :=
          "Embedded ""double"" quotes";
 
+.. note::
+
+  Ada string literals do not use backslash-style escape sequences
+
 .. container:: speakernote
 
   Note that the last example literal (that has embedded double quotes) is not an example of concatenation!

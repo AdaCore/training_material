@@ -73,6 +73,10 @@ Parameter Modes
    - Actual is expected to be **both** read and written
    - Actual **must** be a writable object
 
+.. note::
+
+  If no mode is specified, :ada:`in` is assumed
+
 -----------------
 Function Return
 -----------------
@@ -93,20 +97,22 @@ Function Return
 Why Read Mode "out" Parameters?
 ---------------------------------
 
-* No need for readable temporary variable
-
-* Warning: initial value is **not defined**
+**No need for readable temporary variable**
 
 .. code:: Ada
   :font-size: small
 
-   procedure Compute (Value : out Integer) is
-   begin
-     Value := 0;
-     for K in 1 .. 10 loop
-       Value := Value + K; -- this is a read AND a write
-     end loop;
-   end Compute;
+  procedure Compute (Value : out Integer) is
+  begin
+    Value := 0;
+    for K in 1 .. 10 loop
+      Value := Value + K; -- this is a read AND a write
+    end loop;
+  end Compute;
+
+.. warning::
+
+  An :ada:`out` parameter is uninitialized except for certain cases (described later)
 
 ------------------------------
 Parameter Passing Mechanisms
@@ -204,21 +210,21 @@ Unconstrained Parameters Surprise
 Naive Implementation
 ----------------------
 
+.. code:: Ada
+
+ function Subtract (Left, Right : Vector)
+   return Vector is
+    Result : Vector (1 .. Left'Length);
+ begin
+    ...
+    for K in Result'Range loop
+      Result (K) := Left (K) - Right (K);
+    end loop;
+
 * **Assumes** bounds are the same everywhere
 * Fails when :ada:`Left'First /= Right'First`
 * Fails when :ada:`Left'Length /= Right'Length`
 * Fails when :ada:`Left'First /= 1`
-
-  .. code:: Ada
-
-   function Subtract (Left, Right : Vector)
-     return Vector is
-      Result : Vector (1 .. Left'Length);
-   begin
-      ...
-      for K in Result'Range loop
-        Result (K) := Left (K) - Right (K);
-      end loop;
 
 ------------------------
 Correct Implementation

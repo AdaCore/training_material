@@ -435,23 +435,39 @@ Subtype Predicates Aren't Bullet-Proof
 
 * For composite types, predicate checks apply to whole object values, not individual components
 
-.. code:: Ada
-  :font-size: scriptsize
+  .. code:: Ada
+    :font-size: scriptsize
 
-   procedure Demo is
-     type Table is array (1 .. 5) of Integer
-       -- array should always be sorted
+    type Record_T is record
+       First : Integer;
+       Last  : Integer;
+    end record
        with Dynamic_Predicate =>
-         (for all Idx in Table'Range =>
-           (Idx = Table'First or else Table (Idx-1) <= Table (Idx)));
-     Values : Table := (1, 3, 5, 7, 9);
-   begin
-     ...
-     Values (3) := 0; -- does not generate an exception!
-     ...
-     Values := (1, 3, 0, 7, 9); -- does generate an exception
-     ...
-   end Demo;
+          (Record_T.First <= Record_T.Last);
+
+    One : Record_T := (1, 2);
+    Two : Record_T := (2, 3);
+
+* Modifying a field does not trigger a predicate check
+
+  .. code:: Ada
+    :font-size: scriptsize
+
+    One.First := Integer'Last;  -- legal but problematic
+
+* Aggregate assignment **does** trigger a check
+
+  .. code:: Ada
+    :font-size: scriptsize
+
+    Two := (0, 0);  -- legal and passes the check
+
+* But an assignment will trigger the check
+  
+  .. code:: Ada
+    :font-size: scriptsize
+
+    Two := One;  -- "One" does not satisfy the predicate
 
 ------------------------------------------
 Beware Accidental Recursion in Predicate
@@ -518,23 +534,32 @@ Enabling/Disabling Contract Verification
 
      .. code:: Ada
 
+        -- Applies to all assertion names
         pragma Assertion_Policy (policy_name);
+
+        -- Applies to specific assertion name(s)
         pragma Assertion_Policy (
            assertion_name => policy_name
            {, assertion_name => policy_name});
+
+   - :ada:`policy_name` can be either :ada:`Check` or :ada:`Ignore`
+
+     - Compilers can define their own names as well
+
+   - Some common values of :ada:`assertion_name` are
+
+     * :ada:`Assert`
+     * :ada:`Static_Predicate`
+     * :ada:`Dynamic_Predicate`
+     * :ada:`Pre`
+     * :ada:`Post`
+     * :ada:`Type_Invariant`
 
 * Vendors may define additional policies (GNAT does)
 * Default, without pragma, is implementation-defined
 * Vendors almost certainly offer compiler switch
 
    - GNAT uses same switch as for :ada:`pragma Assert`: :command:`-gnata`
-
-.. container:: speakernote
-
-   The simple form of Assertion Policy just applies the specified policy to all forms of assertion.
-   Note that the Assert procedures in Ada.Assertions are not controlled by the pragma.  They are procedures like any other.
-   A switch is likely offered because otherwise one must edit the source code to change settings, like the situation with pragma Inline.
-   Pragma Suppress can also be applied.
 
 ------
 Quiz

@@ -29,36 +29,6 @@ Quantified Expressions
 ..
   language_version 2012
 
------------------------------------
-Same Behavior without Quantifiers
------------------------------------
-
-.. code:: Ada
-  :font-size: small
-
-   function Universal (Set : Components) return Boolean is
-   begin
-     for C of Set loop
-       if not Predicate (C) then
-         return False;  -- Predicate must be true for all
-       end if;
-     end loop;
-     return True;
-   end Universal;
-
-   function Existential (Set : Components) return Boolean is
-   begin
-     for C of Set loop
-       if Predicate (C) then
-         return True;  -- Predicate need only be true for one
-       end if;
-     end loop;
-     return False;
-   end Existential;
-
-..
-  language_version 2012
-
 -------------------------------
 Quantified Expressions Syntax
 -------------------------------
@@ -262,17 +232,19 @@ Index-Based Vs Component-Based Indexing
        for all K in Table'Range =>
           K > Table'First and then Table (K - 1) <= Table (K));
 
-* Answer: **False**. Predicate fails when `K = Table'First`
+.. container:: animate
 
-  + First subcondition is False!
-  + Condition should be
+  * Answer: **False**. Predicate fails when `K = Table'First`
 
-    .. code:: Ada
-      :font-size: scriptsize
+    + First subcondition is False!
+    + Condition should be
 
-      Ascending_Order : constant Boolean := (
-         for all K in Table'Range =>
-            K = Table'First or else Table (K - 1) <= Table (K));
+      .. code:: Ada
+        :font-size: small
+
+        Ascending_Order : constant Boolean := (
+           for all K in Table'Range =>
+              K = Table'First or else Table (K - 1) <= Table (K));
 
 ..
   language_version 2012
