@@ -37,13 +37,13 @@ Fixed Capacity vs. Static Storage
 Full Capacity Is an Ordinary Error
 ------------------------------------
 
-* Example: a :rust:`heapless::Vec` with capacity for two elements
+**A full fixed-capacity vector rejects additional elements**
 
 .. code:: rust
 
-  use heapless::Vec;
+  use heapless::Vec as FixedVec;
 
-  let mut values: Vec<u16, 2> = Vec::new();
+  let mut values: FixedVec<u16, 2> = FixedVec::new();
   assert_eq!(values.push(10), Ok(()));
   assert_eq!(values.push(42), Ok(()));
   assert_eq!(values.push(7), Err(7));
@@ -53,7 +53,7 @@ Full Capacity Is an Ordinary Error
 
 * Failed :rust:`push` leaves the collection's length and contents unchanged
 
-.. note::
+.. warning::
 
   At full capacity, :rust:`push` fails even with free heap memory
 

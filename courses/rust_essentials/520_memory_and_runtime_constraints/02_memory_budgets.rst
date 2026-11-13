@@ -91,4 +91,6 @@ Stack Memory Limits
 
 * Caller-provided buffers can avoid an additional local working buffer
 
-* Estimate worst-case stack usage, not just individual value sizes
+.. tip::
+
+  Estimate worst-case stack usage, not just individual value sizes
