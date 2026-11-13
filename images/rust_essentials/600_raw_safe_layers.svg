@@ -37,10 +37,10 @@
   <rect x="442" y="392" width="230" height="44" rx="22.0" fill="#FFFFFF" stroke="#17345F" stroke-width="2"/><text x="557.0" y="420.12" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="600" fill="#1C3553">platform C ABI</text>
   <text x="750" y="66" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="600" fill="#5E9F68">Ergonomic Rust types</text>
   <line x1="700" y1="47" x2="700" y2="226" stroke="#5E9F68" stroke-width="3" stroke-linecap="round"/>
-  <line x1="700" y1="47" x2="720" y2="47" stroke="#5E9F68" stroke-width="3" stroke-linecap="round"/>
-  <line x1="700" y1="226" x2="720" y2="226" stroke="#5E9F68" stroke-width="3" stroke-linecap="round"/>
+  <line x1="700" y1="47" x2="680" y2="47" stroke="#5E9F68" stroke-width="3" stroke-linecap="round"/>
+  <line x1="700" y1="226" x2="680" y2="226" stroke="#5E9F68" stroke-width="3" stroke-linecap="round"/>
   <text x="750" y="349" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="600" fill="#B54835">Foreign ABI boundary</text>
   <line x1="700" y1="318" x2="700" y2="505" stroke="#B54835" stroke-width="3" stroke-linecap="round"/>
-  <line x1="700" y1="318" x2="720" y2="318" stroke="#B54835" stroke-width="3" stroke-linecap="round"/>
-  <line x1="700" y1="505" x2="720" y2="505" stroke="#B54835" stroke-width="3" stroke-linecap="round"/>
+  <line x1="700" y1="318" x2="680" y2="318" stroke="#B54835" stroke-width="3" stroke-linecap="round"/>
+  <line x1="700" y1="505" x2="680" y2="505" stroke="#B54835" stroke-width="3" stroke-linecap="round"/>
 </svg>

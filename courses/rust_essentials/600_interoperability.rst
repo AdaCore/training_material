@@ -34,7 +34,7 @@ Interoperability
 .. include:: 600_interoperability/00_introduction.rst
 .. include:: 600_interoperability/01_calling_c_from_rust.rst
 .. include:: 600_interoperability/02_safe_ffi_boundaries.rst
-.. include:: 600_interoperability/03_callbacks_ownership_and_errors.rst
-.. include:: 600_interoperability/04_binding_tools.rst
+.. include:: 600_interoperability/03_c_strings.rst
+.. include:: 600_interoperability/04_callbacks_ownership_and_errors.rst
 .. include:: 600_interoperability/05_exporting_rust_through_a_c_abi.rst
 .. include:: 600_interoperability/99_summary.rst

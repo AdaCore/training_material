@@ -3,11 +3,11 @@ Safe FFI Boundaries
 =====================
 
 
---------------------------
-Raw Layer and Safe Layer
---------------------------
+--------------------------------------
+Separating FFI from Application Code
+--------------------------------------
 
-**Keep raw declarations separate from the safe Rust interface**
+**A dedicated boundary isolates native declarations and unsafe operations from application code**
 
 .. image:: rust_essentials/600_raw_safe_layers.svg
    :width: 100%
@@ -50,23 +50,21 @@ A Safe Wrapper
 Pointer Contracts
 -------------------
 
-* A pointer parameter needs a complete safety contract
-  * May it be null?
-  * Is it readable, writable, or both?
-  * How many elements are valid?
-  * What alignment is required?
-  * How long does the memory remain valid?
-  * May the foreign function retain the pointer?
-  * May another thread access the same memory?
-  * Who owns and frees the memory?
-* :rust:`*const T` and :rust:`*mut T` encode none of these guarantees
+**A pointer contract defines the conditions for safely accessing memory through a pointer**
+
+* **Validity** - Nullability, alignment, and the number of valid elements
+* **Access** - Read/write permissions and initialization
+* **Lifetime and ownership** - How long memory remains valid and who may release it
+* **Concurrency** - Whether simultaneous accesses are permitted and how they are synchronized
+
+* Raw pointer types :rust:`*const T` and :rust:`*mut T` do not enforce these conditions
 
 
----------------------
-Pointer Plus Length
----------------------
+------------------------------
+Passing Contiguous Sequences
+------------------------------
 
-**C frequently represents a sequence as pointer plus length**
+**C APIs commonly represent contiguous sequences with a pointer and a length**
 
 .. code:: c
 
@@ -94,153 +92,44 @@ Pointer Plus Length
   This example maps C :C:`size_t` to Rust :rust:`usize` for the supported target ABI
 
 
-------------------------------
-Wrapping Pointer Plus Length
-------------------------------
+---------------------------
+Foreign Sequence Contract
+---------------------------
 
-**A safe wrapper can derive both raw arguments from a Rust slice**
+**A safe Rust wrapper requires a documented C contract**
+
+* :C:`crew_total` reads exactly :C:`length` initialized elements
+* It does not modify or retain :C:`values`
+* It does not dereference :C:`values` when :C:`length == 0`
+* It defines the result for all inputs, including overflowing sums
+  * The implementation must avoid signed-overflow undefined behavior
+* These guarantees must be verified against the C implementation
+
+
+-----------------------------------------
+Wrapping a C Function with a Rust Slice
+-----------------------------------------
+
+**A safe wrapper derives both raw arguments from a Rust slice**
 
 .. code:: rust
 
   pub fn total(values: &[i32]) -> i32 {
-      // SAFETY:
-      // - `values` is readable for `values.len()` elements
-      // - C reads only during the call
-      // - C does not retain the pointer
+      // SAFETY: Slice provides a valid pointer and length
+      // C reads the range without retaining the pointer
+      // and handles empty inputs and overflow without UB
       unsafe { crew_total(values.as_ptr(), values.len()) }
   }
 
-* Slice keeps pointer and length consistent
-* For an empty slice, C must not dereference :C:`values`
-* C must provide defined behavior for all inputs, including signed overflow
-
-
---------------------------------
-C Strings Are Not Rust Strings
---------------------------------
-
-**C strings and Rust strings have different representations**
-
-* **C string**
-  * NUL-terminated sequence of bytes, usually accessed through a pointer
-  * Not automatically UTF-8
-  * Valid only while its backing storage exists
-* :rust:`String`
-  * Owned and growable
-  * UTF-8
-  * Rust-specific internal representation
-
-.. warning::
-
-  Do not pass :rust:`String` or :rust:`&str` directly through a C ABI
-
-
------------------
-FFI Without std
------------------
-
-**Calling foreign functions does not require** :rust:`std`
-
-* :rust:`core::ffi` supplies C types and borrowed :rust:`CStr`
-* :rust:`core::slice` supports constructing slices from raw parts
-* :rust:`alloc` supplies owned :rust:`CString` and :rust:`String` when an allocator is available
-* The following hosted examples use :rust:`std` imports for convenience
-
-
--------------------------------
-Receiving a Borrowed C String
--------------------------------
-
-**The caller of** :rust:`copy_callsign` **must establish the pointer contract**
-
-* Null means no C string
-* Otherwise, the pointer names initialized, readable NUL-terminated bytes
-* The entire range, including NUL, is within one allocation and :rust:`isize::MAX` bytes
-* The bytes remain unmodified while Rust borrows them
-
-
------------------------------
-Copying a Borrowed C String
------------------------------
-
-**Convert only after the caller has established the contract**
-
-.. code:: rust
-
-  use std::ffi::{c_char, CStr};
-  use std::str::Utf8Error;
-
-  /// # Safety
-  /// `ptr` is null or meets the C-string pointer contract
-  unsafe fn copy_callsign(
-      ptr: *const c_char,
-  ) -> Result<Option<String>, Utf8Error> {
-      if ptr.is_null() { return Ok(None); }
-      // SAFETY: The caller upholds the pointer contract
-      let callsign = unsafe { CStr::from_ptr(ptr) };
-      callsign.to_str().map(|text| Some(text.to_owned()))
-  }
+* The slice establishes the pointer/length relationship
+* The wrapper is safe only if the C implementation meets its contract
 
 
 ----------------------------
-Borrowed C String Outcomes
+C-Compatible Struct Layout
 ----------------------------
 
-**Wrapper distinguishes null, invalid UTF-8, and valid text**
-
-* :rust:`CStr::from_ptr` interprets the NUL-terminated byte sequence
-* Null pointer maps to :rust:`Ok(None)`
-* Invalid UTF-8 maps to :rust:`Err(Utf8Error)`
-* Valid UTF-8 is copied into an owned :rust:`String`
-
-
-------------------------
-Passing a CString to C
-------------------------
-
-:rust:`CString` **owns NUL-terminated bytes with no interior NULs**
-
-.. code:: rust
-
-  use std::ffi::{c_char, CString};
-
-  unsafe extern "C" {
-      fn log_pilot(name: *const c_char);
-  }
-
-  fn main() {
-      let pilot = CString::new("Maverick")
-          .expect("literal contains no NUL");
-
-      // SAFETY: `pilot` lives through the call
-      // and C reads without retaining the pointer
-      unsafe { log_pilot(pilot.as_ptr()) };
-  }
-
-.. warning::
-
-  :rust:`CString::new` rejects interior NUL bytes
-
-
-----------------------------
-CString Borrowing Contract
-----------------------------
-
-**Borrowed pointer remains valid while the** :rust:`CString` **is alive**
-
-* Ownership
-  * :rust:`as_ptr()` borrows from :rust:`pilot`
-* Validity
-  * Pointer remains valid and read-only while :rust:`pilot` is alive
-* Retention
-  * Foreign code must not retain the pointer
-
-
--------------------------------
-Struct Layout With #[repr(C)]
--------------------------------
-
-**Use** :rust:`#[repr(C)]` **when a struct's layout is part of the C ABI**
+:rust:`repr` **means representation; use** :rust:`#[repr(C)]` **when a struct's layout is part of the C ABI**
 
 .. code:: rust
 
@@ -253,11 +142,14 @@ Struct Layout With #[repr(C)]
       pub reserved: [u8; 2],
   }
 
-* Default struct layout is not a stable C ABI contract
-* :rust:`repr` means representation
-  * :rust:`#[repr(C)]` defines C-compatible field ordering and layout rules
-* Ensure field types are FFI-compatible; verify layout on each target
-* :rust:`#[repr(C)]` does not validate field values or ownership
+* :rust:`#[repr(C)]` defines C-compatible field ordering and layout rules
+* Ensure field types are FFI-compatible
+* Verify layout on each target
+
+.. warning::
+
+  * Default struct layout is not a stable C ABI contract
+  * :rust:`#[repr(C)]` does not validate field values or ownership
 
 
 ------------------------
@@ -266,9 +158,10 @@ Match the C Definition
 
 **C and Rust declarations must agree on field order and field types**
 
+**C definition**
+
 .. code:: c
 
-  // C
   #include <stdint.h>
 
   typedef struct {
@@ -278,9 +171,10 @@ Match the C Definition
       uint8_t reserved[2];
   } DroidStatus;
 
+**Rust definition**
+
 .. code:: rust
 
-  // Rust
   #[repr(C)]
   pub struct DroidStatus {
       pub model_id: u32,
@@ -290,9 +184,9 @@ Match the C Definition
   }
 
 
-----------------------------------
-Types to Keep Behind the Wrapper
-----------------------------------
+-----------------------------
+Types at the C ABI Boundary
+-----------------------------
 
 **Keep Rust-specific representations behind the wrapper**
 
@@ -311,9 +205,9 @@ Types to Keep Behind the Wrapper
   * Opaque handles
 
 
----------------------------------------
-Foreign Enum-Like Values and Unknowns
----------------------------------------
+-----------------------------
+Handling C Enum-Like Values
+-----------------------------
 
 **Use the integer type defined by the C API**
 
@@ -372,3 +266,23 @@ Convert in the Safe Layer
           other => DroidMode::Unknown(other),
       }
   }
+
+
+--------------------------
+Choose a Narrow Boundary
+--------------------------
+
+* Good boundaries are narrow and explicit
+
+  * Coarse-grained rather than one call per field access
+  * Based on simple C-compatible data
+  * Explicit about ownership
+  * Small enough to review and test
+  * Stable enough to version
+  * Wrapped once rather than used directly throughout the crate
+
+* Avoid mirroring an entire data model across the boundary
+
+.. tip::
+
+  Move complete operations across the boundary, not chatty calls
