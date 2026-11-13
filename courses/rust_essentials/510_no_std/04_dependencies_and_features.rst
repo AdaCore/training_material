@@ -10,7 +10,7 @@ Dependencies and Features
 
 * Dependencies must support the intended target
 
-  * Dependencies requiring :rust:`std` cannot build for targets without :rust:`std`
+  * Crates requiring :rust:`std` cannot build for targets without :rust:`std`
 
 * Dependency default features may require :rust:`std` or heap allocation
 
@@ -51,7 +51,7 @@ Supported Library Configurations
     - :rust:`core` only
   * - :rust:`alloc`
     - :rust:`no_std` adding allocating APIs
-  * - :rust:`std`
+  * - :rust:`std` + :rust:`alloc`
     - All APIs, including :rust:`std` conveniences
 
 * :rust:`core` APIs remain available in every configuration

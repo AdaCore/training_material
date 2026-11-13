@@ -13,7 +13,7 @@ What Still Works With "no_std"?
 
 .. note::
 
-  Language features stay the same; APIs depend on available crates
+  Available library APIs depend on the crates in use
 
 ----------------------
 What "core" Provides
@@ -47,7 +47,7 @@ What "core" Does Not Provide
   :widths: 32 68
 
   * - **Familiar API**
-    - **Without std**
+    - **Without** :rust:`std`
   * - :rust:`Vec`, :rust:`String`, :rust:`Box`
     - Use :rust:`alloc`, or avoid heap-backed storage
   * - :rust:`println!`, :rust:`eprintln!`
@@ -134,8 +134,6 @@ Formatting Is Not Standard Output
     - Prepares formatting arguments without creating a :rust:`String`
   * - :rust:`write!`, :rust:`writeln!`
     - Format into a supplied destination
-  * - :rust:`println!`
-    - Requires :rust:`std`; unlike the other entries, writes to standard output
 
 .. note::
 
