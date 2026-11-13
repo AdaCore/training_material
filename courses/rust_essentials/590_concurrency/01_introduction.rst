@@ -23,7 +23,7 @@ Topics Covered
 - **Cooperative Multitasking**
 
   - Asynchronous tasks
-  - Futures and executors
+  - Voluntarily yielding
 
 --------------------------------------------------
 Concurrency - One Program, Many Things Happening
@@ -50,21 +50,13 @@ Concurrency - One Program, Many Things Happening
 Concurrency in Rust
 ---------------------
 
-* Concurrency models
+* Rust has built-in language constructs for
 
-  * Hardware Interrupts 
-
-    * Hardware events pause execution and jump to handler 
-
+  * Hardware Interrupts
   * Cooperative Multitasking
-
-    * Asynchronous control flow 
-	
   * Threads
-
-* Built-in language constructs
-    
-  * Traits for moving/sharing across boundaries 
-  * Atomic types for thread-safe operations on shared data
+   
+* Traits for moving/sharing across boundaries
+* Atomic types for thread-safe operations on shared data
 
 

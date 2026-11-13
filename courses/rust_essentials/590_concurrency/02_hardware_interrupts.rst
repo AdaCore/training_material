@@ -10,8 +10,6 @@ Hardware-Level Preemption
 
   * Can be paired with external architecture crates
 
-    * :rust:`cortex-m-rt`, :rust:`riscv-rt`, or :rust:`avr-device`
-
 * Interrupts are triggered directly by hardware peripherals
 
   * CPU forcibly pauses the current execution
@@ -48,34 +46,60 @@ Interrupt Priorities and Nesting
 
 * Foreground work only resumes once every pending handler exits
 
--------
-Usage
--------
+--------------------
+Different Syntaxes
+--------------------
 
-**ISRs are written as top-level functions**
+**Hardware interrupts syntax varies depending on the solution**
 
-  * Allows hardware interrupt vector table to call them
+  * **External libraries**
   
+    * Example: :rust:`cortex-m-rt` uses :rust:`#[interrupt]`, :rust:`#[entry]`, :rust:`#[exception]`
+	
+  .. code:: rust
+
+    #[interrupt]
+    pub fn SysTick_Handler() {
+    }
+	
+  * **Regular** :rust:`#![no_std]`
+  
+    * Functions need to be declared :rust:`extern "C"`
+	* Add :rust:`#[no_mangle]` to keep the name intact for Linker
+
+  .. code:: rust
+
+    #[no_mangle]
+    pub extern "C" fn SysTick_Handler() {
+    }
+	
+.. note:: 
+
+  :rust:`extern` ABI depends on the architecture, uses :rust:`"C"` on architecture using the C calling convention
+
+------------------------------
+ISRs are Top-Level Functions
+------------------------------
+
+
+**Can be mapped in the hardware interrupt vector table**
+
 
 .. code:: rust
 
   #[no_mangle]
   // Hardware Interrupt Handler
-  pub fn on_cat_jumped() {
+  pub extern "C" fn on_cat_jumped() {
     deploy_emergency_catnip();
   }
 
   // Foreground Main Loop
-  fn main() {
+  fn main() -> ! {
     loop {
       write_safe_rust_code();
     }
   }
-  
-.. note::
 
-  :rust:`#[no_mangle]` keeps the name intact for the linker  
-  
 ----------------------------
 Global Shared State Hazard
 ----------------------------
@@ -97,7 +121,7 @@ Global Shared State Hazard
   }
   
   #[no_mangle]
-  fn TIMER0() {
+  pub extern "C" fn TIMER0() {
     unsafe {
         // If 'main' is interrupted mid-write above, 'COUNTER' becomes corrupted!
         COUNTER = 0;
@@ -137,7 +161,7 @@ Two Distinct Classes of Races
   * Program flow interleaves unexpectedly
   
     * Produces incorrect application results
-	
+
   * Eliminating data races does not eliminate logical sequencing errors
 
 -------------------- 
@@ -148,30 +172,26 @@ Logical Race Issue
 
   // --- HARDWARE INTERRUPT (High-Priority Packet RX) ---
   #[no_mangle]
-  pub fn on_uart_rx_interrupt() {
-    // Peripheral automatically places packets in the FIFO.
+  pub extern "C" fn on_uart_rx_interrupt() {
     // ISR records that a packet is ready to process.
     signal_packet_ready();
   }
 
   // --- FOREGROUND ERROR HANDLER ---
-  pub fn recover_uart_errors() {
+  #[no_mangle]
+  pub extern "C" fn recover_uart_errors() {
     unsafe {
       let status = UART_STATUS.read_volatile();
-
       if (status & RX_OVERRUN) != 0 {
-        // -------------------------------------------------------------
         // PREEMPTION HAZARD:
         // Hardware puts new packet into the FIFO and triggers interrupt
-        // -------------------------------------------------------------
-
         // Clear the FIFO because we thought it was only full of bad bytes:
         UART_CR.write_volatile(CLEAR_FIFO);
       }
     }
   }
 
-* Memory access is safe, result is still broken!
+* Memory access is safe, result is still wrong!
 * Interrupt changed context between the two steps 
 
   * Made foreground's decision outdated and destructive
@@ -183,7 +203,7 @@ Separation of Responsibilities
 * Interrupt handlers must execute with minimal latency
 
   * Avoid long loops, delays, or complex payload computations
-  * Example: Handler records event, clears hardware flag, and returns immediately
+  * Example: records event, clears flag, returns immediately
 
 * Foreground maintains computation ownership
 
@@ -197,13 +217,15 @@ Separation of Responsibilities
 .. code:: rust
 
   // BAD: Long processing inside an ISR starves other interrupts
-  fn BAD_TIMER_ISR() {
+  #[no_mangle]
+  pub extern "C" fn BAD_TIMER_ISR() {
       for _ in 0..10_000 {
           expensive_checksum_computation();
       }
   }
 
   // GOOD: Signal quickly and defer work to foreground
-  fn GOOD_TIMER_ISR() {
+  #[no_mangle]
+  pub extern "C" fn GOOD_TIMER_ISR() {
       signal_work_pending(); // Exits immediately
   }

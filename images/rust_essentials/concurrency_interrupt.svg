@@ -57,7 +57,7 @@
   <text x="690" y="92" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#7DD3FC">Foreground Resumes</text>
 
   <!-- Hardware Event Callout -->
-  <text x="350" y="155" text-anchor="end" dx="-8" font-family="sans-serif" font-weight="bold" font-size="10" fill="#F87171">HW INTERRUPT</text>
+  <text x="347" y="155" text-anchor="end" dx="-8" font-family="sans-serif" font-weight="bold" font-size="10" fill="#F87171">HW INTERRUPT</text>
   <text x="600" y="155" text-anchor="start" dx="8" font-family="sans-serif" font-weight="bold" font-size="10" fill="#38BDF8">ISR EXIT (RETI)</text>
 
   <!-- Time Axis Bottom -->

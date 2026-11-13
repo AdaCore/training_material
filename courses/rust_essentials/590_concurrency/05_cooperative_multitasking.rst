@@ -24,6 +24,10 @@ The "std" Solution
 
     handle.join().unwrap();
   }
+  
+.. note::
+
+  Requires :rust:`std` crate and an underlying operating system
 
 --------------------------
 Why Not Just OS Threads?
@@ -40,6 +44,10 @@ Why Not Just OS Threads?
   * Tasks yield the CPU voluntarily when waiting for hardware or timers
   * Tasks do not require a dedicated stack each
   * Tasks can be scheduled without an operating system
+  
+.. note::
+
+  Cooperative multitasking works on any bare-metal target
 
 -----------------
 "async" Keyword
@@ -58,6 +66,7 @@ Why Not Just OS Threads?
   }
 
   // Async function: does nothing until polled/awaited
+  // This function will always be ready to be executed
   async fn meow_async() -> &'static str {
       "Meow!"
   }
@@ -185,11 +194,11 @@ Concurrency Models Compared
      - OS Scheduler
      - OS Thread
      - Heavy CPU computation
-   * - Hardware Interrupts
+   * - Interrupts
      - CPU/Hardware
      - ISR Function
      - Fast response
    * - :rust:`async` / :rust:`.await`
-     - None
-     - State Machine Task
-     - Heavy I/O & bare-metal low RAM
+     - Programmed
+     - Task
+     - Heavy I/O & low RAM
