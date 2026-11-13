@@ -170,22 +170,20 @@ Logical Race Issue
 
 .. code:: rust
 
-  // --- HARDWARE INTERRUPT (High-Priority Packet RX) ---
   #[no_mangle]
   pub extern "C" fn on_uart_rx_interrupt() {
-    // ISR records that a packet is ready to process.
+    // ISR records that a packet is ready to process
     signal_packet_ready();
   }
 
-  // --- FOREGROUND ERROR HANDLER ---
   #[no_mangle]
   pub extern "C" fn recover_uart_errors() {
     unsafe {
       let status = UART_STATUS.read_volatile();
       if (status & RX_OVERRUN) != 0 {
-        // PREEMPTION HAZARD:
+        // PREEMPTION HAZARD
         // Hardware puts new packet into the FIFO and triggers interrupt
-        // Clear the FIFO because we thought it was only full of bad bytes:
+        // Clear the FIFO because we thought it was only full of bad bytes
         UART_CR.write_volatile(CLEAR_FIFO);
       }
     }
