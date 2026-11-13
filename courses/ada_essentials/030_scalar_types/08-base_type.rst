@@ -28,6 +28,7 @@ Base Ranges
 
      type Foo is range -30_000 .. 30_000;
      function "+" (Left, Right : Foo'Base) return Foo'Base;
+     -- Works with values in "Foo'Base" range, not just "Foo" range
 
 * Base range
 

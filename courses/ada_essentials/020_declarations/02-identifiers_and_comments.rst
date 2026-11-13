@@ -36,7 +36,7 @@ Identifiers
 * Case **not significant**
 
    - `SpacePerson` |equivalent| `SPACEPERSON`
-   - ...but **different** from `Space_Person`
+   - ... but **different** from `Space_Person`
 
 ----------------------
 Identifiers vs Names

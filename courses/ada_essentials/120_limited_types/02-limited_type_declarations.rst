@@ -48,7 +48,6 @@ Spin Lock Example
      end record;
      procedure Lock  (This : in out Spin_Lock);
      procedure Unlock  (This : in out Spin_Lock);
-     pragma Inline (Lock, Unlock);
    end Multiprocessor_Mutex;
 
 -----------------------------

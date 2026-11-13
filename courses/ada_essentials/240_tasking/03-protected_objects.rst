@@ -63,6 +63,10 @@ Example: Protected Objects - Declaration
 .. include:: ../examples/protected_objects/src/protected_objects.ads
     :code: Ada
 
+.. note::
+
+  Data components of a protected object **must** appear in the :ada:`private` section
+
 -----------------------------------
 Example: Protected Objects - Body
 -----------------------------------
