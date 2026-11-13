@@ -16,6 +16,10 @@ One Operation, Three Memory Contracts
 
 * Ownership, output storage, and failure behavior differ
 
+.. note::
+
+  The :rust:`Vec` field order is illustrative, not guaranteed
+
 -----------------------------------
 Bound Memory, Then Bound the Work
 -----------------------------------
@@ -27,6 +31,8 @@ Bound Memory, Then Bound the Work
   * Reuse storage when repeated allocation is unacceptable
 
 * **Execution-time bounds**
+
+  * A four-element :rust:`scratch` limits copying and sorting to four elements
 
   * Budget for comparisons, copying, sorting, cleanup, and synchronization
 

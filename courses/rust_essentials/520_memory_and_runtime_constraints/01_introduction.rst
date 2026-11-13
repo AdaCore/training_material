@@ -41,7 +41,7 @@ Why Memory Budgets Matter
 
 * Allocation and buffer growth can affect response time
 
-* Designs must establish:
+* Designs must establish
 
   * The maximum memory needed at once
 

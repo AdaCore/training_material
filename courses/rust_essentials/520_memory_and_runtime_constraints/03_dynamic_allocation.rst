@@ -174,8 +174,10 @@ Fallible Sorting Returns a Result
 
 .. code:: rust
 
-  use std::collections::TryReserveError;
+  #[cfg(feature = "alloc")]
+  use alloc::{collections::TryReserveError, vec::Vec};
 
+  #[cfg(feature = "alloc")]
   pub fn try_sorted_samples(
       samples: &[u16],
   ) -> Result<Vec<u16>, TryReserveError> {

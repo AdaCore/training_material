@@ -22,8 +22,6 @@ Caller Supplies the Buffer
 
 * :rust:`sort_into` sorts samples into a caller-provided buffer
 
-  * Its implementation follows on the next slide
-
 .. code:: rust
 
   let mut scratch = [0_u16; 4];
@@ -40,10 +38,9 @@ Caller Supplies the Buffer
 
 * :rust:`BufferTooSmall` represents an insufficient-capacity error
 
-.. code:: rust
+.. note::
 
-  #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-  pub struct BufferTooSmall;
+  The implementation follows on the next slide
 
 --------------------------
 Implementing "sort_into"
@@ -53,19 +50,17 @@ Implementing "sort_into"
 
 .. code:: rust
 
+  #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+  pub struct BufferTooSmall;
+
   pub fn sort_into<'a>(
       samples: &[u16],
       scratch: &'a mut [u16],
   ) -> Result<&'a [u16], BufferTooSmall> {
-      // Select enough space or return an error
       let output = scratch
           .get_mut(..samples.len())
           .ok_or(BufferTooSmall)?;
-
-      // Copy into the caller-provided buffer
       output.copy_from_slice(samples);
-
-      // Sort the copied elements in place
       output.sort_unstable();
       Ok(output)
   }
