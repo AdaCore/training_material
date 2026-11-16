@@ -64,12 +64,12 @@ Using "Box<T>" for Recursive Types
 Handling Large Data
 ---------------------
 
-- :rust:`Box::new([0; LARGE_SIZE])` requires temporary stack value
+- :rust:`Box::new([0; LARGE_SIZE])` requires a temporary stack value
   - Heap allocation does not guarantee construction directly on heap
-  - Do not rely on optimization to remove the temporary value
+  - No guarantee that optimization will remove the temporary value
 
 - :rust:`vec!` creates large buffers with heap-allocated storage
-  - Avoids constructing large array on the stack
+  - Avoids constructing a large array on the stack
   - Keeps :rust:`Vec<T>` if buffer must resize
   - Converts to :rust:`Box<[T]>` for fixed-length buffer
 
