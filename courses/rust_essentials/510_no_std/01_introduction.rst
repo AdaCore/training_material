@@ -8,19 +8,23 @@ Topics Covered
 
 * **Programming With** :rust:`core`
 
-  - Familiar language features and :rust:`core` APIs remain available
+  - Familiar language features remain available
+  - :rust:`core` APIs remain available
 
 * **Flexible Allocation**
 
-  - Heap-backed types from :rust:`alloc`, with feature-gated APIs
+  - Heap-backed types from :rust:`alloc`
+  - Allocation support supplied by the final program
 
 * **Dependencies and Features**
 
-  - Cargo features support multiple library configurations
+  - Dependencies compatible with targets without :rust:`std`
+  - :toolname:`Cargo` features select available library capabilities
 
 * **Checking Configurations**
 
-  - Host configuration checks and target-specific compilation
+  - Host checks for supported feature configurations
+  - Compilation checks for targets without :rust:`std`
 
 ----------------------
 Three Library Layers
@@ -33,7 +37,6 @@ Three Library Layers
    :align: center
 
 * :rust:`no_std` libraries can use :rust:`core` alone or with :rust:`alloc`
-* :rust:`alloc` does not provide files, sockets, or OS threads
 
 ---------------------------
 Why Not Always Use "std"?
@@ -61,6 +64,6 @@ What "no_std" Changes
 
   * :rust:`Option`, :rust:`Result`, and :rust:`Iterator` remain in scope
 
-.. note::
+* :rust:`#![no_std]` is an inner attribute applying to the entire crate
 
-  :rust:`#![...]` is an inner attribute, applying to the enclosing crate here
+  * Place it at the beginning of the crate root

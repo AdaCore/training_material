@@ -39,7 +39,8 @@ Using "Vec" With "no_std"
       sorted
   }
 
-* The imports make :rust:`Vec` available without :rust:`std`
+* :rust:`extern crate alloc` makes the :rust:`alloc` crate available
+* :rust:`use alloc::vec::Vec` brings :rust:`Vec` into scope
 * :rust:`Vec::from(samples)` copies the data, allocating when needed
 
 -----------------------------------

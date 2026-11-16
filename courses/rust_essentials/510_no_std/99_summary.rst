@@ -17,7 +17,7 @@ What We Covered
 
 * **Dependencies and Features**
 
-  - Cargo features control which capabilities are compiled
+  - :toolname:`Cargo` features control which capabilities are compiled
   - Libraries can support :rust:`core`, :rust:`alloc`, and :rust:`std` configurations
 
 * **Checking Configurations**

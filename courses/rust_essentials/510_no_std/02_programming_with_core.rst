@@ -67,10 +67,17 @@ Designing Portable APIs
 
 **Portable APIs can avoid heap allocation and platform services**
 
-* :rust:`&[T]` and :rust:`&str` allow functions to borrow caller-owned data
-* :rust:`Option` and :rust:`Result` represent absent values and recoverable errors
-* Iterators and error propagation with :rust:`?` work without :rust:`std`
-* Callers decide how to handle output and other platform services
+* Borrow caller-owned data without allocating
+
+  * Accept :rust:`&[T]` and :rust:`&str` inputs and process them with iterators
+
+* Represent absent values and recoverable errors
+
+  * Use :rust:`Option` and :rust:`Result`, propagating with :rust:`?`
+
+* Keep platform services outside reusable library code
+
+  * Let callers choose output destinations and other services
 
 --------------------------
 A Small Portable Library
@@ -112,9 +119,26 @@ Borrowed Text and Recoverable Errors
 
 * :rust:`trim()` returns a borrowed subslice without allocating
 
-.. note::
+--------------------------------------------
+Using the Library From a "std" Application
+--------------------------------------------
 
-  :rust:`Result` and :rust:`?` work without :rust:`std`
+**Host applications using** :rust:`std` **can call** :rust:`no_std` **libraries**
+
+.. code:: rust
+
+  use sample_tools::{maximum, parse_pair};
+
+  fn main() {
+      let samples = parse_pair("10", " 42 ")
+          .expect("valid samples");
+      if let Some(value) = maximum(&samples) {
+          println!("Maximum: {value}");
+      }
+  }
+
+* Application provides :rust:`main` and prints ``Maximum: 42``
+* Library remains :rust:`no_std` when called from a :rust:`std` application
 
 -----------------------------------
 Formatting Is Not Standard Output
@@ -139,32 +163,11 @@ Formatting Is Not Standard Output
 
   Describing text and choosing where to send it are separate responsibilities
 
---------------------------------------------
-Using the Library From a "std" Application
---------------------------------------------
+--------------------------------
+Using a Caller-Supplied Writer
+--------------------------------
 
-**Host applications using** :rust:`std` **can call** :rust:`no_std` **libraries**
-
-.. code:: rust
-
-  use sample_tools::{maximum, parse_pair};
-
-  fn main() {
-      let samples = parse_pair("10", " 42 ")
-          .expect("valid samples");
-      if let Some(value) = maximum(&samples) {
-          println!("Maximum: {value}");
-      }
-  }
-
-* Application provides :rust:`main` and prints ``Maximum: 42``
-* Library remains :rust:`no_std` when called from a :rust:`std` application
-
--------------------------------
-Let Caller Choose Destination
--------------------------------
-
-**Formatting can use a caller-supplied writer**
+**Library code can format text without choosing an output destination**
 
 .. code:: rust
 

@@ -20,7 +20,7 @@ Dependencies and Features
 Feature-Gated Capabilities
 --------------------------
 
-**Cargo features determine available library capabilities**
+:toolname:`Cargo` **features determine available library capabilities**
 
 .. code:: toml
 
@@ -35,7 +35,7 @@ Feature-Gated Capabilities
 
 .. note::
 
-  :rust:`std` and :rust:`alloc` are ordinary Cargo feature names
+  :rust:`std` and :rust:`alloc` are ordinary :toolname:`Cargo` feature names
 
 ----------------------------------
 Supported Library Configurations
@@ -50,7 +50,7 @@ Supported Library Configurations
   * - None
     - :rust:`core` only
   * - :rust:`alloc`
-    - :rust:`no_std` adding allocating APIs
+    - :rust:`no_std` with allocating APIs
   * - :rust:`std` + :rust:`alloc`
     - All APIs, including :rust:`std` conveniences
 
@@ -71,7 +71,10 @@ Apply the Features to the Crate
   #[cfg(feature = "alloc")]
   extern crate alloc;
 
-* :rust:`cfg_attr` applies :rust:`no_std` when the :rust:`std` feature is disabled
+* Unconditional :rust:`#![no_std]` from earlier examples becomes conditional
+
+  * :rust:`cfg_attr` applies :rust:`no_std` when the :rust:`std` feature is disabled
+
 * :rust:`#[cfg(...)]` includes :rust:`extern crate alloc` only with :rust:`alloc`
 
 * :rust:`core` imports and non-allocating functions remain unchanged
@@ -149,7 +152,7 @@ Keep "std"-Only Adapters Separate
 Select Features in a Dependent Project
 ----------------------------------------
 
-**Feature selection in dependent package's** :filename:`Cargo.toml`
+**Feature selection in a dependent package's** :filename:`Cargo.toml`
 
 .. code:: toml
 
@@ -176,7 +179,7 @@ Features Add Up
 * Another dependency may request its :rust:`std` feature
 * ``default-features = false`` is not a global ban on that feature
 
-**Inspect the resolved features with Cargo**
+**Inspect the resolved features with** :toolname:`Cargo`
 
 .. code:: sh
 
