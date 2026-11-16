@@ -50,14 +50,16 @@ A Safe Wrapper
 Pointer Contracts
 -------------------
 
-**A pointer contract defines the conditions for safely accessing memory through a pointer**
+**Pointer contracts specify the conditions required for safe memory access**
 
 * **Validity** - Nullability, alignment, and the number of valid elements
 * **Access** - Read/write permissions and initialization
 * **Lifetime and ownership** - How long memory remains valid and who may release it
 * **Concurrency** - Whether simultaneous accesses are permitted and how they are synchronized
 
-* Raw pointer types :rust:`*const T` and :rust:`*mut T` do not enforce these conditions
+.. note::
+
+  Raw pointer types :rust:`*const T` and :rust:`*mut T` do not enforce these conditions
 
 
 ------------------------------
@@ -158,7 +160,7 @@ Match the C Definition
 
 **C and Rust declarations must agree on field order and field types**
 
-**C definition**
+*C definition*
 
 .. code:: c
 
@@ -171,7 +173,7 @@ Match the C Definition
       uint8_t reserved[2];
   } DroidStatus;
 
-**Rust definition**
+*Rust definition*
 
 .. code:: rust
 
@@ -205,9 +207,9 @@ Types at the C ABI Boundary
   * Opaque handles
 
 
------------------------------
-Handling C Enum-Like Values
------------------------------
+----------------------------------
+Handling Enum-Like Values from C
+----------------------------------
 
 **Use the integer type defined by the C API**
 

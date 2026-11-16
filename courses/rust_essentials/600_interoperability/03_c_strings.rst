@@ -71,9 +71,9 @@ C String Conversion Results
 * Valid UTF-8 produces an owned :rust:`String`
 
 
-------------------------
-Passing a CString to C
-------------------------
+--------------------------
+Passing a "CString" to C
+--------------------------
 
 :rust:`CString` **owns NUL-terminated bytes with no interior NULs**
 
@@ -95,9 +95,9 @@ Passing a CString to C
   }
 
 
---------------------------
-CString Pointer Validity
---------------------------
+----------------------------
+"CString" Pointer Validity
+----------------------------
 
 **The pointer returned by** :rust:`CString::as_ptr()` **is valid only while its owner remains alive**
 

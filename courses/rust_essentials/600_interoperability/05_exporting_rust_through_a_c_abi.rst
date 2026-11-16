@@ -159,3 +159,28 @@ Freeing an Exported C String
 .. note::
 
   Dropping :rust:`CString` frees its allocation through Rust's allocator
+
+
+----------------------------------
+Calling the String Export from C
+----------------------------------
+
+**C callers must pair the returned pointer with its matching Rust destructor**
+
+.. code:: c
+
+  #include <stdio.h>
+
+  char *droid_name_new(void);
+  void droid_name_free(char *name);
+
+  int main(void) {
+      char *name = droid_name_new();
+      puts(name);
+      droid_name_free(name);
+      return 0;
+  }
+
+.. code:: output
+
+  R2-D2

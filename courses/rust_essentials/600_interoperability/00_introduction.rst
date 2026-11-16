@@ -10,7 +10,7 @@ Topics Covered
 
 * **Calling C from Rust**
 
-  * C ABI (application binary interface), foreign declarations, calls, and linking
+  * C application binary interface (ABI), foreign declarations, calls, and linking
 
 * **Safe FFI Boundaries**
 
@@ -26,7 +26,7 @@ Topics Covered
 
   * Callback contracts, handles, ownership, status codes, and unwinding
 
-* **Exporting Rust**
+* **Exporting Rust Through a C ABI**
 
   * C ABI exports and their caller contracts
 
@@ -69,10 +69,10 @@ Interoperability Is a Contract
      - Allowed bit patterns and pointer values
    * - *Ownership*
      - Who allocates, mutates, and frees
-   * - *Error Handling*
-     - How errors are represented and unwinding is contained
    * - *Concurrency*
      - Which threads may invoke or receive callbacks
+   * - *Error Handling*
+     - How errors are represented and unwinding is contained
 
 
 ----------------------------

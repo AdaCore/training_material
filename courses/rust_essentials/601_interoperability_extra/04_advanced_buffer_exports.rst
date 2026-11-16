@@ -30,7 +30,7 @@ Buffer Boundary Contract
 
 **Callers supply a valid input range, not just a non-null pointer**
 
-* When :rust:`length > 0`, :rust:`values` names that many initialized :rust:`i32` values
+* When :rust:`length > 0` and :rust:`values` is non-null, it names that many initialized :rust:`i32` elements
 * Input is readable, aligned, and within a single non-wrapping allocation
 * Input size is at most :rust:`isize::MAX` bytes
 * Foreign code cannot modify the input during the call
@@ -43,7 +43,8 @@ Output Buffer Contract
 
 **The output pointer has a separate caller contract**
 
-* :rust:`out_total` points to one aligned, writable :rust:`i32`
+* A non-null :rust:`out_total` points to one aligned, writable :rust:`i32`
+* Null :rust:`out_total` returns status :rust:`1`
 * Its storage must not overlap the input range
 * The function writes the output only on success
 * Runtime checks reject null pointers only
@@ -59,7 +60,8 @@ Declaring the Rust Buffer Export
 .. code:: rust
 
   /// # Safety
-  /// The caller upholds the input and output buffer contracts
+  /// Non-null pointers must satisfy their buffer contracts
+  /// Input and output storage must not overlap
   // SAFETY: `crew_total_checked` is unique
   #[unsafe(no_mangle)]
   pub unsafe extern "C" fn crew_total_checked(
@@ -89,8 +91,8 @@ Checking Null Pointers
 
 * Rust callers must uphold the :rust:`unsafe fn` safety contract
 * C callers must follow the documented C API contract
-* :rust:`out_total` must always be non-null
-* :rust:`values` may be null only when :rust:`length == 0`
+* Null :rust:`out_total` returns status :rust:`1`
+* Null :rust:`values` with :rust:`length > 0` returns status :rust:`1`
 
 
 -------------------------

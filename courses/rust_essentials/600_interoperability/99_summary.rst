@@ -27,6 +27,6 @@ What We Covered
   - C status codes can be mapped to Rust :rust:`Result`
   - Panics and foreign exceptions must not unwind across :rust:`extern "C"` boundaries
 
-* **Exporting Rust**
+* **Exporting Rust Through a C ABI**
 
   - Rust-owned allocations require matching Rust destructors

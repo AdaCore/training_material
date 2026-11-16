@@ -17,8 +17,6 @@ Callback Contracts
   * Define who owns state behind a context pointer
 * **Release point**
   * Define when registration ends and state may be destroyed
-* **Execution model**
-  * Define whether callbacks run synchronously or may be invoked later
 
 
 --------------------------
@@ -170,7 +168,7 @@ Acquiring a Handle
 Releasing a Handle
 --------------------
 
-:rust:`Drop` **releases the foreign handle automatically**
+:rust:`Drop` **closes the foreign handle when the wrapper is dropped**
 
 .. code:: rust
 
@@ -184,6 +182,10 @@ Releasing a Handle
 
 * :rust:`Drop` calls :rust:`holocron_close` when the wrapper is dropped
 * Moving :rust:`Holocron` transfers responsibility for closing the handle without closing it
+
+.. note::
+
+  Cleanup is not guaranteed if the wrapper is never dropped
 
 
 ----------------

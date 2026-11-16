@@ -56,12 +56,14 @@ C-Compatible Scalar Types
   * :C:`int64_t` / :C:`uint64_t` |rightarrow| :rust:`i64` / :rust:`u64`
 * Platform C types
   * :C:`int` / :C:`unsigned int` |rightarrow| :rust:`c_int` / :rust:`c_uint`
-  * :C:`char` |rightarrow| :rust:`c_char` (target-dependent signedness)
+  * :C:`char` |rightarrow| :rust:`c_char`
   * :C:`void *` / :C:`const void *` |rightarrow| :rust:`*mut c_void` / :rust:`*const c_void`
 
 .. note::
 
-  :rust:`c_int` matches C :C:`int`; unlike :rust:`i32`, its width is target-dependent
+  * Signedness of :C:`char` and width of :C:`int` depend on the target ABI
+
+    * :rust:`c_char` and :rust:`c_int` match those C types
 
 
 --------------------
@@ -131,7 +133,7 @@ Calling the Function in Rust
 
   fn main() {
       // SAFETY: The declaration matches the C function,
-      // which accepts any two i32 values
+      // which accepts any two `i32` values
       let cost = unsafe {
           calculate_jump_cost(120, 4)
       };
