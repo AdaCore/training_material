@@ -20,7 +20,7 @@ Why Caller-Provided Storage?
 Caller Supplies the Buffer
 ----------------------------
 
-* :rust:`sort_into` sorts samples into a caller-provided buffer
+**Sorting writes its result into a caller-provided buffer**
 
 .. code:: rust
 
