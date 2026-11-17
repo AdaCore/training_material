@@ -36,7 +36,9 @@ Three Library Layers
    :width: 100%
    :align: center
 
-* :rust:`no_std` libraries can use :rust:`core` alone or with :rust:`alloc`
+.. note::
+
+  :rust:`no_std` libraries can use :rust:`core` alone or with :rust:`alloc`
 
 ---------------------------
 Why Not Always Use "std"?

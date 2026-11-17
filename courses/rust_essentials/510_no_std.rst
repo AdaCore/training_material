@@ -33,7 +33,7 @@ Writing "no_std" Rust
 
 .. include:: 510_no_std/01_introduction.rst
 .. include:: 510_no_std/02_programming_with_core.rst
-.. include:: 510_no_std/03_optional_allocation.rst
+.. include:: 510_no_std/03_flexible_allocation.rst
 .. include:: 510_no_std/04_dependencies_and_features.rst
 .. include:: 510_no_std/05_checking_configurations.rst
 .. include:: 510_no_std/99_summary.rst
