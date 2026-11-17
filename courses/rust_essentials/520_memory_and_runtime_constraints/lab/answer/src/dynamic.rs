@@ -29,10 +29,8 @@ impl Logger for Dynamic {
         if self.samples.is_empty() {
             return None;
         }
-
-        let sum: u32 = self.samples.iter().map(|&value| value as u32).sum();
-
-        Some((sum / self.samples.len() as u32) as usize)
+        let sum: usize = self.samples.iter().copied().sum();
+        Some(sum / self.samples.len())
     }
 
     // Clear the logger so its storage can be reused.

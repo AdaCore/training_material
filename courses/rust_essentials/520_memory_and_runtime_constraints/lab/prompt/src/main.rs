@@ -8,7 +8,7 @@ mod static_data;
 //   caller-supplied, fixed-size, and dynamic buffers.
 // Also need to reference to the global data module
 
-fn common_test<T: logger_trait::Logger>(logger: &mut T) {
+fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
     // for every value in VALUES {
     //     if !logger.add_sample(value) {
     //        All buffers should have enough space
@@ -36,25 +36,31 @@ fn common_test<T: logger_trait::Logger>(logger: &mut T) {
     logger.clear();
     assert_eq!(logger.count(), 0);
 
-    // Check that the capacity matches the count
-    // NOTE: THIS COULD FAIL IN YOUR DYNAMIC CASE!
     let capacity = logger.capacity();
-    assert_eq!(capacity, MAX_SAMPLES, "Actual capacity: {capacity}");
+    println!("Final capacity {capacity}");
+    // Capacity should be exact for Fixed and Caller,
+    // but may be greater for Dynamic
+    if can_exceed {
+        assert!(capacity >= MAX_SAMPLES, "Actual capacity: {capacity}");
+    } else {
+        assert_eq!(capacity, MAX_SAMPLES, "Actual capacity: {capacity}");
+    }
+
 }
 
 fn main() {
     println!("Testing a fixed buffer");
     let mut fixed = Fixed::new();
-    common_test(&mut fixed);
+    common_test(&mut fixed, false);
     println!("");
 
     println!("Testing a caller-supplied buffer");
     let mut buffer = [0usize; MAX_SAMPLES];
     let mut caller = Caller::new(&mut buffer);
-    common_test(&mut caller);
+    common_test(&mut caller, false);
     println!("");
 
     println!("Testing a dynamic buffer");
     let mut dynamic = Dynamic::new();
-    common_test(&mut dynamic);
+    common_test(&mut dynamic, true);
 }

@@ -1,5 +1,5 @@
 pub trait Logger {
-    // Return 'true' if the buffer is full
+    // Return 'false' if the buffer is full
     fn add_sample(&mut self, value: usize) -> bool;
 
     // Return the average, or None if no values in buffer

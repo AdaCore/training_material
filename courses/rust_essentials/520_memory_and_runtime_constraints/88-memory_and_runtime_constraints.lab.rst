@@ -41,7 +41,7 @@ Lab
 Instructions
 --------------
 
-* Step 1 - Implement a :rust:`static_data` module containing constants for
+* Step 1 - Implement a :rust:`static_data` module containing data for
 
   * Maximum number of values (:rust:`MAX_SAMPLES`)
   * List of values (:rust:`VALUES`)
@@ -50,7 +50,7 @@ Instructions
 * Step 2 - For each memory model (:rust:`fixed`, :rust:`dynamic`, :rust:`caller` modules)
 
   * Implement content of structure
-  * Implement :rust:`new` method
+  * Implement :rust:`new` associated function
   * Implement :rust:`Logger` trait
 
 * Step 3 - Complete implementation of the :rust:`common_test` function
@@ -71,9 +71,9 @@ Static Data Module
 .. code:: rust
   :font-size: footnotesize
 
-  pub const MAX_SAMPLES: usize = 9;
-  pub const VALUES: [usize; MAX_SAMPLES] = [1, 2, 3, 5, 6, 7, 9, 10, 11];
-  pub const AVERAGE: usize = 6;
+  pub static MAX_SAMPLES: usize = 9;
+  pub static VALUES: [usize; MAX_SAMPLES] = [1, 2, 3, 5, 6, 7, 9, 10, 11];
+  pub static AVERAGE: usize = 6;
 
 -----------------------------------
 Fixed Capacity Module - Structure
@@ -163,7 +163,7 @@ Testing Fixed Capacity
   :font-size: tiny
   :number-lines: 12
 
-  fn common_test<T: logger_trait::Logger>(logger: &mut T) {
+  fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
       for value in VALUES {
           if !logger.add_sample(value) {
               println!("Should not get here")
@@ -178,25 +178,29 @@ Testing Fixed Capacity
 
       let average = logger.average().unwrap();
       assert_eq!(average, AVERAGE, "Actual average: {average}");
-
       println!("Average {average} over {count} values");
 
       logger.clear();
       assert_eq!(logger.count(), 0);
       let capacity = logger.capacity();
-      assert_eq!(capacity, MAX_SAMPLES, "Actual capacity: {capacity}");
+      println!("Final capacity {capacity}");
+      if can_exceed {
+          assert!(capacity >= MAX_SAMPLES, "Actual capacity: {capacity}");
+      } else {
+          assert_eq!(capacity, MAX_SAMPLES, "Actual capacity: {capacity}");
+      }
   }
 
   fn main() {
       println!("Testing a fixed buffer");
       let mut fixed = Fixed::new();
-      common_test(&mut fixed);
+      common_test(&mut fixed, false);
 
 ----------
 Solution
 ----------
 
-* Remaining answers can be found in :filename:`answers` folder
+* Remaining answers can be found in :filename:`answer` folder
 
 * Output from running full test should look something like
 
@@ -205,21 +209,14 @@ Solution
   Testing a fixed buffer
   Exceeded capacity
   Average 6 over 9 values
+  Final capacity 9
 
   Testing a caller-supplied buffer
   Exceeded capacity
   Average 6 over 9 values
+  Final capacity 9
 
   Testing a dynamic buffer
   Exceeded capacity
   Average 6 over 9 values
-
-  thread 'main' panicked at src\main.rs:33:5:
-  assertion `left == right` failed: Actual capacity: 16
-    left: 16
-   right: 9
-
-.. note::
-
-  Capacity for the dynamic storage may be different than the other mechanisms
-  This is not a bug, but it is why we run it last!
+  Final capacity 16
