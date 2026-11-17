@@ -13,17 +13,9 @@ This lab will demonstrate your understanding of different types of memory budget
   * Caller-supplied storage
 
 The example is a simplistic averaging routine - total the number of some
-supplied values and determine the average of all the values.
+supplied values and determine the average of all the values
 
-Your first step is to implement a :rust:`static_data` module containing constants
-for the maximum number of values (:rust:`MAX_SAMPLES`),
-the list of values (:rust:`VALUES`), and the expected average (:rust:`AVERAGE`).
-
-Then, each mechanism is defined by a :rust:`struct` in the appropriate module.
-For each mechanism, you will need to implement the content of the structure,
-a :rust:`new` method, and the :rust:`Logger` trait.
-
-The main program will test that each module behaves correctly.
+The main program will test that each module behaves correctly
 
 .. tip::
 
@@ -33,27 +25,37 @@ The main program will test that each module behaves correctly.
 Lab
 -----
 
-* *Setup*
+* The lab is a complete Rust crate, but it will not build yet
 
-  Copy the :filename:`prompt` folder into your local working area. This is a
-  complete Rust crate, but it will not build yet.
-
-  Note that the :filename:`answer` folder contains a working solution. Feel
-  free to use that as much or as little as you need.
-
-* *Goals*
-
-  * Fully implement the structures and the test function to prove everything
+* Your goal is to fully implement the structures and the test function
 
     * :rust:`Fixed` defines a fixed length holder for the maximum number of values
     * :rust:`Dynamic` defines a holder that can grow as large as it needs
     * :rust:`Caller` accepts a holder for storing values
 
-  * Complete implementation of the :rust:`common_test` function to prove your code works
-
 .. note::
 
-  * :rust:`Caller` is trickier, so the structure and :rust:`new` function are already defined
+  :rust:`Caller` is trickier, so the structure and :rust:`new` function are already defined
+
+--------------
+Instructions
+--------------
+
+* Step 1 - Implement a :rust:`static_data` module containing constants for
+
+  * Maximum number of values (:rust:`MAX_SAMPLES`)
+  * List of values (:rust:`VALUES`)
+  * Expected average (:rust:`AVERAGE`)
+
+* Step 2 - For each memory model (:rust:`fixed`, :rust:`dynamic`, :rust:`caller` modules)
+
+  * Implement content of structure
+  * Implement :rust:`new` method
+  * Implement :rust:`Logger` trait
+
+* Step 3 - Complete implementation of the :rust:`common_test` function
+
+  * Once implemented for one module, it should work for all modules
 
 **STOP HERE IF YOU DO NOT WANT HINTS!!**
 
@@ -111,7 +113,7 @@ Fixed Capacity Module - Logger
   :number-lines: 18
 
   impl Logger for Fixed {
-    // Return false if the logger is full.
+    // Return false if the logger is full
     fn add_sample(&mut self, value: usize) -> bool {
         if self.count >= MAX_SAMPLES {
             return false;
@@ -122,7 +124,7 @@ Fixed Capacity Module - Logger
         true
     }
 
-    // Return None if no samples have been collected.
+    // Return None if no samples have been collected
     fn average(&self) -> Option<usize> {
         if self.count == 0 {
             None
@@ -135,7 +137,7 @@ Fixed Capacity Module - Logger
         }
     }
 
-    // Clear the logger so its storage can be reused.
+    // Clear the logger so its storage can be reused
     fn clear(&mut self) {
         self.count = 0;
     }
@@ -219,5 +221,5 @@ Solution
 
 .. note::
 
-  Capacity for the dynamic storage may be different than the other mechanisms.
+  Capacity for the dynamic storage may be different than the other mechanisms
   This is not a bug, but it is why we run it last!
