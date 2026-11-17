@@ -47,7 +47,7 @@ A Safe Wrapper
 Pointer Contracts
 -------------------
 
-**Pointer contracts specify the conditions required for safe memory access**
+**Specify the conditions required for safe memory access**
 
 * **Validity** - Nullability, alignment, and the number of valid elements
 * **Access** - Read/write permissions and initialization
