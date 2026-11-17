@@ -1,0 +1,42 @@
+************************
+Interoperability Extra
+************************
+.. container:: PRELUDE BEGIN
+
+.. container:: PRELUDE ROLES
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+.. role:: rust(code)
+    :language: Rust
+
+.. container:: PRELUDE SYMBOLS
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+.. |le| replace:: :math:`\le`
+.. |ge| replace:: :math:`\ge`
+.. |lt| replace:: :math:`<`
+.. |gt| replace:: :math:`>`
+.. |checkmark| replace:: :math:`\checkmark`
+
+.. container:: PRELUDE END
+
+.. include:: 601_interoperability_extra/01_introduction.rst
+.. include:: 601_interoperability_extra/02_native_builds_and_validation.rst
+.. include:: 601_interoperability_extra/03_callbacks_in_practice.rst
+.. include:: 601_interoperability_extra/04_advanced_buffer_exports.rst
+.. include:: 601_interoperability_extra/05_cpp_interoperability.rst
+.. include:: 601_interoperability_extra/06_abi_compatibility_and_evolution.rst
+.. include:: 601_interoperability_extra/07_migration_strategies.rst
+.. include:: 601_interoperability_extra/08_binding_tools.rst
+.. include:: 601_interoperability_extra/99_summary.rst
