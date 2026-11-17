@@ -91,11 +91,11 @@ Why Not Just OS Threads?
       // Ready immediately: executes instantly without yielding
       let greeting = meow_async().await;
 
-      // Not ready: pauses execution and yields CPU back to caller!
-      Timer::after_secs(5).await;
+      // Pending: yields control back to the executor
+      let snack = fetch_treat_async().await;
 
-      // Resumes here once timer hardware wakes it up
-      println!("Cat snack served: {}", greeting);
+      // Resumes here once the future completes executor polls this task
+      serve(greeting, snack);
   }
   
 ---------------------
@@ -125,6 +125,8 @@ Awaiting the Future
     future_obj.await; 
   }
 
+* Output when the future returned by :rust:`cat()` is polled to completion
+
 .. code:: output
 
   Meow 1!
@@ -136,20 +138,6 @@ Awaiting the Future
   If you don't :rust:`.await future_obj`, it simply gets dropped at the end
 
 -----------------------------
-The Missing Piece: Executor
------------------------------
-
-* Rust provides the syntax (:rust:`async`/:rust:`.await`)
-
-  * But upstream Rust has **no** built-in scheduler
-
-* An **Executor** is the engine that drives tasks when they yield
-
-  * Bare-metal systems (:rust:`no_std`): :rust:`embassy`
-  * Desktop/Server systems (:rust:`std`): :rust:`tokio`
-  * Implement a lightweight polling driver using pure :rust:`core::task`
-
------------------------------
 The Danger: Hogging the CPU
 -----------------------------
 
@@ -157,7 +145,7 @@ The Danger: Hogging the CPU
 
   * Short functions without :rust:`.await` finish quickly and return control
   * Tasks running continuously without yielding starves the executor
-  * Other tasks cannot make progress until active future yields or completes
+  * Other tasks cannot resume until active future yields or completes
 
 .. code:: rust
 
@@ -198,7 +186,21 @@ Concurrency Models Compared
      - CPU/Hardware
      - ISR Function
      - Fast response
-   * - :rust:`async` / :rust:`.await`
+   * - :rust:`async`/:rust:`.await`
      - Programmed
      - Task
      - Heavy I/O & low RAM
+
+-----------------------------
+The Missing Piece: Executor
+-----------------------------
+
+* Rust provides the syntax (:rust:`async`/:rust:`.await`)
+
+* An **Executor** is the engine that drives tasks when they yield
+
+  * Bare-metal systems (:rust:`no_std`): :rust:`embassy`
+  * Desktop/Server systems (:rust:`std`): :rust:`tokio`
+  * Lightweight polling driver can be implemented manually
+  
+    * using :rust:`core::task`

@@ -8,14 +8,18 @@ Atomics for Safe Sharing
 
 * :rust:`atomic` types resolve shared-state issues without locks or :rust:`static mut`
 
-  * Part of the standard :rust:`core::sync::atomic` module
-  * Modifies values via shared immutable references (:rust:`&self`)
+  * Modify values via shared immutable references (:rust:`&self`)
   * Implement the :rust:`Sync` marker trait so they can live in a :rust:`static`
 
-* Guaranteed indivisible at the CPU instruction level
+* :rust:`atomic` operations are indivisible
 
+  * Even when implemented using multiple CPU instructions
   * Requires no operating system scheduler
   * Preemption by an interrupt cannot observe or cause a half-written state
+  
+.. note::
+
+  Atomic types are part of :rust:`core::sync::atomic`, natively available in bare-metal (:rust:`#![no_std]`) environments.
 
 -------------------------------
 Interior Mutability Landscape
@@ -94,30 +98,30 @@ Memory Ordering
   * Constrains compiler and CPU to reorder surrounding memory accesses
   * Select ordering based on what the atomic variable is communicating
 
-* **Relaxed**
+* :rust:`Relaxed`
 
   * Guarantees atomicity for that specific memory word only
   * No synchronization or ordering guarantees across other variables
   * Correct choice when the atomic variable itself is the entire message
 
-- **Release (Store)**
+* :rust:`Release` (Store)
 
   * Prevents prior reads and writes from being reordered after this store
   * Publishes prior changes to contexts doing a matching :rust:`Acquire` load
 
 
-* **Acquire (Load)**
+* :rust:`Acquire` (Load)
 
   * Memory reads observe changes made prior to matching :rust:`Release`
   * Used by a consumer to acquire published data safely
 
-* **AcqRel**
+* :rust:`AcqRel`
 
   * Combines :rust:`Acquire` and :rust:`Release`
   
     * For read-modify-write operations (:rust:`.swap()`)
 
-* **SeqCst**
+* :rust:`SeqCst`
 
   * Enforces a globally consistent order across all cores
   * Incurs extra memory barrier overhead on many architectures
@@ -205,6 +209,7 @@ One-Time Publication Protocol
   static READY: AtomicBool = AtomicBool::new(false);
 
   // Writer publishes data before setting ready flag
+  // Called only once and remains true after publication
   fn publish_sample(val: u32) {
       PAYLOAD.store(val, Ordering::Relaxed);
       READY.store(true, Ordering::Release);
@@ -249,7 +254,7 @@ When Atomics Are Not Enough
 
   * Every single access is atomic, but the sequence of accesses is not
   * Preemption between consecutive reads produces inconsistent snapshots
-  * Atomic ordering alone cannot tie unrelated memory locations together
+  * Cannot combine separate accesses into single atomic transaction
 
 .. code:: rust
 
@@ -276,30 +281,33 @@ When Atomics Are Not Enough
 Coherent Pair in an Atomic Word
 ---------------------------------
 
-**Pack multiple values into one atomic integer**
+* Pack multiple values into one atomic integer
 
   * Two 16-bit values into a single 32-bit atomic word
   * Hardware loads both values in one indivisible assembly instruction
-  * Impossible for an interrupt to squeeze between the two reads
+
+* A single atomic load retrieves both readings
+  
+  * Impossible for an interrupt to squeeze in-between
 
 .. code:: rust
 
   use core::sync::atomic::{AtomicU32, Ordering::Relaxed};
 
-  // Top 16 bits: Temperature | Bottom 16 bits: Pressure
-  static SAMPLE: AtomicU32 = AtomicU32::new(0);
+  // X and Y are 12-bit ADC readings (0–4095)
+  static JOYSTICK: AtomicU32 = AtomicU32::new(0);
 
-  pub fn publish(temperature: u16, pressure: u16) {
-      let word = (u32::from(temperature) << 16) | u32::from(pressure);
-      SAMPLE.store(word, Relaxed);
+  fn publish_sample(x: u16, y: u16) {
+    let packed = (u32::from(x) << 12) | u32::from(y);
+    JOYSTICK.store(packed, Relaxed);
   }
 
-  pub fn read() -> (u16, u16) {
-      // Single 32-bit load reads both values simultaneously
-      let word = SAMPLE.load(Relaxed);
-      let temperature = (word >> 16) as u16;
-      let pressure = word as u16;
-      (temperature, pressure)
+  // Foreground reads a consistent pair
+  fn read_sample() -> (u16, u16) {
+    let packed = JOYSTICK.load(Relaxed);
+    let x = ((packed >> 12) & 0xFFF) as u16;
+    let y = (packed & 0xFFF) as u16;
+    (x, y)
   }
 
 .. note:: 
@@ -338,7 +346,7 @@ Critical Sections for Complex Data
 
 * Commonly implemented via a :rust:`critical-section`
 
-  * Interrupts are automatically re-enabled on exit
+  * Restore the previous interrupt-masking state on exit
   * Paired with :rust:`RefCell` to provide safe, multi-field interior mutability
   
 .. note:: 

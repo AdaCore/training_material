@@ -6,13 +6,16 @@ Sharing States
 Need for Global Visibility
 ----------------------------
 
-* Interrupt handlers take zero arguments and return nothing
+* ISRs cannot access local variables from foreground code
 
   * Triggered asynchronously by hardware
 
     * Not called by program logic
 
-  * Handlers cannot access local stack variables from the foreground
+  * ISR take no parameters and return no values
+  * Communicating with foreground requires shared state 
+
+	* With :rust:`'static` lifetime
 
 * :rust:`'static` items provide storage accessible to both execution contexts
 
@@ -24,8 +27,10 @@ Need for Global Visibility
 Standard Traits
 -----------------
 
-* :rust:`Send` permits moving ownership of :rust:`T` to another execution boundary
-* :rust:`Sync` permits sharing :rust:`T` across boundaries 
+* Traits enforce safe concurrency across execution contexts
+
+* :rust:`Send` indicates that ownership of a value can move between threads
+* :rust:`Sync` indicates that :rust:`T` can be shared across boundaries via :rust:`&T`
 
   * Via shared immutable reference (:rust:`&T`)
 
@@ -38,15 +43,15 @@ Standard Traits
 
   * If all its constituent fields are :rust:`Send` or :rust:`Sync`
 
----------------------------------------
-Why "Cell" and "RefCell" Are Not Sync
----------------------------------------
+-----------------------------------------
+Why "Cell" and "RefCell" Are Not "Sync"
+-----------------------------------------
 
 * :rust:`Cell<T>` allows values to be replaced through shared references 
 
   * It does not perform runtime borrow checking
 
-* :rust:`RefCell<T>` dynamically tracks active borrows using an internal counter
+* :rust:`RefCell<T>` tracks active borrows using an internal counter
 
 * Both types are explicitly marked :rust:`!Sync`
 

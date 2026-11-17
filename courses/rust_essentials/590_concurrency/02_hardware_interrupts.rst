@@ -6,16 +6,16 @@ Hardware Interrupts
 Hardware-Level Preemption
 ---------------------------
 
-* Hardware interrupts are fully supported in :rust:`#![no_std]` environments
-
-  * Can be paired with external architecture crates
-
 * Interrupts are triggered directly by hardware peripherals
 
   * CPU forcibly pauses the current execution
   * Transfers execution to an Interrupt Service Routine (ISR)
 
     * Not within an OS thread or asynchronous task
+	
+  * Can be paired with external architecture crates
+  
+    * To handle vector tables and handler registration
 
 * Higher-priority interrupts preempt lower-priority ones
 
@@ -54,11 +54,11 @@ Different Syntaxes
 
   * **External libraries**
   
-    * Example: :rust:`cortex-m-rt` uses :rust:`#[interrupt]`, :rust:`#[entry]`, :rust:`#[exception]`
+    * Example: :rust:`cortex-m-rt` uses :rust:`#[exception]`
 	
   .. code:: rust
 
-    #[interrupt]
+    #[exception]
     pub fn SysTick_Handler() {
     }
 	
@@ -80,7 +80,6 @@ Different Syntaxes
 ------------------------------
 ISRs are Top-Level Functions
 ------------------------------
-
 
 **Can be mapped in the hardware interrupt vector table**
 
@@ -105,7 +104,7 @@ Global Shared State Hazard
 ----------------------------
 
 * Interrupt can trigger at any CPU instruction
-* Sharing state between :rust:`main` and an ISR creates corruption
+* Unsynchronized access to global :rust:`static mut` causes data races and lost updates
 
 
 .. code:: rust
@@ -128,9 +127,7 @@ Global Shared State Hazard
     }
   }
 
-* Standard global variables require :rust:`static mut`
-
-  * ISR can interrupt a read/write
+* ISR can interrupt a read/write
   
 -------------------------------
 Compound Operation Preemption
@@ -141,6 +138,10 @@ Compound Operation Preemption
 * Code executes valid assembly instructions
 
   * But the application outcome is wrong!
+  
+* At the Rust language level, this data race is :dfn:`Undefined Behavior`
+
+ * No specific outcome is guaranteed
 
 -------------------------------
 Two Distinct Classes of Races
@@ -169,6 +170,7 @@ Logical Race Issue
 --------------------
 
 .. code:: rust
+  :font-size: footnotesize
 
   #[no_mangle]
   pub extern "C" fn on_uart_rx_interrupt() {
@@ -189,7 +191,7 @@ Logical Race Issue
     }
   }
 
-* Memory access is safe, result is still wrong!
+* Individual memory accesses are valid, result is still wrong!
 * Interrupt changed context between the two steps 
 
   * Made foreground's decision outdated and destructive
@@ -201,9 +203,9 @@ Separation of Responsibilities
 * Interrupt handlers must execute with minimal latency
 
   * Avoid long loops, delays, or complex payload computations
-  * Example: records event, clears flag, returns immediately
+  * Records event, clears flag, returns immediately
 
-* Foreground maintains computation ownership
+* Defer longer processing to foreground code
 
   * Foreground inspects notifications and performs heavy data work
 

@@ -25,5 +25,5 @@ What We Covered
 * **Cooperative Multitasking**
 
   * Asynchronous functions act as zero-cost state machines
-  * Yielding via :rust:`.await` on shared execution stack
+  * :rust:`.await` suspends the task only when the future is pending
   * Asynchronous tasks via lightweight polling loops or runtimes
