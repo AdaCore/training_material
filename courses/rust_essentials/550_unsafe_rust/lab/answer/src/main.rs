@@ -36,7 +36,7 @@ fn main() {
         *luigi = 120;
     }
 
-    println!("Number of coins: {}", *coins);
+    println!("Number of coins: {}", coins);
 
     // TASK 4 - Declaring an Unsafe Function
     // Hint: Calling an unsafe function requires an unsafe context
@@ -50,7 +50,7 @@ fn main() {
     }
     // SAFETY: The argument is 'Some', as required
     let universal_answer = unsafe { get_some(Some(42)) };
-    println!("The universal answer is {universal_answer}")
+    println!("The universal answer is {universal_answer}");
 
     // TASK 5 - Updating a Mutable Static
     // Hint: Reading or writing requires an unsafe context
@@ -100,7 +100,7 @@ fn main() {
        }
     }
     let hulk_strength = avenger.as_unsigned();
-    println! ("Hulk strength is : {hulk_strength}")
+    println! ("Hulk strength is : {hulk_strength}");
 
     // TASK 8 - Implementing an Unsafe Trait
     // Hint: Implementing an unsafe trait requires an unsafe impl block
