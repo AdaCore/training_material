@@ -13,30 +13,30 @@ Dereferencing
 - :rust:`Deref` returns a reference to the inner data
 
   - Data is accessed with dereference operator :rust:`*`
-  
+
   - Avoids moving ownership
 
-.. code:: rust 
+.. code:: rust
 
   fn say_hello(name: i32) {
     println!("Hello, 00{name}!");
   }
 
-  let agent = Box::new(7_i32);
-    
-  say_hello(*agent); 
-  
+  let james = Box::new(7_i32);
+
+  say_hello(*james);
+
 .. code:: output
 
   Hello, 007!
-  
+
 -----------------------------
 Coercing Types With "Deref"
 -----------------------------
 
-- Coercion allows conversion of a referenced type to a different type
+- Deref coercion converts :rust:`&T` to :rust:`&U`
 
-  - If :rust:`Deref` is implemented between the types
+  - When :rust:`T: Deref<Target = U>`
 
 - Performs multiple "steps" of coercion at compile time
 
@@ -44,26 +44,26 @@ Coercing Types With "Deref"
 
 - Accesses inner value of smart pointers transparently
 
-.. code:: rust 
+.. code:: rust
 
   fn hello(name: &str) {
     println!("Hello, {name}!");
   }
 
-  let my_box = Box::new(String::from("Rust"));
+  let jack = Box::new(String::from("Rust"));
 
-  hello(&my_box); 
-  
+  hello(&jack);
+
 .. code:: output
 
   Hello, Rust!
-  
+
 .. note::
-  
-  - :rust:`&my_box` is :rust:`&Box<String>`
-  
-  - Compiler coerces: :rust:`&Box<String>` -> :rust:`&String` -> :rust:`&str` 
-  
+
+  - :rust:`&jack` is :rust:`&Box<String>`
+
+  - Compiler coerces: :rust:`&Box<String>` -> :rust:`&String` -> :rust:`&str`
+
 ------------
 "DerefMut"
 ------------
@@ -71,59 +71,43 @@ Coercing Types With "Deref"
 - *Subtrait* of :rust:`Deref`
 
   - :rust:`Deref` must be implemented first
-  
+
 - Allows *mutable reference*
 
-.. code:: rust 
+.. code:: rust
 
-  // 'my_box' is mutable and 'Box' implements 'DerefMut'
-  let mut my_box = Box::new(0);
-  *my_box = 10; // 'DerefMut' is used
+  // 'jack' is mutable and 'Box' implements 'DerefMut'
+  let mut jack = Box::new(0);
+  *jack = 10; // 'DerefMut' is used
 
 -------------------------
 Mutability and Coercion
 -------------------------
-    
-- From :rust:`&T` to &U 
-  - Trait required :rust:`T: Deref<Target = U>`
 
 .. code:: rust
 
-  fn hello(name: &str) { println!("Hello, {name}!"); } 
-  
-  fn edit(name: &mut str) { println!("Hello, {name}!"); }
+  fn say(name: &str) { println!("Hello, {name}!"); }
+  fn yell(name: &mut str) { name.make_ascii_uppercase(); }
 
-  let my_box = Box::new(String::from("Rust"));
-  hello(&my_box);
+  let ned = Box::new(String::from("Ned"));
+  let mut jon = Box::new(String::from("Jon"));
 
-- From :rust:`&T` to :rust:`&mut U`
-  - Not allowed
+.. list-table::
+   :header-rows: 1
+   :widths: 24 32 44
 
-.. code:: rust
-
-  edit(&my_box); // Error
-  
-.. code:: error
-
-  error[E0308]: mismatched types
-
-.. code:: rust  
-  
-  let mut my_box2 = Box::new(String::from("Rust"));
-  
-- From :rust:`&mut T` to :rust:`&mut U` 
-  - Trait required :rust:`T: DerefMut<Target = U>`
-
-.. code:: rust  
-  
-  edit(&mut my_box2);
-  
-- From :rust:`&mut T` to :rust:`&U` 
-  - Trait required :rust:`T: Deref<Target = U>`
-
-.. code:: rust  
-  
-  hello(&mut my_box2);  
-
-
-
+   * - **Call**
+     - **Coercion**
+     - **Trait / Result**
+   * - :rust:`say(&ned)`
+     - :rust:`&T` to :rust:`&U`
+     - :rust:`Deref`
+   * - :rust:`yell(&ned)`
+     - :rust:`&T` to :rust:`&mut U`
+     - :error:`E0308: mismatched types`
+   * - :rust:`yell(&mut jon)`
+     - :rust:`&mut T` to :rust:`&mut U`
+     - :rust:`DerefMut`
+   * - :rust:`say(&mut jon)`
+     - :rust:`&mut T` to :rust:`&U`
+     - :rust:`Deref`
