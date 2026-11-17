@@ -2,7 +2,6 @@
 Exporting Rust Through a C ABI
 ================================
 
-
 ---------------------
 Library Crate Types
 ---------------------
@@ -20,7 +19,6 @@ Library Crate Types
 .. note::
 
   A :rust:`staticlib` may require additional platform libraries at final link time
-
 
 -----------------------------
 Exporting a Simple Function
@@ -45,7 +43,6 @@ Exporting a Simple Function
 * :rust:`#[unsafe(no_mangle)]` exports the exact symbol name :rust:`hyperdrive_check`
 * The attribute is unsafe because the name must not collide with another linked symbol
 
-
 -------------------------
 C Header for the Export
 -------------------------
@@ -66,7 +63,6 @@ C Header for the Export
 * Negative inputs return :rust:`-1`
 * Other inputs return :rust:`0` or :rust:`1`
 
-
 --------------------------------------
 Calling the Exported Function from C
 --------------------------------------
@@ -86,7 +82,6 @@ Calling the Exported Function from C
 
   Hyperdrive ready: 1
 
-
 ----------------------------------
 Pair Allocation and Deallocation
 ----------------------------------
@@ -98,7 +93,6 @@ Pair Allocation and Deallocation
 .. note::
 
   Matching destructors or caller-owned buffers avoid allocator mismatch
-
 
 -----------------------------
 Returning an Owned C String
@@ -118,7 +112,6 @@ Returning an Owned C String
           .into_raw()
   }
 
-
 -----------------------------
 Returned C String Ownership
 -----------------------------
@@ -133,7 +126,6 @@ Returned C String Ownership
 .. warning::
 
   Releasing the same pointer twice causes undefined behavior
-
 
 ------------------------------
 Freeing an Exported C String
@@ -159,7 +151,6 @@ Freeing an Exported C String
 .. note::
 
   Dropping :rust:`CString` frees its allocation through Rust's allocator
-
 
 ----------------------------------
 Calling the String Export from C

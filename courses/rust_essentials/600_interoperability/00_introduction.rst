@@ -2,15 +2,14 @@
 Introduction
 ==============
 
-
 ----------------
 Topics Covered
 ----------------
 
-
 * **Calling C from Rust**
 
-  * C application binary interface (ABI), foreign declarations, calls, and linking
+  * C application binary interface (ABI)
+  * Foreign declarations, calls, and linking
 
 * **Safe FFI Boundaries**
 
@@ -30,7 +29,6 @@ Topics Covered
 
   * C ABI exports and their caller contracts
 
-
 ------------------------------
 Why Interoperability Matters
 ------------------------------
@@ -45,7 +43,6 @@ Why Interoperability Matters
 * **For organizations**
   * Preserve mature test suites and operational knowledge
   * Keep existing certification evidence available for review
-
 
 --------------------------------
 Interoperability Is a Contract
@@ -73,7 +70,6 @@ Interoperability Is a Contract
      - Which threads may invoke or receive callbacks
    * - *Error Handling*
      - How errors are represented and unwinding is contained
-
 
 ----------------------------
 From Source Code to a Call

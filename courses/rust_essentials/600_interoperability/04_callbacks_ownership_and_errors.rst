@@ -2,7 +2,6 @@
 Callbacks, Ownership, and Errors
 ==================================
 
-
 --------------------
 Callback Contracts
 --------------------
@@ -17,7 +16,6 @@ Callback Contracts
   * Define who owns state behind a context pointer
 * **Release point**
   * Define when registration ends and state may be destroyed
-
 
 --------------------------
 A Synchronous C Callback
@@ -41,7 +39,6 @@ A Synchronous C Callback
 * The caller supplies a valid callback with a matching signature
 * C invokes the callback once before returning
 * C does not retain the function pointer
-
 
 ----------------------------
 Passing a Rust Callback to C
@@ -90,7 +87,6 @@ Ownership Across the FFI Boundary
 
   Never assume which side is responsible for releasing a resource
 
-
 ----------------
 Opaque Handles
 ----------------
@@ -120,7 +116,6 @@ Opaque Handles
 * Rust represents the opaque pointer as :rust:`*mut c_void` in the raw layer
 * :rust:`*mut c_void` does not guarantee validity or establish ownership
 
-
 -------------------------
 Foreign Handle Contract
 -------------------------
@@ -133,7 +128,6 @@ Foreign Handle Contract
 * :C:`holocron_close()` releases a live, owned handle
 * No other code invalidates a handle while the wrapper owns it
 * Other operations borrow handles without taking ownership
-
 
 --------------------
 Acquiring a Handle
@@ -163,7 +157,6 @@ Acquiring a Handle
 
   :rust:`NonNull` does not guarantee handle validity, resource lifetime, or ownership
 
-
 --------------------
 Releasing a Handle
 --------------------
@@ -186,7 +179,6 @@ Releasing a Handle
 .. note::
 
   Cleanup is not guaranteed if the wrapper is never dropped
-
 
 ----------------
 C Status Codes
@@ -211,7 +203,6 @@ C Status Codes
 * :C:`1` means no route is available
 * :C:`2` means the result overflowed
 
-
 -----------------------------------
 Matching the C Function Signature
 -----------------------------------
@@ -234,7 +225,6 @@ Matching the C Function Signature
 
 * Raw layer preserves the status code and output pointer
 * Safe layer interprets them after the call
-
 
 -------------------
 Calling the C API
@@ -262,7 +252,6 @@ Calling the C API
 * Rust retains ownership of the output storage
 * :rust:`distance` is used only when the status reports success
 
-
 ------------------------------
 Mapping the Status to Result
 ------------------------------
@@ -289,7 +278,6 @@ Mapping the Status to Result
 
 * Public API exposes :rust:`Result`, not foreign status-code conventions
   * Wrapper uses the output value only on successful status
-
 
 ----------------------
 Unwinding Across FFI

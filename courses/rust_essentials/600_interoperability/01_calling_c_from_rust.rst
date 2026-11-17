@@ -2,7 +2,6 @@
 Calling C from Rust
 =====================
 
-
 -----------------
 What Is an ABI?
 -----------------
@@ -20,12 +19,11 @@ What Is an ABI?
   * Symbol naming
   * Unwinding behavior
 
-
 ------------
 extern "C"
 ------------
 
-:rust:`unsafe extern "C"` **declares functions defined elsewhere that Rust code can call**
+**An** :rust:`unsafe extern "C"` **block declares functions implemented outside the current crate**
 
 .. code:: rust
 
@@ -43,7 +41,6 @@ extern "C"
 .. note::
 
   :rust:`"C"` describes the ABI, not the implementation language
-
 
 ---------------------------
 C-Compatible Scalar Types
@@ -64,7 +61,6 @@ C-Compatible Scalar Types
   * Signedness of :C:`char` and width of :C:`int` depend on the target ABI
 
     * :rust:`c_char` and :rust:`c_int` match those C types
-
 
 --------------------
 A Small C Function
@@ -96,7 +92,6 @@ A Small C Function
       return (int64_t)distance + ((int64_t)risk * 10);
   }
 
-
 --------------------------------
 Declaring the Function in Rust
 --------------------------------
@@ -121,7 +116,6 @@ Declaring the Function in Rust
 
   :rust:`bindgen` can generate raw Rust declarations from C or C++ headers,
   but the generated declarations still need review
-
 
 ------------------------------
 Calling the Function in Rust
@@ -150,7 +144,6 @@ Calling the Function in Rust
   * Why the arguments are valid
   * Which lifetime or ownership rules apply, if any
 
-
 ----------------------------
 Linking Is a Separate Step
 ----------------------------
@@ -168,7 +161,6 @@ Linking Is a Separate Step
   * Debug/release library mismatch
   * Architecture mismatch
   * Incompatible C runtime or compiler toolchain
-
 
 ------------------------------------
 Compiling and Linking C with Cargo

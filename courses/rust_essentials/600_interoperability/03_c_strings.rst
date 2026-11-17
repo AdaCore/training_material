@@ -2,7 +2,6 @@
 C Strings Across the Boundary
 =============================
 
-
 --------------------------------
 C Strings Are Not Rust Strings
 --------------------------------
@@ -25,7 +24,6 @@ C Strings Are Not Rust Strings
 
   Do not pass :rust:`String` or :rust:`&str` directly through a C ABI
 
-
 -------------------------------
 Receiving a Borrowed C String
 -------------------------------
@@ -36,7 +34,6 @@ Receiving a Borrowed C String
 * Otherwise, the pointer names initialized, readable NUL-terminated bytes
 * The entire range, including NUL, is within one allocation and :rust:`isize::MAX` bytes
 * The bytes remain unmodified while Rust borrows them
-
 
 -----------------------------
 Copying a Borrowed C String
@@ -70,7 +67,6 @@ C String Conversion Results
 * Invalid UTF-8 returns :rust:`Err(Utf8Error)`
 * Valid UTF-8 produces an owned :rust:`String`
 
-
 --------------------------
 Passing a "CString" to C
 --------------------------
@@ -93,7 +89,6 @@ Passing a "CString" to C
       // and C reads without retaining the pointer
       unsafe { log_pilot(pilot.as_ptr()) };
   }
-
 
 ----------------------------
 "CString" Pointer Validity

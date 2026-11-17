@@ -2,7 +2,6 @@
 Safe FFI Boundaries
 =====================
 
-
 --------------------------------------
 Separating FFI from Application Code
 --------------------------------------
@@ -12,7 +11,6 @@ Separating FFI from Application Code
 .. image:: rust_essentials/600_raw_safe_layers.svg
    :width: 100%
    :align: center
-
 
 ----------------
 A Safe Wrapper
@@ -45,7 +43,6 @@ A Safe Wrapper
 * Callers use :rust:`jump_cost(120, 4)` without an unsafe block
 * Wrapper must establish every precondition required by the foreign call
 
-
 -------------------
 Pointer Contracts
 -------------------
@@ -60,7 +57,6 @@ Pointer Contracts
 .. note::
 
   Raw pointer types :rust:`*const T` and :rust:`*mut T` do not enforce these conditions
-
 
 ------------------------------
 Passing Contiguous Sequences
@@ -92,7 +88,6 @@ Passing Contiguous Sequences
 .. note::
 
   This example maps C :C:`size_t` to Rust :rust:`usize` for the supported target ABI
-
 
 ---------------------------
 Foreign Sequence Contract
@@ -153,7 +148,6 @@ C-Compatible Struct Layout
   * Default struct layout is not a stable C ABI contract
   * :rust:`#[repr(C)]` does not validate field values or ownership
 
-
 ------------------------
 Match the C Definition
 ------------------------
@@ -185,7 +179,6 @@ Match the C Definition
       pub reserved: [u8; 2],
   }
 
-
 -----------------------------
 Types at the C ABI Boundary
 -----------------------------
@@ -205,7 +198,6 @@ Types at the C ABI Boundary
   * Raw pointers and pointer-plus-length pairs
   * :rust:`#[repr(C)]` structs
   * Opaque handles
-
 
 ----------------------------------
 Handling Enum-Like Values from C
@@ -231,7 +223,6 @@ Handling Enum-Like Values from C
 
 * C API explicitly defines these values as 32-bit unsigned integers
 * Unknown integers remain valid raw values
-
 
 ----------------------------
 Representing Unknown Modes
@@ -268,7 +259,6 @@ Convert in the Safe Layer
           other => DroidMode::Unknown(other),
       }
   }
-
 
 --------------------------
 Choose a Narrow Boundary
