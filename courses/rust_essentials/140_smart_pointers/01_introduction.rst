@@ -6,20 +6,17 @@ Introduction
 Topics Covered
 ----------------
 
-- **Heap allocation**
+- **Unique Ownership** (:rust:`Box<T>`)
 
-  - Flexible sizing
-  
-  - Working with dynamically sized types
+  - Heap allocation and recursive types
+  - Fixed-length boxed slices
 
 - **Dereferencing**
 
-  - Overriding the operator
-  
-  - Transparent data access via coercion
-  
-- **Shared Ownership**
-  
+  - :rust:`Deref`, :rust:`DerefMut`, and coercion
+
+- **Shared Ownership** (:rust:`Rc<T>`)
+
   - Reference-counted ownership
 
 ---------------------
@@ -33,4 +30,3 @@ Why Smart Pointers?
 
 - Allow multiple owners
   - Share ownership of data for complex architectures
-

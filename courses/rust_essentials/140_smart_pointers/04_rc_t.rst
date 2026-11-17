@@ -27,12 +27,12 @@ Reference Counting With "Rc<T>"
 
 .. code:: rust
 
-  // Both 'var_a' and 'var_b' share ownership of the value
-  let var_a = Rc::new(5);
-  println!("Count: {}", Rc::strong_count(&var_a));
+  // Mulder and Scully share ownership of the same value
+  let mulder = Rc::new(51);
+  println!("Count: {}", Rc::strong_count(&mulder));
 
-  let var_b = Rc::clone(&var_a);
-  println!("Count: {}", Rc::strong_count(&var_a));
+  let scully = Rc::clone(&mulder);
+  println!("Count: {}", Rc::strong_count(&mulder));
 
 .. code:: output
 

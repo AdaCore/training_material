@@ -22,9 +22,9 @@ Dereferencing
     println!("Hello, 00{name}!");
   }
 
-  let agent = Box::new(7_i32);
+  let james = Box::new(7_i32);
 
-  say_hello(*agent);
+  say_hello(*james);
 
 .. code:: output
 
@@ -50,9 +50,9 @@ Coercing Types With "Deref"
     println!("Hello, {name}!");
   }
 
-  let my_box = Box::new(String::from("Rust"));
+  let jack = Box::new(String::from("Rust"));
 
-  hello(&my_box);
+  hello(&jack);
 
 .. code:: output
 
@@ -60,7 +60,7 @@ Coercing Types With "Deref"
 
 .. note::
 
-  - :rust:`&my_box` is :rust:`&Box<String>`
+  - :rust:`&jack` is :rust:`&Box<String>`
 
   - Compiler coerces: :rust:`&Box<String>` -> :rust:`&String` -> :rust:`&str`
 
@@ -76,9 +76,9 @@ Coercing Types With "Deref"
 
 .. code:: rust
 
-  // 'my_box' is mutable and 'Box' implements 'DerefMut'
-  let mut my_box = Box::new(0);
-  *my_box = 10; // 'DerefMut' is used
+  // 'jack' is mutable and 'Box' implements 'DerefMut'
+  let mut jack = Box::new(0);
+  *jack = 10; // 'DerefMut' is used
 
 -------------------------
 Mutability and Coercion

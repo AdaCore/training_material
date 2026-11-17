@@ -17,9 +17,9 @@ What Is "Box<T>"?
 .. code:: rust
 
   // 'Box::new()' is used to allocate data
-  let my_box = Box::new(5);
+  let jack = Box::new(5);
 
-  println!("Box value is {}", my_box);
+  println!("Box value is {}", jack);
 
 .. code:: output
 

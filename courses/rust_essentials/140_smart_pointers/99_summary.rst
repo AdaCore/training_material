@@ -34,22 +34,17 @@ Summary
 What We Covered
 -----------------
 
-- :rust:`Box<T>`
+- **Unique Ownership** (:rust:`Box<T>`)
 
   - Provides unique ownership of heap-allocated data
-
   - Enables recursive data structures
 
-- :rust:`Deref`
+- **Dereferencing**
 
-  - Treats smart pointers like references
+  - :rust:`Deref` supports dereferencing and coercion
+  - :rust:`DerefMut` supports mutable dereferencing
 
-  - Uses coercion to access inner values
+- **Shared Ownership** (:rust:`Rc<T>`)
 
-    - With no runtime cost
-
-- :rust:`Rc<T>`
-
-  - Allows multiple owners for the same data
-
-  - Shares one heap allocation without cloning data
+  - Allows multiple owners for the same heap allocation
+  - :rust:`Rc::clone` adds an owner without cloning the data
