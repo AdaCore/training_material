@@ -6,6 +6,7 @@ pub struct Fixed {
 impl Fixed {
     pub fn new() -> Self {
         todo!()
+    }
 }
 
 impl Logger for Fixed {

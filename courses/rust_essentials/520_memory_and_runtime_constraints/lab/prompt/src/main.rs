@@ -1,4 +1,9 @@
+mod caller;
+mod dynamic;
+mod fixed;
 mod logger_trait;
+mod static_data;
+
 // Add module references for implentations for
 //   caller-supplied, fixed-size, and dynamic buffers.
 // Also need to reference to the global data module
