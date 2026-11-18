@@ -9,9 +9,13 @@ pub fn can_launch(battery: u8) -> bool {
 
 /// Returns "GO" when the rover can launch, otherwise "WAIT"
 ///
+/// # Examples
+///
 /// ```
 /// use lab::mission_status;
+///
 /// assert_eq!(mission_status(50), "GO");
+/// assert_eq!(mission_status(10), "WAIT");
 /// ```
 pub fn mission_status(battery: u8) -> &'static str {
     if can_launch(battery) {

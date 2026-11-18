@@ -7,18 +7,18 @@ Lab Instructions
 ------------------
 
 * A rover needs at least *20%* battery to launch
-* **Unit tests** in :filename:`src/lib.rs`
+* **Task 1: Unit tests** in :filename:`src/lib.rs`
 
   * Check the 19% and 20% boundary
   * Expect a panic for an invalid 101% reading
 
-* **Integration test** in :filename:`tests/mission.rs`
+* **Task 2: Doctest** in :filename:`src/lib.rs`
 
-  * Check that :rust:`mission_status` reports "WAIT" or "GO"
+  * Document examples returning both "GO" and "WAIT"
 
-* **Doctest** in :filename:`src/lib.rs`
+* **Task 3: Integration test** in :filename:`tests/mission.rs`
 
-  * Document one working example of :rust:`mission_status`
+  * Test :rust:`mission_status` at 0%, 19%, 20%, and 100%
 
 * Run :command:`cargo test`, find the bug, and fix it
 

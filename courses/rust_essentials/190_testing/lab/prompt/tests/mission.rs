@@ -1,2 +1,2 @@
-// TASK 2: Write an integration test using rover_lab::mission_status
-// Check that 19% means "WAIT" and 20% means "GO"
+// TASK 3: Write an integration test using lab::mission_status
+// Check 0%, 19%, 20%, and 100% battery levels

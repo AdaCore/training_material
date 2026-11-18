@@ -2,6 +2,16 @@ use lab::mission_status;
 
 #[test]
 fn launch_decision() {
-    assert_eq!(mission_status(19), "WAIT");
-    assert_eq!(mission_status(20), "GO");
+    for (battery, expected) in [
+        (0, "WAIT"),
+        (19, "WAIT"),
+        (20, "GO"),
+        (100, "GO"),
+    ] {
+        assert_eq!(
+            mission_status(battery),
+            expected,
+            "battery: {battery}%"
+        );
+    }
 }
