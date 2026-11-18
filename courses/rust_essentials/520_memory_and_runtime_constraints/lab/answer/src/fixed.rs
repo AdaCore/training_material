@@ -1,5 +1,5 @@
 use crate::logger_trait::Logger;
-use crate::static_data::MAX_SAMPLES;
+use crate::sample_data::MAX_SAMPLES;
 
 pub struct Fixed {
     samples: [usize; MAX_SAMPLES],

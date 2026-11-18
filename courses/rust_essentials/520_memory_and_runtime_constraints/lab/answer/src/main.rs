@@ -2,12 +2,12 @@ mod caller;
 mod dynamic;
 mod fixed;
 mod logger_trait;
-mod static_data;
+mod sample_data;
 
 use caller::Caller;
 use dynamic::Dynamic;
 use fixed::Fixed;
-use static_data::*;
+use sample_data::*;
 
 fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
     for value in VALUES {

@@ -2,7 +2,7 @@ mod caller;
 mod dynamic;
 mod fixed;
 mod logger_trait;
-mod static_data;
+mod sample_data;
 
 // Add module references for implentations for
 //   caller-supplied, fixed-size, and dynamic buffers.
