@@ -30,7 +30,7 @@ Lab
 * Your goal is to fully implement the structures and the test function
 
     * :rust:`Fixed` defines a fixed length holder for the maximum number of values
-    * :rust:`Dynamic` defines a holder that can grow as large as it needs
+    * :rust:`Dynamic` uses a growable :rust:`Vec`, but still limits the number of samples to :rust:`MAX_SAMPLES`
     * :rust:`Caller` accepts a holder for storing values
 
 .. note::
