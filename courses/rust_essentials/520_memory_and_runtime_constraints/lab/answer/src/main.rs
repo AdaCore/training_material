@@ -11,9 +11,7 @@ use sample_data::*;
 
 fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
     for value in VALUES {
-        if !logger.add_sample(value) {
-            println!("Should not get here")
-        }
+        assert!(logger.add_sample(value), "Should not get here");
     }
     if !logger.add_sample(1234) {
         println!("Exceeded capacity")
@@ -29,6 +27,8 @@ fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
 
     logger.clear();
     assert_eq!(logger.count(), 0);
+    assert_eq!(logger.average(), None);
+
     let capacity = logger.capacity();
     println!("Final capacity {capacity}");
     if can_exceed {

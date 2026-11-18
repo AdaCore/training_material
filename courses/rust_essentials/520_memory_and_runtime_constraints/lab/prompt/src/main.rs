@@ -10,10 +10,8 @@ mod sample_data;
 
 fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
     // for every value in VALUES {
-    //     if !logger.add_sample(value) {
-    //        All buffers should have enough space
-    //        println!("Should not get here")
-    //     }
+    //     // All buffers should have enough space
+    //     assert!(logger.add_sample(value), "Should not get here");
     // }
 
     // We want to ensure we've limited number of values
@@ -32,9 +30,11 @@ fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
     // Print results
     println!("Average {average} over {count} values");
 
-    // Verify clearing the buffer reduces the count
+    // Verify clearing the buffer reduces the
+    // count and no average exists
     logger.clear();
     assert_eq!(logger.count(), 0);
+    assert_eq!(logger.average(), None);
 
     let capacity = logger.capacity();
     println!("Final capacity {capacity}");
