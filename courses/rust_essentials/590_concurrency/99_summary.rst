@@ -9,7 +9,7 @@ What We Covered
 * **Hardware Interrupts**
 
   * Hardware preemption without scheduler
-  * Separating fast ISR from foreground work
+  * Separating lightweight ISR from heavier foreground work
 
 * **Sharing States**
 
@@ -17,10 +17,10 @@ What We Covered
   * :rust:`unsafe` cannot fix the aliasing bugs of :rust:`static mut`
   * Satisfying exclusive-access contract behind :rust:`UnsafeCell`
 
-* **Atomic Operations**
+* **Atomic**
 
   * Preventing lost updates with indivisible read-modify-write
-  * Critical Sections disables interrupts to avoid deadlocks
+  * Critical Sections disables interrupts to protect shared data
 
 * **Cooperative Multitasking**
 

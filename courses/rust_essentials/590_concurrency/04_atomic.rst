@@ -95,7 +95,7 @@ Memory Ordering
 
 * Atomic operations take an :rust:`Ordering` parameter
 
-  * Constrains compiler and CPU to reorder surrounding memory accesses
+  * Restricts reordering of surrounding memory accesses
   * Select ordering based on what the atomic variable is communicating
 
 * :rust:`Relaxed`
@@ -108,7 +108,6 @@ Memory Ordering
 
   * Prevents prior reads and writes from being reordered after this store
   * Publishes prior changes to contexts doing a matching :rust:`Acquire` load
-
 
 * :rust:`Acquire` (Load)
 
@@ -125,7 +124,6 @@ Memory Ordering
 
   * Enforces a globally consistent order across all cores
   * Incurs extra memory barrier overhead on many architectures
-  
 
 -----------------------------
 Target Hardware Limitations
@@ -254,7 +252,6 @@ When Atomics Are Not Enough
 
   * Every single access is atomic, but the sequence of accesses is not
   * Preemption between consecutive reads produces inconsistent snapshots
-  * Cannot combine separate accesses into single atomic transaction
 
 .. code:: rust
 
@@ -283,8 +280,7 @@ Coherent Pair in an Atomic Word
 
 * Pack multiple values into one atomic integer
 
-  * Two 16-bit values into a single 32-bit atomic word
-  * Hardware loads both values in one indivisible assembly instruction
+  * Two 12-bit ADC readings into a single 32-bit atomic word
 
 * A single atomic load retrieves both readings
   
@@ -333,7 +329,6 @@ The Exclusive-Access Contract
   * Escape protected scope
   * Continue to exist after interrupts are enabled again
 
-
 ------------------------------------
 Critical Sections for Complex Data
 ------------------------------------
@@ -376,8 +371,8 @@ Single-Core Deadlock Hazard
   }
 
   fn on_interrupt() {
-    // DANGER: Cannot load because lock is held 
-    // Cannot be released because no more interrupts to clear the lock
+    // DANGER: 'LOCK.load(Relaxed)' continously returns 'true'
+	// ISR spins indefinitely
     while LOCK.load(Relaxed) {
         // Deadlocks permanently on a single-core CPU
     }

@@ -160,7 +160,7 @@ The Danger: Hogging the CPU
   // GOOD: Cooperates by yielding periodically
   async fn polite_cat() {
       loop {
-          Timer::after_millis(10).await; // Yields back to executor
+          is_hungry().await; // Yields back to executor
       }
   }
 

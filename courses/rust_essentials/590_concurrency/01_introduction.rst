@@ -50,7 +50,7 @@ Concurrency - One Program, Many Things Happening
 Concurrency in Rust
 ---------------------
 
-* Rust has built-in language constructs for
+* Rust supports different approaches to concurrency
 
   * Hardware Interrupts
   * Cooperative Multitasking

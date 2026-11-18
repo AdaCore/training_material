@@ -15,11 +15,11 @@ Need for Global Visibility
   * ISR take no parameters and return no values
   * Communicating with foreground requires shared state 
 
-	* With :rust:`'static` lifetime
+	* through :rust:`'static` objects
 
-* :rust:`'static` items provide storage accessible to both execution contexts
+* :rust:`static` objects provide storage accessible to both execution contexts
 
-  * Exist for the program's lifetime
+  * Exist for the program's lifetime (:rust:`'static`)
   * :rust:`static` variables are immutable by default
   * But ISR can interrupt a read/write
 
@@ -39,9 +39,10 @@ Standard Traits
   * Only if that reference is also safe to transfer (:rust:`Send`)
 
 * :rust:`Send` and :rust:`Sync` contain no function definitions or runtime overhead
-* Compiler **automatically** implements :rust:`Send` or :rust:`Sync` for your type
+* Compiler automatically implements :rust:`Send` and :rust:`Sync` independently
 
-  * If all its constituent fields are :rust:`Send` or :rust:`Sync`
+  * :rust:`Send` when all fields implement :rust:`Send`
+  * :rust:`Sync` when all fields implement :rust:`Sync`
 
 -----------------------------------------
 Why "Cell" and "RefCell" Are Not "Sync"

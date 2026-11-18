@@ -65,12 +65,12 @@ Different Syntaxes
   * **Regular** :rust:`#![no_std]`
   
     * Functions need to be declared :rust:`extern "C"`
-	* Add :rust:`#[no_mangle]` to keep the name intact for Linker
+    * Add :rust:`#[no_mangle]` to keep the name intact for Linker
 
   .. code:: rust
 
     #[no_mangle]
-    pub extern "C" fn SysTick_Handler() {
+    pub extern "C" fn SysTick() {
     }
 	
 .. note:: 
