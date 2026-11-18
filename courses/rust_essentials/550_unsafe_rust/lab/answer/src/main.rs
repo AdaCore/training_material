@@ -123,5 +123,5 @@ fn main() {
     let falcon = MillenniumFalcon { parsecs: 12 };
     falcon.engage();
 
-    
+
 }

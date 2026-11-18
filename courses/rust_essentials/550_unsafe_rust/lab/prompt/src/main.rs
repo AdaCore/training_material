@@ -33,7 +33,7 @@ fn main() {
     let luigi = coins; 
     mario = 64;
     luigi = 120;
-    
+
     // Should be the value of the last assignment
     println!("Number of coins: {}", *coins);
 
@@ -41,7 +41,7 @@ fn main() {
     // Hint: Calling an unsafe function requires an unsafe context
     // Bonus: add the safety contracts for the function and caller
     unsafe fn get_some(value: Option<i32>) -> i32 {
-         value.unwrap_unchecked()
+        value.unwrap_unchecked()
     }
 
     let universal_answer =  get_some(Some(42));
@@ -52,7 +52,7 @@ fn main() {
     // Bonus: add the safety contracts for the function and caller
     static RAPTORS_LOOSE: u32 = 0;
 
-    unsafe fn release_raptor() {      
+    unsafe fn release_raptor() {
         RAPTORS_LOOSE += 1;
     }
 
@@ -77,7 +77,7 @@ fn main() {
     // Bonus: add the safety contracts for the function
     impl Avenger {
        fn as_unsigned(&self) -> u8 {
-            hulk 
+            hulk
         }
     }
     let hulk_strength = avenger.as_unsigned();
