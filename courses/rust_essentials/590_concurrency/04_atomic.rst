@@ -30,7 +30,7 @@ Interior Mutability Landscape
 
    * - **Mechanism**
      - **Sync**
-	 - **Why**
+     - **Why**
    * - :rust:`Cell<T>`
      - :rust:`!Sync`
      - Non-atomic updates
