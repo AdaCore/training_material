@@ -83,7 +83,7 @@ Different Syntaxes
 ISRs are Top-Level Functions
 ------------------------------
 
-**Can be mapped in the hardware interrupt vector table**
+**Runtime or startup code maps handlers in interrupt vector table**
 
 .. code:: rust
 
