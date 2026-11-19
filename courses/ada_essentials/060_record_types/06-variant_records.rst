@@ -10,18 +10,19 @@ Discriminated Record Types
 
   .. code:: ada
     :font-size: footnotesize
-	
+
     type Discriminated_Record (Discriminant : Natural) is record
        Text : String (1..Discriminant);
     end record;
 
-  * All objects of :ada:`Discriminated_Record` are of the same type, regardless
-    of the value of :ada:`Discriminant`
-  
-* Discriminant is used syntactically like a component 
-  
+  * All objects of :ada:`Discriminated_Record` are of the same type
+
+    * Regardless of the value of :ada:`Discriminant`
+
+* Discriminant is used syntactically like a component
+
   *  ...semantically has special rules and not *just* another component
-  
+
 * Discriminant must be either a discrete type or :ada:`access`
 
 * Aggregate assignment is allowed
@@ -31,15 +32,15 @@ Variant Record Types
 ----------------------
 
 * A :dfn:`variant record` is a special case of discriminated record
-  
+
 * Discriminant can be used to specify the :dfn:`variant part`
 
   * Uses in a :ada:`case` block to control visibility of components
-  
+
   * A discriminant controlling a variant part must have a discrete type
-	
+
 * Components listed will only be visible if choice matches discriminant
-  
+
   * Component names need to be unique (even across discriminants)
 
 .. code:: Ada
@@ -60,7 +61,10 @@ Variant Record Types
 
 .. note::
 
-  :ada:`case` block must be **last** part of definition - so only **one** per record
+  * :ada:`case` block must be **last** part of definition
+
+    * Only **one** per record
+    * But you can have nested case blocks
 
 ----------------------------
 Constrained Variant Record
@@ -88,10 +92,10 @@ Constrained Variant Record
 
 * A :dfn:`constrained` record object has *fixed* discriminant values
 
-  * :ada:`Pat` is constrained by the declaration :ada:`Person (Student)`
+  * :ada:`Pat` is constrained in its the declaration by :ada:`Person (Student)`
   * :ada:`Sam` is constrained by its initialization :ada:`(faculty, 33, 5)`
 
-
+    * :ada:`Person` has no default discriminant
 
 * Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
 
@@ -107,28 +111,37 @@ Constrained Record Use Case
 * Compiler can detect some problems
 
 .. code:: Ada
+  :font-size: footnotesize
 
   procedure Do_Something (Param : in out Person) is
   begin
     Param.Age := Param.Age + 1;
     Param.Pubs := Param.Pubs + 1;
   end Do_Something;
-	
+
 * More often clashes are run-time errors
 
-  * :ada:`Pat.Pubs := 3;` would generate a compiler warning because compiler knows :ada:`Pat` is a :ada:`Student`
+  .. code:: Ada
 
-    .. code:: error
+    Pat.Pubs := 3;
+
+  .. code:: error
       :font-size: footnotesize
 
       warning: Constraint_Error will be raised at run time
 
-  * :ada:`Do_Something (Pat);` generates a run-time error, because only at runtime is the discriminant for :ada:`Param` known
+  * Compiler knows :ada:`Pubs` is not visible
 
-    .. code:: error
+  .. code:: Ada
+
+    Do_Something (Pat);
+
+  .. code:: error
       :font-size: footnotesize
 
       raised CONSTRAINT_ERROR : discriminant check failed
+
+  * Only at runtime is the discriminant for :ada:`Param` known
 
   * :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
 
@@ -138,7 +151,6 @@ Variant record with default discriminant
 
 .. code:: Ada
    :font-size: footnotesize
-   :number-lines: 2
 
   type Person_Group is (Student, Faculty);
   type Person (Group : Person_Group := Student) is -- default value
@@ -166,7 +178,7 @@ Unconstrained Variant Record Example
   Pat : Person := (Student, 19, 3.9);
   Sam : Person;
 
-* Both :ada:`Pat` and :ada:`Sam` are unconstrained 
+* Both :ada:`Pat` and :ada:`Sam` are unconstrained
 
   * Even though :ada:`Pat` is initialized
 
