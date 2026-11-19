@@ -1,6 +1,6 @@
-=============
-Testing Lab
-=============
+=====
+Lab
+=====
 
 ------------------
 Lab Instructions
@@ -10,7 +10,7 @@ Lab Instructions
 * **Task 1: Unit tests** in :filename:`src/lib.rs`
 
   * Check the 19% and 20% boundary
-  * Expect a panic for an invalid 101% reading
+  * Check that a 101% reading panics with "invalid battery level"
 
 * **Task 2: Doctest** in :filename:`src/lib.rs`
 
@@ -19,6 +19,7 @@ Lab Instructions
 * **Task 3: Integration test** in :filename:`tests/mission.rs`
 
   * Test :rust:`mission_status` at 0%, 19%, 20%, and 100%
+  * Include the battery level in assertion failure messages
 
 * Run :command:`cargo test`, find the bug, and fix it
 
