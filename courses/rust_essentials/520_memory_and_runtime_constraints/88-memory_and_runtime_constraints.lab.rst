@@ -41,170 +41,43 @@ Overview
 Instructions
 --------------
 
-* Step 1 - Implement a :rust:`sample_data` module containing data for
+* Implement a :rust:`sample_data` module containing data for
 
   * Maximum number of values (:rust:`MAX_SAMPLES`)
   * List of values (:rust:`VALUES`)
   * Expected average (:rust:`AVERAGE`)
 
-* Step 2 - For each memory model (:rust:`fixed`, :rust:`dynamic`, :rust:`caller` modules)
+* For each memory model (:rust:`fixed`, :rust:`dynamic`, :rust:`caller` modules)
 
   * Implement content of structure
   * Implement :rust:`new` associated function
   * Implement :rust:`Logger` trait
 
-* Step 3 - Complete implementation of the :rust:`common_test` function
+* Complete implementation of the :rust:`common_test` function
 
   * Once implemented for one module, it should work for all modules
 
-**STOP HERE IF YOU DO NOT WANT HINTS!!**
+-------
+Hints
+-------
 
-  **The next pages show how to start with the fixed capacity module.**
-  **If you need help/hints, proceed at your own pace.**
+* Easiest to start with :rust:`sample_data`
 
---------------------
-Sample Data Module
---------------------
+  * You will need those values for the other modules
 
-:filename:`sample_data.rs`
+* :rust:`Fixed` is probably the simplest memory module
 
-.. code:: rust
-  :font-size: footnotesize
+  * Just use a simple array
 
-  pub const MAX_SAMPLES: usize = 9;
-  pub const VALUES: [usize; MAX_SAMPLES] = [1, 2, 3, 5, 6, 7, 9, 10, 11];
-  pub const AVERAGE: usize = 6;
+* Comments in the prompt files should help
 
------------------------------------
-Fixed Capacity Module - Structure
------------------------------------
+.. tip:
 
-:filename:`fixed.rs`
-
-.. code:: rust
-  :font-size: footnotesize
-  :number-lines: 1
-
-  use crate::logger_trait::Logger;
-  use crate::sample_data::MAX_SAMPLES;
-
-  pub struct Fixed {
-      samples: [usize; MAX_SAMPLES],
-      count: usize,
-  }
-
-  impl Fixed {
-      pub fn new() -> Self {
-          Self {
-              samples: [0; MAX_SAMPLES],
-              count: 0,
-          }
-      }
-  }
-
---------------------------------------
-Fixed Capacity Module - Logger (1/2)
---------------------------------------
-
-:filename:`fixed.rs`
-
-.. code:: rust
-  :font-size: footnotesize
-  :number-lines: 19
-
-  // Return false if the logger is full
-  fn add_sample(&mut self, value: usize) -> bool {
-      if self.count >= MAX_SAMPLES {
-          return false;
-      }
-
-      self.samples[self.count] = value;
-      self.count += 1;
-      true
-  }
-
-  // Return None if no samples have been collected
-  fn average(&self) -> Option<usize> {
-      if self.count == 0 {
-          None
-      } else {
-          let mut total = 0;
-          for index in 0..self.count {
-              total = total + self.samples[index];
-          }
-          Some(total / self.count as usize)
-      }
-  }
-
---------------------------------------
-Fixed Capacity Module - Logger (2/2)
---------------------------------------
-
-:filename:`fixed.rs`
-
-.. code:: rust
-  :font-size: footnotesize
-  :number-lines: 43
-
-  // Clear the logger so its storage can be reused
-  fn clear(&mut self) {
-      self.count = 0;
-  }
-
-  // Number of items in use
-  fn count(&self) -> usize {
-      self.count
-  }
-
-  // Total capacity
-  fn capacity(&self) -> usize {
-      self.samples.len()
-  }
-
----------------
-Test Function
----------------
-
-:filename:`main.rs`
-
-.. code:: rust
-  :font-size: tiny
-  :number-lines: 12
-
-    fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
-        for value in VALUES {
-            assert!(logger.add_sample(value), "Should not get here");
-        }
-        if !logger.add_sample(1234) {
-            println!("Exceeded capacity")
-        }
-
-        let count = logger.count();
-        assert_eq!(count, MAX_SAMPLES);
-
-        let average = logger.average().unwrap();
-        assert_eq!(average, AVERAGE, "Actual average: {average}");
-
-        println!("Average {average} over {count} values");
-
-        logger.clear();
-        assert_eq!(logger.count(), 0);
-        assert_eq!(logger.average(), None);
-
-        let capacity = logger.capacity();
-        println!("Final capacity {capacity}");
-        if can_exceed {
-            assert!(capacity >= MAX_SAMPLES, "Actual capacity: {capacity}");
-        } else {
-            assert_eq!(capacity, MAX_SAMPLES, "Actual capacity: {capacity}");
-        }
-    }
+  If you get stuck, refer to the :filename:`answer` folder for hints
 
 ----------
 Solution
 ----------
-
-* Remaining answers can be found in :filename:`answer` folder
 
 * Output from running full test should look something like
 
