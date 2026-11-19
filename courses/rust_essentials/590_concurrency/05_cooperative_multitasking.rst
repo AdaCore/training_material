@@ -172,7 +172,6 @@ Concurrency Models Compared
    :widths: 22 24 24 30
    :class: tight-table
 
-
    * - **Model**
      - **Preemption**
      - **Unit of Work**

@@ -21,9 +21,9 @@ Atomics for Safe Sharing
 
   Atomic types are part of :rust:`core::sync::atomic`, natively available in bare-metal (:rust:`#![no_std]`) environments.
 
--------------------------------
-Interior Mutability Landscape
--------------------------------
+--------------------------------
+Interior Mutability and "Sync"
+--------------------------------
 
 .. list-table::
    :header-rows: 1
@@ -37,7 +37,7 @@ Interior Mutability Landscape
    * - :rust:`RefCell<T>`
      - :rust:`!Sync`
      - Non-atomic borrow tracking
-   * - :rust:`Atomic`
+   * - :rust:`AtomicU32`
      - :rust:`Sync`
      - Atomic reads and updates
 
