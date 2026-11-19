@@ -75,7 +75,9 @@ Different Syntaxes
 
 .. note::
 
-  :rust:`extern` ABI depends on the architecture, use :rust:`"C"` on architecture with the C calling convention
+  * :rust:`extern` ABI depends on the architecture
+
+    * Use :rust:`"C"` on architecture with the C calling convention
 
 ------------------------------
 ISRs are Top-Level Functions
@@ -103,7 +105,9 @@ Global Shared State Hazard
 ----------------------------
 
 * Interrupt can trigger at any CPU instruction
-* Unsynchronized access to global :rust:`static mut` causes data races and lost updates
+* Unsynchronized access to global :rust:`static mut` causes data races
+
+  * And lost updates
 
 .. code:: rust
 

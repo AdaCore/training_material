@@ -78,16 +78,16 @@ Interior Mutability Landscape
 
    * - **Operation**
      - **Indivisible Action**
-   * - :rust:`.store(val, ordering)`
+   * - :rust:`.store(val, ord)`
      - Writes a new value into shared memory
-   * - :rust:`.load(ordering)`
+   * - :rust:`.load(ord)`
      - Reads the current value from shared memory
-   * - :rust:`.swap(val, ordering)`
-     - Writes new value and returns previous value
-   * - :rust:`.fetch_add(val, ordering)`
-     - Adds to current value and returns previous value
-   * - :rust:`.compare_exchange(...)`
-     - Updates value only if it matches expected value
+   * - :rust:`.swap(val, ord)`
+     - Writes new value, returns previous value
+   * - :rust:`.fetch_add(val, ord)`
+     - Adds to current value, returns previous value
+   * - :rust:`.compare_exchange(..)`
+     - Updates value only if matches expected value
 
 -----------------
 Memory Ordering
@@ -372,7 +372,7 @@ Single-Core Deadlock Hazard
 
   fn on_interrupt() {
     // DANGER: 'LOCK.load(Relaxed)' continously returns 'true'
-	// ISR spins indefinitely
+    // ISR spins indefinitely
     while LOCK.load(Relaxed) {
         // Deadlocks permanently on a single-core CPU
     }
