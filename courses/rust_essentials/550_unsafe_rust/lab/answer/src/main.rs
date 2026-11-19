@@ -106,24 +106,29 @@ fn main() {
 
     // TASK 8 - Implementing an Unsafe Trait
     // Hint: Implementing an unsafe trait requires an unsafe impl block
-    // Bonus: Add the safety contract explaining why the implementation is valid
-    unsafe trait WarpDrive {
-        fn engage(&self);
-    }
+    // Bonus: Add the safety contract explaining why all-zero bytes are valid for this type
 
-    struct MillenniumFalcon {
-        parsecs: u32,
-    }
-
-    // SAFETY: MillenniumFalcon holds valid, initialized fields safe for warp
-    unsafe impl WarpDrive for MillenniumFalcon {
-        fn engage(&self) {
-            println!("Making the Kessel Run in {} parsecs!", self.parsecs);
+    /// # Safety
+    /// All-zero byte patterns must represent a valid, initialized value of 'Self'
+    unsafe trait Zeroable: Sized {
+        fn zeroed() -> Self {
+            // SAFETY: The implementor guarantees that an all-zero bit pattern is valid for 'Self'
+            unsafe { std::mem::zeroed() }
         }
     }
 
-    let falcon = MillenniumFalcon { parsecs: 12 };
-    falcon.engage();
+    #[derive(Debug)]
+    struct DeathStarPlans {
+        sector: u32,
+        shield_active: bool,
+        exhaust_ports: u8,
+    }
 
+    // SAFETY: `u32`, `bool` (0 == false), and `u8` are all valid when initialized to all-zero bytes
+    // so `DeathStarPlans` has no invalid all-zero bit patterns (unlike references or `NonZero*` types)
+    unsafe impl Zeroable for DeathStarPlans {}
+
+    let plans = DeathStarPlans::zeroed();
+    println!("Plans loaded: {plans:?}");
 
 }
