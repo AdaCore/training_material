@@ -14,7 +14,9 @@ impl Dynamic {
 }
 
 impl Logger for Dynamic {
-    // Return false if the logger is full.
+    // Return false if the logger exceeds maximum
+    // (We want to enforce the MAX_SAMPLES required
+    // limit - capacity can exceed that)
     fn add_sample(&mut self, value: usize) -> bool {
         if self.samples.len() >= MAX_SAMPLES {
             return false;
