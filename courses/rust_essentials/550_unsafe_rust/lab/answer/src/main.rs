@@ -19,7 +19,7 @@ fn main() {
     // Hint: Cast from a reference using "as"
     let treasure: i32 = 5;
     let reference = &treasure;
-    let clue = reference as *const i32; 
+    let clue = reference as *const i32;
 
     unsafe {
         println!("clue: {}", *clue);
@@ -29,7 +29,7 @@ fn main() {
     // Hint: Raw pointers may alias the same memory without a compilation error
     let mut coins = 0;
     let mario = &raw mut coins;
-    let luigi = mario; 
+    let luigi = mario;
 
     unsafe {
         *mario = 64;
@@ -67,6 +67,8 @@ fn main() {
         }
     }
 
+    // SAFETY: This example is single-threaded, with no competing access
+    // to 'RAPTORS_LOOSE' during the call or subsequent read
     unsafe {
         release_raptor();
         let raptors = RAPTORS_LOOSE;
@@ -91,7 +93,7 @@ fn main() {
 
     // TASK 7 - Encapsulating the Unsafe Read
     // Hint: A safe method can perform an unsafe operation
-    // Bonus: add the safety contracts for the function
+    // Bonus: add the safety contracts for the internal unsafe operation
     impl Avenger {
        fn as_unsigned(&self) -> u8 {
             // SAFETY: Either field initializes the shared byte,

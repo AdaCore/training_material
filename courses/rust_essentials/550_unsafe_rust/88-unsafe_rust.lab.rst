@@ -15,9 +15,7 @@ Lab Instructions
     - Code that compiles
 
     - ...and that follows any behavior indicated within the hints!
-	
-	
-	
+
 -------------------
 Observable output
 -------------------
@@ -34,4 +32,4 @@ Observable output
   Hulk: 254
   Banner: -2
   Hulk strength is : 254
-  Making the Kessel Run in 12 parsecs!
+  Plans loaded: DeathStarPlans { sector: 0, shield_active: false, exhaust_ports: 0 }

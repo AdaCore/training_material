@@ -20,7 +20,7 @@ fn main() {
     let reference = &treasure;
     // Change this so the warning disappears
     let clue = reference;
-    // warning: unnecessary `unsafe` block
+    // Warning: unnecessary `unsafe` block
     unsafe {
         println!("clue: {}", *clue);
     }
@@ -28,9 +28,9 @@ fn main() {
     // TASK 3 - Aliasing and Safety Obligations
     // Hint: Raw pointers may alias the same memory without a compilation error
     let mut coins = 0;
-    // Fix the declarations so that they both point to the same adress
+    // Fix the declarations so that they both point to the same address
     let mario = coins;
-    let luigi = coins; 
+    let luigi = coins;
     mario = 64;
     luigi = 120;
 
@@ -68,13 +68,13 @@ fn main() {
     }
     let mut avenger = Avenger { banner: -1, hulk: 254};
     // Write a new value to the other field than the one selected in the declaration
-    // Destructure the union into 2 values interpreting the current union value
+    // Read both union fields separately to interpret the same stored byte
     println!("Hulk: {0}", avenger.hulk);
     println!("Banner: {0}", avenger.banner);
 
     // TASK 7 - Encapsulating the Unsafe Read
     // Hint: A safe method can perform an unsafe operation
-    // Bonus: add the safety contracts for the function
+    // Bonus: add the safety contracts for the internal unsafe operation
     impl Avenger {
        fn as_unsigned(&self) -> u8 {
             hulk
@@ -85,26 +85,26 @@ fn main() {
 
     // TASK 8 - Implementing an Unsafe Trait
     // Hint: Implementing an unsafe trait requires an unsafe impl block
-    // Bonus: Add the safety contract explaining why the implementation is valid
-    unsafe trait WarpDrive {
-        fn engage(&self);
-    }
+    // Bonus: Add the safety contract for the trait, function and caller
 
-    struct MillenniumFalcon {
-        parsecs: u32,
-    }
-
-    impl WarpDrive for MillenniumFalcon {
-        fn engage(&self) {
-            println!("Making the Kessel Run in {} parsecs!", self.parsecs);
+    /// # Safety
+    /// All-zero byte patterns must represent a valid, initialized value of 'Self'
+    trait Zeroable: Sized {
+        fn zeroed() -> Self {
+            std::mem::zeroed() 
         }
     }
 
-    let falcon = MillenniumFalcon { parsecs: 12 };
-    falcon.engage();
+    #[derive(Debug)]
+    struct DeathStarPlans {
+        sector: u32,
+        shield_active: bool,
+        exhaust_ports: u8,
+    }
 
+    // Implement Zeroable for DeathStarPlans
 
-
-
+    let plans = DeathStarPlans::zeroed();
+    println!("Plans loaded: {plans:?}");
 
 }
