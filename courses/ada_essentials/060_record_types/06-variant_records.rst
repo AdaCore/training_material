@@ -36,7 +36,7 @@ Variant Record Types
 * Discriminant can be used to specify the :dfn:`variant part`
 
   * Uses :ada:`case` block to control visibility of components
-  
+
   * This discriminant must be a discrete type
 	
 * Components listed will only be visible if choice matches discriminant
