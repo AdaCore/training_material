@@ -4,9 +4,9 @@ mod fixed;
 mod logger_trait;
 mod sample_data;
 
-// Add module references for implentations for
+// Import modules for implementations of
 //   caller-supplied, fixed-size, and dynamic buffers.
-// Also need to reference to the global data module
+// Also need to import the global data module
 
 fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
     // for every value in VALUES {
