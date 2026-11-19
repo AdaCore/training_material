@@ -111,7 +111,7 @@ Global Shared State Hazard
 
 .. code:: rust
 
-  // DANGER: Global mutable state
+  // CAUTION: Global mutable state
   static mut COUNTER: u32 = 0;
 
   fn main() -> ! {

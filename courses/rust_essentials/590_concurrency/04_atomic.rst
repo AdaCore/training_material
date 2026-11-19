@@ -37,7 +37,7 @@ Interior Mutability and "Sync"
    * - :rust:`RefCell<T>`
      - :rust:`!Sync`
      - Non-atomic borrow tracking
-   * - :rust:`AtomicU32`
+   * - *Atomic types*
      - :rust:`Sync`
      - Atomic reads and updates
 
