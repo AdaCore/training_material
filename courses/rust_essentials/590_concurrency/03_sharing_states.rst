@@ -15,11 +15,11 @@ Need for Global Visibility
   * ISR take no parameters and return no values
   * Communicating with foreground requires shared state
 
-    * Through :rust:`'static` objects
+    * Through :rust:`static` items
 
-* :rust:`static` objects provide storage accessible to both execution contexts
+* :rust:`static` items provide storage accessible to both execution contexts
 
-  * Exist for the program's lifetime (:rust:`'static`)
+  * Exist for the entire program execution
   * :rust:`static` variables are immutable by default
   * But ISR can interrupt a read/write
 
@@ -57,7 +57,7 @@ Why "Cell" and "RefCell" Are Not "Sync"
 * Both types are explicitly marked :rust:`!Sync`
 
   * :rust:`RefCell` borrow tracking counters are standard non-atomic integers
-  * Concurrent writes/reads cause unsynchronized memory mutation
+  * Unsynchronized concurrent reads and writes can cause data races
   * Compiler refuses to place :rust:`Cell` or :rust:`RefCell` into a shared :rust:`static`
 
 .. code:: rust
@@ -78,7 +78,7 @@ Why "Cell" and "RefCell" Are Not "Sync"
 
 * :rust:`UnsafeCell<T>` is the core language primitive for interior mutability
 
-  * Modifies memory behind a shared reference :rust:`&T`
+  * Content can be modified through a shared reference :rust:`&T`
   * Compiler assumes data behind :rust:`&UnsafeCell<T>` is not constant
 
 .. code:: rust

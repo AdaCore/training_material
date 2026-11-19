@@ -157,12 +157,11 @@ The Danger: Hogging the CPU
       }
   }
 
-  // GOOD: Cooperates by yielding periodically
-  async fn polite_cat() {
-      loop {
-          is_hungry().await; // Yields back to executor
-      }
-  }
+* Awaiting a pending future yields control to the executor
+
+.. warning::
+
+  .await will not yield if the future is ready
 
 ------------------------------
 Concurrency Models Compared

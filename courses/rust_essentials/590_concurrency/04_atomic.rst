@@ -29,21 +29,17 @@ Interior Mutability Landscape
    :header-rows: 1
 
    * - **Mechanism**
-     - **How it works**
-     - **Execution Cost**
      - **Sync**
+	 - **Why**
    * - :rust:`Cell<T>`
-     - Value copies and moves
-     - Zero overhead
      - :rust:`!Sync`
+     - Non-atomic updates
    * - :rust:`RefCell<T>`
-     - Dynamic borrow counter
-     - Minor branch checking
      - :rust:`!Sync`
+     - Non-atomic borrow tracking
    * - :rust:`Atomic`
-     - CPU atomic instructions
-     - Lock-free assembly
      - :rust:`Sync`
+     - Atomic reads and updates
 
 ----------------
 "atomic" Types
@@ -226,7 +222,7 @@ One-Time Publication Protocol
 Why Volatile Is Not Synchronization
 -------------------------------------
 
-* Volatile flags external access such as hardwares sensors
+* Volatile reads and writes are often used to access hardware registers
 
 * :rust:`read_volatile` **And** :rust:`write_volatile`
 
@@ -239,7 +235,7 @@ Why Volatile Is Not Synchronization
 
 * **Atomic Operations**
 
-  * Specifically for sharing and mutating states safely across contexts
+  * For safely sharing and updating state across execution contexts
   * **Indivisible** updates preventing data races
 
     * And torn values under preemption
