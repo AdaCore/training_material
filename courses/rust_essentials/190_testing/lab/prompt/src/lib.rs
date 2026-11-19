@@ -1,4 +1,5 @@
-//! Mission Control - Testing Lab
+//! Lab (prompt)
+//! Testing
 //!
 //! A rover needs at least 20% battery to launch
 
