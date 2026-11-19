@@ -16,7 +16,7 @@ Atomics for Safe Sharing
   * Even when implemented using multiple CPU instructions
   * Requires no operating system scheduler
   * Preemption by an interrupt cannot observe or cause a half-written state
-  
+
 .. note::
 
   Atomic types are part of :rust:`core::sync::atomic`, natively available in bare-metal (:rust:`#![no_std]`) environments.
@@ -44,26 +44,26 @@ Interior Mutability Landscape
      - CPU atomic instructions
      - Lock-free assembly
      - :rust:`Sync`
-  
+
 ----------------
-"atomic" Types 
+"atomic" Types
 ----------------
 
 * :rust:`AtomicBool`
 
   * *Construction:* 1-byte thread-safe boolean
   * *Used for:* Hardware signaling, event pending flags
-  
+
 * :rust:`AtomicUsize` / :rust:`AtomicIsize`
 
   * *Construction:* Pointer-sized integer
   * *Used for:* Buffer indices, ring buffer pointers
-  
+
 * :rust:`AtomicU32` / :rust:`AtomicI32`
 
   * *Construction:* 32-bit primitive
   * *Used for:* Event counters, metrics, packed words
-  
+
 * :rust:`AtomicPtr<T>`
 
   * *Construction:* Raw pointer (*:rust:`mut T`)
@@ -88,7 +88,7 @@ Interior Mutability Landscape
      - Adds to current value and returns previous value
    * - :rust:`.compare_exchange(...)`
      - Updates value only if it matches expected value
-	 
+
 -----------------
 Memory Ordering
 -----------------
@@ -117,7 +117,7 @@ Memory Ordering
 * :rust:`AcqRel`
 
   * Combines :rust:`Acquire` and :rust:`Release`
-  
+
     * For read-modify-write operations (:rust:`.swap()`)
 
 * :rust:`SeqCst`
@@ -137,9 +137,9 @@ Target Hardware Limitations
 * The compiler guards architecture capabilities via configuration flags
 
   * 8-bit support
-  
+
     * :rust:`#[cfg(target_has_atomic = "8")]`
-	
+
   * 32-bit support
 
     * :rust:`#[cfg(target_has_atomic = "32")]`
@@ -222,9 +222,9 @@ One-Time Publication Protocol
       }
   }
 
----------------------------------------
-Why "Volatile" Is Not Synchronization
----------------------------------------
+-------------------------------------
+Why Volatile Is Not Synchronization
+-------------------------------------
 
 * Volatile flags external access such as hardwares sensors
 
@@ -232,18 +232,18 @@ Why "Volatile" Is Not Synchronization
 
   * Ensure compiler does not optimize away memory access operations
   * Guarantee an access occurs
-  
+
     * But provide zero cross-context synchronization
-	
+
   * Do not prevent preemption or instruction reordering across contexts
 
 * **Atomic Operations**
 
   * Specifically for sharing and mutating states safely across contexts
   * **Indivisible** updates preventing data races
-  
+
     * And torn values under preemption
-  
+
 -----------------------------
 When Atomics Are Not Enough
 -----------------------------
@@ -262,12 +262,12 @@ When Atomics Are Not Enough
   static PRESSURE: AtomicU32 = AtomicU32::new(100);
 
   fn read_sample() -> (u32, u32) {
-      // Reads 10 
+      // Reads 10
       let t = TEMP.load(Relaxed);
 
       // --- Preemption: ISR writes a new 'sample' (TEMP=25, PRESSURE=1015) ---
 
-      // Reads 1015 
+      // Reads 1015
       let p = PRESSURE.load(Relaxed);
 
       // Inconsistent result: 10 degrees paired with 1015 hPa
@@ -283,7 +283,7 @@ Coherent Pair in an Atomic Word
   * Two 12-bit ADC readings into a single 32-bit atomic word
 
 * A single atomic load retrieves both readings
-  
+
   * Impossible for an interrupt to squeeze in-between
 
 .. code:: rust
@@ -306,7 +306,7 @@ Coherent Pair in an Atomic Word
     (x, y)
   }
 
-.. note:: 
+.. note::
 
   Hard physical limit: cannot scale to large structs, arrays, or buffers
 
@@ -324,7 +324,7 @@ The Exclusive-Access Contract
   * Target-specific platform backend disables or masks interrupts
   * Safe wrappers expose :rust:`&mut T` to user application code
 
-* Borrow must never 
+* Borrow must never
 
   * Escape protected scope
   * Continue to exist after interrupts are enabled again
@@ -343,8 +343,8 @@ Critical Sections for Complex Data
 
   * Restore the previous interrupt-masking state on exit
   * Paired with :rust:`RefCell` to provide safe, multi-field interior mutability
-  
-.. note:: 
+
+.. note::
 
   :rust:`critical-section` is an external crate not part of :rust:`core`
 
@@ -366,7 +366,7 @@ Single-Core Deadlock Hazard
 
   fn foreground_task() {
       LOCK.store(true, Relaxed);
-      // Preemption 'on_interrupt()' is called 
+      // Preemption 'on_interrupt()' is called
       LOCK.store(false, Relaxed);
   }
 

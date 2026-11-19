@@ -36,9 +36,9 @@ Concurrency - One Program, Many Things Happening
 * Concurrent programs
 
   * Multiple activities *conceptually* happening at once
-  
+
     * Even on one CPU
-	
+
   * Think many cooks in one kitchen
 
 * Why concurrency?
@@ -55,8 +55,6 @@ Concurrency in Rust
   * Hardware Interrupts
   * Cooperative Multitasking
   * Threads
-   
+
 * Traits for moving/sharing across boundaries
 * Atomic types for thread-safe operations on shared data
-
-

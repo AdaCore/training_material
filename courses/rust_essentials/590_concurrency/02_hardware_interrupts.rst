@@ -12,9 +12,9 @@ Hardware-Level Preemption
   * Transfers execution to an Interrupt Service Routine (ISR)
 
     * Not within an OS thread or asynchronous task
-	
+
   * Can be paired with external architecture crates
-  
+
     * To handle vector tables and handler registration
 
 * Higher-priority interrupts preempt lower-priority ones
@@ -36,8 +36,8 @@ Execution Timeline
 Interrupt Priorities and Nesting
 ----------------------------------
 
-* Microcontrollers support multiple interrupt sources 
-  
+* Microcontrollers support multiple interrupt sources
+
   * With configurable priorities
 
 * Higher-priority interrupts preempt lower-priority ones
@@ -50,20 +50,20 @@ Interrupt Priorities and Nesting
 Different Syntaxes
 --------------------
 
-**Hardware interrupts syntax varies depending on the solution**
+**Hardware interrupt syntax varies depending on the solution**
 
   * **External libraries**
-  
+
     * Example: :rust:`cortex-m-rt` uses :rust:`#[exception]`
-	
+
   .. code:: rust
 
     #[exception]
-    pub fn SysTick_Handler() {
+    pub fn SysTick() {
     }
-	
+
   * **Regular** :rust:`#![no_std]`
-  
+
     * Functions need to be declared :rust:`extern "C"`
     * Add :rust:`#[no_mangle]` to keep the name intact for Linker
 
@@ -72,17 +72,16 @@ Different Syntaxes
     #[no_mangle]
     pub extern "C" fn SysTick() {
     }
-	
-.. note:: 
 
-  :rust:`extern` ABI depends on the architecture, uses :rust:`"C"` on architecture using the C calling convention
+.. note::
+
+  :rust:`extern` ABI depends on the architecture, use :rust:`"C"` on architecture with the C calling convention
 
 ------------------------------
 ISRs are Top-Level Functions
 ------------------------------
 
 **Can be mapped in the hardware interrupt vector table**
-
 
 .. code:: rust
 
@@ -106,11 +105,10 @@ Global Shared State Hazard
 * Interrupt can trigger at any CPU instruction
 * Unsynchronized access to global :rust:`static mut` causes data races and lost updates
 
-
 .. code:: rust
 
   // DANGER: Global mutable state
-  static mut COUNTER: u32 = 0; 
+  static mut COUNTER: u32 = 0;
 
   fn main() -> ! {
     unsafe {
@@ -118,7 +116,7 @@ Global Shared State Hazard
     }
     loop {}
   }
-  
+
   #[no_mangle]
   pub extern "C" fn TIMER0() {
     unsafe {
@@ -128,7 +126,7 @@ Global Shared State Hazard
   }
 
 * ISR can interrupt a read/write
-  
+
 -------------------------------
 Compound Operation Preemption
 -------------------------------
@@ -138,7 +136,7 @@ Compound Operation Preemption
 * Code executes valid assembly instructions
 
   * But the application outcome is wrong!
-  
+
 * At the Rust language level, this data race is :dfn:`Undefined Behavior`
 
  * No specific outcome is guaranteed
@@ -150,9 +148,9 @@ Two Distinct Classes of Races
 * **Data Races**
 
   * Multiple contexts access same memory location
-  
+
     * Without synchronization
-	
+
   * At least one access is a write and at least one is non-atomic
   * Causes undefined behavior
 
@@ -160,12 +158,12 @@ Two Distinct Classes of Races
 
   * No data races: individual operations are valid and well-defined
   * Program flow interleaves unexpectedly
-  
+
     * Produces incorrect application results
 
   * Eliminating data races does not eliminate logical sequencing errors
 
--------------------- 
+--------------------
 Logical Race Issue
 --------------------
 
@@ -192,7 +190,7 @@ Logical Race Issue
   }
 
 * Individual memory accesses are valid, result is still wrong!
-* Interrupt changed context between the two steps 
+* Interrupt changed context between the two steps
 
   * Made foreground's decision outdated and destructive
 

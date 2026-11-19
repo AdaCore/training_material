@@ -24,7 +24,7 @@ The "std" Solution
 
     handle.join().unwrap();
   }
-  
+
 .. note::
 
   Requires :rust:`std` crate and an underlying operating system
@@ -44,7 +44,7 @@ Why Not Just OS Threads?
   * Tasks yield the CPU voluntarily when waiting for hardware or timers
   * Tasks do not require a dedicated stack each
   * Tasks can be scheduled without an operating system
-  
+
 .. note::
 
   Cooperative multitasking works on any bare-metal target
@@ -77,12 +77,12 @@ Why Not Just OS Threads?
 
 :rust:`.await` **evaluates a** :rust:`Future` **to completion**
 
-  * *If ready immediately:* 
-  
+  * *If ready immediately*
+
     * Execution continues with zero pause or yield
-    
-  * *If not ready (waiting on hardware/timer):* 
-  
+
+  * *If not ready (waiting on hardware/timer)*
+
     * Function pauses and yields control back up to caller or executor
 
 .. code:: rust
@@ -97,13 +97,13 @@ Why Not Just OS Threads?
       // Resumes here once the future completes executor polls this task
       serve(greeting, snack);
   }
-  
+
 ---------------------
 Awaiting the Future
 ---------------------
 
 .. code:: rust
-  
+
   fn regular_meow() {
     println!("Meow 1!");
   }
@@ -117,12 +117,12 @@ Awaiting the Future
     regular_meow();
 
     // Async call WITHOUT '.await': only creates unexecuted 'Future'
-    let future_obj = async_meow(); 
-	
+    let future_obj = async_meow();
+
     regular_meow();
 
     // Awaiting the future: actually steps forward and runs!
-    future_obj.await; 
+    future_obj.await;
   }
 
 * Output when the future returned by :rust:`cat()` is polled to completion
@@ -132,7 +132,7 @@ Awaiting the Future
   Meow 1!
   Meow 1!
   Meow 2!
-  
+
 .. note::
 
   If you don't :rust:`.await future_obj`, it simply gets dropped at the end
@@ -168,12 +168,12 @@ The Danger: Hogging the CPU
 Concurrency Models Compared
 ------------------------------
 
-.. list-table:: 
+.. list-table::
    :header-rows: 1
    :widths: 22 24 24 30
    :class: tight-table
 
-  
+
    * - **Model**
      - **Preemption**
      - **Unit of Work**
@@ -202,5 +202,5 @@ The Missing Piece: Executor
   * Bare-metal systems (:rust:`no_std`): :rust:`embassy`
   * Desktop/Server systems (:rust:`std`): :rust:`tokio`
   * Lightweight polling driver can be implemented manually
-  
+
     * using :rust:`core::task`

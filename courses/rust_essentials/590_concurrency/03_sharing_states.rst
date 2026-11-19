@@ -13,9 +13,9 @@ Need for Global Visibility
     * Not called by program logic
 
   * ISR take no parameters and return no values
-  * Communicating with foreground requires shared state 
+  * Communicating with foreground requires shared state
 
-	* through :rust:`'static` objects
+	* Through :rust:`'static` objects
 
 * :rust:`static` objects provide storage accessible to both execution contexts
 
@@ -48,7 +48,7 @@ Standard Traits
 Why "Cell" and "RefCell" Are Not "Sync"
 -----------------------------------------
 
-* :rust:`Cell<T>` allows values to be replaced through shared references 
+* :rust:`Cell<T>` allows values to be replaced through shared references
 
   * It does not perform runtime borrow checking
 
@@ -66,7 +66,7 @@ Why "Cell" and "RefCell" Are Not "Sync"
 
   // The trait 'Sync' is not implemented for 'Cell<u32>'
   static BAD: Cell<u32> = Cell::new(0);
-  
+
 .. code:: error
   :font-size: footnotesize
 
@@ -99,6 +99,3 @@ Why "Cell" and "RefCell" Are Not "Sync"
 * Calling :rust:`cell.get()` is safe
 
   * Dereferencing raw pointer requires :rust:`unsafe`
-
-
-
