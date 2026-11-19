@@ -1,3 +1,9 @@
+//! Lab (prompt)
+//! Memory and Runtime Constraints
+//!
+//! Definition of "Logger" trait
+//!
+
 pub trait Logger {
     // Return 'false' if the buffer is full
     fn add_sample(&mut self, value: usize) -> bool;

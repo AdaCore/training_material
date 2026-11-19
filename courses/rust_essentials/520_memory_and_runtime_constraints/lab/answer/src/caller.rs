@@ -1,3 +1,9 @@
+//! Lab (answer)
+//! Memory and Runtime Constraints
+//!
+//! Answer for caller-supplied memory model
+//!
+
 use crate::logger_trait::Logger;
 
 pub struct Caller<'a> {

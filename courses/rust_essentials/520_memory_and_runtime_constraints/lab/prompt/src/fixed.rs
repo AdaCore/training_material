@@ -1,3 +1,9 @@
+//! Lab (prompt)
+//! Memory and Runtime Constraints
+//!
+//! Prompt for fixed capacity memory model
+//!
+
 use crate::logger_trait::Logger;
 
 pub struct Fixed {

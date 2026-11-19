@@ -1,3 +1,9 @@
+//! Lab (answer)
+//! Memory and Runtime Constraints
+//!
+//! Main program including completed testing function
+//!
+
 mod caller;
 mod dynamic;
 mod fixed;

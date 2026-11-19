@@ -1,3 +1,9 @@
+//! Lab (answer)
+//! Memory and Runtime Constraints
+//!
+//! Answer for fixed-capacity memory model
+//!
+
 use crate::logger_trait::Logger;
 use crate::sample_data::MAX_SAMPLES;
 
