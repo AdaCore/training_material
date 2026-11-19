@@ -4,7 +4,7 @@ mod fixed;
 mod logger_trait;
 mod sample_data;
 
-// Import modules for implementations of
+// Import structure implementations of
 //   caller-supplied, fixed-size, and dynamic buffers.
 // Also need to import the global data module
 
@@ -15,9 +15,8 @@ fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
     // }
 
     // We want to ensure we've limited number of values
-    if !logger.add_sample(1234) {
-        println!("Exceeded capacity")
-    }
+    assert(!logger.add_sample(1234));
+    println!("Exceeded capacity")
 
     // Check number of values added
     let count = logger.count();

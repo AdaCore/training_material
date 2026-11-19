@@ -4,6 +4,9 @@ mod fixed;
 mod logger_trait;
 mod sample_data;
 
+// Import structure implementations of
+//   caller-supplied, fixed-size, and dynamic buffers.
+// Also need to import the global data module
 use caller::Caller;
 use dynamic::Dynamic;
 use fixed::Fixed;
@@ -13,29 +16,36 @@ fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
     for value in VALUES {
         assert!(logger.add_sample(value), "Should not get here");
     }
-    if !logger.add_sample(1234) {
-        println!("Exceeded capacity")
-    }
+    assert!(!logger.add_sample(1234));
+    println!("Exceeded capacity");
 
+    // Check number of values added
     let count = logger.count();
     assert_eq!(count, MAX_SAMPLES);
 
+    // Check average of values
     let average = logger.average().unwrap();
     assert_eq!(average, AVERAGE, "Actual average: {average}");
 
+    // Print results
     println!("Average {average} over {count} values");
 
+    // Verify clearing the buffer reduces the
+    // count and no average exists
     logger.clear();
     assert_eq!(logger.count(), 0);
     assert_eq!(logger.average(), None);
 
     let capacity = logger.capacity();
     println!("Final capacity {capacity}");
+    // Capacity should be exact for Fixed and Caller,
+    // but may be greater for Dynamic
     if can_exceed {
         assert!(capacity >= MAX_SAMPLES, "Actual capacity: {capacity}");
     } else {
         assert_eq!(capacity, MAX_SAMPLES, "Actual capacity: {capacity}");
     }
+
 }
 
 fn main() {
