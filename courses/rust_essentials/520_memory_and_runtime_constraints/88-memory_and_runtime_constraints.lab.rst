@@ -17,10 +17,6 @@ supplied values and determine the average of all the values
 
 The main program will test that each module behaves correctly
 
-.. tip::
-
-  There will be hints along the way so you don't get stuck forever!
-
 ----------
 Overview
 ----------
