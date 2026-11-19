@@ -1,10 +1,10 @@
-====================================
-Memory and Runtime Constraints Lab
-====================================
+=====
+Lab
+=====
 
-----------
-Overview
-----------
+--------------
+Introduction
+--------------
 
 This lab will demonstrate your understanding of different types of memory budgets
 
@@ -21,9 +21,9 @@ The main program will test that each module behaves correctly
 
   There will be hints along the way so you don't get stuck forever!
 
------
-Lab
------
+----------
+Overview
+----------
 
 * The lab is a complete Rust crate, but it will not build yet
 
