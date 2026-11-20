@@ -7,19 +7,21 @@ Lab Instructions
 ------------------
 
 * A rover needs at least *20%* battery to launch
-* **Unit tests** in :filename:`src/lib.rs`
+* Create the following tests for the rover module
 
-  * Check the 19% and 20% boundary
-  * Check that a 101% reading panics with "invalid battery level"
+  * **Unit tests** in :filename:`src/lib.rs`
 
-* **Doctest** in :filename:`src/lib.rs`
+    * Check the 19% and 20% boundary
+    * Check that a 101% reading panics with "invalid battery level"
 
-  * Document examples returning both "GO" and "WAIT"
+  * **Doctest** in :filename:`src/lib.rs`
 
-* **Integration test** in :filename:`tests/mission.rs`
+    * Document examples returning both "GO" and "WAIT"
 
-  * Test :rust:`mission_status` at 0%, 19%, 20%, and 100%
-  * Include the battery level in assertion failure messages
+  * **Integration test** in :filename:`tests/mission.rs`
+
+    * Test :rust:`mission_status` at 0%, 19%, 20%, and 100%
+    * Include the battery level in assertion failure messages
 
 * Run :command:`cargo test`, find the bug, and fix it
 
