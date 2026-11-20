@@ -39,7 +39,7 @@ fn main() {
 
     // TASK 4 - Declaring an Unsafe Function
     // Hint: Calling an unsafe function requires an unsafe context
-    // Bonus: add the safety contracts for the function and caller
+    // Bonus: Add the safety contracts for the function and caller
     unsafe fn get_some(value: Option<i32>) -> i32 {
         value.unwrap_unchecked()
     }
@@ -49,7 +49,7 @@ fn main() {
 
     // TASK 5 - Updating a Mutable Static
     // Hint: Reading or writing requires an unsafe context
-    // Bonus: add the safety contracts for the function and caller
+    // Bonus: Add the safety contracts for the function and caller
     static RAPTORS_LOOSE: u32 = 0;
 
     unsafe fn release_raptor() {
@@ -62,6 +62,7 @@ fn main() {
 
     // TASK 6 - Reading Union Fields
     // Hint: Reading is an unsafe operation
+    #[repr(C)]
     union Avenger {
         banner: i8,
         hulk: u8,
@@ -74,7 +75,7 @@ fn main() {
 
     // TASK 7 - Encapsulating the Unsafe Read
     // Hint: A safe method can perform an unsafe operation
-    // Bonus: add the safety contracts for the internal unsafe operation
+    // Bonus: Add a SAFETY comment justifying the internal unsafe operation
     impl Avenger {
        fn as_unsigned(&self) -> u8 {
             hulk
@@ -91,7 +92,7 @@ fn main() {
     /// All-zero byte patterns must represent a valid, initialized value of 'Self'
     trait Zeroable: Sized {
         fn zeroed() -> Self {
-            std::mem::zeroed() 
+            std::mem::zeroed()
         }
     }
 
