@@ -23,6 +23,7 @@ Observable output
 **Correct Output**
 
 .. code:: output
+  :font-size: scriptsize
 
   Ripley status: 426
   clue: 5
