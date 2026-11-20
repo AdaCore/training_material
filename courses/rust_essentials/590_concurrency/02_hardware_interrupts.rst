@@ -52,9 +52,9 @@ Different Syntaxes
 
 **Hardware interrupt syntax varies depending on the solution**
 
-  * **External libraries**
+* **External libraries**
 
-    * Example: :rust:`cortex-m-rt` uses :rust:`#[exception]`
+  * Example: :rust:`cortex-m-rt` uses :rust:`#[exception]`
 
   .. code:: rust
 
@@ -62,14 +62,14 @@ Different Syntaxes
     pub fn SysTick() {
     }
 
-  * **Regular** :rust:`#![no_std]`
+* **Regular** :rust:`#![no_std]`
 
-    * Functions need to be declared :rust:`extern "C"`
-    * Add :rust:`#[no_mangle]` to keep the name intact for Linker
+  * Functions need to be declared :rust:`extern "C"`
+  * Add :rust:`#[unsafe(no_mangle)]` to keep the name intact for Linker
 
   .. code:: rust
 
-    #[no_mangle]
+    #[unsafe(no_mangle)]
     pub extern "C" fn SysTick() {
     }
 
@@ -87,7 +87,7 @@ ISRs are Top-Level Functions
 
 .. code:: rust
 
-  #[no_mangle]
+  #[unsafe(no_mangle)]
   // Hardware Interrupt Handler
   pub extern "C" fn on_cat_jumped() {
     deploy_emergency_catnip();
@@ -100,6 +100,10 @@ ISRs are Top-Level Functions
     }
   }
 
+.. note::
+
+  Earlier rust version only use :rust:`#[no_mangle]`
+
 ----------------------------
 Global Shared State Hazard
 ----------------------------
@@ -111,7 +115,7 @@ Global Shared State Hazard
 
 .. code:: rust
 
-  // CAUTION: Global mutable state
+  // HAZARD: Global mutable state
   static mut COUNTER: u32 = 0;
 
   fn main() -> ! {
@@ -121,7 +125,7 @@ Global Shared State Hazard
     loop {}
   }
 
-  #[no_mangle]
+  #[unsafe(no_mangle)]
   pub extern "C" fn TIMER0() {
     unsafe {
         // If 'main' is interrupted mid-write above, 'COUNTER' becomes corrupted!
@@ -174,13 +178,13 @@ Logical Race Issue
 .. code:: rust
   :font-size: footnotesize
 
-  #[no_mangle]
+  #[unsafe(no_mangle)]
   pub extern "C" fn on_uart_rx_interrupt() {
     // ISR records that a packet is ready to process
     signal_packet_ready();
   }
 
-  #[no_mangle]
+  #[unsafe(no_mangle)]
   pub extern "C" fn recover_uart_errors() {
     unsafe {
       let status = UART_STATUS.read_volatile();
@@ -219,7 +223,7 @@ Separation of Responsibilities
 .. code:: rust
 
   // BAD: Long processing inside an ISR starves other interrupts
-  #[no_mangle]
+  #[unsafe(no_mangle)]
   pub extern "C" fn BAD_TIMER_ISR() {
       for _ in 0..10_000 {
           expensive_checksum_computation();
@@ -227,7 +231,7 @@ Separation of Responsibilities
   }
 
   // GOOD: Signal quickly and defer work to foreground
-  #[no_mangle]
+  #[unsafe(no_mangle)]
   pub extern "C" fn GOOD_TIMER_ISR() {
       signal_work_pending(); // Exits immediately
   }
