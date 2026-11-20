@@ -38,7 +38,7 @@ Variant Record Types
   * Uses :ada:`case` block to control visibility of components
 
   * This discriminant must be a discrete type
-	
+
 * Components listed will only be visible if choice matches discriminant
 
   * Component names need to be unique (even across discriminants)
@@ -92,7 +92,7 @@ Constrained Variant Record
 
 * A :dfn:`constrained` record object has *fixed* discriminant values
 
-  * :ada:`Pat` is constrained in its the declaration by :ada:`Person (Student)`
+  * :ada:`Pat` is constrained in its declaration by :ada:`Person (Student)`
   * :ada:`Sam` is constrained by its initialization :ada:`(faculty, 33, 5)`
 
     * :ada:`Person` has no default discriminant
