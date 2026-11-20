@@ -86,7 +86,7 @@ fn main() {
 
     // TASK 8 - Implementing an Unsafe Trait
     // Hint: Implementing an unsafe trait requires an unsafe impl block
-    // Bonus: Add the safety contract for the trait, function and caller
+    // Bonus: Add SAFETY comments justifying both unsafe operations
 
     /// # Safety
     /// All-zero byte patterns must represent a valid, initialized value of 'Self'
