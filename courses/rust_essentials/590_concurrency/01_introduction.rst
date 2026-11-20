@@ -6,11 +6,55 @@ Introduction
 Topics Covered
 ----------------
 
-* Topic 1
+- **Hardware Interrupts**
 
-  - Subtopic 1a
+  - Hardware preemption
+  - Interleaving risks
 
-* Topic 2
+- **Sharing States**
 
-  - Subtopic 2a
+  - Enforce concurrency boundaries with traits and types
 
+- **Atomic**
+
+  - Atomic operations
+  - Protecting shared data
+
+- **Cooperative Multitasking**
+
+  - Asynchronous tasks
+  - Voluntarily yielding
+
+--------------------------------------------------
+Concurrency - One Program, Many Things Happening
+--------------------------------------------------
+
+* Sequential programs
+
+  * One instruction at a time
+
+* Concurrent programs
+
+  * Multiple activities *conceptually* happening at once
+
+    * Even on one CPU
+
+  * Think many cooks in one kitchen
+
+* Why concurrency?
+
+  * Respond to external events (real-time systems)
+  * Improve performance or responsiveness
+
+---------------------
+Concurrency in Rust
+---------------------
+
+* Rust supports different approaches to concurrency
+
+  * Hardware Interrupts
+  * Cooperative Multitasking
+  * Threads
+
+* Traits for moving/sharing across boundaries
+* Atomic types for thread-safe operations on shared data
