@@ -22,7 +22,7 @@ fn main() {
     let clue = reference as *const i32;
 
     unsafe {
-        println!("clue: {}", *clue);
+        println!("Clue: {}", *clue);
     }
 
     // TASK 3 - Aliasing and Safety Obligations
@@ -50,7 +50,7 @@ fn main() {
     }
     // SAFETY: The argument is 'Some', as required
     let universal_answer = unsafe { get_some(Some(42)) };
-    println!("The universal answer is {universal_answer}");
+    println!("The universal answer: {universal_answer}");
 
     // TASK 5 - Updating a Mutable Static
     // Hint: Reading or writing requires an unsafe context
@@ -102,7 +102,7 @@ fn main() {
        }
     }
     let hulk_strength = avenger.as_unsigned();
-    println! ("Hulk strength is : {hulk_strength}");
+    println! ("Hulk strength: {hulk_strength}");
 
     // TASK 8 - Implementing an Unsafe Trait
     // Hint: Implementing an unsafe trait requires an unsafe impl block
@@ -129,6 +129,6 @@ fn main() {
     unsafe impl Zeroable for DeathStarPlans {}
 
     let plans = DeathStarPlans::zeroed();
-    println!("Plans loaded: {plans:?}");
+    println!("Loading: {plans:?}");
 
 }

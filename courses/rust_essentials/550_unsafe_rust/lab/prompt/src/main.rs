@@ -22,7 +22,7 @@ fn main() {
     let clue = reference;
     // Warning: unnecessary `unsafe` block
     unsafe {
-        println!("clue: {}", *clue);
+        println!("Clue: {}", *clue);
     }
 
     // TASK 3 - Aliasing and Safety Obligations
@@ -82,7 +82,7 @@ fn main() {
         }
     }
     let hulk_strength = avenger.as_unsigned();
-    println! ("Hulk strength is : {hulk_strength}");
+    println! ("Hulk strength: {hulk_strength}");
 
     // TASK 8 - Implementing an Unsafe Trait
     // Hint: Implementing an unsafe trait requires an unsafe impl block
@@ -106,6 +106,6 @@ fn main() {
     // Implement Zeroable for DeathStarPlans
 
     let plans = DeathStarPlans::zeroed();
-    println!("Plans loaded: {plans:?}");
+    println!("Loading: {plans:?}");
 
 }

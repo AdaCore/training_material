@@ -25,11 +25,11 @@ Observable output
 .. code:: output
 
   Ripley status: 426
-  clue: 5
+  Clue: 5
   Number of coins: 120
-  The universal answer is 42
+  The universal answer: 42
   Raptors loose: 1
   Hulk: 254
   Banner: -2
-  Hulk strength is : 254
-  Plans loaded: DeathStarPlans { sector: 0, shield_active: false, exhaust_ports: 0 }
+  Hulk strength: 254
+  Loading: DeathStarPlans { sector: 0, shield_active: false, exhaust_ports: 0 }
