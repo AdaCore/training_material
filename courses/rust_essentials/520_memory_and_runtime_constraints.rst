@@ -38,4 +38,5 @@ Memory and Runtime Constraints
 .. include:: 520_memory_and_runtime_constraints/05_static_storage.rst
 .. include:: 520_memory_and_runtime_constraints/06_fixed_capacity_collections.rst
 .. include:: 520_memory_and_runtime_constraints/07_runtime_constraints.rst
+.. include:: 520_memory_and_runtime_constraints/88-memory_and_runtime_constraints.lab.rst
 .. include:: 520_memory_and_runtime_constraints/99_summary.rst
