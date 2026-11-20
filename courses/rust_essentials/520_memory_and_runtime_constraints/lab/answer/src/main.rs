@@ -11,7 +11,7 @@ mod logger_trait;
 mod sample_data;
 
 // Import structure implementations of
-//   caller-supplied, fixed-size, and dynamic buffers.
+//   caller-supplied, fixed-size, and dynamic buffers
 // Also need to import the global data module
 use caller::Caller;
 use dynamic::Dynamic;

@@ -67,7 +67,7 @@ Hints
 
 * Comments in the prompt files should help
 
-.. tip:
+.. tip::
 
   If you get stuck, refer to the :filename:`answer` folder for hints
 

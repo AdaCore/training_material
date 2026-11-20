@@ -32,8 +32,8 @@ impl Logger for Dynamic {
         true
     }
 
-    // Return None if no samples have been collected.
-    // Otherwise return average of samples.
+    // Return None if no samples have been collected
+    // Otherwise return average of samples
     fn average(&self) -> Option<usize> {
         if self.samples.is_empty() {
             return None;
@@ -42,7 +42,7 @@ impl Logger for Dynamic {
         Some(sum / self.samples.len())
     }
 
-    // Clear the logger so its storage can be reused.
+    // Clear the logger so its storage can be reused
     fn clear(&mut self) {
         self.samples.clear();
     }

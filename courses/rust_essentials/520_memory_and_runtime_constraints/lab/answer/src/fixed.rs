@@ -22,7 +22,7 @@ impl Fixed {
 }
 
 impl Logger for Fixed {
-    // Return false if the logger is full.
+    // Return false if the logger is full
     fn add_sample(&mut self, value: usize) -> bool {
         if self.count >= MAX_SAMPLES {
             return false;
@@ -33,8 +33,8 @@ impl Logger for Fixed {
         true
     }
 
-    // Return None if no samples have been collected.
-    // Otherwise return average of samples.
+    // Return None if no samples have been collected
+    // Otherwise return average of samples
     fn average(&self) -> Option<usize> {
         if self.count == 0 {
             None
@@ -47,7 +47,7 @@ impl Logger for Fixed {
         }
     }
 
-    // Clear the logger so its storage can be reused.
+    // Clear the logger so its storage can be reused
     fn clear(&mut self) {
         self.count = 0;
     }
