@@ -78,7 +78,7 @@ Why "Cell" and "RefCell" Are Not "Sync"
 
 * :rust:`UnsafeCell<T>` is the core language primitive for interior mutability
 
-  * Content can be modified through a shared reference :rust:`&T`
+  * Content can be modified through a shared reference :rust:`&UnsafeCell<T>`
   * Compiler assumes data behind :rust:`&UnsafeCell<T>` is not constant
 
 .. code:: rust
