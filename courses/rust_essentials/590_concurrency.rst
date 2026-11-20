@@ -32,4 +32,8 @@ Concurrency
 .. container:: PRELUDE END
 
 .. include:: 590_concurrency/01_introduction.rst
+.. include:: 590_concurrency/02_hardware_interrupts.rst
+.. include:: 590_concurrency/03_sharing_states.rst
+.. include:: 590_concurrency/04_atomic.rst
+.. include:: 590_concurrency/05_cooperative_multitasking.rst
 .. include:: 590_concurrency/99_summary.rst
