@@ -90,7 +90,7 @@ fn main() {
 
     /// # Safety
     /// All-zero byte patterns must represent a valid, initialized value of 'Self'
-    trait Zeroable: Sized {
+    unsafe trait Zeroable: Sized {
         fn zeroed() -> Self {
             std::mem::zeroed()
         }
