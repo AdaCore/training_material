@@ -22,11 +22,7 @@ fn main() {
     let clue = reference;
     // Warning: unnecessary `unsafe` block
     unsafe {
-<<<<<<< HEAD
         println!("Clue: {}", *clue);
-=======
-        println!("clue: {}", *clue);
->>>>>>> origin/mr/682-create-lab-for-module-unsafe-rust
     }
 
     // TASK 3 - Aliasing and Safety Obligations
@@ -49,7 +45,7 @@ fn main() {
     }
 
     let universal_answer =  get_some(Some(42));
-    println!("The universal answer is {universal_answer}");
+    println!("The universal answer: {universal_answer}");
 
     // TASK 5 - Updating a Mutable Static
     // Hint: Reading or writing requires an unsafe context
