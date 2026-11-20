@@ -100,10 +100,6 @@ ISRs are Top-Level Functions
     }
   }
 
-.. note::
-
-  Earlier rust version only use :rust:`#[no_mangle]`
-
 ----------------------------
 Global Shared State Hazard
 ----------------------------
