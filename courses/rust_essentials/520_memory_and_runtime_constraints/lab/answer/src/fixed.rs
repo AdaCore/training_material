@@ -34,6 +34,7 @@ impl Logger for Fixed {
     }
 
     // Return None if no samples have been collected.
+    // Otherwise return average of samples.
     fn average(&self) -> Option<usize> {
         if self.count == 0 {
             None

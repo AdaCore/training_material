@@ -33,6 +33,7 @@ impl Logger for Dynamic {
     }
 
     // Return None if no samples have been collected.
+    // Otherwise return average of samples.
     fn average(&self) -> Option<usize> {
         if self.samples.is_empty() {
             return None;

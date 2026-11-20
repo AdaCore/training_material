@@ -21,6 +21,7 @@ impl<'a> Caller<'a> {
 }
 
 impl Logger for Caller<'_> {
+    // Return false if the logger is full.
     fn add_sample(&mut self, value: usize) -> bool {
         if self.count >= self.samples.len() {
             false
@@ -31,6 +32,8 @@ impl Logger for Caller<'_> {
         }
     }
 
+    // Return None if no samples have been collected.
+    // Otherwise return average of samples.
     fn average(&self) -> Option<usize> {
         if self.count == 0 {
             None
@@ -43,14 +46,17 @@ impl Logger for Caller<'_> {
         }
     }
 
+    // Clear the logger so its storage can be reused.
     fn clear(&mut self) {
         self.count = 0;
     }
 
+    // Number of items in use
     fn count(&self) -> usize {
         self.count
     }
 
+    // Total capacity
     fn capacity(&self) -> usize {
         self.samples.len()
     }
