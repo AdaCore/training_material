@@ -21,7 +21,7 @@ fn common_test<T: logger_trait::Logger>(logger: &mut T, can_exceed: bool) {
     // }
 
     // We want to ensure we've limited number of values
-    assert(!logger.add_sample(1234));
+    assert!(!logger.add_sample(1234));
     println!("Exceeded capacity");
 
     // Check number of values added

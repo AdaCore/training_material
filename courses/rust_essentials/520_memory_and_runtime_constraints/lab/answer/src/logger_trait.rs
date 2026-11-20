@@ -5,7 +5,7 @@
 //!
 
 pub trait Logger {
-    // Return 'false' no more samples can be accepted
+    // Return 'false' when no more samples can be accepted
     fn add_sample(&mut self, value: usize) -> bool;
 
     // Return the average, or None if no values in buffer
