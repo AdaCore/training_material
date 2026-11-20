@@ -16,7 +16,8 @@ impl Dynamic {
 }
 
 impl Logger for Dynamic {
-    // Return false if the logger is full.
+    // Return false if the logger is full
+    // (exceeds MAX_SAMPLES).
     fn add_sample(&mut self, value: usize) -> bool {
         false
     }
@@ -37,6 +38,7 @@ impl Logger for Dynamic {
     }
 
     // Total capacity
+    // (May exceed MAX_SAMPLES)
     fn capacity(&self) -> usize {
         0
     }

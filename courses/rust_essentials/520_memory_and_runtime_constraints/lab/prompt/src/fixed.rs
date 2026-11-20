@@ -16,7 +16,8 @@ impl Fixed {
 }
 
 impl Logger for Fixed {
-    // Return false if the logger is full.
+    // Return false if the logger is full
+    // (exceeds MAX_SAMPLES).
     fn add_sample(&mut self, value: usize) -> bool {
         false
     }
