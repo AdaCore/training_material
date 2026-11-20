@@ -22,7 +22,11 @@ fn main() {
     let clue = reference;
     // Warning: unnecessary `unsafe` block
     unsafe {
+<<<<<<< HEAD
         println!("Clue: {}", *clue);
+=======
+        println!("clue: {}", *clue);
+>>>>>>> origin/mr/682-create-lab-for-module-unsafe-rust
     }
 
     // TASK 3 - Aliasing and Safety Obligations

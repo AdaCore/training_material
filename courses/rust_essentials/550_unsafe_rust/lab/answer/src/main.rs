@@ -22,7 +22,11 @@ fn main() {
     let clue = reference as *const i32;
 
     unsafe {
+<<<<<<< HEAD
         println!("Clue: {}", *clue);
+=======
+        println!("clue: {}", *clue);
+>>>>>>> origin/mr/682-create-lab-for-module-unsafe-rust
     }
 
     // TASK 3 - Aliasing and Safety Obligations
@@ -50,7 +54,11 @@ fn main() {
     }
     // SAFETY: The argument is 'Some', as required
     let universal_answer = unsafe { get_some(Some(42)) };
+<<<<<<< HEAD
     println!("The universal answer: {universal_answer}");
+=======
+    println!("The universal answer is {universal_answer}");
+>>>>>>> origin/mr/682-create-lab-for-module-unsafe-rust
 
     // TASK 5 - Updating a Mutable Static
     // Hint: Reading or writing requires an unsafe context

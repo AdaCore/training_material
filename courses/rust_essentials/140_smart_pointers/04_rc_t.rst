@@ -7,58 +7,53 @@ Multiple Ownership With "Rc<T>"
 ---------------------------------
 
 - Useful when *single* value is owned by *multiple* parts of a program
-  
-  - Only provides *immutable access* to the data
 
-  - Tracks number of active references
+  - Tracks number of owners
 
   - Prevents data cleanup until last owner finishes
-  
-- Called :dfn:`Reference Counted (Smart) Pointer`
 
-  - included with :rust:`use std::rc::Rc`
-  
----------------------------
-"Rc<T>" Counts References
----------------------------
+- Single-threaded reference-counted smart pointer
 
-**Shares ownership of value on the heap using** :rust:`Clone`
-    
-- Creates a *shallow* copy not a deep copy
+  - Brought into scope with :rust:`use std::rc::Rc`
 
-  - Only the *pointer* is copied
-	
-- Increments the internal counter 
- 
-.. code:: rust 
+---------------------------------
+Reference Counting With "Rc<T>"
+---------------------------------
 
-  // Both 'var_a' and 'var_b' share ownership of the value
-  let var_a = Rc::new(5);
-  println!("Count: {}", Rc::strong_count(&var_a)); 
+**Shares ownership of the same heap allocation**
 
-  let var_b = Rc::clone(&var_a);
-  println!("Count: {}", Rc::strong_count(&var_a)); 
-  
+- :rust:`Rc::clone` creates another owner
+- Increments internal counter
+
+.. code:: rust
+
+  // Mulder and Scully share ownership of the same value
+  let mulder = Rc::new(51);
+  println!("Count: {}", Rc::strong_count(&mulder));
+
+  let scully = Rc::clone(&mulder);
+  println!("Count: {}", Rc::strong_count(&mulder));
+
 .. code:: output
 
   Count: 1
   Count: 2
 
-------------------
-Immutable Access
-------------------
+---------------
+Shared Access
+---------------
 
-  
-:rust:`Rc<T>` **allows multiple ownership but no mutable access**
 
-.. code:: rust 
+:rust:`Rc<T>` **does not implement** :rust:`DerefMut`
+
+.. code:: rust
 
   let tic = Rc::new(5);
   let tac = Rc::clone(&tic);
-  let toe = Rc::clone(&tic);  
+  let toe = Rc::clone(&tic);
 
-  *tic += 10; // Error: no mutable access
-  
+  *tic += 10; // Error
+
 .. code:: error
 
   error[E0594]: cannot assign to data in an 'Rc'
